@@ -145,7 +145,7 @@ DIV.edit_com A.selected { }
  
 TABLE.file_folder
 {
-    border: 1px solid #555152;
+    border: 1px solid #2E2633;
     padding: 4px;
     margin: 0px;
 } 
@@ -153,8 +153,8 @@ TABLE TR.file_file
 {
     margin: 0px;
     padding: 0px;
-    background-color: #555152;
-    color: #FFFFFF;
+    background-color: #BCC7D8;
+    color: #2E2633;
     text-align: center;
 }
  TABLE TD.file_file

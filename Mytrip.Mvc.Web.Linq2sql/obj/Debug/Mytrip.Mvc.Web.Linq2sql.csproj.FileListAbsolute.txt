@@ -54,3 +54,17 @@ E:\Mytrip.Mvc\Mytrip.Mvc.2\2.0.150.2\2.0.150.2\Mytrip.Mvc.Web.Linq2sql\bin\Mytri
 E:\Mytrip.Mvc\Mytrip.Mvc.2\2.0.150.2\2.0.150.2\Mytrip.Mvc.Web.Linq2sql\obj\Debug\ResolveAssemblyReference.cache
 E:\Mytrip.Mvc\Mytrip.Mvc.2\2.0.150.2\2.0.150.2\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.dll
 E:\Mytrip.Mvc\Mytrip.Mvc.2\2.0.150.2\2.0.150.2\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Web.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Web.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Model.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Model.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\ResolveAssemblyReference.cache
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_A_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Web.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Web.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Model.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\bin\Mytrip.Mvc.Model.Linq2sql.pdb
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\ResolveAssemblyReference.cache
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.dll
+C:\MY-TRIP-MVC-2\VS2008\1_JOB_Linq2sql\Mytrip.Mvc.Web.Linq2sql\obj\Debug\Mytrip.Mvc.Web.Linq2sql.pdb

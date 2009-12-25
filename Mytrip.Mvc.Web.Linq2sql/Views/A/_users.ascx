@@ -36,8 +36,8 @@
 <%=x.aspnet_Membership.CreateDate %>
 </td>
 <td style="width: 25%"><div class="edit_content">
-<a href="<%=Url.Action("F", "A", new { a = x.UserName })%>">E</a>
-<a href="<%=Url.Action("H", "A", new { a = x.UserName })%>" onclick = "return confirm ('¬ы уверены что хотите удалить пользовател€?');">D</a>     
+<a href="<%=Url.Action("F", "A", new { a = x.UserName })%>"><img src="/content/images/edit.png" alt="правка" style="border-width: 0px;" /></a>
+<a href="<%=Url.Action("H", "A", new { a = x.UserName })%>" onclick = "return confirm ('¬ы уверены что хотите удалить пользовател€?');"><img src="/content/images/delete.png" alt="удалить" style="border-width: 0px;" /></a>     
 </div>
 <%=x.LastActivityDate%>
 </td></tr>

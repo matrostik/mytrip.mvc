@@ -29,7 +29,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             }
 
             #region меню и титл
-            ViewData["menu_url"] = "home";
+            
             ViewData["logon_url"] = "/A/A";
             ViewData["model_domain"] = _dc.dm_model.Get_model().DomainName;
             ViewData["artycle_category_menu"] = _dc.dm_artycle_category.Get_categories_addmenu_true();
@@ -39,6 +39,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             #endregion
 
             #region настройка сайта
+            ViewData["menu_url"] = "home";
             //количество комментов для активации блога
             ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
             //bool разрешены блоги или нет
@@ -169,6 +170,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             ViewData["captcha"] = _dc.dm_model.Get_model().Captcha_approved;
             #endregion
             #region настройка сайта
+            ViewData["menu_url"] = "site_setting";
             //количество комментов для активации блога
             ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
             //bool разрешены блоги или нет
@@ -226,6 +228,18 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             //bool включена captcha
             ViewData["captcha"] = _dc.dm_model.Get_model().Captcha_approved;
             #endregion
+            #region настройка сайта
+            ViewData["menu_url"] = "site_setting";
+            //количество комментов для активации блога
+            ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
+            //bool разрешены блоги или нет
+            ViewData["model_blog"] = _dc.dm_model.Get_model().Blog;
+            //bool разрешены новости или нет
+            ViewData["model_news"] = _dc.dm_model.Get_model().News;
+            //bool разрешены статьи или нет
+            ViewData["model_artycle"] = _dc.dm_model.Get_model().Artycle;
+
+            #endregion
             mt_model x = _dc.dm_model.Get_model();
             ViewData.Model = x;
             return View();
@@ -258,6 +272,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             #endregion
 
             #region настройка сайта
+            ViewData["menu_url"] = "user";
             //количество комментов для активации блога
             ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
             //bool разрешены блоги или нет
@@ -322,6 +337,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             #endregion
 
             #region настройка сайта
+            ViewData["menu_url"] = "user";
             //количество комментов для активации блога
             ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
             //bool разрешены блоги или нет
@@ -378,6 +394,7 @@ namespace Mytrip.Mvc.Web.Linq2sql.Controllers
             #endregion
 
             #region настройка сайта
+            ViewData["menu_url"] = "user";
             //количество комментов для активации блога
             ViewData["model_comment"] = _dc.dm_model.Get_model().CountComment;
             //bool разрешены блоги или нет

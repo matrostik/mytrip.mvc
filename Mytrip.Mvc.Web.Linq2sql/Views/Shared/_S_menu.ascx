@@ -306,4 +306,27 @@
         <a class="tt">
         Файловый менеджер</a></div>
         
+        </div><%}if(urla=="user"){ %> 
+
+<div class="menu_a">
+    <div class="menu_a1"></div>
+<div class="menu_a2"></div>
+
+<div class="menu_gr1">
+    
+        <a href="<%=Url.Action("D", "A", new{a=0, b=1,c=25,d="Users"})%>">
+    Управление пользователями</a></div>
+        
+        </div><%} if (urla == "site_setting")
+     { %> 
+
+<div class="menu_a">
+    <div class="menu_a1"></div>
+<div class="menu_a2"></div>
+
+<div class="menu_gr1">
+    
+        <a href="<%=Url.Action("C", "A")%>">
+    Настройка сайта</a></div>
+        
         </div><%}%>

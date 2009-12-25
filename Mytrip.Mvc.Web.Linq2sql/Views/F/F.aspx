@@ -26,7 +26,7 @@
     <td>Создать папку:
             <%= Html.TextBox("a")%>
        
-            <input type="submit" value="Создать"  />
+            <input type="submit" value="Создать" class="input_boottom" />
              </td>
     <% } %>
   <% using (Html.BeginForm("F", "F", FormMethod.Post,
@@ -35,9 +35,9 @@ new { enctype = "multipart/form-data" }))
    
         <td>    
               Загрузить файл:  
-                <input type="file" name="a"  style="width: 300px; background-color: #FFFFFF;" />
+                <input type="file" name="a" class="input_boottom" style="width: 300px" />
        
-              <input type="submit" value="Загрузить"  /></td>
+              <input type="submit" value="Загрузить" class="input_boottom" /></td>
     <% } %>
 
  
@@ -64,7 +64,7 @@ new { enctype = "multipart/form-data" }))
 </td><td>
  <div class="edit_content">
 
-<a href="<%=Url.Action("G", "F", new{a=abf})%>" onclick = "return confirm ('Вы уверены что хотите удалить папку?');">D</a>     
+<a href="<%=Url.Action("G", "F", new{a=abf})%>" onclick = "return confirm ('Вы уверены что хотите удалить папку?');"><img src="/content/images/delete.png" alt="удалить" style="border-width: 0px;" /></a>     
 </div>
 <a href="<%=Url.Action("B", "F", new{a=abf})%>"> <%=x.Name %></a>
 </td>
@@ -93,7 +93,7 @@ new { enctype = "multipart/form-data" }))
        <%string ef4 = abc.Replace("/", "()"); %>
             <div class="edit_content">
 
-<a href="<%=Url.Action("D", "F", new{a=ef4})%>" onclick = "return confirm ('Вы уверены что хотите удалить файл?');">D</a>     
+<a href="<%=Url.Action("D", "F", new{a=ef4})%>" onclick = "return confirm ('Вы уверены что хотите удалить файл?');"><img src="/content/images/delete.png" alt="удалить" style="border-width: 0px;" /></a>     
 </div> 
 <a  href="<%= abc %>" > <%= abc %></a> 
 </td>
