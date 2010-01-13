@@ -1,0 +1,17 @@
+<!--/*   Mytrip.Mvc.Web.Linq2sql   Copyright ©  2009 Стюхин Олег Анатольевич oleg@stuh.in 
+Эта программа является свободным программным продуктом; вы вправе распространять и/или изменять 
+ее в соответствии с условиями Генеральной Общественной Лицензии GNU в том виде, как она была опубликована 
+Фондом Свободного ПО; либо версии 2 Лицензии либо (по вашему желанию) любой более поздней версии.
+Программа распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ БЫ ТО НИ БЫЛО ГАРАНТИЙНЫХ ОБЯЗАТЕЛЬСТВ;
+даже без косвенных гарантийных обязательств, связанных с ПОТРЕБИТЕЛЬСКИМИ СВОЙСТВАМИ и ПРИГОДНОСТЬЮ ДЛЯ ОПРЕДЕЛЕННЫХ ЦЕЛЕЙ. 
+Для подробностей смотрите Генеральную Общественную Лицензию GNU.
+Вы должны были получить копию Генеральной Общественной Лицензии GNU вместе с этой программой; 
+если это не так, напишите в Фонд Свободного ПО 
+(Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA).  */-->
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<div style="position: relative; float: left;  width: 50px; height: 50px; top: 5px; margin-right: 5px;">
+<img src="/Content/images/logo.png" style="width: 50px;" />
+</div>
+<div class="title_small">content&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;management&nbsp;&nbsp;system</div>
+<div class="title_big"><a href="<%=Url.Action("A", "A")%>">
+        Mytrip.Mvc</a></div>

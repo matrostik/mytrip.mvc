@@ -1,0 +1,323 @@
+﻿/*   Mytrip.Mvc.Web.Linq2sql   Copyright ©  2009 Стюхин Олег Анатольевич oleg@stuh.in 
+Эта программа является свободным программным продуктом; вы вправе распространять и/или изменять 
+ее в соответствии с условиями Генеральной Общественной Лицензии GNU в том виде, как она была опубликована 
+Фондом Свободного ПО; либо версии 2 Лицензии либо (по вашему желанию) любой более поздней версии.
+Программа распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ БЫ ТО НИ БЫЛО ГАРАНТИЙНЫХ ОБЯЗАТЕЛЬСТВ;
+даже без косвенных гарантийных обязательств, связанных с ПОТРЕБИТЕЛЬСКИМИ СВОЙСТВАМИ и ПРИГОДНОСТЬЮ ДЛЯ ОПРЕДЕЛЕННЫХ ЦЕЛЕЙ. 
+Для подробностей смотрите Генеральную Общественную Лицензию GNU.
+Вы должны были получить копию Генеральной Общественной Лицензии GNU вместе с этой программой; 
+если это не так, напишите в Фонд Свободного ПО 
+(Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA).  */
+body
+{
+    
+    background-color: #2B3C59;
+    font-size: .75em;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    
+}
+
+
+
+
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;   
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+     color: #2E2633;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+
+
+#main
+{
+    
+    margin-bottom: 2px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+}
+#main1
+{margin-top: 91px;
+    padding: 10px;
+      background: #fff;
+    margin-bottom: 4px;
+     border-top-style: solid;
+    border-top-width: 4px;
+    border-top-color: #FFE8A6;
+}
+/*#mainright
+{
+    position: relative;
+    width: 220px;
+    float: right; 
+    
+    margin-bottom: 4px;
+    margin-top: -18px;
+}*/
+#maincenter
+{
+    padding: 10px;
+    background: #fff;
+    margin-right: 226px;
+    margin-bottom: 4px;
+    margin-top: 91px;
+    border-top-style: solid;
+    border-top-width: 4px;
+    border-top-color: #FFE8A6;
+}
+#footer
+{
+    background: #fff;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    font-size: .9em;
+    position: relative;
+    float: right;
+    width: 100%;
+}
+#footer1
+{
+    background: #fff;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    font-size: .9em;
+    
+}
+
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset label 
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input[type="text"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+small
+{
+    font-style: italic;
+    font-size: 12px;
+}
+input[type="password"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    margin-top: 75px;
+   
+}
+
+div#title
+{
+    display: block;
+    float: left;
+    text-align: left;    
+}
+
+#logindisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    color: #CED4DD;
+    padding: 0px 0px 1px 1px;
+}
+
+#logindisplay a:link
+{
+     color: #F7F7F7;
+    text-decoration: none;
+}
+
+#logindisplay a:visited
+{
+    color: #F7F7F7;
+    text-decoration: none;
+}
+
+#logindisplay a:hover
+{
+     color: #F7F7F7;
+    text-decoration: none;
+}
+
+.field-validation-error
+{
+    color: red;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color:red;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.display-label,
+.editor-label
+{
+    font-weight: bold;
+}
+
+.display-label,
+.editor-label,
+.display-field,
+.editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}

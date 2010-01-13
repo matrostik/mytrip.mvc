@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="<%=Mytrip_Mvc_Language_1.text_direction %>">
+<head id="Head1" runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="icon" href="/mt.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/mt.ico" type="image/x-icon" />
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Main.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/test.css.aspx" rel="stylesheet" type="text/css" /> 
+</head>
+
+<body>
+<!--/*   Mytrip.Mvc.Web.Linq2sql   Copyright ©  2009 Стюхин Олег Анатольевич   */-->
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <% Html.RenderPartial("_S_title"); %>
+            </div>
+            <div id="logindisplay">
+             <% Html.RenderPartial("_S_language"); %>
+            </div>
+            <div id="menucontainer">
+             
+            </div>
+        </div>
+        <div id="main"> <div id="main1">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" /></div>
+            <div id="footer1">
+                <% Html.RenderPartial("_S_copyrite"); %>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+    </div>
+</body>
+</html>
