@@ -27,26 +27,17 @@ namespace Mytrip.Core.Controllers
     public class UsersController : Controller
     {
         
-        MembershipRepository _membershipRepo;
-        public MembershipRepository membershipRepo
+        ICoreRepository _coreRepo;
+        public ICoreRepository coreRepo
         {
             get
             {
-                if (_membershipRepo == null)
-                    _membershipRepo = new MembershipRepository();
-                return _membershipRepo;
+                if (_coreRepo == null)
+                    _coreRepo = new ICoreRepository();
+                return _coreRepo;
             }
         }
-        RoleRepository _roleRepo;
-        public RoleRepository roleRepo
-        {
-            get
-            {
-                if (_roleRepo == null)
-                    _roleRepo = new RoleRepository();
-                return _roleRepo;
-            }
-        }
+        
         /// <summary>
         /// URL: /Users/Index/pageIndex?/pageSize?/sorting?
         /// </summary>
@@ -61,7 +52,7 @@ namespace Mytrip.Core.Controllers
             int _pageIndex = pageIndex ?? 1;
             int _pageSize = pageSize ?? model.DefaultCount;
             int total;
-            model.Users = membershipRepo.mtGetAllUsersPaginal((int)_pageIndex,(int)_pageSize,sorting,out total);
+            model.Users = coreRepo.mssqlMembershipRepo.mssqlGetAllUsersPaginal((int)_pageIndex, (int)_pageSize, sorting, out total);
             model.Total = total;           
             return View(model);
         }
@@ -96,7 +87,7 @@ namespace Mytrip.Core.Controllers
         /// <returns>ActionResult</returns>
         public ActionResult Details(string userName)
         {
-            var user = membershipRepo.mtGetUserByUserName(userName);
+            var user = coreRepo.mssqlMembershipRepo.mssqlGetUserByUserName(userName);
             DetailsUserModel model = new DetailsUserModel();
             model.UserName = user.UserName;
             model.Email = user.mytrip_Membership.Email;
@@ -106,7 +97,7 @@ namespace Mytrip.Core.Controllers
             model.LastPasswordChangedDate = user.mytrip_Membership.LastPasswordChangedDate;
             model.UserIP = user.mytrip_Membership.UserIP;
             model.IsApproved = user.mytrip_Membership.IsApproved;
-            model.AllRoles = new SelectList(roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
+            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
             model.RolesInUser = user.mytrip_Roles;            
             return View(model);
         }
@@ -121,11 +112,11 @@ namespace Mytrip.Core.Controllers
             if (ModelState.IsValid && ValidateRole(model.UserName, model.RoleName))
             {
                 //Roles.AddUserToRole(model.UserName, model.RoleName);
-                roleRepo.mtUnlockUserInRole(model.UserName, model.RoleName);
+                coreRepo.roleRepo.mtUnlockUserInRole(model.UserName, model.RoleName);
                 RedirectToAction("Details", new { userName = model.UserName });
             }
-            var user = membershipRepo.mtGetUserByUserName(model.UserName);
-            model.AllRoles = new SelectList(roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
+            var user = coreRepo.mssqlMembershipRepo.mssqlGetUserByUserName(model.UserName);
+            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
             model.RolesInUser = user.mytrip_Roles;
             return View(model);
         }
@@ -136,7 +127,7 @@ namespace Mytrip.Core.Controllers
         /// <returns></returns>
         public ActionResult IsApproved(string userName)
         {
-            membershipRepo.UnlockUser(userName);
+            coreRepo.membershipRepo.UnlockUser(userName);
             return RedirectToAction("Details", new { userName });
         }
         /// <summary>
@@ -149,7 +140,7 @@ namespace Mytrip.Core.Controllers
         {
             if (!String.IsNullOrEmpty(userName) && !String.IsNullOrEmpty(roleName))
                 Roles.RemoveUserFromRole(userName, roleName);
-                roleRepo.mtDeleteUserInRole(userName, roleName);
+                coreRepo.roleRepo.mtDeleteUserInRole(userName, roleName);
             return RedirectToAction("Details", new { userName });
         }
         /// <summary>
@@ -164,7 +155,7 @@ namespace Mytrip.Core.Controllers
             IndexRolesModel model = new IndexRolesModel();
             int total;
             model.DefaultCount = 10;
-            model.Roles = roleRepo.mtGetAllRolesPaginal(pageIndex, pageSize, sorting, out total);
+            model.Roles = coreRepo.roleRepo.mtGetAllRolesPaginal(pageIndex, pageSize, sorting, out total);
             model.Total = total;
             return View(model);
         }
@@ -183,7 +174,7 @@ namespace Mytrip.Core.Controllers
                 RedirectToAction("IndexRole", new { pageIndex = 1, pageSize = model.DefaultCount, sorting = "RoleName" });
             }
             int total;
-            model.Roles = roleRepo.mtGetAllRolesPaginal(1, model.DefaultCount, "RoleName", out total);
+            model.Roles = coreRepo.roleRepo.mtGetAllRolesPaginal(1, model.DefaultCount, "RoleName", out total);
             model.Total = total;
             return View(model);
         }
@@ -205,7 +196,7 @@ namespace Mytrip.Core.Controllers
         /// <returns>bool</returns>
         private bool ValidateRole(string userName, string roleName)
         {            
-            if (roleRepo.IsUserInRole(userName,roleName))
+            if (coreRepo.roleRepo.IsUserInRole(userName,roleName))
                 ModelState.AddModelError("RoleName", CoreLanguage.role_in_user);
             return ModelState.IsValid;
         }

@@ -17,17 +17,7 @@ using Mytrip.Core.Repository.XmlUsers;
 namespace Mytrip.Core.Repository
 {
     public class MembershipRepository : MembershipProvider
-    {
-        usersEntities _entities;
-        public usersEntities entities
-        {
-            get
-            {
-                if (_entities == null)
-                    _entities = new usersEntities(UsersSetting.connectionString);
-                return _entities;
-            }
-        }
+    {       
         MsSqlMembershipRepository _mssqlUser;
         public MsSqlMembershipRepository mssqlUser
         {
@@ -191,14 +181,18 @@ namespace Mytrip.Core.Repository
         }
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            var user = mtGetUserByUserName(username);
-            if (user != null)
+            string _username = string.Empty;
+            if (UsersSetting.membership == "MSSQL")
             {
-                if (userIsOnline)
-                {
-                    mtLastActivityDate(username);
-                }
-                return CreateMembershipFromInternalUser(username);
+                _username = mssqlUser.mssqlGetUser(username, userIsOnline);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                _username = xmlUser.xmlGetUser(username, userIsOnline);
+            }
+            if (!String.IsNullOrEmpty(_username))
+            {
+                return CreateMembershipFromInternalUser(_username);
             }
             else
             {
@@ -207,31 +201,34 @@ namespace Mytrip.Core.Repository
         }
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
         {
-            var user = mtGetUserByUserId(providerUserKey.ToString());
-            if (user != null)
+             string _username = string.Empty;
+            if (UsersSetting.membership == "MSSQL")
             {
-                if (userIsOnline)
-                {
-                    mtLastActivityDate(user.UserName);
-                }
-                return CreateMembershipFromInternalUser(user.UserName);
+                _username = mssqlUser.mssqlGetUser(providerUserKey, userIsOnline);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                _username = xmlUser.xmlGetUser(providerUserKey, userIsOnline);
+            }
+            if (!String.IsNullOrEmpty(_username)){
+                return CreateMembershipFromInternalUser(_username);
             }
             else
             {
                 return null;
             }
         }
-        /// <summary>
-        /// Get User Name By Email
-        /// </summary>
-        /// <param name="email">E-mail</param>
-        /// <returns></returns>
         public override string GetUserNameByEmail(string email)
         {
             string result = string.Empty;
-            var user = entities.mytrip_Users.FirstOrDefault(x => x.mytrip_Membership.Email == email);
-            if (user != null)
-                result = user.UserName;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlGetUserNameByEmail(email);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetUserNameByEmail(email);
+            }
             return result;
         }
         public override int MaxInvalidPasswordAttempts
@@ -288,20 +285,13 @@ namespace Mytrip.Core.Repository
         public override bool UnlockUser(string userName)
         {
             bool result = false;
-            var user = entities.mytrip_Membership.FirstOrDefault(x=>x.mytrip_Users.UserName==userName);
-            if (user != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                mytrip_Membership x = user;
-                if (user.IsApproved)
-                {
-                    x.IsApproved = false;
-                }
-                else
-                {
-                    x.IsApproved = true;
-                }
-                entities.SaveChanges();
-                result = true;
+                result = mssqlUser.mssqlUnlockUser(userName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlUnlockUser(userName);
             }
             return result;
         }
@@ -322,184 +312,7 @@ namespace Mytrip.Core.Repository
             }
             return result;
         }
-        /// <summary>
-        /// Get User by UserId
-        /// </summary>
-        /// <param name="userid">UserId</param>
-        /// <returns>mytrip_Users</returns>
-        private mytrip_Users mtGetUserByUserId(string userid)
-        {
-            return entities.mytrip_Users.FirstOrDefault(x => x.UserId == userid);
-        }
-        /// <summary>
-        /// Create Unique UserId
-        /// </summary>
-        /// <returns>string</returns>
-        private string mtCreateUserByUserId()
-        {
-            string result = Guid.NewGuid().ToString();
-            while (mtGetUserByUserId(result) != null)
-            {
-                result = Guid.NewGuid().ToString();
-            }
-            return result;
-        }
-        /// <summary>
-        /// Get User by User Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>mytrip_Users</returns>
-        public mytrip_Users mtGetUserByUserName(string username)
-        {
-            return entities.mytrip_Users.FirstOrDefault(x => x.UserName == username);
-           
-        }
-        /// <summary>
-        /// Get User by User Name or Email
-        /// </summary>
-        /// <param name="userNameOrEmail">User Name or Email</param>
-        /// <returns>mytrip_Users</returns>
-        public mytrip_Users mtGetUserByUserNameOrEmail(string userNameOrEmail)
-        {
-            var user = entities.mytrip_Users.FirstOrDefault(x => x.UserName == userNameOrEmail);
-            if (user == null)
-                user = entities.mytrip_Users.FirstOrDefault(x => x.mytrip_Membership.Email == userNameOrEmail);
-            return user;
-        }
-        /// <summary>
-        /// Create User
-        /// </summary>
-        /// <param name="userId">UserId</param>
-        /// <param name="userName">User Name</param>
-        private void mtCreateUser(string userId, string userName)
-        {
-            mytrip_Users x = new mytrip_Users
-            {
-                UserId = userId,
-                UserName = userName,
-                LastActivityDate = DateTime.Now
-            };
-            entities.AddTomytrip_Users(x);
-            entities.SaveChanges();
-        }
-        /// <summary>
-        /// Create Membership
-        /// </summary>
-        /// <param name="userId">UserId</param>
-        /// <param name="password">Password</param>
-        /// <param name="email">Email</param>
-        /// <param name="isApproved">Is Approved</param>
-        private void mtCreateMembership(string userId, string password, string email, bool isApproved)
-        {
-            string newGuid = Guid.NewGuid().ToString();
-            mytrip_Membership x = new mytrip_Membership
-            {
-                UserId = userId,
-                Password = mtHashPassword(password, newGuid),
-                PasswordSalt = newGuid,
-                Email = email,
-                IsApproved = isApproved,
-                CreationDate = DateTime.Now,
-                LastLockoutDate = DateTime.MaxValue,
-                LastLoginDate = DateTime.Now,
-                LastPasswordChangedDate = DateTime.Now,
-                UserIP = HttpContext.Current.Request.UserHostAddress
-            };
-            entities.AddTomytrip_Membership(x);
-            entities.SaveChanges();
-        }
-        /// <summary>
-        /// Hash Password
-        /// </summary>
-        /// <param name="password">Password</param>
-        /// <param name="passwordsalt">Password Salt</param>
-        /// <returns>string</returns>
-        private string mtHashPassword(string password, string passwordsalt)
-        {
-            string hash = FormsAuthentication
-                .HashPasswordForStoringInConfigFile((passwordsalt + password), "SHA1");
-            return hash;
-        }
-        /// <summary>
-        /// Get Membership by User Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>mytrip_Membership</returns>
-        private mytrip_Membership mtGetMembershipByUserName(string username)
-        {
-            string userId = mtGetUserIdbyUserName(username);
-            return entities.mytrip_Membership.FirstOrDefault(x => x.UserId == userId);
-        }
-        /// <summary>
-        /// Get UserId by User Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>string</returns>
-        private string mtGetUserIdbyUserName(string username)
-        {
-            return mtGetUserByUserName(username).UserId;
-        }
-        /// <summary>
-        /// Remove Roles ftom User
-        /// </summary>
-        /// <param name="username">User Name</param>
-        private void mtRemoveRolesFromUser(string username)
-        {
-            var user = mtGetUserByUserName(username);
-            if (user.mytrip_Roles != null)
-            {
-                foreach (mytrip_Roles x in user.mytrip_Roles.ToList())
-                {
-                    var role = mtGetRoleByRoleName(x.RoleName);
-                    user.mytrip_Roles.Remove(role);
-                    entities.SaveChanges();
-                }
-            }
-        }
-        /// <summary>
-        /// Get Role by Role Name
-        /// </summary>
-        /// <param name="rolename">Role Name</param>
-        /// <returns>mytrip_Roles</returns>
-        private mytrip_Roles mtGetRoleByRoleName(string rolename)
-        {
-            return entities.mytrip_Roles.FirstOrDefault(x => x.RoleName == rolename);
-        }
-        /// <summary>
-        /// Delete Membership
-        /// </summary>
-        /// <param name="username">User Name</param>
-        private void mtDeleteMembership(string username)
-        {
-            mytrip_Membership x = entities.mytrip_Membership.FirstOrDefault(y=>y.mytrip_Users.UserName==username);
-            entities.DeleteObject(x);
-            entities.SaveChanges();
-        }
-        /// <summary>
-        /// Last Activity Date
-        /// </summary>
-        /// <param name="username">User Name</param>
-        public void mtLastActivityDate(string username)
-        {
-            mytrip_Users x = mtGetUserByUserName(username);
-            x.LastActivityDate = DateTime.Now;
-            entities.SaveChanges();
-        }
-        /// <summary>
-        /// Update UserIP
-        /// </summary>
-        /// <param name="username">User Name</param>
-        private void mtUpdateUserIP(string username)
-        {
-            mytrip_Membership x = mtGetMembershipByUserName(username);
-            x.UserIP = HttpContext.Current.Request.UserHostAddress;
-            entities.SaveChanges();
-        }
-        /// <summary>
-        /// Accessible User Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>bool</returns>
+        /*-------------------------------------------------------------------------------------*/
         public bool mtAccessibleUserName(string username)
         {
             bool result = true;
@@ -510,14 +323,9 @@ namespace Mytrip.Core.Repository
             else if (UsersSetting.membership == "XML")
             {
                 result = xmlUser.xmlAccessibleUserName(username);
-            }         
+            }
             return result;
         }
-        /// <summary>
-        /// Accessible Email
-        /// </summary>
-        /// <param name="email">E-mail</param>
-        /// <returns>bool</returns>
         public bool mtAccessibleEmail(string email)
         {
             bool result = true;
@@ -531,11 +339,6 @@ namespace Mytrip.Core.Repository
             }
             return result;
         }
-        /// <summary>
-        /// Check User Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>bool</returns>
         public bool mtCheckUserName(string username)
         {
             bool result = false;
@@ -549,96 +352,39 @@ namespace Mytrip.Core.Repository
             }
             return result;
         }
-        /// <summary>
-        /// Check Old Password
-        /// </summary>
-        /// <param name="OldPassword">Old Password</param>
-        /// <returns></returns>
-        public bool mtCheckOldPassword(string OldPassword)
-        {
-            bool result = false;
-            var user = mtGetMembershipByUserName(HttpContext.Current.User.Identity.Name);
-            if (user != null && mtHashPassword(OldPassword, user.PasswordSalt) == user.Password)
-            {
-                result = true;
-            }
-            return result;
-        }
-        /// <summary>
-        /// Get All Users Paginal
-        /// </summary>
-        /// <param name="pageIndex">Page Index</param>
-        /// <param name="pageSize">Page Size</param>
-        /// <param name="sorting">Sorting</param>
-        /// <param name="total">Total</param>
-        /// <returns>IQueryable(mytrip_Users)</returns>
-        public IQueryable<mytrip_Users> mtGetAllUsersPaginal(int pageIndex, int pageSize, string sorting, out int total)
-        {    
-            total = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Count();
-            var users = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);            
-            if (sorting == "UserName")
-                users = entities.mytrip_Users.OrderBy(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_UserName")
-                users = entities.mytrip_Users.OrderByDescending(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "Email")
-                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.Email).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-           else if (sorting == "_Email")
-                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.Email).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "LastActivityDate")
-                users = entities.mytrip_Users.OrderBy(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_LastActivityDate")
-                users = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "CreationDate")
-                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.CreationDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_CreationDate")
-                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.CreationDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "LastLoginDate")
-                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.LastLoginDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_LastLoginDate")
-                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.LastLoginDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "LastPasswordChangedDate")
-                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.LastPasswordChangedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_LastPasswordChangedDate")
-                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.LastPasswordChangedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "UserIP")
-                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.UserIP).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_UserIP")
-                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.UserIP).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (!String.IsNullOrEmpty(sorting)) 
-            {
-                    var user = entities.mytrip_Users.Where(x => x.UserName.IndexOf(sorting) != -1);
-                    var _user = entities.mytrip_Users.Where(x => x.mytrip_Membership.Email.IndexOf(sorting) != -1);
-                    total = user.Union(_user).Count();
-                    users = user.Union(_user).OrderBy(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            }
-            return users;
-        }
-        /// <summary>
-        /// Delete User
-        /// </summary>
-        /// <param name="username">User Name</param>
-        public void mtDeleteUser(string username)
-        {
-            var user = mtGetUserByUserName(username);
-            if (user != null)
-            {
-                mtRemoveRolesFromUser(username);
-                mtDeleteMembership(username);
-                mytrip_Users x = user;
-                entities.DeleteObject(x);
-                entities.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// Hash Captcha
-        /// </summary>
-        /// <param name="saptcha">captcha</param>
-        /// <returns>string</returns>
         public string mtHashCaptcha(string saptcha)
         {
             string c = FormsAuthentication
                 .HashPasswordForStoringInConfigFile((UsersSetting.applicationName + saptcha), "SHA1");
             return c;
         }
+        public bool mtCheckOldPassword(string OldPassword)
+        {
+            bool result = false;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlCheckOldPassword(OldPassword);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlCheckOldPassword(OldPassword);
+            }
+            return result;
+        }
+        public string mtGetUserEmail(string username)
+        {
+            string result = string.Empty;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlGetUserEmail(username);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetUserEmail(username);
+            }
+            return result;
+        }
+        /*------------------------------------------------------------------------------------*/
+  
     }
 }

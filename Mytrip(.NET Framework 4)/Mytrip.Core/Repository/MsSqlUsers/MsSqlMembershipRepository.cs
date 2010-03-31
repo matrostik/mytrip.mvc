@@ -20,6 +20,130 @@ namespace Mytrip.Core.Repository.MsSqlUsers
                 return _entities;
             }
         }
+        public string mssqlGetUserEmail(string username)
+        {
+            string result = string.Empty;
+            var user = mssqlGetMembershipByUserName(username);
+            result = user.Email;
+            return result;
+        }
+        public bool mssqlCheckOldPassword(string OldPassword)
+        {
+            bool result = false;
+            var user = mssqlGetMembershipByUserName(HttpContext.Current.User.Identity.Name);
+            if (user != null && mssqlHashPassword(OldPassword, user.PasswordSalt) == user.Password)
+            {
+                result = true;
+            }
+            return result;
+        }
+        public IQueryable<mytrip_Users> mssqlGetAllUsersPaginal(int pageIndex, int pageSize, string sorting, out int total)
+        {
+            total = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Count();
+            var users = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            if (sorting == "UserName")
+                users = entities.mytrip_Users.OrderBy(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_UserName")
+                users = entities.mytrip_Users.OrderByDescending(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "Email")
+                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.Email).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_Email")
+                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.Email).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "LastActivityDate")
+                users = entities.mytrip_Users.OrderBy(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_LastActivityDate")
+                users = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "CreationDate")
+                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.CreationDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_CreationDate")
+                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.CreationDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "LastLoginDate")
+                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.LastLoginDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_LastLoginDate")
+                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.LastLoginDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "LastPasswordChangedDate")
+                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.LastPasswordChangedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_LastPasswordChangedDate")
+                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.LastPasswordChangedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "UserIP")
+                users = entities.mytrip_Users.OrderBy(x => x.mytrip_Membership.UserIP).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_UserIP")
+                users = entities.mytrip_Users.OrderByDescending(x => x.mytrip_Membership.UserIP).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (!String.IsNullOrEmpty(sorting))
+            {
+                var user = entities.mytrip_Users.Where(x => x.UserName.IndexOf(sorting) != -1);
+                var _user = entities.mytrip_Users.Where(x => x.mytrip_Membership.Email.IndexOf(sorting) != -1);
+                total = user.Union(_user).Count();
+                users = user.Union(_user).OrderBy(x => x.UserName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            }
+            return users;
+        }
+        public bool mssqlUnlockUser(string userName)
+        {
+            bool result = false;
+            var user = entities.mytrip_Membership.FirstOrDefault(x => x.mytrip_Users.UserName == userName);
+            if (user != null)
+            {
+                mytrip_Membership x = user;
+                if (user.IsApproved)
+                {
+                    x.IsApproved = false;
+                }
+                else
+                {
+                    x.IsApproved = true;
+                }
+                entities.SaveChanges();
+                result = true;
+            }
+            return result;
+        }
+        public string mssqlGetUserNameByEmail(string email)
+        {
+            string result = string.Empty;
+            var user = entities.mytrip_Users.FirstOrDefault(x => x.mytrip_Membership.Email == email);
+            if (user != null)
+                result = user.UserName;
+            return result;
+        }
+        public string mssqlGetUser(object providerUserKey, bool userIsOnline)
+        {
+            var user = mssqlGetUserByUserId(providerUserKey.ToString());
+            if (user != null)
+            {
+                if (userIsOnline)
+                {
+                    mssqlLastActivityDate(user);
+                }
+                return user.UserName;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+        public string mssqlGetUser(string username, bool userIsOnline)
+        {
+            var user = mssqlGetUserByUserName(username);
+            if (user != null)
+            {
+                if (userIsOnline)
+                {
+                    mssqlLastActivityDate(user);
+                }
+                return username;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+        public void mssqlLastActivityDate(mytrip_Users username)
+        {
+            mytrip_Users x = username;
+            x.LastActivityDate = DateTime.Now;
+            entities.SaveChanges();
+        }
         public int mssqlGetNumberOfUsersOnline()
         {
             var users = entities.mytrip_Users.OrderByDescending(x => x.LastActivityDate);

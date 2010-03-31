@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreLanguage.ru-ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\ICoreRepository.cs" />
     <Compile Include="Settings\CoreSettings.cs" />
     <Compile Include="Helpers\AccordionHelper.cs" />
     <Compile Include="Helpers\FileHelper.cs" />

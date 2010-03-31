@@ -13,6 +13,98 @@ namespace Mytrip.Core.Repository.XmlUsers
 
    public class XmlMembershipRepository
    {
+       public string xmlGetUserEmail(string username)
+       {
+           string result = string.Empty;
+           var user = xmlGetMembershipByUserName(username);
+           result = user.Email;
+           return result;
+       }
+       public bool xmlCheckOldPassword(string OldPassword)
+       {
+           bool result = false;
+           var user = xmlGetMembershipByUserName(HttpContext.Current.User.Identity.Name);
+           if (user != null && xmlHashPassword(OldPassword, user.PasswordSalt) == user.Password)
+           {
+               result = true;
+           }
+           return result;
+       }
+       public bool xmlUnlockUser(string userName)
+       {
+           bool result = false;
+           var user = xmlGetUserByUserName(userName);
+           if (user != null)
+           {
+               string _absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlMembership.xml");
+               XDocument _doc = XDocument.Load(_absolutDirectory);
+               var membership = _doc.Root.Elements("Membership").FirstOrDefault(x => x.Attribute("UserId").Value == user.UserId);
+               bool IsApproved = bool.Parse(membership.Element("IsApproved").Value);
+               if (IsApproved)
+               {
+                   membership.SetElementValue("IsApproved", false.ToString());
+                   _doc.Save(_absolutDirectory);
+               }
+               else
+               {
+                   membership.SetElementValue("IsApproved", true.ToString());
+                   _doc.Save(_absolutDirectory);
+               }
+               result = true;
+           }
+           return result;
+       }
+       public string xmlGetUserNameByEmail(string email)
+       {
+           string result = string.Empty;
+           string _absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlMembership.xml");
+           XDocument _doc = XDocument.Load(_absolutDirectory);
+           var membership = _doc.Root.Elements("Membership").FirstOrDefault(x => x.Element("Email").Value == email);
+           string UserId = membership.Attribute("UserId").Value;
+           var user = xmlGetUserByUserId(UserId);
+           result = user.UserName;
+           return result;
+       }
+       public string xmlGetUser(object providerUserKey, bool userIsOnline)
+       {
+           var user = xmlGetUserByUserId(providerUserKey.ToString());
+           if (user != null)
+           {
+               if (userIsOnline)
+               {
+                   xmlLastActivityDate(user.UserName);
+               }
+               return user.UserName;
+           }
+           else
+           {
+               return string.Empty;
+           }
+       }
+       public string xmlGetUser(string username, bool userIsOnline)
+       {
+           var user = xmlGetUserByUserName(username);
+           if (user != null)
+           {
+               if (userIsOnline)
+               {
+                   xmlLastActivityDate(username);
+               }
+               return username;
+           }
+           else
+           {
+               return string.Empty;
+           }
+       }
+       public void xmlLastActivityDate(string username)
+       {
+           string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsers.xml");
+           XDocument doc = XDocument.Load(absolutDirectory);
+           var _user = doc.Root.Elements("User").FirstOrDefault(x => x.Attribute("UserName").Value == username);
+           _user.SetAttributeValue("LastActivityDate", String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+           doc.Save(absolutDirectory);
+       }
        public int xmlGetNumberOfUsersOnline()
        {
            string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsers.xml");
@@ -217,6 +309,24 @@ namespace Mytrip.Core.Repository.XmlUsers
                var _user = doc.Root.Elements("User")
                    .FirstOrDefault(x => x.Attribute("UserName").Value == Username);
                if (_user != null) {
+                   user.UserName = _user.Attribute("UserName").Value;
+                   user.UserId = _user.Attribute("UserId").Value;
+                   user.LastActivityDate = DateTime.Parse(_user.Attribute("LastActivityDate").Value);
+               }
+           }
+           return user;
+       }
+       public xml_Users xmlGetUserByUserId(string UserId)
+       {
+           xml_Users user = new xml_Users();
+           if (xmlLoadFile("xmlUsers.xml"))
+           {
+               string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsers.xml");
+               XDocument doc = XDocument.Load(absolutDirectory);
+               var _user = doc.Root.Elements("User")
+                   .FirstOrDefault(x => x.Attribute("UserId").Value == UserId);
+               if (_user != null)
+               {
                    user.UserName = _user.Attribute("UserName").Value;
                    user.UserId = _user.Attribute("UserId").Value;
                    user.LastActivityDate = DateTime.Parse(_user.Attribute("LastActivityDate").Value);

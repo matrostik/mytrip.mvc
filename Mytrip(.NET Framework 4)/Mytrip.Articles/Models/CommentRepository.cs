@@ -46,7 +46,7 @@ namespace Mytrip.Articles.Models
         }
         public string userEmail
         {
-            get { return mr.mtGetUserByUserName(userName).mytrip_Membership.Email; }
+            get { return mr.mtGetUserEmail(userName); }
         }
         #endregion
 
