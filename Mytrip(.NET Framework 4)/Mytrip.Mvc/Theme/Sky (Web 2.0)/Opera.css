@@ -1,0 +1,16 @@
+﻿/************************************************************ 
+    // Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+    // To learn more about Mytrip.Mvc.Entyty visit 
+    // http://starterkitmytripmvc.codeplex.com/
+    // mytripmvc@gmail.com
+    // license: Microsoft Public License (Ms-PL) 
+    // ***********************************************************/
+
+/* TAB MENU 
+   * -----------------------------------------------------*/ 
+   #menucontainer
+{
+    top: 185px;
+    position: absolute;
+    float: left;
+}

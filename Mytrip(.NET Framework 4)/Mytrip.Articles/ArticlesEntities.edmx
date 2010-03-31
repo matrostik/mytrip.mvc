@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="articlesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="articlesModelStoreContainer">
+          <EntitySet Name="mytrip_Articles" EntityType="articlesModel.Store.mytrip_Articles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_ArticlesCategory" EntityType="articlesModel.Store.mytrip_ArticlesCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_ArticlesComments" EntityType="articlesModel.Store.mytrip_ArticlesComments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_ArticlesInTags" EntityType="articlesModel.Store.mytrip_ArticlesInTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_ArticlesTag" EntityType="articlesModel.Store.mytrip_ArticlesTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_ArticlesVotes" EntityType="articlesModel.Store.mytrip_ArticlesVotes" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_mytrip_Article_mytrip_ArticleCategory" Association="articlesModel.Store.FK_mytrip_Article_mytrip_ArticleCategory">
+            <End Role="mytrip_ArticlesCategory" EntitySet="mytrip_ArticlesCategory" />
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticleCategory_mytrip_ArticleCategory" Association="articlesModel.Store.FK_mytrip_ArticleCategory_mytrip_ArticleCategory">
+            <End Role="mytrip_ArticlesCategory" EntitySet="mytrip_ArticlesCategory" />
+            <End Role="mytrip_ArticlesCategory1" EntitySet="mytrip_ArticlesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticleComment_mytrip_Article" Association="articlesModel.Store.FK_mytrip_ArticleComment_mytrip_Article">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesComments" EntitySet="mytrip_ArticlesComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticlesInTags_mytrip_Article" Association="articlesModel.Store.FK_mytrip_ArticlesInTags_mytrip_Article">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesInTags" EntitySet="mytrip_ArticlesInTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticlesInTags_mytrip_ArticlesTag" Association="articlesModel.Store.FK_mytrip_ArticlesInTags_mytrip_ArticlesTag">
+            <End Role="mytrip_ArticlesTag" EntitySet="mytrip_ArticlesTag" />
+            <End Role="mytrip_ArticlesInTags" EntitySet="mytrip_ArticlesInTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticlesVotes_mytrip_Articles" Association="articlesModel.Store.FK_mytrip_ArticlesVotes_mytrip_Articles">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesVotes" EntitySet="mytrip_ArticlesVotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_Articles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Abstract" Type="nvarchar(max)" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Views" Type="int" Nullable="false" />
+          <Property Name="ApprovedComment" Type="bit" Nullable="false" />
+          <Property Name="IncludeAnonymComment" Type="bit" Nullable="false" />
+          <Property Name="ImageForAbstract" Type="nvarchar" MaxLength="256" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="OnlyForRegisterUser" Type="bit" Nullable="false" />
+          <Property Name="ApprovedVotes" Type="bit" Nullable="false" />
+          <Property Name="CloseDate" Type="datetime" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="TotalVotes" Type="decimal" Nullable="false" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserEmail" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="SeparateBlock" Type="bit" Nullable="false" />
+          <Property Name="Blog" Type="bit" Nullable="false" />
+          <Property Name="Views" Type="int" Nullable="false" />
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesComments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserEmail" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IsAnonym" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesInTags">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesTag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesVotes">
+          <Key>
+            <PropertyRef Name="VotesId" />
+          </Key>
+          <Property Name="VotesId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="Vote" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_mytrip_Article_mytrip_ArticleCategory">
+          <End Role="mytrip_ArticlesCategory" Type="articlesModel.Store.mytrip_ArticlesCategory" Multiplicity="1" />
+          <End Role="mytrip_Articles" Type="articlesModel.Store.mytrip_Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_ArticlesCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="mytrip_Articles">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticleCategory_mytrip_ArticleCategory">
+          <End Role="mytrip_ArticlesCategory" Type="articlesModel.Store.mytrip_ArticlesCategory" Multiplicity="1" />
+          <End Role="mytrip_ArticlesCategory1" Type="articlesModel.Store.mytrip_ArticlesCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_ArticlesCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesCategory1">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticleComment_mytrip_Article">
+          <End Role="mytrip_Articles" Type="articlesModel.Store.mytrip_Articles" Multiplicity="1" />
+          <End Role="mytrip_ArticlesComments" Type="articlesModel.Store.mytrip_ArticlesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_Articles">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesComments">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticlesInTags_mytrip_Article">
+          <End Role="mytrip_Articles" Type="articlesModel.Store.mytrip_Articles" Multiplicity="1" />
+          <End Role="mytrip_ArticlesInTags" Type="articlesModel.Store.mytrip_ArticlesInTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_Articles">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesInTags">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticlesInTags_mytrip_ArticlesTag">
+          <End Role="mytrip_ArticlesTag" Type="articlesModel.Store.mytrip_ArticlesTag" Multiplicity="1" />
+          <End Role="mytrip_ArticlesInTags" Type="articlesModel.Store.mytrip_ArticlesInTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_ArticlesTag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesInTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticlesVotes_mytrip_Articles">
+          <End Role="mytrip_Articles" Type="articlesModel.Store.mytrip_Articles" Multiplicity="1" />
+          <End Role="mytrip_ArticlesVotes" Type="articlesModel.Store.mytrip_ArticlesVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_Articles">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesVotes">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="articlesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="articlesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mytrip_Articles" EntityType="articlesModel.mytrip_Articles" />
+          <EntitySet Name="mytrip_ArticlesCategory" EntityType="articlesModel.mytrip_ArticlesCategory" />
+          <EntitySet Name="mytrip_ArticlesComments" EntityType="articlesModel.mytrip_ArticlesComments" />
+          <EntitySet Name="mytrip_ArticlesTag" EntityType="articlesModel.mytrip_ArticlesTag" />
+          <EntitySet Name="mytrip_ArticlesVotes" EntityType="articlesModel.mytrip_ArticlesVotes" />
+          <AssociationSet Name="FK_mytrip_Article_mytrip_ArticleCategory" Association="articlesModel.FK_mytrip_Article_mytrip_ArticleCategory">
+            <End Role="mytrip_ArticlesCategory" EntitySet="mytrip_ArticlesCategory" />
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticleComment_mytrip_Article" Association="articlesModel.FK_mytrip_ArticleComment_mytrip_Article">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesComments" EntitySet="mytrip_ArticlesComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticlesVotes_mytrip_Articles" Association="articlesModel.FK_mytrip_ArticlesVotes_mytrip_Articles">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesVotes" EntitySet="mytrip_ArticlesVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_ArticleCategory_mytrip_ArticleCategory" Association="articlesModel.FK_mytrip_ArticleCategory_mytrip_ArticleCategory">
+            <End Role="mytrip_ArticlesCategory" EntitySet="mytrip_ArticlesCategory" />
+            <End Role="mytrip_ArticlesCategory1" EntitySet="mytrip_ArticlesCategory" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_ArticlesInTags" Association="articlesModel.mytrip_ArticlesInTags">
+            <End Role="mytrip_Articles" EntitySet="mytrip_Articles" />
+            <End Role="mytrip_ArticlesTag" EntitySet="mytrip_ArticlesTag" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_Articles">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Abstract" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+          <Property Name="ApprovedComment" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeAnonymComment" Type="Boolean" Nullable="false" />
+          <Property Name="ImageForAbstract" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="OnlyForRegisterUser" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedVotes" Type="Boolean" Nullable="false" />
+          <Property Name="CloseDate" Type="DateTime" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <Property Name="TotalVotes" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <NavigationProperty Name="mytrip_ArticlesCategory" Relationship="articlesModel.FK_mytrip_Article_mytrip_ArticleCategory" FromRole="mytrip_Articles" ToRole="mytrip_ArticlesCategory" />
+          <NavigationProperty Name="mytrip_ArticlesComments" Relationship="articlesModel.FK_mytrip_ArticleComment_mytrip_Article" FromRole="mytrip_Articles" ToRole="mytrip_ArticlesComments" />
+          <NavigationProperty Name="mytrip_ArticlesVotes" Relationship="articlesModel.FK_mytrip_ArticlesVotes_mytrip_Articles" FromRole="mytrip_Articles" ToRole="mytrip_ArticlesVotes" />
+          <NavigationProperty Name="mytrip_ArticlesTag" Relationship="articlesModel.mytrip_ArticlesInTags" FromRole="mytrip_Articles" ToRole="mytrip_ArticlesTag" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SeparateBlock" Type="Boolean" Nullable="false" />
+          <Property Name="Blog" Type="Boolean" Nullable="false" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="mytrip_Articles" Relationship="articlesModel.FK_mytrip_Article_mytrip_ArticleCategory" FromRole="mytrip_ArticlesCategory" ToRole="mytrip_Articles" />
+          <NavigationProperty Name="mytrip_ArticlesCategory1" Relationship="articlesModel.FK_mytrip_ArticleCategory_mytrip_ArticleCategory" FromRole="mytrip_ArticlesCategory" ToRole="mytrip_ArticlesCategory1" />
+          <NavigationProperty Name="mytrip_ArticlesCategory2" Relationship="articlesModel.FK_mytrip_ArticleCategory_mytrip_ArticleCategory" FromRole="mytrip_ArticlesCategory1" ToRole="mytrip_ArticlesCategory" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesComments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonym" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="mytrip_Articles" Relationship="articlesModel.FK_mytrip_ArticleComment_mytrip_Article" FromRole="mytrip_ArticlesComments" ToRole="mytrip_Articles" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesTag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mytrip_Articles" Relationship="articlesModel.mytrip_ArticlesInTags" FromRole="mytrip_ArticlesTag" ToRole="mytrip_Articles" />
+        </EntityType>
+        <EntityType Name="mytrip_ArticlesVotes">
+          <Key>
+            <PropertyRef Name="VotesId" />
+          </Key>
+          <Property Name="VotesId" Type="Int32" Nullable="false" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="Vote" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mytrip_Articles" Relationship="articlesModel.FK_mytrip_ArticlesVotes_mytrip_Articles" FromRole="mytrip_ArticlesVotes" ToRole="mytrip_Articles" />
+        </EntityType>
+        <Association Name="FK_mytrip_Article_mytrip_ArticleCategory">
+          <End Role="mytrip_ArticlesCategory" Type="articlesModel.mytrip_ArticlesCategory" Multiplicity="1" />
+          <End Role="mytrip_Articles" Type="articlesModel.mytrip_Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_ArticlesCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="mytrip_Articles">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticleComment_mytrip_Article">
+          <End Role="mytrip_Articles" Type="articlesModel.mytrip_Articles" Multiplicity="1" />
+          <End Role="mytrip_ArticlesComments" Type="articlesModel.mytrip_ArticlesComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_Articles">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesComments">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticlesVotes_mytrip_Articles">
+          <End Role="mytrip_Articles" Type="articlesModel.mytrip_Articles" Multiplicity="1" />
+          <End Role="mytrip_ArticlesVotes" Type="articlesModel.mytrip_ArticlesVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_Articles">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesVotes">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_ArticleCategory_mytrip_ArticleCategory">
+          <End Role="mytrip_ArticlesCategory" Type="articlesModel.mytrip_ArticlesCategory" Multiplicity="1" />
+          <End Role="mytrip_ArticlesCategory1" Type="articlesModel.mytrip_ArticlesCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_ArticlesCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="mytrip_ArticlesCategory1">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_ArticlesInTags">
+          <End Role="mytrip_Articles" Type="articlesModel.mytrip_Articles" Multiplicity="*" />
+          <End Role="mytrip_ArticlesTag" Type="articlesModel.mytrip_ArticlesTag" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="articlesModelStoreContainer" CdmEntityContainer="articlesEntities">
+          <EntitySetMapping Name="mytrip_Articles"><EntityTypeMapping TypeName="articlesModel.mytrip_Articles"><MappingFragment StoreEntitySet="mytrip_Articles">
+            <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Views" ColumnName="Views" />
+            <ScalarProperty Name="ApprovedComment" ColumnName="ApprovedComment" />
+            <ScalarProperty Name="IncludeAnonymComment" ColumnName="IncludeAnonymComment" />
+            <ScalarProperty Name="ImageForAbstract" ColumnName="ImageForAbstract" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="OnlyForRegisterUser" ColumnName="OnlyForRegisterUser" />
+            <ScalarProperty Name="ApprovedVotes" ColumnName="ApprovedVotes" />
+            <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+            <ScalarProperty Name="TotalVotes" ColumnName="TotalVotes" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_ArticlesCategory"><EntityTypeMapping TypeName="articlesModel.mytrip_ArticlesCategory"><MappingFragment StoreEntitySet="mytrip_ArticlesCategory">
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+            <ScalarProperty Name="SeparateBlock" ColumnName="SeparateBlock" />
+            <ScalarProperty Name="Blog" ColumnName="Blog" />
+            <ScalarProperty Name="Views" ColumnName="Views" />
+            <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_ArticlesComments"><EntityTypeMapping TypeName="articlesModel.mytrip_ArticlesComments"><MappingFragment StoreEntitySet="mytrip_ArticlesComments">
+            <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+            <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+            <ScalarProperty Name="IsAnonym" ColumnName="IsAnonym" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_ArticlesTag"><EntityTypeMapping TypeName="articlesModel.mytrip_ArticlesTag"><MappingFragment StoreEntitySet="mytrip_ArticlesTag">
+            <ScalarProperty Name="TagId" ColumnName="TagId" />
+            <ScalarProperty Name="TagName" ColumnName="TagName" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_ArticlesVotes"><EntityTypeMapping TypeName="articlesModel.mytrip_ArticlesVotes"><MappingFragment StoreEntitySet="mytrip_ArticlesVotes">
+            <ScalarProperty Name="VotesId" ColumnName="VotesId" />
+            <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            <ScalarProperty Name="Vote" ColumnName="Vote" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="mytrip_ArticlesInTags" TypeName="articlesModel.mytrip_ArticlesInTags" StoreEntitySet="mytrip_ArticlesInTags">
+            <EndProperty Name="mytrip_Articles">
+              <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            </EndProperty>
+            <EndProperty Name="mytrip_ArticlesTag">
+              <ScalarProperty Name="TagId" ColumnName="TagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ArticlesEntities">
+        <EntityTypeShape EntityType="articlesModel.mytrip_Articles" Width="1.5" PointX="0.75" PointY="2.5" Height="4.5505582682291656" IsExpanded="true" />
+        <EntityTypeShape EntityType="articlesModel.mytrip_ArticlesCategory" Width="1.5" PointX="1.5" PointY="9" Height="3.4001269531249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="articlesModel.mytrip_ArticlesComments" Width="1.5" PointX="3" PointY="1.125" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="articlesModel.mytrip_ArticlesTag" Width="1.5" PointX="3" PointY="4.125" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="articlesModel.mytrip_ArticlesVotes" Width="1.5" PointX="3" PointY="6.5" Height="1.7566536458333335" IsExpanded="true" />
+        <AssociationConnector Association="articlesModel.FK_mytrip_Article_mytrip_ArticleCategory" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.875" PointY="9" />
+          <ConnectorPoint PointX="1.875" PointY="7.0505582682291656" />
+        </AssociationConnector>
+        <AssociationConnector Association="articlesModel.FK_mytrip_ArticleComment_mytrip_Article" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.9373478190104167" />
+          <ConnectorPoint PointX="3" PointY="2.9373478190104167" />
+        </AssociationConnector>
+        <AssociationConnector Association="articlesModel.FK_mytrip_ArticlesVotes_mytrip_Articles" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.7752791341145828" />
+          <ConnectorPoint PointX="3" PointY="6.7752791341145828" />
+        </AssociationConnector>
+        <AssociationConnector Association="articlesModel.FK_mytrip_ArticleCategory_mytrip_ArticleCategory" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.0319230769230767" PointY="12.400126953125" />
+          <ConnectorPoint PointX="2.0319230769230767" PointY="12.650126953125" />
+          <ConnectorPoint PointX="2.4784615384615383" PointY="12.650126953125" />
+          <ConnectorPoint PointX="2.4784615384615383" PointY="12.400126953125" />
+        </AssociationConnector>
+        <AssociationConnector Association="articlesModel.mytrip_ArticlesInTags" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.9211531575520828" />
+          <ConnectorPoint PointX="3" PointY="4.9211531575520828" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
