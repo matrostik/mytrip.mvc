@@ -10,7 +10,7 @@ namespace Mytrip.Articles
    public class ArticlesSetting
    {
        /// <summary>
-       /// /////////////////////////////////////
+       /// /////////////////////////////////////test
        /// </summary>
        public static string connectionString = CoreSetting.connectionStringSQL("ArticlesEntities");
        public static bool articles = bool.Parse(ConfigurationManager.AppSettings["articles"]);
