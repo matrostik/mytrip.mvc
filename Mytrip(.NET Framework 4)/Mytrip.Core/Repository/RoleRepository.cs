@@ -208,118 +208,32 @@ namespace Mytrip.Core.Repository
                 xmlUser.xmlDeleteUserInRole(username, roleName);
             }
         }
-        
-        /*
-        private int mtCreateUniqueRoleId()
+        public IDictionary<string, string> mtGetAllRolesDictionary()
         {
-            int result;
-            int roleId;
-            for (roleId = 1; mtGetRoleByRoleId(roleId) != null; roleId++) ;
-            result = roleId;
+            IDictionary<string, string> Roles =
+                 new Dictionary<string, string>();
+            if (UsersSetting.membership == "MSSQL")
+            {
+              Roles=mssqlUser.mssqlGetAllRolesDictionary();
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                Roles = xmlUser.xmlGetAllRolesDictionary();
+            }
+            return Roles;
+        }
+        public string[] mtGetRolesForUser(string username)
+        {
+            string[] result = new string[0];
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlGetRolesForUser(username);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetRolesForUser(username);
+            }
             return result;
         }
-        /*--------------------------------------------------------------------------------------------
-        private mytrip_Users mtGetUserByName(string username)
-        {
-            return entities.mytrip_Users.FirstOrDefault(x => x.UserName == username);
-        }
-        private mytrip_Roles mtGetRoleByRoleId(int roleid)
-        {
-            return entities.mytrip_Roles.FirstOrDefault(x => x.RoleId == roleid);
-        }
-        private void mtRemoveUsersFromRole(string rolename)
-        {
-            var role = mtGetRoleByName(rolename);
-            if (role.mytrip_Users != null)
-            {
-                foreach (mytrip_Users x in role.mytrip_Users.ToList())
-                {
-                    var user = mtGetUserByName(x.UserName);
-                    role.mytrip_Users.Remove(user);
-                    entities.SaveChanges();
-                }
-            }
-        }
-        private void mtCreateRole(string roleName)
-        {
-            var role = mtGetRoleByName(roleName);
-            if (role == null)
-            {
-                mytrip_Roles x = new mytrip_Roles
-                {
-                    RoleId = mtCreateUniqueRoleId(),
-                    RoleName = roleName
-                };
-                entities.AddTomytrip_Roles(x);
-                entities.SaveChanges();
-            }
-        }
-        public mytrip_Roles mtGetRoleByName(string rolename)
-        {
-            return entities.mytrip_Roles.FirstOrDefault(x => x.RoleName == rolename);
-        }
-        private void mtRemoveUserFromRole(string username, string rolename)
-        {
-            var role = mtGetRoleByName(rolename);
-                foreach (mytrip_Users x in role.mytrip_Users.ToList())
-                {
-                    if (username == x.UserName)
-                    {
-                        var user = mtGetUserByName(x.UserName);
-                        role.mytrip_Users.Remove(user);
-                        entities.SaveChanges();
-                    }
-               
-            }
-        }
-        public void mtAddUserToRole(string username, string rolename)
-        {
-            var role = mtGetRoleByName(rolename);
-            var user = mtGetUserByName(username);
-            role.mytrip_Users.Add(user);
-            entities.SaveChanges();
-             
-        }
-        public IQueryable<mytrip_Roles> mtGetAllRolesPaginal(int pageIndex, int pageSize, string sorting, out int total)
-        {
-            total = entities.mytrip_Roles.OrderBy(x => x.RoleName).Count();
-            var roles = entities.mytrip_Roles.OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            if (sorting == "RoleName")
-                roles = entities.mytrip_Roles.OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_RoleName")
-                roles = entities.mytrip_Roles.OrderByDescending(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "UserCount")
-                roles = entities.mytrip_Roles.OrderBy(x => x.mytrip_Users.Count()).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (sorting == "_UserCount")
-                roles = entities.mytrip_Roles.OrderByDescending(x => x.mytrip_Users.Count()).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            else if (!String.IsNullOrEmpty(sorting))
-            {
-                total = entities.mytrip_Roles.Where(x => x.RoleName.IndexOf(sorting) != -1).Count();
-                roles = entities.mytrip_Roles.Where(x => x.RoleName.IndexOf(sorting) != -1).OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            }
-            return roles;
-        }
-        public IQueryable<mytrip_Roles> mtGetAllRoles()
-        {
-            return entities.mytrip_Roles.OrderBy(x => x.RoleName);
-        }
-                
-        public void mtDeleteUserInRole(string username, string roleName)
-        {
-            bool result = false;
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
-            {
-                foreach (mytrip_Users x in role.mytrip_Users)
-                {
-                    if (x.UserName == username)
-                        result = true;
-                }
-            }
-            if (result)
-            {
-                mtRemoveUserFromRole(username, roleName);
-            }
-        }*/
     }
 }

@@ -18,9 +18,15 @@ namespace Mytrip.Core.Repository.MsSqlUsers
                 return _entities;
             }
         }
-        public IQueryable<mytrip_Roles> mssqlGetAllRolesEnumerable()
+        public IDictionary<string, string> mssqlGetAllRolesDictionary()
         {
-            return entities.mytrip_Roles.OrderBy(x => x.RoleName);
+            IDictionary<string, string> Roles =
+              new Dictionary<string, string>();
+            var roles = entities.mytrip_Roles.OrderBy(x => x.RoleName);
+            foreach (var x in roles) {
+                Roles.Add(x.RoleName, x.RoleName);
+            }
+            return Roles;
         }
         public IQueryable<mytrip_Roles> mssqlGetAllRolesPaginal(int pageIndex, int pageSize, string sorting, out int total)
         {
