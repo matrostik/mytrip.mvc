@@ -50,7 +50,7 @@ namespace Mytrip.Mvc.Controllers
             if (articleRepo.comment.GetCountCommentsByUser(User.Identity.Name) >= ArticlesSetting.countCommentForBlogs && articleRepo.category.GetBlogsByUser(User.Identity.Name, culture).Count() == 0)
             {
                 if (!roleRepo.IsUserInRoleOnline(ArticlesSetting.roleBlogger))
-                    roleRepo.mtAddUserToRole(User.Identity.Name, ArticlesSetting.roleBlogger);
+                    roleRepo.mtUnlockUserInRole(User.Identity.Name, ArticlesSetting.roleBlogger);
                 articleRepo.category.CreateBlog(culture);
                 var blog = articleRepo.category.GetBlogLast();
                 int id = blog.CategoryId;
