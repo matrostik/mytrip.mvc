@@ -17,7 +17,8 @@ using Mytrip.Core.Repository.XmlUsers;
 namespace Mytrip.Core.Repository
 {
     public class MembershipRepository : MembershipProvider
-    {       
+    {
+        #region подключаемые провайдеры Membership
         MsSqlMembershipRepository _mssqlUser;
         public MsSqlMembershipRepository mssqlUser
         {
@@ -38,6 +39,8 @@ namespace Mytrip.Core.Repository
                 return _xmlUser;
             }
         }
+        #endregion
+        #region настройки не использующие базу пльзователей
         public override string ApplicationName
         {
             get
@@ -46,23 +49,106 @@ namespace Mytrip.Core.Repository
             }
             set { UsersSetting.applicationName = value; }
         }
-        public override bool ChangePassword(string username, string oldPassword, string newPassword)
-        {
-            bool result = false;
-            if (UsersSetting.membership == "MSSQL")
-            {
-                result = mssqlUser.mssqlChangePassword(username, oldPassword, newPassword);
-            }
-            else if (UsersSetting.membership == "XML") {
-                result = xmlUser.xmlChangePassword(username, oldPassword, newPassword);
-            }
-            return result;
-        }
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
         {
 
             return false;
         }
+        public override bool EnablePasswordReset
+        {
+            get
+            {
+                return true;
+            }
+        }
+        public override bool EnablePasswordRetrieval
+        {
+            get
+            {
+                return false;
+            }
+        }
+        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
+        {
+            int total;
+            var a = CreateMembershipCollectionFromInternalList(emailToMatch, "", pageIndex, pageSize, out total);
+            totalRecords = total;
+            return a;
+        }
+        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
+        {
+            int total;
+            var a = CreateMembershipCollectionFromInternalList("", usernameToMatch, pageIndex, pageSize, out total);
+            totalRecords = total;
+            return a;
+        }
+        public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
+        {
+            int total;
+            var a = CreateMembershipCollectionFromInternalList("", "", pageIndex, pageSize, out total);
+            totalRecords = total;
+            return a;
+        }
+        public override string GetPassword(string username, string answer)
+        {
+            throw new NotImplementedException();
+        }
+        public override int MaxInvalidPasswordAttempts
+        {
+            get
+            {
+                return UsersSetting.maxInvalidPasswordAttempts;
+            }
+        }
+        public override int MinRequiredNonAlphanumericCharacters
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        public override int MinRequiredPasswordLength
+        {
+            get
+            {
+                return UsersSetting.minRequiredPasswordLength;
+            }
+        }
+        public override int PasswordAttemptWindow
+        {
+            get
+            {
+                return 10;
+            }
+        }
+        public override MembershipPasswordFormat PasswordFormat
+        {
+            get { return MembershipPasswordFormat.Hashed; }
+        }
+        public override string PasswordStrengthRegularExpression
+        {
+            get { return string.Empty; }
+        }
+        public override bool RequiresQuestionAndAnswer
+        {
+            get { return false; }
+        }
+        public override bool RequiresUniqueEmail
+        {
+            get
+            {
+                return UsersSetting.requiresUniqueEmail;
+            }
+        }
+        public override string ResetPassword(string username, string answer)
+        {
+            return string.Empty;
+        }
+        public override void UpdateUser(MembershipUser user)
+        {
+
+        }
+        #endregion        
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             status = MembershipCreateStatus.ProviderError;
@@ -104,42 +190,7 @@ namespace Mytrip.Core.Repository
                 result = xmlUser.xmlDeleteUser(username);
             }
             return result;
-        }
-        public override bool EnablePasswordReset
-        {
-            get
-            {
-                return true;
-            }
-        }
-        public override bool EnablePasswordRetrieval
-        {
-            get
-            {
-                return false;
-            }
-        }
-        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
-        {
-            int total;
-            var a = CreateMembershipCollectionFromInternalList(emailToMatch, "", pageIndex, pageSize, out total);
-            totalRecords = total;
-            return a;
-        }
-        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
-        {
-            int total;
-            var a = CreateMembershipCollectionFromInternalList("", usernameToMatch, pageIndex, pageSize, out total);
-            totalRecords = total;
-            return a;
-        }
-        public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
-        {
-            int total;
-            var a= CreateMembershipCollectionFromInternalList("","", pageIndex, pageSize, out total);
-            totalRecords = total;
-            return a;
-        }
+        } 
         private MembershipUserCollection CreateMembershipCollectionFromInternalList(string emailToMatch, string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
             string[] result=new string[0];
@@ -174,10 +225,6 @@ namespace Mytrip.Core.Repository
                 result = xmlUser.xmlGetNumberOfUsersOnline();
             }
             return result;
-        }
-        public override string GetPassword(string username, string answer)
-        {
-            throw new NotImplementedException();
         }
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
@@ -231,57 +278,6 @@ namespace Mytrip.Core.Repository
             }
             return result;
         }
-        public override int MaxInvalidPasswordAttempts
-        {
-            get
-            {
-                return UsersSetting.maxInvalidPasswordAttempts;
-            }
-        }
-        public override int MinRequiredNonAlphanumericCharacters
-        {
-            get
-            {
-                return 0;
-            }
-        }
-        public override int MinRequiredPasswordLength
-        {
-            get
-            {
-                return UsersSetting.minRequiredPasswordLength;
-            }
-        }
-        public override int PasswordAttemptWindow
-        {
-            get
-            {
-                return 10;
-            }
-        }
-        public override MembershipPasswordFormat PasswordFormat
-        {
-            get { return MembershipPasswordFormat.Hashed; }
-        }
-        public override string PasswordStrengthRegularExpression
-        {
-            get { return string.Empty; }
-        }
-        public override bool RequiresQuestionAndAnswer
-        {
-            get { return false; }
-        }
-        public override bool RequiresUniqueEmail
-        {
-            get
-            {
-                return UsersSetting.requiresUniqueEmail;
-            }
-        }
-        public override string ResetPassword(string username, string answer)
-        {
-            return string.Empty;
-        }
         public override bool UnlockUser(string userName)
         {
             bool result = false;
@@ -294,10 +290,6 @@ namespace Mytrip.Core.Repository
                 result = xmlUser.xmlUnlockUser(userName);
             }
             return result;
-        }
-        public override void UpdateUser(MembershipUser user)
-        {
-
         }
         public override bool ValidateUser(string username, string password)
         {
@@ -312,6 +304,19 @@ namespace Mytrip.Core.Repository
             }
             return result;
         }
+        public override bool ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            bool result = false;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlChangePassword(username, oldPassword, newPassword);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlChangePassword(username, oldPassword, newPassword);
+            }
+            return result;
+        }        
         /*-------------------------------------------------------------------------------------*/
         public bool mtAccessibleUserName(string username)
         {
