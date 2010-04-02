@@ -11,7 +11,7 @@ using System.Web.Routing;
 using System.Web;
 using Mytrip.Core.Repository;
 
-namespace Mytrip.Articles.Repository
+namespace Mytrip.Articles.Models
 {
     [MetadataType(typeof(CategoryModels))]
     public class CategoryModels
