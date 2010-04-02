@@ -49,5 +49,25 @@ namespace Mytrip.Core.Repository
                 return _xmlMembershipRepo;
             }
         }
+        MsSqlRoleRepository _mssqlRoleRepo;
+        public MsSqlRoleRepository mssqlRoleRepo
+        {
+            get
+            {
+                if (_mssqlRoleRepo == null)
+                    _mssqlRoleRepo = new MsSqlRoleRepository();
+                return _mssqlRoleRepo;
+            }
+        }
+        XmlRoleRepository _xmlRoleRepo;
+        public XmlRoleRepository xmlRoleRepo
+        {
+            get
+            {
+                if (_xmlRoleRepo == null)
+                    _xmlRoleRepo = new XmlRoleRepository();
+                return _xmlRoleRepo;
+            }
+        }
     }
 }

@@ -10,6 +10,96 @@ namespace Mytrip.Core.Repository.XmlUsers
 {
     public class XmlRoleRepository
     {
+        public void xmlDeleteUserInRole(string username, string roleName)
+        {
+            bool result = false;
+            var role = xmlGetRoleByName(roleName);
+            if (role != null)
+            {
+                string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
+                XDocument doc = XDocument.Load(absolutDirectory);
+                var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == roleName)
+                    .FirstOrDefault(x => x.Attribute("UserName").Value == username);
+                if (_user != null)
+                    result = true;
+            }
+            if (result)
+            {
+                xmlRemoveUserFromRole(username, roleName);
+            }
+        }
+        public void xmlUnlockUserInRole(string username, string roleName)
+        {
+            bool result = false;
+            var role = xmlGetRoleByName(roleName);
+            if (role != null)
+            {
+                string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
+                XDocument doc = XDocument.Load(absolutDirectory);
+                var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == roleName)
+                    .FirstOrDefault(x => x.Attribute("UserName").Value == username);
+                if (_user != null)
+                        result = true;
+               
+            }
+            if (result)
+            {
+                xmlRemoveUserFromRole(username, roleName);
+            }
+            else { xmlAddUserToRole(username, roleName); }
+        }
+        private void xmlRemoveUserFromRole(string username, string rolename)
+        {
+            if (xmlLoadFile("xmlUsersInRoles.xml"))
+            {
+                string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
+                XDocument doc = XDocument.Load(absolutDirectory);
+                var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == rolename)
+                    .FirstOrDefault(x => x.Attribute("UserName").Value == username);
+                if (_user != null)
+                {
+                    _user.Remove();
+                    doc.Save(absolutDirectory);
+                }
+            }
+        }
+        public void xmlAddUserToRole(string username, string rolename)
+        {
+            var role = xmlGetRoleByName(rolename);
+            var user = xmlGetUserByName(username);
+            if (role != null && user != null) {
+                string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
+
+                if (xmlLoadFile("xmlUsersInRoles.xml"))
+                {
+                    XDocument doc = XDocument.Load(absolutDirectory);
+                    var userInRole = doc.Root.Elements("UserInRole")
+                        .Where(x => x.Attribute("RoleName").Value == rolename)
+                     .FirstOrDefault(x => x.Element("UserName").Value == username);
+                    if (userInRole == null)
+                    {
+                        XElement _role = new XElement("UserInRole",
+                          new XAttribute("RoleName", rolename),
+                          new XAttribute("UserName", username));
+                        doc.Root.Add(_role);
+                        doc.Save(absolutDirectory);
+                    }
+                }
+                else
+                {
+                    XDocument doc = new XDocument(
+                  new XElement("mytrip_Roles",
+                      new XElement("UserInRole",
+                          new XAttribute("RoleName", rolename),
+                          new XAttribute("UserName", username))
+                          ));
+                    doc.Save(absolutDirectory);
+                }
+            
+            
+            }
+
+        }
         public bool xmlIsUserInRoleOnline(string roleName)
         {
             bool result = false;
@@ -154,6 +244,34 @@ namespace Mytrip.Core.Repository.XmlUsers
             }
             return result;
         }
+        public bool xmlRoleExists(string roleName)
+        {
+            if (xmlGetRoleByName(roleName) != null)
+                return true;
+            else
+                return false;
+        }
+        public void xmlRemoveUsersFromRoles(string[] usernames, string[] roleNames)
+        {
+            foreach (string username in usernames)
+            {
+                foreach (string roleName in roleNames)
+                {
+                    if (xmlLoadFile("xmlUsersInRoles.xml"))
+                    {
+                        string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
+                        XDocument doc = XDocument.Load(absolutDirectory);
+                        var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == roleName)
+                            .FirstOrDefault(x => x.Attribute("UserName").Value == username);
+                        if (_user != null)
+                        {
+                            _user.Remove();
+                            doc.Save(absolutDirectory);
+                        }
+                    }
+                }
+            }
+        }
         private void xmlRemoveUsersFromRole(string rolename)
         {
             if (xmlLoadFile("xmlUsersInRoles.xml"))
@@ -161,8 +279,11 @@ namespace Mytrip.Core.Repository.XmlUsers
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
                 XDocument doc = XDocument.Load(absolutDirectory);
                 var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == rolename);
-                _user.Remove();
-                doc.Save(absolutDirectory);
+                if (_user != null)
+                {
+                    _user.Remove();
+                    doc.Save(absolutDirectory);
+                }
             }
         }
         public void xmlAddUsersToRoles(string[] usernames, string[] roleNames)

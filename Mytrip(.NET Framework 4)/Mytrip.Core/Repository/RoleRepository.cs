@@ -17,17 +17,7 @@ using Mytrip.Core.Repository.MsSqlUsers;
 namespace Mytrip.Core.Repository
 {
     public class RoleRepository : RoleProvider
-    {
-        usersEntities _entities;
-        public usersEntities entities
-        {
-            get
-            {
-                if (_entities == null)
-                    _entities = new usersEntities(UsersSetting.connectionString);
-                return _entities;
-            }
-        }
+    {        
         #region подключаемые провайдеры Role
         MsSqlRoleRepository _mssqlUser;
         public MsSqlRoleRepository mssqlUser
@@ -173,38 +163,53 @@ namespace Mytrip.Core.Repository
         }
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
         {
-            foreach (string username in usernames)
+            if (UsersSetting.membership == "MSSQL")
             {
-                foreach (string roleName in roleNames)
-                {
-                    var user = mtGetUserByName(username);
-                    var role = mtGetRoleByName(roleName);
-                    if (user != null && role != null)
-                    {
-                        bool removeRole = true;
-                        foreach (mytrip_Roles x in user.mytrip_Roles)
-                        {
-                            if (roleName != x.RoleName)
-                                removeRole = false;
-                        }
-                        if (removeRole)
-                        {
-                            mytrip_Users x = user;
-                            x.mytrip_Roles.Remove(role);
-                            entities.SaveChanges();
-                        }
-                    }
-                }
+                mssqlUser.mssqlRemoveUsersFromRoles(usernames, roleNames);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                xmlUser.xmlRemoveUsersFromRoles(usernames, roleNames);
             }
         }
         public override bool RoleExists(string roleName)
         {
-            if (mtGetRoleByName(roleName) != null)
-                return true;
-            else
-                return false;
+            bool result = false;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                result = mssqlUser.mssqlRoleExists(roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlRoleExists(roleName);
+            }
+            return result;
         }
         /*--------------------------------------------------------------------------------------------*/
+        public void mtUnlockUserInRole(string username, string roleName)
+        {
+            if (UsersSetting.membership == "MSSQL")
+            {
+                mssqlUser.mssqlUnlockUserInRole(username, roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                xmlUser.xmlUnlockUserInRole(username, roleName);
+            }
+        }
+        public void mtDeleteUserInRole(string username, string roleName)
+        {
+            if (UsersSetting.membership == "MSSQL")
+            {
+                mssqlUser.mssqlDeleteUserInRole(username, roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                xmlUser.xmlDeleteUserInRole(username, roleName);
+            }
+        }
+        
+        /*
         private int mtCreateUniqueRoleId()
         {
             int result;
@@ -213,7 +218,7 @@ namespace Mytrip.Core.Repository
             result = roleId;
             return result;
         }
-        /*--------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------------------
         private mytrip_Users mtGetUserByName(string username)
         {
             return entities.mytrip_Users.FirstOrDefault(x => x.UserName == username);
@@ -298,23 +303,7 @@ namespace Mytrip.Core.Repository
         {
             return entities.mytrip_Roles.OrderBy(x => x.RoleName);
         }
-        public void mtUnlockUserInRole(string username, string roleName)
-        {
-            bool result = false;
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
-            {
-                foreach (mytrip_Users x in role.mytrip_Users)
-                {
-                    if (x.UserName == username)
-                        result = true;
-                }
-            }
-            if (result) {
-            mtRemoveUserFromRole(username, roleName);
-            }
-            else { mtAddUserToRole(username, roleName); }
-        }        
+                
         public void mtDeleteUserInRole(string username, string roleName)
         {
             bool result = false;
@@ -331,6 +320,6 @@ namespace Mytrip.Core.Repository
             {
                 mtRemoveUserFromRole(username, roleName);
             }
-        }
+        }*/
     }
 }
