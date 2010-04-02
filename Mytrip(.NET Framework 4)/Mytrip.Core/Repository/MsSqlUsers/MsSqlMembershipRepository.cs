@@ -371,8 +371,7 @@ namespace Mytrip.Core.Repository.MsSqlUsers
         }
         private mytrip_Membership mssqlGetMembershipByUserName(string username)
         {
-            string userId = mssqlGetUserIdbyUserName(username);
-            return entities.mytrip_Membership.FirstOrDefault(x => x.UserId == userId);
+            return entities.mytrip_Membership.FirstOrDefault(x => x.mytrip_Users.UserName==username);
         }
         private string mssqlHashPassword(string password, string passwordsalt)
         {
