@@ -42,22 +42,7 @@
                 <%= Html.ActionLink(CoreLanguage.UserCount, "IndexRole", new { pageIndex = 1, pageSize = Model.DefaultCount, sorting = Html.MytripSort("UserCount") })%>
             </th>
         </tr>
-        <% foreach (var item in Model.Roles)
-           { %>
-        <tr>
-            <td>
-                <%=Html.MytripImage("/Content/images/Keys.png", item.RoleName,20,0,0) %>
-                <%=Html.MytripImageLink(Url.Action("DeleteRole", new { roleName = item.RoleName }),
-                                                                     "/Content/images/delete.png", "delete", 20, 0, 0, CoreLanguage.are_you_sure)%>
-            </td>
-            <td>
-                <%= Html.Encode(item.RoleName) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.mytrip_Users.Count()) %>
-            </td>
-        </tr>
-        <% } %>
+        <% =Html.RoleIndex(Model.Roles,Model.RolesXml,CoreLanguage.are_you_sure) %>
     </table>
     <%=Html.MytripPager(Model.DefaultCount, Model.Total,"...")%>
 </asp:Content>
