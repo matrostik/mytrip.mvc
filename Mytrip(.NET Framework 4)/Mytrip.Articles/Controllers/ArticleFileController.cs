@@ -14,7 +14,7 @@ using System.Web;
 using System.IO;
 using Mytrip.Core.Models;
 using Mytrip.Core;
-using Mytrip.Articles.Models;
+using Mytrip.Articles.Repository;
 using Mytrip.Core.Repository;
 
 namespace Mytrip.Articles.Controllers

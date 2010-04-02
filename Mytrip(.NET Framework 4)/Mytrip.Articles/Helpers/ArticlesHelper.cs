@@ -7,7 +7,7 @@ using System.Web;
 using Mytrip.Core.Models;
 using System.Collections;
 using Mytrip.Core.Helpers;
-using Mytrip.Articles.Models;
+using Mytrip.Articles.Repository;
 using Mytrip.Core.Repository;
 
 namespace Mytrip.Articles.Helpers
