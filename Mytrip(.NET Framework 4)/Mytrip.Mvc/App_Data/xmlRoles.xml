@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mytrip_Roles>
+  <Role RoleName="admin" />
+  <Role RoleName="article_editor" />
+</mytrip_Roles>

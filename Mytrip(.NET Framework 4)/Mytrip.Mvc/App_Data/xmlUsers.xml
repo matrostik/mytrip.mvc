@@ -1,4 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mytrip_Users>
-  <User UserId="899312e3-d8cf-42c5-a4bf-e6345653aadf" UserName="stuhin" LastActivityDate="2010-03-31" />
+  <User UserId="a6ebfdf6-a486-4acc-8937-67ac7a233506">
+    <UserName>stuhin</UserName>
+    <Password>CC06A34830EDF4F63608F7DCA22E2EAD67E873FD</Password>
+    <PasswordSalt>da0a331c-9d07-412e-824a-e9ea1f81e092</PasswordSalt>
+    <LastActivityDate>2010-04-02</LastActivityDate>
+    <Email>oleg@stuh.in</Email>
+    <IsApproved>True</IsApproved>
+    <CreationDate>2010-04-02</CreationDate>
+    <LastLockoutDate>2010-04-02</LastLockoutDate>
+    <LastLoginDate>2010-04-02</LastLoginDate>
+    <LastPasswordChangedDate>2010-04-02</LastPasswordChangedDate>
+    <UserIP>127.0.0.1</UserIP>
+  </User>
 </mytrip_Users>
