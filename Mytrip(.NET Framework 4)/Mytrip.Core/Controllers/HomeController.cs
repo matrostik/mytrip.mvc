@@ -13,7 +13,7 @@ using System.Web.Mvc;
 using Mytrip.Core.Models;
 using System.Configuration;
 using System.Web.Configuration;
-using Mytrip.Core.Repository.XmlUsers;
+using Mytrip.Core.Repository;
 
 namespace Mytrip.Core.Controllers
 {
@@ -40,7 +40,8 @@ namespace Mytrip.Core.Controllers
         /// <returns>ActionResult</returns>
         public ActionResult About()
         {
-            
+            RoleRepository dd = new RoleRepository();
+            dd.mtUnlockUserInRole(User.Identity.Name,UsersSetting.roleAdmin);
             return View();
         }
     }
