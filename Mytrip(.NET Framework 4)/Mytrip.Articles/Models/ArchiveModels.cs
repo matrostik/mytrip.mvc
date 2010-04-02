@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace Mytrip.Articles.Repository
+namespace Mytrip.Articles.Models
 {
         [MetadataType(typeof(ArchiveIndexModel))]
         public class ArchiveIndexModel
