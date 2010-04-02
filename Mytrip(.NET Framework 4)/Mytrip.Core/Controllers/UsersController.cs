@@ -87,18 +87,34 @@ namespace Mytrip.Core.Controllers
         /// <returns>ActionResult</returns>
         public ActionResult Details(string userName)
         {
-            var user = coreRepo.mssqlMembershipRepo.mssqlGetUserByUserName(userName);
             DetailsUserModel model = new DetailsUserModel();
-            model.UserName = user.UserName;
-            model.Email = user.mytrip_Membership.Email;
-            model.LastActivityDate = user.LastActivityDate;
-            model.CreationDate = user.mytrip_Membership.CreationDate;
-            model.LastLoginDate = user.mytrip_Membership.LastLoginDate;
-            model.LastPasswordChangedDate = user.mytrip_Membership.LastPasswordChangedDate;
-            model.UserIP = user.mytrip_Membership.UserIP;
-            model.IsApproved = user.mytrip_Membership.IsApproved;
-            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
-            model.RolesInUser = user.mytrip_Roles;            
+            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRolesDictionary(), "Key", "Value");
+            model.RolesInUser = coreRepo.roleRepo.mtGetRolesForUser(userName);
+            if (UsersSetting.membership == "MSSQL")
+            {
+                var user = coreRepo.mssqlMembershipRepo.mssqlGetUserByUserName(userName);
+                model.UserName = user.UserName;
+                model.Email = user.mytrip_Membership.Email;
+                model.LastActivityDate = user.LastActivityDate;
+                model.CreationDate = user.mytrip_Membership.CreationDate;
+                model.LastLoginDate = user.mytrip_Membership.LastLoginDate;
+                model.LastPasswordChangedDate = user.mytrip_Membership.LastPasswordChangedDate;
+                model.UserIP = user.mytrip_Membership.UserIP;
+                model.IsApproved = user.mytrip_Membership.IsApproved;
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                var user = coreRepo.xmlMembershipRepo.xmlGetUserByUserName(userName);
+                model.UserName = user.UserName;
+                model.Email = user.Email;
+                model.LastActivityDate = user.LastActivityDate;
+                model.CreationDate = user.CreationDate;
+                model.LastLoginDate = user.LastLoginDate;
+                model.LastPasswordChangedDate = user.LastPasswordChangedDate;
+                model.UserIP = user.UserIP;
+                model.IsApproved = user.IsApproved;
+            }
+
             return View(model);
         }
         /// <summary>
@@ -111,13 +127,12 @@ namespace Mytrip.Core.Controllers
         {
             if (ModelState.IsValid && ValidateRole(model.UserName, model.RoleName))
             {
-                //Roles.AddUserToRole(model.UserName, model.RoleName);
                 coreRepo.roleRepo.mtUnlockUserInRole(model.UserName, model.RoleName);
                 RedirectToAction("Details", new { userName = model.UserName });
             }
             var user = coreRepo.mssqlMembershipRepo.mssqlGetUserByUserName(model.UserName);
-            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRoles(), "RoleName", "RoleName");
-            model.RolesInUser = user.mytrip_Roles;
+            model.AllRoles = new SelectList(coreRepo.roleRepo.mtGetAllRolesDictionary(), "Key", "Value");
+            model.RolesInUser = coreRepo.roleRepo.mtGetRolesForUser(model.UserName);
             return View(model);
         }
         /// <summary>
@@ -155,8 +170,16 @@ namespace Mytrip.Core.Controllers
             IndexRolesModel model = new IndexRolesModel();
             int total;
             model.DefaultCount = 10;
-            model.Roles = coreRepo.roleRepo.mtGetAllRolesPaginal(pageIndex, pageSize, sorting, out total);
-            model.Total = total;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                model.Roles = coreRepo.mssqlRoleRepo.mssqlGetAllRolesPaginal(pageIndex, pageSize, sorting, out total);
+                model.Total = total;
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                model.RolesXml = coreRepo.xmlRoleRepo.xmlGetAllRolesPaginal(pageIndex, pageSize, sorting, out total);
+                model.Total = total;
+            }            
             return View(model);
         }
         /// <summary>
@@ -174,8 +197,16 @@ namespace Mytrip.Core.Controllers
                 RedirectToAction("IndexRole", new { pageIndex = 1, pageSize = model.DefaultCount, sorting = "RoleName" });
             }
             int total;
-            model.Roles = coreRepo.roleRepo.mtGetAllRolesPaginal(1, model.DefaultCount, "RoleName", out total);
-            model.Total = total;
+            if (UsersSetting.membership == "MSSQL")
+            {
+                model.Roles = coreRepo.mssqlRoleRepo.mssqlGetAllRolesPaginal(1, model.DefaultCount, "RoleName", out total);
+                model.Total = total;
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                model.RolesXml = coreRepo.xmlRoleRepo.xmlGetAllRolesPaginal(1, model.DefaultCount, "RoleName", out total);
+                model.Total = total;
+            }            
             return View(model);
         }
         /// <summary>
