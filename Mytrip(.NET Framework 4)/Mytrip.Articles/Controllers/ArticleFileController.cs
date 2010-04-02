@@ -16,6 +16,7 @@ using Mytrip.Core.Models;
 using Mytrip.Core;
 using Mytrip.Articles.Repository;
 using Mytrip.Core.Repository;
+using Mytrip.Articles.Models;
 
 namespace Mytrip.Articles.Controllers
 {
