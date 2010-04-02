@@ -10,11 +10,43 @@ namespace Mytrip.Core.Repository.XmlUsers
 {
     public class XmlRoleRepository
     {
+        public IEnumerable<XElement> xmlGetAllRolesPaginal(int pageIndex, int pageSize, string sorting, out int total)
+        {
+            string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlRoles.xml");
+            XDocument doc = XDocument.Load(absolutDirectory);
+            total = doc.Root.Elements("Role").OrderBy(x => x.Attribute("RoleName").Value).Count();
+            var roles = doc.Root.Elements("Role").OrderBy(x => x.Attribute("RoleName").Value)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            if (sorting == "RoleName")
+                roles = doc.Root.Elements("Role").OrderBy(x => x.Attribute("RoleName").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_RoleName")
+                roles = doc.Root.Elements("Role").OrderByDescending(x => x.Attribute("RoleName").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return roles;
+        }
+        public IDictionary<string, string> xmlGetAllRolesDictionary()
+        {
+            IDictionary<string, string> Roles =
+              new Dictionary<string, string>();
+            if (xmlLoadFile("xmlRoles.xml"))
+            {
+                string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlRoles.xml");
+                XDocument doc = XDocument.Load(absolutDirectory);
+                var roles = doc.Root.Elements("Role").OrderBy(x => x.Attribute("RoleName").Value);
+                if (roles != null)
+                {
+                    foreach (XElement x in roles)
+                    {
+                        Roles.Add(x.Attribute("RoleName").Value, x.Attribute("RoleName").Value);
+                    }
+                }
+            }
+            return Roles;
+        }
         public void xmlDeleteUserInRole(string username, string roleName)
         {
             bool result = false;
             var role = xmlGetRoleByName(roleName);
-            if (role != null)
+            if (role.RoleName != null)
             {
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
                 XDocument doc = XDocument.Load(absolutDirectory);
@@ -32,15 +64,17 @@ namespace Mytrip.Core.Repository.XmlUsers
         {
             bool result = false;
             var role = xmlGetRoleByName(roleName);
-            if (role != null)
+            if (role.RoleName != null)
             {
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
-                XDocument doc = XDocument.Load(absolutDirectory);
-                var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == roleName)
-                    .FirstOrDefault(x => x.Attribute("UserName").Value == username);
-                if (_user != null)
+                if (xmlLoadFile("xmlUsersInRoles.xml"))
+                {
+                    XDocument doc = XDocument.Load(absolutDirectory);
+                    var _user = doc.Root.Elements("UserInRole").Where(x => x.Attribute("RoleName").Value == roleName)
+                        .FirstOrDefault(x => x.Attribute("UserName").Value == username);
+                    if (_user != null)
                         result = true;
-               
+                }               
             }
             if (result)
             {
@@ -67,7 +101,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         {
             var role = xmlGetRoleByName(rolename);
             var user = xmlGetUserByName(username);
-            if (role != null && user != null) {
+            if (role.RoleName != null && user.UserName != null) {
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsersInRoles.xml");
 
                 if (xmlLoadFile("xmlUsersInRoles.xml"))
@@ -88,7 +122,7 @@ namespace Mytrip.Core.Repository.XmlUsers
                 else
                 {
                     XDocument doc = new XDocument(
-                  new XElement("mytrip_Roles",
+                  new XElement("mytrip_UsersInRoles",
                       new XElement("UserInRole",
                           new XAttribute("RoleName", rolename),
                           new XAttribute("UserName", username))
@@ -135,7 +169,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         {
             string[] result = new string[0];
             var role = xmlGetRoleByName(roleName);
-            if (role != null)
+            if (role.RoleName != null)
             {
                 if (xmlLoadFile("xmlUsersInRoles.xml"))
                 {
@@ -159,7 +193,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         {
             string[] result = new string[0];
             var user = xmlGetUserByName(username);
-            if (user != null)
+            if (user.UserName != null)
             {
                 if (xmlLoadFile("xmlUsersInRoles.xml"))
                 {
@@ -205,7 +239,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         {
             string[] result = new string[0];
             var role = xmlGetRoleByName(roleName);
-            if (role != null)
+            if (role.RoleName != null)
             {
                 if (xmlLoadFile("xmlUsersInRoles.xml"))
                 {
@@ -246,7 +280,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         }
         public bool xmlRoleExists(string roleName)
         {
-            if (xmlGetRoleByName(roleName) != null)
+            if (xmlGetRoleByName(roleName).RoleName != null)
                 return true;
             else
                 return false;
@@ -293,7 +327,7 @@ namespace Mytrip.Core.Repository.XmlUsers
                 foreach (string roleName in roleNames)
                 {
                     var user = xmlGetUserByName(username);
-                    if (user != null)
+                    if (user.UserName != null)
                     {
                         var role = xmlGetAndCreateRole(roleName);
 
@@ -317,7 +351,7 @@ namespace Mytrip.Core.Repository.XmlUsers
                         else
                         {
                             XDocument doc = new XDocument(
-                          new XElement("mytrip_Roles",
+                          new XElement("mytrip_UsersInRoles",
                               new XElement("UserInRole",
                                   new XAttribute("RoleName", roleName),
                                   new XAttribute("UserName", username))
@@ -359,7 +393,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         private xml_Roles xmlGetAndCreateRole(string roleName)
         {
             var role = xmlGetRoleByName(roleName);
-            if (role == null)
+            if (role.RoleName == null)
             {
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlRoles.xml");
                 if (xmlLoadFile("xmlRoles.xml"))
@@ -387,7 +421,7 @@ namespace Mytrip.Core.Repository.XmlUsers
         public void xmlCreateRole(string roleName)
         {
             var role = xmlGetRoleByName(roleName);
-            if (role == null)
+            if (role.RoleName == null)
             {
                 string absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlRoles.xml");
                 if (xmlLoadFile("xmlRoles.xml"))
