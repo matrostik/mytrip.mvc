@@ -10,6 +10,10 @@ using System.Web.Mvc;
 using System.Web;
 using System;
 using Mytrip.Core.Repository;
+using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using Mytrip.Core.Repository.XmlUsers;
 
 namespace Mytrip.Core.Helpers
 {
@@ -18,14 +22,6 @@ namespace Mytrip.Core.Helpers
     /// </summary>
     public static class UserHelper
     {
-        /// <summary>
-        /// Captcha Image
-        /// </summary>
-        /// <param name="helper">HtmlHelper</param>
-        /// <param name="width">width</param>
-        /// <param name="height">height</param>
-        /// <param name="fontfamily">fontfamily</param>
-        /// <returns>static string</returns>
         public static string CaptchaImage(this HtmlHelper helper, int width, int height, string fontfamily)
         {
             StringBuilder result = new StringBuilder();
@@ -182,6 +178,119 @@ namespace Mytrip.Core.Helpers
                 return result.ToString();
             }
             else { return string.Empty; }
+        }
+        public static string RoleIndex(this HtmlHelper html, IQueryable<mytrip_Roles> Roles, IEnumerable<XElement> RolesXml, string onclick)
+        {
+            StringBuilder result = new StringBuilder();
+            if (UsersSetting.membership == "MSSQL")
+            {
+                foreach (var item in Roles)
+                {
+                    TagBuilder tr = new TagBuilder("tr");
+                    TagBuilder td1 = new TagBuilder("td");
+                    TagBuilder td2 = new TagBuilder("td");
+                    TagBuilder td3 = new TagBuilder("td");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Users/DeleteRole/" + item.RoleName);
+                    a.MergeAttribute("onclick", "return confirm ('" + onclick + "');");
+                    a.InnerHtml = _Image("/Content/images/delete.png", "delete", 20, 0, 0);
+                    td1.InnerHtml = _Image("/Content/images/Keys.png", item.RoleName, 20, 0, 0)+a.ToString();
+                    td2.InnerHtml = item.RoleName;
+                    td3.InnerHtml = item.mytrip_Users.Count().ToString();
+                    tr.InnerHtml = td1.ToString() + td2.ToString() + td3.ToString();
+                    result.AppendLine(tr.ToString());
+                }
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                foreach (var item in RolesXml)
+                {
+                    XmlRoleRepository db = new XmlRoleRepository();
+                    TagBuilder tr = new TagBuilder("tr");
+                    TagBuilder td1 = new TagBuilder("td");
+                    TagBuilder td2 = new TagBuilder("td");
+                    TagBuilder td3 = new TagBuilder("td");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Users/DeleteRole/" + item.Attribute("RoleName").Value);
+                    a.MergeAttribute("onclick", "return confirm ('" + onclick + "');");
+                    a.InnerHtml = _Image("/Content/images/delete.png", "delete", 20, 0, 0);
+                    td1.InnerHtml = _Image("/Content/images/Keys.png", item.Attribute("RoleName").Value, 20, 0, 0) + a.ToString();
+                    td2.InnerHtml = item.Attribute("RoleName").Value;
+                    td3.InnerHtml = db.xmlGetUsersInRole(item.Attribute("RoleName").Value).Count().ToString();
+                    tr.InnerHtml = td1.ToString() + td2.ToString() + td3.ToString();
+                    result.AppendLine(tr.ToString());
+                }
+            }
+            return result.ToString();        
+        }
+
+        /*<% foreach (var item in Model.Users){ %>
+        <tr>
+            <td>
+                <%=Html.MytripImageLink(Url.Action("Details", new { userName = item.UserName }),
+                                                                 "/Content/images/Users.png", item.UserName, 20, 0, 0)%>
+                <%=Html.MytripImageLink(Url.Action("Delete", new { userName = item.UserName }),
+                                                                     "/Content/images/delete.png", "delete", 20, 0, 0, CoreLanguage.are_you_sure)%>
+            </td>
+            <td>
+                <b>
+                    <%= Html.Encode(item.UserName) %></b>
+                <%int rolecount = item.mytrip_Roles.Count();
+                  if (rolecount > 0)
+                  { %><br />
+                role:
+                <% int _rolecount = 0;
+                   foreach (mytrip_Roles _item in item.mytrip_Roles.ToList())
+                   {  %><%=_item.RoleName%><%_rolecount++;
+                                            if (_rolecount == rolecount)
+                                            {%>.<% }
+                    else
+                    {%>,
+                <% } %>
+                <%}
+                  } %>
+            </td>
+            <td>
+                <%= Html.Encode(item.mytrip_Membership.Email) %>
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:d}", item.LastActivityDate)) %>
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.CreationDate)) %>
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastLoginDate)) %>
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastPasswordChangedDate)) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.mytrip_Membership.UserIP) %>
+            </td>
+            <td>
+                <%= Html.CheckBox("IsApproved", item.mytrip_Membership.IsApproved, new { disabled="true"})%>
+            </td>
+        </tr>
+        <% } %>*/
+        private static string _Image(string url, string alt, int width, int height, int border)
+        {
+            string style = string.Empty;
+            if (width > 0 && height > 0)
+                style = "border-width: " + border + "px; width: " + width + "px; height: " + height + "px;";
+            if (width == 0 && height > 0)
+                style = "border-width: " + border + "px; height: " + height + "px;";
+            if (width > 0 && height == 0)
+                style = "border-width: " + border + "px; width: " + width + "px;";
+            if (width == 0 && height == 0)
+                style = "border-width: " + border + "px;";
+            StringBuilder result = new StringBuilder();
+            TagBuilder _result = new TagBuilder("img");
+            _result.MergeAttribute("src", url);
+            _result.MergeAttribute("style", style);
+            _result.MergeAttribute("alt", alt);
+            result.Append(_result.ToString());
+            return result.ToString();
         }
     }
 }
