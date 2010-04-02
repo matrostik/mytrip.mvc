@@ -13,6 +13,49 @@ namespace Mytrip.Core.Repository.XmlUsers
 
    public class XmlMembershipRepository
    {
+       public IEnumerable<XElement> xmlGetAllUsersPaginal(int pageIndex, int pageSize, string sorting, out int total)
+       {
+           string _absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data/xmlUsers.xml");
+           XDocument _doc = XDocument.Load(_absolutDirectory);
+           total = _doc.Root.Elements("User").OrderByDescending(x => x.Element("LastActivityDate").Value).Count();
+           var users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("LastActivityDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           if (sorting == "UserName")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("UserName").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_UserName")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("UserName").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "Email")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("Email").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_Email")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("Email").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "LastActivityDate")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("LastActivityDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_LastActivityDate")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("LastActivityDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "CreationDate")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("CreationDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_CreationDate")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("CreationDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "LastLoginDate")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("LastLoginDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_LastLoginDate")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("LastLoginDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "LastPasswordChangedDate")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("LastPasswordChangedDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_LastPasswordChangedDate")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("LastPasswordChangedDate").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "UserIP")
+               users = _doc.Root.Elements("User").OrderBy(x => x.Element("UserIP").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (sorting == "_UserIP")
+               users = _doc.Root.Elements("User").OrderByDescending(x => x.Element("UserIP").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           else if (!String.IsNullOrEmpty(sorting))
+           {
+               var user = _doc.Root.Elements("User").Where(x => x.Element("UserName").Value.IndexOf(sorting) != -1);
+               var _user = _doc.Root.Elements("User").Where(x => x.Element("Email").Value.IndexOf(sorting) != -1);
+               total = user.Union(_user).Count();
+               users = user.Union(_user).OrderBy(x => x.Element("UserName").Value).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+           }
+           return users;
+       }
        public string xmlGetUserEmail(string username)
        {
            string result = string.Empty;
@@ -24,7 +67,7 @@ namespace Mytrip.Core.Repository.XmlUsers
        {
            bool result = false;
            var user = xmlGetUserByUserName(HttpContext.Current.User.Identity.Name);
-           if (user != null && xmlHashPassword(OldPassword, user.PasswordSalt) == user.Password)
+           if (user.UserName != null && xmlHashPassword(OldPassword, user.PasswordSalt) == user.Password)
            {
                result = true;
            }
