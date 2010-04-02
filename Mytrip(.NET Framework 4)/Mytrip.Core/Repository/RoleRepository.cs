@@ -11,17 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Web.Security;
 using System.Web;
+using Mytrip.Core.Repository.XmlUsers;
+using Mytrip.Core.Repository.MsSqlUsers;
 
 namespace Mytrip.Core.Repository
 {
-    /// <summary>
-    /// Role Repository : Role Provider
-    /// </summary>
     public class RoleRepository : RoleProvider
     {
-        /// <summary>
-        /// Connecting to ORM
-        /// </summary>
         usersEntities _entities;
         public usersEntities entities
         {
@@ -32,42 +28,39 @@ namespace Mytrip.Core.Repository
                 return _entities;
             }
         }
-        /// <summary>
-        /// Add Users to Roles
-        /// </summary>
-        /// <param name="usernames">Users Names</param>
-        /// <param name="roleNames">Roles Names</param>
-        public override void AddUsersToRoles(string[] usernames, string[] roleNames)
+        #region подключаемые провайдеры Role
+        MsSqlRoleRepository _mssqlUser;
+        public MsSqlRoleRepository mssqlUser
         {
-            foreach (string username in usernames)
+            get
             {
-                foreach (string roleName in roleNames)
-                {
-                    var user = mtGetUserByName(username);
-                    if (user != null)
-                    {
-                        if (mtGetRoleByName(roleName) == null)
-                            mtCreateRole(roleName);
-                        bool addRole = true;
-                        var role = mtGetRoleByName(roleName);
-                        foreach (mytrip_Roles x in user.mytrip_Roles.ToList())
-                        {
-                            if (roleName == x.RoleName)
-                                addRole = false;
-                        }
-                        if (addRole)
-                        {
-                            mytrip_Users x = user;
-                            x.mytrip_Roles.Add(role);
-                            entities.SaveChanges();
-                        }
-                    }
-                }
+                if (_mssqlUser == null)
+                    _mssqlUser = new MsSqlRoleRepository();
+                return _mssqlUser;
             }
         }
-        /// <summary>
-        /// Name Http Host
-        /// </summary>
+        XmlRoleRepository _xmlUser;
+        public XmlRoleRepository xmlUser
+        {
+            get
+            {
+                if (_xmlUser == null)
+                    _xmlUser = new XmlRoleRepository();
+                return _xmlUser;
+            }
+        }
+        #endregion
+        public override void AddUsersToRoles(string[] usernames, string[] roleNames)
+        {
+            if (UsersSetting.membership == "MSSQL")
+            {
+                mssqlUser.mssqlAddUsersToRoles(usernames, roleNames);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                xmlUser.xmlAddUsersToRoles(usernames, roleNames);
+            }
+        }
         public override string ApplicationName
         {
             get
@@ -76,167 +69,108 @@ namespace Mytrip.Core.Repository
             }
             set { UsersSetting.applicationName = value; }
         }
-        /// <summary>
-        /// Create Role
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
         public override void CreateRole(string roleName)
         {
-            mtCreateRole(roleName);
+            if (UsersSetting.membership == "MSSQL")
+            {
+                mssqlUser.mssqlCreateRole(roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                xmlUser.xmlCreateRole(roleName);
+            }
         }
-        /// <summary>
-        /// Delete Role
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
-        /// <param name="throwOnPopulatedRole"></param>
-        /// <returns>bool</returns>
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
             bool result = false;
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                mtRemoveUsersFromRole(roleName);
-                mytrip_Roles x = role;
-                entities.DeleteObject(x);
-                entities.SaveChanges();
-                result = true;
+                result = mssqlUser.mssqlDeleteRole(roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlDeleteRole(roleName);
             }
             return result;
         }
-        /// <summary>
-        /// Find Users In Role
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
-        /// <param name="usernameToMatch">User Name to Match</param>
-        /// <returns>string[]</returns>
         public override string[] FindUsersInRole(string roleName, string usernameToMatch)
         {
             string[] result = new string[0];
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                int namberUser = 0;
-                int countUser = role.mytrip_Users.Count();
-                result = new string[countUser];
-                foreach (mytrip_Users x in role.mytrip_Users)
-                {
-                    if (x.UserName.IndexOf(usernameToMatch) != -1)
-                    {
-                        result[namberUser] = x.UserName;
-                        namberUser++;
-                    }
-                }
+                result = mssqlUser.mssqlFindUsersInRole(roleName, usernameToMatch);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlFindUsersInRole(roleName, usernameToMatch);
             }
             return result;
         }
-        /// <summary>
-        /// Get All Roles
-        /// </summary>
-        /// <returns>string[]</returns>
         public override string[] GetAllRoles()
         {
             string[] result = new string[0];
-            var roles = entities.mytrip_Roles.OrderBy(x => x.RoleName);
-            if (roles != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                int namberRole = 0;
-                int countRoles = roles.Count();
-                result = new string[countRoles];
-                foreach (mytrip_Roles x in roles)
-                {
-                    result[namberRole] = x.RoleName;
-                    namberRole++;
-                }
+                result = mssqlUser.mssqlGetAllRoles();
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetAllRoles();
             }
             return result;
         }
-        /// <summary>
-        /// Get Roles For User
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>string[]</returns>
         public override string[] GetRolesForUser(string username)
         {
             string[] result = new string[0];
-            var user = mtGetUserByName(username);
-            if (user != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                int namberRole = 0;
-                int countRoles = user.mytrip_Roles.Count();
-                result = new string[countRoles];
-                foreach (mytrip_Roles x in user.mytrip_Roles)
-                {
-                    result[namberRole] = x.RoleName;
-                    namberRole++;
-                }
+                result = mssqlUser.mssqlGetRolesForUser(username);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetRolesForUser(username);
             }
             return result;
         }
-        /// <summary>
-        /// Get Users In Role
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
-        /// <returns>string[]</returns>
         public override string[] GetUsersInRole(string roleName)
         {
             string[] result = new string[0];
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                int namberUser = 0;
-                int countUser = role.mytrip_Users.Count();
-                result = new string[countUser];
-                foreach (mytrip_Users x in role.mytrip_Users)
-                {
-                    result[namberUser] = x.UserName;
-                    namberUser++;
-                }
+                result = mssqlUser.mssqlGetUsersInRole(roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlGetUsersInRole(roleName);
             }
             return result;
         }
-        /// <summary>
-        /// Is User In Role
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <param name="roleName">Role Name</param>
-        /// <returns>bool</returns>
         public override bool IsUserInRole(string username, string roleName)
         {
             bool result = false;
-            var role = mtGetRoleByName(roleName);
-            if (role != null)
+            if (UsersSetting.membership == "MSSQL")
             {
-                foreach (mytrip_Users x in role.mytrip_Users)
-                {
-                    if (x.UserName == username)
-                        result = true;
-                }
+                result = mssqlUser.mssqlIsUserInRole(username, roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlIsUserInRole(username, roleName);
             }
             return result;
         }
         public bool IsUserInRoleOnline(string roleName)
         {
             bool result = false;
-            if (!String.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+            if (UsersSetting.membership == "MSSQL")
             {
-                var role = mtGetRoleByName(roleName);
-                if (role != null)
-                {
-                    foreach (mytrip_Users x in role.mytrip_Users)
-                    {
-                        if (x.UserName == HttpContext.Current.User.Identity.Name)
-                            result = true;
-                    }
-                }
+                result = mssqlUser.mssqlIsUserInRoleOnline(roleName);
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                result = xmlUser.xmlIsUserInRoleOnline(roleName);
             }
             return result;
         }
-        /// <summary>
-        /// Remove Users From Roles
-        /// </summary>
-        /// <param name="usernames">Users Names</param>
-        /// <param name="roleNames">Roles Names</param>
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
         {
             foreach (string username in usernames)
@@ -263,11 +197,6 @@ namespace Mytrip.Core.Repository
                 }
             }
         }
-        /// <summary>
-        /// Role Exists
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
-        /// <returns>bool</returns>
         public override bool RoleExists(string roleName)
         {
             if (mtGetRoleByName(roleName) != null)
@@ -275,10 +204,7 @@ namespace Mytrip.Core.Repository
             else
                 return false;
         }
-        /// <summary>
-        /// Create Unique RoleId
-        /// </summary>
-        /// <returns>int</returns>
+        /*--------------------------------------------------------------------------------------------*/
         private int mtCreateUniqueRoleId()
         {
             int result;
@@ -287,28 +213,15 @@ namespace Mytrip.Core.Repository
             result = roleId;
             return result;
         }
-        /// <summary>
-        /// Get User by Name
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <returns>mytrip_Users</returns>
+        /*--------------------------------------------------------------------------------------------*/
         private mytrip_Users mtGetUserByName(string username)
         {
             return entities.mytrip_Users.FirstOrDefault(x => x.UserName == username);
         }
-        /// <summary>
-        /// Get Role by RoleId
-        /// </summary>
-        /// <param name="roleid">RoleId</param>
-        /// <returns>mytrip_Roles</returns>
         private mytrip_Roles mtGetRoleByRoleId(int roleid)
         {
             return entities.mytrip_Roles.FirstOrDefault(x => x.RoleId == roleid);
         }
-        /// <summary>
-        /// Remove Users From Role
-        /// </summary>
-        /// <param name="rolename">Role Name</param>
         private void mtRemoveUsersFromRole(string rolename)
         {
             var role = mtGetRoleByName(rolename);
@@ -322,10 +235,6 @@ namespace Mytrip.Core.Repository
                 }
             }
         }
-        /// <summary>
-        /// Create Role
-        /// </summary>
-        /// <param name="roleName">Role Name</param>
         private void mtCreateRole(string roleName)
         {
             var role = mtGetRoleByName(roleName);
@@ -340,20 +249,10 @@ namespace Mytrip.Core.Repository
                 entities.SaveChanges();
             }
         }
-        /// <summary>
-        /// Get Role By Name
-        /// </summary>
-        /// <param name="rolename">Role Name</param>
-        /// <returns>mytrip_Roles</returns>
         public mytrip_Roles mtGetRoleByName(string rolename)
         {
             return entities.mytrip_Roles.FirstOrDefault(x => x.RoleName == rolename);
         }
-        /// <summary>
-        /// Remove User From Role
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <param name="rolename">Role Name</param>
         private void mtRemoveUserFromRole(string username, string rolename)
         {
             var role = mtGetRoleByName(rolename);
@@ -368,11 +267,6 @@ namespace Mytrip.Core.Repository
                
             }
         }
-        /// <summary>
-        /// Add User to Role
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <param name="rolename">Role Name</param>
         public void mtAddUserToRole(string username, string rolename)
         {
             var role = mtGetRoleByName(rolename);
@@ -381,14 +275,6 @@ namespace Mytrip.Core.Repository
             entities.SaveChanges();
              
         }
-        /// <summary>
-        /// Get All Roles Paginal
-        /// </summary>
-        /// <param name="pageIndex">Page Index</param>
-        /// <param name="pageSize">Page Size</param>
-        /// <param name="sorting">Sorting</param>
-        /// <param name="total">Total</param>
-        /// <returns>IQueryable(mytrip_Roles)</returns>
         public IQueryable<mytrip_Roles> mtGetAllRolesPaginal(int pageIndex, int pageSize, string sorting, out int total)
         {
             total = entities.mytrip_Roles.OrderBy(x => x.RoleName).Count();
@@ -408,19 +294,10 @@ namespace Mytrip.Core.Repository
             }
             return roles;
         }
-        /// <summary>
-        /// Get All Roles
-        /// </summary>
-        /// <returns>IQueryable(mytrip_Roles)</returns>
         public IQueryable<mytrip_Roles> mtGetAllRoles()
         {
             return entities.mytrip_Roles.OrderBy(x => x.RoleName);
         }
-        /// <summary>
-        /// Unlock User In Role
-        /// </summary>
-        /// <param name="username">User Name</param>
-        /// <param name="roleName">Role Name</param>
         public void mtUnlockUserInRole(string username, string roleName)
         {
             bool result = false;
