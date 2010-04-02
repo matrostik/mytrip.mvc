@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.ServiceModel.Syndication;
 using Mytrip.Core.Models;
-using Mytrip.Articles.Models;
+using Mytrip.Articles.Repository;
 
 namespace Mytrip.Articles.Controllers
 {

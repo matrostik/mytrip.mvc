@@ -15,7 +15,7 @@ using Mytrip.Core.Models;
 using Mytrip.Core.Repository;
 using Mytrip.Core;
 
-namespace Mytrip.Articles.Models
+namespace Mytrip.Articles.Repository
 {
     public class CommentRepository
     {

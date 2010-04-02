@@ -13,7 +13,7 @@ using System.Configuration;
 using System.Web;
 using Mytrip.Core;
 
-namespace Mytrip.Articles.Models
+namespace Mytrip.Articles.Repository
 {
     public class ArticleRepository
     {
