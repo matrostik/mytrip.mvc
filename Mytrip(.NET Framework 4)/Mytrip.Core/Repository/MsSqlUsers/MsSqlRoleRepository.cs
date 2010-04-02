@@ -18,6 +18,119 @@ namespace Mytrip.Core.Repository.MsSqlUsers
                 return _entities;
             }
         }
+        public IQueryable<mytrip_Roles> mssqlGetAllRolesEnumerable()
+        {
+            return entities.mytrip_Roles.OrderBy(x => x.RoleName);
+        }
+        public IQueryable<mytrip_Roles> mssqlGetAllRolesPaginal(int pageIndex, int pageSize, string sorting, out int total)
+        {
+            total = entities.mytrip_Roles.OrderBy(x => x.RoleName).Count();
+            var roles = entities.mytrip_Roles.OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            if (sorting == "RoleName")
+                roles = entities.mytrip_Roles.OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_RoleName")
+                roles = entities.mytrip_Roles.OrderByDescending(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "UserCount")
+                roles = entities.mytrip_Roles.OrderBy(x => x.mytrip_Users.Count()).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (sorting == "_UserCount")
+                roles = entities.mytrip_Roles.OrderByDescending(x => x.mytrip_Users.Count()).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else if (!String.IsNullOrEmpty(sorting))
+            {
+                total = entities.mytrip_Roles.Where(x => x.RoleName.IndexOf(sorting) != -1).Count();
+                roles = entities.mytrip_Roles.Where(x => x.RoleName.IndexOf(sorting) != -1).OrderBy(x => x.RoleName).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            }
+            return roles;
+        }
+        public void mssqlDeleteUserInRole(string username, string roleName)
+        {
+            bool result = false;
+            var role = mssqlGetRoleByName(roleName);
+            if (role != null)
+            {
+                foreach (mytrip_Users x in role.mytrip_Users)
+                {
+                    if (x.UserName == username)
+                        result = true;
+                }
+            }
+            if (result)
+            {
+                mssqlRemoveUserFromRole(username, roleName);
+            }
+        }
+        public void mssqlUnlockUserInRole(string username, string roleName)
+        {
+            bool result = false;
+            var role = mssqlGetRoleByName(roleName);
+            if (role != null)
+            {
+                foreach (mytrip_Users x in role.mytrip_Users)
+                {
+                    if (x.UserName == username)
+                        result = true;
+                }
+            }
+            if (result)
+            {
+                mssqlRemoveUserFromRole(username, roleName);
+            }
+            else { mssqlAddUserToRole(username, roleName); }
+        }
+        private void mssqlRemoveUserFromRole(string username, string rolename)
+        {
+            var role = mssqlGetRoleByName(rolename);
+            foreach (mytrip_Users x in role.mytrip_Users.ToList())
+            {
+                if (username == x.UserName)
+                {
+                    var user = mssqlGetUserByName(x.UserName);
+                    role.mytrip_Users.Remove(user);
+                    entities.SaveChanges();
+                }
+
+            }
+        }
+        public void mssqlAddUserToRole(string username, string rolename)
+        {
+            var role = mssqlGetRoleByName(rolename);
+            var user = mssqlGetUserByName(username);
+            role.mytrip_Users.Add(user);
+            entities.SaveChanges();
+
+        }
+        public bool mssqlRoleExists(string roleName)
+        {
+            if (mssqlGetRoleByName(roleName) != null)
+                return true;
+            else
+                return false;
+        }
+        public void mssqlRemoveUsersFromRoles(string[] usernames, string[] roleNames)
+        {
+            foreach (string username in usernames)
+            {
+                foreach (string roleName in roleNames)
+                {
+                    var user = mssqlGetUserByName(username);
+                    var role = mssqlGetRoleByName(roleName);
+                    if (user != null && role != null)
+                    {
+                        bool removeRole = true;
+                        foreach (mytrip_Roles x in user.mytrip_Roles)
+                        {
+                            if (roleName != x.RoleName)
+                                removeRole = false;
+                        }
+                        if (removeRole)
+                        {
+                            mytrip_Users x = user;
+                            x.mytrip_Roles.Remove(role);
+                            entities.SaveChanges();
+                        }
+                    }
+                }
+            }
+        }
         public bool mssqlIsUserInRoleOnline(string roleName)
         {
             bool result = false;
