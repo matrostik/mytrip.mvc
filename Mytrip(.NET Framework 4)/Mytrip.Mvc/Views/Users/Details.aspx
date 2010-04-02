@@ -112,16 +112,16 @@
             </th>
             <%} %>
         </tr>
-        <%foreach (mytrip_Roles item in Model.RolesInUser)
+        <%foreach (string item in Model.RolesInUser)
           {  %><tr>
               <th class="oneinput">
-                  <%=item.RoleName %>
+                  <%=item %>
               </th>
               <td>
                   <%=CoreLanguage.user_in_role%>
                   <%=Html.MytripImage("/Content/images/approved.png", CoreLanguage.user_in_role, 15, 0, 0)%>
                   [
-                  <%=Html.MytripImageLink(Url.Action("IsUserInRole", new { userName = Model.UserName, roleName = item.RoleName }),
+                  <%=Html.MytripImageLink(Url.Action("IsUserInRole", new { userName = Model.UserName, roleName = item }),
                                         "/Content/images/noapproved.png", "delete", 15, 0, 0, CoreLanguage.are_you_sure)%>
                   ]
               </td>
