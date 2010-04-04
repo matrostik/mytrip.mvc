@@ -13,10 +13,16 @@
     <tr>
     <td style="width:50%">
      <fieldset>
-            <legend>SQL Settings</legend>
+            <legend>Connecting Settings</legend>
             <div class="editor-field">
                 <%= Html.CheckBoxFor(model => model.Development) %>
                 <%= Html.LabelFor(model => model.Development) %>
+            </div>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Membership) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.DropDownListFor(model => model.Membership, Model.AllMembership) %>
             </div>
             <div class="editor-field">
                 <%= Html.CheckBoxFor(model => model.MSSQLIntegratedSecurity) %>
@@ -113,8 +119,7 @@
                 <%= Html.LabelFor(model => model.defaultCulture) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.defaultCulture) %>
-                <%= Html.ValidationMessageFor(model => model.defaultCulture) %>
+                <%= Html.DropDownListFor(model => model.defaultCulture,Model.AllCulture) %>
             </div>
             <div class="editor-field">
                 <%= Html.CheckBoxFor(model => model.unlockAllCulture) %>
@@ -127,8 +132,7 @@
                 <%= Html.LabelFor(model => model.defaultTheme) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.defaultTheme) %>
-                <%= Html.ValidationMessageFor(model => model.defaultTheme) %>
+                <%= Html.DropDownListFor(model => model.defaultTheme,Model.AllTheme) %>
             </div>
             <div class="editor-field">
                 <%= Html.CheckBoxFor(model => model.unlockTheme) %>

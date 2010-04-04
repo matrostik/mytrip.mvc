@@ -109,7 +109,7 @@ namespace Mytrip.Core.Repository.XmlUsers
                     XDocument doc = XDocument.Load(absolutDirectory);
                     var userInRole = doc.Root.Elements("UserInRole")
                         .Where(x => x.Attribute("RoleName").Value == rolename)
-                     .FirstOrDefault(x => x.Element("UserName").Value == username);
+                     .FirstOrDefault(x => x.Attribute("UserName").Value == username);
                     if (userInRole == null)
                     {
                         XElement _role = new XElement("UserInRole",

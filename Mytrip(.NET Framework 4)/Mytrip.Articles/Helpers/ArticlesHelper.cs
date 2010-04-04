@@ -3264,6 +3264,17 @@ namespace Mytrip.Articles.Helpers
             }
             else { return string.Empty; }
         }
+        public static string ArticleArhiv(this HtmlHelper html)
+        {
+            /////
+            TagBuilder li_archive = new TagBuilder("li");
+            TagBuilder a_archive = new TagBuilder("a");
+            a_archive.MergeAttribute("href", "/ArticleArchive");
+            a_archive.InnerHtml = "Article Manager";
+            li_archive.InnerHtml = a_archive.ToString();
+            /////
+            return li_archive.ToString();
+        }
         /*PRIVATE*/
         private static string privateArticleSpecification(string path, int categoryId, int subcategoryId, string categoryTitle,
            string categoryPath, string categoryTitle2, string categoryPath2, bool separateBlok, bool blog, string usrname, int views,

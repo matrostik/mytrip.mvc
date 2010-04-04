@@ -54,23 +54,50 @@ namespace Mytrip.Core.Helpers
            a_file.MergeAttribute("href", "/File");
            a_file.InnerHtml = CoreLanguage.file_manager;
            li_file.InnerHtml = a_file.ToString();
-           /////
-           TagBuilder li_archive = new TagBuilder("li");
-           TagBuilder a_archive = new TagBuilder("a");
-           a_archive.MergeAttribute("href", "/ArticleArchive");
-           a_archive.InnerHtml = "Article Manager";
-           li_archive.InnerHtml = a_archive.ToString();
-           /////
+           
            TagBuilder li_core = new TagBuilder("li");
            TagBuilder a_core = new TagBuilder("a");
            a_core.MergeAttribute("href", "/Core");
            a_core.InnerHtml = "Core Settings";
            li_core.InnerHtml = a_core.ToString();
-           ul.InnerHtml = li_user.ToString() + li_file.ToString() + li_archive.ToString() + li_core.ToString();
+           ul.InnerHtml = li_user.ToString() + li_file.ToString() + li_core.ToString();
            div_accordioncontent.InnerHtml = ul.ToString();
            div_accordion.InnerHtml = div_accordiontitle.ToString() + div_accordioncontent.ToString();
            result.AppendLine(div_accordion.ToString());
            return result.ToString();        
+        }
+        public static string AccordionUsersAndFiles(this HtmlHelper html,string helper)
+        {
+            StringBuilder result = new StringBuilder();
+            TagBuilder div_accordion = new TagBuilder("div");
+            div_accordion.AddCssClass("accordion");
+            TagBuilder div_accordiontitle = new TagBuilder("div");
+            div_accordiontitle.AddCssClass("accordiontitle");
+            div_accordiontitle.InnerHtml = CoreLanguage.user_file;
+            TagBuilder div_accordioncontent = new TagBuilder("div");
+            div_accordioncontent.AddCssClass("accordioncontent");
+            TagBuilder ul = new TagBuilder("ul");
+            TagBuilder li_user = new TagBuilder("li");
+            TagBuilder a_user = new TagBuilder("a");
+            a_user.MergeAttribute("href", "/Users");
+            a_user.InnerHtml = CoreLanguage.user_manager;
+            li_user.InnerHtml = a_user.ToString();
+            TagBuilder li_file = new TagBuilder("li");
+            TagBuilder a_file = new TagBuilder("a");
+            a_file.MergeAttribute("href", "/File");
+            a_file.InnerHtml = CoreLanguage.file_manager;
+            li_file.InnerHtml = a_file.ToString();
+
+            TagBuilder li_core = new TagBuilder("li");
+            TagBuilder a_core = new TagBuilder("a");
+            a_core.MergeAttribute("href", "/Core");
+            a_core.InnerHtml = "Core Settings";
+            li_core.InnerHtml = a_core.ToString();
+            ul.InnerHtml = li_user.ToString() + li_file.ToString()+ helper + li_core.ToString();
+            div_accordioncontent.InnerHtml = ul.ToString();
+            div_accordion.InnerHtml = div_accordiontitle.ToString() + div_accordioncontent.ToString();
+            result.AppendLine(div_accordion.ToString());
+            return result.ToString();
         }
         public static string AccordionUsersAndFiles(this HtmlHelper html,bool RoleAdmin)
         {
@@ -96,19 +123,51 @@ namespace Mytrip.Core.Helpers
                 a_file.MergeAttribute("href", "/File");
                 a_file.InnerHtml = CoreLanguage.file_manager;
                 li_file.InnerHtml = a_file.ToString();
-                /////
-                TagBuilder li_archive = new TagBuilder("li");
-                TagBuilder a_archive = new TagBuilder("a");
-                a_archive.MergeAttribute("href", "/ArticleArchive");
-                a_archive.InnerHtml = "Article Manager";
-                li_archive.InnerHtml = a_archive.ToString();
-                /////
+               
                 TagBuilder li_core = new TagBuilder("li");
                 TagBuilder a_core = new TagBuilder("a");
                 a_core.MergeAttribute("href", "/Core");
                 a_core.InnerHtml = "Core Settings";
                 li_core.InnerHtml = a_core.ToString();
-                ul.InnerHtml = li_user.ToString() + li_file.ToString() + li_archive.ToString()+li_core.ToString();
+                ul.InnerHtml = li_user.ToString() + li_file.ToString() +li_core.ToString();
+                div_accordioncontent.InnerHtml = ul.ToString();
+                div_accordion.InnerHtml = div_accordiontitle.ToString() + div_accordioncontent.ToString();
+                result.AppendLine(div_accordion.ToString());
+                return result.ToString();
+            }
+            else { return string.Empty; }
+        }
+        public static string AccordionUsersAndFiles(this HtmlHelper html,string helper, bool RoleAdmin)
+        {
+            RoleRepository db = new RoleRepository();
+            if (RoleAdmin && db.IsUserInRoleOnline(UsersSetting.roleAdmin))
+            {
+                StringBuilder result = new StringBuilder();
+                TagBuilder div_accordion = new TagBuilder("div");
+                div_accordion.AddCssClass("accordion");
+                TagBuilder div_accordiontitle = new TagBuilder("div");
+                div_accordiontitle.AddCssClass("accordiontitle");
+                div_accordiontitle.InnerHtml = CoreLanguage.user_file;
+                TagBuilder div_accordioncontent = new TagBuilder("div");
+                div_accordioncontent.AddCssClass("accordioncontent");
+                TagBuilder ul = new TagBuilder("ul");
+                TagBuilder li_user = new TagBuilder("li");
+                TagBuilder a_user = new TagBuilder("a");
+                a_user.MergeAttribute("href", "/Users");
+                a_user.InnerHtml = CoreLanguage.user_manager;
+                li_user.InnerHtml = a_user.ToString();
+                TagBuilder li_file = new TagBuilder("li");
+                TagBuilder a_file = new TagBuilder("a");
+                a_file.MergeAttribute("href", "/File");
+                a_file.InnerHtml = CoreLanguage.file_manager;
+                li_file.InnerHtml = a_file.ToString();
+
+                TagBuilder li_core = new TagBuilder("li");
+                TagBuilder a_core = new TagBuilder("a");
+                a_core.MergeAttribute("href", "/Core");
+                a_core.InnerHtml = "Core Settings";
+                li_core.InnerHtml = a_core.ToString();
+                ul.InnerHtml = li_user.ToString() + li_file.ToString()+helper + li_core.ToString();
                 div_accordioncontent.InnerHtml = ul.ToString();
                 div_accordion.InnerHtml = div_accordiontitle.ToString() + div_accordioncontent.ToString();
                 result.AppendLine(div_accordion.ToString());
@@ -223,56 +282,149 @@ namespace Mytrip.Core.Helpers
             }
             return result.ToString();        
         }
+        public static string UserIndex(this HtmlHelper html, IQueryable<mytrip_Users> Users, IEnumerable<XElement> UsersXml, string onclick)
+        {
+            StringBuilder result = new StringBuilder();
 
-        /*<% foreach (var item in Model.Users){ %>
-        <tr>
-            <td>
-                <%=Html.MytripImageLink(Url.Action("Details", new { userName = item.UserName }),
-                                                                 "/Content/images/Users.png", item.UserName, 20, 0, 0)%>
-                <%=Html.MytripImageLink(Url.Action("Delete", new { userName = item.UserName }),
-                                                                     "/Content/images/delete.png", "delete", 20, 0, 0, CoreLanguage.are_you_sure)%>
-            </td>
-            <td>
-                <b>
-                    <%= Html.Encode(item.UserName) %></b>
-                <%int rolecount = item.mytrip_Roles.Count();
-                  if (rolecount > 0)
-                  { %><br />
-                role:
-                <% int _rolecount = 0;
-                   foreach (mytrip_Roles _item in item.mytrip_Roles.ToList())
-                   {  %><%=_item.RoleName%><%_rolecount++;
-                                            if (_rolecount == rolecount)
-                                            {%>.<% }
-                    else
-                    {%>,
-                <% } %>
-                <%}
-                  } %>
-            </td>
-            <td>
-                <%= Html.Encode(item.mytrip_Membership.Email) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.LastActivityDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.CreationDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastLoginDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastPasswordChangedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.mytrip_Membership.UserIP) %>
-            </td>
-            <td>
-                <%= Html.CheckBox("IsApproved", item.mytrip_Membership.IsApproved, new { disabled="true"})%>
-            </td>
-        </tr>
-        <% } %>*/
+            if (UsersSetting.membership == "MSSQL")
+            {
+                #region
+                foreach (var item in Users)
+                {
+                    TagBuilder tr = new TagBuilder("tr");
+                    TagBuilder td1 = new TagBuilder("td");
+                    TagBuilder td2 = new TagBuilder("td");
+                    TagBuilder td3 = new TagBuilder("td");
+                    TagBuilder td4 = new TagBuilder("td");
+                    TagBuilder td5 = new TagBuilder("td");
+                    TagBuilder td6 = new TagBuilder("td");
+                    TagBuilder td7 = new TagBuilder("td");
+                    TagBuilder td8 = new TagBuilder("td");
+                    TagBuilder td9 = new TagBuilder("td");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Users/Delete/" + item.UserName);
+                    a.MergeAttribute("onclick", "return confirm ('" + onclick + "');");
+                    a.InnerHtml = _Image("/Content/images/delete.png", "delete", 20, 0, 0);
+                    TagBuilder a1 = new TagBuilder("a");
+                    a1.MergeAttribute("href", "/Users/Details/" + item.UserName);
+                    a1.InnerHtml = _Image("/Content/images/Users.png", item.UserName, 20, 0, 0);
+                    td1.InnerHtml =a1.ToString()+ a.ToString();
+                    StringBuilder _result = new StringBuilder();
+                    _result.AppendLine("<b>" + item.UserName+"</b>");
+                    int rolecount = item.mytrip_Roles.Count();
+                    if (rolecount > 0)
+                    {
+                        _result.AppendLine("<br />role: ");
+                        int _rolecount = 0;
+                        foreach (mytrip_Roles _item in item.mytrip_Roles.ToList())
+                        {
+                            _result.AppendLine(_item.RoleName);
+                            _rolecount++;
+                            if (_rolecount == rolecount)
+                            { _result.AppendLine("."); }
+                            else
+                            { _result.AppendLine(","); }
+                        }
+                    }
+                    td2.InnerHtml = _result.ToString();
+                    td3.InnerHtml = item.mytrip_Membership.Email;
+                    td4.InnerHtml = String.Format("{0:d}", item.LastActivityDate);
+                    td5.InnerHtml = String.Format("{0:d}", item.mytrip_Membership.CreationDate);
+                    td6.InnerHtml = String.Format("{0:d}", item.mytrip_Membership.LastLoginDate);
+                    td7.InnerHtml = String.Format("{0:d}", item.mytrip_Membership.LastPasswordChangedDate);
+                    td8.InnerHtml = item.mytrip_Membership.UserIP;
+                    TagBuilder input1 = new TagBuilder("input");
+                    if (item.mytrip_Membership.IsApproved)
+                        input1.MergeAttribute("checked", "checked");
+                    input1.MergeAttribute("disabled", "true");
+                    input1.MergeAttribute("id", "IsApproved");
+                    input1.MergeAttribute("name", "IsApproved");
+                    input1.MergeAttribute("type", "checkbox");
+                    input1.MergeAttribute("value", "true");
+                    TagBuilder input2=new TagBuilder("input");
+                    input2.MergeAttribute("name", "IsApproved");
+                    input2.MergeAttribute("type", "hidden");
+                    input2.MergeAttribute("value", "false");
+                    td9.InnerHtml = input1.ToString()+input2.ToString();
+                    tr.InnerHtml = td1.ToString() + td2.ToString() + td3.ToString()
+                        +td4.ToString()+td5.ToString()+td6.ToString()+td7.ToString()
+                        +td8.ToString()+td9.ToString();
+                    result.AppendLine(tr.ToString());
+                }
+                #endregion
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                #region
+                foreach (var item in UsersXml)
+                {
+                    XmlRoleRepository db = new XmlRoleRepository();
+                    TagBuilder tr = new TagBuilder("tr");
+                    TagBuilder td1 = new TagBuilder("td");
+                    TagBuilder td2 = new TagBuilder("td");
+                    TagBuilder td3 = new TagBuilder("td");
+                    TagBuilder td4 = new TagBuilder("td");
+                    TagBuilder td5 = new TagBuilder("td");
+                    TagBuilder td6 = new TagBuilder("td");
+                    TagBuilder td7 = new TagBuilder("td");
+                    TagBuilder td8 = new TagBuilder("td");
+                    TagBuilder td9 = new TagBuilder("td");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Users/Delete/" + item.Element("UserName").Value);
+                    a.MergeAttribute("onclick", "return confirm ('" + onclick + "');");
+                    a.InnerHtml = _Image("/Content/images/delete.png", "delete", 20, 0, 0);
+                    TagBuilder a1 = new TagBuilder("a");
+                    a1.MergeAttribute("href", "/Users/Details/" + item.Element("UserName").Value);
+                    a1.InnerHtml = _Image("/Content/images/Users.png", item.Element("UserName").Value, 20, 0, 0);
+                    td1.InnerHtml = a1.ToString() + a.ToString();
+                    StringBuilder _result = new StringBuilder();
+                    _result.AppendLine("<b>" + item.Element("UserName").Value + "</b>");
+                    string[] role = db.xmlGetRolesForUser(item.Element("UserName").Value);
+                    int rolecount = role.Count();
+                    if (rolecount > 0)
+                    {
+                        _result.AppendLine("<br />role: ");
+                        int _rolecount = 0;
+                        foreach (string _item in role)
+                        {
+                            _result.AppendLine(_item);
+                            _rolecount++;
+                            if (_rolecount == rolecount)
+                            { _result.AppendLine("."); }
+                            else
+                            { _result.AppendLine(","); }
+                        }
+                    }
+                    td2.InnerHtml = _result.ToString();
+                    td3.InnerHtml = item.Element("Email").Value;
+                    td4.InnerHtml = String.Format("{0:d}", DateTime.Parse(item.Element("LastActivityDate").Value));
+                    td5.InnerHtml = String.Format("{0:d}", DateTime.Parse(item.Element("CreationDate").Value));
+                    td6.InnerHtml = String.Format("{0:d}", DateTime.Parse(item.Element("LastLoginDate").Value));
+                    td7.InnerHtml = String.Format("{0:d}", DateTime.Parse(item.Element("LastPasswordChangedDate").Value));
+                    td8.InnerHtml = item.Element("UserIP").Value;
+                    TagBuilder input1 = new TagBuilder("input");
+                    if (bool.Parse(item.Element("IsApproved").Value))
+                        input1.MergeAttribute("checked", "checked");
+                    input1.MergeAttribute("disabled", "true");
+                    input1.MergeAttribute("id", "IsApproved");
+                    input1.MergeAttribute("name", "IsApproved");
+                    input1.MergeAttribute("type", "checkbox");
+                    input1.MergeAttribute("value", "true");
+                    TagBuilder input2 = new TagBuilder("input");
+                    input2.MergeAttribute("name", "IsApproved");
+                    input2.MergeAttribute("type", "hidden");
+                    input2.MergeAttribute("value", "false");
+                    td9.InnerHtml = input1.ToString() + input2.ToString();
+                    tr.InnerHtml = td1.ToString() + td2.ToString() + td3.ToString()
+                        + td4.ToString() + td5.ToString() + td6.ToString() + td7.ToString()
+                        + td8.ToString() + td9.ToString();
+                    result.AppendLine(tr.ToString());
+                }
+                #endregion
+            }
+            return result.ToString();
+        }
+        
         private static string _Image(string url, string alt, int width, int height, int border)
         {
             string style = string.Empty;

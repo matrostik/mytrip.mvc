@@ -7,6 +7,7 @@ using Mytrip.Articles.Models;
 using Mytrip.Core.Models;
 using Mytrip.Articles;
 using Mytrip.Core.Repository;
+using Mytrip.Articles.Repository;
 
 namespace Mytrip.Mvc.Controllers
 {
@@ -53,14 +54,47 @@ namespace Mytrip.Mvc.Controllers
             model.Count = _count;
             return View(model);
         }
-
         //
-        // GET: /ArticleArchive/Details/5
+        // GET: /ArticleArchive/Details/path/culture
         [RoleAdmin]
         public ActionResult Details(string path,string culture)
         {
             ArchiveIndexModel model = new ArchiveIndexModel();
-            model.PageTitle=path;
+            #region Set Page title
+            switch (path)
+            {
+                case "Categories":
+                    model.PageTitle = ArticleLanguage.categories_and_subcategories;
+                    break;
+                case "Articles":
+                    model.PageTitle = ArticleLanguage.articles;
+                    break;
+                case "Comments":
+                    model.PageTitle = ArticleLanguage.comments;
+                    break;
+                case "Blogs":
+                    model.PageTitle = ArticleLanguage.blogs;
+                    break;
+                case "Topics":
+                    model.PageTitle = ArticleLanguage.topics;
+                    break;
+                case "Posts":
+                    model.PageTitle = ArticleLanguage.posts;
+                    break;
+                case "BlogsComments":
+                    model.PageTitle = ArticleLanguage.comments_in_blogs;
+                    break;
+                case "Tags":
+                    model.PageTitle = ArticleLanguage.tags1;
+                    break;
+                case "ClosedArticles":
+                    model.PageTitle = ArticleLanguage.closed_articles;
+                    break;
+                default:
+                    model.Path = path;
+                    break;
+            }
+            #endregion
             model.Path = path;
             model.Culture = culture;
             return View(model);

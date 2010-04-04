@@ -246,7 +246,6 @@ namespace Mytrip.Core.Repository.XmlUsers
            }
            return result;
        }
-       
        private void xmlRemoveRolesFromUser(string username)
        {
            if (xmlLoadFile("xmlUsersInRoles.xml"))
@@ -264,7 +263,7 @@ namespace Mytrip.Core.Repository.XmlUsers
            if (xmlCheckUserName(username))
            {
                var user = xmlGetUserByUserName(username);
-               if (user != null && xmlHashPassword(password, user.PasswordSalt) == user.Password)
+               if (user.UserName != null && xmlHashPassword(password, user.PasswordSalt) == user.Password)
                {
                    xmlUpdateUserIP(username);
                    result = true;
@@ -276,7 +275,7 @@ namespace Mytrip.Core.Repository.XmlUsers
        {
            bool result = false;
            var users = xmlGetUserByUserName(username);
-           if (users != null)
+           if (users.UserName != null)
            {
                bool _users = users.IsApproved;
                if (_users)

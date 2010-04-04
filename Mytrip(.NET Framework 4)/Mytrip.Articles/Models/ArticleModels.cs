@@ -13,8 +13,8 @@ using Mytrip.Core.Repository;
 
 namespace Mytrip.Articles.Models
 {
-    [MetadataType(typeof(CategoryModels))]
-    public class CategoryModels
+    [MetadataType(typeof(CategoryModel))]
+    public class CategoryModel
     {
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
         [RegularExpression("^(.){3,255}$", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "data_lenght_3_255")]
@@ -28,8 +28,8 @@ namespace Mytrip.Articles.Models
         public string ShowSeparateBlock { get; set; }
         public string ShowAllCulture { get; set; }
     }
-    [MetadataType(typeof(ArticleIndexModels))]
-    public class ArticleIndexModels
+    [MetadataType(typeof(ArticleIndexModel))]
+    public class ArticleIndexModel
     {
         public IQueryable<mytrip_ArticlesCategory> Categories { get; set; }
         public IQueryable<mytrip_Articles> Articles { get; set; }
@@ -48,8 +48,8 @@ namespace Mytrip.Articles.Models
         public int Total { get; set; }
         public int DefaultCount { get; set; }
     }
-    [MetadataType(typeof(ArticleViewModels))]
-    public class ArticleViewModels
+    [MetadataType(typeof(ArticleViewModel))]
+    public class ArticleViewModel
     {
         public ArticleVote ArticleVote { get; set; }
         public mytrip_Articles Article { get; set; }
@@ -70,8 +70,8 @@ namespace Mytrip.Articles.Models
         public int TotalVotes { get; set; }
         public double AverageVotes { get; set; }
     }
-    [MetadataType(typeof(ArticleModels))]
-    public class ArticleModels
+    [MetadataType(typeof(ArticleModel))]
+    public class ArticleModel
     {
         public string PageTitle { get; set; }
         public int ArticleId { get; set; }
@@ -102,13 +102,22 @@ namespace Mytrip.Articles.Models
         public IQueryable<mytrip_ArticlesTag> Tags { get; set; }
         public string NewTags { get; set; }
     }
-    [MetadataType(typeof(CommentModels))]
-    public class CommentModels
+    [MetadataType(typeof(CommentModel))]
+    public class CommentModel
     {
         public int CommentId { get; set; }
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
         //[RegularExpression("(<P>&nbsp;</P>)", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "invalid_date")]
         public string Comment { get; set; }
+        public string PageTitle { get; set; }
+        public int ArticleId { get; set; }
+        public string Path { get; set; }
+        public string Url { get; set; }
+    }
+    [MetadataType(typeof(ProfileModel))]
+    public class ProfileModel
+    {
+        public string Username { get; set; }
         public string PageTitle { get; set; }
         public int ArticleId { get; set; }
         public string Path { get; set; }

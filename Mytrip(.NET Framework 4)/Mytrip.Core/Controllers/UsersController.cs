@@ -52,8 +52,16 @@ namespace Mytrip.Core.Controllers
             int _pageIndex = pageIndex ?? 1;
             int _pageSize = pageSize ?? model.DefaultCount;
             int total;
-            model.Users = coreRepo.mssqlMembershipRepo.mssqlGetAllUsersPaginal((int)_pageIndex, (int)_pageSize, sorting, out total);
-            model.Total = total;           
+            if (UsersSetting.membership == "MSSQL")
+            {
+                model.Users = coreRepo.mssqlMembershipRepo.mssqlGetAllUsersPaginal((int)_pageIndex, (int)_pageSize, sorting, out total);
+                model.Total = total;
+            }
+            else if (UsersSetting.membership == "XML")
+            {
+                model.UsersXml = coreRepo.xmlMembershipRepo.xmlGetAllUsersPaginal((int)_pageIndex, (int)_pageSize, sorting, out total);
+                model.Total = total;
+            }          
             return View(model);
         }
         /// <summary>

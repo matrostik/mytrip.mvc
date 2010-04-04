@@ -20,6 +20,15 @@ namespace Mytrip.Core
         public static bool unlockGravatar = bool.Parse(ConfigurationManager.AppSettings["unlockGravatar"]);
         public static bool unlockRegistration = bool.Parse(ConfigurationManager.AppSettings["unlockRegistration"]);
         public static bool unlockVisibleLogon = bool.Parse(ConfigurationManager.AppSettings["unlockVisibleLogon"]);
-
+        public static IDictionary<string, string> allMembershipDictionary()
+        {
+            IDictionary<string, string> result =
+              new Dictionary<string, string>();
+            //if(membership!="MSSQL")
+            result.Add("MSSQL", "MSSQL");
+            //if (membership != "XML")
+            result.Add("XML", "XML");
+            return result;
+        }
     }
 }

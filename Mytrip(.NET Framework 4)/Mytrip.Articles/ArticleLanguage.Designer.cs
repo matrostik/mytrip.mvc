@@ -61,7 +61,16 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create {0} comments for activation you blog..
+        ///   Looks up a localized string similar to in.
+        /// </summary>
+        public static string _in {
+            get {
+                return ResourceManager.GetString("_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create {0} comments for activation your blog..
         /// </summary>
         public static string activation_blog {
             get {
@@ -142,6 +151,24 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to added by.
+        /// </summary>
+        public static string added_by {
+            get {
+                return ResourceManager.GetString("added_by", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Languages.
+        /// </summary>
+        public static string all_languages {
+            get {
+                return ResourceManager.GetString("all_languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string are_you_sure {
@@ -169,6 +196,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Articles Manager.
+        /// </summary>
+        public static string articles_manager {
+            get {
+                return ResourceManager.GetString("articles_manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         public static string author {
@@ -183,6 +219,15 @@ namespace Mytrip.Articles {
         public static string back {
             get {
                 return ResourceManager.GetString("back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to Archive.
+        /// </summary>
+        public static string back_to_archive {
+            get {
+                return ResourceManager.GetString("back_to_archive", resourceCulture);
             }
         }
         
@@ -223,11 +268,29 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to by.
+        /// </summary>
+        public static string by {
+            get {
+                return ResourceManager.GetString("by", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string categories {
             get {
                 return ResourceManager.GetString("categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories and Subcategories.
+        /// </summary>
+        public static string categories_and_subcategories {
+            get {
+                return ResourceManager.GetString("categories_and_subcategories", resourceCulture);
             }
         }
         
@@ -268,6 +331,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed Articles.
+        /// </summary>
+        public static string closed_articles {
+            get {
+                return ResourceManager.GetString("closed_articles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string comments {
@@ -282,6 +354,15 @@ namespace Mytrip.Articles {
         public static string comments_closed {
             get {
                 return ResourceManager.GetString("comments_closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments in Blogs.
+        /// </summary>
+        public static string comments_in_blogs {
+            get {
+                return ResourceManager.GetString("comments_in_blogs", resourceCulture);
             }
         }
         
@@ -520,6 +601,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Four weeks ago.
+        /// </summary>
+        public static string four_weeks_ago {
+            get {
+                return ResourceManager.GetString("four_weeks_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guest.
         /// </summary>
         public static string guest {
@@ -556,6 +646,24 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest Updates.
+        /// </summary>
+        public static string latest_updates {
+            get {
+                return ResourceManager.GetString("latest_updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month ago.
+        /// </summary>
+        public static string month_ago {
+            get {
+                return ResourceManager.GetString("month_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string name {
@@ -574,6 +682,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Older.
+        /// </summary>
+        public static string older {
+            get {
+                return ResourceManager.GetString("older", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only for registered users.
         /// </summary>
         public static string only_for_register {
@@ -588,6 +705,15 @@ namespace Mytrip.Articles {
         public static string open_comments {
             get {
                 return ResourceManager.GetString("open_comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string other {
+            get {
+                return ResourceManager.GetString("other", resourceCulture);
             }
         }
         
@@ -637,6 +763,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistic.
+        /// </summary>
+        public static string statistic {
+            get {
+                return ResourceManager.GetString("statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SubCategory.
         /// </summary>
         public static string subcategory {
@@ -673,6 +808,24 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Three months ago.
+        /// </summary>
+        public static string three_months_ago {
+            get {
+                return ResourceManager.GetString("three_months_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three weeks ago.
+        /// </summary>
+        public static string three_weeks_ago {
+            get {
+                return ResourceManager.GetString("three_weeks_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string title {
@@ -700,6 +853,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string today {
+            get {
+                return ResourceManager.GetString("today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Topic.
         /// </summary>
         public static string topic {
@@ -709,11 +871,38 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Topics.
+        /// </summary>
+        public static string topics {
+            get {
+                return ResourceManager.GetString("topics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total votes.
         /// </summary>
         public static string total_votes {
             get {
                 return ResourceManager.GetString("total_votes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two months ago.
+        /// </summary>
+        public static string two_months_ago {
+            get {
+                return ResourceManager.GetString("two_months_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two weeks ago.
+        /// </summary>
+        public static string two_weeks_ago {
+            get {
+                return ResourceManager.GetString("two_weeks_ago", resourceCulture);
             }
         }
         
@@ -732,6 +921,24 @@ namespace Mytrip.Articles {
         public static string views {
             get {
                 return ResourceManager.GetString("views", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week ago.
+        /// </summary>
+        public static string week_ago {
+            get {
+                return ResourceManager.GetString("week_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string yesterday {
+            get {
+                return ResourceManager.GetString("yesterday", resourceCulture);
             }
         }
     }

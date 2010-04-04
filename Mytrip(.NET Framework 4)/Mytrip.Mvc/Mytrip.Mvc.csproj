@@ -88,8 +88,9 @@
     <Content Include="App_Data\mytripmvc_log.LDF">
       <DependentUpon>mytripmvc.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\xmlMembership.xml" />
+    <Content Include="App_Data\xmlRoles.xml" />
     <Content Include="App_Data\xmlUsers.xml" />
+    <Content Include="App_Data\xmlUsersInRoles.xml" />
     <Content Include="Content\Articles\stuhin\wmkeeper_32x32.png" />
     <Content Include="Content\editor.css" />
     <Content Include="Content\files\.asax.png" />
@@ -281,6 +282,7 @@
     <Content Include="Views\Article\EditCategory.aspx" />
     <Content Include="Views\Article\EditComment.aspx" />
     <Content Include="Views\Article\Index.aspx" />
+    <Content Include="Views\Article\Profile.aspx" />
     <Content Include="Views\Article\View.aspx" />
     <Content Include="Views\ArticleFile\Index.aspx" />
     <Content Include="Views\ArticleFile\Rename.aspx" />

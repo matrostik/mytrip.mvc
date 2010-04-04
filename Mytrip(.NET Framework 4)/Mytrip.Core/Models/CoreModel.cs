@@ -16,6 +16,7 @@ namespace Mytrip.Core.Models
         public bool Development { get; set; }
         public bool MSSQLIntegratedSecurity { get; set; }
         public string MSSQLServer { get; set; }
+        public string Membership { get; set; }
         public string MSSQLDataBase { get; set; }
         public string MSSQLUser { get; set; }
         public string MSSQLPassword { get; set; }
@@ -30,6 +31,9 @@ namespace Mytrip.Core.Models
         public string defaultCulture { get; set; }
         public bool unlockAllCulture { get; set; }
         public string defaultTheme { get; set; }
+        public SelectList AllTheme { get; set; }
+        public SelectList AllCulture { get; set; }
+        public SelectList AllMembership { get; set; }
         public bool unlockTheme { get; set; }
         public bool unlockGravatar { get; set; }
     }

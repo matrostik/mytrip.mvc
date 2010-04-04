@@ -24,12 +24,12 @@ namespace Mytrip.Articles.ArticlesCache
         public string culture
         {
             get
-            { 
-                return HttpContext.Current.Session["culture"].ToString(); 
+            {
+                return HttpContext.Current.Session["culture"].ToString();
             }
             set
-            { 
-                HttpContext.Current.Session["culture"] = value; 
+            {
+                HttpContext.Current.Session["culture"] = value;
             }
         }
         public string ArticleMenu()
@@ -56,10 +56,7 @@ namespace Mytrip.Articles.ArticlesCache
                         if (urlIndex != -1)
                         {
                             Action = urlPath.Remove(urlIndex);
-                            urlPath = urlPath.Remove(0, urlIndex + 1);
-                            if (urlPath.IndexOf("/") != -1)
-                                urlIndex = urlPath.IndexOf("/");
-                            if (urlIndex != -1)
+                            if (Action != "Profile")
                             {
                                 urlPath = urlPath.Remove(0, urlIndex + 1);
                                 if (urlPath.IndexOf("/") != -1)
@@ -71,14 +68,20 @@ namespace Mytrip.Articles.ArticlesCache
                                         urlIndex = urlPath.IndexOf("/");
                                     if (urlIndex != -1)
                                     {
+                                        urlPath = urlPath.Remove(0, urlIndex + 1);
                                         if (urlPath.IndexOf("/") != -1)
+                                            urlIndex = urlPath.IndexOf("/");
+                                        if (urlIndex != -1)
                                         {
-                                            id = urlPath.Remove(urlIndex);
-                                            param = urlPath.Remove(0, urlIndex + 1);
-                                        }
-                                        else
-                                        { id = urlPath; }
+                                            if (urlPath.IndexOf("/") != -1)
+                                            {
+                                                id = urlPath.Remove(urlIndex);
+                                                param = urlPath.Remove(0, urlIndex + 1);
+                                            }
+                                            else
+                                            { id = urlPath; }
 
+                                        }
                                     }
                                 }
                             }
@@ -159,10 +162,7 @@ namespace Mytrip.Articles.ArticlesCache
                         if (urlIndex != -1)
                         {
                             Action = urlPath.Remove(urlIndex);
-                            urlPath = urlPath.Remove(0, urlIndex + 1);
-                            if (urlPath.IndexOf("/") != -1)
-                                urlIndex = urlPath.IndexOf("/");
-                            if (urlIndex != -1)
+                            if (Action != "Profile")
                             {
                                 urlPath = urlPath.Remove(0, urlIndex + 1);
                                 if (urlPath.IndexOf("/") != -1)
@@ -174,14 +174,20 @@ namespace Mytrip.Articles.ArticlesCache
                                         urlIndex = urlPath.IndexOf("/");
                                     if (urlIndex != -1)
                                     {
+                                        urlPath = urlPath.Remove(0, urlIndex + 1);
                                         if (urlPath.IndexOf("/") != -1)
+                                            urlIndex = urlPath.IndexOf("/");
+                                        if (urlIndex != -1)
                                         {
-                                            id = urlPath.Remove(urlIndex);
-                                            param = urlPath.Remove(0, urlIndex + 1);
-                                        }
-                                        else
-                                        { id = urlPath; }
+                                            if (urlPath.IndexOf("/") != -1)
+                                            {
+                                                id = urlPath.Remove(urlIndex);
+                                                param = urlPath.Remove(0, urlIndex + 1);
+                                            }
+                                            else
+                                            { id = urlPath; }
 
+                                        }
                                     }
                                 }
                             }
@@ -262,10 +268,7 @@ namespace Mytrip.Articles.ArticlesCache
                         if (urlIndex != -1)
                         {
                             Action = urlPath.Remove(urlIndex);
-                            urlPath = urlPath.Remove(0, urlIndex + 1);
-                            if (urlPath.IndexOf("/") != -1)
-                                urlIndex = urlPath.IndexOf("/");
-                            if (urlIndex != -1)
+                            if (Action != "Profile")
                             {
                                 urlPath = urlPath.Remove(0, urlIndex + 1);
                                 if (urlPath.IndexOf("/") != -1)
@@ -277,14 +280,20 @@ namespace Mytrip.Articles.ArticlesCache
                                         urlIndex = urlPath.IndexOf("/");
                                     if (urlIndex != -1)
                                     {
+                                        urlPath = urlPath.Remove(0, urlIndex + 1);
                                         if (urlPath.IndexOf("/") != -1)
+                                            urlIndex = urlPath.IndexOf("/");
+                                        if (urlIndex != -1)
                                         {
-                                            id = urlPath.Remove(urlIndex);
-                                            param = urlPath.Remove(0, urlIndex + 1);
-                                        }
-                                        else
-                                        { id = urlPath; }
+                                            if (urlPath.IndexOf("/") != -1)
+                                            {
+                                                id = urlPath.Remove(urlIndex);
+                                                param = urlPath.Remove(0, urlIndex + 1);
+                                            }
+                                            else
+                                            { id = urlPath; }
 
+                                        }
                                     }
                                 }
                             }

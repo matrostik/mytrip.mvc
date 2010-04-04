@@ -7,6 +7,7 @@ using Mytrip.Articles;
 using Mytrip.Core.Models;
 using Mytrip.Articles.Models;
 using Mytrip.Core.Repository;
+using Mytrip.Articles.Repository;
 
 namespace Mytrip.Mvc.Controllers
 {
