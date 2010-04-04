@@ -115,7 +115,7 @@ namespace Mytrip.Articles.Controllers
             int total = 0;
             int _pageIndex = pageIndex ?? 1;
             int _pageSize = pageSize ?? 10;
-            ArticleIndexModels model = new ArticleIndexModels();
+            ArticleIndexModel model = new ArticleIndexModel();
             model.ShowAddCategory = true;
             model.ShowAddSubCategory = true;
             model.ShowAddArticle = true;
@@ -242,7 +242,7 @@ namespace Mytrip.Articles.Controllers
                 string returnUrl = "/Article/CreateCategory/" + id + "/" + Path;
                 return RedirectToAction("LogOn", "Account", new { returnUrl });
             }
-            CategoryModels model = new CategoryModels();
+            CategoryModel model = new CategoryModel();
             model.Path = Path;
             model.CategoryId = id;
             if (id != 0)
@@ -262,7 +262,7 @@ namespace Mytrip.Articles.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult CreateCategory(CategoryModels model)
+        public ActionResult CreateCategory(CategoryModel model)
         {
             if (ModelState.IsValid)
             {
@@ -296,7 +296,7 @@ namespace Mytrip.Articles.Controllers
         [Authorize]
         public ActionResult EditCategory(int id, string Path, string url)
         {
-            CategoryModels model = new CategoryModels();
+            CategoryModel model = new CategoryModel();
             model.CategoryId = id;
             if (!Path.StartsWith("(Tag)"))
             {
@@ -342,7 +342,7 @@ namespace Mytrip.Articles.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult EditCategory(CategoryModels model)
+        public ActionResult EditCategory(CategoryModel model)
         {
             if (ModelState.IsValid)
             {
@@ -417,7 +417,7 @@ namespace Mytrip.Articles.Controllers
         // ******  одна статья или пост  ********
         public ActionResult View(int id)
         {
-            ArticleViewModels model = new ArticleViewModels();
+            ArticleViewModel model = new ArticleViewModel();
             mytrip_Articles article = articleRepo.article.GetArticleById(id);
             if (article.OnlyForRegisterUser && !User.Identity.IsAuthenticated)
             {
@@ -432,7 +432,7 @@ namespace Mytrip.Articles.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult View(ArticleViewModels model, int id, string input0, string input1, string input2, string input3, string input4)
+        public ActionResult View(ArticleViewModel model, int id, string input0, string input1, string input2, string input3, string input4)
         {
             if (Request.IsAjaxRequest())
             {
@@ -468,9 +468,9 @@ namespace Mytrip.Articles.Controllers
                 string returnUrl = "/Article/Create/" + id + "/" + Path;
                 return RedirectToAction("LogOn", "Account", new { returnUrl });
             }
-            ArticleModels model = new ArticleModels();
+            ArticleModel model = new ArticleModel();
             model.CategoryId = id;
-            model.PageTitle = ArticleLanguage.create_new_category;
+            model.PageTitle = ArticleLanguage.create_new_article;
             model.Path = Path;
             model.CloseDate = new DateTime(2099, 12, 12).ToString("yyyy-MM-dd");
             if (id == 0)
@@ -500,7 +500,7 @@ namespace Mytrip.Articles.Controllers
         [HttpPost]
         [Authorize]
         [ValidateInput(false)]
-        public ActionResult Create(ArticleModels model)
+        public ActionResult Create(ArticleModel model)
         {
             if (ModelState.IsValid)
             {
@@ -547,7 +547,7 @@ namespace Mytrip.Articles.Controllers
         [Authorize]
         public ActionResult Edit(int id, string Path, string url)
         {
-            ArticleModels model = new ArticleModels();
+            ArticleModel model = new ArticleModel();
             mytrip_Articles article = articleRepo.article.GetArticleById(id);
             if (!userHasRights(article, false))
             {
@@ -589,7 +589,7 @@ namespace Mytrip.Articles.Controllers
         [HttpPost]
         [Authorize]
         [ValidateInput(false)]
-        public ActionResult Edit(ArticleModels model)
+        public ActionResult Edit(ArticleModel model)
         {
             try
             {
@@ -713,7 +713,7 @@ namespace Mytrip.Articles.Controllers
                 string returnUrl = "/Article/EditComment/" + id + "/" + Path;
                 return RedirectToAction("LogOn", "Account", new { returnUrl });
             }
-            CommentModels model = new CommentModels();
+            CommentModel model = new CommentModel();
             model.CommentId = id;
             model.Comment = comment.Body;
             model.ArticleId = comment.ArticleId;
@@ -728,7 +728,7 @@ namespace Mytrip.Articles.Controllers
         [HttpPost]
         [Authorize]
         [ValidateInput(false)]
-        public ActionResult EditComment(CommentModels model)
+        public ActionResult EditComment(CommentModel model)
         {
             if (ModelState.IsValid)
             {
@@ -789,6 +789,17 @@ namespace Mytrip.Articles.Controllers
             }
             articleRepo.article.CloseComments(id);
             return RedirectToAction("View", new { id = id, Path = Path });
+        }
+        #endregion
+        #region Profile
+        // *********************************
+        // URL: /Article/View/Username
+        // ********  User profile  *********
+        public ActionResult Profile(string username)
+        {
+            ProfileModel model = new ProfileModel();
+            model.Username = username;
+            return View(model);
         }
         #endregion
     }

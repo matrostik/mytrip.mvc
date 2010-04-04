@@ -62,55 +62,7 @@
                 <%=CoreLanguage.IsApproved%>
             </th>
         </tr>
-        <% foreach (var item in Model.Users){ %>
-        <tr>
-            <td>
-                <%=Html.MytripImageLink(Url.Action("Details", new { userName = item.UserName }),
-                                                                 "/Content/images/Users.png", item.UserName, 20, 0, 0)%>
-                <%=Html.MytripImageLink(Url.Action("Delete", new { userName = item.UserName }),
-                                                                     "/Content/images/delete.png", "delete", 20, 0, 0, CoreLanguage.are_you_sure)%>
-            </td>
-            <td>
-                <b>
-                    <%= Html.Encode(item.UserName) %></b>
-                <%int rolecount = item.mytrip_Roles.Count();
-                  if (rolecount > 0)
-                  { %><br />
-                role:
-                <% int _rolecount = 0;
-                   foreach (mytrip_Roles _item in item.mytrip_Roles.ToList())
-                   {  %><%=_item.RoleName%><%_rolecount++;
-                                            if (_rolecount == rolecount)
-                                            {%>.<% }
-                    else
-                    {%>,
-                <% } %>
-                <%}
-                  } %>
-            </td>
-            <td>
-                <%= Html.Encode(item.mytrip_Membership.Email) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.LastActivityDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.CreationDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastLoginDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:d}", item.mytrip_Membership.LastPasswordChangedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.mytrip_Membership.UserIP) %>
-            </td>
-            <td>
-                <%= Html.CheckBox("IsApproved", item.mytrip_Membership.IsApproved, new { disabled="true"})%>
-            </td>
-        </tr>
-        <% } %>
+        <%=Html.UserIndex(Model.Users,Model.UsersXml,CoreLanguage.are_you_sure) %>
     </table>
     <%=Html.MytripPager(Model.DefaultCount, Model.Total, "...")%>
 </asp:Content>

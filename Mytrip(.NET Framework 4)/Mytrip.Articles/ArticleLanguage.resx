@@ -313,7 +313,7 @@
     <value>The entered email is not valid</value>
   </data>
   <data name="activation_blog" xml:space="preserve">
-    <value>Create {0} comments for activation you blog.</value>
+    <value>Create {0} comments for activation your blog.</value>
   </data>
   <data name="create_blog" xml:space="preserve">
     <value>Create Blog</value>
@@ -341,5 +341,74 @@
   </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="articles_manager" xml:space="preserve">
+    <value>Articles Manager</value>
+  </data>
+  <data name="categories_and_subcategories" xml:space="preserve">
+    <value>Categories and Subcategories</value>
+  </data>
+  <data name="closed_articles" xml:space="preserve">
+    <value>Closed Articles</value>
+  </data>
+  <data name="comments_in_blogs" xml:space="preserve">
+    <value>Comments in Blogs</value>
+  </data>
+  <data name="latest_updates" xml:space="preserve">
+    <value>Latest Updates</value>
+  </data>
+  <data name="statistic" xml:space="preserve">
+    <value>Statistic</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Topics</value>
+  </data>
+  <data name="added_by" xml:space="preserve">
+    <value>added by</value>
+  </data>
+  <data name="all_languages" xml:space="preserve">
+    <value>All Languages</value>
+  </data>
+  <data name="back_to_archive" xml:space="preserve">
+    <value>Back to Archive</value>
+  </data>
+  <data name="by" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="four_weeks_ago" xml:space="preserve">
+    <value>Four weeks ago</value>
+  </data>
+  <data name="month_ago" xml:space="preserve">
+    <value>Month ago</value>
+  </data>
+  <data name="older" xml:space="preserve">
+    <value>Older</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="three_months_ago" xml:space="preserve">
+    <value>Three months ago</value>
+  </data>
+  <data name="three_weeks_ago" xml:space="preserve">
+    <value>Three weeks ago</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="two_months_ago" xml:space="preserve">
+    <value>Two months ago</value>
+  </data>
+  <data name="two_weeks_ago" xml:space="preserve">
+    <value>Two weeks ago</value>
+  </data>
+  <data name="week_ago" xml:space="preserve">
+    <value>Week ago</value>
+  </data>
+  <data name="yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="_in" xml:space="preserve">
+    <value>in</value>
   </data>
 </root>

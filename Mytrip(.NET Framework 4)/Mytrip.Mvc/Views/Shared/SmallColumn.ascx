@@ -6,5 +6,5 @@
 <%=article.AccordionCategory()%>
 <%=article.AccordionBlogs()%>
 <%=article.AccordionTag()%>
-<%=Html.AccordionUsersAndFiles(true) %>
+<%=Html.AccordionUsersAndFiles(Html.ArticleArhiv(),true) %>
 <%=Html.AccordionDonateProject() %>

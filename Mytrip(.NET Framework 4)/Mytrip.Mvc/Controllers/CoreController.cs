@@ -43,11 +43,17 @@ namespace Mytrip.Mvc.Controllers
             model.defaultTheme = ThemeSetting.defaultTheme;
             model.unlockTheme = ThemeSetting.unlockTheme;
             model.unlockGravatar = UsersSetting.unlockGravatar;
+            model.Membership = UsersSetting.membership;
+            model.AllMembership = new SelectList(UsersSetting.allMembershipDictionary(), "Key", "Value", UsersSetting.membership);
+            model.AllCulture = new SelectList(LocalisationSetting.allCultureDictionary(), "Key", "Value", LocalisationSetting.defaultCulture);
+            model.AllTheme = new SelectList(ThemeSetting.allThemeDictionary(), "Key", "Value", ThemeSetting.defaultTheme);
             return View(model);
         }
         [HttpPost]
         public ActionResult Index(CoreModel model)
         {
+            if (model.MSSQLPassword == null)
+                model.MSSQLPassword = "a";
             Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
             config.AppSettings.Settings["Development"].Value = model.Development.ToString();
             config.AppSettings.Settings["MSSQLIntegratedSecurity"].Value = model.MSSQLIntegratedSecurity.ToString();
@@ -67,6 +73,7 @@ namespace Mytrip.Mvc.Controllers
             config.AppSettings.Settings["defaultTheme"].Value = model.defaultTheme;
             config.AppSettings.Settings["unlockTheme"].Value = model.unlockTheme.ToString();
             config.AppSettings.Settings["unlockGravatar"].Value = model.unlockGravatar.ToString();
+            config.AppSettings.Settings["Membership"].Value = model.Membership;
             config.Save();
             return RedirectToAction("Index", "Home");
         }

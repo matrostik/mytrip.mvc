@@ -2,4 +2,6 @@
 <mytrip_Roles>
   <Role RoleName="admin" />
   <Role RoleName="article_editor" />
+  <Role RoleName="chief_editor" />
+  <Role RoleName="blogger" />
 </mytrip_Roles>

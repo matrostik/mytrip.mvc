@@ -13,4 +13,17 @@
     <LastPasswordChangedDate>2010-04-02</LastPasswordChangedDate>
     <UserIP>127.0.0.1</UserIP>
   </User>
+  <User UserId="6addd883-3ac7-4e03-b3c1-0c1b35820f08">
+    <UserName>admin</UserName>
+    <Password>E9DAD09B44BE4F7D38D54D49F97B1F079090151B</Password>
+    <PasswordSalt>5531107d-8c4a-4247-a834-f90c002a3262</PasswordSalt>
+    <LastActivityDate>2010-04-03</LastActivityDate>
+    <Email>oleg@stuh.in</Email>
+    <IsApproved>True</IsApproved>
+    <CreationDate>2010-04-03</CreationDate>
+    <LastLockoutDate>2010-04-03</LastLockoutDate>
+    <LastLoginDate>2010-04-03</LastLoginDate>
+    <LastPasswordChangedDate>2010-04-03</LastPasswordChangedDate>
+    <UserIP>127.0.0.1</UserIP>
+  </User>
 </mytrip_Users>

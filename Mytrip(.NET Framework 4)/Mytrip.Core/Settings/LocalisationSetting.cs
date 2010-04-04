@@ -41,5 +41,17 @@ namespace Mytrip.Core
             }
             return _result;
         }
+        public static IDictionary<string, string> allCultureDictionary()
+        {
+            IDictionary<string, string> result =
+              new Dictionary<string, string>();
+            foreach (string x in allCultureMassive())
+                    {
+                //if(defaultCulture!=x)
+                        result.Add(x, x);
+                    }
+              
+            return result;
+        }
     }
 }

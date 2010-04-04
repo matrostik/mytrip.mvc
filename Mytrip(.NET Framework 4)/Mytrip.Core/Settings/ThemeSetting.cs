@@ -48,5 +48,17 @@ namespace Mytrip.Core
             }
             return _result;
         }
+        public static IDictionary<string, string> allThemeDictionary()
+        {
+            IDictionary<string, string> result =
+              new Dictionary<string, string>();
+            foreach (string x in allThemeMassive())
+            {
+                //if(defaultTheme!=x)
+                result.Add(x, x);
+            }
+
+            return result;
+        }
     }
 }
