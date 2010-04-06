@@ -76,11 +76,11 @@ namespace Mytrip.Articles.Repository
         /// <param name="pageIndex">номер страницы</param>
         /// <param name="pageSize">количество на странице</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesCategory> GetCategories(int pageIndex, int pageSize, string culture,out int total)
+        public IQueryable<mytrip_ArticlesCategory> GetCategories(int pageIndex, int pageSize, string culture, out int total)
         {
             var a = _db.mytrip_ArticlesCategory
                 .Where(x => x.Blog == false)
-                .Where(x => x.SubCategoryId ==x.CategoryId)
+                .Where(x => x.SubCategoryId == x.CategoryId)
                 .Where(x => x.AllCulture == true);
             var b = _db.mytrip_ArticlesCategory
                 .Where(x => x.Blog == false)
@@ -97,17 +97,17 @@ namespace Mytrip.Articles.Repository
         public List<mytrip_ArticlesCategory> GetCategoriesForDdl(string culture)
         {
             List<mytrip_ArticlesCategory> mcats = new List<mytrip_ArticlesCategory>();
-            foreach (mytrip_ArticlesCategory cat in GetCategories(culture).OrderBy(x=>x.SeparateBlock))
+            foreach (mytrip_ArticlesCategory cat in GetCategories(culture).OrderBy(x => x.SeparateBlock))
             {
                 mcats.Add(cat);
                 if (cat.CategoryId == cat.SubCategoryId)
+                {
+                    foreach (mytrip_ArticlesCategory subcat in GetSubCategories(cat.CategoryId, culture))
                     {
-                        foreach (mytrip_ArticlesCategory subcat in GetSubCategories(cat.CategoryId,culture))
-                        {
-                            subcat.Title = "--" + subcat.Title;
-                            mcats.Add(subcat);
-                        }
+                        subcat.Title = "--" + subcat.Title;
+                        mcats.Add(subcat);
                     }
+                }
             }
             return mcats;
         }
@@ -117,16 +117,16 @@ namespace Mytrip.Articles.Repository
         /// <param name="categoryId">CategoryId</param>
         /// <param name="culture">Culture</param>
         /// <returns></returns>
-        public List<mytrip_ArticlesCategory> GetCategoriesForDdl(int categoryId,string culture)
+        public List<mytrip_ArticlesCategory> GetCategoriesForDdl(int categoryId, string culture)
         {
             List<mytrip_ArticlesCategory> mcats = new List<mytrip_ArticlesCategory>();
             mytrip_ArticlesCategory category = _db.mytrip_ArticlesCategory.SingleOrDefault(x => x.CategoryId == categoryId);
             mcats.Add(category);
-                foreach (mytrip_ArticlesCategory subcat in GetSubCategories(category.CategoryId,culture))
-                    {
-                        subcat.Title = "--" + subcat.Title;
-                        mcats.Add(subcat);
-                    }
+            foreach (mytrip_ArticlesCategory subcat in GetSubCategories(category.CategoryId, culture))
+            {
+                subcat.Title = "--" + subcat.Title;
+                mcats.Add(subcat);
+            }
             return mcats;
         }
         #endregion
@@ -156,7 +156,7 @@ namespace Mytrip.Articles.Repository
                 a = a.Where(x => x.Culture == culture);
             return a.OrderByDescending(x => x.CreateDate);
         }
-        public IQueryable<mytrip_ArticlesCategory> GetLastCategoriesByDate(int endDay, int range,string culture)
+        public IQueryable<mytrip_ArticlesCategory> GetLastCategoriesByDate(int endDay, int range, string culture)
         {
             DateTime date = DateTime.Now.AddDays(endDay);
             DateTime eDate = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
@@ -196,9 +196,9 @@ namespace Mytrip.Articles.Repository
         /// <param name="pageIndex">номер страницы</param>
         /// <param name="pageSize">количество на странице</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesCategory> GetBlogs(int pageIndex, int pageSize, string culture,out int total)
+        public IQueryable<mytrip_ArticlesCategory> GetBlogs(int pageIndex, int pageSize, string culture, out int total)
         {
-            var  a=_db.mytrip_ArticlesCategory
+            var a = _db.mytrip_ArticlesCategory
                 .Where(x => x.Blog == true)
                 .Where(x => x.Culture == culture)
                 .OrderByDescending(x => x.Views);
@@ -221,7 +221,7 @@ namespace Mytrip.Articles.Repository
                 .Where(x => x.Blog == true)
                 .OrderByDescending(x => x.CreateDate).Take(count);
         }
-        public IQueryable<mytrip_ArticlesCategory> GetLastBlogsByDate(int days,string culture)
+        public IQueryable<mytrip_ArticlesCategory> GetLastBlogsByDate(int days, string culture)
         {
             DateTime date = DateTime.Now.AddDays(days);
             var a = _db.mytrip_ArticlesCategory
@@ -231,11 +231,11 @@ namespace Mytrip.Articles.Repository
                 a = a.Where(x => x.Culture == culture);
             return a.OrderByDescending(x => x.CreateDate);
         }
-        public IQueryable<mytrip_ArticlesCategory> GetLastBlogsByDate(int endDay, int range,string culture)
+        public IQueryable<mytrip_ArticlesCategory> GetLastBlogsByDate(int endDay, int range, string culture)
         {
-            DateTime date=DateTime.Now.AddDays(endDay);
-            DateTime eDate = new DateTime(date.Year, date.Month, date.Day,23,59,59,999);
-            DateTime sDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 1).AddDays((range-1) * -1);
+            DateTime date = DateTime.Now.AddDays(endDay);
+            DateTime eDate = new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999);
+            DateTime sDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 1).AddDays((range - 1) * -1);
             var a = _db.mytrip_ArticlesCategory
                 .Where(x => x.Blog == true)
                 .Where(x => x.CreateDate <= eDate)
@@ -256,16 +256,17 @@ namespace Mytrip.Articles.Repository
         #region Получить количество всех рубрик и подрубрик
         public int GetTopicsCount(string culture)
         {
-            var a = _db.mytrip_ArticlesCategory.Count(x => x.Culture == culture && x.mytrip_ArticlesCategory2.Blog == true&&x.CategoryId!=x.SubCategoryId);
+            var a = _db.mytrip_ArticlesCategory.Count(x => x.Culture == culture && x.mytrip_ArticlesCategory2.Blog == true && x.CategoryId != x.SubCategoryId);
             return a;
         }
         #endregion
+
         #region Получить последние добавленные темы в блогах
         public IQueryable<mytrip_ArticlesCategory> GetLastTopics(int count)
         {
             return _db.mytrip_ArticlesCategory
                 .Where(x => x.mytrip_ArticlesCategory2.Blog == true)
-                .Where(x=>x.CategoryId!=x.SubCategoryId)
+                .Where(x => x.CategoryId != x.SubCategoryId)
                 .OrderByDescending(x => x.CreateDate).Take(count);
         }
         public IQueryable<mytrip_ArticlesCategory> GetLastTopicsByDate(int days, string culture)
@@ -303,29 +304,6 @@ namespace Mytrip.Articles.Repository
         }
         #endregion
 
-        #region Получить все блоги по автору
-        /// <summary>
-        /// Получить все блоги по автору
-        /// </summary>
-        /// <param name="userName">имя пользователя</param>
-        /// <returns></returns>
-        public IQueryable<mytrip_ArticlesCategory> GetBlogsByUser(string userName)
-        {
-            return _db.mytrip_ArticlesCategory
-                .Where(x => x.Blog == true)
-                .Where(x => x.UserName == userName)
-                .OrderByDescending(x => x.CreateDate);
-        }
-        public IQueryable<mytrip_ArticlesCategory> GetBlogsByUser(string userName, string culture)
-        {
-            return _db.mytrip_ArticlesCategory
-                .Where(x => x.Blog == true)
-                .Where(x => x.Culture == culture)
-                .Where(x => x.UserName == userName)
-                .OrderByDescending(x => x.CreateDate);
-        }
-        #endregion
-
         #region Получить все рубрики статей для меню(постранично включительно)
         /// <summary>
         /// Получить все рубрики статей для меню с начала 1->X 
@@ -352,7 +330,7 @@ namespace Mytrip.Articles.Repository
         /// <param name="pageIndex">номер страницы</param>
         /// <param name="pageSize">количество на странице</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesCategory> GetCategoriesForMenu(int pageIndex, int pageSize, string culture,out int total)
+        public IQueryable<mytrip_ArticlesCategory> GetCategoriesForMenu(int pageIndex, int pageSize, string culture, out int total)
         {
             var a = _db.mytrip_ArticlesCategory
                .Where(x => x.Blog == false)
@@ -364,8 +342,8 @@ namespace Mytrip.Articles.Repository
                 .Where(x => x.SeparateBlock == true)
                 .Where(x => x.SubCategoryId == 0)
                 .Where(x => x.AllCulture == true);
-            var ab= a.Union(b).OrderBy(x => x.CategoryId);
-            total=ab.Count();
+            var ab = a.Union(b).OrderBy(x => x.CategoryId);
+            total = ab.Count();
             return ab.Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
         #endregion
@@ -389,7 +367,7 @@ namespace Mytrip.Articles.Repository
                 .Where(x => x.AllCulture == true);
             return a.Union(b)
                 .OrderBy(x => x.CategoryId);
-        }        
+        }
         /// <summary>
         /// Получить все недобавленные в меню рубрики статей с конца Х->1 постранично
         /// </summary>
@@ -398,7 +376,7 @@ namespace Mytrip.Articles.Repository
         /// <returns></returns>
         public IQueryable<mytrip_ArticlesCategory> GetCategoriesNotInMenu(int pageIndex, int pageSize, out int total)
         {
-            var a=_db.mytrip_ArticlesCategory
+            var a = _db.mytrip_ArticlesCategory
                 .Where(x => x.SeparateBlock == false)
                 .Where(x => x.Blog == false)
                 .Where(x => x.SubCategoryId == x.CategoryId)
@@ -461,7 +439,7 @@ namespace Mytrip.Articles.Repository
             return catId;
         }
         #endregion
-     
+
         #region Создать рубрику
         /// <summary>
         /// Создать рубрику
@@ -482,7 +460,7 @@ namespace Mytrip.Articles.Repository
                 Path = StaticMethod.DecodingString(title),
                 CreateDate = DateTime.Now,
                 UserName = username,
-                UserEmail=useremail,
+                UserEmail = useremail,
                 SeparateBlock = separateBlock,
                 Blog = false,
                 Views = 0,
@@ -504,7 +482,7 @@ namespace Mytrip.Articles.Repository
         /// <param name="categoryId">номер рубрики</param>
         /// <param name="email">email пользователя</param>
         /// <returns></returns>
-        public mytrip_ArticlesCategory CreateSubCategory(string title, int categoryId,bool allCulture)
+        public mytrip_ArticlesCategory CreateSubCategory(string title, int categoryId, bool allCulture)
         {
             mytrip_ArticlesCategory x = new mytrip_ArticlesCategory
             {
@@ -569,7 +547,7 @@ namespace Mytrip.Articles.Repository
         public void UpdateCategory(int categoryId, string title, bool separateBlock, bool allCulture)
         {
             mytrip_ArticlesCategory c = GetCategory(categoryId);
-            if (c.CategoryId == c.SubCategoryId&&c.AllCulture!=allCulture&&c.AllCulture==true)
+            if (c.CategoryId == c.SubCategoryId && c.AllCulture != allCulture && c.AllCulture == true)
             {
                 foreach (var art in c.mytrip_Articles)
                 {
@@ -611,7 +589,7 @@ namespace Mytrip.Articles.Repository
             }
             _db.SaveChanges();
         }
-        #endregion        
+        #endregion
 
         #region Удалить рубрику
         /// <summary>
@@ -672,6 +650,69 @@ namespace Mytrip.Articles.Repository
             mytrip_ArticlesCategory x = GetCategory(categoryId);
             x.Views++;
             _db.SaveChanges();
+        }
+        #endregion
+
+        /*  РАЗДЕЛ 4  */
+
+        #region Получить все рубрики и подрубки пользователя
+        /// <summary>
+        /// Получить все рубрики и подрубки пользователя
+        /// </summary>
+        /// <param name="username">имя пользователя</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_ArticlesCategory> GetCategoriesByUser(string username)
+        {
+            return _db.mytrip_ArticlesCategory
+                .Where(x => x.mytrip_ArticlesCategory2.Blog == false && x.UserName == username)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesCategory> GetCategoriesByUser(string username, string culture)
+        {
+            return _db.mytrip_ArticlesCategory
+                .Where(x => x.mytrip_ArticlesCategory2.Blog == false
+                && x.Culture == culture && x.UserName == username)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        #endregion
+
+        #region Получить все блоги пользователя
+        /// <summary>
+        /// Получить все блоги пользователя
+        /// </summary>
+        /// <param name="userName">имя пользователя</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_ArticlesCategory> GetBlogsByUser(string userName)
+        {
+            return _db.mytrip_ArticlesCategory
+                .Where(x => x.Blog == true&&x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesCategory> GetBlogsByUser(string userName, string culture)
+        {
+            return _db.mytrip_ArticlesCategory.Where(x => x.Blog == true
+                &&x.Culture == culture&&x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        #endregion
+
+        #region Получить все темы пользователя
+        /// <summary>
+        /// Получить все темы пользователя
+        /// </summary>
+        /// <param name="userName">имя пользователя</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_ArticlesCategory> GetTopicsByUser(string userName)
+        {
+            return _db.mytrip_ArticlesCategory.Where(x => x.mytrip_ArticlesCategory2.Blog == true
+                && x.CategoryId != x.SubCategoryId && x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesCategory> GetTopicsByUser(string userName, string culture)
+        {
+            return _db.mytrip_ArticlesCategory.Where(x => x.mytrip_ArticlesCategory2.Blog == true
+                && x.CategoryId != x.SubCategoryId && x.Culture == culture && x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
         }
         #endregion
     }

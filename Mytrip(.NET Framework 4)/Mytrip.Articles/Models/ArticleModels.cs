@@ -118,10 +118,8 @@ namespace Mytrip.Articles.Models
     public class ProfileModel
     {
         public string Username { get; set; }
+        public string Email { get; set; }
         public string PageTitle { get; set; }
-        public int ArticleId { get; set; }
-        public string Path { get; set; }
-        public string Url { get; set; }
     }
     public class RoleArticleAttribute : ActionFilterAttribute
     {

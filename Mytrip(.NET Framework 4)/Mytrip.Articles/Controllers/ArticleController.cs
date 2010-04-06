@@ -16,6 +16,7 @@ using System.Text;
 using Mytrip.Core.Repository;
 using Mytrip.Core;
 using Mytrip.Articles.Models;
+using Mytrip.Core.Repository.MsSqlUsers;
 
 namespace Mytrip.Articles.Controllers
 {
@@ -797,8 +798,11 @@ namespace Mytrip.Articles.Controllers
         // ********  User profile  *********
         public ActionResult Profile(string username)
         {
+            MsSqlMembershipRepository mmr = new MsSqlMembershipRepository();
+            string email = mmr.mssqlGetUserEmail(username);
             ProfileModel model = new ProfileModel();
             model.Username = username;
+            model.Email = email;
             return View(model);
         }
         #endregion

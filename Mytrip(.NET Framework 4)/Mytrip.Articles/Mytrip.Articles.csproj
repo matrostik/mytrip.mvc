@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ArticleArchiveController.cs" />
+    <Compile Include="Controllers\ArticleUserController.cs" />
     <Compile Include="Helpers\ArchiveHelpers.cs" />
     <Compile Include="ArticlesCache\ArticleCache.cs" />
     <Compile Include="ArticleLanguage.Designer.cs">
@@ -77,6 +79,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Helpers\ProfileHelpers.cs" />
     <Compile Include="Repository\IArticleRepository.cs" />
     <Compile Include="Models\ArchiveModels.cs" />
     <Compile Include="Models\ArticleModels.cs" />

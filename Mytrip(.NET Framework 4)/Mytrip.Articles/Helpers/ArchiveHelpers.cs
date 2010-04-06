@@ -324,7 +324,7 @@ namespace Mytrip.Articles.Helpers
                 clink.MergeAttribute("href", LangLink(article.Culture,"/Article/Index/1/10/" + article.mytrip_ArticlesCategory.CategoryId + "/" + article.mytrip_ArticlesCategory.Path));
                 clink.InnerHtml = article.mytrip_ArticlesCategory.Title;
                 div.InnerHtml = "<b>" + alink + " " + Keys(article.OnlyForRegisterUser, 14) + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
-                    + "</b><br/>" + article.CreateDate.ToString("dd MMMM yyyy HH:mm") + " "+ArticleLanguage._in+" " + clink + " "+ArticleLanguage.by+" " + ProfileLink(article.UserName);
+                    + "</b><br/>" + article.CreateDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink + " " + ArticleLanguage.by + " " + ProfileLink(article.UserName);
                 td32.InnerHtml += div;
                 ctr++;
             }
@@ -351,8 +351,8 @@ namespace Mytrip.Articles.Helpers
                 TagBuilder link = new TagBuilder("a");
                 link.MergeAttribute("href", LangLink(comment.mytrip_Articles.Culture, "/Article/View/" + comment.mytrip_Articles.ArticleId + "/" + comment.mytrip_Articles.Path));
                 link.InnerHtml = comment.mytrip_Articles.Title;
-                div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " "+ArticleLanguage._in+" <b>" + link + " " + Globe(comment.mytrip_Articles.AllCulture, 14) + " "
-                    + Flag(comment.mytrip_Articles.Culture, 14) + "</b> " + ArticleLanguage.added_by+" " + ProfileLink(comment.UserName);
+                div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.in_the + " <b>" + link + " " + Globe(comment.mytrip_Articles.AllCulture, 14) + " "
+                    + Flag(comment.mytrip_Articles.Culture, 14) + "</b> " + ArticleLanguage.added_by+" " + ProfileLink(comment.UserName,comment.IsAnonym);
                 td42.InnerHtml += div;
                 ctr++;
             }
@@ -389,7 +389,7 @@ namespace Mytrip.Articles.Helpers
                 TagBuilder link = new TagBuilder("a");
                 link.MergeAttribute("href", LangLink(blog.Culture, "/Article/Index/1/10/" + blog.CategoryId + "/" + blog.Path));
                 link.InnerHtml = blog.Title;
-                div.InnerHtml += "<b>" + link + " " + Flag(blog.Culture, 14) + "</b><br/>" + blog.CreateDate.ToString("dd MMMM yyyy HH:mm") + " "+ArticleLanguage.by+" " + blog.UserName;
+                div.InnerHtml += "<b>" + link + " " + Flag(blog.Culture, 14) + "</b><br/>" + blog.CreateDate.ToString("dd MMMM yyyy HH:mm") + " "+ArticleLanguage.by+" " + ProfileLink(blog.UserName);
                 td62.InnerHtml += div;
                 ctr++;
             }
@@ -417,7 +417,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(topic.Culture, "/Article/Index/1/10/" + topic.CategoryId + "/" + topic.Path));
                 link.InnerHtml = topic.Title;
                 div.InnerHtml += "<b>" + link + " " + Globe(topic.AllCulture, 14) + " " + Flag(topic.Culture, 14)
-                    + "</b><br/>" + topic.CreateDate.ToString("dd MMMM yyyy HH:mm") + SubCatLink(topic) + " "+ArticleLanguage.added_by+" " + topic.UserName;
+                    + "</b><br/>" + topic.CreateDate.ToString("dd MMMM yyyy HH:mm") + SubCatLink(topic) + " "+ArticleLanguage.added_by+" " + ProfileLink(topic.UserName);
                 td72.InnerHtml += div;
                 ctr++;
             }
@@ -447,8 +447,8 @@ namespace Mytrip.Articles.Helpers
                 TagBuilder clink = new TagBuilder("a");
                 clink.MergeAttribute("href", LangLink(post.Culture,"/Article/Index/1/10/" + post.mytrip_ArticlesCategory.CategoryId + "/" + post.mytrip_ArticlesCategory.Path));
                 clink.InnerHtml = post.mytrip_ArticlesCategory.Title;
-                div.InnerHtml += "<b>" + link + " " + Flag(post.Culture, 14) + "</b><br/>" + post.CreateDate.ToString("dd MMMM yyyy HH:mm") + " "+ArticleLanguage._in+" " + clink 
-                    + " "+ArticleLanguage.by+" " + post.UserName;
+                div.InnerHtml += "<b>" + link + " " + Flag(post.Culture, 14) + "</b><br/>" + post.CreateDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink 
+                    + " "+ArticleLanguage.by+" " + ProfileLink(post.UserName);
                 td82.InnerHtml += div;
                 ctr++;
             }
@@ -475,8 +475,8 @@ namespace Mytrip.Articles.Helpers
                 TagBuilder link = new TagBuilder("a");
                 link.MergeAttribute("href", LangLink(comment.mytrip_Articles.Culture, "/Article/View/" + comment.mytrip_Articles.ArticleId + "/" + comment.mytrip_Articles.Path));
                 link.InnerHtml = comment.mytrip_Articles.Title;
-                div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " "+ArticleLanguage._in+" <b>" + link + " " + Globe(comment.mytrip_Articles.AllCulture, 14) 
-                    + " "+ Flag(comment.mytrip_Articles.Culture, 14) + "</b> " + ArticleLanguage.added_by+" " + comment.UserName;
+                div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.in_the + " <b>" + link + " " + Globe(comment.mytrip_Articles.AllCulture, 14) 
+                    + " "+ Flag(comment.mytrip_Articles.Culture, 14) + "</b> " + ArticleLanguage.added_by+" " + ProfileLink(comment.UserName,comment.IsAnonym);
                 td92.InnerHtml += div;
                 ctr++;
             }
@@ -560,7 +560,7 @@ namespace Mytrip.Articles.Helpers
                 clink.MergeAttribute("href", LangLink(article.Culture,"/Article/Index/1/10/" + article.mytrip_ArticlesCategory.CategoryId + "/" + article.mytrip_ArticlesCategory.Path));
                 clink.InnerHtml = article.mytrip_ArticlesCategory.Title;
                 div.InnerHtml += "<b>" + alink + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
-                    + "</b> closed " + article.CloseDate.ToString("dd MMMM yyyy HH:mm") + " "+ArticleLanguage._in+" " + clink + " "+ArticleLanguage.added_by+" " + article.UserName;
+                    + "</b> closed " + article.CloseDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink + " " + ArticleLanguage.added_by + " " + ProfileLink(article.UserName);
                 td21.InnerHtml += div;
                 ctr++;
             }
@@ -1705,7 +1705,7 @@ namespace Mytrip.Articles.Helpers
             TagBuilder link = new TagBuilder("a");
             link.MergeAttribute("href", LangLink(category.Culture, "/Article/Index/1/10/" + category.SubCategoryId + "/" + category.mytrip_ArticlesCategory2.Path));
             link.InnerHtml = category.mytrip_ArticlesCategory2.Title;
-            return " "+ArticleLanguage._in+" "+link.ToString()+" ";
+            return " " + ArticleLanguage.in_the + " " + link.ToString() + " ";
         }
         static string ProfileLink(string username)
         {
@@ -1713,6 +1713,13 @@ namespace Mytrip.Articles.Helpers
             link.MergeAttribute("href", "/Article/Profile/" + username + "/" );
             link.InnerHtml = username;
             return link.ToString();
+        }
+        static string ProfileLink(string username,bool isAnonym)
+        {
+            if (isAnonym)
+                return username;
+            else
+                return ProfileLink(username);
         }
         static string UppercaseFirst(string s)
         {
