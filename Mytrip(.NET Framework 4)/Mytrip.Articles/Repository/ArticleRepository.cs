@@ -508,6 +508,128 @@ namespace Mytrip.Articles.Repository
 
         /*  РАЗДЕЛ 4  */
 
+        #region Получить все статьи пользователя (постранично включительно)
+        /// <summary>
+        /// Получить количество всех статей пользователя       
+        /// </summary>
+        /// <returns></returns>
+        public int GetAllArticlesByUsernameCount(string username)
+        {
+            return _db.mytrip_Articles.Count(x => x.UserName == username 
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false);
+        }
+        public int GetAllArticlesByUsernameCount(string username,string culture)
+        {
+            return _db.mytrip_Articles.Count(x => x.UserName == username
+                && x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false);
+        }
+        /// <summary>
+        /// Получить все статьи пользователя
+        /// </summary>
+        /// <param name="username">имя пользователя</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_Articles> GetAllArticlesByUsername(string username)
+        {
+            return _db.mytrip_Articles.Where(x => x.UserName == username 
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_Articles> GetAllArticlesByUsername(string username, string culture)
+        {
+            return _db.mytrip_Articles.Where(x => x.UserName == username
+                && x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        /// <summary>
+        /// Получить все статьи пользователя постранично
+        /// </summary>
+        /// <param name="username">имя пользователя</param>
+        /// <param name="pageIndex">номер страницы</param>
+        /// <param name="pageSize">количество на странице</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_Articles> GetAllArticlesByUsernamePaged(string username,int pageIndex, int pageSize, out int total)
+        {
+            var a = _db.mytrip_Articles.Where(x => x.UserName == username
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false);
+            total = a.Count();
+            return a.OrderByDescending(x => x.CreateDate)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        public IQueryable<mytrip_Articles> GetAllArticlesByUsernamePaged(string username,string culture, int pageIndex, int pageSize, out int total)
+        {
+            var a = _db.mytrip_Articles.Where(x => x.UserName == username
+                && x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false);
+            total = a.Count();
+            return a.OrderByDescending(x => x.CreateDate)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        #endregion
+
+        #region Получить все посты пользователя (постранично включительно)
+        /// <summary>
+        /// Получить количество всех постов пользователя    
+        /// </summary>
+        /// <returns></returns>
+        public int GetAllPostsByUsernameCount(string username)
+        {
+            return _db.mytrip_Articles.Count(x => x.UserName == username
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true);
+        }
+        public int GetAllPostsByUsernameCount(string username, string culture)
+        {
+            return _db.mytrip_Articles.Count(x => x.UserName == username
+                && x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true);
+        }
+        /// <summary>
+        /// Получить все посты пользователя
+        /// </summary>
+        /// <param name="username">имя пользователя</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_Articles> GetAllPostsByUsername(string username)
+        {
+            return _db.mytrip_Articles.Where(x => x.UserName == username
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_Articles> GetAllPostsByUsername(string username,string culture)
+        {
+            return _db.mytrip_Articles.Where(x => x.UserName == username
+                &&x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        /// <summary>
+        /// Получить все посты пользователя постранично
+        /// </summary>
+        /// <param name="username">имя пользователя</param>
+        /// <param name="pageIndex">номер страницы</param>
+        /// <param name="pageSize">количество на странице</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_Articles> GetAllPostsByUsernamePaged(string username, int pageIndex, int pageSize, out int total)
+        {
+            var a = _db.mytrip_Articles.Where(x => x.UserName == username
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true);
+            total = a.Count();
+            return a.OrderByDescending(x => x.CreateDate)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        public IQueryable<mytrip_Articles> GetAllPostsByUsernamePaged(string username,string culture, int pageIndex, int pageSize, out int total)
+        {
+            var a = _db.mytrip_Articles.Where(x => x.UserName == username
+                &&x.Culture==culture
+                && x.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == true);
+            total = a.Count();
+            return a.OrderByDescending(x => x.CreateDate)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        #endregion
+
+        /*  РАЗДЕЛ 5  */
+
         #region Получить статью по Id
         /// <summary>
         /// Получить статью по Id
@@ -776,7 +898,7 @@ namespace Mytrip.Articles.Repository
         }
         #endregion
 
-        /*  РАЗДЕЛ 4  */
+        /*  РАЗДЕЛ 6  */
 
         #region Получить все статьи и посты не закрытые по дате из тега (постранично включительно)
         /// <summary>
@@ -999,7 +1121,7 @@ namespace Mytrip.Articles.Repository
         }
         #endregion
 
-        /*  РАЗДЕЛ 6  */
+        /*  РАЗДЕЛ 7  */
 
         #region Получить все посты  (постранично включительно)
         /// <summary>
@@ -1031,7 +1153,7 @@ namespace Mytrip.Articles.Repository
 
         #region Получить количество всех постов по культуре
         /// <summary>
-        /// ППолучить количество всех постов по культуре        
+        /// Получить количество всех постов по культуре        
         /// </summary>
         /// <returns></returns>
         public int GetAllPostsCount(string culture)
@@ -1083,7 +1205,7 @@ namespace Mytrip.Articles.Repository
         }
         #endregion
 
-        /*  РАЗДЕЛ 7  */
+        /*  РАЗДЕЛ 8  */
 
         #region Создать голосование для статьи
         public bool CreateVote(int articleId, int vote)

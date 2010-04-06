@@ -408,7 +408,40 @@
   <data name="yesterday" xml:space="preserve">
     <value>Yesterday</value>
   </data>
-  <data name="_in" xml:space="preserve">
-    <value>in</value>
+  <data name="in_the" xml:space="preserve">
+    <value>in the</value>
+  </data>
+  <data name="activated_a_blog" xml:space="preserve">
+    <value>Activated a blog</value>
+  </data>
+  <data name="added_a_comment" xml:space="preserve">
+    <value>Added a comment</value>
+  </data>
+  <data name="created_an_article" xml:space="preserve">
+    <value>Created an article</value>
+  </data>
+  <data name="created_a_category" xml:space="preserve">
+    <value>Created a category</value>
+  </data>
+  <data name="created_a_post" xml:space="preserve">
+    <value>Created a post</value>
+  </data>
+  <data name="created_a_subcategory" xml:space="preserve">
+    <value>Created a subcategory</value>
+  </data>
+  <data name="last_visit" xml:space="preserve">
+    <value>Last Visit</value>
+  </data>
+  <data name="member_since" xml:space="preserve">
+    <value>Member Since</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="view_user_profile" xml:space="preserve">
+    <value>View user's profile</value>
   </data>
 </root>

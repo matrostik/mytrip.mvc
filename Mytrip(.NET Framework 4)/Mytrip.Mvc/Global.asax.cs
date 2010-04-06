@@ -177,15 +177,6 @@ namespace Mytrip.Mvc
             #endregion
             #region ARTICLE
             routes.MapRoute(
-                 "ArticleProfile",
-                 "Article/{action}/{username}/",
-                 new
-                 {
-                     controller = "Article",
-                     action = "Profile",
-                     username = UrlParameter.Optional,
-                 });
-            routes.MapRoute(
                  "ArticleIndex",
                  "Article/Index/{pageIndex}/{pageSize}/{id}/{Path}",
                  new
@@ -196,8 +187,16 @@ namespace Mytrip.Mvc
                      pageSize = UrlParameter.Optional,
                      id = UrlParameter.Optional,
                      Path = UrlParameter.Optional
-
                  });
+            routes.MapRoute(
+               "ArticleProfile",
+               "Article/Profile/{username}/",
+               new
+               {
+                   controller = "Article",
+                   action = "Profile",
+                   username = UrlParameter.Optional,
+               });
             routes.MapRoute(
                  "ArticleActions",
                  "Article/{action}/{id}/{Path}/{url}",
@@ -209,6 +208,7 @@ namespace Mytrip.Mvc
                      Path = UrlParameter.Optional,
                      url = UrlParameter.Optional
                  });
+
             #endregion
             #region ARTICLE ARCHIVE
             routes.MapRoute(

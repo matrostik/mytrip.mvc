@@ -25,7 +25,7 @@ namespace Mytrip.Articles.Repository
         /// <summary>
         /// Подключение к Entity Репозиторию
         /// </summary>
-       // articlesEntities _db = new articlesEntities(ArticlesSetting.connectionString);
+        // articlesEntities _db = new articlesEntities(ArticlesSetting.connectionString);
         articlesEntities _entities;
         public articlesEntities _db
         {
@@ -75,21 +75,21 @@ namespace Mytrip.Articles.Repository
         public int GetCommentsCount(string culture, bool forBlog)
         {
             return _db.mytrip_ArticlesComments.Count(x => x.mytrip_Articles.mytrip_ArticlesCategory.Culture == culture
-                &&x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog==forBlog);
+                && x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == forBlog);
         }
         #endregion
 
         #region Получить последние добавленные комментарии
-        public IQueryable<mytrip_ArticlesComments> GetLastComments(int count,bool forBlog)
+        public IQueryable<mytrip_ArticlesComments> GetLastComments(int count, bool forBlog)
         {
             return _db.mytrip_ArticlesComments
-                .Where(x=>x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog==forBlog)
+                .Where(x => x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == forBlog)
                 .OrderByDescending(x => x.CreateDate).Take(count);
         }
         public IQueryable<mytrip_ArticlesComments> GetLastCommentsByDate(int days, string culture, bool forBlog)
         {
             DateTime date = DateTime.Now.AddDays(days);
-            var a=_db.mytrip_ArticlesComments
+            var a = _db.mytrip_ArticlesComments
                 .Where(x => x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == forBlog)
                 .Where(x => x.CreateDate.Day == date.Day && x.CreateDate.Month == date.Month && x.CreateDate.Year == date.Year);
             if (!string.IsNullOrEmpty(culture))
@@ -141,7 +141,7 @@ namespace Mytrip.Articles.Repository
             return _db.mytrip_ArticlesComments.Where(x => x.mytrip_Articles.ArticleId == articleId)
                 .OrderByDescending(x => x.CreateDate);
         }
-        #endregion        
+        #endregion
 
         /*  РАЗДЕЛ 4  */
 
@@ -201,7 +201,7 @@ namespace Mytrip.Articles.Repository
         /// <param name="email">email пользователя</param>
         /// <param name="isAnonym">авторизован ли пользователь</param>
         /// <returns></returns>
-        public mytrip_ArticlesComments CreateComment(int articleId, string body,string username,string email)
+        public mytrip_ArticlesComments CreateComment(int articleId, string body, string username, string email)
         {
             mytrip_ArticlesComments x = new mytrip_ArticlesComments
             {
@@ -251,35 +251,32 @@ namespace Mytrip.Articles.Repository
         /// <summary>
         /// Получить все комментарии пользователя с конца Х->1
         /// </summary>
-        /// <returns></returns>
-        public IQueryable<mytrip_ArticlesComments> GetCommentsByCurrentUserDesc()
-        {
-            return _db.mytrip_ArticlesComments
-                .Where(x => x.IsAnonym == false)
-                .Where(x => x.UserName == HttpContext.Current.User.Identity.Name)
-                .OrderByDescending(x => x.CreateDate);
-        }
-        /// <summary>
-        /// Получить все комментарии пользователя с начала 1->Х
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<mytrip_ArticlesComments> GetCommentsByCurrentUserAsc()
-        {
-            return _db.mytrip_ArticlesComments
-                .Where(x => x.IsAnonym == false)
-                .Where(x => x.UserName == HttpContext.Current.User.Identity.Name)
-                .OrderBy(x => x.CreateDate);
-        }
-        /// <summary>
-        /// Получить все комментарии пользователя с конца Х->1
-        /// </summary>
         /// <param name="userName">имя пользователя</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesComments> GetCommentsByUserDesc(string userName)
+        public IQueryable<mytrip_ArticlesComments> GetCommentsByUser(string userName)
         {
             return _db.mytrip_ArticlesComments
-                .Where(x => x.IsAnonym == false)
-                .Where(x => x.UserName == userName)
+                .Where(x => x.IsAnonym == false && x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesComments> GetCommentsArticlesByUser(string userName)
+        {
+            return _db.mytrip_ArticlesComments
+                .Where(x => x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog == false
+                    && x.IsAnonym == false && x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesComments> GetCommentsBlogsByUser(string userName)
+        {
+            return _db.mytrip_ArticlesComments
+                .Where(x => x.mytrip_Articles.mytrip_ArticlesCategory.mytrip_ArticlesCategory2.Blog==true
+                    &&x.IsAnonym == false && x.UserName == userName)
+                .OrderByDescending(x => x.CreateDate);
+        }
+        public IQueryable<mytrip_ArticlesComments> GetCommentsByUser(string userName, string culture)
+        {
+            return _db.mytrip_ArticlesComments
+                .Where(x => x.UserName == userName && x.IsAnonym == false && x.mytrip_Articles.Culture == culture)
                 .OrderByDescending(x => x.CreateDate);
         }
         /// <summary>
@@ -287,13 +284,22 @@ namespace Mytrip.Articles.Repository
         /// </summary>
         /// <param name="pageIndex">номер страницы</param>
         /// <param name="pageSize">количество на странице</param>
-        /// <param name="userName">имя пользователя</param>
+        /// <param name="username">имя пользователя</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesComments> GetCommentsByUserDesc(int pageIndex, int pageSize, string userName, out int total)
+        public IQueryable<mytrip_ArticlesComments> GetCommentsByUser(string username, int pageIndex, int pageSize, out int total)
         {
             var a = _db.mytrip_ArticlesComments
                 .Where(x => x.IsAnonym == false)
-                .Where(x => x.UserName == userName)
+                .Where(x => x.UserName == username)
+                .OrderByDescending(x => x.CreateDate);
+            total = a.Count();
+            return a
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize);
+        }
+        public IQueryable<mytrip_ArticlesComments> GetCommentsByUser(string username, string culture, int pageIndex, int pageSize, out int total)
+        {
+            var a = _db.mytrip_ArticlesComments
+                .Where(x => x.UserName == username && x.mytrip_Articles.Culture == culture && x.IsAnonym == false)
                 .OrderByDescending(x => x.CreateDate);
             total = a.Count();
             return a
@@ -304,19 +310,7 @@ namespace Mytrip.Articles.Repository
         /// </summary>
         /// <param name="userName">имя пользователя</param>
         /// <returns></returns>
-        public IQueryable<mytrip_ArticlesComments> GetCommentsByUserAsc(string userName)
-        {
-            return _db.mytrip_ArticlesComments
-                .Where(x => x.IsAnonym == false)
-                .Where(x => x.UserName == userName)
-                .OrderBy(x => x.CreateDate);
-        }
-        /// <summary>
-        /// Получить все комментарии пользователя с начала 1->Х
-        /// </summary>
-        /// <param name="userName">имя пользователя</param>
-        /// <returns></returns>
-        public int GetCountCommentsByUser(string userName)
+        public int GetCommentsByUserCount(string userName)
         {
             return _db.mytrip_ArticlesComments
                 .Where(x => x.IsAnonym == false)

@@ -698,7 +698,11 @@ namespace Mytrip.Articles.Helpers
                 TagBuilder td = new TagBuilder("td");
                 td.MergeAttribute("style", "border:0px;");
                 result.AppendLine("<div style='position: relative; float: right'>" + AvatarHelper.Avatar(html, parentCat.UserEmail) + "</div>");
-                result.AppendLine(ArticleLanguage.author + ": " + parentCat.UserName + "<br/>");
+                TagBuilder profile = new TagBuilder("a");
+                profile.MergeAttribute("href", "/Article/Profile/" + parentCat.UserName + "/");
+                profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
+                profile.InnerHtml = parentCat.UserName;
+                result.AppendLine(ArticleLanguage.author + ": " + profile + "<br/>");
                 result.AppendLine(ArticleLanguage.views + ": " + parentCat.Views + "<br/>");
                 result.AppendLine(ArticleLanguage.posts + ": " + CountPosts(parentCat) + "<br/>");
                 result.AppendLine(ArticleLanguage.create_date + ": " + String.Format("{0:dd MMMM yy}", parentCat.CreateDate));
@@ -833,7 +837,17 @@ namespace Mytrip.Articles.Helpers
                     deleteComment.InnerHtml = imgDelete.ToString();
                     legend.InnerHtml += editComment.ToString() + " " + deleteComment.ToString() + " ";
                 }
-                legend.InnerHtml += "  #" + count + " " + comment.UserName + " " + comment.CreateDate.ToString("dd MMMM yy HH:mm");
+                
+                TagBuilder profile = new TagBuilder("a");
+                if (comment.IsAnonym)
+                    profile.SetInnerText(comment.UserName);
+                else
+                {
+                    profile.MergeAttribute("href", "/Article/Profile/" + comment.UserName + "/");
+                    profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
+                    profile.InnerHtml = comment.UserName;
+                }
+                legend.InnerHtml += "  #" + count + " " + profile + " " + comment.CreateDate.ToString("dd MMMM yy HH:mm");
                 TagBuilder divGravatar = new TagBuilder("div");
                 divGravatar.MergeAttribute("style", "position: relative; margin-top: -10px; float: right");
                 divGravatar.InnerHtml = AvatarHelper.Avatar(html, comment.UserEmail);
@@ -943,9 +957,13 @@ namespace Mytrip.Articles.Helpers
                     if (!String.IsNullOrEmpty(avatar))
                         avatar2 = "<div style='position: relative; float: right'>" + avatar + "</div>";
                     td_first.InnerHtml = avatar2 + "<h3>" + td_first.InnerHtml + "</h3>";
+                    TagBuilder profile = new TagBuilder("a");
+                    profile.MergeAttribute("href", "/Article/Profile/" + category.UserName + "/");
+                    profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
+                    profile.InnerHtml = category.UserName;
                     TagBuilder td_last = new TagBuilder("td");
                     td_last.MergeAttribute("style", "width:170px;");
-                    td_last.InnerHtml += ArticleLanguage.author + ": " + category.UserName + "<br/>";
+                    td_last.InnerHtml += ArticleLanguage.author + ": " + profile + "<br/>";
                     td_last.InnerHtml += ArticleLanguage.views + ": " + category.Views + "<br/>";
                     td_last.InnerHtml += ArticleLanguage.posts + ": " + count + "<br/>";
                     td_last.InnerHtml += ArticleLanguage.create_date + ": " + String.Format("{0:dd MMMM yyyy}", category.CreateDate);
@@ -1122,7 +1140,11 @@ namespace Mytrip.Articles.Helpers
                 }
 
             }
-            result.AppendLine(ArticleLanguage.author + ": " + article.UserName + "<br/>");
+            TagBuilder profile = new TagBuilder("a");
+            profile.MergeAttribute("href", "/Article/Profile/" + article.UserName + "/");
+            profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
+            profile.InnerHtml = article.UserName;
+            result.AppendLine(ArticleLanguage.author + ": " + profile + "<br/>");
             result.AppendLine(ArticleLanguage.views + ": " + article.Views + "<br/>");
             if (article.ApprovedComment)
                 result.AppendLine(ArticleLanguage.comments + ": " + article.mytrip_ArticlesComments.Count + "<br/>");
@@ -3215,7 +3237,7 @@ namespace Mytrip.Articles.Helpers
                 IArticleRepository ar = new IArticleRepository();
                 StringBuilder _result = new StringBuilder();
                 TagBuilder ul = new TagBuilder("ul");
-                int countcomment = ar.comment.GetCountCommentsByUser(HttpContext.Current.User.Identity.Name);
+                int countcomment = ar.comment.GetCommentsByUserCount(HttpContext.Current.User.Identity.Name);
                 if (countcomment >= ArticlesSetting.countCommentForBlogs)
                 {
                     if (ar.category.GetBlogsByUser(HttpContext.Current.User.Identity.Name, HttpContext.Current.Session["culture"].ToString()).Count() == 0)
