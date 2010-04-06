@@ -190,12 +190,13 @@ namespace Mytrip.Mvc
                  });
             routes.MapRoute(
                "ArticleProfile",
-               "Article/Profile/{username}/",
+               "Article/Profile/{username}/{path}",
                new
                {
                    controller = "Article",
                    action = "Profile",
                    username = UrlParameter.Optional,
+                   path = UrlParameter.Optional
                });
             routes.MapRoute(
                  "ArticleActions",

@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Mytrip.Core.Repository.MsSqlUsers
 {
-   public class MsSqlMembershipRepository
+    public class MsSqlMembershipRepository
     {
         usersEntities _entities;
         public usersEntities entities
@@ -257,8 +257,11 @@ namespace Mytrip.Core.Repository.MsSqlUsers
             mytrip_Membership x = mssqlGetMembershipByUserName(username);
             x.UserIP = HttpContext.Current.Request.UserHostAddress;
             entities.SaveChanges();
+            mytrip_Users y = mssqlGetUserByUserName(username);
+            y.LastActivityDate = DateTime.Now;
+            entities.SaveChanges();
         }
-        public MembershipUser mssqlCreateMembershipFromInternalUser(string Username,string baseName)
+        public MembershipUser mssqlCreateMembershipFromInternalUser(string Username, string baseName)
         {
             var user = mssqlGetUserByUserName(Username);
             MembershipUser muser = new MembershipUser(baseName, user.UserName, user.UserId,
@@ -371,7 +374,7 @@ namespace Mytrip.Core.Repository.MsSqlUsers
         }
         private mytrip_Membership mssqlGetMembershipByUserName(string username)
         {
-            return entities.mytrip_Membership.FirstOrDefault(x => x.mytrip_Users.UserName==username);
+            return entities.mytrip_Membership.FirstOrDefault(x => x.mytrip_Users.UserName == username);
         }
         private string mssqlHashPassword(string password, string passwordsalt)
         {

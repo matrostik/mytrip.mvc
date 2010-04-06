@@ -444,4 +444,13 @@
   <data name="view_user_profile" xml:space="preserve">
     <value>View user's profile</value>
   </data>
+  <data name="activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="recent_activity" xml:space="preserve">
+    <value>Recent Activity</value>
+  </data>
 </root>

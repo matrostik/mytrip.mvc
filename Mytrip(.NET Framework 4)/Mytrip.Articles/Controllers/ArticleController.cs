@@ -796,15 +796,32 @@ namespace Mytrip.Articles.Controllers
         // *********************************
         // URL: /Article/View/Username
         // ********  User profile  *********
-        public ActionResult Profile(string username)
+        public ActionResult Profile(string username, string path)
         {
             MsSqlMembershipRepository mmr = new MsSqlMembershipRepository();
             string email = mmr.mssqlGetUserEmail(username);
             ProfileModel model = new ProfileModel();
             model.Username = username;
             model.Email = email;
+            if (string.IsNullOrEmpty(path))
+                model.Path = "All";
+            else
+                model.Path = path;
+            model.Places = new SelectList(new List<string> { "All", "Articles", "Blogs" }, model.Path);
             return View(model);
         }
+        //[HttpPost]
+        //public ActionResult Profile(string username)
+        //{
+        //    MsSqlMembershipRepository mmr = new MsSqlMembershipRepository();
+        //    string email = mmr.mssqlGetUserEmail(username);
+        //    ProfileModel model = new ProfileModel();
+        //    model.Username = username;
+        //    model.Email = email;
+        //    model.Path = "All";
+        //    model.Places = new SelectList(new List<string> { "All", "Articles", "Blogs" }, model.Path);
+        //    return View(model);
+        //}
         #endregion
     }
 }

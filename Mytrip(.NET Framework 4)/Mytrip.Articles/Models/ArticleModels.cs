@@ -120,6 +120,8 @@ namespace Mytrip.Articles.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string PageTitle { get; set; }
+        public SelectList Places { get; set; }
+        public string Path { get; set; }
     }
     public class RoleArticleAttribute : ActionFilterAttribute
     {
