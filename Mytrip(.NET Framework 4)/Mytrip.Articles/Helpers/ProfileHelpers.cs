@@ -47,13 +47,13 @@ namespace Mytrip.Articles.Helpers
             return div.ToString();
         }
 
-        public static string LastActivity(this HtmlHelper html, string username)
+        public static string LastActivity(this HtmlHelper html, string username,string path)
         {
             IArticleRepository ar = new IArticleRepository();
             #region table
             TagBuilder table = new TagBuilder("table");
             table.MergeAttribute("style", "border:0px;");
-            var activities = GetLastActivities(username);
+            var activities = GetLastActivities(username,path);
             foreach (var item in activities)
             {
 
@@ -82,92 +82,48 @@ namespace Mytrip.Articles.Helpers
                 table.InnerHtml += tr1.ToString();
             }
             #endregion
-            TagBuilder div = new TagBuilder("div");
-            div.MergeAttribute("style", "padding:0px 5px 5px 5px;");
-            div.InnerHtml = table.ToString();
-            return div.ToString();
+            return table.ToString();
 
         }
-        private static IQueryable<LastActivity> GetLastActivities(string username)
+        
+        private static IQueryable<LastActivity> GetLastActivities(string username,string path)
         {
             List<LastActivity> la = new List<LastActivity>();
             IArticleRepository ar = new IArticleRepository();
             var articles = ar.article.GetAllArticlesByUsername(username);
             foreach (var a in articles)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.articles,
-                    Activity = ActivityText(a),
-                    Date = a.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles,ActivityText(a),a.CreateDate));
             }
             var categories = ar.category.GetCategoriesByUser(username);
             foreach (var c in categories)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.articles,
-                    Activity = ActivityText(c),
-                    Date = c.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles, ActivityText(c), c.CreateDate));
             }
             var blogs = ar.category.GetBlogsByUser(username);
             foreach (var p in blogs)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.blogs,
-                    Activity = ActivityText(p),
-                    Date = p.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles,ActivityText(p),p.CreateDate));
             }
             var posts = ar.article.GetAllPostsByUsername(username);
             foreach (var p in posts)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.blogs,
-                    Activity = ActivityText(p),
-                    Date = p.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles, ActivityText(p), p.CreateDate));
             }
             var topics = ar.category.GetTopicsByUser(username);
             foreach (var t in topics)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.blogs,
-                    Activity = ActivityText(t),
-                    Date = t.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles, ActivityText(t), t.CreateDate));
             }
             var comments = ar.comment.GetCommentsArticlesByUser(username);
             foreach (var c in comments)
             {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.articles,
-                    Activity = ActivityText(c),
-                    Date = c.CreateDate
-                };
-                la.Add(last);
+                la.Add(new LastActivity(ArticleLanguage.articles, ActivityText(c), c.CreateDate));
             }
             var bcomments = ar.comment.GetCommentsBlogsByUser(username);
             foreach (var b in bcomments)
-            {
-                LastActivity last = new LastActivity()
-                {
-                    Place = ArticleLanguage.blogs,
-                    Activity = ActivityText(b),
-                    Date = b.CreateDate
-                };
-                la.Add(last);
+            { 
+                la.Add(new LastActivity(ArticleLanguage.articles, ActivityText(b), b.CreateDate));
             }
 
             return la.AsQueryable().OrderByDescending(x => x.Date);
@@ -239,7 +195,14 @@ namespace Mytrip.Articles.Helpers
         private string place;
         private string activity;
         private DateTime date;
-
+        public LastActivity()
+        { }
+        public LastActivity(string place, string activity, DateTime date)
+        {
+            Place = place;
+            Activity = activity;
+            Date = date;
+        }
         public DateTime Date
         {
             get { return date; }
