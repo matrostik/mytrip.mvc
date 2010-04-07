@@ -142,7 +142,7 @@
     <value>Are you sure?</value>
   </data>
   <data name="articles" xml:space="preserve">
-    <value>Articles</value>
+    <value>Статьи</value>
   </data>
   <data name="back_to_category" xml:space="preserve">
     <value>Back to Category</value>
@@ -151,7 +151,7 @@
     <value>Back to List</value>
   </data>
   <data name="blogs" xml:space="preserve">
-    <value>Blogs</value>
+    <value>Блоги</value>
   </data>
   <data name="categories" xml:space="preserve">
     <value>Categories</value>
@@ -305,5 +305,8 @@
   </data>
   <data name="create_blog" xml:space="preserve">
     <value>Создать Блог</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>Все</value>
   </data>
 </root>
