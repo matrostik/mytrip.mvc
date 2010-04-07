@@ -453,4 +453,7 @@
   <data name="recent_activity" xml:space="preserve">
     <value>Recent Activity</value>
   </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>
