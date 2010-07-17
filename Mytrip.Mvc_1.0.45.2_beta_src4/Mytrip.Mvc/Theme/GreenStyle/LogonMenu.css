@@ -1,0 +1,324 @@
+﻿div.topmenudisplay
+{position: relative;
+}
+
+div.itemlogon
+{
+    position: relative;
+    float: right;
+    margin-left: 1px;
+}
+/*------PASSIVE-----------------dropmenu.png*/
+   div.logoncontent
+{
+    background: url(images/ButtonAndContent/passivecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+}
+ div.logoncontent a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.logoncontent a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}   div.logoncontentdrop
+{
+    background: url(images/ButtonAndContent/passivecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #00050F;
+}
+ div.logoncontentdrop a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.logoncontentdrop a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.logontopleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivetopleft.png);
+}
+div.logonbottomleft 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivebottomleft.png);
+}
+
+div.logontopright 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivetopright.png);
+}
+div.logonbottomright 
+{
+     position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivebottomright.png);
+}
+div.logontopcon
+{
+    background:url(images/ButtonAndContent/passivetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+} 
+div.logonbottomcon
+{
+    background:url(images/ButtonAndContent/passivebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------ACTIVE--------------------*/
+   div.logoncontent.active
+{
+    background: url(images/ButtonAndContent/activecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+    
+} div.logoncontent.active a
+{
+    color: #00050F;
+    text-decoration: none;
+    
+}div.logoncontent.active a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+    
+}   div.logoncontentdrop.active
+{
+    background: url(images/ButtonAndContent/activecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #00050F;
+    
+} div.logoncontentdrop.active a
+{
+    color: #00050F;
+    text-decoration: none;
+    
+}div.logoncontentdrop.active a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+    
+}
+div.logontopleft.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activetopleft.png);
+}
+div.logonbottomleft.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activebottomleft.png);
+}
+div.logontopright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activetopright.png);
+}
+div.logonbottomright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activebottomright.png);
+}
+div.logontopcon.active
+{
+    background:url(images/ButtonAndContent/activetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.logonbottomcon.active
+{
+    background:url(images/ButtonAndContent/activebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+
+/*------------WARNING--------------------*/
+   div.logoncontentwarning
+{
+    background: url(images/ButtonAndContent/visiblecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+    
+}  div.logoncontentwarning a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}div.logoncontentwarning a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}
+div.logontopleftwarning
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visibletopleft.png);
+}
+div.logonbottomleftwarning 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visiblebottomleft.png);
+}
+div.logontoprightwarning 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visibletopright.png);
+}
+div.logonbottomrightwarning 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visiblebottomright.png);
+}
+div.logontopconwarning
+{
+     background:url(images/ButtonAndContent/visibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.logonbottomconwarning
+{
+     background:url(images/ButtonAndContent/visiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------WARNING active--------------------*/
+   div.logoncontentwarning.active
+{
+    background: url(images/ButtonAndContent/hovervisiblecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+    
+}  div.logoncontentwarning.active a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}div.logoncontentwarning.active a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    
+}
+div.logontopleftwarning.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisibletopleft.png);
+}
+div.logonbottomleftwarning.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisiblebottomleft.png);
+}
+div.logontoprightwarning.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisibletopright.png);
+}
+div.logonbottomrightwarning.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisiblebottomright.png);
+}
+div.logontopconwarning.active
+{
+     background:url(images/ButtonAndContent/hovervisibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.logonbottomconwarning.active
+{
+     background:url(images/ButtonAndContent/hovervisiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*-------------UL-LI------------------*/
+div.itemlogon div.logonul
+{border: 1px #A9AEB8 solid;
+    display: none;
+    position: absolute;z-index: 1000;
+    
+} 
+div.itemlogon div.logonul div.logonli 
+{
+    
+    display: block;
+}
+div.itemlogon div.logonul div.logonli  a
+{
+    border: 0;
+    background:#DEE1E7;
+    font-weight: normal;
+    padding: 2px 5px;
+    display: block;text-decoration: none;
+}
+div.itemlogon div.logonul div.logonli  a:hover
+{
+    border: 0;
+    background: #A9AEB8;color:#fff;
+    font-weight: normal;
+    padding: 2px 5px;
+    display: block;text-decoration: none;
+}

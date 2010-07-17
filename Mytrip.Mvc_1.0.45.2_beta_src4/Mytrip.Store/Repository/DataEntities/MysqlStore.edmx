@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="mytrip_storedepartment" EntityType="Model.Store.mytrip_storedepartment" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeoptions" EntityType="Model.Store.mytrip_storeoptions" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeproducer" EntityType="Model.Store.mytrip_storeproducer" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeproduct" EntityType="Model.Store.mytrip_storeproduct" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storevotes" EntityType="Model.Store.mytrip_storevotes" store:Type="Tables" Schema="mytripmvc" />
+          <AssociationSet Name="FK_mytrip_storedepartment_mytrip_storedepartment" Association="Model.Store.FK_mytrip_storedepartment_mytrip_storedepartment">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeoptions_mytrip_storeproduct" Association="Model.Store.FK_mytrip_storeoptions_mytrip_storeproduct">
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+            <End Role="mytrip_storeoptions" EntitySet="mytrip_storeoptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storedepartment" Association="Model.Store.FK_mytrip_storeproduct_mytrip_storedepartment">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storeproducer" Association="Model.Store.FK_mytrip_storeproduct_mytrip_storeproducer">
+            <End Role="mytrip_storeproducer" EntitySet="mytrip_storeproducer" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storevotes_mytrip_storeproduct" Association="Model.Store.FK_mytrip_storevotes_mytrip_storeproduct">
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+            <End Role="mytrip_storevotes" EntitySet="mytrip_storevotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_storedepartment">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="Body" Type="text" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="256" />
+          <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="SubDepartmentId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="mytrip_storeoptions">
+          <Key>
+            <PropertyRef Name="OptionsId" />
+          </Key>
+          <Property Name="Body" Type="text" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="256" />
+          <Property Name="OptionsId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="mytrip_storeproducer">
+          <Key>
+            <PropertyRef Name="ProducerId" />
+          </Key>
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="Body" Type="text" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="256" />
+          <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="ProducerId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="mytrip_storeproduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Abstract" Type="text" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="Body" Type="text" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="256" />
+          <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ProducerId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="TotalCount" Type="int" Nullable="false" />
+          <Property Name="TotalVotes" Type="decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="UrlFile" Type="varchar" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ViewCount" Type="bit" Nullable="false" />
+          <Property Name="ViewPrice" Type="bit" Nullable="false" />
+          <Property Name="ViewVotes" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_storevotes">
+          <Key>
+            <PropertyRef Name="VotesId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Reviews" Type="text" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Vote" Type="int" Nullable="false" />
+          <Property Name="VotesId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_mytrip_storedepartment_mytrip_storedepartment">
+          <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="1" />
+          <End Role="mytrip_storedepartment1" Type="Model.Store.mytrip_storedepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment1">
+              <PropertyRef Name="SubDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeoptions_mytrip_storeproduct">
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="1" />
+          <End Role="mytrip_storeoptions" Type="Model.Store.mytrip_storeoptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="mytrip_storeoptions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeproduct_mytrip_storedepartment">
+          <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="1" />
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeproduct_mytrip_storeproducer">
+          <End Role="mytrip_storeproducer" Type="Model.Store.mytrip_storeproducer" Multiplicity="1" />
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproducer">
+              <PropertyRef Name="ProducerId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="ProducerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storevotes_mytrip_storeproduct">
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="1" />
+          <End Role="mytrip_storevotes" Type="Model.Store.mytrip_storevotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="mytrip_storevotes">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="mytrip_storedepartment" EntityType="Model.mytrip_storedepartment" />
+          <EntitySet Name="mytrip_storeoptions" EntityType="Model.mytrip_storeoptions" />
+          <EntitySet Name="mytrip_storeproducer" EntityType="Model.mytrip_storeproducer" />
+          <EntitySet Name="mytrip_storeproduct" EntityType="Model.mytrip_storeproduct" />
+          <EntitySet Name="mytrip_storevotes" EntityType="Model.mytrip_storevotes" />
+          <AssociationSet Name="FK_mytrip_storedepartment_mytrip_storedepartment" Association="Model.FK_mytrip_storedepartment_mytrip_storedepartment">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storedepartment" Association="Model.FK_mytrip_storeproduct_mytrip_storedepartment">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeoptions_mytrip_storeproduct" Association="Model.FK_mytrip_storeoptions_mytrip_storeproduct">
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+            <End Role="mytrip_storeoptions" EntitySet="mytrip_storeoptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storeproducer" Association="Model.FK_mytrip_storeproduct_mytrip_storeproducer">
+            <End Role="mytrip_storeproducer" EntitySet="mytrip_storeproducer" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_storevotes_mytrip_storeproduct" Association="Model.FK_mytrip_storevotes_mytrip_storeproduct">
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+            <End Role="mytrip_storevotes" EntitySet="mytrip_storevotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_storedepartment">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <Property Name="Body" Type="String" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" />
+          <Property Name="Path" Type="String" Nullable="false" />
+          <Property Name="SubDepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="mytrip_storedepartment1" Relationship="Model.FK_mytrip_storedepartment_mytrip_storedepartment" FromRole="mytrip_storedepartment" ToRole="mytrip_storedepartment1" />
+          <NavigationProperty Name="mytrip_storedepartment2" Relationship="Model.FK_mytrip_storedepartment_mytrip_storedepartment" FromRole="mytrip_storedepartment1" ToRole="mytrip_storedepartment" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeproduct_mytrip_storedepartment" FromRole="mytrip_storedepartment" ToRole="mytrip_storeproduct" />
+        </EntityType>
+        <EntityType Name="mytrip_storeoptions">
+          <Key>
+            <PropertyRef Name="OptionsId" />
+          </Key>
+          <Property Name="Body" Type="String" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Image" Type="String" />
+          <Property Name="OptionsId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeoptions_mytrip_storeproduct" FromRole="mytrip_storeoptions" ToRole="mytrip_storeproduct" />
+        </EntityType>
+        <EntityType Name="mytrip_storeproducer">
+          <Key>
+            <PropertyRef Name="ProducerId" />
+          </Key>
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <Property Name="Body" Type="String" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" />
+          <Property Name="Image" Type="String" />
+          <Property Name="Path" Type="String" Nullable="false" />
+          <Property Name="ProducerId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeproduct_mytrip_storeproducer" FromRole="mytrip_storeproducer" ToRole="mytrip_storeproduct" />
+        </EntityType>
+        <EntityType Name="mytrip_storeproduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Abstract" Type="String" />
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <Property Name="Body" Type="String" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" />
+          <Property Name="Path" Type="String" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="ProducerId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="TotalCount" Type="Int32" Nullable="false" />
+          <Property Name="TotalVotes" Type="Decimal" Nullable="false" />
+          <Property Name="UrlFile" Type="String" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="ViewCount" Type="Boolean" Nullable="false" />
+          <Property Name="ViewPrice" Type="Boolean" Nullable="false" />
+          <Property Name="ViewVotes" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="mytrip_storedepartment" Relationship="Model.FK_mytrip_storeproduct_mytrip_storedepartment" FromRole="mytrip_storeproduct" ToRole="mytrip_storedepartment" />
+          <NavigationProperty Name="mytrip_storeoptions" Relationship="Model.FK_mytrip_storeoptions_mytrip_storeproduct" FromRole="mytrip_storeproduct" ToRole="mytrip_storeoptions" />
+          <NavigationProperty Name="mytrip_storeproducer" Relationship="Model.FK_mytrip_storeproduct_mytrip_storeproducer" FromRole="mytrip_storeproduct" ToRole="mytrip_storeproducer" />
+          <NavigationProperty Name="mytrip_storevotes" Relationship="Model.FK_mytrip_storevotes_mytrip_storeproduct" FromRole="mytrip_storeproduct" ToRole="mytrip_storevotes" />
+        </EntityType>
+        <EntityType Name="mytrip_storevotes">
+          <Key>
+            <PropertyRef Name="VotesId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Reviews" Type="String" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Vote" Type="Int32" Nullable="false" />
+          <Property Name="VotesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storevotes_mytrip_storeproduct" FromRole="mytrip_storevotes" ToRole="mytrip_storeproduct" />
+        </EntityType>
+        <Association Name="FK_mytrip_storedepartment_mytrip_storedepartment">
+          <End Role="mytrip_storedepartment" Type="Model.mytrip_storedepartment" Multiplicity="1" />
+          <End Role="mytrip_storedepartment1" Type="Model.mytrip_storedepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment1">
+              <PropertyRef Name="SubDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeproduct_mytrip_storedepartment">
+          <End Role="mytrip_storedepartment" Type="Model.mytrip_storedepartment" Multiplicity="1" />
+          <End Role="mytrip_storeproduct" Type="Model.mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeoptions_mytrip_storeproduct">
+          <End Role="mytrip_storeproduct" Type="Model.mytrip_storeproduct" Multiplicity="1" />
+          <End Role="mytrip_storeoptions" Type="Model.mytrip_storeoptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="mytrip_storeoptions">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storeproduct_mytrip_storeproducer">
+          <End Role="mytrip_storeproducer" Type="Model.mytrip_storeproducer" Multiplicity="1" />
+          <End Role="mytrip_storeproduct" Type="Model.mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproducer">
+              <PropertyRef Name="ProducerId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="ProducerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_storevotes_mytrip_storeproduct">
+          <End Role="mytrip_storeproduct" Type="Model.mytrip_storeproduct" Multiplicity="1" />
+          <End Role="mytrip_storevotes" Type="Model.mytrip_storevotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="mytrip_storevotes">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="mytrip_storedepartment"><EntityTypeMapping TypeName="Model.mytrip_storedepartment"><MappingFragment StoreEntitySet="mytrip_storedepartment">
+            <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="SubDepartmentId" ColumnName="SubDepartmentId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeoptions"><EntityTypeMapping TypeName="Model.mytrip_storeoptions"><MappingFragment StoreEntitySet="mytrip_storeoptions">
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="OptionsId" ColumnName="OptionsId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeproducer"><EntityTypeMapping TypeName="Model.mytrip_storeproducer"><MappingFragment StoreEntitySet="mytrip_storeproducer">
+            <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeproduct"><EntityTypeMapping TypeName="Model.mytrip_storeproduct"><MappingFragment StoreEntitySet="mytrip_storeproduct">
+            <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+            <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+            <ScalarProperty Name="TotalVotes" ColumnName="TotalVotes" />
+            <ScalarProperty Name="UrlFile" ColumnName="UrlFile" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+            <ScalarProperty Name="ViewPrice" ColumnName="ViewPrice" />
+            <ScalarProperty Name="ViewVotes" ColumnName="ViewVotes" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storevotes"><EntityTypeMapping TypeName="Model.mytrip_storevotes"><MappingFragment StoreEntitySet="mytrip_storevotes">
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Reviews" ColumnName="Reviews" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Vote" ColumnName="Vote" />
+            <ScalarProperty Name="VotesId" ColumnName="VotesId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MysqlStore">
+        <EntityTypeShape EntityType="Model.mytrip_storedepartment" Width="1.5" PointX="0.75" PointY="7.125" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mytrip_storeoptions" Width="1.5" PointX="5.25" PointY="1.125" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mytrip_storeproducer" Width="1.5" PointX="0.75" PointY="2.375" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mytrip_storeproduct" Width="1.5" PointX="3" PointY="1.125" Height="5.4417122395833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mytrip_storevotes" Width="1.5" PointX="5.25" PointY="4.375" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_mytrip_storedepartment_mytrip_storedepartment" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.2819230769230767" PointY="10.643697916666667" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="10.893697916666667" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="10.893697916666667" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="10.643697916666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_mytrip_storeproduct_mytrip_storedepartment" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.8843489583333337" />
+          <ConnectorPoint PointX="3.75" PointY="8.8843489583333337" />
+          <ConnectorPoint PointX="3.75" PointY="6.5667122395833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_mytrip_storeoptions_mytrip_storeproduct" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.4035953776041663" />
+          <ConnectorPoint PointX="5.25" PointY="2.4035953776041663" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_mytrip_storeproduct_mytrip_storeproducer" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.8458968098958328" />
+          <ConnectorPoint PointX="3" PointY="3.8458968098958328" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_mytrip_storevotes_mytrip_storeproduct" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.4612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="5.4612939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

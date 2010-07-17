@@ -1,0 +1,341 @@
+﻿div.menucontainer
+{
+    height: 30px;
+}
+
+div.itemmenu
+{
+    position: relative;
+    float: left;
+    margin-right: 1px;
+}
+/*------PASSIVE-----------------*/
+   div.menucontent
+{
+    background: url(images/ButtonAndContent/passivecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+}  div.menucontent a
+{
+    color: #00050F;
+    text-decoration: none;
+} div.menucontent a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+   div.menucontentdrop
+{
+    background: url(images/ButtonAndContent/passivecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #00050F;
+}  div.menucontentdrop a
+{
+    color: #00050F;
+    text-decoration: none;
+} div.menucontentdrop a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.menutopleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivetopleft.png);
+}
+div.menubottomleft 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivebottomleft.png);
+}
+
+div.menutopright 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivetopright.png);
+}
+div.menubottomright 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivebottomright.png);
+}
+div.menutopcon
+{
+    background:url(images/ButtonAndContent/passivetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+} 
+div.menubottomcon
+{
+    background:url(images/ButtonAndContent/passivebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------ACTIVE--------------------*/
+   div.menucontent.active
+{
+    background: url(images/ButtonAndContent/activecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+    
+} div.menucontent.active a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.menucontent.active a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}   div.menucontentdrop.active
+{
+    background: url(images/ButtonAndContent/activecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #00050F;
+    
+} div.menucontentdrop.active a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.menucontentdrop.active a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.menutopleft.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activetopleft.png);
+}
+div.menubottomleft.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activebottomleft.png);
+}
+div.menutopright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activetopright.png);
+}
+div.menubottomright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activebottomright.png);
+}
+div.menutopcon.active
+{
+    background:url(images/ButtonAndContent/activetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.menubottomcon.active
+{
+    background:url(images/ButtonAndContent/activebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------VISIBLE--------------------*/
+   div.menucontentvisible
+{
+    background: url(images/ButtonAndContent/visiblecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+}   div.menucontentvisible a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}  div.menucontentvisible a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}   div.menucontentvisibledrop
+{
+    background-position: right;
+    background: url(images/ButtonAndContent/visiblecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #FFFFFF;
+}   div.menucontentvisibledrop a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}  div.menucontentvisibledrop a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+div.menutopleftvisible
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visibletopleft.png);
+}
+div.menubottomleftvisible 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visiblebottomleft.png);
+}
+div.menutoprightvisible 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visibletopright.png);
+}
+div.menubottomrightvisible 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visiblebottomright.png);
+}
+div.menutopconvisible
+{
+    background:url(images/ButtonAndContent/visibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.menubottomconvisible
+{
+   background:url(images/ButtonAndContent/visiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------VISIBLE active--------------------*/
+   div.menucontentvisible.active
+{
+    background: url(images/ButtonAndContent/hovervisiblecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+}   div.menucontentvisible.active a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}  div.menucontentvisible.active a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}   div.menucontentvisibledrop.active
+{
+    background-position: right;
+    background: url(images/ButtonAndContent/hovervisiblecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #FFFFFF;
+}   div.menucontentvisibledrop.active a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}  div.menucontentvisibledrop.active a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+div.menutopleftvisible.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisibletopleft.png);
+}
+div.menubottomleftvisible.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisiblebottomleft.png);
+}
+div.menutoprightvisible.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisibletopright.png);
+}
+div.menubottomrightvisible.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisiblebottomright.png);
+}
+div.menutopconvisible.active
+{
+    background:url(images/ButtonAndContent/hovervisibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.menubottomconvisible.active
+{
+   background:url(images/ButtonAndContent/hovervisiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*-------------UL-LI------------------*/
+div.itemmenu div.menuul
+{border: 1px #A9AEB8 solid;
+    display: none;
+    position: absolute;z-index: 1000;
+    
+} 
+div.itemmenu div.menuul div.menuli 
+{
+    
+    display: block;
+}
+div.itemmenu div.menuul div.menuli a
+{
+     border: 0;
+    background:#DEE1E7;
+    font-weight: normal;
+    padding: 2px 5px;
+    display: block;text-decoration: none;
+}
+div.itemmenu div.menuul div.menuli  a:hover
+{
+    border: 0;
+    background: #A9AEB8;color:#fff;
+    font-weight: normal;
+    padding: 2px 5px;
+    display: block;text-decoration: none;
+}
