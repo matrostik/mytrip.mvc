@@ -1,0 +1,117 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <%  //************************************************************ 
+        // Copyright В© 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+        // To learn more about Mytrip.Mvc.Entyty visit 
+        // http://starterkitmytripmvc.codeplex.com/
+        // mytripmvc@gmail.com
+        // license: Microsoft Public License (Ms-PL) 
+        // *********************************************************** %>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="/RssArticle/RssArticles" rel="alternate" type="application/rss+xml" title="Articles" />
+    <link href="/RssArticle/RssBlogs" rel="alternate" type="application/rss+xml" title="Blogs" />
+    <%=Html.CssLink() %>
+    <script src="/Scripts/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="/Scripts/mytrip-jquery.js" type="text/javascript"></script>
+    <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+    <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    <%=Html.AccardionScript()%></script>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div>
+                <div class="headertopright">
+                </div>
+                <div class="headertopleft">
+                </div>
+                <div class="headertopcon">
+                </div>
+            </div>
+            <div class="headercontent">
+                <div class="topmenudisplay">
+                    <%= Html.LanguageMenu() %>
+                    <%= Html.ThemeMenu() %>
+                    <% =Html.LogonMenu()%>
+                </div>
+                <div class="title">
+                    <%=Html.Logo() %>
+                </div>
+                <div class="menucontainer">
+        <%=Html.Partial("Menu")%>
+    </div>
+            </div>
+    <div>
+        <div class="headerbottomright">
+        </div>
+        <div class="headerbottomleft">
+        </div>
+        <div class="headerbottomcon">
+        </div>
+    </div>
+    </div>
+    
+    <div class="main">
+    <div>
+                <div class="maintopright">
+                </div>
+                <div class="maintopleft">
+                </div>
+                <div class="maintopcon">
+                </div>
+            </div>
+            <div class="maincontent">
+        
+        <table class="mastertable">
+            <tr>
+                <td class="mastertabletd">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                    <div class="mainSmall">
+                        <asp:ContentPlaceHolder ID="MainContentRight" runat="server" />
+                    </div>
+                    <div class="mainBig">
+                        <asp:ContentPlaceHolder ID="MainContentLeft" runat="server" />
+                    </div>
+                </td>
+            </tr>
+        </table> </div>
+        <div>
+        <div class="mainbottomright">
+        </div>
+        <div class="mainbottomleft">
+        </div>
+        <div class="mainbottomcon">
+        </div>
+    </div>
+    
+    </div>
+        <div class="footer">
+        <div>
+                <div class="footertopright">
+                </div>
+                <div class="footertopleft">
+                </div>
+                <div class="footertopcon">
+                </div>
+            </div>
+            <div class="footercontent"><%=Html.FooterLogo()%>
+            Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+        </div>
+        <div>
+        <div class="footerbottomright">
+        </div>
+        <div class="footerbottomleft">
+        </div>
+        <div class="footerbottomcon">
+        </div>
+    </div></div>
+    </div>
+</body>
+</html>

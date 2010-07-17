@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>О Нас</value>
+  </data>
+  <data name="account_error_captcha" xml:space="preserve">
+    <value>В слове для проверки допущена ошибка.</value>
+  </data>
+  <data name="account_error_password" xml:space="preserve">
+    <value>Пароль должен состоять не менее чем из {0} знаков.</value>
+  </data>
+  <data name="account_error_username" xml:space="preserve">
+    <value>В имени пользователя допущена ошибка.</value>
+  </data>
+  <data name="account_information" xml:space="preserve">
+    <value>Информация об аккаунте</value>
+  </data>
+  <data name="account_max_length_email" xml:space="preserve">
+    <value>E-mail не может превышать 50 знаков.</value>
+  </data>
+  <data name="account_max_length_password" xml:space="preserve">
+    <value>Пароль не может превышать 50 знаков.</value>
+  </data>
+  <data name="account_max_length_username" xml:space="preserve">
+    <value>Имя пользователя не может превышать 50 знаков.</value>
+  </data>
+  <data name="account_null_captcha" xml:space="preserve">
+    <value>Вы не ввели фразу для проверки.</value>
+  </data>
+  <data name="account_null_email" xml:space="preserve">
+    <value>Вы не ввели E-mail.</value>
+  </data>
+  <data name="account_null_password" xml:space="preserve">
+    <value>Вы не ввели пароль.</value>
+  </data>
+  <data name="account_null_username" xml:space="preserve">
+    <value>Вы не ввели имя пользователя.</value>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>Добавить роль</value>
+  </data>
+  <data name="add_user_to_role" xml:space="preserve">
+    <value>Добавить пользователя в роль</value>
+  </data>
+  <data name="all_roles" xml:space="preserve">
+    <value>Все роли</value>
+  </data>
+  <data name="all_users" xml:space="preserve">
+    <value>Все пользователи</value>
+  </data>
+  <data name="are_you_sure" xml:space="preserve">
+    <value>Вы уверены?</value>
+  </data>
+  <data name="back_to_list" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="bytes" xml:space="preserve">
+    <value>Байта</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Капча</value>
+  </data>
+  <data name="change_date" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="change_password_success" xml:space="preserve">
+    <value>Ваш пароль успешно изменен.</value>
+  </data>
+  <data name="change_password_text_first" xml:space="preserve">
+    <value>Форма для изменения пароля.</value>
+  </data>
+  <data name="change_password_text_last" xml:space="preserve">
+    <value>Новый пароль должен иметь в длину не менее {0} знаков.</value>
+  </data>
+  <data name="choose_new_name" xml:space="preserve">
+    <value>Введите новое имя</value>
+  </data>
+  <data name="choose_role" xml:space="preserve">
+    <value>Выберите роль</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="create_account" xml:space="preserve">
+    <value>Создайте новый Аккаунт</value>
+  </data>
+  <data name="create_new_folder" xml:space="preserve">
+    <value>Создать новую папку:</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="default_provider_error" xml:space="preserve">
+    <value>Произошла неизвестная ошибка. Пожалуйста проверте введенные данные и попытайтесь еще раз. Если ошибка повторится обратитесь к системному администратору.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="donate" xml:space="preserve">
+    <value>Поддержка проекта</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="error1" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="error_text" xml:space="preserve">
+    <value>Извините, при обработке Вашего запроса произошла ошибка.</value>
+  </data>
+  <data name="file_dublicate_file" xml:space="preserve">
+    <value>Файл уже существует. Пожалуйста выберите другой файл.</value>
+  </data>
+  <data name="file_dublicate_name" xml:space="preserve">
+    <value>Имя папки уже используется. Пожалуйста введите другое имя папки.</value>
+  </data>
+  <data name="file_manager" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="file_max_name" xml:space="preserve">
+    <value>Имя папки не должно превышать 30 знаков.</value>
+  </data>
+  <data name="file_null_file" xml:space="preserve">
+    <value>Файл не загружен.</value>
+  </data>
+  <data name="file_null_name" xml:space="preserve">
+    <value>Вы не ввели имя папки.</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="IsApproved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="LastActivityDate" xml:space="preserve">
+    <value>Дата последней активности</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>Дата последнего изменения логина</value>
+  </data>
+  <data name="LastPasswordChangedDate" xml:space="preserve">
+    <value>Дата последнего изменения пароля</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="logon" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="logon_error_password" xml:space="preserve">
+    <value>В пароле допущена ошибка.</value>
+  </data>
+  <data name="logon_text" xml:space="preserve">
+    <value>Пожалуйста введите имя пользователя и пароль. </value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Старый пароль</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="register_duplicate_email" xml:space="preserve">
+    <value>E-mail уже используется. Пожалуйста введите другой e-mail.</value>
+  </data>
+  <data name="register_duplicate_username" xml:space="preserve">
+    <value>Имя пользователя недоступно. Пожалуйста введите другое имя пользователя.</value>
+  </data>
+  <data name="register_error_email" xml:space="preserve">
+    <value>Формат e-mail несоответствует. Пожалуйста введите другой e-mail.</value>
+  </data>
+  <data name="register_password_confurmpassword" xml:space="preserve">
+    <value>Формат пароля несоответствует.</value>
+  </data>
+  <data name="register_text_first" xml:space="preserve">
+    <value>Форма для создания нового аккаунта.</value>
+  </data>
+  <data name="register_text_last" xml:space="preserve">
+    <value>Пароль должен иметь в длину не менее {0} знаков.</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить Меня?</value>
+  </data>
+  <data name="rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="rename_file_or_folder" xml:space="preserve">
+    <value>Переименовать файл или папку</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Имя роли</value>
+  </data>
+  <data name="rolename_duplicate" xml:space="preserve">
+    <value>Имя роли уже существует.Пожалуйста введите другое имя роли.</value>
+  </data>
+  <data name="rolename_max_length" xml:space="preserve">
+    <value>Имя роли не может превышать 15 знаков.</value>
+  </data>
+  <data name="rolename_null" xml:space="preserve">
+    <value>Вы не ввели имя роли.</value>
+  </data>
+  <data name="role_information" xml:space="preserve">
+    <value>Информация о ролях</value>
+  </data>
+  <data name="role_in_user" xml:space="preserve">
+    <value>Пользователь уже находится в роли. Пожалуйста выберите другую роль.</value>
+  </data>
+  <data name="role_null" xml:space="preserve">
+    <value>Вы не выбрали роль.</value>
+  </data>
+  <data name="search_max_length" xml:space="preserve">
+    <value>Слова для поиска не могут превышать 50 знаков.</value>
+  </data>
+  <data name="search_null" xml:space="preserve">
+    <value>Вы не ввели слово для поиска.</value>
+  </data>
+  <data name="search_role" xml:space="preserve">
+    <value>Найти роль</value>
+  </data>
+  <data name="search_user" xml:space="preserve">
+    <value>Найти пользователя</value>
+  </data>
+  <data name="select_file_upload" xml:space="preserve">
+    <value>Выберите файл для загрузки.</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="upload_file" xml:space="preserve">
+    <value>Загрузить файл:</value>
+  </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>Количество пользователей</value>
+  </data>
+  <data name="UserIP" xml:space="preserve">
+    <value>IP пользователя</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="user_in_role" xml:space="preserve">
+    <value>Пользователь в роли</value>
+  </data>
+  <data name="user_is_approved" xml:space="preserve">
+    <value>Пользователь одобрен</value>
+  </data>
+  <data name="user_is_not_approved" xml:space="preserve">
+    <value>Пользователь неодобрен</value>
+  </data>
+  <data name="user_manager" xml:space="preserve">
+    <value>Управление пользователями</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Здравствуйте {0}!</value>
+  </data>
+  <data name="logon_text1" xml:space="preserve">
+    <value>{0}  для создания нового аккаунта.</value>
+  </data>
+  <data name="my_profile" xml:space="preserve">
+    <value>Мой Профиль</value>
+  </data>
+  <data name="control_panel" xml:space="preserve">
+    <value>Панель управления</value>
+  </data>
+  <data name="core_database_null" xml:space="preserve">
+    <value>Вы не указали имя базы данных.</value>
+  </data>
+  <data name="core_server_null" xml:space="preserve">
+    <value>Вы не указали название сервера.</value>
+  </data>
+  <data name="CreateBase" xml:space="preserve">
+    <value>Создание Базы Данных</value>
+  </data>
+  <data name="i_agree" xml:space="preserve">
+    <value>Согласен и Далее</value>
+  </data>
+  <data name="license_agreement" xml:space="preserve">
+    <value>Лицензионное Соглашение</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
+  <data name="provider_error" xml:space="preserve">
+    <value>Ошибка при подключении к базе данных.</value>
+  </data>
+  <data name="DataBase" xml:space="preserve">
+    <value>База Данных (.mdf только для SQLEXPRESS)</value>
+  </data>
+  <data name="IntegratedSecurity" xml:space="preserve">
+    <value>Интегрированная Аутентификация (для локальных серверов MsSql)</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Провайдер</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="cansel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Connecting_String_Setting" xml:space="preserve">
+    <value>Настройка строки подключения</value>
+  </data>
+  <data name="core_null" xml:space="preserve">
+    <value>Значение не может быть пустым.</value>
+  </data>
+  <data name="Core_Settings" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="defaultCulture" xml:space="preserve">
+    <value>Язык по умолчанию</value>
+  </data>
+  <data name="defaultTheme" xml:space="preserve">
+    <value>Тема по умолчанию</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Edit_page" xml:space="preserve">
+    <value>Редактирование страницы</value>
+  </data>
+  <data name="Localization_Settings" xml:space="preserve">
+    <value>Настройка локализации</value>
+  </data>
+  <data name="maxInvalidPasswordAttempts" xml:space="preserve">
+    <value>Максимальное число неудачных попыток входа</value>
+  </data>
+  <data name="Membership_Settings" xml:space="preserve">
+    <value>Настройка входа и регистрации пользователей</value>
+  </data>
+  <data name="minRequiredPasswordLength" xml:space="preserve">
+    <value>Минимальная длина пароля</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="Profile_Settings" xml:space="preserve">
+    <value>Настройка профиля</value>
+  </data>
+  <data name="requiresUniqueEmail" xml:space="preserve">
+    <value>Включить регистрацию только уникальных Email</value>
+  </data>
+  <data name="roleAdmin" xml:space="preserve">
+    <value>Роль Админа</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Theme_Settings" xml:space="preserve">
+    <value>Настройка темы</value>
+  </data>
+  <data name="unlockAllCulture" xml:space="preserve">
+    <value>Включить поддержку языков</value>
+  </data>
+  <data name="unlockCaptcha" xml:space="preserve">
+    <value>Включить Капчу</value>
+  </data>
+  <data name="unlockGravatar" xml:space="preserve">
+    <value>Включить Gravatar</value>
+  </data>
+  <data name="unlockRegistration" xml:space="preserve">
+    <value>Разрешить регистрацию новых пользователей</value>
+  </data>
+  <data name="unlockTheme" xml:space="preserve">
+    <value>Включить поддержку тем</value>
+  </data>
+  <data name="unlockVisibleLogon" xml:space="preserve">
+    <value>Включить показ кнопки Вход</value>
+  </data>
+  <data name="bodyEmail" xml:space="preserve">
+    <value>Здравствуйте! Вы получили это письмо так как на сайте {0} была произведена регистрация с использованием Вашего Email. Для активации Аккаунта Вам необходимо пройти по ссылке http://{0}/Account/ApprovedAccount/{1} . Администрация сайта {0}</value>
+  </data>
+  <data name="subjectEmail" xml:space="preserve">
+    <value>Регистрация нового пользователя!</value>
+  </data>
+  <data name="unlockApprovedEmail" xml:space="preserve">
+    <value>Включить подтверждение по Email при регистрации</value>
+  </data>
+  <data name="edit_about" xml:space="preserve">
+    <value>Редактировать страницу "О Нас"</value>
+  </data>
+  <data name="Email_account_body" xml:space="preserve">
+    <value>На Ваш Email было выслано письмо с ссылкой для активации аккаунта. Спасибо за регистрацию на нашем сайте.</value>
+  </data>
+  <data name="Email_send_error" xml:space="preserve">
+    <value>Ошибка при отправке тестового письма</value>
+  </data>
+  <data name="Email_setting" xml:space="preserve">
+    <value>Настройка Email</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="message_null" xml:space="preserve">
+    <value>Вы не можете отправить пустое сообщение.</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Aboutpage" xml:space="preserve">
+    <value>Название страницы О Нас</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Название Главной страницы</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="all_languages" xml:space="preserve">
+    <value>Во всех языках</value>
+  </data>
+  <data name="available_moduls" xml:space="preserve">
+    <value>Доступные модули</value>
+  </data>
+  <data name="back_to_main" xml:space="preserve">
+    <value>Вернуться на главную</value>
+  </data>
+  <data name="columns" xml:space="preserve">
+    <value>Столбцов</value>
+  </data>
+  <data name="display_on_main" xml:space="preserve">
+    <value>Отображать на главной</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="homepage_setting" xml:space="preserve">
+    <value>Настройка главной</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="rows" xml:space="preserve">
+    <value>Строк</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="nameTitle" xml:space="preserve">
+    <value>Название первого титла всех страниц</value>
+  </data>
+  <data name="roleChiefEditor" xml:space="preserve">
+    <value>Роль Главного Редактора</value>
+  </data>
+  <data name="content_lenght" xml:space="preserve">
+    <value>Длина новости</value>
+  </data>
+  <data name="image_width" xml:space="preserve">
+    <value>Ширина картинки</value>
+  </data>
+  <data name="show_title" xml:space="preserve">
+    <value>Показывать заголовок</value>
+  </data>
+  <data name="InstallModules" xml:space="preserve">
+    <value>Установка модулей</value>
+  </data>
+  <data name="lastactivity" xml:space="preserve">
+    <value>Последние действия</value>
+  </data>
+  <data name="last_visit" xml:space="preserve">
+    <value>Последний визит</value>
+  </data>
+  <data name="member_since" xml:space="preserve">
+    <value>Зарегистрирован</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Профиль пользователя {0}</value>
+  </data>
+  <data name="homepage_desc" xml:space="preserve">
+    <value>* Настройка для всех языков сайта. При отображении на главной , те данные, что не соответствуют текущему языку будут проигнорированы.</value>
+  </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="save_error" xml:space="preserve">
+    <value>Произошла ошибка. Настройки не сохранены.</value>
+  </data>
+  <data name="save_success" xml:space="preserve">
+    <value>Параметры успешно сохранены.</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Стиль</value>
+  </data>
+  <data name="sidebar_setting" xml:space="preserve">
+    <value>Настройка бокового меню</value>
+  </data>
+  <data name="available_menuitems" xml:space="preserve">
+    <value>Доступные пункты меню</value>
+  </data>
+  <data name="display_in_menu" xml:space="preserve">
+    <value>Отображать в меню</value>
+  </data>
+  <data name="menu_setting_desc" xml:space="preserve">
+    <value> Используйте стрелки вправо и влево для добавления или удаления объекта и стрелки вверх и вниз для достижения нужной вам последовательности.</value>
+  </data>
+  <data name="topmenu_setting" xml:space="preserve">
+    <value>Настройки верхнего меню</value>
+  </data>
+  <data name="uninstallmodules" xml:space="preserve">
+    <value>Удаление модулей</value>
+  </data>
+  <data name="score_votes" xml:space="preserve">
+    <value>Оценка: {0} ( {1} Голосов )</value>
+  </data>
+</root>

@@ -1,0 +1,129 @@
+﻿input[type="text"]
+{
+    width: 200px;background: none;
+    border:0;
+}
+input[type="password"]
+{
+    width: 200px;background: none;
+    border: 0;
+}
+div.textbox{position: relative; float: left;}
+/*---------passive----------------*/
+ div.textcontent
+{
+    background: #DEE1E7;
+    border-left: 1px solid #A9AEB8;
+    border-right: 1px solid #A9AEB8;
+    padding: 0px 2px 0px 2px;
+    margin:-2px 0px -2px 0px;
+}
+
+div.texttopleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/texttopleft.png);
+}
+div.textbottomleft 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/textbottomleft.png);
+}
+
+div.texttopright 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/texttopright.png);
+}
+div.textbottomright 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/textbottomright.png);
+}
+div.texttopcon
+{
+    border-top: 1px solid #A9AEB8;
+    background-color: #DEE1E7;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 4px;
+} 
+div.textbottomcon
+{
+    border-bottom: 1px solid #A9AEB8;
+    background-color: #DEE1E7;
+    height: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+/*---------active----------------*/
+ div.textcontent.active
+{
+    background: #fff;
+    border-left: 1px solid #A9AEB8;
+    border-right: 1px solid #A9AEB8;
+    padding: 0px 2px 0px 2px;
+    margin:-2px 0px -2px 0px;
+}
+
+div.texttopleft.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/topleft.png);
+}
+div.textbottomleft.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/bottomleft.png);
+}
+
+div.texttopright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/topright.png);
+}
+div.textbottomright.active 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/bottomright.png);
+}
+div.texttopcon.active
+{
+    border-top: 1px solid #A9AEB8;
+    background-color: #fff;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 4px;
+} 
+div.textbottomcon.active
+{
+    border-bottom: 1px solid #A9AEB8;
+    background-color: #fff;
+    height: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+}

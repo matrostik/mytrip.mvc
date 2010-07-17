@@ -1,0 +1,383 @@
+﻿/* ACCORDION
+   * -----------------------------------------------------*/
+div.accordion div.accordioncontentground
+{
+}
+.accordion
+{
+}
+.noaccordion
+{
+}
+div.acfooter
+{
+    height: 1px;
+}
+/*------.active-----------------*/
+div.accordioncontent.active
+{cursor: pointer;
+    background: url(images/ButtonAndContent/passivecondrop.png) no-repeat right;
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+}
+div.accordioncontent.active a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.accordioncontent.active a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.accordiontopleft.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivetopleft.png);
+}
+div.accordionbottomleft.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivebottomleft.png);
+}
+div.accordiontopright.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivetopright.png);
+}
+div.accordionbottomright.active
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivebottomright.png);
+}
+div.accordiontopcon.active
+{
+    background:url(images/ButtonAndContent/passivetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.accordionbottomcon.active
+{
+    background:url(images/ButtonAndContent/passivebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------Passive--------------------*/
+div.accordioncontent
+{cursor: pointer;
+    background: url(images/ButtonAndContent/visiblecondrop2.png) no-repeat right;
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+}div.accordioncontent a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}div.accordioncontent a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+div.accordiontopleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visibletopleft.png);
+}
+div.accordionbottomleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/visiblebottomcon.png);
+}
+div.accordiontopright
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visibletopright.png);
+}
+div.accordionbottomright
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/visiblebottomcon.png);
+}
+div.accordiontopcon
+{
+    background:url(images/ButtonAndContent/visibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.accordionbottomcon
+{
+    background:url(images/ButtonAndContent/visiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------visible-----------------*/
+div.accordioncontentvisible
+{
+    background: #DEE1E7;
+    padding: 5px 5px 0px 5px;
+}
+div.accordioncontentvisible2
+{
+    background: #DEE1E7;
+    padding: 5px 5px 5px 5px;
+}
+div.accordiontopleftvisible
+{
+    
+}
+div.accordionbottomleftvisible
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background: url(images/ButtonAndContent/accordionbottomleft.png);
+}
+
+div.accordiontoprightvisible
+{
+    
+}
+div.accordionbottomrightvisible
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background: url(images/ButtonAndContent/accordionbottomright.png);
+}
+div.accordiontopconvisible
+{
+}
+div.accordionbottomconvisible
+{
+    background-color: #DEE1E7;
+    height: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+/*------no-----------------*/
+div.noaccordioncontent
+{
+    background: url(images/ButtonAndContent/passivecon.png);
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+}
+div.noaccordioncontent a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.noaccordioncontent a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.noaccordiontopleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivetopleft.png);
+}
+div.noaccordionbottomleft
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/passivebottomleft.png);
+}
+div.noaccordiontopright
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivetopright.png);
+}
+div.noaccordionbottomright
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/passivebottomright.png);
+}
+div.noaccordiontopcon
+{
+    background:url(images/ButtonAndContent/passivetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.noaccordionbottomcon
+{
+    background:url(images/ButtonAndContent/passivebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------HOVER--------------------*/
+   div.accordioncontent.hover
+{
+    background: url(images/ButtonAndContent/activecondrop.png) no-repeat right;
+    padding: 0px 17px 0px 17px;
+    color: #00050F;
+    
+} div.accordioncontent.hover a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.accordioncontent.hover a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}   div.menucontentdrop.hover
+{
+    background: url(images/ButtonAndContent/activecondrop.png) no-repeat right;
+    padding: 0px 20px 0px 17px;
+    color: #fff;
+    
+} div.menucontentdrop.hover a
+{
+    color: #00050F;
+    text-decoration: none;
+}div.menucontentdrop.hover a:hover
+{
+    color: #00050F;
+    text-decoration: none;
+}
+div.accordiontopleft.hover
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activetopleft.png);
+}
+div.accordionbottomleft.hover 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/activebottomleft.png);
+}
+div.accordiontopright.hover 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activetopright.png);
+}
+div.accordionbottomright.hover 
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/activebottomright.png);
+}
+div.accordiontopcon.hover
+{
+    background:url(images/ButtonAndContent/activetopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.accordionbottomcon.hover
+{
+    background:url(images/ButtonAndContent/activebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+/*------------HOVER OPEN--------------------*/
+div.accordioncontent.hoveropen
+{cursor: pointer;
+    background: url(images/ButtonAndContent/hovervisiblecondrop2.png) no-repeat right;
+    padding: 0px 17px 0px 17px;
+    color: #FFFFFF;
+}div.accordioncontent.hoveropen a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}div.accordioncontent.hoveropen a:hover
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+div.accordiontopleft.hoveropen
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisibletopleft.png);
+}
+div.accordionbottomleft.hoveropen
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: left;
+    background:url(images/ButtonAndContent/hovervisiblebottomcon.png);
+}
+div.accordiontopright.hoveropen
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisibletopright.png);
+}
+div.accordionbottomright.hoveropen
+{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    float: right;
+    background:url(images/ButtonAndContent/hovervisiblebottomcon.png);
+}
+div.accordiontopcon.hoveropen
+{
+    background:url(images/ButtonAndContent/hovervisibletopcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
+div.accordionbottomcon.hoveropen
+{
+    background:url(images/ButtonAndContent/hovervisiblebottomcon.png);
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 5px;
+}
