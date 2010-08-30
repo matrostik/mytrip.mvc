@@ -1,0 +1,39 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Rssparser.Models.RssparserSettingModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(RssparserLanguage.Rssparsersetting, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(RssparserLanguage.Rssparsersetting, ",");
+    View.Description=Html.MytripPageTitle(RssparserLanguage.Rssparsersetting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
+}
+@section content{
+<h1 class="title">@RssparserLanguage.Rssparsersetting</h1>
+@{Html.EnableClientValidation();} 
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockRssparser)
+@Html.MytripLabelFor("unlockRssparser",RssparserLanguage.unlockRssparser)
+</div><div class="editor-label">
+@Html.MytripLabelFor("nameRssparser",RssparserLanguage.nameRssparser)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameRssparser)
+@Html.ValidationMessageFor(model => model.nameRssparser)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cansel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+

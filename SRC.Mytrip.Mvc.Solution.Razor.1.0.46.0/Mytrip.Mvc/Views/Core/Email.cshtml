@@ -1,0 +1,69 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.EmailModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(CoreLanguage.Email_setting, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(CoreLanguage.Email_setting, ",");
+    View.Description=Html.MytripPageTitle(CoreLanguage.Email_setting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.Email_setting</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()) {       
+<fieldset>
+<div class="editor-label">
+@Html.MytripLabelFor("FromEmail",CoreLanguage.Email)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.FromEmail) 
+@Html.ValidationMessageFor(model => model.FromEmail) 
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Smtp","Smtp")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.Smtp) 
+@Html.ValidationMessageFor(model => model.Smtp)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Port","Port")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.Port)
+@Html.ValidationMessageFor(model => model.Port) 
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.Ssl)
+@Html.MytripLabelFor("Ssl","Ssl")
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("LoginEmail",CoreLanguage.UserName)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.LoginEmail)
+@Html.ValidationMessageFor(model => model.LoginEmail)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("PasswordEmail",CoreLanguage.Password)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.PasswordEmail) 
+@Html.ValidationMessageFor(model => model.PasswordEmail)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cansel, false,"left") 
+</div>
+</fieldset>
+} 
+}
+

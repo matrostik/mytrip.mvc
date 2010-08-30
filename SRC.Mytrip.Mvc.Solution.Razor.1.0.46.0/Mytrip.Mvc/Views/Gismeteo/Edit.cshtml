@@ -1,0 +1,47 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Gismeteo.Models.ManagerModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, ",");
+    View.Description=Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
+}
+@section content{
+<h1 class="title">@GismeteoLanguage.edit_Gismeteo</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-label">
+@Html.MytripLabelFor("Title",GismeteoLanguage.Title)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Title, new { style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Title)
+</div><div class="editor-label">
+@Html.MytripLabelFor("UrlXml",GismeteoLanguage.UrlXml) <a href="http://informer.gismeteo.ru/getcode/xml.php" target="_blank">informer.gismeteo.ru</a>
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.UrlXml, new { style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.UrlXml)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.VisibleInformer)
+@Html.MytripLabelFor("VisibleInformer",GismeteoLanguage.VisibleInformer)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.AllCulture)
+@Html.MytripLabelFor("AllCulture",GismeteoLanguage.AllCulture)
+</div>
+<div class="button">
+@Html.MytripButton(GismeteoLanguage.edit_Gismeteo,true,"left")
+@Html.MytripButton("/Gismeteo/Manager", CoreLanguage.cansel, false,"left") 
+</div>
+</fieldset>
+} 
+}
+
