@@ -1,0 +1,46 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.CommentModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(Model.PageTitle, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(Model.PageTitle, ",");
+    View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,Page/Article.EditComment.js")
+}
+@section content{
+<h1 class="title">
+@Model.PageTitle</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-label">
+@Html.HiddenFor(model => model.Url)
+@Html.HiddenFor(model => model.CommentId)
+@Html.HiddenFor(model => model.ArticleId)
+@Html.HiddenFor(model => model.CommentApproved)
+@Html.MytripLabelFor("Comment", ArticleLanguage.content)
+</div><div class="editor-field"><div class="dark">
+@Html.TextAreaFor(model => model.Comment, new { id = "article", style = "height: 250px; width:500px;" })
+@Html.ValidationMessageFor(model => model.Comment) 
+</div></div>
+<div class="button">
+@Html.MytripButton(ArticleLanguage.edit,true,"left")
+@Html.MytripButton(Model.Url, ArticleLanguage.back,false,"left")         
+</div>
+</fieldset>
+<div class="window"> 
+<div class="modalTC">Smiles</div>
+<div class="modalC">
+@Html.MytripSmiles("/Content/smiles")
+</div> 
+</div>
+}
+
