@@ -1,0 +1,68 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Votes.Models.VotesModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(VotesLanguage.edit_vote, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(VotesLanguage.edit_vote, ",");
+    View.Description=Html.MytripPageTitle(VotesLanguage.edit_vote, ",");
+}
+@section csslink{
+<link href="/Content/calendar/ui.datepicker.css" rel="stylesheet" type="text/css" />
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,ui.datepicker.js,Page/Votes.js")
+}
+@section content{
+<h1 class="title">
+@VotesLanguage.edit_vote</h2>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()){
+<fieldset>    
+<div class="editor-label">
+@Html.HiddenFor(x=>x.QuestionId)
+@Html.MytripLabelFor("Question", VotesLanguage.question_max_lenght)
+</div><div class="editor-field">
+@Html.TextAreaFor(x=>x.Question,new {@class="message", style = "width: 350px;height:50px"})
+@Html.ValidationMessage("Question")
+</div><div class="editor-label">
+@Html.MytripLabelFor("Count", VotesLanguage.choose_number_of_answers)
+@Html.DropDownListFor(model => model.Count, Model.QtAnswers)
+</div>
+@{int ctr = 0;}
+@foreach (var answer in Model.Answers){
+<div class="editor-label">
+@Html.MytripLabelFor("Answers_"+ctr+"_", VotesLanguage.answer+" "+ (ctr+1))
+</div><div class="editor-field">
+@Html.TextBoxFor(x=>x.Answers[ctr],new { style = "width: 350px;"})
+@Html.ValidationMessage("Answers_"+ctr+"_") 
+</div>
+ctr++;
+} 
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.AllCulture) 
+@Html.MytripLabelFor("AllCulture", VotesLanguage.display_in_all_languages)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.OnlyForRegisterUser)
+@Html.MytripLabelFor("OnlyForRegisterUser", VotesLanguage.only_for_registered_users)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.Active)
+@Html.MytripLabelFor("Active", VotesLanguage.make_active)
+</div><div class="editor-label">
+@Html.MytripLabelFor("CloseDate",VotesLanguage.close_date) 
+</div><div class="editor-field"> 
+@Html.TextBoxFor(model => model.CloseDate)
+@Html.ValidationMessageFor(model => model.CloseDate)
+</div><div class="button">
+@Html.MytripButton(VotesLanguage.edit,true,"left")
+@Html.MytripButton("/Votes/Index", CoreLanguage.cansel, false,"left") 
+</div>
+</fieldset>
+} 
+}
+
