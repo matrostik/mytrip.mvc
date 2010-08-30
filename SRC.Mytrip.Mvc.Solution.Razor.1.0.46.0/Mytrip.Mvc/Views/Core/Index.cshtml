@@ -1,0 +1,211 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.CoreModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+     View.Title = Html.MytripPageTitle(CoreLanguage.Core_Settings, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(CoreLanguage.Core_Settings, ",");
+    View.Description=Html.MytripPageTitle(CoreLanguage.Core_Settings, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.CheckedShow.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.Core_Settings</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()){
+<table class="content">
+<tr>
+<td class="first1" style="width: 50%;"></td>
+<td class="last1" style="width: 50%;"></td>
+</tr><tr>
+<td class="first2">
+<h3 class="hometitle">@CoreLanguage.Connecting_String_Setting</h3>
+<div class="editor-label">
+@Html.MytripLabelFor("Provider",CoreLanguage.Provider)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.Provider, Model.AllProvider)
+@Html.ValidationMessageFor(model => model.Provider)
+</div>
+<div class="editor-label">  
+@Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "integ" })
+@Html.MytripLabelFor("IntegratedSecurity",CoreLanguage.IntegratedSecurity)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Server",CoreLanguage.Server)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.Server)
+@Html.ValidationMessageFor(model => model.Server)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("DataBase",CoreLanguage.DataBase)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.DataBase)
+@Html.ValidationMessageFor(model => model.DataBase)
+</div>
+<div id="_integ" style="display: none">
+<div class="editor-label">
+@Html.MytripLabelFor("UserName",CoreLanguage.UserName)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.User)
+@Html.ValidationMessageFor(model => model.User)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Password",CoreLanguage.Password)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.Password)
+@Html.ValidationMessageFor(model => model.Password)
+</div></div>
+</td>
+<td class="last2">
+<h3 class="hometitle">@CoreLanguage.Membership_Settings</h3>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockSiteId, new { id = "integ2" })
+@Html.MytripLabelFor("unlockSiteId",CoreLanguage.unlockSiteId)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockOpenId)
+@Html.MytripLabelFor("unlockOpenId",CoreLanguage.unlockOpenId)
+</div>    
+<div id="_integ2" style="display: none">
+<div class="editor-label">
+@Html.MytripLabelFor("minRequiredPasswordLength",CoreLanguage.minRequiredPasswordLength)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.minRequiredPasswordLength)
+@Html.ValidationMessageFor(model => model.minRequiredPasswordLength)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("maxInvalidPasswordAttempts",CoreLanguage.maxInvalidPasswordAttempts)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.maxInvalidPasswordAttempts)
+@Html.ValidationMessageFor(model => model.maxInvalidPasswordAttempts)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.requiresUniqueEmail)
+@Html.MytripLabelFor("requiresUniqueEmail",CoreLanguage.requiresUniqueEmail)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockCaptcha)
+@Html.MytripLabelFor("unlockCaptcha",CoreLanguage.unlockCaptcha)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockApprovedEmail)
+@Html.MytripLabelFor("unlockApprovedEmail",CoreLanguage.unlockApprovedEmail)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockRegistration)
+@Html.MytripLabelFor("unlockRegistration",CoreLanguage.unlockRegistration)
+</div></div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockVisibleLogon)
+@Html.MytripLabelFor("unlockVisibleLogon",CoreLanguage.unlockVisibleLogon)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("roleAdmin",CoreLanguage.roleAdmin)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.roleAdmin)
+@Html.ValidationMessageFor(model => model.roleAdmin)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("roleChiefEditor",CoreLanguage.roleChiefEditor)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.roleChiefEditor)
+@Html.ValidationMessageFor(model => model.roleChiefEditor)
+</div>   
+</td></tr><tr>
+<td class="first3"></td>
+<td class="last3"></td>
+</tr><tr>
+<td class="first1"></td>
+<td class="last1"></td>
+</tr><tr>
+<td class="first2">
+<h3 class="hometitle">@CoreLanguage.Profile_Settings</h3>
+<div class="editor-label">
+@Html.MytripLabelFor("nameTitle",CoreLanguage.nameTitle)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameTitle)
+@Html.ValidationMessageFor(model => model.nameTitle)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("nameHome",CoreLanguage.Homepage)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameHome)
+@Html.ValidationMessageFor(model => model.nameHome)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("nameAbout",CoreLanguage.Aboutpage)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameAbout)
+@Html.ValidationMessageFor(model => model.nameAbout)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockGravatar)
+@Html.MytripLabelFor("unlockGravatar",CoreLanguage.unlockGravatar)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.ControlPanelSideBare)
+@Html.MytripLabelFor("ControlPanelSideBare",CoreLanguage.ControlPanelSideBare)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.DonateSideBare)
+@Html.MytripLabelFor("DonateSideBare",CoreLanguage.DonateSideBare)
+</div>
+</td>
+<td class="last2">
+<h3 class="hometitle">@CoreLanguage.Localization_Settings</h3>
+<div class="editor-label">
+@Html.MytripLabelFor("defaultCulture",CoreLanguage.defaultCulture)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.defaultCulture, Model.AllCulture)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockAllCulture)
+@Html.MytripLabelFor("unlockAllCulture",CoreLanguage.unlockAllCulture)
+</div>
+</td></tr><tr>
+<td class="first3"></td>
+<td class="last3"></td>
+</tr><tr>
+<td class="first1"></td>            
+</tr>
+<tr><td class="first2">
+<h3 class="hometitle">@CoreLanguage.Theme_Settings</h3>
+<div class="editor-label">
+@Html.MytripLabelFor("defaultTheme",CoreLanguage.defaultTheme)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.defaultTheme, Model.AllTheme)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockTheme)
+@Html.MytripLabelFor("unlockTheme",CoreLanguage.unlockTheme)
+</div>
+</td></tr>
+<tr>
+<td class="first3"></td>
+</tr>
+</table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cansel, false,"left") 
+</div>
+}
+}
+
