@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AboutArticle>
+  <About culture="ru-ru">
+    <Body>[_P_][_B_]Welcome to Mytrip.Mvc![_/B_][_/P_]</Body>
+  </About>
+  <About culture="en-us">
+    <Body>[_P_][_B_]Welcome to Mytrip.Mvc![_/B_][_/P_]</Body>
+  </About>
+</AboutArticle>
