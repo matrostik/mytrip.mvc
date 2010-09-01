@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+   To learn more about Mytrip.Mvc visit  
+   http://mytripmvc.net  http://mytripmvc.codeplex.com 
+   mytripmvc@gmail.com
+   license: Microsoft Public License (Ms-PL)
+  -->
+<MytripConfiguration>
+  <core>
+    <add name="Development" value="True" />
+    <add name="ControlPanelSideBare" value="False" />
+    <add name="DonateSideBare" value="False" />
+    <add name="nameHome">
+      <add name="Home" value="en-us" />
+      <add name="Главная" value="ru-ru" />
+    </add>
+    <add name="nameAbout">
+      <add name="About" value="en-us" />
+      <add name="О Нас" value="ru-ru" />
+    </add>
+    <add name="nameTitle">
+      <add name="CMS Mytrip.Mvc ({0})" value="en-us" />
+      <add name="CMS Mytrip.Mvc ({0})" value="ru-ru" />
+    </add>
+  </core>
+  <connection>
+    <add name="Provider" value="MSSQL" />
+    <add name="IntegratedSecurity" value="True" />
+    <add name="Server" value=".\SQLEXPRESS" />
+    <add name="DataBase" value="Database1.mdf" />
+    <add name="User" value="*" />
+    <add name="Password" value="*" />
+  </connection>
+  <membership>
+    <add name="minRequiredPasswordLength" value="6" />
+    <add name="maxInvalidPasswordAttempts" value="5" />
+    <add name="requiresUniqueEmail" value="False" />
+    <add name="unlockCaptcha" value="True" />
+    <add name="unlockRegistration" value="True" />
+    <add name="unlockVisibleLogon" value="True" />
+    <add name="roleAdmin" value="admin" />
+    <add name="roleChiefEditor" value="chief_editor" />
+    <add name="unlockApprovedEmail" value="False" />
+    <add name="unlockOpenId" value="True" />
+    <add name="unlockSiteId" value="True" />
+  </membership>
+  <language>
+    <add name="defaultCulture" value="ru-ru" />
+    <add name="unlockAllCulture" value="True" />
+  </language>
+  <theme>
+    <add name="defaultTheme" value="OrangeStyle" />
+    <add name="unlockTheme" value="True" />
+  </theme>
+  <profile>
+    <add name="unlockGravatar" value="True" />
+  </profile>
+  <no.module.dll>
+    <add name="Mytrip.Mvc.dll" />
+    <add name="MySql.Data.dll" />
+    <add name="MySql.Data.Entity.dll" />
+    <add name="DotNetOpenAuth.dll" />
+    <add name="System.Web.Mvc.dll" />
+  </no.module.dll>
+  <installModules>
+  </installModules>
+  <namespace>
+    <add name="System.Web.Mvc" />
+    <add name="System.Web.Mvc.Ajax" />
+    <add name="System.Web.Mvc.Html" />
+    <add name="System.Web.Routing" />
+    <add name="Mytrip.Mvc.Helpers" />
+    <add name="Mytrip.Mvc" />
+  </namespace>
+  <email>
+    <add name="unlockSendEmail" value="False" />
+    <add name="EmailAdress" value="name@name.com" />
+    <add name="Smtp" value="*" />
+    <add name="Port" value="0" />
+    <add name="Ssl" value="True" />
+    <add name="Login" value="*" />
+    <add name="Password" value="*" />
+  </email>  
+</MytripConfiguration>
