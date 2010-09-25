@@ -430,6 +430,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to closed.
+        /// </summary>
+        public static string closed {
+            get {
+                return ResourceManager.GetString("closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closed Articles.
         /// </summary>
         public static string closed_articles {

@@ -626,4 +626,7 @@
   <data name="quote" xml:space="preserve">
     <value>Quote</value>
   </data>
+  <data name="closed" xml:space="preserve">
+    <value>closed</value>
+  </data>
 </root>

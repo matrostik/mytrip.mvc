@@ -195,7 +195,7 @@ namespace Mytrip.Articles
         {
             TagBuilder form = new TagBuilder("form");
             string url = (HttpContext.Current.Request.Path.ToString() == "/") ? "/Home/Index" : HttpContext.Current.Request.Path.ToString();
-            form.MergeAttribute("action", string.Concat("/Article/Index?url=",url));
+            form.MergeAttribute("action", string.Concat("/Article/Search?url=",url));
             form.MergeAttribute("method", "post");
             form.InnerHtml = "<div class='search'><input  type='submit' value='' class='_search' ></input></div><input name='search' type='text' value='' class='search' />";
             return new HtmlString(GeneralMethods.Accordion(ModuleSetting.NameSearchPage(), form.ToString()));
