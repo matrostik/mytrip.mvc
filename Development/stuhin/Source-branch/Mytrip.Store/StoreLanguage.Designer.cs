@@ -313,6 +313,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Images ({0}).
+        /// </summary>
+        public static string foto {
+            get {
+                return ResourceManager.GetString("foto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to found.
         /// </summary>
         public static string found {
@@ -462,6 +471,15 @@ namespace Mytrip.Store {
         public static string results {
             get {
                 return ResourceManager.GetString("results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviews ({0}).
+        /// </summary>
+        public static string reviews {
+            get {
+                return ResourceManager.GetString("reviews", resourceCulture);
             }
         }
         
