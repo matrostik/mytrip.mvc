@@ -102,6 +102,7 @@ input.w40px, input.w80px, input.w100px,input.w20px{text-align:center;}
 img{border: 0 none;vertical-align:middle;}
 img.right{position: relative; float: right;}
 img.imgabstract{position: relative;float: right;margin-bottom: 5px;margin-left: 5px;clear: both;}
+img.imgabstract2{position: relative;float: right;margin-bottom: 5px;margin-left: 5px;}
 img.imgkeys{position: relative;float: left;margin: 0px 4px 4px 0px;}
 img.img16{height:16px;}
 img.img12{height:12px;}
