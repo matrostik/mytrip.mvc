@@ -75,6 +75,10 @@ div.accT{}
 /* CONTENT */
 div.content{}
 div.noappr{}
+div.righttext
+{
+    text-align: right;
+}
 div.last{height: 2px;}
 div.clear{clear: both;}
 div.right{position: relative;float: right;margin-left: 4px;}
