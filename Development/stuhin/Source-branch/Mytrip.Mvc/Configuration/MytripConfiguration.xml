@@ -68,9 +68,9 @@
     <add name="MySql.Data.Entity.dll" />
     <add name="DotNetOpenAuth.dll" />
     <add name="System.Web.Mvc.dll" />
-      <add name="log4net.dll"/>
-      <add name="paypal_base.dll"/>
-      <add name="SiteMechanics.PayPalDirect.dll"/>
+    <add name="log4net.dll" />
+    <add name="paypal_base.dll" />
+    <add name="SiteMechanics.PayPalDirect.dll" />
   </no.module.dll>
   <installModules>
     <add name="Mytrip.Rssparser" version="1.0.44.2" status="Beta" />
@@ -127,7 +127,7 @@
     </add>
     <add name="Money">
       <add key="USD" name="$" rate="1" date="null" value="en-us" />
-      <add key="RUB" name="руб." rate="30.7407" date="16-09-2010" value="ru-ru" />
+      <add key="RUB" name="руб." rate="30.9480" date="26-09-2010" value="ru-ru" />
     </add>
   </Mytrip.Store>
   <Mytrip.Rssparser>
