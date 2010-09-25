@@ -398,9 +398,16 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static HtmlString ViewOptions(this HtmlHelper html, mytrip_storeproduct x)
         {
-            string options = GeneralMethods.Button("#", StoreLanguage.buy, false, "right");
-            string _content = x.Body;
-            return new HtmlString(_content);
+            int countfoto=x.mytrip_storeoptions.Count();
+            int countreview = x.mytrip_storevotes.Count();
+            string options = GeneralMethods.Button(StoreLanguage.bodyProduct, false,"options", "left");
+            string foto = GeneralMethods.Button(string.Format(StoreLanguage.foto, countfoto), false, "foto", "left");
+            string review = GeneralMethods.Button(string.Format(StoreLanguage.reviews, countreview), false, "review", "left");
+            string a = "<div class='button'>" + options + foto + review + "</div>";
+            string _content = "<div class='last'></div><div id='_options' class='content'>" + x.Body + "</div>";
+            _content += "<div class='last'></div><div id='_foto' class='content'>foto" + x.Body + "</div>";
+            _content += "<div class='last'></div><div id='_review' class='content'>review" + x.Body + "</div>";
+            return new HtmlString(a+_content);
         }
         /// <summary>
         /// 
