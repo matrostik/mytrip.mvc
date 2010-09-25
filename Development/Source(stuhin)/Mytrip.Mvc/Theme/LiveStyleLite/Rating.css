@@ -1,5 +1,0 @@
-﻿input.rating{padding: 0px;margin: 0px 0px 0px -5px;width: 15px;height: 15px;border-width: 0px;cursor: pointer;text-indent: -999px;}
-img.rating{padding: 0px;margin: 0px 0px 0px -5px;width: 15px;height: 15px;border-width: 0px;}
-input.ratingfull{background:url("images/star.png");}
-input.ratingempty{background:url(images/star100.png);}
-div.homerating{position: relative;float: right;margin-left: 10px;}
