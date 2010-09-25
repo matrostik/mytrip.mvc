@@ -1,0 +1,1378 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mytrip.Store</name>
+    </assembly>
+    <members>
+        <member name="T:Mytrip.Store.ModuleSetting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.CreateStoreConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.nameStore">
+            <summary>Название для магазина с учетом культуры
+            (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_namestore")
+            </summary>
+            <returns>возвращает string</returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.nameProducer">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.nameMoney">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.unlockStore">
+            <summary>Статус модуля - включен или отключен  (true = включен)
+            (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_unlockStore")
+            </summary>
+            <returns>возвращает bool</returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.columnDepartment">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.widthImgDepartment">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.styleDepartment">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.columnProduct">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.widthImgProduct">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.styleProduct">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.roleChiefStoreManager">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.roleStoreManager">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.ModuleSetting.connectionString">
+            <summary>Строка подключения к серверу SQL
+            </summary>
+            <returns>возвращает string</returns>
+        </member>
+        <member name="T:Mytrip.Store.Controllers.StoreController">
+            <summary>Контроллер магазина
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.Index(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>GET: /Store/Index
+            Представление для отделов, производителей, товаров из отделов
+            и сортировка по отделу производителю и цене для представления товаров
+            </summary>
+            <param name="id">номер страницы</param>
+            <param name="id2">количество на странице</param>
+            <param name="id3">номер отдела</param>
+            <param name="id4">номер производителя</param>
+            <param name="id5">номер сортировки</param>
+            <param name="id6">паз или поисковая фраза</param>
+            <param name="id7">минимальная цена</param>
+            <param name="id8">максимальная цена</param>
+            <returns>ActionResult</returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.Index(Mytrip.Store.Models.DepartmentModel,System.Int32)">
+            <summary>POST: /Store/Index
+            Поиск с учетом выбранной сортировки
+            </summary>
+            <param name="model">DepartmentModel</param>
+            <param name="id5">номер сортировки</param>
+            <returns>ActionResult</returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.EditorCategory(System.Int32,System.String)">
+            <summary>GET: /Store/CreateDepartment
+            
+            </summary>
+            <param name="id"></param>
+            <param name="id2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.EditorCategory(System.Int32,System.String,Mytrip.Store.Models.EditorCategoryModel)">
+            <summary>POST: /Store/CreateDepartment
+            
+            </summary>
+            <param name="id"></param>
+            <param name="id2"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.View(System.Int32)">
+            <summary>GET: /Store/View
+            Отображение продукта или продуктов выбранных для сравнения
+            </summary>
+            <param name="id">индентификатор продукта</param>
+            <param name="id2">набор индентификаторов продуктов выбранных для сравнения</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.EditorProduct(System.Int32,System.Int32,System.String)">
+            <summary>GET: /Store/EditorProduct
+            
+            </summary>
+            <param name="id"></param>
+            <param name="id2"></param>
+            <param name="id3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.EditorProduct(System.Int32,System.Int32,System.String,Mytrip.Store.Models.EditorProductModel)">
+            <summary>POST: /Store/EditorProduct
+            
+            </summary>
+            <param name="id"></param>
+            <param name="id2"></param>
+            <param name="id3"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.ProductForComparison(System.String)">
+            <summary>
+            store cart
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.ProductCart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.ProductForCart(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.Cart(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.CountProduct(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="id2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Controllers.StoreController.DeleteProductCart(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mytrip.Store.Controllers.StoreController.store">
+            <summary>Инициализация репозитория магазина
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Helpers.StoreHelper">
+            <summary>Хелпер для магазина
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreDepartment(System.Web.Mvc.HtmlHelper,System.Linq.IQueryable{Mytrip.Store.Repository.DataEntities.mytrip_storedepartment},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="department"></param>
+            <param name="take"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreTitleDepartment(System.Web.Mvc.HtmlHelper,Mytrip.Store.Models.TitleDepartmentModel)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreProduct(System.Web.Mvc.HtmlHelper,System.Linq.IQueryable{Mytrip.Store.Repository.DataEntities.mytrip_storeproduct},System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="department"></param>
+            <param name="take"></param>
+            <param name="subdepartment"></param>
+            <param name="producer"></param>
+            <param name="DepartmentAndProducer"></param>
+            <param name="DepartmentAndProducer2"></param>
+            <param name="compare"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreProducer(System.Web.Mvc.HtmlHelper,System.Linq.IQueryable{Mytrip.Store.Repository.DataEntities.mytrip_storeproducer},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="department"></param>
+            <param name="take"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreSorting(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.StoreAddCategoryAndProduct(System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="count"></param>
+            <param name="subid"></param>
+            <param name="search"></param>
+            <param name="producer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.EditAndDeleteCategory(System.Int32,System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="user"></param>
+            <param name="subuser"></param>
+            <param name="producer"></param>
+            <param name="prodid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.MyCart">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.StoreHelper.ViewMyCart(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mytrip.Store.Models.DepartmentModel">
+            <summary>Модель для страницы /Views/Store/Index.cshtml 
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.Department">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.take">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.paging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.paging2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.titleDepartmentModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.Product">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.Producer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.takepaging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.smallprice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.bigprice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.SelectDepartment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.SelectProducer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.DepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.ProducerId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.Search">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.DepartmentAndProducer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.DepartmentModel.DepartmentAndProducer2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.TitleDepartmentModel">
+            <summary>Модель Титла для страницы /Views/Store/Index.cshtml
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.producer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.img">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.subDepartmentTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.subDepartmentPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.subDepartmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.subcount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel._search">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.search">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.totalsearch">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.ProducerId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.ProducerTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.ProducerBody">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.ProducerImg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.ProducerPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.departmentcount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.producercount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.createdepartment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.User">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.SubUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.TitleDepartmentModel.produceridforeditor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.ProductModel">
+            <summary>Модель для страницы /Views/Store/View.cshtml
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.ProductModel.Product">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.ProductModel.comparison">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.ProductModel.comparison2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.CartModel">
+            <summary>Модель для страницы /Views/Store/View.cshtml
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.CartModel.cart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.CartModel.title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.EditorCategoryModel">
+            <summary>Модель для страницы /Views/Store/EditorCategory.cshtml
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.pagetitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.image">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.allculture">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.labelfortitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.labelforimage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.labelforbody">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorCategoryModel.submit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.EditorProductModel">
+            <summary>Модель для страницы /Views/Store/EditorProduct.cshtml
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.pagetitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.submit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.departmentId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.producerId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.abstracts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.body">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.image">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.allculture">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.price">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.totalcount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.urlfile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.viewcount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.viewprice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.viewvotes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.SelectDepartment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.SelectProducer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Models.EditorProductModel.nameMoney">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Models.RoleStoreAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Models.RoleStoreAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Mytrip.Store.Repository.DepartmentRepository">
+            <summary>Репозиторий отделов
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.GetAllDepartment(System.String)">
+            <summary>Все отделы с учетом текущей культуры
+            отсортированные по алфавиту
+            </summary>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает IQueryable &lt; mytrip_storedepartment &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.GetAllDepartment(System.Int32,System.Int32,System.String,System.Int32@)">
+            <summary>Все отделы постранично с учетом текущей культуры
+            отсортированные по алфавиту
+            </summary>
+            <param name="pageIndex">номер страницы</param>
+            <param name="pageSize">количество на странице</param>
+            <param name="culture">текущая культура</param>
+            <param name="total">(out int) общее количество отделов</param>
+            <returns>возвращает IQueryable &lt; mytrip_storedepartment &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.GetSubDepartment(System.Int32,System.String)">
+            <summary>Все суботделы отдела с учетом культуры
+            отсортированные по алфавиту
+            </summary>
+            <param name="id">индентификатор отдела</param>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает IQueryable &lt; mytrip_storedepartment &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.GetDepartment(System.Int32)">
+            <summary>Отдел по индентификатору
+            </summary>
+            <param name="id">индентификатор отдела</param>
+            <returns>возвращает mytrip_storedepartment</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.GetDepartmentForDdl(System.String,System.Boolean)">
+            <summary>Все оттделы для дропдауна
+            отсортированные по алфавиту
+            </summary>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает IDictionary &lt; int,string &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.CreateDepartment(System.Int32,System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>Создание отдела
+            </summary>
+            <param name="id">индентификатор чьим суботделом будет создаваемый отдел</param>
+            <param name="title">название отдела</param>
+            <param name="body">описание отдела (возможен null)</param>
+            <param name="image">изображение отдела (возможен null)</param>
+            <param name="allculture">показывать для всех культур (true для всех)</param>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает mytrip_storedepartment</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.EditDepartment(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>Редактирование отдела
+            </summary>
+            <param name="id">индентификатор отдела</param>
+            <param name="title">название отдела</param>
+            <param name="body">описание отдела (возможен null)</param>
+            <param name="image">изображение отдела (возможен null)</param>
+            <param name="allculture">показывать для всех культур (true для всех)</param>
+            <returns>возвращает mytrip_storedepartment</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.CreateDepartmentId">
+            <summary>Создать уникальный DepartmentId
+            </summary>
+            <returns>возвращает int</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.DepartmentRepository.CreateDepartmentZero">
+            <summary> Создать отдел ZERO
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Repository.DepartmentRepository.entities">
+            <summary>Подключение к Entity Репозиторию 
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Repository.ProductRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForDepartment(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="culture"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForProducer(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="culture"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForProducer(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="smallprice"></param>
+            <param name="bigprice"></param>
+            <param name="culture"></param>
+            <param name="search"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForDepartment(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="smallprice"></param>
+            <param name="bigprice"></param>
+            <param name="culture"></param>
+            <param name="search"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForDepartmentAndProducer(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="producerId"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="smallprice"></param>
+            <param name="bigprice"></param>
+            <param name="culture"></param>
+            <param name="search"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForDepartmentAndProducer(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="sort"></param>
+            <param name="smallprice"></param>
+            <param name="bigprice"></param>
+            <param name="culture"></param>
+            <param name="search"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForViews(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProductForViews(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.GetProduct(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.CreateProduct(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Decimal,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="departmentId"></param>
+            <param name="producerId"></param>
+            <param name="title"></param>
+            <param name="_abstract"></param>
+            <param name="body"></param>
+            <param name="image"></param>
+            <param name="culture"></param>
+            <param name="allculture"></param>
+            <param name="price"></param>
+            <param name="totalcount"></param>
+            <param name="urlfile"></param>
+            <param name="viewcount"></param>
+            <param name="viewprice"></param>
+            <param name="viewvotes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.EditProduct(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Boolean,System.Decimal,System.Int32,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="departmentId"></param>
+            <param name="producerId"></param>
+            <param name="title"></param>
+            <param name="_abstract"></param>
+            <param name="body"></param>
+            <param name="image"></param>
+            <param name="allculture"></param>
+            <param name="price"></param>
+            <param name="totalcount"></param>
+            <param name="urlfile"></param>
+            <param name="viewcount"></param>
+            <param name="viewprice"></param>
+            <param name="viewvotes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProductRepository.CreateProductId">
+            <summary>Создать уникальный ProductId
+            </summary>
+            <returns>возвращает int</returns>
+        </member>
+        <member name="P:Mytrip.Store.Repository.ProductRepository.entities">
+            <summary>Подключение к Entity Репозиторию
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Helpers.MoneyHelpers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.MoneyHelpers.GetRate_EN_RU">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.MoneyHelpers.ConvertMoney(System.Decimal,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="price"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Helpers.MoneyHelpers.ConvertMoneyDecimal(System.Decimal,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="price"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mytrip.Store.Export">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Export.MenuStore">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mytrip.Store.Export.AccordionStore">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Mytrip.Store.StoreLanguage">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage._abstract">
+            <summary>
+              Looks up a localized string similar to Short description.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage._for">
+            <summary>
+              Looks up a localized string similar to for.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.add">
+            <summary>
+              Looks up a localized string similar to Add.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.allculture">
+            <summary>
+              Looks up a localized string similar to All culture.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.AllDepartment">
+            <summary>
+              Looks up a localized string similar to All Department.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.AllProducer">
+            <summary>
+              Looks up a localized string similar to All Producer.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.amount_of">
+            <summary>
+              Looks up a localized string similar to Amount of.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.body">
+            <summary>
+              Looks up a localized string similar to Body.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.bodyProduct">
+            <summary>
+              Looks up a localized string similar to Details.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.buy">
+            <summary>
+              Looks up a localized string similar to Buy.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.cart">
+            <summary>
+              Looks up a localized string similar to Add to {0}.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.cart2">
+            <summary>
+              Looks up a localized string similar to cart.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.compare">
+            <summary>
+              Looks up a localized string similar to Check to {0} product.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.compare2">
+            <summary>
+              Looks up a localized string similar to compare.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.create">
+            <summary>
+              Looks up a localized string similar to Create.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.createDepartment">
+            <summary>
+              Looks up a localized string similar to Create Department.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.createProducer">
+            <summary>
+              Looks up a localized string similar to Add Producer.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.createProduct">
+            <summary>
+              Looks up a localized string similar to Add Product.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.createSubDepartment">
+            <summary>
+              Looks up a localized string similar to Create Subdepartment in Department &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.createSubDepartment2">
+            <summary>
+              Looks up a localized string similar to Create Subdepartment.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.date">
+            <summary>
+              Looks up a localized string similar to date .
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.department">
+            <summary>
+              Looks up a localized string similar to Department:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.departmentId">
+            <summary>
+              Looks up a localized string similar to Department.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.edit">
+            <summary>
+              Looks up a localized string similar to Edit.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.editDepartment">
+            <summary>
+              Looks up a localized string similar to Edit Department &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.editProducer">
+            <summary>
+              Looks up a localized string similar to Edit Producer &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.editProduct">
+            <summary>
+              Looks up a localized string similar to Edit Product &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.editSubdepartment">
+            <summary>
+              Looks up a localized string similar to Edit Subdepartment &quot;{0}&quot; in Department &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.found">
+            <summary>
+              Looks up a localized string similar to found.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.imageDepartment">
+            <summary>
+              Looks up a localized string similar to Image for Department.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.imageProducer">
+            <summary>
+              Looks up a localized string similar to Image for Producer.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.imageProduct">
+            <summary>
+              Looks up a localized string similar to Image for Product.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.mycart">
+            <summary>
+              Looks up a localized string similar to In {0} of products {1}, amount of {2}.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.mycart2">
+            <summary>
+              Looks up a localized string similar to cart.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.mycarttitle">
+            <summary>
+              Looks up a localized string similar to My cart.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.nocompare">
+            <summary>
+              Looks up a localized string similar to Products not selected for comparison.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.nocompare2">
+            <summary>
+              Looks up a localized string similar to Choose at least two products for comparison.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Price_from">
+            <summary>
+              Looks up a localized string similar to Price from:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Price_to">
+            <summary>
+              Looks up a localized string similar to to:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Prise">
+            <summary>
+              Looks up a localized string similar to Prise:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.prise_">
+            <summary>
+              Looks up a localized string similar to prise.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Producer">
+            <summary>
+              Looks up a localized string similar to Producer:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.producerId">
+            <summary>
+              Looks up a localized string similar to Producer.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Producers">
+            <summary>
+              Looks up a localized string similar to Producers.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.results">
+            <summary>
+              Looks up a localized string similar to results.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Search">
+            <summary>
+              Looks up a localized string similar to Search.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.Sorted">
+            <summary>
+              Looks up a localized string similar to Sort by:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.subdepartment">
+            <summary>
+              Looks up a localized string similar to SubDepartment:.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.title">
+            <summary>
+              Looks up a localized string similar to title.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.titleDepartment">
+            <summary>
+              Looks up a localized string similar to Title Department.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.titlePrice">
+            <summary>
+              Looks up a localized string similar to Price.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.titleProducer">
+            <summary>
+              Looks up a localized string similar to Title Producer.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.titleProduct">
+            <summary>
+              Looks up a localized string similar to Title Product.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.totalCount">
+            <summary>
+              Looks up a localized string similar to Count.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.UrlFile">
+            <summary>
+              Looks up a localized string similar to Url file for download.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.viewcount">
+            <summary>
+              Looks up a localized string similar to Unlock view count.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.viewprice">
+            <summary>
+              Looks up a localized string similar to Unlock view price.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.viewvotes">
+            <summary>
+              Looks up a localized string similar to Unlock reviews and rating.
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.StoreLanguage.votes">
+            <summary>
+              Looks up a localized string similar to votes.
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Repository.ProducerRepository">
+            <summary>Репозиторий производителей
+            </summary>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.GetAllProducer(System.String)">
+            <summary>Все производители с учетом текущей культуры
+            отсортированные по алфавиту 
+            </summary>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает IQueryable &lt; mytrip_storeproducer &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.GetAllProducer(System.Int32,System.Int32,System.String,System.Int32@)">
+            <summary>Все производители постранично с учетом текущей культуры
+            отсортированные по алфавиту
+            </summary>
+            <param name="pageIndex">номер страницы</param>
+            <param name="pageSize">количество на странице</param>
+            <param name="culture">текущая культура</param>
+            <param name="total">(out int) общее количество производителей</param>
+            <returns>возвращает IQueryable &lt; mytrip_storeproducer &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.GetProducer(System.Int32)">
+            <summary>производитель по индентификатору 
+            </summary>
+            <param name="id">индентификатор производителя</param>
+            <returns>возвращает mytrip_storeproducer</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.GetProducerForDdl(System.String,System.Boolean)">
+            <summary>Все производители для дропдауна
+            отсортированные по алфавиту
+            </summary>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает IDictionary &lt; int,string &gt;</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.CreateProducer(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>Создание производителя
+            </summary>
+            <param name="title">название производителя</param>
+            <param name="body">описание производителя (возможен null)</param>
+            <param name="image">изображение производителя (возможен null)</param>
+            <param name="allculture">показывать для всех культур (true для всех)</param>
+            <param name="culture">текущая культура</param>
+            <returns>возвращает mytrip_storeproducer</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.EditProducer(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>Редактирование производителя
+            </summary>
+            <param name="id">индентификатор производителя</param>
+            <param name="title">название производителя</param>
+            <param name="body">описание производителя (возможен null)</param>
+            <param name="image">изображение производителя (возможен null)</param>
+            <param name="allculture">показывать для всех культур (true для всех)</param>
+            <returns>возвращает mytrip_storeproducer</returns>
+        </member>
+        <member name="M:Mytrip.Store.Repository.ProducerRepository.CreateProducerId">
+            <summary>Создать уникальный ProducerId
+            </summary>
+            <returns>возвращает int</returns>
+        </member>
+        <member name="P:Mytrip.Store.Repository.ProducerRepository.entities">
+            <summary>Подключение к Entity Репозиторию 
+            </summary>
+        </member>
+        <member name="T:Mytrip.Store.Repository.IStoreRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Repository.IStoreRepository.department">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Repository.IStoreRepository.product">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mytrip.Store.Repository.IStoreRepository.producer">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
