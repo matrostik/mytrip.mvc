@@ -133,7 +133,7 @@ namespace Mytrip.Articles.Helpers
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
                 alink.MergeAttribute("rel", "Article," + article.ArticleId);
-                alink.AddCssClass("mtPopupTrigger");
+                alink.AddCssClass("mtPopupArticles");
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
@@ -152,7 +152,7 @@ namespace Mytrip.Articles.Helpers
                 alink.MergeAttribute("href", LangLink(comment.mytrip_articles.Culture, "/Article/View/" + comment.mytrip_articles.ArticleId + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
                 alink.MergeAttribute("rel", "Comment," + comment.ArticleId);
-                alink.AddCssClass("mtPopupTrigger");
+                alink.AddCssClass("mtPopupArticles");
                 //
                 alink.InnerHtml = comment.mytrip_articles.Title;
                 if(comment.IsApproved)

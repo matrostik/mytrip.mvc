@@ -14,6 +14,10 @@
     <AssemblyName>Mytrip.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -360,6 +364,43 @@
     <Content Include="Content\smiles\ci.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ScriptsLite\jHtmlArea.Mytrip.js" />
+    <Content Include="ScriptsLite\jquery-1.4.2.js" />
+    <Content Include="ScriptsLite\MicrosoftAjax.js" />
+    <Content Include="ScriptsLite\MicrosoftMvcAjax.js" />
+    <Content Include="ScriptsLite\MicrosoftMvcValidation.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Accordion.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Baloon.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Button.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Captcha.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.CheckedShow.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Delete.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Dropdown.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Include.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Layout.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Modal.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Textbox.js" />
+    <Content Include="ScriptsLite\Page\Account.js" />
+    <Content Include="ScriptsLite\Page\Article.Create.js" />
+    <Content Include="ScriptsLite\Page\Article.Edit.js" />
+    <Content Include="ScriptsLite\Page\Article.EditComment.js" />
+    <Content Include="ScriptsLite\Page\Article.View.js" />
+    <Content Include="ScriptsLite\Page\Core.About.js" />
+    <Content Include="ScriptsLite\Page\Core.CorSideBar.js" />
+    <Content Include="ScriptsLite\Page\Core.HomePage.js" />
+    <Content Include="ScriptsLite\Page\Core.TopMenu.js" />
+    <Content Include="ScriptsLite\Page\File.js" />
+    <Content Include="ScriptsLite\Page\Rssparser.js" />
+    <Content Include="ScriptsLite\Page\Store.Cart.js" />
+    <Content Include="ScriptsLite\Page\Store.EditorCategory.js" />
+    <Content Include="ScriptsLite\Page\Store.EditorProduct.js" />
+    <Content Include="ScriptsLite\Page\Store.Index.js" />
+    <Content Include="ScriptsLite\Page\TextAreaFile.js" />
+    <Content Include="ScriptsLite\Page\Votes.js" />
+    <Content Include="ScriptsLite\SLPlaerChrome.js" />
+    <Content Include="ScriptsLite\SLPlaerChrome.xap" />
+    <Content Include="ScriptsLite\ui.datepicker-ru.js" />
+    <Content Include="ScriptsLite\ui.datepicker.js" />
     <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
     <Content Include="Scripts\jHtmlArea.Mytrip.js" />
     <Content Include="Scripts\jquery-1.4.2.js" />
