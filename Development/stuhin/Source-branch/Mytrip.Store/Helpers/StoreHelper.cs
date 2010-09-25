@@ -398,6 +398,7 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static HtmlString ViewOptions(this HtmlHelper html, mytrip_storeproduct x)
         {
+            string options = GeneralMethods.Button("#", StoreLanguage.buy, false, "right");
             string _content = x.Body;
             return new HtmlString(_content);
         }
