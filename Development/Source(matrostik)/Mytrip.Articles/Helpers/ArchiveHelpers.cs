@@ -1856,9 +1856,9 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder div = new TagBuilder("div");
                 if (ctr % 2 == 0)
-                    div.MergeAttribute("style", "background-color:#F7F5F5;");
+                    div.AddCssClass("profile1");
                 else
-                    div.MergeAttribute("style", "background-color:#EDEBEB;");
+                    div.AddCssClass("profile2");
                 TagBuilder link = new TagBuilder("a");
                 link.MergeAttribute("href", LangLink(comment.mytrip_articles.Culture, "/Article/View/" + comment.mytrip_articles.ArticleId + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
@@ -1891,7 +1891,7 @@ namespace Mytrip.Articles.Helpers
             TagBuilder accordionContent2 = new TagBuilder("div");
             accordionContent2.AddCssClass("accordioncontent2");
             TagBuilder div = new TagBuilder("div");
-            div.MergeAttribute("style", "background-color:#F7F5F5;");
+            div.AddCssClass("profile1");
             foreach (var tag in tags)
             {
                 TagBuilder link = new TagBuilder("a");
@@ -1907,7 +1907,7 @@ namespace Mytrip.Articles.Helpers
         }
         #endregion
 
-         #region Other helpers
+        #region Other helpers
         static string LangLink(string culture, string url)
         {
             culture = culture.ToLower();
