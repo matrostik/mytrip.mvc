@@ -1,0 +1,8 @@
+﻿div.captcha{width:220px;}
+div.captchaC{background: #fff;border-left: 1px solid #767676;border-right: 1px solid #767676;padding: 0px 2px 0px 2px;margin:-2px 0px -2px 0px;}
+div.captchaTL{position: relative;width: 3px;height: 3px;float: left;background: url(images/textbox.png);}
+div.captchaBL{position: relative;width: 3px;height: 3px;float: left;background: url(images/textbox.png);background-position: 0px -22px;}
+div.captchaTR{position: relative;width: 3px;height: 3px;float: right;background: url(images/textbox.png);background-position: -21px 0px;}
+div.captchaBR{position: relative;width: 3px;height: 3px;float: right;background: url(images/textbox.png);background-position: -21px -22px;}
+div.captchaTC{border-top: 1px solid #767676;background-color: #fff;margin-right: 3px;margin-left: 3px;height: 2px;} 
+div.captchaBC{border-bottom: 1px solid #767676;background-color: #fff;height: 2px;margin-right: 3px;margin-left:3px;}
