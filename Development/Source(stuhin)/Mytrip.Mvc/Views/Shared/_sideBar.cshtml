@@ -1,0 +1,37 @@
+@inherits System.Web.Mvc.WebViewPage
+@{
+/* WARNING AUTO GENERATE CODE */
+
+/* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+To learn more about Mytrip.Mvc visit
+http://mytripmvc.net  http://mytripmvc.codeplex.com
+mytripmvc@gmail.com
+license: Microsoft Public License (Ms-PL) */
+
+/* WARNING AUTO GENERATE CODE */
+}
+@Html.AccordionUsersAndFiles(new {
+/*--StartManagerControlPanel--*/
+i1=Mytrip.Rssparser.Export.Manager(),
+i2=Mytrip.Votes.Export.Manager(),
+i3=Mytrip.Articles.Export.Manager(),
+i4=Mytrip.Gismeteo.Export.Manager()
+/*--EndManagerControlPanel--*/
+},new {
+/*--StartSettingControlPanel--*/
+i1=Mytrip.Rssparser.Export.Setting(),
+i2=Mytrip.Votes.Export.Setting(),
+i3=Mytrip.Articles.Export.Setting(),
+i4=Mytrip.Gismeteo.Export.Setting()
+/*--EndSettingControlPanel--*/
+}, true)
+@Html.AccordionUserProfile(new {
+/*--StartProfile--*/
+i1=Mytrip.Articles.Export.Profile()
+/*--EndProfile--*/
+})
+@Html.AccordionDonateProject()
+@Html.Partial("_sideBarExport")
+
+
+

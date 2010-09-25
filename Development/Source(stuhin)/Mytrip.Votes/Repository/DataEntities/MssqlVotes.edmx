@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mytripmvcModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="mytripmvcModelStoreContainer">
+          <EntitySet Name="mytrip_votesanswer" EntityType="mytripmvcModel.Store.mytrip_votesanswer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_votesquestion" EntityType="mytripmvcModel.Store.mytrip_votesquestion" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_mytrip_VotesAnswer_mytrip_VotesQuestion" Association="mytripmvcModel.Store.FK_mytrip_VotesAnswer_mytrip_VotesQuestion">
+            <End Role="mytrip_votesquestion" EntitySet="mytrip_votesquestion" />
+            <End Role="mytrip_votesanswer" EntitySet="mytrip_votesanswer" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_votesanswer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="TotalVotes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_votesquestion">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="TotalVotes" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CloseDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="OnlyForRegisterUser" Type="bit" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK_mytrip_VotesAnswer_mytrip_VotesQuestion">
+          <End Role="mytrip_votesquestion" Type="mytripmvcModel.Store.mytrip_votesquestion" Multiplicity="1" />
+          <End Role="mytrip_votesanswer" Type="mytripmvcModel.Store.mytrip_votesanswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_votesquestion">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="mytrip_votesanswer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mytripmvcModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false" >
+          <EntitySet Name="mytrip_votesanswer" EntityType="mytripmvcModel.mytrip_votesanswer" />
+          <EntitySet Name="mytrip_votesquestion" EntityType="mytripmvcModel.mytrip_votesquestion" />
+          <AssociationSet Name="FK_mytrip_VotesAnswer_mytrip_VotesQuestion" Association="mytripmvcModel.FK_mytrip_VotesAnswer_mytrip_VotesQuestion">
+            <End Role="mytrip_votesquestion" EntitySet="mytrip_votesquestion" />
+            <End Role="mytrip_votesanswer" EntitySet="mytrip_votesanswer" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_votesanswer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Type="Int32" Name="AnswerId" Nullable="false" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Answer" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TotalVotes" Nullable="false" />
+          <NavigationProperty Name="mytrip_votesquestion" Relationship="mytripmvcModel.FK_mytrip_VotesAnswer_mytrip_VotesQuestion" FromRole="mytrip_votesanswer" ToRole="mytrip_votesquestion" />
+        </EntityType>
+        <EntityType Name="mytrip_votesquestion">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+          <Property Type="String" Name="Question" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TotalVotes" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="OnlyForRegisterUser" Nullable="false" />
+          <Property Type="String" Name="Culture" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AllCulture" Nullable="false" />
+          <Property Type="String" Name="Path" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mytrip_votesanswer" Relationship="mytripmvcModel.FK_mytrip_VotesAnswer_mytrip_VotesQuestion" FromRole="mytrip_votesquestion" ToRole="mytrip_votesanswer" />
+        </EntityType>
+        <Association Name="FK_mytrip_VotesAnswer_mytrip_VotesQuestion">
+          <End Type="mytripmvcModel.mytrip_votesquestion" Role="mytrip_votesquestion" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_votesanswer" Role="mytrip_votesanswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_votesquestion">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="mytrip_votesanswer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mytripmvcModelStoreContainer" CdmEntityContainer="Entities" >
+          <EntitySetMapping Name="mytrip_votesanswer">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_votesanswer">
+              <MappingFragment StoreEntitySet="mytrip_votesanswer">
+                <ScalarProperty Name="TotalVotes" ColumnName="TotalVotes" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_votesquestion">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_votesquestion">
+              <MappingFragment StoreEntitySet="mytrip_votesquestion">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="OnlyForRegisterUser" ColumnName="OnlyForRegisterUser" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="TotalVotes" ColumnName="TotalVotes" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MssqlVotes" >
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_votesanswer" Width="1.75" PointX="3" PointY="1.125" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_votesquestion" Width="1.75" PointX="0.5" PointY="0.5" Height="3.3263964843750031" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_VotesAnswer_mytrip_VotesQuestion" >
+          <ConnectorPoint PointX="2.25" PointY="2.1151432291666659" />
+          <ConnectorPoint PointX="3" PointY="2.1151432291666659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
