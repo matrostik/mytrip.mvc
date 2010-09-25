@@ -112,7 +112,9 @@ namespace Mytrip.Articles.Helpers
                 {
                     TagBuilder CreateCategoryP = new TagBuilder("div");
                     TagBuilder CreateCategory = new TagBuilder("a");
-                    CreateCategory.MergeAttribute("href", "/Article/CreateCategory/0/Articles");
+                    CreateCategory.MergeAttribute("href", "#");
+                    CreateCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
+                    CreateCategory.MergeAttribute("rel", "0_true_true_false_false");
                     CreateCategory.InnerHtml = ArticleLanguage.add_category + " " + img.ToString();
                     CreateCategoryP.InnerHtml = CreateCategory.ToString();
                     result.AppendLine(CreateCategoryP.ToString());
@@ -121,7 +123,12 @@ namespace Mytrip.Articles.Helpers
                 {
                     TagBuilder CreateSubCategoryP = new TagBuilder("div");
                     TagBuilder CreateSubCategory = new TagBuilder("a");
-                    CreateSubCategory.MergeAttribute("href", "/Article/CreateCategory/" + id + "/" + category.Path);
+                    CreateSubCategory.MergeAttribute("href", "#");
+                    CreateSubCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
+                    if (category.AllCulture)
+                        CreateSubCategory.MergeAttribute("rel", category.CategoryId + "_false_true_false_false");
+                    else
+                        CreateSubCategory.MergeAttribute("rel", category.CategoryId + "_false_false_false_false");
                     CreateSubCategory.InnerHtml = ArticleLanguage.add_subcategory + " " + img.ToString();
                     CreateSubCategoryP.InnerHtml = CreateSubCategory.ToString();
                     result.AppendLine(CreateSubCategoryP.ToString());
@@ -142,7 +149,9 @@ namespace Mytrip.Articles.Helpers
                 {
                     TagBuilder CreateSubCategoryP = new TagBuilder("div");
                     TagBuilder CreateSubCategory = new TagBuilder("a");
-                    CreateSubCategory.MergeAttribute("href", "/Article/CreateCategory/" + id + "/" + category.Path);
+                    CreateSubCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
+                    CreateSubCategory.MergeAttribute("rel", category.CategoryId + "_false_false_false_false");
+                    CreateSubCategory.MergeAttribute("href", "#");
                     CreateSubCategory.InnerHtml = ArticleLanguage.add_topic + " " + img.ToString();
                     CreateSubCategoryP.InnerHtml = CreateSubCategory.ToString();
                     result.AppendLine(CreateSubCategoryP.ToString());
@@ -160,7 +169,7 @@ namespace Mytrip.Articles.Helpers
             return new HtmlString(result.ToString());
         }
 
-        public static HtmlString EditDeleteCategory(this HtmlHelper html, bool ShowEditDelete, bool ShowEditDeleteBlog, int id, string path)
+        public static HtmlString EditDeleteCategory(this HtmlHelper html, bool ShowEditDelete, int id, string path)
         {
             var obj = new Object();
             if (path.StartsWith("(Tag)"))
@@ -175,12 +184,38 @@ namespace Mytrip.Articles.Helpers
             }
 
             StringBuilder result = new StringBuilder();
-            if (ShowEditDelete || ShowEditDeleteBlog)
+            if (ShowEditDelete)
             {
                 if (isUserHasRights(obj, false))
                 {
-                    string a = GeneralMethods.ImgInput("/images/edite.png", "/Article/EditCategory/" + id + "/" + path, "rename", 14) +
-                      " " + GeneralMethods.ImgInput("/images/delete.png", "/Article/DeleteCategory/" + id + "/" + path, "delete", 14);
+                    string a = "";
+                    if (obj is mytrip_articlescategory)
+                    {
+                        var cat = obj as mytrip_articlescategory;
+                        string rel = id + "_";
+                        if (cat.Blog || cat.SubCategoryId != 0)
+                            rel += "false_";
+                        else
+                            rel += "true_";
+                        if (!LocalisationSetting.unlockAllCulture() || cat.Blog || (cat.SubCategoryId != 0 && !cat.mytrip_articlescategory2.AllCulture))
+                            rel += "false_";
+                        else
+                            rel += "true_";
+                        rel += cat.SeparateBlock.ToString().ToLower() + "_" + cat.AllCulture.ToString().ToLower();
+                        a += GeneralMethods.ImageLink("editCat_" + cat.CategoryId, ""
+                            + cat.Path, ArticleLanguage.edit, cat.Title, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
+                            + cat.CategoryId, "/Article/DeleteCategory/" + cat.CategoryId + "/"
+                            + cat.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
+                    }
+                    else
+                    {
+                        var tag = obj as mytrip_articlestag;
+                        string rel = id + "_false_false_false_false";
+                        a += GeneralMethods.ImageLink("editCat_" + tag.TagId, ""
+                            + tag.Path, ArticleLanguage.edit, tag.TagName, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
+                            + tag.TagId, "/Article/DeleteCategory/" + tag.TagId + "/"
+                            + tag.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
+                    }
                     result.AppendLine(a);
                 }
             }
@@ -190,7 +225,7 @@ namespace Mytrip.Articles.Helpers
         public static HtmlString ParrentCategory(this HtmlHelper html, mytrip_articlescategory parentCat, string path)
         {
             StringBuilder result = new StringBuilder();
-            if (parentCat.CategoryId != -1 && parentCat.Path != path)
+            if (parentCat.CategoryId != -1 && parentCat.SubCategoryId==0&&parentCat.Path!=path)
             {
                 TagBuilder h2 = new TagBuilder("h2");
                 h2.AddCssClass("title");
@@ -214,7 +249,11 @@ namespace Mytrip.Articles.Helpers
                 tr.MergeAttribute("style", "border:0px;");
                 TagBuilder td = new TagBuilder("td");
                 td.MergeAttribute("style", "border:0px;");
-                result.AppendLine("<div style='position: relative; float: right'>" + AvatarHelper.Avatar(html, parentCat.UserEmail) + "</div>");
+                TagBuilder divGravatar = new TagBuilder("a");
+                divGravatar.MergeAttribute("href", "/Home/Profile/" + parentCat.UserName);
+                divGravatar.MergeAttribute("title", ArticleLanguage.view_user_profile);
+                divGravatar.InnerHtml = AvatarHelper.Avatar(html, parentCat.UserEmail).ToString();
+                result.AppendLine("<div style='position: relative; float: right'>" + divGravatar + "</div>");
                 TagBuilder profile = new TagBuilder("a");
                 profile.MergeAttribute("href", "/Home/Profile/" + parentCat.UserName);
                 profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
@@ -339,19 +378,21 @@ namespace Mytrip.Articles.Helpers
                     td_first.AddCssClass("artcontent");
                     if (isUserHasRights(category, false))
                     {
-                        string a = GeneralMethods.ImgInput("/images/edite.png", "/Article/EditCategory/" + category.CategoryId + "/" + category.Path, "rename", 14) +
-                      " " + GeneralMethods.ImgInput("/images/delete.png", "/Article/DeleteCategory/" + category.CategoryId + "/" + category.Path, "delete", 14);
-                        td_first.InnerHtml = a + " ";
+                        td_first.InnerHtml = GeneralMethods.ImageLink("editCat_" + category.CategoryId, "#"
+                            + category.Path, ArticleLanguage.edit, category.Title, category.CategoryId + "_false_false_false_false", "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
+                            + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"
+                            + category.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14) + " ";
                     }
                     TagBuilder a_category = new TagBuilder("a");
                     a_category.MergeAttribute("href", "/Article/Index/1/10/" + category.CategoryId + "/" + category.Path);
                     a_category.InnerHtml = category.Title;
                     td_first.InnerHtml += a_category.ToString();
-                    string avatar = AvatarHelper.Avatar(html, category.UserEmail).ToString();
-                    string avatar2 = string.Empty;
-                    if (!String.IsNullOrEmpty(avatar))
-                        avatar2 = "<div class=\"right\">" + avatar + "</div>";
-                    td_first.InnerHtml = avatar2 + "<h3 class=\"hometitle\">" + td_first.InnerHtml + "</h3>";
+
+                    TagBuilder divGravatar = new TagBuilder("a");
+                    divGravatar.MergeAttribute("href", "/Home/Profile/" + category.UserName);
+                    divGravatar.MergeAttribute("title", ArticleLanguage.view_user_profile);
+                    divGravatar.InnerHtml = AvatarHelper.Avatar(html, category.UserEmail).ToString();
+                    td_first.InnerHtml = "<div class=\"right\">" + divGravatar + "</div>" + "<h3 class=\"hometitle\">" + td_first.InnerHtml + "</h3>";
                     TagBuilder profile = new TagBuilder("a");
                     profile.MergeAttribute("href", "/Home/Profile/" + category.UserName);
                     profile.MergeAttribute("title", ArticleLanguage.view_user_profile);
@@ -371,36 +412,52 @@ namespace Mytrip.Articles.Helpers
                 }
                 else
                 {
+                    #region представление для статей
                     TagBuilder h4 = new TagBuilder("b");
                     h4.AddCssClass("title");
                     if (isUserHasRights(category, false) || (category.mytrip_articlescategory2.Blog && isUserHasRights(category, false)))
                     {
-                        string a = GeneralMethods.ImgInput("/images/edite.png", "/Article/EditCategory/" + category.CategoryId + "/" + category.Path, "edit", 14) +
-                     " " + GeneralMethods.ImgInput("/images/delete.png", "/Article/DeleteCategory/" + category.CategoryId + "/" + category.Path, "delete", 14);
+                        //rel="catId_showMenu_showLang_checkMenu_checkLang"
+                        string rel = category.CategoryId + "_";
+                        if (category.Blog || category.SubCategoryId != 0)
+                            rel += "false_";
+                        else
+                            rel += "true_";
+                        if (!LocalisationSetting.unlockAllCulture() || category.Blog || (category.SubCategoryId != 0 && !category.mytrip_articlescategory2.AllCulture))
+                            rel += "false_";
+                        else
+                            rel += "true_";
+                        rel += category.SeparateBlock.ToString().ToLower() + "_" + category.AllCulture.ToString().ToLower();
+                        string a = GeneralMethods.ImageLink("editCat_" + category.CategoryId, "#"
+                            + category.Path, ArticleLanguage.edit, category.Title, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
+                            + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"
+                            + category.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
 
                         h4.InnerHtml = a + " ";
+                    #endregion
                     }
                     TagBuilder a_category = new TagBuilder("a");
                     a_category.MergeAttribute("href", "/Article/Index/1/10/" + category.CategoryId + "/" + category.Path);
                     if (category.mytrip_articlescategory2.Blog)
                     {
-                        a_category.InnerHtml = "<br/>Topic: " + category.Title;
-                        h4.InnerHtml += a_category.ToString();
-                        string blogdetails = "<br/><span>" + ArticleLanguage.create_date + ": " + string.Format("{0:dd MMMM yyyy}", category.CreateDate) +
-                            ", " + ArticleLanguage.views + ": " + category.Views + "," + ArticleLanguage.posts + ": " + count + "</span>";
-                        h4.InnerHtml += blogdetails;
+                        a_category.InnerHtml = "Topic: " + category.Title;
+                        h4.InnerHtml += a_category.ToString() + "<br/><span>" + ArticleLanguage.create_date + ": " + string.Format("{0:dd MMMM yyyy}", category.CreateDate) +
+                            ", " + ArticleLanguage.views + ": " + category.Views + "," + ArticleLanguage.posts + ": " + count + "</span><br/>";
+                        result.AppendLine(h4.ToString());
                     }
                     else
                     {
                         a_category.InnerHtml = category.Title;
                         h4.InnerHtml += a_category.ToString();
+                        if (_start)
+                        {
+                            result.AppendLine(h4.ToString());
+                            _start = false;
+                        }
+                        else
+                            result.AppendLine(" | " + h4.ToString());
                     }
-                    if (_start)
-                    {
-                        result.AppendLine(h4.ToString());
-                        _start = false;
-                    }
-                    else { result.AppendLine(" | " + h4.ToString()); }
+
                 }
             }
             return new HtmlString(result.ToString());

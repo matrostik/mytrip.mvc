@@ -105,11 +105,12 @@ function getScrollY() {
 </div>
 @Html.HiddenFor(model => model.User)
 @Html.HiddenFor(model => model.Data)
+@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
+@Html.MytripButton(CoreLanguage.save, true, "enter","right")     
 		}
 </td></tr></table>
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
-@Html.MytripButton(CoreLanguage.save, true, "enter","right")      
+ 
 </div>
 </div> 
 </div>

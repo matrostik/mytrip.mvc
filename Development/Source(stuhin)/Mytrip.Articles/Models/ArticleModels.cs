@@ -40,7 +40,6 @@ namespace Mytrip.Articles.Models
         public bool ShowAddCategory { get; set; }
         public bool ShowAddSubCategory { get; set; }
         public bool ShowEditDelete { get; set; }
-        public bool ShowEditDeleteBlog { get; set; }
         public bool ShowAddArticle { get; set; }
         public bool ShowAddBlog { get; set; }
         public bool ShowAddPost { get; set; }
@@ -49,13 +48,6 @@ namespace Mytrip.Articles.Models
         public bool ShowDetailsBlog { get; set; }
         public int Total { get; set; }
         public int DefaultCount { get; set; }
-        [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
-        [RegularExpression("^(.){3,255}$", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "data_lenght_3_255")]
-        public string Title { get; set; }
-        public bool SeparateBlock { get; set; }
-        public bool AllCulture { get; set; }
-        public string ShowSeparateBlock { get; set; }
-        public string ShowAllCulture { get; set; }
     }
     [MetadataType(typeof(ArticleViewModel))]
     public class ArticleViewModel

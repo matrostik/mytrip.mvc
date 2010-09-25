@@ -13,7 +13,7 @@
     View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
 }
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Mytrip.Mvc.Delete.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,Page/Article.Index.js")
 }
 @section contentSmall{
 @Html.Partial("_sideBar") 
@@ -25,7 +25,7 @@
 </div>
 @Html.ParrentCategory(Model.ParentCategory,Model.Path)
 <h3 class="title">
-@Html.EditDeleteCategory(Model.ShowEditDelete,Model.ShowEditDeleteBlog,Model.CategoryId,Model.Path)
+@Html.EditDeleteCategory(Model.ShowEditDelete,Model.CategoryId,Model.Path)
 @Model.PageTitle
 @Html.ArticleRssLink(Model.PageTitle,Model.Path, Model.CategoryId, 14)
 </h3></td></tr></table>
@@ -73,7 +73,7 @@ foreach (var article in Model.Articles){
 }
 @Html.MytripPager(Model.DefaultCount,Model.Total,"...")
 } 
-<div id="delete" class="window"> 
+<div id="deleteModal" class="window"> 
 <div class="modalTC">@CoreLanguage.delete</div>
 <div class="modalC">
 <table class="leftmidle"><tr><td>
@@ -88,23 +88,28 @@ foreach (var article in Model.Articles){
 </div> 
 </div>
 
-<div id="edit" class="window"> 
-<div class="modalTC">@ArticleLanguage.edit</div>
+<div id="editModal" class="window"> 
+<div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
+@ArticleLanguage.edit</div>
 <div class="modalC">
 <table class="leftmidle"><tr><td>
-@Html.MytripImage("/images/warning.png","warning","i")
+
 </td><td>
-@Html.TextBoxFor(model => model.Title)
-<div class="editor-label">
-@Html.CheckBoxFor(model => model.SeparateBlock)
+@Html.MytripLabelFor("Title", ArticleLanguage.name)
+@Html.TextBox("catTitle")
+<span class="field-validation-valid" id="Title_Error"></span>
+@Html.Hidden("editId")
+@Html.HiddenFor(model => model.Path)
+<div id="showMenu">
+@Html.CheckBox("SeparateBlock")
 @Html.MytripLabelFor("SeparateBlock", ArticleLanguage.add_to_menu)
-</br>
-@Html.CheckBoxFor(model => model.AllCulture)
+</div><div id="showLang">
+@Html.CheckBox("AllCulture")
 @Html.MytripLabelFor("AllCulture", ArticleLanguage.display_all_lang)
 </div></td></tr></table>  
 <div class="button">
 @Html.MytripButton(CoreLanguage.cancel, true, "close","right")
-@Html.MytripButton(CoreLanguage.create, false, "enter","right")     
+@Html.MytripButton("   "+CoreLanguage.ok+"   ", false, "edit","right")   
 </div>
 </div> 
 </div>     

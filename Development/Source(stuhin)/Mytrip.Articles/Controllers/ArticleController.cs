@@ -109,7 +109,6 @@ namespace Mytrip.Articles.Controllers
             model.ShowAddSubCategory = true;
             model.ShowAddArticle = true;
             model.ShowEditDelete = true;
-            model.ShowEditDeleteBlog = false;
             model.ShowAddBlog = false;
             model.ShowAddPost = false;
             model.ShowDetailsBlog = false;
@@ -198,10 +197,9 @@ namespace Mytrip.Articles.Controllers
                     if (mc.Blog)
                     {
                         model.ShowDetailsBlog = true;
-                        model.ShowEditDelete = false;
+                        model.ShowEditDelete = true;
                         model.ShowAddCategory = false;
                         model.ShowAddArticle = false;
-                        model.ShowEditDeleteBlog = true;
                         model.ShowAddPost = true;
                         articleRepo.category.BlogViewsIncrease(id3);
                     }
@@ -214,11 +212,10 @@ namespace Mytrip.Articles.Controllers
                 else if (mc.Blog)
                 {
                     model.ShowDetailsBlog = true;
-                    model.ShowEditDelete = false;
+                    model.ShowEditDelete = true;
                     model.ShowAddCategory = false;
                     model.ShowAddSubCategory = false;
                     model.ShowAddArticle = false;
-                    model.ShowEditDeleteBlog = true;
                     model.ShowAddBlog = true;
                     model.ShowAddPost = true;
                     model.ParentCategory = articleRepo.category.GetCategory(id3);
@@ -227,12 +224,12 @@ namespace Mytrip.Articles.Controllers
             }
             model.Total = total;
             model.DefaultCount = 10;
-            model.Path = id4;
+            model.Path = mc.Path;
             model.CategoryId = id3;
             return View(model);
         }
         [HttpPost]
-        public ActionResult Index(string search, string url)
+        public ActionResult Search(ArticleIndexModel model, string search, string url)
         {
             if (search != string.Empty)
             {
@@ -242,70 +239,101 @@ namespace Mytrip.Articles.Controllers
             else
                 return Redirect(url);
         }
+        [HttpPost]
+        public ActionResult Category(int id, string path, string title, bool menu, bool allculture)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                return Content(ArticleLanguage.title_empty);
+            }
+            else if (title.Length < 3 || title.Length > 255)
+                return Content(ArticleLanguage.title_lenght_5_255);
+            else
+            {
+                if (path == "CreateCategory")
+                {
+                    if (id == 0)
+                        articleRepo.category.CreateСategory(title, menu, allculture, LocalisationSetting.culture());
+                    else
+                        articleRepo.category.CreateSubCategory(title, id, allculture);
+                    return Content(string.Empty);
+                }
+                else if (path.StartsWith("(Tag)")||path=="Tags")
+                {
+                    articleRepo.article.UpdateTag(id, title);
+                    return Content(string.Empty);
+                }
+                else
+                {
+                    articleRepo.category.UpdateCategory(id, title, menu, allculture);
+                    return Content(string.Empty);
+                }
+            }
+        }
         #endregion
 
         #region Category and Tags Actions
         // ******************************************
         // URL: /Article/CreateCategory/CategoryId/Param
         // * создать рубрику, подрубрику или тему блога *
-        [Authorize]
-        public ActionResult CreateCategory(int id, string id2)
-        {
-            mytrip_articlescategory category = articleRepo.category.GetCategory(id);
-            if (!userHasRights(category, true))
-                return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
-            CategoryModel model = new CategoryModel();
-            model.Path = id2;
-            model.CategoryId = id;
-            if (id != 0)
-            {
-                string title = category.Title;
-                if (!LocalisationSetting.unlockAllCulture() || (LocalisationSetting.unlockAllCulture() && !category.AllCulture))
-                    model.ShowAllCulture = "none";
-                model.ShowSeparateBlock = "none";
-                if (category.Blog)
-                    model.PageTitle = ArticleLanguage.create_topic_for + " " + title;
-                else
-                    model.PageTitle = ArticleLanguage.create_subcategory_for + " " + title;
-            }
-            else
-            {
-                if (!LocalisationSetting.unlockAllCulture())
-                    model.ShowAllCulture = "none";
-                model.PageTitle = ArticleLanguage.create_new_category;
-            }
-            return View(model);
-        }
-        [HttpPost]
-        [Authorize]
-        public ActionResult CreateCategory(CategoryModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                mytrip_articlescategory mac;
-                if (model.CategoryId != 0)
-                {
-                    mac = articleRepo.category.CreateSubCategory(model.Title, model.CategoryId, model.AllCulture);
-                    model.Path = mac.Path;
-                    model.CategoryId = mac.SubCategoryId;
-                }
-                else
-                {
-                    mac = articleRepo.category.CreateСategory(model.Title, model.SeparateBlock, model.AllCulture, LocalisationSetting.culture());
-                    if (model.SeparateBlock)
-                    {
-                        model.Path = mac.Path;
-                        model.CategoryId = mac.CategoryId;
-                    }
-                    else
-                        model.Path = "Articles";
-                }
+        //[Authorize]
+        //public ActionResult CreateCategory(int id, string id2)
+        //{
+        //    mytrip_articlescategory category = articleRepo.category.GetCategory(id);
+        //    if (!userHasRights(category, true))
+        //        return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
+        //    CategoryModel model = new CategoryModel();
+        //    model.Path = id2;
+        //    model.CategoryId = id;
+        //    if (id != 0)
+        //    {
+        //        string title = category.Title;
+        //        if (!LocalisationSetting.unlockAllCulture() || (LocalisationSetting.unlockAllCulture() && !category.AllCulture))
+        //            model.ShowAllCulture = "none";
+        //        model.ShowSeparateBlock = "none";
+        //        if (category.Blog)
+        //            model.PageTitle = ArticleLanguage.create_topic_for + " " + title;
+        //        else
+        //            model.PageTitle = ArticleLanguage.create_subcategory_for + " " + title;
+        //    }
+        //    else
+        //    {
+        //        if (!LocalisationSetting.unlockAllCulture())
+        //            model.ShowAllCulture = "none";
+        //        model.PageTitle = ArticleLanguage.create_new_category;
+        //    }
+        //    return View(model);
+        //}
+        //[HttpPost]
+        //[Authorize]
+        //public ActionResult CreateCategory(CategoryModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        mytrip_articlescategory mac;
+        //        if (model.CategoryId != 0)
+        //        {
+        //            mac = articleRepo.category.CreateSubCategory(model.Title, model.CategoryId, model.AllCulture);
+        //            model.Path = mac.Path;
+        //            model.CategoryId = mac.SubCategoryId;
+        //        }
+        //        else
+        //        {
+        //            mac = articleRepo.category.CreateСategory(model.Title, model.SeparateBlock, model.AllCulture, LocalisationSetting.culture());
+        //            if (model.SeparateBlock)
+        //            {
+        //                model.Path = mac.Path;
+        //                model.CategoryId = mac.CategoryId;
+        //            }
+        //            else
+        //                model.Path = "Articles";
+        //        }
 
-                return RedirectToAction("Index", new { id = 1, id2 = 10, id3 = model.CategoryId, id4 = model.Path });
-            }
-            model.PageTitle = ArticleLanguage.create_category;
-            return View(model);
-        }
+        //        return RedirectToAction("Index", new { id = 1, id2 = 10, id3 = model.CategoryId, id4 = model.Path });
+        //    }
+        //    model.PageTitle = ArticleLanguage.create_category;
+        //    return View(model);
+        //}
 
         // ****************************************
         // URL: /Article/CreateBlog
@@ -331,91 +359,91 @@ namespace Mytrip.Articles.Controllers
         // ********************************************
         // URL: /Article/EditCategory/categoryId/Path
         // * редактировать рубрику, подрубрику или тему блога *
-        [Authorize]
-        public ActionResult EditCategory(int id, string id2, string id3)
-        {
-            CategoryModel model = new CategoryModel();
-            model.CategoryId = id;
-            if (!id2.StartsWith("(Tag)"))
-            {
-                mytrip_articlescategory mc = articleRepo.category.GetCategory(id);
-                if (!userHasRights(mc, false))
-                    return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
-                model.Title = mc.Title;
-                model.AllCulture = mc.AllCulture;
-                model.SeparateBlock = mc.SeparateBlock;
-                if (!LocalisationSetting.unlockAllCulture())
-                    model.ShowAllCulture = "none";
-                if (mc.Blog || mc.SubCategoryId != 0)
-                {
-                    model.ShowSeparateBlock = "none";
-                    if (!mc.mytrip_articlescategory2.AllCulture)
-                        model.ShowAllCulture = "none";
-                }
-                model.PageTitle = ArticleLanguage.edit + " " + mc.Title;
+        //[Authorize]
+        //public ActionResult EditCategory(int id, string id2, string id3)
+        //{
+        //    CategoryModel model = new CategoryModel();
+        //    model.CategoryId = id;
+        //    if (!id2.StartsWith("(Tag)"))
+        //    {
+        //        mytrip_articlescategory mc = articleRepo.category.GetCategory(id);
+        //        if (!userHasRights(mc, false))
+        //            return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
+        //        model.Title = mc.Title;
+        //        model.AllCulture = mc.AllCulture;
+        //        model.SeparateBlock = mc.SeparateBlock;
+        //        if (!LocalisationSetting.unlockAllCulture())
+        //            model.ShowAllCulture = "none";
+        //        if (mc.Blog || mc.SubCategoryId != 0)
+        //        {
+        //            model.ShowSeparateBlock = "none";
+        //            if (!mc.mytrip_articlescategory2.AllCulture)
+        //                model.ShowAllCulture = "none";
+        //        }
+        //        model.PageTitle = ArticleLanguage.edit + " " + mc.Title;
 
-                if (id2 == "Archive")
-                {
-                    model.Url = id3.Replace("(x)", "/");
-                    model.Path = id2;
-                }
-                else
-                {
-                    model.Url = Url.Action("Index", new { id = 1, id2 = 10, id3 = mc.CategoryId, id4 = mc.Path });
-                    model.Path = mc.Path;
-                }
-            }
-            else
-            {
-                mytrip_articlestag tag = articleRepo.article.GetTag(id);
-                if (!userHasRights(tag, false))
-                    return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
-                model.Title = tag.TagName;
-                model.ShowSeparateBlock = "none";
-                model.ShowAllCulture = "none";
-                model.PageTitle = ArticleLanguage.edit_tag + " " + tag.TagName;
+        //        if (id2 == "Archive")
+        //        {
+        //            model.Url = id3.Replace("(x)", "/");
+        //            model.Path = id2;
+        //        }
+        //        else
+        //        {
+        //            model.Url = Url.Action("Index", new { id = 1, id2 = 10, id3 = mc.CategoryId, id4 = mc.Path });
+        //            model.Path = mc.Path;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        mytrip_articlestag tag = articleRepo.article.GetTag(id);
+        //        if (!userHasRights(tag, false))
+        //            return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
+        //        model.Title = tag.TagName;
+        //        model.ShowSeparateBlock = "none";
+        //        model.ShowAllCulture = "none";
+        //        model.PageTitle = ArticleLanguage.edit_tag + " " + tag.TagName;
 
-                if (id2.EndsWith("Archive"))
-                {
-                    model.Url = id3.Replace("(x)", "/");
-                    model.Path = id2;
-                }
-                else
-                    model.Path = tag.Path;
-            }
-            return View(model);
-        }
-        [HttpPost]
-        [Authorize]
-        public ActionResult EditCategory(CategoryModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (model.Path == "Blogs")
-                    articleRepo.category.UpdateBlog(model.CategoryId, model.Title);
-                else if (model.Path.StartsWith("(Tag)"))
-                    articleRepo.article.UpdateTag(model.CategoryId, model.Title);
-                else
-                    articleRepo.category.UpdateCategory(model.CategoryId, model.Title, model.SeparateBlock, model.AllCulture);
-                if (model.Path.EndsWith("Archive"))
-                    return Redirect(model.Url.Replace("(x)", "/"));
-                else
-                    return RedirectToAction("Index", new { id = 1, id2 = 10, id3 = model.CategoryId, id4 = model.Path });
-            }
-            if (model.Path.StartsWith("(Tag)"))
-            {
-                model.PageTitle = ArticleLanguage.edit_tag;
-                model.ShowSeparateBlock = "none";
-                model.ShowAllCulture = "none";
-            }
-            else
-            {
-                if (!LocalisationSetting.unlockAllCulture())
-                    model.ShowAllCulture = "none";
-                model.PageTitle = ArticleLanguage.edit_category;
-            }
-            return View(model);
-        }
+        //        if (id2.EndsWith("Archive"))
+        //        {
+        //            model.Url = id3.Replace("(x)", "/");
+        //            model.Path = id2;
+        //        }
+        //        else
+        //            model.Path = tag.Path;
+        //    }
+        //    return View(model);
+        //}
+        //[HttpPost]
+        //[Authorize]
+        //public ActionResult EditCategory(CategoryModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (model.Path == "Blogs")
+        //            articleRepo.category.UpdateBlog(model.CategoryId, model.Title);
+        //        else if (model.Path.StartsWith("(Tag)"))
+        //            articleRepo.article.UpdateTag(model.CategoryId, model.Title);
+        //        else
+        //            articleRepo.category.UpdateCategory(model.CategoryId, model.Title, model.SeparateBlock, model.AllCulture);
+        //        if (model.Path.EndsWith("Archive"))
+        //            return Redirect(model.Url.Replace("(x)", "/"));
+        //        else
+        //            return RedirectToAction("Index", new { id = 1, id2 = 10, id3 = model.CategoryId, id4 = model.Path });
+        //    }
+        //    if (model.Path.StartsWith("(Tag)"))
+        //    {
+        //        model.PageTitle = ArticleLanguage.edit_tag;
+        //        model.ShowSeparateBlock = "none";
+        //        model.ShowAllCulture = "none";
+        //    }
+        //    else
+        //    {
+        //        if (!LocalisationSetting.unlockAllCulture())
+        //            model.ShowAllCulture = "none";
+        //        model.PageTitle = ArticleLanguage.edit_category;
+        //    }
+        //    return View(model);
+        //}
         // **********************************************
         // URL: /Article/DeleteCategory/id/Path/
         // *****  удалить рубрику или подрубрику  *******
@@ -828,6 +856,8 @@ namespace Mytrip.Articles.Controllers
             model.PageTitle = ArticleLanguage.edit_comment;
             if (comment.mytrip_articles.ModerateComments)
                 model.CommentApproved = userHasRights(comment.mytrip_articles, false);
+            else
+                model.CommentApproved = true;
             if (id3 == "Archive")
             {
                 model.Path = id3;
@@ -858,7 +888,7 @@ namespace Mytrip.Articles.Controllers
 
                     //письмо модеру о редактировании коммента
                     MailMessage msg = new MailMessage();
-                    msg.To.Add(email);//msg.To.Add("matros@013net.net,matrostik@gmail.com");
+                    msg.To.Add(email);
                     msg.From = new MailAddress(EmailSetting.from_email(), string.Format(CoreSetting.NameTitlePage(), domain));
                     msg.Subject = string.Format(CoreSetting.NameTitlePage(), ArticleLanguage.new_comment);
                     msg.Body = string.Format(ArticleLanguage.email_commentmoderate, comment.mytrip_articles.UserName, articlelink
@@ -908,7 +938,7 @@ namespace Mytrip.Articles.Controllers
                     if (!string.IsNullOrEmpty(email) && item.UserName != comment.UserName)
                     {
                         MailMessage msg = new MailMessage();
-                        msg.To.Add(email);//msg.To.Add("matros@013net.net,matrostik@gmail.com");
+                        msg.To.Add(email);
                         msg.From = new MailAddress(EmailSetting.from_email(), string.Format(CoreSetting.NameTitlePage(), domain));
                         msg.Subject = string.Format(CoreSetting.NameTitlePage(), ArticleLanguage.new_comment);
                         msg.Body = string.Format(ArticleLanguage.email_commentupdates, item.UserName, articlelink
@@ -1018,7 +1048,7 @@ namespace Mytrip.Articles.Controllers
                     result += ArticleLanguage.views + ": " + cat.Views + "<br/> ";
                 else
                     result += ArticleLanguage.all_languages + ": " + BoolConvert(cat.AllCulture) + "<br/> "
-                    + ArticleLanguage.menu+": " + BoolConvert(cat.SeparateBlock) + "<br/> ";
+                    + ArticleLanguage.menu + ": " + BoolConvert(cat.SeparateBlock) + "<br/> ";
                 if (cat.SubCategoryId == 0)
                 {
                     int ctr = cat.mytrip_articles.Count;

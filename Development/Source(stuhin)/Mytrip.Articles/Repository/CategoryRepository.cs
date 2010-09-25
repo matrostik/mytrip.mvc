@@ -530,7 +530,7 @@ namespace Mytrip.Articles.Repository
         public void UpdateCategory(int categoryId, string title, bool separateBlock, bool allCulture)
         {
             mytrip_articlescategory c = GetCategory(categoryId);
-            if (c.SubCategoryId == 0 && c.AllCulture != allCulture && c.AllCulture == true)
+            if (c.SubCategoryId == 0&&!allCulture && c.AllCulture != allCulture && c.AllCulture == true)
             {
                 foreach (var art in c.mytrip_articles)
                 {
