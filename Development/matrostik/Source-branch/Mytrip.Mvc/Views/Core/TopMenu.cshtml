@@ -1,0 +1,96 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.HomePageModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(CoreLanguage.topmenu_setting, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(CoreLanguage.topmenu_setting, ",");
+    View.Description=Html.MytripPageTitle(CoreLanguage.topmenu_setting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("Page/Core.TopMenu.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.topmenu_setting</h1>
+* @CoreLanguage.topmenu_setting. @CoreLanguage.menu_setting_desc 
+<table id="content" class="content">
+<tr>
+<td class="first1" style="width: 70%;"></td>
+<td class="last1" style="width: 30%;"></td>
+</tr><tr>
+<td class="first2">
+<h3 class="hometitle">@CoreLanguage.display_in_menu</h3>
+</td>
+<td class="last2">
+<h3 class="hometitle">@CoreLanguage.available_menuitems</h3>
+</td></tr><tr>
+<td class="first3"></td>
+<td class="last3"></td>
+</tr><tr>
+<td class="first1"></td>
+<td class="last1"></td>
+</tr><tr>
+<td id="left" class="first2"><div class="last"></div>
+@foreach (var item in Model.HomeItems){
+<div id="@item.Index"><div class="last"></div>
+<div class="dark">
+<table class="noborders">
+<tr><td> 
+<span>
+@Html.MytripImageLink("addremove"+item.Index,"#","/images/rightarrow_blue.png",CoreLanguage.remove,"img16")
+</span>
+<span id="@("index"+item.Index)">@item.Index</span>
+<b>(@item.Culture)</b>
+<input id="@("assembly"+item.Index)"  type="hidden" value="@item.Assembly" />
+<label id="@("title"+item.Index)">@item.Name</label>
+<span id="@("sort"+item.Index)" class="right">
+@Html.MytripImageLink("up"+item.Index,"#","/images/uparrow_blue.png",CoreLanguage.up,"img16")
+@Html.MytripImageLink("down"+item.Index,"#","/images/downarrow_blue.png",CoreLanguage.down,"img16")
+</span>
+</td></tr>
+</table>
+</div>
+<div class="last"></div></div>
+} 
+<div class="last"></div>
+</td>
+<td id="right" class="last2"><div class="last"></div>
+@foreach (var newitem in Model.NewHomeItems){
+<div id="@newitem.Index"><div class="last"></div>
+<div class="dark">
+<table class="noborders">
+<tr><td> 
+<span>
+@Html.MytripImageLink("addremove"+newitem.Index,"#","/images/leftarrow_blue.png",CoreLanguage.add,"img16")
+</span>
+<span id="@("index"+newitem.Index)"></span>
+<b>(@newitem.Culture)</b>
+<input id="@("assembly"+newitem.Index)"  type="hidden" value="@newitem.Assembly" />
+<label id="@("title"+newitem.Index)">@newitem.Name</label>
+<span id="@("sort"+newitem.Index)" class="right" style="display: none;">
+@Html.MytripImageLink("up"+newitem.Index,"#","/images/uparrow_blue.png",CoreLanguage.up,"img16")
+@Html.MytripImageLink("down"+newitem.Index,"#","/images/downarrow_blue.png",CoreLanguage.down,"img16")
+</span>
+</td></tr>                    
+</table>
+</div>
+<div class="last"></div></div>
+} 
+<div class="last"></div>
+</td></tr>
+<tr>
+<td class="first3"></td>
+<td class="last3"></td>
+</tr>
+</table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"save","left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.Backtocontrolpanel, false,"left")
+<span id="result" style="padding-left:10px;"></span>
+</div>
+}

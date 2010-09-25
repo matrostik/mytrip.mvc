@@ -1,0 +1,20 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(CoreLanguage.Email, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(CoreLanguage.Email, ",");
+    View.Description=Html.MytripPageTitle(CoreLanguage.Email, ",");
+}
+@section content{
+<h1 class="title">@CoreLanguage.Email</h1>
+<fieldset>
+<p>@CoreLanguage.Email_account_body</p>
+</fieldset>
+}
