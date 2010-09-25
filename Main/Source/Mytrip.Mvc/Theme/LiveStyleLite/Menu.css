@@ -1,0 +1,29 @@
+﻿/*------------ACTIVE--------------------*/
+div.menuC.ac{background: url(images/menuback.png);border: 1px solid #FFB700;color: #1E395B;height: 24px;padding-top: 6px;padding-right:10px;padding-left:10px;} 
+div.menuC.ac a{color: #1E395B;text-decoration: none;}
+div.menuC.ac a:hover{color: #1E395B;text-decoration: none;}   
+div.menuCD.ac{background: url(images/menuback.png);border: 1px solid #FFB700;color: #1E395B;height: 24px;padding-top: 6px;padding-right:10px;padding-left:10px;} 
+div.menuCD.ac a{color: #1E395B;text-decoration: none;}
+div.menuCD.ac a:hover{color: #1E395B;text-decoration: none;}
+/*------------VISIBLE ac--------------------*/
+div.menuCV.ac{cursor: default;background: url(images/menuback.png);border: 1px solid #FFB700;color: #1E395B;height: 24px;padding-top: 6px;padding-right:10px;padding-left:10px;}   
+div.menuCV.ac a{cursor: default;color: #1E395B;text-decoration: none;}  
+div.menuCV.ac a:hover{cursor: default;color: #1E395B;text-decoration: none;}   
+div.menuCVD.ac{cursor: default;background: url(images/menuback.png);border: 1px solid #FFB700;color: #1E395B;height: 24px;padding-top: 6px;padding-right:10px;padding-left:10px;}   
+div.menuCVD.ac a{cursor: default;color: #1E395B;text-decoration: none;}
+div.menuCVD.ac a:hover{color: #1E395B;cursor: default;text-decoration: none;}
+/*-------------UL-LI------------------*/
+div.menuUL{position: absolute;z-index: 1000;display:none;
+                     background:#fff;top:34px;
+    border: 1px solid #767676;}
+div.menuUL div a{color: #1E395B;text-decoration: none;}
+div.menuUL div a:hover{color: #1E395B;text-decoration: none;}
+div.menuUL div{
+    border: 1px solid #fff;
+    margin: 2px;
+    padding: 3px 4px 3px 4px;
+    color: #1E395B;
+    white-space: nowrap;
+    
+}
+div.menuUL div:hover{background: url(images/menuback.png);background-repeat: repeat-x;border: 1px solid #FFB700;}
