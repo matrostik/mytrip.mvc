@@ -391,12 +391,10 @@ namespace Mytrip.Mvc.Settings
             {
                 url = string.Concat("/Theme/", ThemeSetting.theme(), url);
             }
-            StringBuilder result = new StringBuilder();
-            TagBuilder _result = new TagBuilder("img");
-            _result.MergeAttribute("src", url);
-            _result.MergeAttribute("alt", alt);
-            _result.AddCssClass(cssClass);
-            result.Append(_result.ToString());
+            TagBuilder result = new TagBuilder("img");
+            result.MergeAttribute("src", url);
+            result.MergeAttribute("alt", alt);
+            result.AddCssClass(cssClass);
             return result.ToString();
         }
 
@@ -411,12 +409,52 @@ namespace Mytrip.Mvc.Settings
             {
                 url = string.Concat("/Theme/", ThemeSetting.theme(), url);
             }
-            StringBuilder result = new StringBuilder();
-            TagBuilder _result = new TagBuilder("img");
-            _result.MergeAttribute("src", url);
-            _result.MergeAttribute("alt", alt);
-            result.Append(_result.ToString());
+            TagBuilder result = new TagBuilder("img");
+            result.MergeAttribute("src", url);
+            result.MergeAttribute("alt", alt);
             return result.ToString();
+        }
+
+        /// <summary>Изображение с ссылкой
+        /// </summary>
+        /// <param name="linkUrl"></param>
+        /// <param name="linkId"></param>
+        /// <param name="linkTitle"></param>
+        /// <param name="linkRel"></param>
+        /// <param name="imgSrc"></param>
+        /// <param name="imgAlt"></param>
+        /// <param name="imgWidth"></param>
+        /// <returns></returns>
+        public static string ImageLink(string linkId, string linkUrl, string linkTitle, string linkRel, string imgSrc, string imgAlt, int imgWidth)
+        {
+            return ImageLink(linkId, linkUrl, linkTitle, "", linkRel, imgSrc, imgAlt, imgWidth);
+        }
+        /// <summary>Изображение с ссылкой
+        /// </summary>
+        /// <param name="linkId"></param>
+        /// <param name="linkUrl"></param>
+        /// <param name="linkTitle"></param>
+        /// <param name="linkName"></param>
+        /// <param name="linkRel"></param>
+        /// <param name="imgSrc"></param>
+        /// <param name="imgAlt"></param>
+        /// <param name="imgHeight"></param>
+        /// <returns></returns>
+        public static string ImageLink(string linkId, string linkUrl, string linkTitle, string linkName, string linkRel, string imgSrc, string imgAlt, int imgHeight)
+        {
+            TagBuilder link = new TagBuilder("a");
+            link.MergeAttribute("href", linkUrl);
+            link.MergeAttribute("id", linkId);
+            link.MergeAttribute("title", linkTitle);
+            link.MergeAttribute("name", linkName);
+            if (!string.IsNullOrEmpty(linkName))
+                link.MergeAttribute("rel", linkRel);
+            TagBuilder img = new TagBuilder("img");
+            img.MergeAttribute("src", "/Theme/" + ThemeSetting.theme() + imgSrc);
+            img.MergeAttribute("alt", imgAlt);
+            img.MergeAttribute("style", "height:" + imgHeight + "px;");
+            link.InnerHtml = img.ToString();
+            return link.ToString();
         }
 
         /// <summary>
@@ -467,7 +505,7 @@ namespace Mytrip.Mvc.Settings
                 return string.Empty;
             TagBuilder img = new TagBuilder("img");
             img.MergeAttribute("src", string.Format("/Theme/{0}/images/globe.png", ThemeSetting.theme()));
-            img.MergeAttribute("style", "border-width:0px;width:"+width+"px");
+            img.MergeAttribute("style", "border-width:0px;width:" + width + "px");
             img.MergeAttribute("alt", title);
             img.MergeAttribute("title", title);
             return img.ToString();
@@ -480,7 +518,7 @@ namespace Mytrip.Mvc.Settings
         /// <returns></returns>
         public static string Keys(bool show, string title)
         {
-            return Keys(show,title,20);
+            return Keys(show, title, 20);
         }
         /// <summary>
         /// Изображение ключа
@@ -495,7 +533,7 @@ namespace Mytrip.Mvc.Settings
                 return string.Empty;
             TagBuilder img = new TagBuilder("img");
             img.MergeAttribute("src", string.Format("/Theme/{0}/images/Keys.png", ThemeSetting.theme()));
-            img.MergeAttribute("style", "border-width:0px;width:"+width+"px");
+            img.MergeAttribute("style", "border-width:0px;width:" + width + "px");
             img.MergeAttribute("alt", "for registered users");
             img.MergeAttribute("title", title);
             return img.ToString();

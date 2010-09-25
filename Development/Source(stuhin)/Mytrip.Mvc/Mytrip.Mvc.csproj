@@ -380,6 +380,7 @@
     <Content Include="Scripts\Page\Article.Create.js" />
     <Content Include="Scripts\Page\Article.Edit.js" />
     <Content Include="Scripts\Page\Article.EditComment.js" />
+    <Content Include="Scripts\Page\Article.Index.js" />
     <Content Include="Scripts\Page\Article.View.js" />
     <Content Include="Scripts\Page\Core.About.js" />
     <Content Include="Scripts\Page\Core.CorSideBar.js" />
@@ -933,6 +934,7 @@
       <LastGenOutput>UsersPocoModel.cs</LastGenOutput>
     </None>
     <None Include="Theme\BlueStyle\images\Blue.design" />
+    <None Include="Theme\BlueStyle\images\Thumbs.db" />
     <None Include="Theme\GreenStyle\images\Green.design" />
     <None Include="Theme\OrangeStyle\images\Orange.design" />
     <None Include="Views\Account\ChangePassword.cshtml" />

@@ -21,29 +21,13 @@
             openid = this.value;
             $(location).attr('href', openid);
         });
-        $("#enter").live("click", function () {
-            $(location).attr('href', openid);
-            $('div.mask, div.window').hide();
-        });
-        $("#close").live("click", function () {
+    $("#enter").live("click", function () {
+        $(location).attr('href', openid);
+        $('div.mask, div.window').hide();
+    });
+    $("#close").live("click", function () {
         $('div.mask,div.window').hide();
     });
-    $('input.edit').click(
-        function () {
-            openid = this.value;
-            var id = 'div.window#edit';
-            $(id).css({ width: (326 + 'px') });
-            var maskHeight = $(document).height();
-            var maskWidth = $(window).width();
-            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-            $('div.mask').show();
-            $('div.mask').fadeTo("fast", 0.1);
-            var winH = $(window).height();
-            var winW = $(window).width();
-            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-            $(id).css('left', winW / 2 - $(id).width() / 2);
-            $(id).slideDown('slow');
-        });
 });
 function getScrollY() {
     scrollY = 0;
