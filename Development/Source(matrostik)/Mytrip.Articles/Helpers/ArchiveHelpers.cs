@@ -621,7 +621,6 @@ namespace Mytrip.Articles.Helpers
             TagBuilder table = new TagBuilder("table");
             #region Header row
             TagBuilder tr1 = new TagBuilder("tr");
-            tr1.MergeAttribute("style", "border:0px;");
             TagBuilder th11 = new TagBuilder("th");
             th11.MergeAttribute("style", "text-align:center");
             tr1.InnerHtml = th11.ToString();
@@ -634,9 +633,9 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder div = new TagBuilder("div");
                 if (ctr % 2 == 0)
-                    div.MergeAttribute("style", "background-color:#F7F5F5;");
+                    div.AddCssClass("profile1");
                 else
-                    div.MergeAttribute("style", "background-color:#EDEBEB;");
+                    div.AddCssClass("profile2");
                 TagBuilder alink = new TagBuilder("a");
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
@@ -645,14 +644,16 @@ namespace Mytrip.Articles.Helpers
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
-                clink.MergeAttribute("href", LangLink(article.Culture, "/Article/Index/1/10/" + article.mytrip_articlescategory.CategoryId + "/" + article.mytrip_articlescategory.Path));
+                clink.MergeAttribute("href", LangLink(article.Culture, "/Article/Index/1/10/" + article.mytrip_articlescategory.CategoryId 
+                    + "/" + article.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + article.mytrip_articlescategory.CategoryId);
                 clink.AddCssClass("mtPopupTrigger");
                 //
                 clink.InnerHtml = article.mytrip_articlescategory.Title;
                 div.InnerHtml += "<b>" + alink + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
-                    + "</b> closed " + article.CloseDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink + " " + ArticleLanguage.added_by + " " + ProfileLink(article.UserName);
+                    + "</b> " + ArticleLanguage.closed + " " + article.CloseDate.ToString("dd MMMM yyyy HH:mm") + " " 
+                    + ArticleLanguage.in_the + " " + clink + " " + ArticleLanguage.added_by + " " + ProfileLink(article.UserName);
                 td21.InnerHtml += div;
                 ctr++;
             }
@@ -1770,9 +1771,9 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder div = new TagBuilder("div");
                 if (ctr % 2 == 0)
-                    div.MergeAttribute("style", "background-color:#F7F5F5;");
+                    div.AddCssClass("profile1");
                 else
-                    div.MergeAttribute("style", "background-color:#EDEBEB;");
+                    div.AddCssClass("profile2");
                 TagBuilder alink = new TagBuilder("a");
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
@@ -1781,14 +1782,16 @@ namespace Mytrip.Articles.Helpers
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
-                clink.MergeAttribute("href", LangLink(article.Culture, "/Article/Index/1/10/" + article.mytrip_articlescategory.CategoryId + "/" + article.mytrip_articlescategory.Path));
+                clink.MergeAttribute("href", LangLink(article.Culture, "/Article/Index/1/10/" + article.mytrip_articlescategory.CategoryId 
+                    + "/" + article.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + article.mytrip_articlescategory.CategoryId);
                 clink.AddCssClass("mtPopupTrigger");
                 //
                 clink.InnerHtml = article.mytrip_articlescategory.Title;
-                div.InnerHtml = EditDelete(article) + " <b>" + alink + " " + Keys(article.OnlyForRegisterUser, 14) + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
-                    + "</b><br/>" + article.CreateDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink + " " + ArticleLanguage.by + " " + ProfileLink(article.UserName);
+                div.InnerHtml = EditDelete(article) + " <b>" + alink + " " + Keys(article.OnlyForRegisterUser, 14) + " " + Globe(article.AllCulture, 14)
+                    + " " + Flag(article.Culture, 14) + "</b><br/>" + article.CreateDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the 
+                    + " " + clink + " " + ArticleLanguage.by + " " + ProfileLink(article.UserName);
                 accordionContent2.InnerHtml += div;
                 ctr++;
             }
@@ -1815,9 +1818,9 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder div = new TagBuilder("div");
                 if (ctr % 2 == 0)
-                    div.MergeAttribute("style", "background-color:#F7F5F5;");
+                    div.AddCssClass("profile1");
                 else
-                    div.MergeAttribute("style", "background-color:#EDEBEB;");
+                    div.AddCssClass("profile2");
                 TagBuilder link = new TagBuilder("a");
                 link.MergeAttribute("href", LangLink(category.Culture, "/Article/Index/1/10/" + category.CategoryId + "/" + category.Path));
                 // tooltip
