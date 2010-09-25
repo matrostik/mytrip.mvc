@@ -294,4 +294,10 @@
   <data name="mycarttitle" xml:space="preserve">
     <value>Моя корзина</value>
   </data>
+  <data name="foto" xml:space="preserve">
+    <value>Фотографии ({0})</value>
+  </data>
+  <data name="reviews" xml:space="preserve">
+    <value>Отзывы ({0})</value>
+  </data>
 </root>
