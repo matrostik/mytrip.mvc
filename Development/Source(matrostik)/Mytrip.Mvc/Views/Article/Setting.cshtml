@@ -1,0 +1,87 @@
+﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.ArticleSettingModel>
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(ArticleLanguage.article_setting, "/");
+    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+    View.Keywords=Html.MytripPageTitle(ArticleLanguage.article_setting, ",");
+    View.Description=Html.MytripPageTitle(ArticleLanguage.article_setting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.CheckedShow.js")
+}
+@section content{
+<h1 class="title">@ArticleLanguage.article_setting</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()) {
+<fieldset>       
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.articles)
+@Html.MytripLabelFor("articles",ArticleLanguage.unlock_articles)
+</div><div class="editor-field">
+@Html.CheckBoxFor(model => model.blogs)
+@Html.MytripLabelFor("blogs", ArticleLanguage.unlock_blogs)
+</div><div id="_integ" style="display: none">
+<div class="editor-label">
+@Html.MytripLabelFor("countCommentForBlogs", ArticleLanguage.countCommentForBlogs)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.countCommentForBlogs)
+@Html.ValidationMessageFor(model => model.countCommentForBlogs)
+</div></div>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.closecountCommentForBlogs, new { id = "integ" })
+@Html.MytripLabelFor("closecount", ArticleLanguage.closecountCommentForBlogs)
+</div><div class="editor-field">
+@Html.CheckBoxFor(model => model.viewInfoAuthorArticle)
+@Html.MytripLabelFor("viewInfoAuthorArticle", ArticleLanguage.viewInfoAuthorArticle)
+</div><div class="editor-field">
+@Html.CheckBoxFor(model => model.viewInfoViewsArticle)
+@Html.MytripLabelFor("viewInfoViewsArticle", ArticleLanguage.viewInfoViewsArticle)
+</div><div class="editor-field">
+@Html.CheckBoxFor(model => model.showRelatedLinks)
+@Html.MytripLabelFor("showRelatedLinks", ArticleLanguage.showRelatedLinks)
+</div><div class="editor-field">
+@Html.CheckBoxFor(model => model.viewInfoClosedComments)
+@Html.MytripLabelFor("viewInfoClosedComments", ArticleLanguage.viewInfoClosedComments)
+</div><div class="editor-label">
+@Html.MytripLabelFor("nameArticles", ArticleLanguage.nameArticles)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameArticles)
+@Html.ValidationMessageFor(model => model.nameArticles)
+</div><div class="editor-label">
+@Html.MytripLabelFor("nameBlogs", ArticleLanguage.nameBlogs)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameBlogs)
+@Html.ValidationMessageFor(model => model.nameBlogs)
+</div><div class="editor-label">
+@Html.MytripLabelFor("nameSearch", ArticleLanguage.nameSearch)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameSearch)
+@Html.ValidationMessageFor(model => model.nameSearch)
+</div><div class="editor-label">
+@Html.MytripLabelFor("nameTags", ArticleLanguage.nameTags)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTags)
+@Html.ValidationMessageFor(model => model.nameTags)
+</div><div class="editor-label" style="display:@Model.viewAdmin">
+@Html.MytripLabelFor("roleArticleEditor", ArticleLanguage.roleArticleEditor)
+</div><div class="editor-field" style="display:@Model.viewAdmin"> 
+@Html.TextBoxFor(model => model.roleArticleEditor)
+@Html.ValidationMessageFor(model => model.roleArticleEditor)
+</div><div class="editor-label" style="display:@Model.viewAdmin">
+@Html.MytripLabelFor("roleBlogger", ArticleLanguage.roleBlogger)
+</div><div class="editor-field" style="display:@Model.viewAdmin">
+@Html.TextBoxFor(model => model.roleBlogger)
+@Html.ValidationMessageFor(model => model.roleBlogger)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</fieldset> 
+}
+}
