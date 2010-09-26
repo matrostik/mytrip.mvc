@@ -6,6 +6,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytrip.Articles", "Mytrip.Articles\Mytrip.Articles.csproj", "{7E815C96-ED61-4597-92DA-07B40D7C5D40}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs02
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Mytrip.Mvc\\Mytrip.Mvc.csproj
+		SccProjectName1 = Mytrip.Mvc
+		SccLocalPath1 = Mytrip.Mvc
+		SccProjectUniqueName2 = Mytrip.Articles\\Mytrip.Articles.csproj
+		SccProjectName2 = Mytrip.Articles
+		SccLocalPath2 = Mytrip.Articles
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

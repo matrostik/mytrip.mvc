@@ -300,7 +300,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(cat.Culture, "/Article/Index/1/10/" + cat.CategoryId + "/" + cat.Path));
                 // tooltip
                 link.MergeAttribute("rel", "Category," + cat.CategoryId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = cat.Title;
                 div.InnerHtml += "<b>" + link + " " + Globe(cat.AllCulture, 14) + " " + Flag(cat.Culture, 14)
@@ -332,7 +332,7 @@ namespace Mytrip.Articles.Helpers
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
                 alink.MergeAttribute("rel", "Article," + article.ArticleId);
-                alink.AddCssClass("mtPopupTrigger");
+                alink.AddCssClass("mtPopupArticles");
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
@@ -340,7 +340,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + article.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + article.mytrip_articlescategory.CategoryId);
-                clink.AddCssClass("mtPopupTrigger");
+                clink.AddCssClass("mtPopupArticles");
                 //
                 clink.InnerHtml = article.mytrip_articlescategory.Title;
                 div.InnerHtml = "<b>" + alink + " " + Keys(article.OnlyForRegisterUser, 14) + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
@@ -374,7 +374,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
                 link.MergeAttribute("rel", "Comment," + comment.CommentId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = comment.mytrip_articles.Title;
                 div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.in_the + " <b>" + link + " "
@@ -416,7 +416,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(blog.Culture, "/Article/Index/1/10/" + blog.CategoryId + "/" + blog.Path));
                 // tooltip
                 link.MergeAttribute("rel", "Category," + blog.CategoryId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = blog.Title;
                 div.InnerHtml += "<b>" + link + " " + Flag(blog.Culture, 14) + "</b><br/>" + blog.CreateDate.ToString("dd MMMM yyyy HH:mm")
@@ -448,7 +448,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(topic.Culture, "/Article/Index/1/10/" + topic.CategoryId + "/" + topic.Path));
                 // tooltip
                 link.MergeAttribute("rel", "Category," + topic.CategoryId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = topic.Title;
                 div.InnerHtml += "<b>" + link + " " + Globe(topic.AllCulture, 14) + " " + Flag(topic.Culture, 14)
@@ -481,7 +481,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(post.Culture, "/Article/View/" + post.ArticleId + "/" + post.Path));
                 // tooltip
                 link.MergeAttribute("rel", "Article," + post.ArticleId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = post.Title;
                 TagBuilder clink = new TagBuilder("a");
@@ -489,7 +489,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + post.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + post.mytrip_articlescategory.CategoryId);
-                clink.AddCssClass("mtPopupTrigger");
+                clink.AddCssClass("mtPopupArticles");
                 //
                 clink.InnerHtml = post.mytrip_articlescategory.Title;
                 div.InnerHtml += "<b>" + link + " " + Flag(post.Culture, 14) + "</b><br/>" + post.CreateDate.ToString("dd MMMM yyyy HH:mm") + " " + ArticleLanguage.in_the + " " + clink
@@ -522,7 +522,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
                 link.MergeAttribute("rel", "Comment," + comment.CommentId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = comment.mytrip_articles.Title;
                 div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.in_the + " <b>" + link + " "
@@ -596,7 +596,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
                 link.MergeAttribute("rel", "Comment," + comment.CommentId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = comment.mytrip_articles.Title;
                 div.InnerHtml += comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.in_the + " <b>" + link + " "
@@ -640,7 +640,7 @@ namespace Mytrip.Articles.Helpers
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
                 alink.MergeAttribute("rel", "Article," + article.ArticleId);
-                alink.AddCssClass("mtPopupTrigger");
+                alink.AddCssClass("mtPopupArticles");
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
@@ -648,7 +648,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + article.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + article.mytrip_articlescategory.CategoryId);
-                clink.AddCssClass("mtPopupTrigger");
+                clink.AddCssClass("mtPopupArticles");
                 //
                 clink.InnerHtml = article.mytrip_articlescategory.Title;
                 div.InnerHtml += "<b>" + alink + " " + Globe(article.AllCulture, 14) + " " + Flag(article.Culture, 14)
@@ -1778,7 +1778,7 @@ namespace Mytrip.Articles.Helpers
                 alink.MergeAttribute("href", LangLink(article.Culture, "/Article/View/" + article.ArticleId + "/" + article.Path));
                 // tooltip
                 alink.MergeAttribute("rel", "Article," + article.ArticleId);
-                alink.AddCssClass("mtPopupTrigger");
+                alink.AddCssClass("mtPopupArticles");
                 //
                 alink.InnerHtml = article.Title;
                 TagBuilder clink = new TagBuilder("a");
@@ -1786,7 +1786,7 @@ namespace Mytrip.Articles.Helpers
                     + "/" + article.mytrip_articlescategory.Path));
                 // tooltip
                 clink.MergeAttribute("rel", "Category," + article.mytrip_articlescategory.CategoryId);
-                clink.AddCssClass("mtPopupTrigger");
+                clink.AddCssClass("mtPopupArticles");
                 //
                 clink.InnerHtml = article.mytrip_articlescategory.Title;
                 div.InnerHtml = EditDelete(article) + " <b>" + alink + " " + Keys(article.OnlyForRegisterUser, 14) + " " + Globe(article.AllCulture, 14)
@@ -1825,7 +1825,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(category.Culture, "/Article/Index/1/10/" + category.CategoryId + "/" + category.Path));
                 // tooltip
                 link.MergeAttribute("rel", "Category," + category.CategoryId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = category.Title;
                 div.InnerHtml += EditDelete(category) + " <b>" + link + " " + Flag(category.Culture, 14) + "</b><br/>" + category.CreateDate.ToString("dd MMMM yyyy HH:mm")
@@ -1863,7 +1863,7 @@ namespace Mytrip.Articles.Helpers
                 link.MergeAttribute("href", LangLink(comment.mytrip_articles.Culture, "/Article/View/" + comment.mytrip_articles.ArticleId + "/" + comment.mytrip_articles.Path + "#" + comment.CommentId));
                 // tooltip
                 link.MergeAttribute("rel", "Comment," + comment.CommentId);
-                link.AddCssClass("mtPopupTrigger");
+                link.AddCssClass("mtPopupArticles");
                 //
                 link.InnerHtml = comment.mytrip_articles.Title;
                 div.InnerHtml += ApproveComment(comment) + EditDelete(comment) + " " + comment.CreateDate.ToString("dd MMMM yyyy HH:mm:ss") + " " + ArticleLanguage.added_by + " " + ProfileLink(comment.UserName, comment.IsAnonym) + " in <b>" + link + " "
@@ -1923,7 +1923,7 @@ namespace Mytrip.Articles.Helpers
             link.MergeAttribute("href", LangLink(category.Culture, "/Article/Index/1/10/" + category.SubCategoryId + "/" + category.mytrip_articlescategory2.Path));
             // tooltip
             link.MergeAttribute("rel", "Category," + category.SubCategoryId);
-            link.AddCssClass("mtPopupTrigger");
+            link.AddCssClass("mtPopupArticles");
             //
             link.InnerHtml = category.mytrip_articlescategory2.Title;
             return " " + ArticleLanguage.in_the + " " + link.ToString() + " ";
