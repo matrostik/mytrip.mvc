@@ -405,9 +405,29 @@ namespace Mytrip.Store.Helpers
             string review = GeneralMethods.Button(string.Format(StoreLanguage.reviews, countreview), false, "review", "left");
             string a = "<div class='button'>" + options + foto + review + "</div>";
             string _content = "<div class='last'></div><div id='_options' class='content'>" + x.Body + "</div>";
-            _content += "<div class='last'></div><div id='_foto' class='content'>foto" + x.Body + "</div>";
+            _content += "<div class='last'></div><div id='_foto' class='content'>" + FotoOptions(x) + "</div>";
             _content += "<div class='last'></div><div id='_review' class='content'>review" + x.Body + "</div>";
             return new HtmlString(a+_content);
+        }
+        private static string FotoOptions(mytrip_storeproduct x)
+        {
+            int _count = x.mytrip_storeoptions.Count();
+            int __count = 1;
+            StringBuilder result = new StringBuilder();
+            result.Append("<table class='noborders'>");
+            foreach (var z in x.mytrip_storeoptions)
+            {
+                if(__count==1||__count%3==1)
+                    result.Append("<tr>");
+                result.Append("<td><b>" + z.Title + "</b><br/>");
+                result.Append(ImageForAbstract3(z.Image, ModuleSetting.widthImgDepartment())+"</td>");
+                if(__count==_count||__count%3==0)
+                    result.Append("</tr>");
+                __count++;
+            }
+            result.Append("</table>");
+            return result.ToString();
+
         }
         /// <summary>
         /// 
@@ -425,6 +445,20 @@ namespace Mytrip.Store.Helpers
                 string title = image.Remove(0, (image.LastIndexOf("/") + 1));
                 title = title.Remove(title.LastIndexOf("."));
                 return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title, width);
+            }
+            else
+                return string.Empty;
+        }
+        private static string ImageForAbstract3(string image, int width)
+        {
+            if (image != null && image.Contains("src"))
+            {
+                image = image.Remove(0, image.IndexOf("src"));
+                image = image.Remove(0, (image.IndexOf("\"") + 1));
+                image = image.Remove(image.IndexOf("\""));
+                string title = image.Remove(0, (image.LastIndexOf("/") + 1));
+                title = title.Remove(title.LastIndexOf("."));
+                return string.Format("<img src='{0}' alt='{1}' title='{1}'/>", image, title, width);
             }
             else
                 return string.Empty;
