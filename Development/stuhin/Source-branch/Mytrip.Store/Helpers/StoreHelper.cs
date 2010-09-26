@@ -385,7 +385,7 @@ namespace Mytrip.Store.Helpers
                 votes = GeneralMethods.CoreRating(true, false, (double)x.TotalVotes, -1) + "</b><br/>";
             string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, false, "right");
             string _content = "<h1 class=\"hometitle\" >" +
-                x.Title + "</h1>" + ImageForAbstract2(x.Image, ModuleSetting.widthImgDepartment())
+                x.Title + "</h1>" + ImageForAbstract(x.Image)
            + x.Abstract + "<br/>" + mycart + votes + prise + "<br/>" + _date + "<br/>" + departmentlink
                 + comparision + storecart;
             return new HtmlString(_content);
@@ -419,8 +419,8 @@ namespace Mytrip.Store.Helpers
             {
                 if(__count==1||__count%3==1)
                     result.Append("<tr>");
-                result.Append("<td><b>" + z.Title + "</b><br/>");
-                result.Append(ImageForAbstract3(z.Image, ModuleSetting.widthImgDepartment())+"</td>");
+                result.Append("<td style='text-align:center;'><b>" + z.Title + "</b><br/>");
+                result.Append(ImageForAbstract(z.Image, ModuleSetting.widthImgDepartment())+"</td>");
                 if(__count==_count||__count%3==0)
                     result.Append("</tr>");
                 __count++;
@@ -433,9 +433,8 @@ namespace Mytrip.Store.Helpers
         /// 
         /// </summary>
         /// <param name="image"></param>
-        /// <param name="width"></param>
         /// <returns></returns>
-        private static string ImageForAbstract2(string image, int width)
+        private static string ImageForAbstract(string image)
         {
             if (image != null && image.Contains("src"))
             {
@@ -444,12 +443,18 @@ namespace Mytrip.Store.Helpers
                 image = image.Remove(image.IndexOf("\""));
                 string title = image.Remove(0, (image.LastIndexOf("/") + 1));
                 title = title.Remove(title.LastIndexOf("."));
-                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title, width);
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title);
             }
             else
                 return string.Empty;
         }
-        private static string ImageForAbstract3(string image, int width)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        private static string ImageForAbstract(string image, int width)
         {
             if (image != null && image.Contains("src"))
             {
@@ -458,7 +463,7 @@ namespace Mytrip.Store.Helpers
                 image = image.Remove(image.IndexOf("\""));
                 string title = image.Remove(0, (image.LastIndexOf("/") + 1));
                 title = title.Remove(title.LastIndexOf("."));
-                return string.Format("<img src='{0}' alt='{1}' title='{1}'/>", image, title, width);
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' style='width:{2}px;'/>", image, title, width);
             }
             else
                 return string.Empty;
