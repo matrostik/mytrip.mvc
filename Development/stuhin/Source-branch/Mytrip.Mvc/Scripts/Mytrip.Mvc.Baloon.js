@@ -22,7 +22,7 @@
       + '</table>'
       + '</div>');
     $('body').append(container);
-    $('.mtPopupTrigger').live('mouseover', function () {
+    $('.mtPopupArticles').live('mouseover', function () {
         var settings = $(this).attr('rel').split(',');
         var type = settings[0];
         id = settings[1];
@@ -50,7 +50,7 @@
         container.css('display', 'block');
     });
 
-    $('.mtPopupTrigger').live('mouseout', function () {
+    $('.mtPopupArticles').live('mouseout', function () {
         if (hideTimer)
             clearTimeout(hideTimer);
         hideTimer = setTimeout(function () {
