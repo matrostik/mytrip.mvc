@@ -13,7 +13,7 @@
     View.Description=Html.MytripPageTitle("", ",");
 }
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Page/Store.Index.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Page/Store.View.js")
 }
 @section contentSmall{
 @Html.Partial("_sideBar") 
@@ -29,9 +29,9 @@ else if(Model.comparison&&!Model.comparison2)
 @Html.ViewProduct(Model.ViewProduct)
 </div>
 <div class="last"></div>
-<div class="content">
+
 @Html.ViewOptions(Model.ViewProduct)
-</div>
+
 }
 else if(!Model.comparison&&!Model.comparison2){
 <div class="noappr">

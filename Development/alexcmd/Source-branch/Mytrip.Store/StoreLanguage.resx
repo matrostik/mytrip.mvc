@@ -294,4 +294,10 @@
   <data name="mycarttitle" xml:space="preserve">
     <value>My cart</value>
   </data>
+  <data name="foto" xml:space="preserve">
+    <value>Images ({0})</value>
+  </data>
+  <data name="reviews" xml:space="preserve">
+    <value>Reviews ({0})</value>
+  </data>
 </root>

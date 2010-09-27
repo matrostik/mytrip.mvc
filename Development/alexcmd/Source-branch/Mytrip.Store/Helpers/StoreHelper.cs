@@ -10,6 +10,7 @@ using System.Web;
 using Mytrip.Mvc.Settings;
 using Mytrip.Mvc.Repository;
 using Mytrip.Store.Repository;
+using Mytrip.Mvc.Helpers;
 
 namespace Mytrip.Store.Helpers
 {
@@ -295,7 +296,7 @@ namespace Mytrip.Store.Helpers
                 }
                 string votes = string.Empty;
                 if (article.ViewVotes)
-                    votes = GeneralMethods.CoreRating(true, false, (double)article.TotalVotes, -1) + "</b><br/>";
+                    votes = GeneralMethods.CoreRating(article.ViewVotes, false, (double)article.TotalVotes, -1) + "</b><br/>";
                 string mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
 
                 string checkeds = (HttpContext.Current.Request.Cookies["myTripProductComparison"] != null
@@ -382,11 +383,14 @@ namespace Mytrip.Store.Helpers
 
             string votes = string.Empty;
             if (x.ViewVotes)
-                votes = GeneralMethods.CoreRating(true, false, (double)x.TotalVotes, -1) + "</b><br/>";
-            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, false, "right");
-            string _content = "<h1 class=\"hometitle\" >" +
-                x.Title + "</h1>" + ImageForAbstract2(x.Image, ModuleSetting.widthImgDepartment())
-           + x.Abstract + "<br/>" + mycart + votes + prise + "<br/>" + _date + "<br/>" + departmentlink
+                votes = GeneralMethods.CoreRating(x.ViewVotes, true, (double)x.TotalVotes, x.mytrip_storevotes.Count()) + "</b><br/>";
+            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
+            string _content = "<div id='votes' class='right'>" + votes +
+                "<input id='VotesCount' name='VotesCount' type='hidden' value='" + x.mytrip_storevotes.Count() + "' />" +
+"<input id='Store_StoreId' name='Store.StoreId' type='hidden' value='"+x.ProductId+"' />" +
+"</div><h1 class=\"hometitle\" >" +
+                x.Title + "</h1><table class='noborders'><tr><td>" + ImageForAbstract(x.Image)
+           + x.Abstract + "</td></tr></table>" + mycart  + prise + "<br/>" + _date + "<br/>" + departmentlink
                 + comparision + storecart;
             return new HtmlString(_content);
         }
@@ -398,16 +402,79 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static HtmlString ViewOptions(this HtmlHelper html, mytrip_storeproduct x)
         {
-            string _content = x.Body;
-            return new HtmlString(_content);
+            int countfoto=x.mytrip_storeoptions.Count();
+            int countreview = x.mytrip_storevotes.Count();
+            string options =x.Body.Length==0?string.Empty: GeneralMethods.Button(StoreLanguage.bodyProduct, false,"options", "left");
+            string foto =countfoto==0?string.Empty: GeneralMethods.Button(string.Format(StoreLanguage.foto, countfoto), false, "foto", "left");
+            string review = countreview == 0 ? string.Empty : GeneralMethods.Button(string.Format(StoreLanguage.reviews, countreview), false, "review", "left");
+            string a = "<div class='button'>" + options + foto + review + "</div>";
+            string _content ="";
+            if(x.Body.Length!=0)
+                _content += "<div class='last'></div><div id='_options' class='content'>" + x.Body + "</div>";
+            string fotodisplay = x.Body.Length == 0 ? string.Empty : "style='display:none;'";
+            if(countfoto>0)
+                _content += "<div class='last'></div><div id='_foto' class='content' " + fotodisplay + ">" + FotoOptions(x) + "</div>";
+            string reviewdisplay = (x.Body.Length == 0 && countfoto == 0) ? string.Empty : "style='display:none;'";
+            if (countreview > 0)
+                _content += "<div class='last'></div><div id='_review' class='content'" + reviewdisplay + ">" + VotesOptions(html, x) + "</div>";
+            return new HtmlString(a+_content);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static string FotoOptions(mytrip_storeproduct x)
+        {
+            int _count = x.mytrip_storeoptions.Count();
+            int __count = 1;
+            StringBuilder result = new StringBuilder();
+            result.Append("<table class='noborders'>");
+            foreach (var z in x.mytrip_storeoptions)
+            {
+                if(__count==1||__count%3==1)
+                    result.Append("<tr>");
+                result.Append("<td style='text-align:center;'><b>" + z.Title + "</b><br/>");
+                result.Append(ImageForAbstract(z.Image, ModuleSetting.widthImgDepartment())+"</td>");
+                if(__count==_count||__count%3==0)
+                    result.Append("</tr>");
+                __count++;
+            }
+            result.Append("</table>");
+            return result.ToString();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static string VotesOptions(HtmlHelper html,mytrip_storeproduct x)
+        {
+            StringBuilder result = new StringBuilder();
+            
+            foreach (var z in x.mytrip_storevotes)
+            {
+                result.Append("<div class='comment' ><table class='noborders'><tr><td>");
+                TagBuilder divGravatar = new TagBuilder("a");
+                divGravatar.MergeAttribute("href", "/Home/Profile/" + z.UserName);
+                divGravatar.InnerHtml = AvatarHelper.Avatar(html, MytripUser.UserEmail(z.UserName), new { width = 40 }).ToString();
+                TagBuilder _divGravatar = new TagBuilder("div");
+                _divGravatar.MergeAttribute("style", "position: relative;margin-left:2px; float: right");
+                _divGravatar.InnerHtml = divGravatar.ToString();
+                result.Append(_divGravatar.ToString());
+                result.Append(GeneralMethods.CoreRating(true, false, (double)z.Vote, -1)+"<br/>");
+                result.Append(z.Reviews);
+                result.Append("</td></tr></table></div><div class='last'></div>");
+            }
+            return result.ToString();
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="image"></param>
-        /// <param name="width"></param>
         /// <returns></returns>
-        private static string ImageForAbstract2(string image, int width)
+        private static string ImageForAbstract(string image)
         {
             if (image != null && image.Contains("src"))
             {
@@ -416,7 +483,27 @@ namespace Mytrip.Store.Helpers
                 image = image.Remove(image.IndexOf("\""));
                 string title = image.Remove(0, (image.LastIndexOf("/") + 1));
                 title = title.Remove(title.LastIndexOf("."));
-                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title, width);
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title);
+            }
+            else
+                return string.Empty;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        private static string ImageForAbstract(string image, int width)
+        {
+            if (image != null && image.Contains("src"))
+            {
+                image = image.Remove(0, image.IndexOf("src"));
+                image = image.Remove(0, (image.IndexOf("\"") + 1));
+                image = image.Remove(image.IndexOf("\""));
+                string title = image.Remove(0, (image.LastIndexOf("/") + 1));
+                title = title.Remove(title.LastIndexOf("."));
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' style='width:{2}px;'/>", image, title, width);
             }
             else
                 return string.Empty;
