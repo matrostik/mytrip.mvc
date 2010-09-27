@@ -203,7 +203,7 @@ namespace Mytrip.Mvc.Settings
             if (approvedvotes)
             {
                 if (votescount != -1)
-                    result.AppendLine(string.Format(CoreLanguage.score_votes, totalvote.ToString("N2"), votescount.ToString()));
+                    result.AppendLine("<span style='margin-right:5px;'>"+string.Format(CoreLanguage.score_votes, totalvote.ToString("N2"), votescount.ToString())+"</span>");
 
                 for (int rate = 0; rate < 5; rate++)
                 {
@@ -447,7 +447,7 @@ namespace Mytrip.Mvc.Settings
             link.MergeAttribute("id", linkId);
             link.MergeAttribute("title", linkTitle);
             link.MergeAttribute("name", linkName);
-            if (!string.IsNullOrEmpty(linkName))
+            if (!string.IsNullOrEmpty(linkRel))
                 link.MergeAttribute("rel", linkRel);
             TagBuilder img = new TagBuilder("img");
             img.MergeAttribute("src", "/Theme/" + ThemeSetting.theme() + imgSrc);
