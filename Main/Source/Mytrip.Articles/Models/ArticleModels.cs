@@ -126,7 +126,6 @@ namespace Mytrip.Articles.Models
     {
         public int CommentId { get; set; }
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
-        //[RegularExpression("(<P>&nbsp;</P>)", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "invalid_date")]
         public string Comment { get; set; }
         public string PageTitle { get; set; }
         public int ArticleId { get; set; }
