@@ -393,6 +393,7 @@
     <Content Include="Scripts\Page\Store.EditorCategory.js" />
     <Content Include="Scripts\Page\Store.EditorProduct.js" />
     <Content Include="Scripts\Page\Store.Index.js" />
+    <Content Include="Scripts\Page\Store.View.js" />
     <Content Include="Scripts\Page\TextAreaFile.js" />
     <Content Include="Scripts\Page\Votes.js" />
     <Content Include="Scripts\SLPlaerChrome.js" />
