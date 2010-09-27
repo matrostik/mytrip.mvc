@@ -113,7 +113,7 @@ namespace Mytrip.Articles.Helpers
                     TagBuilder CreateCategoryP = new TagBuilder("div");
                     TagBuilder CreateCategory = new TagBuilder("a");
                     CreateCategory.MergeAttribute("href", "#");
-                    if(id!=0)
+                    if (id != 0)
                         CreateCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
                     else
                         CreateCategory.MergeAttribute("id", "CreateCat_0");
@@ -228,7 +228,7 @@ namespace Mytrip.Articles.Helpers
         public static HtmlString ParrentCategory(this HtmlHelper html, mytrip_articlescategory parentCat, string path)
         {
             StringBuilder result = new StringBuilder();
-            if (parentCat.CategoryId != -1 && parentCat.SubCategoryId==0&&parentCat.Path!=path)
+            if (parentCat.CategoryId != -1 && parentCat.SubCategoryId == 0 && parentCat.Path != path)
             {
                 TagBuilder h2 = new TagBuilder("h2");
                 h2.AddCssClass("title");
@@ -282,9 +282,9 @@ namespace Mytrip.Articles.Helpers
             h2.AddCssClass("title");
             if (isUserHasRights(article, false))
             {
-                string a = GeneralMethods.ImgInput("/images/edite.png", "/Article/Edit/" + article.ArticleId + "/" + returnId + "/" + article.Path, "rename", 14) +
-                      " " + GeneralMethods.ImgInput("/images/delete.png", "/Article/Delete/" + article.ArticleId + "/" + article.Path, "delete", 14);
-
+                string a = GeneralMethods.ImageLink("editArticle_" + article.ArticleId, "/Article/Edit/" + article.ArticleId + "/" + article.ArticleId
+                    , ArticleLanguage.edit, "", "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteArticle_" + article.CategoryId,
+                    "/Article/Delete/" + article.ArticleId , ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                 h2.InnerHtml += a + " ";
             }
             h2.InnerHtml += article.Title;
@@ -547,9 +547,9 @@ namespace Mytrip.Articles.Helpers
                         {
                             legend.InnerHtml += GeneralMethods.ImgInput("/images/approved.png", "/Article/ApproveComment/" + comment.CommentId + "/" + returnId + "/" + article.Path, "rename", 14) + " ";
                         }
-                        string a = GeneralMethods.ImgInput("/images/edite.png", "/Article/EditComment/" + comment.CommentId + "/" + returnId + "/" + comment.mytrip_articles.Path, "rename", 14) +
-                     " " + GeneralMethods.ImgInput("/images/delete.png", "/Article/DeleteComment/" + comment.CommentId + "/" + returnId + "/" + comment.mytrip_articles.Path, "delete", 14);
-
+                        string a = GeneralMethods.ImageLink("editComment_" + comment.CommentId, "#", ArticleLanguage.edit,comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
+                    + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId
+                    , ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                         legend.InnerHtml += a + " ";
                     }
                     TagBuilder profile = new TagBuilder("a");
