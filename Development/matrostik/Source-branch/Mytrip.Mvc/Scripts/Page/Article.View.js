@@ -1,4 +1,5 @@
 ﻿var jHtmlArea_API = new Object();
+var identity = '';
 $(document).ready(function () {
     var dw = $('div.divsmile').html();
     $('div.divsmile').html('<div class="modalTL"/><div class="modalTR"/>' + dw + '<div class="modalBL"/><div class="modalBR"/><div class="modalBC"/>');
@@ -7,20 +8,21 @@ $(document).ready(function () {
     $('div.mask,div.modalTR').click(function () {
         $('div.mask, div.divsmile').hide();
     });
-
+    var theme;
     Rating();
     $.ajax({ type: "POST",
         url: "/MytripMvc/Theme",
         success: function (data) {
-            $('#article').htmlarea({
+            theme = data;
+            $('textarea#article').htmlarea({
                 css: '/Theme/' + data + '/TextAreaContainer.css',
                 toolbar: [
-            ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"], ["|"],
-
-        ["link", "unlink"], ["|"],
+            ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
+            , ["|"], ["link", "unlink"], ["|"],
          [{
              css: 'smile', text: 'Smiles', action: function (btn) {
                  jHtmlArea_API['#article'] = $(this);
+                 identity = 'article';
                  openid = this.value;
                  var id = 'div.divsmile';
                  $(id).css({ width: (326 + 'px') });
@@ -40,38 +42,107 @@ $(document).ready(function () {
             });
             $('input.smile').click(function () {
                 var htmlText = $(this).val();
-                jHtmlArea_API['#article'][0].pasteHTML(htmlText);
+                jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
                 $('div.mask, div.divsmile').hide();
             });
-
         }
     });
     Quote();
     var openid = new Object();
-    $('input.delete').click(
-        function () {
-            openid = this.value;
-            var id = 'div.window';
-            $(id).css({ width: (326 + 'px') });
-            var maskHeight = $(document).height();
-            var maskWidth = $(window).width();
-            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-            $('div.mask').show();
-            $('div.mask').fadeTo("fast", 0.1);
-            var winH = $(window).height();
-            var winW = $(window).width();
-            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-            $(id).css('left', winW / 2 - $(id).width() / 2);
-            $(id).slideDown('slow');
+    $("a[id^='delete']").click(function () {
+        link = $(this).attr('href');
+        var id = 'div.window#deleteModal';
+        $(id).css({ width: (326 + 'px') });
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+        $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+        $('div.mask').show();
+        $('div.mask').fadeTo("fast", 0.1);
+        var winH = $(window).height();
+        var winW = $(window).width();
+        $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+        $(id).css('left', winW / 2 - $(id).width() / 2);
+        $(id).slideDown('slow');
+        return false;
+    });
+    $("a[id^='editComment']").click(function () {
+        $("table.comment").show()
+        $("div#editComment").hide().fadeIn('fast');
+        $('span#Comment_Error').removeClass('field-validation-error').addClass('field-validation-valid');
+
+        var comment = $(this).closest("div").next("div").find(".commentC");
+        var table = $(this).closest("table.comment")
+
+        $("input#editId").val($(this).attr('rel'));
+
+        $("textarea#edit").val(comment.html());
+
+        var edit = $("div#editComment");
+        $(table).after(edit);
+        edit.show();
+        table.hide();
+
+        $('textarea#edit').htmlarea({
+            css: '/Theme/' + theme + '/TextAreaContainer.css',
+            toolbar: [
+           ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
+            , ["|"], ["link", "unlink"], ["|"],
+         [{
+             css: 'smile', text: 'Smiles', action: function (btn) {
+                 jHtmlArea_API['#edit'] = $(this);
+                 openid = this.value;
+                 identity = 'edit';
+                 var id = 'div.divsmile';
+                 $(id).css({ width: (326 + 'px') });
+                 var maskHeight = $(document).height();
+                 var maskWidth = $(window).width();
+                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+                 $('div.mask').show();
+                 $('div.mask').fadeTo("fast", 0.1);
+                 var winH = $(window).height();
+                 var winW = $(window).width();
+                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+                 $(id).css('left', winW / 2 - $(id).width() / 2);
+                 $(id).slideDown('slow');
+             }
+         }]
+        ]
         });
+        var obj = window.jHtmlArea($('textarea#edit'));
+        obj.updateHtmlArea();
+        return false;
+    });
     $('input.rename').click(
         function () {
             openid = this.value;
             $(location).attr('href', openid);
         });
     $("#enter").live("click", function () {
-        $(location).attr('href', openid);
+        $(location).attr('href', link);
         $('div.mask, div.window').hide();
+    });
+    $("input#edit").live("click", function () {
+        //alert($('input#editId').val() + " " + $('textarea#edit').html() + " " + $("#CommentApproved").val());
+        var com = "simple test<br/>";
+        $.ajax({ type: "POST",
+            url: "/Article/Comment",
+            data: 'id=' + $("input#editId").val() + '&comment=' + $('textarea#edit').val() + '&approved=' + $("#CommentApproved").val(),
+            success: function (data) {
+                if (data) {
+                    var err = $('span#Comment_Error');
+                    err.text(data);
+                    err.removeClass('field-validation-valid').addClass('field-validation-error');
+                }
+                else {
+                    location.reload();
+                }
+            }
+        });
+
+    });
+    $("#cancel").live("click", function () {
+        $("div#editComment").hide();
+        $("table.comment").show();
     });
     $("#close").live("click", function () {
         $('div.mask, div.window').hide();
@@ -99,7 +170,7 @@ function Quote() {
             selected = c.find("div.comment").html();
         }
         var txt = "<br/><div style='border: 1px dotted #000000;'><STRONG>" + a.html() + "</STRONG> wrote:<br/>" + selected + "</div><br/>";
-        var obj = window.jHtmlArea($('textarea'));
+        var obj = window.jHtmlArea($('textarea#article'));
         obj.pasteHTML(txt);
         return false;
     });
