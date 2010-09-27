@@ -1,0 +1,41 @@
+﻿/*------PASSIVE-----------------*/
+div.menuL{background:url(images/menu.png);background-position: 0px -52px;position: relative;width: 9px;height: 25px;float: left;margin-top: 1px;}
+div.menuR{position: relative;width: 10px;height: 25px;float: right;background: url(images/menu.png);background-position: -65px -52px;z-index: 10;margin-top: 1px;}
+div.menuRD{position: relative;width: 20px;height: 25px;float: right;margin-top: 1px;background:url(images/menu.png);background-position: -55px -52px;z-index: 9;} 
+/*------------ACTIVE--------------------*/
+div.menuC.ac{background: url(images/menucon.png);background-repeat: repeat-x;background-position: 0px -78px;color: #fff;height: 21px;padding-top: 4px;margin-right: 10px;padding-right:2px;margin-left: 9px;margin-top: 1px;} 
+div.menuC.ac a{color: #fff;text-decoration: none;}
+div.menuC.ac a:hover{color: #fff;text-decoration: none;}   
+div.menuCD.ac{background: url(images/menucon.png);background-repeat: repeat-x;background-position: 0px -78px;color: #fff;height: 21px;padding-top: 4px;margin-right: 20px;margin-top: 1px;margin-left: 9px;} 
+div.menuCD.ac a{color: #fff;text-decoration: none;}
+div.menuCD.ac a:hover{color: #fff;text-decoration: none;}
+div.menuL.ac{background:url(images/menu.png);background-position: 0px -78px;position: relative;width: 9px;height: 25px;float: left;margin-top: 1px;}
+div.menuR.ac{position: relative;width: 10px;height: 25px;float: right;background: url(images/menu.png);background-position: -65px -78px;z-index: 11;margin-top: 1px;}
+div.menuRD.ac{position: relative;width: 20px;height: 25px;float: right;background:url(images/menu.png);margin-top: 1px;background-position: -55px -78px;z-index: 11;}
+/*------------VISIBLE--------------------*/
+div.menuLV{background:url(images/menu.png);position: relative;width: 9px;height: 26px;float: left;z-index: 10;}
+div.menuRV{position: relative;width: 10px;height: 26px;float: right;background:url(images/menu.png);background-position: -65px 0px;z-index: 10;}
+div.menuRVD{position: relative;width: 20px;height: 26px;float: right;background:url(images/menu.png);background-position: -55px 0px;z-index: 10;}
+/*------------VISIBLE ac--------------------*/
+div.menuCV.ac{cursor: default;background: url(images/menucon.png);background-repeat: repeat-x;background-position: 0px -26px;color: #000;height: 21px;padding-top: 5px;margin-right: 10px;padding-right:2px;margin-left: 9px;}   
+div.menuCV.ac a{cursor: default;color: #000;text-decoration: none;}  
+div.menuCV.ac a:hover{cursor: default;color: #000;text-decoration: none;}   
+div.menuCVD.ac{cursor: default;background: url(images/menucon.png);background-repeat: repeat-x;background-position: 0px -26px;color: #000;height: 21px;padding-top: 5px;margin-right: 20px;margin-left: 9px;}   
+div.menuCVD.ac a{cursor: default;color: #000;text-decoration: none;}
+div.menuCVD.ac a:hover{color: #000;cursor: default;text-decoration: none;}
+div.menuLV.ac{background:url(images/menu.png);position: relative;background-position: 0px -26px;width: 9px;height: 26px;float: left;z-index: 20;}
+div.menuRV.ac{position: relative;width: 10px;height: 26px;float: right;background:url(images/menu.png);background-position: -65px -26px;z-index: 10;}
+div.menuRVD.ac{position: relative;width: 20px;height: 26px;float: right;background:url(images/menu.png);background-position: -55px -26px;z-index: 11;}
+/*-------------UL-LI------------------*/
+div.menuI div.menuUL{position: absolute;z-index: 1000;top: -1000px;}
+div.menuSC{padding: 2px 1px 2px 1px;background: url(images/menuslidecon.png);}
+div.menuSTL{position: relative;width: 3px;height: 8px;float: left;background:url(images/menuslide.png);}
+div.menuSBL{background:url(images/menuslide.png);background-position: 0px -8px;position: relative;width: 3px;height: 3px;float: left;}
+div.menuSTR{background:url(images/menuslide.png);background-position: -4px 0px;position: relative;width: 3px;height: 8px;float: right;}
+div.menuSBR{background:url(images/menuslide.png);background-position: -4px -8px;position: relative;width: 3px;height: 3px;float: right;}
+div.menuSTC{background:url(images/menuslidecontop.png);margin-right: 3px;margin-left: 3px;height: 8px;} 
+div.menuSBC{background:url(images/menuslidecon.png);height: 3px;margin-right: 3px;margin-left: 3px;}
+div.menuSC div a{color: #000000;text-decoration: none;}
+div.menuSC div a:hover{color: #000000;text-decoration: none;}
+div.menuSC div{padding: 3px 4px 3px 4px;color: #000000; white-space: nowrap;}
+div.menuSC div:hover{background: #F1F1EC;background-repeat: repeat-x;background-position: 0px -26px;color: #000000;}

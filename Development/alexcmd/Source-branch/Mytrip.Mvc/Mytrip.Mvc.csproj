@@ -1,0 +1,1088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{500B9F85-6355-4306-AF88-D037DF561C5F}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mytrip.Mvc</RootNamespace>
+    <AssemblyName>Mytrip.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Mytrip.Mvc.XML</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth, Version=3.4.5.10201, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.3.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoreController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ICoreController.cs" />
+    <Compile Include="Controllers\MytripMvcController.cs" />
+    <Compile Include="Controllers\TextAreaFileController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CoreLanguage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreLanguage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CoreLanguage.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreLanguage.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CoreLanguage.ru-ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreLanguage.ru-ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DonateHelper.cs" />
+    <Compile Include="Helpers\AvatarHelper.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
+    <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Helpers\MytripHtmlHelper.cs" />
+    <Compile Include="Helpers\PagerHelper.cs" />
+    <Compile Include="Helpers\TextAreaFileHelper.cs" />
+    <Compile Include="Helpers\ThemeHelper.cs" />
+    <Compile Include="Helpers\UserDataHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Interface\IControllerExport.cs" />
+    <Compile Include="Interface\ICreateDataBase.cs" />
+    <Compile Include="Interface\IExport.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CoreModel.cs" />
+    <Compile Include="Models\FilesModels.cs" />
+    <Compile Include="Models\ActionFilterAttribute.cs" />
+    <Compile Include="Models\RssAction.cs" />
+    <Compile Include="Models\UsersModel.cs" />
+    <Compile Include="Models\ValidationAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AboutRepository.cs" />
+    <Compile Include="Repository\AccountMembershipRepository.cs" />
+    <Compile Include="Repository\CaptchaRepository.cs" />
+    <Compile Include="Repository\DataEntities\MssqlModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MssqlModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\MysqlModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MysqlModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_users.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_usersmembership.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_usersroles.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\UsersPocoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsersPocoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\UsersPocoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\EditePageRepository.cs" />
+    <Compile Include="Repository\EmailRepository.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Repository\FormsAuthenticationRepository .cs" />
+    <Compile Include="Repository\InstallModuleRepository.cs" />
+    <Compile Include="Repository\ICoreRepository.cs" />
+    <Compile Include="Repository\MembershipRepository.cs" />
+    <Compile Include="Repository\RoleRepository.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="Settings\CoreSetting.cs" />
+    <Compile Include="Settings\CustomNamespace.cs" />
+    <Compile Include="Settings\EmailSetting.cs" />
+    <Compile Include="Settings\GeneralMethods.cs" />
+    <Compile Include="Settings\LocalisationSetting.cs" />
+    <Compile Include="Settings\ThemeSetting.cs" />
+    <Compile Include="Settings\UsersSetting.cs" />
+    <Compile Include="Install\CreateDataBase.cs" />
+    <Compile Include="Install\License.cs" />
+    <Compile Include="Install\UninstallModules.cs" />
+    <Compile Include="StylesTable\StyleTableClass.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\About.xml" />
+    <Content Include="Configuration\MytripConfiguration.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Articles\admin\video1.png" />
+    <Content Include="Content\Articles\matrostik\aspnetmvc2.png" />
+    <Content Include="Content\Articles\matrostik\flag_israel.png" />
+    <Content Include="Content\Articles\matrostik\mysql_logo.png" />
+    <Content Include="Content\Articles\matrostik\vs2010_logo.png" />
+    <Content Include="Content\Articles\stuhin\pingvin.png" />
+    <Content Include="Content\Articles\stuhin\skala.png" />
+    <Content Include="Content\Articles\stuhin\velo.png" />
+    <Content Include="Content\calendar\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\calendar\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\calendar\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\calendar\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\calendar\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\calendar\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\calendar\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\calendar\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\calendar\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\calendar\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\calendar\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\calendar\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\calendar\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\calendar\ui.datepicker.css" />
+    <Content Include="Content\captcha\zero\zero.txt" />
+    <Content Include="Content\files\.asax.png" />
+    <Content Include="Content\files\.ascx.png" />
+    <Content Include="Content\files\.ashx.png" />
+    <Content Include="Content\files\.aspx.png" />
+    <Content Include="Content\files\.cache.png" />
+    <Content Include="Content\files\.config.png" />
+    <Content Include="Content\files\.cs.png" />
+    <Content Include="Content\files\.csproj.png" />
+    <Content Include="Content\files\.css.png" />
+    <Content Include="Content\files\.dll.png" />
+    <Content Include="Content\files\.js.png" />
+    <Content Include="Content\files\.ldf.png" />
+    <Content Include="Content\files\.master.png" />
+    <Content Include="Content\files\.mdf.png" />
+    <Content Include="Content\files\.pdb.png" />
+    <Content Include="Content\files\.pdf.png" />
+    <Content Include="Content\files\.rar.png" />
+    <Content Include="Content\files\.txt.png" />
+    <Content Include="Content\files\.user.png" />
+    <Content Include="Content\files\foldergreen.png" />
+    <Content Include="Content\files\Stuffed_Folder.png" />
+    <Content Include="Content\Gismeteo\0\0.png" />
+    <Content Include="Content\Gismeteo\0\1.png" />
+    <Content Include="Content\Gismeteo\0\2.png" />
+    <Content Include="Content\Gismeteo\0\3.png" />
+    <Content Include="Content\Gismeteo\2\0.png" />
+    <Content Include="Content\Gismeteo\2\1.png" />
+    <Content Include="Content\Gismeteo\2\2.png" />
+    <Content Include="Content\Gismeteo\2\3.png" />
+    <Content Include="Content\images\add.png" />
+    <Content Include="Content\images\addarticle.png" />
+    <Content Include="Content\images\addtextarea.png" />
+    <Content Include="Content\images\aol.png" />
+    <Content Include="Content\images\approved.png" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\blogspot.png" />
+    <Content Include="Content\images\claimid.png" />
+    <Content Include="Content\images\cut.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\downarrow_blue.png" />
+    <Content Include="Content\images\download.png" />
+    <Content Include="Content\images\edite.png" />
+    <Content Include="Content\images\empty.gif" />
+    <Content Include="Content\images\en-us.png" />
+    <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\flickr.png" />
+    <Content Include="Content\images\google.png" />
+    <Content Include="Content\images\he-il.png" />
+    <Content Include="Content\images\help.png" />
+    <Content Include="Content\images\images\aol.gif" />
+    <Content Include="Content\images\images\blogger.ico" />
+    <Content Include="Content\images\images\claimid.ico" />
+    <Content Include="Content\images\images\facebook.gif" />
+    <Content Include="Content\images\images\flickr.ico" />
+    <Content Include="Content\images\images\google.gif" />
+    <Content Include="Content\images\images\livejournal.ico" />
+    <Content Include="Content\images\images\myopenid.ico" />
+    <Content Include="Content\images\images\openid-inputicon.gif" />
+    <Content Include="Content\images\images\openid.gif" />
+    <Content Include="Content\images\images\technorati.ico" />
+    <Content Include="Content\images\images\verisign.ico" />
+    <Content Include="Content\images\images\vidoop.ico" />
+    <Content Include="Content\images\images\wordpress.ico" />
+    <Content Include="Content\images\images\yahoo.gif" />
+    <Content Include="Content\images\info.png" />
+    <Content Include="Content\images\jHtmlArea.png" />
+    <Content Include="Content\images\Keys.png" />
+    <Content Include="Content\images\leftarrow_blue.png" />
+    <Content Include="Content\images\livejournal.png" />
+    <Content Include="Content\images\minus_blue.png" />
+    <Content Include="Content\images\myid.png" />
+    <Content Include="Content\images\myopenid.png" />
+    <Content Include="Content\images\noapproved.png" />
+    <Content Include="Content\images\openid.png" />
+    <Content Include="Content\images\PayPal.gif" />
+    <Content Include="Content\images\PayPal.png" />
+    <Content Include="Content\images\plus_blue.png" />
+    <Content Include="Content\images\poll1.gif" />
+    <Content Include="Content\images\rambler.png" />
+    <Content Include="Content\images\rename.png" />
+    <Content Include="Content\images\rightarrow_blue.png" />
+    <Content Include="Content\images\ru-ru.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\star.png" />
+    <Content Include="Content\images\star100.png" />
+    <Content Include="Content\images\star25.png" />
+    <Content Include="Content\images\star50.png" />
+    <Content Include="Content\images\star75.png" />
+    <Content Include="Content\images\uparrow_blue.png" />
+    <Content Include="Content\images\Users.png" />
+    <Content Include="Content\images\verisignlabs.png" />
+    <Content Include="Content\images\Warning.png" />
+    <Content Include="Content\images\wordpress.png" />
+    <Content Include="Content\images\yahoo.png" />
+    <Content Include="Content\images\yandex.png" />
+    <Content Include="Content\smiles\aa.gif" />
+    <Content Include="Content\smiles\ab.gif" />
+    <Content Include="Content\smiles\ac.gif" />
+    <Content Include="Content\smiles\ad.gif" />
+    <Content Include="Content\smiles\ae.gif" />
+    <Content Include="Content\smiles\af.gif" />
+    <Content Include="Content\smiles\ag.gif" />
+    <Content Include="Content\smiles\ah.gif" />
+    <Content Include="Content\smiles\ai.gif" />
+    <Content Include="Content\smiles\aj.gif" />
+    <Content Include="Content\smiles\ak.gif" />
+    <Content Include="Content\smiles\al.gif" />
+    <Content Include="Content\smiles\am.gif" />
+    <Content Include="Content\smiles\an.gif" />
+    <Content Include="Content\smiles\ao.gif" />
+    <Content Include="Content\smiles\ap.gif" />
+    <Content Include="Content\smiles\aq.gif" />
+    <Content Include="Content\smiles\ar.gif" />
+    <Content Include="Content\smiles\as.gif" />
+    <Content Include="Content\smiles\at.gif" />
+    <Content Include="Content\smiles\au.gif" />
+    <Content Include="Content\smiles\av.gif" />
+    <Content Include="Content\smiles\aw.gif" />
+    <Content Include="Content\smiles\ax.gif" />
+    <Content Include="Content\smiles\ay.gif" />
+    <Content Include="Content\smiles\az.gif" />
+    <Content Include="Content\smiles\ba.gif" />
+    <Content Include="Content\smiles\bb.gif" />
+    <Content Include="Content\smiles\bc.gif" />
+    <Content Include="Content\smiles\bd.gif" />
+    <Content Include="Content\smiles\be.gif" />
+    <Content Include="Content\smiles\bf.gif" />
+    <Content Include="Content\smiles\bg.gif" />
+    <Content Include="Content\smiles\bh.gif" />
+    <Content Include="Content\smiles\bi.gif" />
+    <Content Include="Content\smiles\bj.gif" />
+    <Content Include="Content\smiles\bk.gif" />
+    <Content Include="Content\smiles\bl.gif" />
+    <Content Include="Content\smiles\bm.gif" />
+    <Content Include="Content\smiles\bn.gif" />
+    <Content Include="Content\smiles\bo.gif" />
+    <Content Include="Content\smiles\bp.gif" />
+    <Content Include="Content\smiles\bq.gif" />
+    <Content Include="Content\smiles\br.gif" />
+    <Content Include="Content\smiles\bs.gif" />
+    <Content Include="Content\smiles\bt.gif" />
+    <Content Include="Content\smiles\bu.gif" />
+    <Content Include="Content\smiles\bv.gif" />
+    <Content Include="Content\smiles\bw.gif" />
+    <Content Include="Content\smiles\bx.gif" />
+    <Content Include="Content\smiles\ca.gif" />
+    <Content Include="Content\smiles\cd.gif" />
+    <Content Include="Content\smiles\ce.gif" />
+    <Content Include="Content\smiles\ch.gif" />
+    <Content Include="Content\smiles\ci.gif" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ScriptsLite\jHtmlArea.Mytrip.js" />
+    <Content Include="ScriptsLite\jquery-1.4.2.js" />
+    <Content Include="ScriptsLite\MicrosoftAjax.js" />
+    <Content Include="ScriptsLite\MicrosoftMvcAjax.js" />
+    <Content Include="ScriptsLite\MicrosoftMvcValidation.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Accordion.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Baloon.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Button.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Captcha.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.CheckedShow.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Delete.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Dropdown.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Include.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Layout.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Modal.js" />
+    <Content Include="ScriptsLite\Mytrip.Mvc.Textbox.js" />
+    <Content Include="ScriptsLite\Page\Account.js" />
+    <Content Include="ScriptsLite\Page\Article.Create.js" />
+    <Content Include="ScriptsLite\Page\Article.Edit.js" />
+    <Content Include="ScriptsLite\Page\Article.EditComment.js" />
+    <Content Include="ScriptsLite\Page\Article.View.js" />
+    <Content Include="ScriptsLite\Page\Core.About.js" />
+    <Content Include="ScriptsLite\Page\Core.CorSideBar.js" />
+    <Content Include="ScriptsLite\Page\Core.HomePage.js" />
+    <Content Include="ScriptsLite\Page\Core.TopMenu.js" />
+    <Content Include="ScriptsLite\Page\File.js" />
+    <Content Include="ScriptsLite\Page\Rssparser.js" />
+    <Content Include="ScriptsLite\Page\Store.Cart.js" />
+    <Content Include="ScriptsLite\Page\Store.EditorCategory.js" />
+    <Content Include="ScriptsLite\Page\Store.EditorProduct.js" />
+    <Content Include="ScriptsLite\Page\Store.Index.js" />
+    <Content Include="ScriptsLite\Page\TextAreaFile.js" />
+    <Content Include="ScriptsLite\Page\Votes.js" />
+    <Content Include="ScriptsLite\SLPlaerChrome.js" />
+    <Content Include="ScriptsLite\SLPlaerChrome.xap" />
+    <Content Include="ScriptsLite\ui.datepicker-ru.js" />
+    <Content Include="ScriptsLite\ui.datepicker.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
+    <Content Include="Scripts\jHtmlArea.Mytrip.js" />
+    <Content Include="Scripts\jquery-1.4.2.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Button.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Captcha.js" />
+    <Content Include="Scripts\Mytrip.Mvc.CheckedShow.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Dropdown.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Include.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Layout.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Accordion.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Modal.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Textbox.js" />
+    <Content Include="Scripts\Page\Account.js" />
+    <Content Include="Scripts\Page\Article.Create.js" />
+    <Content Include="Scripts\Page\Article.Edit.js" />
+    <Content Include="Scripts\Page\Article.EditComment.js" />
+    <Content Include="Scripts\Page\Article.Index.js" />
+    <Content Include="Scripts\Page\Article.View.js" />
+    <Content Include="Scripts\Page\Core.About.js" />
+    <Content Include="Scripts\Page\Core.CorSideBar.js" />
+    <Content Include="Scripts\Page\Core.HomePage.js" />
+    <Content Include="Scripts\Page\Core.TopMenu.js" />
+    <Content Include="Scripts\Page\File.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Delete.js" />
+    <Content Include="Scripts\Page\Rssparser.js" />
+    <Content Include="Scripts\Page\Store.Cart.js" />
+    <Content Include="Scripts\Page\Store.EditorCategory.js" />
+    <Content Include="Scripts\Page\Store.EditorProduct.js" />
+    <Content Include="Scripts\Page\Store.Index.js" />
+    <Content Include="Scripts\Page\TextAreaFile.js" />
+    <Content Include="Scripts\Page\Votes.js" />
+    <Content Include="Scripts\SLPlaerChrome.js" />
+    <Content Include="Scripts\SLPlaerChrome.xap" />
+    <Content Include="Scripts\ui.datepicker-ru.js" />
+    <Content Include="Scripts\ui.datepicker.js" />
+    <Content Include="Theme\BlueStyle\Accordion.css" />
+    <Content Include="Theme\BlueStyle\Baloon.css" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_bottom.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_bottomLeft.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_bottomRight.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_left.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_right.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_tail.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_top.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_topLeft.png" />
+    <Content Include="Theme\BlueStyle\baloon\balloon_topRight.png" />
+    <Content Include="Theme\BlueStyle\Captcha.css" />
+    <Content Include="Theme\BlueStyle\Content.css" />
+    <Content Include="Theme\BlueStyle\Dropdown.css" />
+    <Content Include="Theme\BlueStyle\Footer.css" />
+    <Content Include="Theme\BlueStyle\Header.css" />
+    <Content Include="Theme\BlueStyle\Hedings.css" />
+    <Content Include="Theme\BlueStyle\images\accordion.png" />
+    <Content Include="Theme\BlueStyle\images\accordioncon.png" />
+    <Content Include="Theme\BlueStyle\images\accordioncontent.png" />
+    <Content Include="Theme\BlueStyle\images\accordioncontentcon.png" />
+    <Content Include="Theme\BlueStyle\images\add.png" />
+    <Content Include="Theme\BlueStyle\images\addmodule.png" />
+    <Content Include="Theme\BlueStyle\images\add_copy.png" />
+    <Content Include="Theme\BlueStyle\images\alert.png" />
+    <Content Include="Theme\BlueStyle\images\approved.png" />
+    <Content Include="Theme\BlueStyle\images\arrow.png" />
+    <Content Include="Theme\BlueStyle\images\arrowe.png" />
+    <Content Include="Theme\BlueStyle\images\arrowerror.png" />
+    <Content Include="Theme\BlueStyle\images\button.png" />
+    <Content Include="Theme\BlueStyle\images\buttoncon.png" />
+    <Content Include="Theme\BlueStyle\images\comment.png" />
+    <Content Include="Theme\BlueStyle\images\content.png" />
+    <Content Include="Theme\BlueStyle\images\contentcon.png" />
+    <Content Include="Theme\BlueStyle\images\delete.png" />
+    <Content Include="Theme\BlueStyle\images\deletemodule.png" />
+    <Content Include="Theme\BlueStyle\images\deleteUser.png" />
+    <Content Include="Theme\BlueStyle\images\delete_copy.png" />
+    <Content Include="Theme\BlueStyle\images\detail.png" />
+    <Content Include="Theme\BlueStyle\images\detail_copy.png" />
+    <Content Include="Theme\BlueStyle\images\downarrow_blue.png" />
+    <Content Include="Theme\BlueStyle\images\edite.png" />
+    <Content Include="Theme\BlueStyle\images\en-us.png" />
+    <Content Include="Theme\BlueStyle\images\filebrouse.png" />
+    <Content Include="Theme\BlueStyle\images\fon_1_2.png" />
+    <Content Include="Theme\BlueStyle\images\footerlogo.png" />
+    <Content Include="Theme\BlueStyle\images\generalsetting.png" />
+    <Content Include="Theme\BlueStyle\images\globe.png" />
+    <Content Include="Theme\BlueStyle\images\homelastcontent.png" />
+    <Content Include="Theme\BlueStyle\images\htmlarea.png" />
+    <Content Include="Theme\BlueStyle\images\Keys.png" />
+    <Content Include="Theme\BlueStyle\images\leftarrow_blue.png" />
+    <Content Include="Theme\BlueStyle\images\logo.png" />
+    <Content Include="Theme\BlueStyle\images\main.png" />
+    <Content Include="Theme\BlueStyle\images\menu.png" />
+    <Content Include="Theme\BlueStyle\images\menucon.png" />
+    <Content Include="Theme\BlueStyle\images\menusetting.png" />
+    <Content Include="Theme\BlueStyle\images\menuslide.png" />
+    <Content Include="Theme\BlueStyle\images\menuslidecon.png" />
+    <Content Include="Theme\BlueStyle\images\menuslidecontop.png" />
+    <Content Include="Theme\BlueStyle\images\minus_blue.png" />
+    <Content Include="Theme\BlueStyle\images\modal.png" />
+    <Content Include="Theme\BlueStyle\images\modalcon.png" />
+    <Content Include="Theme\BlueStyle\images\noalert.png" />
+    <Content Include="Theme\BlueStyle\images\noapproved.png" />
+    <Content Include="Theme\BlueStyle\images\plus_blue.png" />
+    <Content Include="Theme\BlueStyle\images\poll.png" />
+    <Content Include="Theme\BlueStyle\images\poll1.gif" />
+    <Content Include="Theme\BlueStyle\images\rightarrow_blue.png" />
+    <Content Include="Theme\BlueStyle\images\rss.png" />
+    <Content Include="Theme\BlueStyle\images\ru-ru.png" />
+    <Content Include="Theme\BlueStyle\images\search.png" />
+    <Content Include="Theme\BlueStyle\images\searchfirst.png" />
+    <Content Include="Theme\BlueStyle\images\searchlast.png" />
+    <Content Include="Theme\BlueStyle\images\star.png" />
+    <Content Include="Theme\BlueStyle\images\star100.png" />
+    <Content Include="Theme\BlueStyle\images\star25.png" />
+    <Content Include="Theme\BlueStyle\images\star50.png" />
+    <Content Include="Theme\BlueStyle\images\star75.png" />
+    <Content Include="Theme\BlueStyle\images\textbox.png" />
+    <Content Include="Theme\BlueStyle\images\textboxcon.png" />
+    <Content Include="Theme\BlueStyle\images\ul.png" />
+    <Content Include="Theme\BlueStyle\images\uparrow_blue.png" />
+    <Content Include="Theme\BlueStyle\images\User.png" />
+    <Content Include="Theme\BlueStyle\images\usersetting.png" />
+    <Content Include="Theme\BlueStyle\images\warning.png" />
+    <Content Include="Theme\BlueStyle\InputButton.css" />
+    <Content Include="Theme\BlueStyle\InputFile.css" />
+    <Content Include="Theme\BlueStyle\InputText.css" />
+    <Content Include="Theme\BlueStyle\Link.css" />
+    <Content Include="Theme\BlueStyle\LogonMenu.css" />
+    <Content Include="Theme\BlueStyle\Main.css" />
+    <Content Include="Theme\BlueStyle\Menu.css" />
+    <Content Include="Theme\BlueStyle\ModalWindow.css" />
+    <Content Include="Theme\BlueStyle\Rating.css" />
+    <Content Include="Theme\BlueStyle\Site.css" />
+    <Content Include="Theme\BlueStyle\Table.css" />
+    <Content Include="Theme\BlueStyle\TextArea.css" />
+    <Content Include="Theme\BlueStyle\TextAreaContainer.css" />
+    <Content Include="Theme\GreenStyle\Accordion.css" />
+    <Content Include="Theme\GreenStyle\Baloon.css" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_bottom.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_bottomLeft.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_bottomRight.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_left.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_right.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_tail.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_top.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_topLeft.png" />
+    <Content Include="Theme\GreenStyle\baloon\balloon_topRight.png" />
+    <Content Include="Theme\GreenStyle\Captcha.css" />
+    <Content Include="Theme\GreenStyle\Content.css" />
+    <Content Include="Theme\GreenStyle\Dropdown.css" />
+    <Content Include="Theme\GreenStyle\Footer.css" />
+    <Content Include="Theme\GreenStyle\Header.css" />
+    <Content Include="Theme\GreenStyle\Hedings.css" />
+    <Content Include="Theme\GreenStyle\images\accordion.png" />
+    <Content Include="Theme\GreenStyle\images\accordioncon.png" />
+    <Content Include="Theme\GreenStyle\images\accordioncontent.png" />
+    <Content Include="Theme\GreenStyle\images\accordioncontentcon.png" />
+    <Content Include="Theme\GreenStyle\images\add.png" />
+    <Content Include="Theme\GreenStyle\images\addmodule.png" />
+    <Content Include="Theme\GreenStyle\images\add_copy.png" />
+    <Content Include="Theme\GreenStyle\images\alert.png" />
+    <Content Include="Theme\GreenStyle\images\approved.png" />
+    <Content Include="Theme\GreenStyle\images\arrow.png" />
+    <Content Include="Theme\GreenStyle\images\arrowe.png" />
+    <Content Include="Theme\GreenStyle\images\arrowerror.png" />
+    <Content Include="Theme\GreenStyle\images\button.png" />
+    <Content Include="Theme\GreenStyle\images\buttoncon.png" />
+    <Content Include="Theme\GreenStyle\images\comment.png" />
+    <Content Include="Theme\GreenStyle\images\content.png" />
+    <Content Include="Theme\GreenStyle\images\contentcon.png" />
+    <Content Include="Theme\GreenStyle\images\delete.png" />
+    <Content Include="Theme\GreenStyle\images\deletemodule.png" />
+    <Content Include="Theme\GreenStyle\images\deleteUser.png" />
+    <Content Include="Theme\GreenStyle\images\delete_copy.png" />
+    <Content Include="Theme\GreenStyle\images\detail.png" />
+    <Content Include="Theme\GreenStyle\images\detail_copy.png" />
+    <Content Include="Theme\GreenStyle\images\downarrow_blue.png" />
+    <Content Include="Theme\GreenStyle\images\edite.png" />
+    <Content Include="Theme\GreenStyle\images\en-us.png" />
+    <Content Include="Theme\GreenStyle\images\filebrouse.png" />
+    <Content Include="Theme\GreenStyle\images\fon_1_2.png" />
+    <Content Include="Theme\GreenStyle\images\footerlogo.png" />
+    <Content Include="Theme\GreenStyle\images\generalsetting.png" />
+    <Content Include="Theme\GreenStyle\images\globe.png" />
+    <Content Include="Theme\GreenStyle\images\homelastcontent.png" />
+    <Content Include="Theme\GreenStyle\images\htmlarea.png" />
+    <Content Include="Theme\GreenStyle\images\Keys.png" />
+    <Content Include="Theme\GreenStyle\images\leftarrow_blue.png" />
+    <Content Include="Theme\GreenStyle\images\logo.png" />
+    <Content Include="Theme\GreenStyle\images\main.png" />
+    <Content Include="Theme\GreenStyle\images\menu.png" />
+    <Content Include="Theme\GreenStyle\images\menucon.png" />
+    <Content Include="Theme\GreenStyle\images\menusetting.png" />
+    <Content Include="Theme\GreenStyle\images\menuslide.png" />
+    <Content Include="Theme\GreenStyle\images\menuslidecon.png" />
+    <Content Include="Theme\GreenStyle\images\menuslidecontop.png" />
+    <Content Include="Theme\GreenStyle\images\minus_blue.png" />
+    <Content Include="Theme\GreenStyle\images\modal.png" />
+    <Content Include="Theme\GreenStyle\images\modalcon.png" />
+    <Content Include="Theme\GreenStyle\images\noalert.png" />
+    <Content Include="Theme\GreenStyle\images\noapproved.png" />
+    <Content Include="Theme\GreenStyle\images\plus_blue.png" />
+    <Content Include="Theme\GreenStyle\images\poll.png" />
+    <Content Include="Theme\GreenStyle\images\poll1.gif" />
+    <Content Include="Theme\GreenStyle\images\rightarrow_blue.png" />
+    <Content Include="Theme\GreenStyle\images\rss.png" />
+    <Content Include="Theme\GreenStyle\images\ru-ru.png" />
+    <Content Include="Theme\GreenStyle\images\search.png" />
+    <Content Include="Theme\GreenStyle\images\searchfirst.png" />
+    <Content Include="Theme\GreenStyle\images\searchlast.png" />
+    <Content Include="Theme\GreenStyle\images\star.png" />
+    <Content Include="Theme\GreenStyle\images\star100.png" />
+    <Content Include="Theme\GreenStyle\images\star25.png" />
+    <Content Include="Theme\GreenStyle\images\star50.png" />
+    <Content Include="Theme\GreenStyle\images\star75.png" />
+    <Content Include="Theme\GreenStyle\images\textbox.png" />
+    <Content Include="Theme\GreenStyle\images\textboxcon.png" />
+    <Content Include="Theme\GreenStyle\images\ul.png" />
+    <Content Include="Theme\GreenStyle\images\uparrow_blue.png" />
+    <Content Include="Theme\GreenStyle\images\User.png" />
+    <Content Include="Theme\GreenStyle\images\usersetting.png" />
+    <Content Include="Theme\GreenStyle\images\warning.png" />
+    <Content Include="Theme\GreenStyle\InputButton.css" />
+    <Content Include="Theme\GreenStyle\InputFile.css" />
+    <Content Include="Theme\GreenStyle\InputText.css" />
+    <Content Include="Theme\GreenStyle\Link.css" />
+    <Content Include="Theme\GreenStyle\LogonMenu.css" />
+    <Content Include="Theme\GreenStyle\Main.css" />
+    <Content Include="Theme\GreenStyle\Menu.css" />
+    <Content Include="Theme\GreenStyle\ModalWindow.css" />
+    <Content Include="Theme\GreenStyle\Rating.css" />
+    <Content Include="Theme\GreenStyle\Site.css" />
+    <Content Include="Theme\GreenStyle\Table.css" />
+    <Content Include="Theme\GreenStyle\TextArea.css" />
+    <Content Include="Theme\GreenStyle\TextAreaContainer.css" />
+    <Content Include="Theme\LiveStyle\Accordion.css" />
+    <Content Include="Theme\LiveStyle\Baloon.css" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_bottom.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_bottomLeft.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_bottomRight.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_left.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_right.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_tail.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_top.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_topLeft.png" />
+    <Content Include="Theme\LiveStyle\baloon\balloon_topRight.png" />
+    <Content Include="Theme\LiveStyle\Captcha.css" />
+    <Content Include="Theme\LiveStyle\Content.css" />
+    <Content Include="Theme\LiveStyle\Dropdown.css" />
+    <Content Include="Theme\LiveStyle\Footer.css" />
+    <Content Include="Theme\LiveStyle\Header.css" />
+    <Content Include="Theme\LiveStyle\Hedings.css" />
+    <Content Include="Theme\LiveStyle\images\accordion.png" />
+    <Content Include="Theme\LiveStyle\images\accordioncon.png" />
+    <Content Include="Theme\LiveStyle\images\accordioncontent.png" />
+    <Content Include="Theme\LiveStyle\images\accordioncontentcon.png" />
+    <Content Include="Theme\LiveStyle\images\add.png" />
+    <Content Include="Theme\LiveStyle\images\addmodule.png" />
+    <Content Include="Theme\LiveStyle\images\add_copy.png" />
+    <Content Include="Theme\LiveStyle\images\alert.png" />
+    <Content Include="Theme\LiveStyle\images\approved.png" />
+    <Content Include="Theme\LiveStyle\images\arrow.png" />
+    <Content Include="Theme\LiveStyle\images\arrowe.png" />
+    <Content Include="Theme\LiveStyle\images\arrowerror.png" />
+    <Content Include="Theme\LiveStyle\images\backgraund.png" />
+    <Content Include="Theme\LiveStyle\images\button.png" />
+    <Content Include="Theme\LiveStyle\images\buttoncon.png" />
+    <Content Include="Theme\LiveStyle\images\comment.png" />
+    <Content Include="Theme\LiveStyle\images\comment2.png" />
+    <Content Include="Theme\LiveStyle\images\content.png" />
+    <Content Include="Theme\LiveStyle\images\contentcon.png" />
+    <Content Include="Theme\LiveStyle\images\delete.png" />
+    <Content Include="Theme\LiveStyle\images\deletemodule.png" />
+    <Content Include="Theme\LiveStyle\images\deleteUser.png" />
+    <Content Include="Theme\LiveStyle\images\delete_copy.png" />
+    <Content Include="Theme\LiveStyle\images\detail.png" />
+    <Content Include="Theme\LiveStyle\images\detail_copy.png" />
+    <Content Include="Theme\LiveStyle\images\downarrow_blue.png" />
+    <Content Include="Theme\LiveStyle\images\edite.png" />
+    <Content Include="Theme\LiveStyle\images\en-us.png" />
+    <Content Include="Theme\LiveStyle\images\error.png" />
+    <Content Include="Theme\LiveStyle\images\filebrouse.png" />
+    <Content Include="Theme\LiveStyle\images\fon_1_2.png" />
+    <Content Include="Theme\LiveStyle\images\footerlogo.png" />
+    <Content Include="Theme\LiveStyle\images\generalsetting.png" />
+    <Content Include="Theme\LiveStyle\images\globe.png" />
+    <Content Include="Theme\LiveStyle\images\homelastcontent.png" />
+    <Content Include="Theme\LiveStyle\images\htmlarea.png" />
+    <Content Include="Theme\LiveStyle\images\Keys.png" />
+    <Content Include="Theme\LiveStyle\images\leftarrow_blue.png" />
+    <Content Include="Theme\LiveStyle\images\logmenu.png" />
+    <Content Include="Theme\LiveStyle\images\logmenucon.png" />
+    <Content Include="Theme\LiveStyle\images\logo.png" />
+    <Content Include="Theme\LiveStyle\images\main.png" />
+    <Content Include="Theme\LiveStyle\images\main2.png" />
+    <Content Include="Theme\LiveStyle\images\menu.png" />
+    <Content Include="Theme\LiveStyle\images\menucon.png" />
+    <Content Include="Theme\LiveStyle\images\menusetting.png" />
+    <Content Include="Theme\LiveStyle\images\minus_blue.png" />
+    <Content Include="Theme\LiveStyle\images\modal.png" />
+    <Content Include="Theme\LiveStyle\images\modalcon.png" />
+    <Content Include="Theme\LiveStyle\images\noalert.png" />
+    <Content Include="Theme\LiveStyle\images\noapproved.png" />
+    <Content Include="Theme\LiveStyle\images\plus_blue.png" />
+    <Content Include="Theme\LiveStyle\images\poll.png" />
+    <Content Include="Theme\LiveStyle\images\poll1.gif" />
+    <Content Include="Theme\LiveStyle\images\rightarrow_blue.png" />
+    <Content Include="Theme\LiveStyle\images\rss.png" />
+    <Content Include="Theme\LiveStyle\images\ru-ru.png" />
+    <Content Include="Theme\LiveStyle\images\search.png" />
+    <Content Include="Theme\LiveStyle\images\searchfirst.png" />
+    <Content Include="Theme\LiveStyle\images\searchlast.png" />
+    <Content Include="Theme\LiveStyle\images\star.png" />
+    <Content Include="Theme\LiveStyle\images\star100.png" />
+    <Content Include="Theme\LiveStyle\images\star25.png" />
+    <Content Include="Theme\LiveStyle\images\star50.png" />
+    <Content Include="Theme\LiveStyle\images\star75.png" />
+    <Content Include="Theme\LiveStyle\images\textbox.png" />
+    <Content Include="Theme\LiveStyle\images\textboxcon.png" />
+    <Content Include="Theme\LiveStyle\images\ul.png" />
+    <Content Include="Theme\LiveStyle\images\uparrow_blue.png" />
+    <Content Include="Theme\LiveStyle\images\User.png" />
+    <Content Include="Theme\LiveStyle\images\usersetting.png" />
+    <Content Include="Theme\LiveStyle\images\warning.png" />
+    <Content Include="Theme\LiveStyle\InputButton.css" />
+    <Content Include="Theme\LiveStyle\InputFile.css" />
+    <Content Include="Theme\LiveStyle\InputText.css" />
+    <Content Include="Theme\LiveStyle\Link.css" />
+    <Content Include="Theme\LiveStyle\LogonMenu.css" />
+    <Content Include="Theme\LiveStyle\Main.css" />
+    <Content Include="Theme\LiveStyle\Menu.css" />
+    <Content Include="Theme\LiveStyle\ModalWindow.css" />
+    <Content Include="Theme\LiveStyle\Rating.css" />
+    <Content Include="Theme\LiveStyle\Site.css" />
+    <Content Include="Theme\LiveStyle\Table.css" />
+    <Content Include="Theme\LiveStyle\TextArea.css" />
+    <Content Include="Theme\LiveStyle\TextAreaContainer.css" />
+    <Content Include="Theme\MvcStyle\Accordion.css" />
+    <Content Include="Theme\MvcStyle\Baloon.css" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_bottom.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_bottomLeft.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_bottomRight.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_left.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_right.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_tail.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_top.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_topLeft.png" />
+    <Content Include="Theme\MvcStyle\baloon\balloon_topRight.png" />
+    <Content Include="Theme\MvcStyle\Captcha.css" />
+    <Content Include="Theme\MvcStyle\Content.css" />
+    <Content Include="Theme\MvcStyle\Dropdown.css" />
+    <Content Include="Theme\MvcStyle\Footer.css" />
+    <Content Include="Theme\MvcStyle\Header.css" />
+    <Content Include="Theme\MvcStyle\Hedings.css" />
+    <Content Include="Theme\MvcStyle\images\accordion.png" />
+    <Content Include="Theme\MvcStyle\images\accordioncon.png" />
+    <Content Include="Theme\MvcStyle\images\accordioncontent.png" />
+    <Content Include="Theme\MvcStyle\images\accordioncontentcon.png" />
+    <Content Include="Theme\MvcStyle\images\add.png" />
+    <Content Include="Theme\MvcStyle\images\addmodule.png" />
+    <Content Include="Theme\MvcStyle\images\add_copy.png" />
+    <Content Include="Theme\MvcStyle\images\alert.png" />
+    <Content Include="Theme\MvcStyle\images\approved.png" />
+    <Content Include="Theme\MvcStyle\images\arrow.png" />
+    <Content Include="Theme\MvcStyle\images\arrowe.png" />
+    <Content Include="Theme\MvcStyle\images\arrowerror.png" />
+    <Content Include="Theme\MvcStyle\images\backgraund.png" />
+    <Content Include="Theme\MvcStyle\images\button.png" />
+    <Content Include="Theme\MvcStyle\images\buttoncon.png" />
+    <Content Include="Theme\MvcStyle\images\comment.png" />
+    <Content Include="Theme\MvcStyle\images\content.png" />
+    <Content Include="Theme\MvcStyle\images\contentcon.png" />
+    <Content Include="Theme\MvcStyle\images\delete.png" />
+    <Content Include="Theme\MvcStyle\images\deletemodule.png" />
+    <Content Include="Theme\MvcStyle\images\deleteUser.png" />
+    <Content Include="Theme\MvcStyle\images\delete_copy.png" />
+    <Content Include="Theme\MvcStyle\images\detail.png" />
+    <Content Include="Theme\MvcStyle\images\detail_copy.png" />
+    <Content Include="Theme\MvcStyle\images\downarrow_blue.png" />
+    <Content Include="Theme\MvcStyle\images\edite.png" />
+    <Content Include="Theme\MvcStyle\images\en-us.png" />
+    <Content Include="Theme\MvcStyle\images\filebrouse.png" />
+    <Content Include="Theme\MvcStyle\images\fon_1_2.png" />
+    <Content Include="Theme\MvcStyle\images\footerlogo.png" />
+    <Content Include="Theme\MvcStyle\images\generalsetting.png" />
+    <Content Include="Theme\MvcStyle\images\globe.png" />
+    <Content Include="Theme\MvcStyle\images\homelastcontent.png" />
+    <Content Include="Theme\MvcStyle\images\htmlarea.png" />
+    <Content Include="Theme\MvcStyle\images\Keys.png" />
+    <Content Include="Theme\MvcStyle\images\leftarrow_blue.png" />
+    <Content Include="Theme\MvcStyle\images\logmenu.png" />
+    <Content Include="Theme\MvcStyle\images\logmenucon.png" />
+    <Content Include="Theme\MvcStyle\images\logo.png" />
+    <Content Include="Theme\MvcStyle\images\main.png" />
+    <Content Include="Theme\MvcStyle\images\menu.png" />
+    <Content Include="Theme\MvcStyle\images\menucon.png" />
+    <Content Include="Theme\MvcStyle\images\menusetting.png" />
+    <Content Include="Theme\MvcStyle\images\minus_blue.png" />
+    <Content Include="Theme\MvcStyle\images\modal.png" />
+    <Content Include="Theme\MvcStyle\images\modalcon.png" />
+    <Content Include="Theme\MvcStyle\images\noalert.png" />
+    <Content Include="Theme\MvcStyle\images\noapproved.png" />
+    <Content Include="Theme\MvcStyle\images\plus_blue.png" />
+    <Content Include="Theme\MvcStyle\images\poll.png" />
+    <Content Include="Theme\MvcStyle\images\poll1.gif" />
+    <Content Include="Theme\MvcStyle\images\rightarrow_blue.png" />
+    <Content Include="Theme\MvcStyle\images\rss.png" />
+    <Content Include="Theme\MvcStyle\images\ru-ru.png" />
+    <Content Include="Theme\MvcStyle\images\search.png" />
+    <Content Include="Theme\MvcStyle\images\searchfirst.png" />
+    <Content Include="Theme\MvcStyle\images\searchlast.png" />
+    <Content Include="Theme\MvcStyle\images\star.png" />
+    <Content Include="Theme\MvcStyle\images\star100.png" />
+    <Content Include="Theme\MvcStyle\images\star25.png" />
+    <Content Include="Theme\MvcStyle\images\star50.png" />
+    <Content Include="Theme\MvcStyle\images\star75.png" />
+    <Content Include="Theme\MvcStyle\images\textbox.png" />
+    <Content Include="Theme\MvcStyle\images\textboxcon.png" />
+    <Content Include="Theme\MvcStyle\images\ul.png" />
+    <Content Include="Theme\MvcStyle\images\uparrow_blue.png" />
+    <Content Include="Theme\MvcStyle\images\User.png" />
+    <Content Include="Theme\MvcStyle\images\usersetting.png" />
+    <Content Include="Theme\MvcStyle\images\warning.png" />
+    <Content Include="Theme\MvcStyle\InputButton.css" />
+    <Content Include="Theme\MvcStyle\InputFile.css" />
+    <Content Include="Theme\MvcStyle\InputText.css" />
+    <Content Include="Theme\MvcStyle\Link.css" />
+    <Content Include="Theme\MvcStyle\LogonMenu.css" />
+    <Content Include="Theme\MvcStyle\Main.css" />
+    <Content Include="Theme\MvcStyle\Menu.css" />
+    <Content Include="Theme\MvcStyle\ModalWindow.css" />
+    <Content Include="Theme\MvcStyle\Rating.css" />
+    <Content Include="Theme\MvcStyle\Site.css" />
+    <Content Include="Theme\MvcStyle\Table.css" />
+    <Content Include="Theme\MvcStyle\TextArea.css" />
+    <Content Include="Theme\MvcStyle\TextAreaContainer.css" />
+    <Content Include="Theme\OrangeStyle\Accordion.css" />
+    <Content Include="Theme\OrangeStyle\Baloon.css" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_bottom.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_bottomLeft.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_bottomRight.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_left.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_right.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_tail.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_top.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_topLeft.png" />
+    <Content Include="Theme\OrangeStyle\baloon\balloon_topRight.png" />
+    <Content Include="Theme\OrangeStyle\Captcha.css" />
+    <Content Include="Theme\OrangeStyle\Content.css" />
+    <Content Include="Theme\OrangeStyle\Dropdown.css" />
+    <Content Include="Theme\OrangeStyle\Footer.css" />
+    <Content Include="Theme\OrangeStyle\Header.css" />
+    <Content Include="Theme\OrangeStyle\Hedings.css" />
+    <Content Include="Theme\OrangeStyle\images\accordion.png" />
+    <Content Include="Theme\OrangeStyle\images\accordioncon.png" />
+    <Content Include="Theme\OrangeStyle\images\accordioncontent.png" />
+    <Content Include="Theme\OrangeStyle\images\accordioncontentcon.png" />
+    <Content Include="Theme\OrangeStyle\images\add.png" />
+    <Content Include="Theme\OrangeStyle\images\addmodule.png" />
+    <Content Include="Theme\OrangeStyle\images\add_copy.png" />
+    <Content Include="Theme\OrangeStyle\images\alert.png" />
+    <Content Include="Theme\OrangeStyle\images\approved.png" />
+    <Content Include="Theme\OrangeStyle\images\arrow.png" />
+    <Content Include="Theme\OrangeStyle\images\arrowe.png" />
+    <Content Include="Theme\OrangeStyle\images\arrowerror.png" />
+    <Content Include="Theme\OrangeStyle\images\button.png" />
+    <Content Include="Theme\OrangeStyle\images\buttoncon.png" />
+    <Content Include="Theme\OrangeStyle\images\comment.png" />
+    <Content Include="Theme\OrangeStyle\images\content.png" />
+    <Content Include="Theme\OrangeStyle\images\contentcon.png" />
+    <Content Include="Theme\OrangeStyle\images\delete.png" />
+    <Content Include="Theme\OrangeStyle\images\deletemodule.png" />
+    <Content Include="Theme\OrangeStyle\images\deleteUser.png" />
+    <Content Include="Theme\OrangeStyle\images\delete_copy.png" />
+    <Content Include="Theme\OrangeStyle\images\detail.png" />
+    <Content Include="Theme\OrangeStyle\images\detail_copy.png" />
+    <Content Include="Theme\OrangeStyle\images\downarrow_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\edite.png" />
+    <Content Include="Theme\OrangeStyle\images\en-us.png" />
+    <Content Include="Theme\OrangeStyle\images\filebrouse.png" />
+    <Content Include="Theme\OrangeStyle\images\fon_1_2.png" />
+    <Content Include="Theme\OrangeStyle\images\footerlogo.png" />
+    <Content Include="Theme\OrangeStyle\images\generalsetting.png" />
+    <Content Include="Theme\OrangeStyle\images\globe.png" />
+    <Content Include="Theme\OrangeStyle\images\homelastcontent.png" />
+    <Content Include="Theme\OrangeStyle\images\htmlarea.png" />
+    <Content Include="Theme\OrangeStyle\images\Keys.png" />
+    <Content Include="Theme\OrangeStyle\images\leftarrow_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\logo.png" />
+    <Content Include="Theme\OrangeStyle\images\main.png" />
+    <Content Include="Theme\OrangeStyle\images\menu.png" />
+    <Content Include="Theme\OrangeStyle\images\menucon.png" />
+    <Content Include="Theme\OrangeStyle\images\menusetting.png" />
+    <Content Include="Theme\OrangeStyle\images\menuslide.png" />
+    <Content Include="Theme\OrangeStyle\images\menuslidecon.png" />
+    <Content Include="Theme\OrangeStyle\images\menuslidecontop.png" />
+    <Content Include="Theme\OrangeStyle\images\minus_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\modal.png" />
+    <Content Include="Theme\OrangeStyle\images\modalcon.png" />
+    <Content Include="Theme\OrangeStyle\images\noalert.png" />
+    <Content Include="Theme\OrangeStyle\images\noapproved.png" />
+    <Content Include="Theme\OrangeStyle\images\plus_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\poll.png" />
+    <Content Include="Theme\OrangeStyle\images\poll1.gif" />
+    <Content Include="Theme\OrangeStyle\images\rightarrow_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\rss.png" />
+    <Content Include="Theme\OrangeStyle\images\ru-ru.png" />
+    <Content Include="Theme\OrangeStyle\images\search.png" />
+    <Content Include="Theme\OrangeStyle\images\searchfirst.png" />
+    <Content Include="Theme\OrangeStyle\images\searchlast.png" />
+    <Content Include="Theme\OrangeStyle\images\star.png" />
+    <Content Include="Theme\OrangeStyle\images\star100.png" />
+    <Content Include="Theme\OrangeStyle\images\star25.png" />
+    <Content Include="Theme\OrangeStyle\images\star50.png" />
+    <Content Include="Theme\OrangeStyle\images\star75.png" />
+    <Content Include="Theme\OrangeStyle\images\textbox.png" />
+    <Content Include="Theme\OrangeStyle\images\textboxcon.png" />
+    <Content Include="Theme\OrangeStyle\images\ul.png" />
+    <Content Include="Theme\OrangeStyle\images\uparrow_blue.png" />
+    <Content Include="Theme\OrangeStyle\images\User.png" />
+    <Content Include="Theme\OrangeStyle\images\usersetting.png" />
+    <Content Include="Theme\OrangeStyle\images\warning.png" />
+    <Content Include="Theme\OrangeStyle\InputButton.css" />
+    <Content Include="Theme\OrangeStyle\InputFile.css" />
+    <Content Include="Theme\OrangeStyle\InputText.css" />
+    <Content Include="Theme\OrangeStyle\Link.css" />
+    <Content Include="Theme\OrangeStyle\LogonMenu.css" />
+    <Content Include="Theme\OrangeStyle\Main.css" />
+    <Content Include="Theme\OrangeStyle\Menu.css" />
+    <Content Include="Theme\OrangeStyle\ModalWindow.css" />
+    <Content Include="Theme\OrangeStyle\Rating.css" />
+    <Content Include="Theme\OrangeStyle\Site.css" />
+    <Content Include="Theme\OrangeStyle\Table.css" />
+    <Content Include="Theme\OrangeStyle\TextArea.css" />
+    <Content Include="Theme\OrangeStyle\TextAreaContainer.css" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MssqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MssqlModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MysqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MysqlModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Repository\DataEntities\UsersPocoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UsersPocoModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Repository\DataEntities\UsersPocoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UsersPocoModel.cs</LastGenOutput>
+    </None>
+    <None Include="Theme\BlueStyle\images\Blue.design" />
+    <None Include="Theme\BlueStyle\images\Thumbs.db" />
+    <None Include="Theme\GreenStyle\images\Green.design" />
+    <None Include="Theme\OrangeStyle\images\Orange.design" />
+    <None Include="Views\Account\ChangePassword.cshtml" />
+    <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <None Include="Views\Account\Email.cshtml" />
+    <None Include="Views\Account\LogOn.cshtml" />
+    <None Include="Views\Account\OpenIdRegister.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Article\Archive.cshtml" />
+    <None Include="Views\Article\ArchiveDetails.cshtml" />
+    <None Include="Views\Article\Create.cshtml" />
+    <None Include="Views\Article\CreateCategory.cshtml" />
+    <None Include="Views\Article\Edit.cshtml" />
+    <None Include="Views\Article\EditCategory.cshtml" />
+    <None Include="Views\Article\EditComment.cshtml" />
+    <None Include="Views\Article\Editors.cshtml" />
+    <None Include="Views\Article\Index.cshtml" />
+    <None Include="Views\Article\Setting.cshtml" />
+    <None Include="Views\Article\View.cshtml" />
+    <None Include="Views\Core\About.cshtml" />
+    <None Include="Views\Core\ControlPanel.cshtml" />
+    <None Include="Views\Core\CorSideBar.cshtml" />
+    <None Include="Views\Core\CreateBase.cshtml" />
+    <None Include="Views\Core\Email.cshtml" />
+    <None Include="Views\Core\HomePage.cshtml" />
+    <None Include="Views\Core\Index.cshtml" />
+    <None Include="Views\Core\InstallModules.cshtml" />
+    <None Include="Views\Core\TopMenu.cshtml" />
+    <None Include="Views\File\EditPage.cshtml" />
+    <None Include="Views\File\Index.cshtml" />
+    <None Include="Views\File\Rename.cshtml" />
+    <None Include="Views\Gismeteo\Edit.cshtml" />
+    <None Include="Views\Gismeteo\Manager.cshtml" />
+    <None Include="Views\Gismeteo\Setting.cshtml" />
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Profile.cshtml" />
+    <None Include="Views\Home\_homePage.cshtml" />
+    <None Include="Views\Home\_license.cshtml" />
+    <None Include="Views\Home\_profileBig.cshtml" />
+    <None Include="Views\Home\_profileSmall.cshtml" />
+    <None Include="Views\Rssparser\Edit.cshtml" />
+    <None Include="Views\Rssparser\Index.cshtml" />
+    <None Include="Views\Rssparser\Manager.cshtml" />
+    <None Include="Views\Rssparser\Setting.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_menu.cshtml" />
+    <None Include="Views\Shared\_sideBar.cshtml" />
+    <None Include="Views\Shared\_sideBarExport.cshtml" />
+    <None Include="Views\Store\Cart.cshtml" />
+    <None Include="Views\Store\EditorCategory.cshtml" />
+    <None Include="Views\Store\EditorProduct.cshtml" />
+    <None Include="Views\Store\Index.cshtml" />
+    <None Include="Views\Store\Order.cshtml" />
+    <None Include="Views\Store\View.cshtml" />
+    <None Include="Views\TextAreaFile\Index.cshtml" />
+    <None Include="Views\TextAreaFile\Rename.cshtml" />
+    <None Include="Views\TextAreaFile\_Layout.cshtml" />
+    <None Include="Views\Users\Details.cshtml" />
+    <None Include="Views\Users\Index.cshtml" />
+    <None Include="Views\Users\IndexRole.cshtml" />
+    <None Include="Views\Votes\Edit.cshtml" />
+    <None Include="Views\Votes\Index.cshtml" />
+    <None Include="Views\Votes\Setting.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CoreLanguage.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreLanguage.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CoreLanguage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreLanguage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CoreLanguage.ru-ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreLanguage.ru-ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>56720</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
