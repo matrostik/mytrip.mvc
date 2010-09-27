@@ -447,7 +447,7 @@ namespace Mytrip.Mvc.Settings
             link.MergeAttribute("id", linkId);
             link.MergeAttribute("title", linkTitle);
             link.MergeAttribute("name", linkName);
-            if (!string.IsNullOrEmpty(linkName))
+            if (!string.IsNullOrEmpty(linkRel))
                 link.MergeAttribute("rel", linkRel);
             TagBuilder img = new TagBuilder("img");
             img.MergeAttribute("src", "/Theme/" + ThemeSetting.theme() + imgSrc);
