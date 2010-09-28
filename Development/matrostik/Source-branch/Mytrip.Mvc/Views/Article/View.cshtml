@@ -112,8 +112,8 @@ if (Model.Blog){
 <h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
 </td></tr></table>  
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
-@Html.MytripButton(CoreLanguage.remove, true, "enter","right")      
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel","right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok","right")      
 </div>
 </div> 
 </div>
@@ -137,7 +137,7 @@ if (Model.Blog){
 @Html.Hidden("editId")
 </td></tr></table>  
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, true, "cancel","right")
+@Html.MytripButton(CoreLanguage.cancel, true, "cancelEdit","right")
 @Html.MytripButton("   Ok   ", false, "edit","right")   
 </div> 
 </div>   

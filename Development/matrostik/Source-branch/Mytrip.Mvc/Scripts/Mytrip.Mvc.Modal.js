@@ -2,7 +2,7 @@
         $("div.window").append("<div class='modalBL'/><div class='modalBR'/><div class='modalBC'/>");
         $("div.window").prepend("<div class='modalTL'/><div class='modalTR'/>");
     $('div.window').after('<div class="mask"/>');    
-    $('div.window').hide();
+//    $('div.window').hide();
     $('div.mask,div.modalTR').click(function () {
         $('div.mask, div.window').hide();
         $('input[type=text]:first').focus();

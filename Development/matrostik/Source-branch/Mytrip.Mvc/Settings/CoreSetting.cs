@@ -153,7 +153,7 @@ namespace Mytrip.Mvc.Settings
         {
             string result = (Server().IndexOf("SQLEXPRESS") != -1)
             ? string.Format(@"Data Source={0}; AttachDbFilename=|DataDirectory|\{1};Integrated Security=True;User Instance=True;", Server(), DataBase())
-            : (IntegratedSecurity()
+            : (!IntegratedSecurity()
             ? string.Format("Data Source={0}; Initial Catalog={1}; Persist Security Info=True; User ID={2}; Password={3};", Server(), DataBase(), User(), Password())
             : string.Format("Data Source={0}; Initial Catalog={1}; Integrated Security=True;", Server(), DataBase()));
             return string.Format("metadata=res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl;provider=System.Data.SqlClient;provider connection string=\"{1} MultipleActiveResultSets=True\"", entitiesName, result);
