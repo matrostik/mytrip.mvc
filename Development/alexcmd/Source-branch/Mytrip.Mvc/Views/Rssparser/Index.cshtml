@@ -12,6 +12,9 @@
     View.Keywords=Html.MytripPageTitle(Model.Title, ",");
     View.Description=Html.MytripPageTitle(Model.Title, ",");
 }
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js")
+}
 @section contentSmall{
 @Html.Partial("_sideBar") 
 }
