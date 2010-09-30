@@ -46,13 +46,13 @@
 <h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
 </td></tr></table>  
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
-@Html.MytripButton(CoreLanguage.remove, true, "enter","right")      
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel","right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok","right")      
 </div>
 </div> 
 </div>
 
-<div id="editModal" class="window"> 
+<div id="editCategory" class="window"> 
 <div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
 @ArticleLanguage.edit</div>
 <div class="modalC">
@@ -71,11 +71,18 @@
 @Html.MytripLabelFor("AllCulture", ArticleLanguage.display_all_lang)
 </div></td></tr></table>  
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, true, "close","right")
-@Html.MytripButton("   Ok   ", false, "edit","right")   
+@Html.MytripButton(CoreLanguage.cancel, true, "cancel","right")
+@Html.MytripButton("   Ok   ", false, "ok","right")   
 </div>
 </div> 
 </div>
+
+<div class="divsmile"> 
+<div class="modalTC">Smiles</div>
+<div class="modalC">
+@Html.MytripSmiles("/Content/smiles")
+</div> 
+</div> 
 
 <div id="editComment" class="window""> 
 <div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
@@ -85,13 +92,13 @@
 <tr>
 <td>
 <div class="editor-field"><div class="dark">
-@Html.TextArea("EditComment", new { id = "edit", style = "height: 150px; width:400px;" })
+@Html.TextArea("EditComment", new { id = "edit", style = "height: 150px; width:450px;" })
 </div></div>
 <span class="field-validation-valid" id="Comment_Error"></span>
 </td></tr></table>  
 <div class="button">
-@Html.MytripButton(CoreLanguage.cancel, true, "cancelEdit","right")
-@Html.MytripButton("   Ok   ", false, "edit","right")   
+@Html.MytripButton(CoreLanguage.cancel, true, "cancel","right")
+@Html.MytripButton("   Ok   ", false, "okEditComment","right")   
 </div> 
 </div></div>        
 }
