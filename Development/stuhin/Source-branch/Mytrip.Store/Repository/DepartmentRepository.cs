@@ -165,7 +165,35 @@ namespace Mytrip.Store.Repository
             entities.SaveChanges();
             return x;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteDepartment(int id)
+        {
+            mytrip_storedepartment x = GetDepartment(id);
+            foreach (var y in x.mytrip_storedepartment1.ToList())
+            {
+                foreach (var q in y.mytrip_storeproduct.ToList())
+                {
+                    foreach (var z in q.mytrip_storeoptions.ToList())
+                    { entities.mytrip_storeoptions.DeleteObject(z); }
+                    foreach (var z in q.mytrip_storevotes.ToList())
+                    { entities.mytrip_storevotes.DeleteObject(z); }
+                    entities.mytrip_storeproduct.DeleteObject(q);
+                }
+            }
+            foreach (var y in x.mytrip_storeproduct.ToList())
+            {
+                foreach (var z in y.mytrip_storeoptions.ToList())
+                { entities.mytrip_storeoptions.DeleteObject(z); }
+                foreach (var z in y.mytrip_storevotes.ToList())
+                { entities.mytrip_storevotes.DeleteObject(z); }
+                entities.mytrip_storeproduct.DeleteObject(y);
+            }
+            entities.mytrip_storedepartment.DeleteObject(x);
+            entities.SaveChanges();
+        }
         /// <summary>Создать уникальный DepartmentId
         /// </summary>
         /// <returns>возвращает int</returns>

@@ -135,8 +135,24 @@ namespace Mytrip.Store.Repository
             entities.SaveChanges();
             return x;
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteProducer(int id)
+        { 
+            mytrip_storeproducer x = GetProducer(id);
+            foreach (var y in x.mytrip_storeproduct.ToList())
+            {
+                foreach (var z in y.mytrip_storeoptions.ToList())
+                { entities.mytrip_storeoptions.DeleteObject(z); }
+                foreach (var z in y.mytrip_storevotes.ToList())
+                { entities.mytrip_storevotes.DeleteObject(z); }
+                entities.mytrip_storeproduct.DeleteObject(y);
+            }
+            entities.mytrip_storeproducer.DeleteObject(x);
+            entities.SaveChanges();
+        }
         /// <summary>Создать уникальный ProducerId
         /// </summary>
         /// <returns>возвращает int</returns>
