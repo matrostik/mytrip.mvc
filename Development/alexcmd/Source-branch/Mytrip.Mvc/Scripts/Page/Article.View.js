@@ -1,54 +1,73 @@
 ﻿var jHtmlArea_API = new Object();
 var identity = '';
+var theme='';
 $(document).ready(function () {
+    modalSetup();
+    editComment();
+    Rating();
+    Quote();
+    BuildjHtml('article');
+    $('input.smile').click(function () {
+        alert(identity);
+        var htmlText = $(this).val();
+        jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
+        $('div.mask, div.divsmile').hide();
+    });
+});
+function editComment() {
+    $("a[id^='editComment']").click(function () {
+        $("table.comment").show()
+        $("div#editComment").hide().fadeIn('fast');
+        $('span#Comment_Error').removeClass('field-validation-error').addClass('field-validation-valid');
+
+        var comment = $(this).closest("div").next("div").find(".commentC");
+        var table = $(this).closest("table.comment")
+
+        $("input#editId").val($(this).attr('rel'));
+        $("textarea#edit").val(comment.html());
+
+        var edit = $("div#editComment");
+        $(table).after(edit);
+        edit.show();
+        table.hide();
+
+        BuildjHtml('edit');
+        var obj = window.jHtmlArea($('textarea#edit'));
+        obj.updateHtmlArea();
+        return false;
+    });
+    $("input#edit").live("click", function () {
+        var comId = $("input#editId").val();
+        var text = $('textarea#edit').val();
+        $.ajax({ type: "POST",
+            url: "/Article/Comment",
+            data: 'id=' + comId + '&comment=' + text + '&approved=' + $("#CommentApproved").val(),
+            success: function (data) {
+                if (data) {
+                    var err = $('span#Comment_Error');
+                    err.text(data);
+                    err.removeClass('field-validation-valid').addClass('field-validation-error');
+                }
+                else {
+                    $("#" + comId).find(".commentC").html(text);
+                    $("div#editComment").hide();
+                    $("table.comment:hidden").show();
+                }
+            }
+        });
+    });
+    $("#cancelEdit").live("click", function () {
+        $("div#editComment").hide();
+        $("table.comment").show();
+    });
+}
+function modalSetup() {
     var dw = $('div.divsmile').html();
     $('div.divsmile').html('<div class="modalTL"/><div class="modalTR"/>' + dw + '<div class="modalBL"/><div class="modalBR"/><div class="modalBC"/>');
-
     $('div.divsmile').hide();
     $('div.mask,div.modalTR').click(function () {
         $('div.mask, div.divsmile').hide();
     });
-    var theme;
-    Rating();
-    $.ajax({ type: "POST",
-        url: "/MytripMvc/Theme",
-        success: function (data) {
-            theme = data;
-            $('textarea#article').htmlarea({
-                css: '/Theme/' + data + '/TextAreaContainer.css',
-                toolbar: [
-            ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
-            , ["|"], ["link", "unlink"], ["|"],
-         [{
-             css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#article'] = $(this);
-                 identity = 'article';
-                 openid = this.value;
-                 var id = 'div.divsmile';
-                 $(id).css({ width: (326 + 'px') });
-                 var maskHeight = $(document).height();
-                 var maskWidth = $(window).width();
-                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-                 $('div.mask').show();
-                 $('div.mask').fadeTo("fast", 0.1);
-                 var winH = $(window).height();
-                 var winW = $(window).width();
-                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-                 $(id).css('left', winW / 2 - $(id).width() / 2);
-                 $(id).slideDown('slow');
-             }
-         }]
-        ]
-            });
-            $('input.smile').click(function () {
-                var htmlText = $(this).val();
-                jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
-                $('div.mask, div.divsmile').hide();
-            });
-        }
-    });
-    Quote();
-    var openid = new Object();
     $("a[id^='delete']").click(function () {
         link = $(this).attr('href');
         var id = 'div.window#deleteModal';
@@ -65,33 +84,34 @@ $(document).ready(function () {
         $(id).slideDown('slow');
         return false;
     });
-    $("a[id^='editComment']").click(function () {
-        $("table.comment").show()
-        $("div#editComment").hide().fadeIn('fast');
-        $('span#Comment_Error').removeClass('field-validation-error').addClass('field-validation-valid');
-
-        var comment = $(this).closest("div").next("div").find(".commentC");
-        var table = $(this).closest("table.comment")
-
-        $("input#editId").val($(this).attr('rel'));
-
-        $("textarea#edit").val(comment.html());
-
-        var edit = $("div#editComment");
-        $(table).after(edit);
-        edit.show();
-        table.hide();
-
-        $('textarea#edit').htmlarea({
-            css: '/Theme/' + theme + '/TextAreaContainer.css',
-            toolbar: [
+    $("input#ok").live("click", function () {
+        $(location).attr('href', link);
+        $('div.mask, div.window').hide();
+    });
+    $("input#cancel").live("click", function () {
+        $('div.mask, div.window').hide();
+    });
+    return false;
+}
+function BuildjHtml(name) {
+    if (!theme) {
+        $.ajax({ type: "POST",
+            url: "/MytripMvc/Theme",
+            success: function (data) {
+                theme = data;
+            }
+        });
+    }
+    $('textarea#'+name).htmlarea({
+        css: '/Theme/' + theme + '/TextAreaContainer.css',
+        toolbar: [
            ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
             , ["|"], ["link", "unlink"], ["|"],
          [{
              css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#edit'] = $(this);
+                 jHtmlArea_API['#'+name] = $(this);
                  openid = this.value;
-                 identity = 'edit';
+                 identity = name;
                  var id = 'div.divsmile';
                  $(id).css({ width: (326 + 'px') });
                  var maskHeight = $(document).height();
@@ -107,47 +127,8 @@ $(document).ready(function () {
              }
          }]
         ]
-        });
-        var obj = window.jHtmlArea($('textarea#edit'));
-        obj.updateHtmlArea();
-        return false;
     });
-    $('input.rename').click(
-        function () {
-            openid = this.value;
-            $(location).attr('href', openid);
-        });
-    $("#enter").live("click", function () {
-        $(location).attr('href', link);
-        $('div.mask, div.window').hide();
-    });
-    $("input#edit").live("click", function () {
-        //alert($('input#editId').val() + " " + $('textarea#edit').html() + " " + $("#CommentApproved").val());
-        var com = "simple test<br/>";
-        $.ajax({ type: "POST",
-            url: "/Article/Comment",
-            data: 'id=' + $("input#editId").val() + '&comment=' + $('textarea#edit').val() + '&approved=' + $("#CommentApproved").val(),
-            success: function (data) {
-                if (data) {
-                    var err = $('span#Comment_Error');
-                    err.text(data);
-                    err.removeClass('field-validation-valid').addClass('field-validation-error');
-                }
-                else {
-                    location.reload();
-                }
-            }
-        });
-
-    });
-    $("#cancel").live("click", function () {
-        $("div#editComment").hide();
-        $("table.comment").show();
-    });
-    $("#close").live("click", function () {
-        $('div.mask, div.window').hide();
-    });
-});
+}
 function getScrollY() {
     scrollY = 0;
     if (typeof window.pageYOffset == "number") {
@@ -161,20 +142,6 @@ function getScrollY() {
     }
     return scrollY;
 }
-function Quote() {
-    $("a[id^='quote']").click(function () {
-        var c = $(this).closest("div[id]");
-        var a = c.find("a#user" + c.attr('id'));
-        var selected = getSelected();
-        if (!selected) {
-            selected = c.find("div.comment").html();
-        }
-        var txt = "<br/><div style='border: 1px dotted #000000;'><STRONG>" + a.html() + "</STRONG> wrote:<br/>" + selected + "</div><br/>";
-        var obj = window.jHtmlArea($('textarea#article'));
-        obj.pasteHTML(txt);
-        return false;
-    });
-}
 function getSelected() {
     if (window.getSelection) { return window.getSelection(); }
     else if (document.getSelection) { return document.getSelection(); }
@@ -184,6 +151,20 @@ function getSelected() {
         return false;
     }
     return false;
+}
+function Quote() {
+    $("a[id^='quote']").click(function () {
+        var c = $(this).closest("div[id]");
+        var a = c.find("a#user" + c.attr('id'));
+        var selected = getSelected();
+        if (!selected) {
+            selected = c.find("div.comment").html();
+        }
+        var txt = "<br/><div style='border: 1px dotted #000000;'><STRONG>" + a.html() + "</STRONG>:<br/>" + selected + "</div><br/>";
+        var obj = window.jHtmlArea($('textarea#article'));
+        obj.pasteHTML(txt);
+        return false;
+    });
 }
 function Rating() {
     var sts = new Array;

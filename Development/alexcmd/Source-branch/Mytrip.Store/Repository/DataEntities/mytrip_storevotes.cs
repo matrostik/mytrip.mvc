@@ -59,6 +59,12 @@ namespace Mytrip.Store.Repository.DataEntities
             get;
             set;
         }
+    
+        public virtual System.DateTime CreationDate
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

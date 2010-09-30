@@ -120,7 +120,7 @@ namespace Mytrip.Store.Helpers
                     if (x.subDepartmentId > 0)
                         a = EditAndDeleteCategory(x.subDepartmentId, x.User, x.SubUser, x.producer, x.produceridforeditor) + string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\" >{2} ({3})</a> / ", x.subDepartmentId, x.subDepartmentPath, x.subDepartmentTitle, x.subcount);
                     c += "<h2 class=\"title\">" + a + "<a href=\"/Store/Index/1/10/" + x.id + "/0/1/" + x.path + "\" >" + EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title + b + "</a></h2>" + x.body + "</td><td>" + GeneralMethods.ImageForAbstract(x.img, ModuleSetting.widthImgDepartment()) + "</td>";
-                    c += "<td>" + "<h2 class=\"title\"><a href=\"/Store/Index/1/10/0" + x.ProducerId + "/1/" + x.ProducerPath + "\" >" + x.ProducerTitle + " (" + x.producercount + ")" + "</a></h2>" + x.ProducerBody + "</td><td style=\"padding:0;border:0;\">" + GeneralMethods.ImageForAbstract(x.ProducerImg, ModuleSetting.widthImgDepartment());
+                    c += "<td>" + "<h2 class=\"title\"><a href=\"/Store/Index/1/10/0/" + x.ProducerId + "/1/" + x.ProducerPath + "\" >" + x.ProducerTitle + " (" + x.producercount + ")" + "</a></h2>" + x.ProducerBody + "</td><td style=\"padding:0;border:0;\">" + GeneralMethods.ImageForAbstract(x.ProducerImg, ModuleSetting.widthImgDepartment());
                     c += "</td></tr></table>";
                 }
                 string search = string.Empty;
@@ -387,10 +387,10 @@ namespace Mytrip.Store.Helpers
             string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
             string _content = "<div id='votes' class='right'>" + votes +
                 "<input id='VotesCount' name='VotesCount' type='hidden' value='" + x.mytrip_storevotes.Count() + "' />" +
-"<input id='Store_StoreId' name='Store.StoreId' type='hidden' value='"+x.ProductId+"' />" +
-"</div><h1 class=\"hometitle\" >" +
+                "<input id='Store_StoreId' name='Store.StoreId' type='hidden' value='" + x.ProductId + "' />" +
+                "</div><h1 class=\"hometitle\" >" +EditAndDeleteProduct(x.ProductId,x.UserName,x.mytrip_storedepartment.UserName,x.mytrip_storedepartment.mytrip_storedepartment2.UserName,x.ProducerId)+
                 x.Title + "</h1><table class='noborders'><tr><td>" + ImageForAbstract(x.Image)
-           + x.Abstract + "</td></tr></table>" + mycart  + prise + "<br/>" + _date + "<br/>" + departmentlink
+                + x.Abstract + "</td></tr></table>" + mycart + prise + "<br/>" + _date + "<br/>" + departmentlink
                 + comparision + storecart;
             return new HtmlString(_content);
         }
@@ -402,22 +402,22 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static HtmlString ViewOptions(this HtmlHelper html, mytrip_storeproduct x)
         {
-            int countfoto=x.mytrip_storeoptions.Count();
+            int countfoto = x.mytrip_storeoptions.Count();
             int countreview = x.mytrip_storevotes.Count();
-            string options =x.Body.Length==0?string.Empty: GeneralMethods.Button(StoreLanguage.bodyProduct, false,"options", "left");
-            string foto =countfoto==0?string.Empty: GeneralMethods.Button(string.Format(StoreLanguage.foto, countfoto), false, "foto", "left");
+            string options = x.Body.Length == 0 ? string.Empty : GeneralMethods.Button(StoreLanguage.bodyProduct, false, "options", "left");
+            string foto = countfoto == 0 ? string.Empty : GeneralMethods.Button(string.Format(StoreLanguage.foto, countfoto), false, "foto", "left");
             string review = countreview == 0 ? string.Empty : GeneralMethods.Button(string.Format(StoreLanguage.reviews, countreview), false, "review", "left");
             string a = "<div class='button'>" + options + foto + review + "</div>";
-            string _content ="";
-            if(x.Body.Length!=0)
+            string _content = "";
+            if (x.Body.Length != 0)
                 _content += "<div class='last'></div><div id='_options' class='content'>" + x.Body + "</div>";
             string fotodisplay = x.Body.Length == 0 ? string.Empty : "style='display:none;'";
-            if(countfoto>0)
+            if (countfoto > 0)
                 _content += "<div class='last'></div><div id='_foto' class='content' " + fotodisplay + ">" + FotoOptions(x) + "</div>";
             string reviewdisplay = (x.Body.Length == 0 && countfoto == 0) ? string.Empty : "style='display:none;'";
             if (countreview > 0)
                 _content += "<div class='last'></div><div id='_review' class='content'" + reviewdisplay + ">" + VotesOptions(html, x) + "</div>";
-            return new HtmlString(a+_content);
+            return new HtmlString(a + _content);
         }
         /// <summary>
         /// 
@@ -432,11 +432,11 @@ namespace Mytrip.Store.Helpers
             result.Append("<table class='noborders'>");
             foreach (var z in x.mytrip_storeoptions)
             {
-                if(__count==1||__count%3==1)
+                if (__count == 1 || __count % 3 == 1)
                     result.Append("<tr>");
                 result.Append("<td style='text-align:center;'><b>" + z.Title + "</b><br/>");
-                result.Append(ImageForAbstract(z.Image, ModuleSetting.widthImgDepartment())+"</td>");
-                if(__count==_count||__count%3==0)
+                result.Append(ImageForAbstract(z.Image, ModuleSetting.widthImgDepartment()) + "</td>");
+                if (__count == _count || __count % 3 == 0)
                     result.Append("</tr>");
                 __count++;
             }
@@ -449,12 +449,15 @@ namespace Mytrip.Store.Helpers
         /// <param name="html"></param>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static string VotesOptions(HtmlHelper html,mytrip_storeproduct x)
+        private static string VotesOptions(HtmlHelper html, mytrip_storeproduct x)
         {
             StringBuilder result = new StringBuilder();
-            
-            foreach (var z in x.mytrip_storevotes)
+            foreach (var z in x.mytrip_storevotes.OrderByDescending(y=>y.CreationDate))
             {
+                TagBuilder profile = new TagBuilder("a");
+                profile.MergeAttribute("href", "/Home/Profile/" + z.UserName);
+                profile.InnerHtml = z.UserName;
+                string usname = " " + profile+"  "+z.CreationDate.ToString("dd MMMM yyyy");
                 result.Append("<div class='comment' ><table class='noborders'><tr><td>");
                 TagBuilder divGravatar = new TagBuilder("a");
                 divGravatar.MergeAttribute("href", "/Home/Profile/" + z.UserName);
@@ -463,7 +466,7 @@ namespace Mytrip.Store.Helpers
                 _divGravatar.MergeAttribute("style", "position: relative;margin-left:2px; float: right");
                 _divGravatar.InnerHtml = divGravatar.ToString();
                 result.Append(_divGravatar.ToString());
-                result.Append(GeneralMethods.CoreRating(true, false, (double)z.Vote, -1)+"<br/>");
+                result.Append(GeneralMethods.CoreRating(true, false, (double)z.Vote, -1) + "<br/>" + usname + "<br/>");
                 result.Append(z.Reviews);
                 result.Append("</td></tr></table></div><div class='last'></div>");
             }
@@ -669,7 +672,27 @@ namespace Mytrip.Store.Helpers
             }
             else return null;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <param name="subuser"></param>
+        /// <param name="subuser2"></param>
+        /// <param name="prodid"></param>
+        /// <returns></returns>
+        private static string EditAndDeleteProduct(int id, string user, string subuser, string subuser2, int prodid)
+        {
+            if (MytripUser.UserInRole(ModuleSetting.roleChiefStoreManager()) || (MytripUser.UserInRole(ModuleSetting.roleStoreManager())
+                && (HttpContext.Current.User.Identity.Name == user || HttpContext.Current.User.Identity.Name == subuser || HttpContext.Current.User.Identity.Name == subuser2)))
+            {
+                string edit = "/" + prodid + "/EditProduct";
+                string delete = "/0/DeleteProduct";
+                return GeneralMethods.ImgInput("/images/edite.png", "/Store/EditorProduct/" + id + edit, "rename", 14) +
+                              " " + GeneralMethods.ImgInput("/images/delete.png", "/Store/EditorProduct/" + id + delete, "delete", 14);
+            }
+            else return null;
+        }
         /// <summary>
         /// 
         /// </summary>

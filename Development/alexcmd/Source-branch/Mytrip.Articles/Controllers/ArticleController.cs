@@ -270,6 +270,9 @@ namespace Mytrip.Articles.Controllers
                 }
             }
         }
+        // *****************************************
+        // URL: /Article/Comment/Id/comment/approved/
+        // ******  редактировать комментарий  ******
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Comment(int id, string comment,bool approved)
@@ -280,7 +283,25 @@ namespace Mytrip.Articles.Controllers
             }
             else
             {
-                articleRepo.comment.UpdateComment(id, comment, approved);
+                var com = articleRepo.comment.UpdateComment(id, comment, approved);
+                string email = MytripUser.UserEmail(com.mytrip_articles.UserName);
+                if (!string.IsNullOrEmpty(email) && EmailSetting.unlockSendEmail() && !approved)
+                {
+                    string domain = Request.Url.Host;
+                    string articlelink = string.Format("<a href=\"{0}/Article/View/{1}/{2}\" title=\"{3}\">{3}</a>", domain, com.ArticleId, com.mytrip_articles.Path, com.mytrip_articles.Title);
+                    string profilelink = string.Format("<a href=\"{0}/Home/Profile/{1}\" title=\"{2}\">{1}</a>", domain, com.UserName, ArticleLanguage.view_user_profile);
+                    string sitelink = string.Format(CoreSetting.NameTitlePage(), "<a href=\"" + domain + "\" title=\"" + domain + "\">" + domain + "</a>");
+
+                    //письмо модеру о редактировании коммента
+                    MailMessage msg = new MailMessage();
+                    msg.To.Add(email);
+                    msg.From = new MailAddress(EmailSetting.from_email(), string.Format(CoreSetting.NameTitlePage(), domain));
+                    msg.Subject = string.Format(CoreSetting.NameTitlePage(), ArticleLanguage.new_comment);
+                    msg.Body = string.Format(ArticleLanguage.email_commentmoderate, com.mytrip_articles.UserName, articlelink
+                               , profilelink, com.CreateDate, com.Body, sitelink);
+                    msg.IsBodyHtml = true;
+                    EmailSetting.SendEmail(msg);
+                }
                 return Content(string.Empty);
             }
         }

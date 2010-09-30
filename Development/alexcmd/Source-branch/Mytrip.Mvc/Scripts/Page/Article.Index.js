@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var theme = '';
+$(document).ready(function () {
     $("#close").live("click", function () {
         $('div.mask,div.window').hide();
     });
@@ -141,7 +142,68 @@
             }
         });
     });
+    editComment();
 });
+function editComment() {
+    $("a[id^='editComment']").click(function () {
+//        $("table.comment").show()
+//        $("div#editComment").hide().fadeIn('fast');
+        $('span#Comment_Error').removeClass('field-validation-error').addClass('field-validation-valid');
+
+        //var comment = $(this).closest("div").next("div").find(".commentC");
+        //var table = $(this).closest("table.comment")
+
+        $("input#editId").val($(this).attr('rel'));
+        //$("textarea#edit").val(comment.html());
+
+//        var edit = $("div#editComment");
+//        $(table).after(edit);
+//        edit.show();
+//        table.hide();
+
+        BuildjHtml('edit');
+        var obj = window.jHtmlArea($('textarea#edit'));
+        obj.updateHtmlArea();
+
+        var id = 'div.window#editComment';
+        $(id).css({ width: (500 + 'px') });
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+        $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+        $('div.mask').show();
+        $('div.mask').fadeTo("fast", 0.1);
+        var winH = $(window).height();
+        var winW = $(window).width();
+        $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+        $(id).css('left', winW / 2 - $(id).width() / 2);
+        $(id).slideDown('slow');
+
+        return false;
+    });
+    $("input#edit").live("click", function () {
+        var comId = $("input#editId").val();
+        var text = $('textarea#edit').val();
+        $.ajax({ type: "POST",
+            url: "/Article/Comment",
+            data: 'id=' + comId + '&comment=' + text + '&approved=' + $("#CommentApproved").val(),
+            success: function (data) {
+                if (data) {
+                    var err = $('span#Comment_Error');
+                    err.text(data);
+                    err.removeClass('field-validation-valid').addClass('field-validation-error');
+                }
+                else {
+                    $("#" + comId).find(".commentC").html(text);
+                    $("div#editComment").hide();
+                    $("table.comment:hidden").show();
+                }
+            }
+        });
+    });
+    $("#cancelEdit").live("click", function () {
+        $('div.mask, div.window').hide();
+    });
+}
 function getScrollY() {
     scrollY = 0;
     if (typeof window.pageYOffset == "number") {
@@ -154,4 +216,40 @@ function getScrollY() {
         scrollY = window.scrollY;
     }
     return scrollY;
+}
+function BuildjHtml(name) {
+    if (!theme) {
+        $.ajax({ type: "POST",
+            url: "/MytripMvc/Theme",
+            success: function (data) {
+                theme = data;
+            }
+        });
+    }
+    $('textarea#' + name).htmlarea({
+        css: '/Theme/' + theme + '/TextAreaContainer.css',
+        toolbar: [
+           ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
+            , ["|"], ["link", "unlink"], ["|"],
+         [{
+             css: 'smile', text: 'Smiles', action: function (btn) {
+                 jHtmlArea_API['#' + name] = $(this);
+                 openid = this.value;
+                 identity = name;
+                 var id = 'div.divsmile';
+                 $(id).css({ width: (326 + 'px') });
+                 var maskHeight = $(document).height();
+                 var maskWidth = $(window).width();
+                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+                 $('div.mask').show();
+                 $('div.mask').fadeTo("fast", 0.1);
+                 var winH = $(window).height();
+                 var winW = $(window).width();
+                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+                 $(id).css('left', winW / 2 - $(id).width() / 2);
+                 $(id).slideDown('slow');
+             }
+         }]
+        ]
+    });
 }

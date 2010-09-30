@@ -38,7 +38,49 @@
         $("div#_review").show();
 
     });
+    var openid = new Object();
+    $('input.delete').click(
+        function () {
+            openid = this.value;
+            var id = 'div.window#delete';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        });
+    $('input.rename').click(
+        function () {
+            openid = this.value;
+            $(location).attr('href', openid);
+        });
+    $("#enter").live("click", function () {
+        $(location).attr('href', openid);
+        $('div.mask, div.window').hide();
+    });
+    $("#close").live("click", function () {
+        $('div.mask,div.window').hide();
+    });
 });
+function getScrollY() {
+    scrollY = 0;
+    if (typeof window.pageYOffset == "number") {
+        scrollY = window.pageYOffset;
+    } else if (document.documentElement && document.documentElement.scrollTop) {
+        scrollY = document.documentElement.scrollTop;
+    } else if (document.body && document.body.scrollTop) {
+        scrollY = document.body.scrollTop;
+    } else if (window.scrollY) {
+        scrollY = window.scrollY;
+    }
+    return scrollY;
+}
 function Rating() {
     var sts = new Array;
     $("#votes input[name='vote']").each(function () {
@@ -47,6 +89,20 @@ function Rating() {
     });
     $("#votes input[name='vote']").click(function () {
         if ($("#votes input[name='vote']").attr('onclick') == null) {
+        /*start review*/
+            var id = 'div.window#review';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        /*end review*/
             var vote = $(this).val();
             var count = $("#votes input[id='VotesCount']").val();
             var id = $("#Store_StoreId").val();
