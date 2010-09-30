@@ -243,9 +243,7 @@ namespace Mytrip.Articles.Controllers
         public ActionResult Category(int id, string path, string title, bool menu, bool allculture)
         {
             if (string.IsNullOrEmpty(title))
-            {
                 return Content(ArticleLanguage.title_empty);
-            }
             else if (title.Length < 3 || title.Length > 255)
                 return Content(ArticleLanguage.title_lenght_5_255);
             else
@@ -270,6 +268,15 @@ namespace Mytrip.Articles.Controllers
                 }
             }
         }
+        // ************************************
+        // URL: /Article/Comment/Id/
+        // ******  получить комментарий  ******
+        public string Comment(int id)
+        {
+            mytrip_articlescomments comment = articleRepo.comment.GetComment(id);
+            return comment.Body;
+
+        }
         // *****************************************
         // URL: /Article/Comment/Id/comment/approved/
         // ******  редактировать комментарий  ******
@@ -277,7 +284,7 @@ namespace Mytrip.Articles.Controllers
         [ValidateInput(false)]
         public ActionResult Comment(int id, string comment,bool approved)
         {
-            if (string.IsNullOrEmpty(comment))
+            if (string.IsNullOrEmpty(comment) || comment == "<P>")
             {
                 return Content(ArticleLanguage.field_empty);
             }

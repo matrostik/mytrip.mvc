@@ -15,6 +15,7 @@ $(document).ready(function () {
     });
 });
 function editComment() {
+
     $("a[id^='editComment']").click(function () {
         $("table.comment").show()
         $("div#editComment").hide().fadeIn('fast');
@@ -127,7 +128,8 @@ function BuildjHtml(name) {
              }
          }]
         ]
-    });
+     });
+
 }
 function getScrollY() {
     scrollY = 0;
