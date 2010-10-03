@@ -16,7 +16,7 @@
 <link href="/Content/calendar/ui.datepicker.css" rel="stylesheet" type="text/css" />
 }
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,ui.datepicker.js,jHtmlArea.Mytrip.js,Page/Article.Edit.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,ui.datepicker.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,Page/Article.Edit.js")
 }
 @section content{
 <h1 class="title">
@@ -135,11 +135,5 @@ if (tag.mytrip_articles.FirstOrDefault(x => x.ArticleId == Model.ArticleId) != n
 </div>
 </fieldset>
 }
-<div class="window"> 
-<div class="modalTC">Smiles</div>
-<div class="modalC">
-@Html.MytripSmiles("/Content/smiles")
-</div> 
-</div>
 }
 
