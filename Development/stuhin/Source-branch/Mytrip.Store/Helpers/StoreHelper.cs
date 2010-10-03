@@ -11,6 +11,7 @@ using Mytrip.Mvc.Settings;
 using Mytrip.Mvc.Repository;
 using Mytrip.Store.Repository;
 using Mytrip.Mvc.Helpers;
+using System.IO;
 
 namespace Mytrip.Store.Helpers
 {
@@ -18,6 +19,23 @@ namespace Mytrip.Store.Helpers
     /// </summary>
     public static class StoreHelper
     {
+        public static string GetImage(int id,string directory,int width)
+        {
+            string name ="_"+ id + ".";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string _directory = "";
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            foreach (var x in result)
+            {
+                if (x.Name.Contains(name))
+                {
+                    _directory = "<img src='" + directory + "/" + x.Name + "'class='imgabstract' style='width:" + width + "px;'/>"; //"/" + x.Name;
+                    break;
+                }
+            }
+            return _directory;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -62,7 +80,7 @@ namespace Mytrip.Store.Helpers
                 {
                     _subdepartment = string.Format("<ul>{0}</ul>", subdepartment);
                 }
-                string _content = string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\">{2}</a><b><a href=\"/Store/Index/1/10/{0}/0/1/{1}\" class=\"hometitle\" >{3} ({4})</a></b><br/>{5}{6}", article.DepartmentId, article.Path, GeneralMethods.ImageForAbstract(article.Image, ModuleSetting.widthImgDepartment()), article.Title, countproduct, article.Body, _subdepartment);
+                string _content = string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\">{2}</a><b><a href=\"/Store/Index/1/10/{0}/0/1/{1}\" class=\"hometitle\" >{3} ({4})</a></b><br/>{5}{6}", article.DepartmentId, article.Path, GetImage(article.DepartmentId,"/Content/Store/Department", ModuleSetting.widthImgDepartment()), article.Title, countproduct, article.Body, _subdepartment);
                 int tr2 = 0;
                 int _line3 = 0;
                 result.AppendLine(GeneralMethods.StyleTable(column, style, tr, width, _content, count, _count2, _line, _line2, out tr2, out _line3, out finaltr, out start, out end, out styletable));
@@ -105,10 +123,15 @@ namespace Mytrip.Store.Helpers
                 c += string.Format("<tr><td>{0}</td><td><h2 class=\"adminlink\"><a href=\"/Store/Index/1/10/0/0/1/Producer\" >{1}</a></h2></td></tr>", _store, ModuleSetting.nameProducer());
             if (x.count >= 0)
             {
+                string image = "";
+                if (x.producer)
+                    image = GetImage(x.produceridforeditor, "/Content/Store/Producer", ModuleSetting.widthImgDepartment());
+                else
+                    image = GetImage(x.createdepartment, "/Content/Store/Department", ModuleSetting.widthImgDepartment());
                 b = string.Format(" ({0})", x.count);
                 if (x.subDepartmentId > 0)
                     a = EditAndDeleteCategory(x.subDepartmentId, x.User, x.SubUser, x.producer, x.produceridforeditor) + string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\" >{2} ({3})</a> / ", x.subDepartmentId, x.subDepartmentPath, x.subDepartmentTitle, x.subcount);
-                c += string.Format("<tr><td><h2 class=\"title\">{0}{1}{2}</h2>{3}</td><td>{4}</td></tr>", a, EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title, b, x.body, GeneralMethods.ImageForAbstract(x.img, ModuleSetting.widthImgDepartment()));
+                c += string.Format("<tr><td><h2 class=\"title\">{0}{1}{2}</h2>{3}</td><td>{4}</td></tr>", a, EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title, b, x.body, image);
             }
             c += "</table>";
             if (x._search)
@@ -548,7 +571,7 @@ namespace Mytrip.Store.Helpers
             {
                 int countproduct = article.mytrip_storeproduct.Count();
 
-                string _content = "<a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\">" + GeneralMethods.ImageForAbstract(article.Image, ModuleSetting.widthImgDepartment()) + "</a>";
+                string _content = "<a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\">" + GetImage(article.ProducerId, "/Content/Store/Producer", ModuleSetting.widthImgDepartment()) + "</a>";
                 _content += "<b><a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\" class=\"hometitle\" >" +
                     article.Title + " (" + countproduct + ")</a></b><br/>" + article.Body;
                 int tr2 = 0;

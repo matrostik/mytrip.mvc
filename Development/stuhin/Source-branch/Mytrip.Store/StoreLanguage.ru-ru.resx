@@ -271,7 +271,7 @@
     <value>Выберите не менее двух продуктов для сравнеия</value>
   </data>
   <data name="bodyProduct" xml:space="preserve">
-    <value>Подробности</value>
+    <value>Детали</value>
   </data>
   <data name="buy" xml:space="preserve">
     <value>Купить</value>

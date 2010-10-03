@@ -340,11 +340,10 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string body { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
-        public string image { get; set; }
+        public HtmlString image { get; set; }
 
         /// <summary>
         /// 

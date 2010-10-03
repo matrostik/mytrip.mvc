@@ -412,8 +412,12 @@ namespace Mytrip.Store.Controllers
         {
             EditorCategoryModel model = new EditorCategoryModel();
             model.labelforbody = StoreLanguage.body;
+            HttpCookie cookie = new HttpCookie("myTripTypeImage", id2);
+            cookie.Expires = DateTime.Now.AddYears(1);
+            Response.Cookies.Add(cookie);
             if (id2 == "CreateDepartment")
             {
+                model.image = store.file.GetFileForEdit("/Content/Store/Department", 0);
                 model.labelfortitle = StoreLanguage.titleDepartment;
                 model.labelforimage = StoreLanguage.imageDepartment;
                 model.submit = StoreLanguage.create;
@@ -423,6 +427,7 @@ namespace Mytrip.Store.Controllers
             }
             else if (id2 == "CreateProducer")
             {
+                model.image = store.file.GetFileForEdit("/Content/Store/Producer", 0);
                 model.labelfortitle = StoreLanguage.titleProducer;
                 model.labelforimage = StoreLanguage.imageProducer;
                 model.submit = StoreLanguage.create;
@@ -430,12 +435,12 @@ namespace Mytrip.Store.Controllers
             }
             else if (id2 == "EditDepartment")
             {
+                model.image = store.file.GetFileForEdit("/Content/Store/Department", id);
                 var department = store.department.GetDepartment(id);
                 model.labelfortitle = StoreLanguage.titleDepartment;
                 model.labelforimage = StoreLanguage.imageDepartment;
                 model.submit = StoreLanguage.edit;
                 model.title = department.Title;
-                model.image = department.Image;
                 model.body = department.Body;
                 model.allculture = department.AllCulture;
                 model.pagetitle = (department.SubDepartmentId == 0)
@@ -445,18 +450,20 @@ namespace Mytrip.Store.Controllers
             }
             else if (id2 == "EditProducer")
             {
+                model.image = store.file.GetFileForEdit("/Content/Store/Producer", id);
                 var department = store.producer.GetProducer(id);
                 model.labelfortitle = StoreLanguage.titleProducer;
                 model.labelforimage = StoreLanguage.imageProducer;
                 model.submit = StoreLanguage.edit;
                 model.title = department.Title;
-                model.image = department.Image;
                 model.body = department.Body;
                 model.allculture = department.AllCulture;
                 model.pagetitle = string.Format(StoreLanguage.editProducer, model.title);
 
             }
-            else if (id2 == "DeleteDepartment") {
+            else if (id2 == "DeleteDepartment")
+            {
+                store.file.DeleteFile(id, "/Content/Store/Department");
                 store.department.DeleteDepartment(id);
                 return RedirectToAction("Index", "Store",
                        new
@@ -469,7 +476,9 @@ namespace Mytrip.Store.Controllers
                            id6 = "Store"
                        });
             }
-            else if (id2 == "DeleteProducer") {
+            else if (id2 == "DeleteProducer")
+            {
+                store.file.DeleteFile(id, "/Content/Store/Producer");
                 store.producer.DeleteProducer(id);
                 return RedirectToAction("Index", "Store",
                        new
@@ -499,7 +508,8 @@ namespace Mytrip.Store.Controllers
         {
             if (ModelState.IsValid && id2 == "CreateDepartment")
             {
-                var x = store.department.CreateDepartment(id, model.title, model.body, model.image, model.allculture, LocalisationSetting.culture());
+                var x = store.department.CreateDepartment(id, model.title, model.body, "", model.allculture, LocalisationSetting.culture());
+                store.file.RenameFile(x.DepartmentId, "/Content/Store/Department");
                 return RedirectToAction("Index", "Store",
                    new
                    {
@@ -513,7 +523,9 @@ namespace Mytrip.Store.Controllers
             }
             else if (ModelState.IsValid && id2 == "EditDepartment")
             {
-                var x = store.department.EditDepartment(id, model.title, model.body, model.image, model.allculture);
+
+                var x = store.department.EditDepartment(id, model.title, model.body, "", model.allculture);
+                store.file.RenameFile(x.DepartmentId, "/Content/Store/Department");
                 return RedirectToAction("Index", "Store",
                    new
                    {
@@ -527,7 +539,9 @@ namespace Mytrip.Store.Controllers
             }
             else if (ModelState.IsValid && id2 == "CreateProducer")
             {
-                var x = store.producer.CreateProducer(model.title, model.body, model.image, model.allculture, LocalisationSetting.culture());
+
+                var x = store.producer.CreateProducer(model.title, model.body, "", model.allculture, LocalisationSetting.culture());
+                store.file.RenameFile(x.ProducerId, "/Content/Store/Producer");
                 return RedirectToAction("Index", "Store",
                    new
                    {
@@ -541,7 +555,9 @@ namespace Mytrip.Store.Controllers
             }
             else if (ModelState.IsValid && id2 == "EditProducer")
             {
-                var x = store.producer.EditProducer(id, model.title, model.body, model.image, model.allculture);
+
+                var x = store.producer.EditProducer(id, model.title, model.body, "", model.allculture);
+                store.file.RenameFile(x.ProducerId, "/Content/Store/Producer");
                 return RedirectToAction("Index", "Store",
                    new
                    {
@@ -596,7 +612,8 @@ namespace Mytrip.Store.Controllers
         [HttpPost]
         public ActionResult View(int id, ProductModel model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
                 store.product.CreateReview(id, model.review);
                 return RedirectToAction("View", "Store", new { id });
@@ -639,7 +656,7 @@ namespace Mytrip.Store.Controllers
                 model.submit = StoreLanguage.add;
                 model.producerId = id2;
                 model.departmentId = id;
-                
+
             }
             else if (id3 == "EditProduct")
             {
@@ -658,7 +675,7 @@ namespace Mytrip.Store.Controllers
                 model.urlfile = product.UrlFile;
                 model.viewcount = product.ViewCount;
                 model.viewprice = product.ViewPrice;
-                model.viewvotes = product.ViewVotes;                
+                model.viewvotes = product.ViewVotes;
             }
             else if (id3 == "DeleteProduct")
             {
@@ -866,7 +883,34 @@ namespace Mytrip.Store.Controllers
                 result.AppendLine("<br/>" + StoreLanguage.thanks_for_vote);
             return result.ToString();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase id)
+        {
+            if (HttpContext.Request.Cookies["myTripTypeImage"] != null)
+            {
+                string a = store.file.UploadFile(HttpContext.Request.Cookies["myTripTypeImage"].Value, id);
+                return Content("<img src='" + a + "' class='catImg' style='width:" + ModuleSetting.widthImgDepartment() + "px;'/>"
+                    + GeneralMethods.ImgInput("/images/delete.png", "/Store/DeleteFile/"+a.Replace("/","()"), "deleteImg", 14));
+            }
+            else return Content("");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DeleteFile(string id)
+        {
+            id = id.Replace("()", "/");
+            store.file.DeleteFile(id);
+            return Content("");
+        }
         /*---------ОТЛОЖИЛ------------------*/
         /// <summary>
         /// 
@@ -907,7 +951,7 @@ namespace Mytrip.Store.Controllers
             }
             else
             {
-              var error=PayPalResponse.Errors.First();
+                var error = PayPalResponse.Errors.First();
             }
             return View();
         }

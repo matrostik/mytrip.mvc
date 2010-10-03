@@ -362,8 +362,13 @@
     <Content Include="Content\smiles\ce.gif" />
     <Content Include="Content\smiles\ch.gif" />
     <Content Include="Content\smiles\ci.gif" />
+    <Content Include="Content\Store\Department\_1.jpg" />
+    <Content Include="Content\Store\Department\_2.jpg" />
+    <Content Include="Content\Store\Department\_3.jpg" />
+    <Content Include="Content\Store\Producer\_1.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
     <Content Include="Scripts\jHtmlArea.Mytrip.js" />
     <Content Include="Scripts\jquery-1.4.2.js" />
@@ -909,7 +914,9 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Store\Product\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

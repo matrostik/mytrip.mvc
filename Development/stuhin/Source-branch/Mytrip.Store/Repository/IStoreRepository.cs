@@ -52,5 +52,19 @@ namespace Mytrip.Store.Repository
                return _ProducerRepository;
            }
        }
+       private FileRepository _FileRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public FileRepository file
+       {
+           get
+           {
+               if (_FileRepository == null)
+                   _FileRepository = new FileRepository();
+               return _FileRepository;
+           }
+       }
     }
 }
