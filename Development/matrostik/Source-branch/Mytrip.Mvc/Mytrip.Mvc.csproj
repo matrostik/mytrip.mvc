@@ -401,6 +401,7 @@
     <Content Include="ScriptsLite\SLPlaerChrome.xap" />
     <Content Include="ScriptsLite\ui.datepicker-ru.js" />
     <Content Include="ScriptsLite\ui.datepicker.js" />
+    <Content Include="Scripts\jHtmlArea.Smiles.js" />
     <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
     <Content Include="Scripts\jHtmlArea.Mytrip.js" />
     <Content Include="Scripts\jquery-1.4.2.js" />
