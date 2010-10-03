@@ -313,6 +313,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Images ({0}).
+        /// </summary>
+        public static string foto {
+            get {
+                return ResourceManager.GetString("foto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to found.
         /// </summary>
         public static string found {
@@ -466,6 +475,24 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add your review.
+        /// </summary>
+        public static string review_body {
+            get {
+                return ResourceManager.GetString("review_body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviews ({0}).
+        /// </summary>
+        public static string reviews {
+            get {
+                return ResourceManager.GetString("reviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -489,6 +516,15 @@ namespace Mytrip.Store {
         public static string subdepartment {
             get {
                 return ResourceManager.GetString("subdepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for your vote!.
+        /// </summary>
+        public static string thanks_for_vote {
+            get {
+                return ResourceManager.GetString("thanks_for_vote", resourceCulture);
             }
         }
         
@@ -588,6 +624,15 @@ namespace Mytrip.Store {
         public static string votes {
             get {
                 return ResourceManager.GetString("votes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have already voted.
+        /// </summary>
+        public static string you_have_a_voted {
+            get {
+                return ResourceManager.GetString("you_have_a_voted", resourceCulture);
             }
         }
     }

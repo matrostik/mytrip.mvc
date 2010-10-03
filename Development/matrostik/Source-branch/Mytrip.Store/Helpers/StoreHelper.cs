@@ -10,6 +10,8 @@ using System.Web;
 using Mytrip.Mvc.Settings;
 using Mytrip.Mvc.Repository;
 using Mytrip.Store.Repository;
+using Mytrip.Mvc.Helpers;
+using System.IO;
 
 namespace Mytrip.Store.Helpers
 {
@@ -17,6 +19,23 @@ namespace Mytrip.Store.Helpers
     /// </summary>
     public static class StoreHelper
     {
+        public static string GetImage(int id,string directory,int width)
+        {
+            string name ="_"+ id + ".";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string _directory = "";
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            foreach (var x in result)
+            {
+                if (x.Name.Contains(name))
+                {
+                    _directory = "<img src='" + directory + "/" + x.Name + "'class='imgabstract' style='width:" + width + "px;'/>"; //"/" + x.Name;
+                    break;
+                }
+            }
+            return _directory;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -61,7 +80,7 @@ namespace Mytrip.Store.Helpers
                 {
                     _subdepartment = string.Format("<ul>{0}</ul>", subdepartment);
                 }
-                string _content = string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\">{2}</a><b><a href=\"/Store/Index/1/10/{0}/0/1/{1}\" class=\"hometitle\" >{3} ({4})</a></b><br/>{5}{6}", article.DepartmentId, article.Path, GeneralMethods.ImageForAbstract(article.Image, ModuleSetting.widthImgDepartment()), article.Title, countproduct, article.Body, _subdepartment);
+                string _content = string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\">{2}</a><b><a href=\"/Store/Index/1/10/{0}/0/1/{1}\" class=\"hometitle\" >{3} ({4})</a></b><br/>{5}{6}", article.DepartmentId, article.Path, GetImage(article.DepartmentId,"/Content/Store/Department", ModuleSetting.widthImgDepartment()), article.Title, countproduct, article.Body, _subdepartment);
                 int tr2 = 0;
                 int _line3 = 0;
                 result.AppendLine(GeneralMethods.StyleTable(column, style, tr, width, _content, count, _count2, _line, _line2, out tr2, out _line3, out finaltr, out start, out end, out styletable));
@@ -104,10 +123,15 @@ namespace Mytrip.Store.Helpers
                 c += string.Format("<tr><td>{0}</td><td><h2 class=\"adminlink\"><a href=\"/Store/Index/1/10/0/0/1/Producer\" >{1}</a></h2></td></tr>", _store, ModuleSetting.nameProducer());
             if (x.count >= 0)
             {
+                string image = "";
+                if (x.producer)
+                    image = GetImage(x.produceridforeditor, "/Content/Store/Producer", ModuleSetting.widthImgDepartment());
+                else
+                    image = GetImage(x.createdepartment, "/Content/Store/Department", ModuleSetting.widthImgDepartment());
                 b = string.Format(" ({0})", x.count);
                 if (x.subDepartmentId > 0)
                     a = EditAndDeleteCategory(x.subDepartmentId, x.User, x.SubUser, x.producer, x.produceridforeditor) + string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\" >{2} ({3})</a> / ", x.subDepartmentId, x.subDepartmentPath, x.subDepartmentTitle, x.subcount);
-                c += string.Format("<tr><td><h2 class=\"title\">{0}{1}{2}</h2>{3}</td><td>{4}</td></tr>", a, EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title, b, x.body, GeneralMethods.ImageForAbstract(x.img, ModuleSetting.widthImgDepartment()));
+                c += string.Format("<tr><td><h2 class=\"title\">{0}{1}{2}</h2>{3}</td><td>{4}</td></tr>", a, EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title, b, x.body, image);
             }
             c += "</table>";
             if (x._search)
@@ -119,7 +143,7 @@ namespace Mytrip.Store.Helpers
                     if (x.subDepartmentId > 0)
                         a = EditAndDeleteCategory(x.subDepartmentId, x.User, x.SubUser, x.producer, x.produceridforeditor) + string.Format("<a href=\"/Store/Index/1/10/{0}/0/1/{1}\" >{2} ({3})</a> / ", x.subDepartmentId, x.subDepartmentPath, x.subDepartmentTitle, x.subcount);
                     c += "<h2 class=\"title\">" + a + "<a href=\"/Store/Index/1/10/" + x.id + "/0/1/" + x.path + "\" >" + EditAndDeleteCategory(x.createdepartment, x.User, x.SubUser, x.producer, x.produceridforeditor) + x.title + b + "</a></h2>" + x.body + "</td><td>" + GeneralMethods.ImageForAbstract(x.img, ModuleSetting.widthImgDepartment()) + "</td>";
-                    c += "<td>" + "<h2 class=\"title\"><a href=\"/Store/Index/1/10/0" + x.ProducerId + "/1/" + x.ProducerPath + "\" >" + x.ProducerTitle + " (" + x.producercount + ")" + "</a></h2>" + x.ProducerBody + "</td><td style=\"padding:0;border:0;\">" + GeneralMethods.ImageForAbstract(x.ProducerImg, ModuleSetting.widthImgDepartment());
+                    c += "<td>" + "<h2 class=\"title\"><a href=\"/Store/Index/1/10/0/" + x.ProducerId + "/1/" + x.ProducerPath + "\" >" + x.ProducerTitle + " (" + x.producercount + ")" + "</a></h2>" + x.ProducerBody + "</td><td style=\"padding:0;border:0;\">" + GeneralMethods.ImageForAbstract(x.ProducerImg, ModuleSetting.widthImgDepartment());
                     c += "</td></tr></table>";
                 }
                 string search = string.Empty;
@@ -295,7 +319,7 @@ namespace Mytrip.Store.Helpers
                 }
                 string votes = string.Empty;
                 if (article.ViewVotes)
-                    votes = GeneralMethods.CoreRating(true, false, (double)article.TotalVotes, -1) + "</b><br/>";
+                    votes = GeneralMethods.CoreRating(article.ViewVotes, false, (double)article.TotalVotes, -1) + "</b><br/>";
                 string mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
 
                 string checkeds = (HttpContext.Current.Request.Cookies["myTripProductComparison"] != null
@@ -382,11 +406,14 @@ namespace Mytrip.Store.Helpers
 
             string votes = string.Empty;
             if (x.ViewVotes)
-                votes = GeneralMethods.CoreRating(true, false, (double)x.TotalVotes, -1) + "</b><br/>";
-            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, false, "right");
-            string _content = "<h1 class=\"hometitle\" >" +
-                x.Title + "</h1>" + ImageForAbstract2(x.Image, ModuleSetting.widthImgDepartment())
-           + x.Abstract + "<br/>" + mycart + votes + prise + "<br/>" + _date + "<br/>" + departmentlink
+                votes = GeneralMethods.CoreRating(x.ViewVotes, true, (double)x.TotalVotes, x.mytrip_storevotes.Count()) + "</b><br/>";
+            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
+            string _content = "<div id='votes' class='right'>" + votes +
+                "<input id='VotesCount' name='VotesCount' type='hidden' value='" + x.mytrip_storevotes.Count() + "' />" +
+                "<input id='Store_StoreId' name='Store.StoreId' type='hidden' value='" + x.ProductId + "' />" +
+                "</div><h1 class=\"hometitle\" >" +EditAndDeleteProduct(x.ProductId,x.UserName,x.mytrip_storedepartment.UserName,x.mytrip_storedepartment.mytrip_storedepartment2.UserName,x.ProducerId)+
+                x.Title + "</h1><table class='noborders'><tr><td>" + ImageForAbstract(x.Image)
+                + x.Abstract + "</td></tr></table>" + mycart + prise + "<br/>" + _date + "<br/>" + departmentlink
                 + comparision + storecart;
             return new HtmlString(_content);
         }
@@ -398,16 +425,82 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static HtmlString ViewOptions(this HtmlHelper html, mytrip_storeproduct x)
         {
-            string _content = x.Body;
-            return new HtmlString(_content);
+            int countfoto = x.mytrip_storeoptions.Count();
+            int countreview = x.mytrip_storevotes.Count();
+            string options = x.Body.Length == 0 ? string.Empty : GeneralMethods.Button(StoreLanguage.bodyProduct, false, "options", "left");
+            string foto = countfoto == 0 ? string.Empty : GeneralMethods.Button(string.Format(StoreLanguage.foto, countfoto), false, "foto", "left");
+            string review = countreview == 0 ? string.Empty : GeneralMethods.Button(string.Format(StoreLanguage.reviews, countreview), false, "review", "left");
+            string a = "<div class='button'>" + options + foto + review + "</div>";
+            string _content = "";
+            if (x.Body.Length != 0)
+                _content += "<div class='last'></div><div id='_options' class='content'>" + x.Body + "</div>";
+            string fotodisplay = x.Body.Length == 0 ? string.Empty : "style='display:none;'";
+            if (countfoto > 0)
+                _content += "<div class='last'></div><div id='_foto' class='content' " + fotodisplay + ">" + FotoOptions(x) + "</div>";
+            string reviewdisplay = (x.Body.Length == 0 && countfoto == 0) ? string.Empty : "style='display:none;'";
+            if (countreview > 0)
+                _content += "<div class='last'></div><div id='_review' class='content'" + reviewdisplay + ">" + VotesOptions(html, x) + "</div>";
+            return new HtmlString(a + _content);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static string FotoOptions(mytrip_storeproduct x)
+        {
+            int _count = x.mytrip_storeoptions.Count();
+            int __count = 1;
+            StringBuilder result = new StringBuilder();
+            result.Append("<table class='noborders'>");
+            foreach (var z in x.mytrip_storeoptions)
+            {
+                if (__count == 1 || __count % 3 == 1)
+                    result.Append("<tr>");
+                result.Append("<td style='text-align:center;'><b>" + z.Title + "</b><br/>");
+                result.Append(ImageForAbstract(z.Image, ModuleSetting.widthImgDepartment()) + "</td>");
+                if (__count == _count || __count % 3 == 0)
+                    result.Append("</tr>");
+                __count++;
+            }
+            result.Append("</table>");
+            return result.ToString();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        private static string VotesOptions(HtmlHelper html, mytrip_storeproduct x)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (var z in x.mytrip_storevotes.OrderByDescending(y=>y.CreationDate))
+            {
+                TagBuilder profile = new TagBuilder("a");
+                profile.MergeAttribute("href", "/Home/Profile/" + z.UserName);
+                profile.InnerHtml = z.UserName;
+                string usname = " " + profile+"  "+z.CreationDate.ToString("dd MMMM yyyy");
+                result.Append("<div class='comment' ><table class='noborders'><tr><td>");
+                TagBuilder divGravatar = new TagBuilder("a");
+                divGravatar.MergeAttribute("href", "/Home/Profile/" + z.UserName);
+                divGravatar.InnerHtml = AvatarHelper.Avatar(html, MytripUser.UserEmail(z.UserName), new { width = 40 }).ToString();
+                TagBuilder _divGravatar = new TagBuilder("div");
+                _divGravatar.MergeAttribute("style", "position: relative;margin-left:2px; float: right");
+                _divGravatar.InnerHtml = divGravatar.ToString();
+                result.Append(_divGravatar.ToString());
+                result.Append(GeneralMethods.CoreRating(true, false, (double)z.Vote, -1) + "<br/>" + usname + "<br/>");
+                result.Append(z.Reviews);
+                result.Append("</td></tr></table></div><div class='last'></div>");
+            }
+            return result.ToString();
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="image"></param>
-        /// <param name="width"></param>
         /// <returns></returns>
-        private static string ImageForAbstract2(string image, int width)
+        private static string ImageForAbstract(string image)
         {
             if (image != null && image.Contains("src"))
             {
@@ -416,7 +509,27 @@ namespace Mytrip.Store.Helpers
                 image = image.Remove(image.IndexOf("\""));
                 string title = image.Remove(0, (image.LastIndexOf("/") + 1));
                 title = title.Remove(title.LastIndexOf("."));
-                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title, width);
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' class='imgabstract2'/>", image, title);
+            }
+            else
+                return string.Empty;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        private static string ImageForAbstract(string image, int width)
+        {
+            if (image != null && image.Contains("src"))
+            {
+                image = image.Remove(0, image.IndexOf("src"));
+                image = image.Remove(0, (image.IndexOf("\"") + 1));
+                image = image.Remove(image.IndexOf("\""));
+                string title = image.Remove(0, (image.LastIndexOf("/") + 1));
+                title = title.Remove(title.LastIndexOf("."));
+                return string.Format("<img src='{0}' alt='{1}' title='{1}' style='width:{2}px;'/>", image, title, width);
             }
             else
                 return string.Empty;
@@ -458,7 +571,7 @@ namespace Mytrip.Store.Helpers
             {
                 int countproduct = article.mytrip_storeproduct.Count();
 
-                string _content = "<a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\">" + GeneralMethods.ImageForAbstract(article.Image, ModuleSetting.widthImgDepartment()) + "</a>";
+                string _content = "<a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\">" + GetImage(article.ProducerId, "/Content/Store/Producer", ModuleSetting.widthImgDepartment()) + "</a>";
                 _content += "<b><a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\" class=\"hometitle\" >" +
                     article.Title + " (" + countproduct + ")</a></b><br/>" + article.Body;
                 int tr2 = 0;
@@ -582,7 +695,27 @@ namespace Mytrip.Store.Helpers
             }
             else return null;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <param name="subuser"></param>
+        /// <param name="subuser2"></param>
+        /// <param name="prodid"></param>
+        /// <returns></returns>
+        private static string EditAndDeleteProduct(int id, string user, string subuser, string subuser2, int prodid)
+        {
+            if (MytripUser.UserInRole(ModuleSetting.roleChiefStoreManager()) || (MytripUser.UserInRole(ModuleSetting.roleStoreManager())
+                && (HttpContext.Current.User.Identity.Name == user || HttpContext.Current.User.Identity.Name == subuser || HttpContext.Current.User.Identity.Name == subuser2)))
+            {
+                string edit = "/" + prodid + "/EditProduct";
+                string delete = "/0/DeleteProduct";
+                return GeneralMethods.ImgInput("/images/edite.png", "/Store/EditorProduct/" + id + edit, "rename", 14) +
+                              " " + GeneralMethods.ImgInput("/images/delete.png", "/Store/EditorProduct/" + id + delete, "delete", 14);
+            }
+            else return null;
+        }
         /// <summary>
         /// 
         /// </summary>
