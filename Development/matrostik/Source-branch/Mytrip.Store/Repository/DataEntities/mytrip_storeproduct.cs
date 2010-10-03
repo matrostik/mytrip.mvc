@@ -188,38 +188,6 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private mytrip_storeproducer _mytrip_storeproducer;
     
-        public virtual ICollection<mytrip_storevotes> mytrip_storevotes
-        {
-            get
-            {
-                if (_mytrip_storevotes == null)
-                {
-                    var newCollection = new FixupCollection<mytrip_storevotes>();
-                    newCollection.CollectionChanged += Fixupmytrip_storevotes;
-                    _mytrip_storevotes = newCollection;
-                }
-                return _mytrip_storevotes;
-            }
-            set
-            {
-                if (!ReferenceEquals(_mytrip_storevotes, value))
-                {
-                    var previousValue = _mytrip_storevotes as FixupCollection<mytrip_storevotes>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupmytrip_storevotes;
-                    }
-                    _mytrip_storevotes = value;
-                    var newValue = value as FixupCollection<mytrip_storevotes>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupmytrip_storevotes;
-                    }
-                }
-            }
-        }
-        private ICollection<mytrip_storevotes> _mytrip_storevotes;
-    
         public virtual ICollection<mytrip_storeoptions> mytrip_storeoptions
         {
             get
@@ -251,6 +219,38 @@ namespace Mytrip.Store.Repository.DataEntities
             }
         }
         private ICollection<mytrip_storeoptions> _mytrip_storeoptions;
+    
+        public virtual ICollection<mytrip_storevotes> mytrip_storevotes
+        {
+            get
+            {
+                if (_mytrip_storevotes == null)
+                {
+                    var newCollection = new FixupCollection<mytrip_storevotes>();
+                    newCollection.CollectionChanged += Fixupmytrip_storevotes;
+                    _mytrip_storevotes = newCollection;
+                }
+                return _mytrip_storevotes;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_storevotes, value))
+                {
+                    var previousValue = _mytrip_storevotes as FixupCollection<mytrip_storevotes>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupmytrip_storevotes;
+                    }
+                    _mytrip_storevotes = value;
+                    var newValue = value as FixupCollection<mytrip_storevotes>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupmytrip_storevotes;
+                    }
+                }
+            }
+        }
+        private ICollection<mytrip_storevotes> _mytrip_storevotes;
 
         #endregion
         #region Association Fixup
@@ -295,28 +295,6 @@ namespace Mytrip.Store.Repository.DataEntities
             }
         }
     
-        private void Fixupmytrip_storevotes(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (mytrip_storevotes item in e.NewItems)
-                {
-                    item.mytrip_storeproduct = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (mytrip_storevotes item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.mytrip_storeproduct, this))
-                    {
-                        item.mytrip_storeproduct = null;
-                    }
-                }
-            }
-        }
-    
         private void Fixupmytrip_storeoptions(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -330,6 +308,28 @@ namespace Mytrip.Store.Repository.DataEntities
             if (e.OldItems != null)
             {
                 foreach (mytrip_storeoptions item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.mytrip_storeproduct, this))
+                    {
+                        item.mytrip_storeproduct = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupmytrip_storevotes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (mytrip_storevotes item in e.NewItems)
+                {
+                    item.mytrip_storeproduct = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (mytrip_storevotes item in e.OldItems)
                 {
                     if (ReferenceEquals(item.mytrip_storeproduct, this))
                     {

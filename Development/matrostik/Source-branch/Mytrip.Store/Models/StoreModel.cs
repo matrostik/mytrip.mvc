@@ -280,6 +280,11 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public bool comparison2 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string review { get; set; }
         
     }
 
@@ -335,11 +340,10 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string body { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
-        public string image { get; set; }
+        public HtmlString image { get; set; }
 
         /// <summary>
         /// 
@@ -393,21 +397,25 @@ namespace Mytrip.Store.Models
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public int departmentId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public int producerId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public string title { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public string abstracts { get; set; }
 
         /// <summary>
@@ -428,11 +436,13 @@ namespace Mytrip.Store.Models
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public decimal price { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public int totalcount { get; set; }
 
         /// <summary>

@@ -464,7 +464,29 @@ namespace Mytrip.Store.Repository
             entities.SaveChanges();
             return x;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public int DeleteProduct(int id,out string path)
+        {
+            mytrip_storeproduct x = GetProduct(id);
+            int result = x.DepartmentId;
+            path = x.mytrip_storedepartment.Path;
+            foreach (var y in x.mytrip_storeoptions.ToList())
+            {
+                entities.mytrip_storeoptions.DeleteObject(y);
+            }
+            foreach (var y in x.mytrip_storevotes.ToList())
+            {
+                entities.mytrip_storevotes.DeleteObject(y);
+            }
+            entities.mytrip_storeproduct.DeleteObject(x);
+            entities.SaveChanges();
+            return result;
+        }
         /// <summary>Создать уникальный ProductId
         /// </summary>
         /// <returns>возвращает int</returns>
@@ -473,6 +495,80 @@ namespace Mytrip.Store.Repository
             int catId;
             for (catId = 1; entities.mytrip_storeproduct.Count(x => x.ProductId == catId) != 0; catId++) ;
             return catId;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private int CreateVotesId()
+        {
+            int catId;
+            for (catId = 1; entities.mytrip_storevotes.Count(x => x.VotesId == catId) != 0; catId++) ;
+            return catId;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <param name="vote"></param>
+        /// <returns></returns>
+        public decimal CreateVote(int articleId, int vote)
+        {
+            mytrip_storeproduct article = entities.mytrip_storeproduct.Include("mytrip_storevotes").FirstOrDefault(x => x.ProductId == articleId);
+            if (entities.mytrip_storevotes.Where(x => x.ProductId == articleId)
+                .FirstOrDefault(x => x.UserName == HttpContext.Current.User.Identity.Name) == null)
+            {
+                mytrip_storevotes x = new mytrip_storevotes
+                {
+                    VotesId = CreateVotesId(),
+                    ProductId = articleId,
+                    UserName = HttpContext.Current.User.Identity.Name,
+                    Vote = vote,
+                    CreationDate=DateTime.Now
+                };
+                entities.mytrip_storevotes.AddObject(x);
+                entities.SaveChanges();
+                int countVotes = article.mytrip_storevotes.Count();
+                int VotesSumm = 0;
+                foreach (mytrip_storevotes v in article.mytrip_storevotes)
+                {
+                    VotesSumm += v.Vote;
+                }
+                if (countVotes <= 0)
+                    countVotes = 1;
+                if (VotesSumm <= 0)
+                    VotesSumm = 1;
+                decimal total = (decimal)VotesSumm / countVotes;
+                article.TotalVotes = total;
+                entities.SaveChanges();
+                return total;
+            }
+            else
+                return article.TotalVotes;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="review"></param>
+        public void CreateReview(int id, string review)
+        {
+            mytrip_storevotes x = entities.mytrip_storevotes.Where(z => z.ProductId == id)
+                    .FirstOrDefault(z => z.UserName == HttpContext.Current.User.Identity.Name);
+            if (x != null)
+            {
+                x.Reviews = review;
+                entities.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <returns></returns>
+        public int GetVotesCount(int articleId)
+        {
+            return entities.mytrip_storevotes.Count(x => x.ProductId == articleId);
         }
     }
 }
