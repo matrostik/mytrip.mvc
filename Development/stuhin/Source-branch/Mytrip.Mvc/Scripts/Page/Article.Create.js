@@ -24,27 +24,7 @@ $(document).ready(function () {
                 css: '/Theme/' + data + '/TextAreaContainer.css',
                 toolbar: [
             ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"], ["|"],
-
-         [{
-             css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#abstract'] = $(this);
-                 identity = 'abstract';
-                 openid = this.value;
-                 var id = 'div.window';
-                 $(id).css({ width: (326 + 'px') });
-                 var maskHeight = $(document).height();
-                 var maskWidth = $(window).width();
-                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-                 $('div.mask').show();
-                 $('div.mask').fadeTo("fast", 0.1);
-                 var winH = $(window).height();
-                 var winW = $(window).width();
-                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-                 $(id).css('left', winW / 2 - $(id).width() / 2);
-                 $(id).slideDown('slow');
-             }
-         }], ["|"],
-        ["cut", "copy", "paste"]
+            ["smile"], ["|"], ["cut", "copy", "paste"]
         ]
             });
             $('#article').htmlarea({
@@ -65,28 +45,8 @@ $(document).ready(function () {
                 gallery.focus();
             }
         }],
-
         ["|"], ["p", "h1", "h2", "h3", "h4", "h5", "h6"], ["|"],
-         [{
-             css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#article'] = $(this);
-                 identity = 'article';
-                 openid = this.value;
-                 var id = 'div.window';
-                 $(id).css({ width: (326 + 'px') });
-                 var maskHeight = $(document).height();
-                 var maskWidth = $(window).width();
-                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-                 $('div.mask').show();
-                 $('div.mask').fadeTo("fast", 0.1);
-                 var winH = $(window).height();
-                 var winW = $(window).width();
-                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-                 $(id).css('left', winW / 2 - $(id).width() / 2);
-                 $(id).slideDown('slow');
-             }
-         }], ["|"],
-        ["cut", "copy", "paste"]
+        ["smile"], ["|"], ["cut", "copy", "paste"]
         ]
             });
         $('input.smile').click(function () {
@@ -237,26 +197,7 @@ function BuildjHtml(name) {
         }],
 
         ["|"], ["p", "h1", "h2", "h3", "h4", "h5", "h6"], ["|"],
-         [{
-             css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#' + name] = $(this);
-                 identity = name;
-                 openid = this.value;
-                 var id = 'div.window';
-                 $(id).css({ width: (326 + 'px') });
-                 var maskHeight = $(document).height();
-                 var maskWidth = $(window).width();
-                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-                 $('div.mask').show();
-                 $('div.mask').fadeTo("fast", 0.1);
-                 var winH = $(window).height();
-                 var winW = $(window).width();
-                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-                 $(id).css('left', winW / 2 - $(id).width() / 2);
-                 $(id).slideDown('slow');
-             }
-         }], ["|"],
-        ["cut", "copy", "paste"]
+        ["smile"], ["|"], ["cut", "copy", "paste"]
         ]
             });
      
