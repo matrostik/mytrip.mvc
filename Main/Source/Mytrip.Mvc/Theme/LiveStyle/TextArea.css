@@ -65,3 +65,7 @@ div.block div.button a.copy div{width: 23px;height: 26px;background: url(images/
 div.block div.button a.copy div:hover{background-position: -247px -130px;}
 div.block div.button a.paste div{width: 19px;height: 26px;background: url(images/htmlarea.png)  -258px -52px;}
 div.block div.button a.paste div:hover{background-position: -258px -78px;}
+
+div.jHtmlAreaSmiles {border: solid 1px #bbb; background-color: #F1F5FB; width: 295px; padding: 0 0 12px 0;}
+div.jHtmlAreaSmiles div { margin: 4px 2px 0 0;text-align:center; vertical-align:middle; float: left; height:25px; width:40px}
+div.jHtmlAreaSmiles div:hover { cursor:pointer}
