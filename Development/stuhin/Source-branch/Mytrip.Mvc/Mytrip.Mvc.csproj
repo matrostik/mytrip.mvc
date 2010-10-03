@@ -368,6 +368,7 @@
     <Content Include="Content\Store\Producer\_1.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jHtmlArea.Smiles.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
     <Content Include="Scripts\jHtmlArea.Mytrip.js" />

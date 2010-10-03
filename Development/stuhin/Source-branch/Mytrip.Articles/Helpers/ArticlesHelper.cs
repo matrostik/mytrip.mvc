@@ -443,7 +443,7 @@ namespace Mytrip.Articles.Helpers
                     a_category.MergeAttribute("href", "/Article/Index/1/10/" + category.CategoryId + "/" + category.Path);
                     if (category.mytrip_articlescategory2.Blog)
                     {
-                        a_category.InnerHtml = "Topic: " + category.Title;
+                        a_category.InnerHtml = ArticleLanguage.topic+": " + category.Title;
                         h4.InnerHtml += a_category.ToString() + "<br/><span>" + ArticleLanguage.create_date + ": " + string.Format("{0:dd MMMM yyyy}", category.CreateDate) +
                             ", " + ArticleLanguage.views + ": " + category.Views + "," + ArticleLanguage.posts + ": " + count + "</span><br/>";
                         result.AppendLine(h4.ToString());
