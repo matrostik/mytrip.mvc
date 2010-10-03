@@ -13,7 +13,7 @@
     View.Description=Html.MytripPageTitle(Model.Article.Title, ",");
 }
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,SLPlaerChrome.js,Page/Article.View.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,SLPlaerChrome.js,Page/Article.View.js")
 
 }
 @section contentSmall{
@@ -117,12 +117,6 @@ if (Model.Blog){
 </div>
 </div> 
 </div>
-<div class="divsmile"> 
-<div class="modalTC">Smiles</div>
-<div class="modalC">
-@Html.MytripSmiles("/Content/smiles")
-</div> 
-</div> 
 
 <div id="editComment" style="display:none;"> 
 <div>@Html.MytripImage("/images/edite.png","edit","img14")

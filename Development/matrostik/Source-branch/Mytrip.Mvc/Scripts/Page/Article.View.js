@@ -1,6 +1,8 @@
-﻿var jHtmlArea_API = new Object();
+﻿
 var identity = '';
-var theme='';
+var theme = '';
+var link = '';
+var jHtmlArea_API = new Object();
 $(document).ready(function () {
     modalSetup();
     editComment();
@@ -14,8 +16,37 @@ $(document).ready(function () {
         $('div.mask, div.divsmile').hide();
     });
 });
-function editComment() {
+function modalSetup() {
+    
+    $("a[id^='delete']").click(function () {
+        link = $(this).attr('href');
 
+        var id = 'div.window#deleteModal';
+        $(id).css({ width: (326 + 'px') });
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+        $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+        $('div.mask').show();
+        $('div.mask').fadeTo("fast", 0.1);
+        var winH = $(window).height();
+        var winW = $(window).width();
+        $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+        $(id).css('left', winW / 2 - $(id).width() / 2);
+        $(id).slideDown('slow');
+
+        return false;
+    });
+    $("input#ok").live("click", function () {
+        $(location).attr('href', link);
+        $('div.mask, div.window').hide();
+    });
+    $("input#cancel").live("click", function () {
+        $('div.mask, div.window, div.divsmile').hide();
+    });
+    return false;
+}
+
+function editComment() {
     $("a[id^='editComment']").click(function () {
         $("table.comment").show()
         $("div#editComment").hide().fadeIn('fast');
@@ -37,7 +68,13 @@ function editComment() {
         obj.updateHtmlArea();
         return false;
     });
-    $("input#edit").live("click", function () {
+    var dw = $('div.divsmile').html();
+    $('div.divsmile').html('<div class="modalTL"/><div class="modalTR"/>' + dw + '<div class="modalBL"/><div class="modalBR"/><div class="modalBC"/>');
+    $('div.divsmile').hide();
+    $('div.mask,div.modalTR').click(function () {
+        $('div.mask, div.divsmile').hide();
+    });
+    $("input#okEditComment").live("click", function () {
         var comId = $("input#editId").val();
         var text = $('textarea#edit').val();
         $.ajax({ type: "POST",
@@ -62,38 +99,7 @@ function editComment() {
         $("table.comment").show();
     });
 }
-function modalSetup() {
-    var dw = $('div.divsmile').html();
-    $('div.divsmile').html('<div class="modalTL"/><div class="modalTR"/>' + dw + '<div class="modalBL"/><div class="modalBR"/><div class="modalBC"/>');
-    $('div.divsmile').hide();
-    $('div.mask,div.modalTR').click(function () {
-        $('div.mask, div.divsmile').hide();
-    });
-    $("a[id^='delete']").click(function () {
-        link = $(this).attr('href');
-        var id = 'div.window#deleteModal';
-        $(id).css({ width: (326 + 'px') });
-        var maskHeight = $(document).height();
-        var maskWidth = $(window).width();
-        $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-        $('div.mask').show();
-        $('div.mask').fadeTo("fast", 0.1);
-        var winH = $(window).height();
-        var winW = $(window).width();
-        $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-        $(id).css('left', winW / 2 - $(id).width() / 2);
-        $(id).slideDown('slow');
-        return false;
-    });
-    $("input#ok").live("click", function () {
-        $(location).attr('href', link);
-        $('div.mask, div.window').hide();
-    });
-    $("input#cancel").live("click", function () {
-        $('div.mask, div.window').hide();
-    });
-    return false;
-}
+
 function BuildjHtml(name) {
     if (!theme) {
         $.ajax({ type: "POST",
@@ -107,30 +113,11 @@ function BuildjHtml(name) {
         css: '/Theme/' + theme + '/TextAreaContainer.css',
         toolbar: [
            ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"]
-            , ["|"], ["link", "unlink"], ["|"],
-         [{
-             css: 'smile', text: 'Smiles', action: function (btn) {
-                 jHtmlArea_API['#'+name] = $(this);
-                 openid = this.value;
-                 identity = name;
-                 var id = 'div.divsmile';
-                 $(id).css({ width: (326 + 'px') });
-                 var maskHeight = $(document).height();
-                 var maskWidth = $(window).width();
-                 $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
-                 $('div.mask').show();
-                 $('div.mask').fadeTo("fast", 0.1);
-                 var winH = $(window).height();
-                 var winW = $(window).width();
-                 $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
-                 $(id).css('left', winW / 2 - $(id).width() / 2);
-                 $(id).slideDown('slow');
-             }
-         }]
+            , ["|"], ["link", "unlink"], ["|"], ["smile"]
         ]
      });
+ }
 
-}
 function getScrollY() {
     scrollY = 0;
     if (typeof window.pageYOffset == "number") {
