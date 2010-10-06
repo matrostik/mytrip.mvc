@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Gismeteo.Models.ManagerModel>
+﻿@model Mytrip.Gismeteo.Models.ManagerModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,15 @@
 }
 @{
     View.Title = Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, ",");
     View.Description=Html.MytripPageTitle(GismeteoLanguage.edit_Gismeteo, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@GismeteoLanguage.edit_Gismeteo</h1>
 @{Html.EnableClientValidation();}

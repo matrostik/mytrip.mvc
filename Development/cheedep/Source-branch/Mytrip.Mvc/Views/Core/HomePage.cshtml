@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.HomePageModel>
+﻿@model Mytrip.Mvc.Models.HomePageModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,15 @@
 }
 @{
     View.Title = Html.MytripPageTitle(CoreLanguage.homepage_setting, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.homepage_setting, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.homepage_setting, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("Page/Core.HomePage.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h2 class="title">@CoreLanguage.homepage_setting </h2>
 @CoreLanguage.homepage_desc

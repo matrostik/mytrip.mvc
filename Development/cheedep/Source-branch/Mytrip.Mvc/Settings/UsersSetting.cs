@@ -96,7 +96,7 @@ namespace Mytrip.Mvc.Settings
         /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "us_unlockgravatar")
         /// </summary>
         /// <returns>возвращает bool</returns>
-        internal static bool unlockGravatar()
+        public static bool unlockGravatar()
         {
             return bool.Parse(GeneralMethods.MytripCache("us_unlockgravatar", "profile", "unlockGravatar", false, null, 36000, CacheItemPriority.High).ToString());
         }

@@ -38,16 +38,6 @@ namespace Mytrip.Gismeteo
            _doc.Root.Element("installModules").Add(gismmodule);
            try
            {
-               _doc.Root.Elements("namespace").Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-           }
-           catch
-           {
-           }
-           _doc.Root.Element("namespace").Add(
-               new XElement("add", new XAttribute("name", "Mytrip.Gismeteo"))
-               , new XElement("add", new XAttribute("name", "Mytrip.Gismeteo.Helpers")));
-           try
-           {
                _doc.Root.Elements(moduleName).Remove();
            }
            catch

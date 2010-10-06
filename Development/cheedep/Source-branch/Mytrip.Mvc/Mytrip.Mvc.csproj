@@ -173,7 +173,6 @@
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Settings\CoreSetting.cs" />
-    <Compile Include="Settings\CustomNamespace.cs" />
     <Compile Include="Settings\EmailSetting.cs" />
     <Compile Include="Settings\GeneralMethods.cs" />
     <Compile Include="Settings\LocalisationSetting.cs" />
@@ -362,45 +361,14 @@
     <Content Include="Content\smiles\ce.gif" />
     <Content Include="Content\smiles\ch.gif" />
     <Content Include="Content\smiles\ci.gif" />
+    <Content Include="Content\Store\Department\_1.jpg" />
+    <Content Include="Content\Store\Department\_2.jpg" />
+    <Content Include="Content\Store\Department\_3.jpg" />
+    <Content Include="Content\Store\Producer\_1.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="ScriptsLite\jHtmlArea.Mytrip.js" />
-    <Content Include="ScriptsLite\jquery-1.4.2.js" />
-    <Content Include="ScriptsLite\MicrosoftAjax.js" />
-    <Content Include="ScriptsLite\MicrosoftMvcAjax.js" />
-    <Content Include="ScriptsLite\MicrosoftMvcValidation.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Accordion.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Baloon.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Button.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Captcha.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.CheckedShow.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Delete.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Dropdown.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Include.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Layout.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Modal.js" />
-    <Content Include="ScriptsLite\Mytrip.Mvc.Textbox.js" />
-    <Content Include="ScriptsLite\Page\Account.js" />
-    <Content Include="ScriptsLite\Page\Article.Create.js" />
-    <Content Include="ScriptsLite\Page\Article.Edit.js" />
-    <Content Include="ScriptsLite\Page\Article.EditComment.js" />
-    <Content Include="ScriptsLite\Page\Article.View.js" />
-    <Content Include="ScriptsLite\Page\Core.About.js" />
-    <Content Include="ScriptsLite\Page\Core.CorSideBar.js" />
-    <Content Include="ScriptsLite\Page\Core.HomePage.js" />
-    <Content Include="ScriptsLite\Page\Core.TopMenu.js" />
-    <Content Include="ScriptsLite\Page\File.js" />
-    <Content Include="ScriptsLite\Page\Rssparser.js" />
-    <Content Include="ScriptsLite\Page\Store.Cart.js" />
-    <Content Include="ScriptsLite\Page\Store.EditorCategory.js" />
-    <Content Include="ScriptsLite\Page\Store.EditorProduct.js" />
-    <Content Include="ScriptsLite\Page\Store.Index.js" />
-    <Content Include="ScriptsLite\Page\TextAreaFile.js" />
-    <Content Include="ScriptsLite\Page\Votes.js" />
-    <Content Include="ScriptsLite\SLPlaerChrome.js" />
-    <Content Include="ScriptsLite\SLPlaerChrome.xap" />
-    <Content Include="ScriptsLite\ui.datepicker-ru.js" />
-    <Content Include="ScriptsLite\ui.datepicker.js" />
+    <Content Include="Scripts\jHtmlArea.Smiles.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\Mytrip.Mvc.Baloon.js" />
     <Content Include="Scripts\jHtmlArea.Mytrip.js" />
     <Content Include="Scripts\jquery-1.4.2.js" />
@@ -946,7 +914,9 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Store\Product\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -984,14 +954,12 @@
     <None Include="Views\Article\Archive.cshtml" />
     <None Include="Views\Article\ArchiveDetails.cshtml" />
     <None Include="Views\Article\Create.cshtml" />
-    <None Include="Views\Article\CreateCategory.cshtml" />
     <None Include="Views\Article\Edit.cshtml" />
-    <None Include="Views\Article\EditCategory.cshtml" />
-    <None Include="Views\Article\EditComment.cshtml" />
     <None Include="Views\Article\Editors.cshtml" />
     <None Include="Views\Article\Index.cshtml" />
     <None Include="Views\Article\Setting.cshtml" />
     <None Include="Views\Article\View.cshtml" />
+    <Content Include="Views\Article\Web.config" />
     <None Include="Views\Core\About.cshtml" />
     <None Include="Views\Core\ControlPanel.cshtml" />
     <None Include="Views\Core\CorSideBar.cshtml" />
@@ -1007,6 +975,7 @@
     <None Include="Views\Gismeteo\Edit.cshtml" />
     <None Include="Views\Gismeteo\Manager.cshtml" />
     <None Include="Views\Gismeteo\Setting.cshtml" />
+    <Content Include="Views\Gismeteo\Web.config" />
     <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Profile.cshtml" />
@@ -1018,6 +987,7 @@
     <None Include="Views\Rssparser\Index.cshtml" />
     <None Include="Views\Rssparser\Manager.cshtml" />
     <None Include="Views\Rssparser\Setting.cshtml" />
+    <Content Include="Views\Rssparser\Web.config" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_menu.cshtml" />
@@ -1029,9 +999,11 @@
     <None Include="Views\Store\Index.cshtml" />
     <None Include="Views\Store\Order.cshtml" />
     <None Include="Views\Store\View.cshtml" />
+    <Content Include="Views\Store\Web.config" />
     <None Include="Views\TextAreaFile\Index.cshtml" />
     <None Include="Views\TextAreaFile\Rename.cshtml" />
     <None Include="Views\TextAreaFile\_Layout.cshtml" />
+    <None Include="Views\TextAreaFile\_ViewStart.cshtml" />
     <None Include="Views\Users\Details.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
     <None Include="Views\Users\IndexRole.cshtml" />
@@ -1041,6 +1013,8 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Votes\Web.config" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreLanguage.en-us.resx">
