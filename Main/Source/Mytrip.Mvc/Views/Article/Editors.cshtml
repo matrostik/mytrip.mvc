@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.EditorsModel>
+﻿@model Mytrip.Articles.Models.EditorsModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,8 +8,10 @@
 }
 @{
      View.Title = Html.MytripPageTitle(Model.PageTitle, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
+	 View.Keywords=Html.MytripPageTitle(Model.PageTitle, ",");
+     View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 <script type='text/javascript'\> 
@@ -66,6 +68,8 @@ function getScrollY() {
 }
   </script>
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">
 @Model.PageTitle</h1>

@@ -137,7 +137,7 @@ namespace Mytrip.Store.Repository
                 .Where(x => x.Price < _bigprice);
             if (search != "x")
             {
-                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Abstract.IndexOf(search) != -1);
+                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Body.IndexOf(search) != -1);
             }
             var a = b.OrderByDescending(x => x.CreationDate);
             total = a.Count();
@@ -188,7 +188,7 @@ namespace Mytrip.Store.Repository
                 .Where(x => x.Price < _bigprice);
             if (search != "x")
             {
-                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Abstract.IndexOf(search) != -1);
+                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Body.IndexOf(search) != -1);
             }
             var a = b.OrderByDescending(x => x.CreationDate);
             total = a.Count();
@@ -241,7 +241,7 @@ namespace Mytrip.Store.Repository
                 .Where(x => x.Price < _bigprice);
             if (search != "x")
             {
-                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Abstract.IndexOf(search) != -1);
+                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Body.IndexOf(search) != -1);
             }
             var a = b.OrderByDescending(x => x.CreationDate);
             total = a.Count();
@@ -290,7 +290,7 @@ namespace Mytrip.Store.Repository
                 .Where(x => x.Price < _bigprice);
             if (search != "x")
             {
-                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Abstract.IndexOf(search) != -1);
+                b = b.Where(x => x.Title.IndexOf(search) != -1 || x.Body.IndexOf(search) != -1);
             }
             var a = b.OrderByDescending(x => x.CreationDate);
             total = a.Count();
@@ -383,7 +383,6 @@ namespace Mytrip.Store.Repository
         /// <param name="title"></param>
         /// <param name="_abstract"></param>
         /// <param name="body"></param>
-        /// <param name="image"></param>
         /// <param name="culture"></param>
         /// <param name="allculture"></param>
         /// <param name="price"></param>
@@ -394,7 +393,7 @@ namespace Mytrip.Store.Repository
         /// <param name="viewvotes"></param>
         /// <returns></returns>
         public mytrip_storeproduct CreateProduct(int departmentId, int producerId, string title,
-            string _abstract, string body, string image, string culture, bool allculture, decimal price, int totalcount,
+            string _abstract, string body,string culture, bool allculture, decimal price, int totalcount,
             string urlfile, bool viewcount, bool viewprice, bool viewvotes)
         {
             mytrip_storeproduct x = new mytrip_storeproduct
@@ -404,9 +403,8 @@ namespace Mytrip.Store.Repository
                 ProducerId = producerId,
                 Title = title,
                 Path = GeneralMethods.DecodingString(title),
-                Abstract = _abstract,
-                Body = body,
-                Image = image,
+                Body = _abstract,
+                Details = body,
                 Culture = culture,
                 AllCulture = allculture,
                 CreationDate = DateTime.Now,
@@ -433,7 +431,6 @@ namespace Mytrip.Store.Repository
         /// <param name="title"></param>
         /// <param name="_abstract"></param>
         /// <param name="body"></param>
-        /// <param name="image"></param>
         /// <param name="allculture"></param>
         /// <param name="price"></param>
         /// <param name="totalcount"></param>
@@ -443,7 +440,7 @@ namespace Mytrip.Store.Repository
         /// <param name="viewvotes"></param>
         /// <returns></returns>
         public mytrip_storeproduct EditProduct(int id, int departmentId, int producerId, string title,
-            string _abstract, string body, string image, bool allculture, decimal price, int totalcount,
+            string _abstract, string body,bool allculture, decimal price, int totalcount,
             string urlfile, bool viewcount, bool viewprice, bool viewvotes)
         {
             mytrip_storeproduct x = GetProduct(id);
@@ -451,9 +448,8 @@ namespace Mytrip.Store.Repository
             x.ProducerId = producerId;
             x.Title = title;
             x.Path = GeneralMethods.DecodingString(title);
-            x.Abstract = _abstract;
-            x.Body = body;
-            x.Image = image;
+            x.Body = _abstract;
+            x.Details = body;
             x.AllCulture = allculture;
             x.Price = price;
             x.TotalCount = totalcount;

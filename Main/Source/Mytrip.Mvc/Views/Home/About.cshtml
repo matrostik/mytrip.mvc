@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.AboutModel>
+﻿@model Mytrip.Mvc.Models.AboutModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,14 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.title, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
 	View.Keywords=Html.MytripPageTitle(Model.title, ",");
     View.Description=Html.MytripPageTitle(Model.title, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js")
 }
+@section content{}
 @section contentBig{
 <h1 class="title">
 @Model.title

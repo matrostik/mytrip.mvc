@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.HomePageModel>
+﻿@model Mytrip.Mvc.Models.HomePageModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,15 @@
 }
 @{
     View.Title = Html.MytripPageTitle(CoreLanguage.sidebar_setting, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.sidebar_setting, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.sidebar_setting, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("Page/Core.CorSideBar.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.sidebar_setting</h1>
 * @CoreLanguage.sidebar_setting. @CoreLanguage.menu_setting_desc

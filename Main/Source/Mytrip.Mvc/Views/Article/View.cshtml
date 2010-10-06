@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.ArticleViewModel>
+﻿@model Mytrip.Articles.Models.ArticleViewModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,14 +8,14 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.Article.Title, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(Model.Article.Title, ",");
     View.Description=Html.MytripPageTitle(Model.Article.Title, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,SLPlaerChrome.js,Page/Article.View.js")
-
 }
+@section content{}
 @section contentSmall{
 @Html.Partial("_sideBar") 
 }
