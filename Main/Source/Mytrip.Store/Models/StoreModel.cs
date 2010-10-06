@@ -426,8 +426,11 @@ namespace Mytrip.Store.Models
         /// <summary>
         /// 
         /// </summary>
-        public string image { get; set; }
-        
+        public HtmlString image { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public HtmlString imageOption { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -437,7 +440,7 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
-        public decimal price { get; set; }
+        public string price { get; set; }
 
         /// <summary>
         /// 

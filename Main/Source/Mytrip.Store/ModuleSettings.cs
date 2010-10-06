@@ -45,16 +45,6 @@ namespace Mytrip.Store
             _doc.Root.Element("installModules").Add(artmodule);
             try
             {
-                _doc.Root.Elements("namespace").Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-            }
-            catch
-            {
-            }
-            _doc.Root.Element("namespace").Add(
-                new XElement("add", new XAttribute("name", "Mytrip.Store"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Store.Helpers")));
-            try
-            {
                 _doc.Root.Elements(moduleName).Remove();
             }
             catch

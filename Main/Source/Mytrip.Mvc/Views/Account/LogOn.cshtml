@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.LogOnModel>
+﻿@model Mytrip.Mvc.Models.LogOnModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,15 @@
 }
 @{
     View.Title = Html.MytripPageTitle(CoreLanguage.logon, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.logon, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.logon, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Page/Account.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.logon</h1>
 @if (Model.unlockSiteId){ 

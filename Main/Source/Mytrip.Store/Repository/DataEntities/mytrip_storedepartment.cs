@@ -67,12 +67,6 @@ namespace Mytrip.Store.Repository.DataEntities
             set;
         }
     
-        public virtual string Image
-        {
-            get;
-            set;
-        }
-    
         public virtual int SubDepartmentId
         {
             get { return _subDepartmentId; }
