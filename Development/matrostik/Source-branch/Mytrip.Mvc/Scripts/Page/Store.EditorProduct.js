@@ -3,7 +3,7 @@ var identity = '';
 $(document).ready(function () {
     $.ajax({ type: "POST",
         url: "/MytripMvc/Theme",
-        success: function (data) {           
+        success: function (data) {
             $('#abstract').htmlarea({
                 css: '/Theme/' + data + '/TextAreaContainer.css',
                 toolbar: [
@@ -31,9 +31,9 @@ $(document).ready(function () {
         ["cut", "copy", "paste"]
         ]
             });
-     $('#article').htmlarea({
-         css: '/Theme/' + data + '/TextAreaContainer.css',
-         toolbar: [
+            $('#article').htmlarea({
+                css: '/Theme/' + data + '/TextAreaContainer.css',
+                toolbar: [
             ["html"], ["|"], ["bold", "italic", "underline", "strikethrough"], ["|"], ["subscript", "superscript"], ["|"],
 
          [{
@@ -57,7 +57,7 @@ $(document).ready(function () {
          }], ["|"],
         ["cut", "copy", "paste"]
         ]
-     });
+            });
             $('input.smile').click(function () {
                 var htmlText = $(this).val();
                 jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
@@ -85,15 +85,36 @@ $(document).ready(function () {
             $('div.file').removeClass("ac");
         }
     );
-   
-        $('#myForm').ajaxForm(function (data) {
-            $('#_myForm').html(data);
-        });
-  
+
+    $('#myForm').ajaxForm(function (data) {
+        $('#_myForm').html(data);
+    });
+    $('#myForm1').ajaxForm(function (data) {
+        $('#_myForm1').html(data);
+    });
     var openid2 = new Object();
+    var openid3 = new Object();
     $('input.deleteImg').live('click',
         function () {
             openid2 = this.value;
+            openid3 = "yes";
+            var id = 'div.window#delete';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        });
+    $('input.deleteImg2').live('click',
+        function () {
+            openid2 = this.value;
+            openid3 = "no";
             var id = 'div.window#delete';
             $(id).css({ width: (326 + 'px') });
             var maskHeight = $(document).height();
@@ -108,11 +129,16 @@ $(document).ready(function () {
             $(id).slideDown('slow');
         });
     $("#enter").live("click", function () {
-        $.ajax({ type: "POST", url: openid2,
-            success: function (data) {
-                $('#_myForm').html(data);
-            }
-        });
+        
+            $.ajax({ type: "POST", url: openid2,
+                success: function (data) {
+                if (openid3 == "yes")
+                    $('#_myForm').html(data);
+                    else
+                    $('#_myForm1').html(data);
+                }
+            });
+        
         $('div.mask, div.window').hide();
     });
     $("#close").live("click", function () {

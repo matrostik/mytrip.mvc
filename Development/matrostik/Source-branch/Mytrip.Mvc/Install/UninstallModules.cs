@@ -39,11 +39,6 @@ namespace Mytrip.Mvc.Install
             catch { }
             try
             {
-                _doc.Root.Elements("namespace").Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-            }
-            catch { }
-            try
-            {
                 _doc.Root.Elements(moduleName).Remove();
             }
             catch { }

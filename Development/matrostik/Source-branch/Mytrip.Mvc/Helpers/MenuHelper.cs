@@ -52,7 +52,7 @@ namespace Mytrip.Mvc.Helpers
                 home.InnerHtml = CoreSetting.NameHomePage();
                 about.MergeAttribute("href", "/Home/About");
                 about.InnerHtml = CoreSetting.NameAboutPage();
-                if (String.IsNullOrEmpty(Controller) | Controller == "/")
+                if (String.IsNullOrEmpty(Controller) || Controller == "/"||(Controller=="Home"&&Action=="Index"))
                     result.Append(GeneralMethods.Menu(home.ToString(), null, true, false, true, false));
                 else
                     result.Append(GeneralMethods.Menu(home.ToString(), null, false, false, true, false));

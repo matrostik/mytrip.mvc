@@ -61,10 +61,6 @@ namespace Mytrip.Mvc
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            foreach (var x in CustomNamespace.Namespace())
-            {
-                Microsoft.WebPages.Compilation.CodeGeneratorSettings.AddGlobalImport(x.Value);
-            }
         }
     }
 }
