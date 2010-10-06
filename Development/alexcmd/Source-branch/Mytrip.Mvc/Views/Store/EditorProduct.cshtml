@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Store.Models.EditorProductModel>
+﻿@model Mytrip.Store.Models.EditorProductModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,18 +8,27 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.pagetitle, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(Model.pagetitle, ",");
     View.Description=Html.MytripPageTitle(Model.pagetitle, ",");
 }
+@section csslink{}
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,Page/Store.EditorProduct.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jquery.form.js,Page/Store.EditorProduct.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@Model.pagetitle</h1>
+<table class="content">
+<tr>
+<td class="first1"></td>
+<td class="last1" style="width: 300px;"></td>
+</tr>
+<tr>
+<td class="first2">
 @{Html.EnableClientValidation();}
 @using (Html.BeginForm()){ 
-<fieldset>
+
 <div class="editor-label">
 @Html.MytripLabelFor("title", StoreLanguage.titleProduct)
 </div><div class="editor-field">
@@ -36,33 +45,22 @@
 </div><div class="editor-field">
 @Html.DropDownListFor(m => m.producerId, Model.SelectProducer)
 </div>
-<table class="noborders">
-<tr><td style="width: 200px">
-<div class="editor-label">
-@Html.MytripLabelFor("image", StoreLanguage.imageProduct)
-</div>
-</td><td>
+
 <div class="editor-label">
 @Html.MytripLabelFor("_abstract", StoreLanguage._abstract)
-</div></td></tr><tr><td>
+</div>
 <div class="editor-field"><div class="dark">
-@Html.TextAreaFor(m => m.image, new { id = "fotoabstract", style = "height: 200px; width:200px;" })
-@Html.ValidationMessageFor(m => m.image)
-</div></div>
-</td><td><div class="editor-field"><div class="dark">
 @Html.TextAreaFor(m => m.abstracts, new { id = "abstract", style = "height: 200px; width:100%;" })
 @Html.ValidationMessageFor(m => m.abstracts) 
 </div></div>
-</td>
-</tr>
-</table>
+
 <div class="editor-label">
 @Html.MytripLabelFor("body", StoreLanguage.bodyProduct)
 </div>
 <div class="editor-field"><div class="dark">
 @Html.TextAreaFor(m => m.body, new { id = "article", style = "height: 200px; width:100%;" })
 @Html.ValidationMessageFor(m => m.body) 
-</div>
+</div></div>
 <div class="editor-label">
 @Html.MytripLabelFor("price", StoreLanguage.titlePrice + Model.nameMoney)
 </div><div class="editor-field">
@@ -100,12 +98,64 @@
 <div class="button">
 @Html.MytripButton(Model.submit, true,"left")
 </div>
-</fieldset>
-<div class="window"> 
+}
+</td>
+<td class="last2">
+<form id="myForm" action="/Store/UploadFileProduct" method="post" enctype="multipart/form-data" >
+<div class="editor-label">
+@Html.MytripLabelFor("image", StoreLanguage.imageProduct)
+</div><div class="last"></div><div style="clear: both;"></div>
+<div class="textboxR">@Html.MytripInputFile("file","id")</div>
+<div id="divfiletext" class="textboxR">@Html.TextBox("a", "", new { id="filetext"})</div>
+<div style="clear: both;"></div><div class="last"></div>
+ @Html.MytripButton(CoreLanguage.upload,true,"right")
+</form>
+<table class="noborders"><tr><td>
+<div id="_myForm">
+@Model.image
+</div></td></tr>
+</table>
+<form id="myForm1" action="/Store/UploadFileProductOption" method="post" enctype="multipart/form-data" >
+<div class="editor-label">
+@Html.MytripLabelFor("image", StoreLanguage.imageProduct1)
+</div><div class="last"></div><div style="clear: both;"></div>
+<div class="textboxR">@Html.MytripInputFile("file","id2")</div>
+<div id="divfiletext1" class="textboxR">@Html.TextBox("a", "", new { id="filetext1"})</div>
+<div style="clear: both;"></div><div class="last"></div>
+ @Html.MytripButton(CoreLanguage.upload,true,"right")
+</form>
+<table class="noborders"><tr><td>
+<div id="_myForm1">
+@Model.imageOption
+</div></td></tr>
+</table>
+</td>
+
+</tr>
+<tr>
+<td class="first3"></td>
+<td class="last3"></td>
+
+</tr>
+</table>
+
+<div id="smile" class="window"> 
 <div class="modalTC">Smiles</div>
 <div class="modalC">
 @Html.MytripSmiles("/Content/smiles")
 </div> 
 </div> 
+<div id="delete" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
+@Html.MytripButton(CoreLanguage.remove, true, "enter","right")
+</div></div></div>  
 }
 

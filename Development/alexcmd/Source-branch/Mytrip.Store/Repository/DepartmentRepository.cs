@@ -5,6 +5,7 @@ using System.Text;
 using Mytrip.Store.Repository.DataEntities;
 using System.Web;
 using Mytrip.Mvc.Settings;
+using System.IO;
 
 namespace Mytrip.Store.Repository
 {
@@ -14,7 +15,7 @@ namespace Mytrip.Store.Repository
     {
         #region Подключение к Entity Репозиторию
         Entities _entities;
-        
+
         /// <summary>Подключение к Entity Репозиторию 
         /// </summary>
         public Entities entities
@@ -96,15 +97,15 @@ namespace Mytrip.Store.Repository
         /// </summary>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает IDictionary &lt; int,string &gt;</returns>
-        public IDictionary<int, string> GetDepartmentForDdl(string culture,bool search)
+        public IDictionary<int, string> GetDepartmentForDdl(string culture, bool search)
         {
             IDictionary<int, string> mcats = new Dictionary<int, string>();
             var a = entities.mytrip_storedepartment.Include("mytrip_storedepartment1")
            .Where(x => x.DepartmentId != 0 && x.SubDepartmentId == 0)
            .Where(x => x.Culture == culture || x.AllCulture == true)
            .OrderBy(x => x.Title);
-            if(search)
-            mcats.Add(0, StoreLanguage.AllDepartment);
+            if (search)
+                mcats.Add(0, StoreLanguage.AllDepartment);
             foreach (mytrip_storedepartment cat in a)
             {
                 mcats.Add(cat.DepartmentId, cat.Title);
@@ -126,7 +127,7 @@ namespace Mytrip.Store.Repository
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment CreateDepartment(int id,string title,string body,string image,bool allculture,string culture)
+        public mytrip_storedepartment CreateDepartment(int id, string title, string body, bool allculture, string culture)
         {
             CreateDepartmentZero();
             mytrip_storedepartment x = new mytrip_storedepartment
@@ -137,7 +138,6 @@ namespace Mytrip.Store.Repository
                 CreationDate = DateTime.Now,
                 UserName = HttpContext.Current.User.Identity.Name,
                 Body = body,
-                Image = image,
                 SubDepartmentId = id,
                 AllCulture = allculture,
                 Culture = culture
@@ -155,12 +155,12 @@ namespace Mytrip.Store.Repository
         /// <param name="image">изображение отдела (возможен null)</param>
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment EditDepartment(int id, string title, string body, string image, bool allculture)
+        public mytrip_storedepartment EditDepartment(int id, string title, string body, bool allculture)
         {
             mytrip_storedepartment x = GetDepartment(id);
             x.Title = title;
-            x.Image = image;
             x.Body = body;
+            x.Path = GeneralMethods.DecodingString(title);
             x.AllCulture = allculture;
             entities.SaveChanges();
             return x;
@@ -200,7 +200,7 @@ namespace Mytrip.Store.Repository
         private int CreateDepartmentId()
         {
             int catId;
-            for (catId = 1; entities.mytrip_storedepartment.Count(x => x.DepartmentId == catId) != 0; catId++);
+            for (catId = 1; entities.mytrip_storedepartment.Count(x => x.DepartmentId == catId) != 0; catId++) ;
             return catId;
         }
 
@@ -216,11 +216,10 @@ namespace Mytrip.Store.Repository
                     DepartmentId = 0,
                     Title = "zero",
                     Path = "zero",
-                    CreationDate= DateTime.Now,
+                    CreationDate = DateTime.Now,
                     UserName = "mytripmvc",
-                    Body="null",
-                    Image="null",
-                    SubDepartmentId=0,
+                    Body = "null",
+                    SubDepartmentId = 0,
                     AllCulture = false,
                     Culture = "zero"
                 };
@@ -228,5 +227,6 @@ namespace Mytrip.Store.Repository
                 entities.SaveChanges();
             }
         }
+        
     }
 }

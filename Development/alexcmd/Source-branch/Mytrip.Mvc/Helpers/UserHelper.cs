@@ -223,12 +223,13 @@ namespace Mytrip.Mvc.Helpers
                 IDictionary<string, object> _menu = (profile == null ? new RouteValueDictionary() : new RouteValueDictionary(profile));
                 foreach (string key in _menu.Keys)
                 {
+                    if (_menu[key] != null)
                     _helper += _menu[key].ToString();
                 }
                 TagBuilder divGravatar = new TagBuilder("a");
                 divGravatar.MergeAttribute("href", "/Home/Profile/" + HttpContext.Current.User.Identity.Name);
                 divGravatar.MergeAttribute("title", CoreLanguage.my_profile);
-                divGravatar.InnerHtml = AvatarHelper.Avatar(html, user.mtGetUserByUserNameMember(HttpContext.Current.User.Identity.Name).mytrip_usersmembership.Email, new { width = 60 }).ToString();
+                divGravatar.InnerHtml =UsersSetting.unlockGravatar()? AvatarHelper.Avatar(html, user.mtGetUserByUserNameMember(HttpContext.Current.User.Identity.Name).mytrip_usersmembership.Email, new { width = 60 }).ToString():"";
                 string table = "<table class=\"noborders\"><tr><td>" + _helper + ul.ToString() +
                     "</td><td>" + divGravatar + "</td></tr></table>";
                 HtmlString htmlresult = new HtmlString(GeneralMethods.Accordion(welcome.ToString(), table));
@@ -270,6 +271,7 @@ namespace Mytrip.Mvc.Helpers
                 IDictionary<string, object> _menu = (profile == null ? new RouteValueDictionary() : new RouteValueDictionary(profile));
                 foreach (string key in _menu.Keys)
                 {
+                    if (_menu[key] != null)
                     _helper += _menu[key].ToString();
                 }
 

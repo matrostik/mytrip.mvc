@@ -66,12 +66,6 @@ namespace Mytrip.Store.Repository.DataEntities
             get;
             set;
         }
-    
-        public virtual string Image
-        {
-            get;
-            set;
-        }
 
         #endregion
         #region Navigation Properties

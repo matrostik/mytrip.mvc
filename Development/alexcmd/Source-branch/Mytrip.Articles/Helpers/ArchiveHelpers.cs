@@ -1999,8 +1999,7 @@ namespace Mytrip.Articles.Helpers
             else if (obj is mytrip_articlescomments)
             {
                 mytrip_articlescomments comment = obj as mytrip_articlescomments;
-                return GeneralMethods.ImageLink("editComment_" + comment.CommentId, "/Article/EditComment/" + comment.CommentId + "/" + comment.ArticleId + "/Archive/"
-                    + HttpContext.Current.Request.Path.Replace("/", "(x)"), ArticleLanguage.edit, "", "/images/edite.png", "Edit", 14) + " "
+                return GeneralMethods.ImageLink("editComment_" + comment.CommentId, "" , ArticleLanguage.edit, comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
                     + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId + "/Archive/"
                     + HttpContext.Current.Request.Path.Replace("/", "(x)"), ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
 
