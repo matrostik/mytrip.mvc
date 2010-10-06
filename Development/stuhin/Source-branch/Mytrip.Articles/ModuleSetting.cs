@@ -42,20 +42,6 @@ namespace Mytrip.Articles
             module.Add(artmodule);
             try
             {
-                var modules = _doc.Root.Elements("namespace");
-                modules.Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-            }
-            catch
-            {
-            }
-            _doc.Root.Element("namespace").Add(
-                new XElement("add", new XAttribute("name", "Mytrip.Articles"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Articles.Helpers"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Articles.Repository"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Articles.Repository.DataEntities")));
-
-            try
-            {
                 _doc.Root.Elements(moduleName).Remove();
             }
             catch

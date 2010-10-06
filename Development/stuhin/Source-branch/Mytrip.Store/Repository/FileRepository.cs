@@ -55,6 +55,170 @@ namespace Mytrip.Store.Repository
             file.SaveAs(_absolutDirectory);
             return directory + "/" + ch + name;
         }
+        internal string UploadFileProduct(string param, HttpPostedFileBase file)
+        {
+            string name = Path.GetFileName(file.FileName);
+            string extension = name.Remove(0, name.LastIndexOf("."));
+            name = "temp" + HttpContext.Current.User.Identity.Name;
+            string directory = "/Content/Store/Product";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            if (param.Contains("CreateProduct"))
+            {
+                directory += "/" + name;
+                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
+                if (!folder.Exists)
+                    folder.Create();
+            }
+            else if (param.Contains("EditProduct"))
+            {
+                string[] _param = param.Split('_');
+                directory += "/"+_param[0];
+            }
+            string filename = "product";
+            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            foreach (var x in result)
+            {
+                if (x.Name.Contains(filename))
+                {
+                    x.Delete();
+                    break;
+                }
+            }
+            filename += extension.ToLower();
+            string _absolutDirectory = Path.Combine(absolutDirectory, filename);
+            file.SaveAs(_absolutDirectory);
+            return directory + "/" + filename;
+        }
+        internal string GetFileProduct(string param)
+        {
+            string name = "temp" + HttpContext.Current.User.Identity.Name;
+            string directory = "/Content/Store/Product";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            if (param.Contains("CreateProduct"))
+            {
+                directory += "/" + name;
+                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
+                if (!folder.Exists)
+                    folder.Create();
+            }
+            else if (param.Contains("EditProduct"))
+            {
+                string[] _param = param.Split('_');
+                directory += "/" + _param[0];
+            }
+            string filename = "product";
+            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            bool file = false;
+            string _file = "";
+            foreach (var x in result)
+            {
+                if (x.Name.Contains(filename))
+                {
+                    _file = x.Name;
+                    file = true;
+                }
+            }
+            if (file)
+                return "<img src='" + directory + "/" + _file + "' class='catImg' style='width:" + ModuleSetting.widthImgDepartment() + "px;'/>"
+                        + GeneralMethods.ImgInput("/images/delete.png", "/Store/DeleteFile/" + directory.Replace("/", "()") + "()" + _file, "deleteImg", 14);
+            else
+                return null;
+        }
+        internal string[] UploadFileProductOption(string param, HttpPostedFileBase file)
+        {
+            string name = Path.GetFileName(file.FileName);
+            string extension = name.Remove(0, name.LastIndexOf("."));
+            name = "temp" + HttpContext.Current.User.Identity.Name;
+            string directory = "/Content/Store/Product";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            if (param.Contains("CreateProduct"))
+            {
+                directory += "/" + name;
+                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
+                if (!folder.Exists)
+                    folder.Create();
+            }
+            else if (param.Contains("EditProduct"))
+            {
+                string[] _param = param.Split('_');
+                directory += "/" + _param[0];
+            }
+            int _filename=0;
+            string _file = "";
+            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            foreach (var x in result)
+            {
+                if (x.Name.Contains("_" + _filename+"."))
+                {
+                    _filename++;
+                }
+                if (!x.Name.Contains("product"))
+                {
+                    _file += "[" + directory + "/" + x.Name + "]";
+                }
+            }
+            string filename = "_" + _filename;
+            filename += extension.ToLower();
+            string _absolutDirectory = Path.Combine(absolutDirectory, filename);
+            file.SaveAs(_absolutDirectory);
+            _file += "[" + directory + "/" + filename + "]";
+            _file = _file.Replace("][", "|").Replace("[", "").Replace("]", "");
+            return _file.Split('|');
+        }
+        internal string[] GetFileProductOption(string param)
+        {
+            
+            string name = "temp" + HttpContext.Current.User.Identity.Name;
+            string directory = "/Content/Store/Product";
+            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            if (param.Contains("CreateProduct"))
+            {
+                directory += "/" + name;
+                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
+                if (!folder.Exists)
+                    folder.Create();
+            }
+            else if (param.Contains("EditProduct"))
+            {
+                string[] _param = param.Split('_');
+                directory += "/" + _param[0];
+            }
+            string _file = "";
+            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            FileInfo[] result = _absolutDirectory2.GetFiles();
+            foreach (var x in result)
+            {
+                if (!x.Name.Contains("product"))
+                {
+                    _file += "[" + directory + "/" + x.Name + "]";
+                }
+            }
+            _file = _file.Replace("][", "|").Replace("[", "").Replace("]", "");
+            return _file.Split('|');
+        }
+        internal void RenameFolder(int id)
+        {
+            string oldName = HttpContext.Current.Server.MapPath("/Content/Store/Product/temp" + HttpContext.Current.User.Identity.Name);
+            string newName = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+            Directory.Move(oldName, newName);
+        }
+        internal void DeleteFolder(int id)
+        {
+            string _directory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+           DirectoryInfo folder = new DirectoryInfo(_directory);
+           folder.Delete(true);
+        }
         internal void RenameFile(int id, string directory)
         {
             string name = "temp" + HttpContext.Current.User.Identity.Name + ".";

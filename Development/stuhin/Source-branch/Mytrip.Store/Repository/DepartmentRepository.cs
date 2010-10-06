@@ -127,7 +127,7 @@ namespace Mytrip.Store.Repository
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment CreateDepartment(int id, string title, string body, string image, bool allculture, string culture)
+        public mytrip_storedepartment CreateDepartment(int id, string title, string body, bool allculture, string culture)
         {
             CreateDepartmentZero();
             mytrip_storedepartment x = new mytrip_storedepartment
@@ -138,7 +138,6 @@ namespace Mytrip.Store.Repository
                 CreationDate = DateTime.Now,
                 UserName = HttpContext.Current.User.Identity.Name,
                 Body = body,
-                Image = image,
                 SubDepartmentId = id,
                 AllCulture = allculture,
                 Culture = culture
@@ -156,11 +155,10 @@ namespace Mytrip.Store.Repository
         /// <param name="image">изображение отдела (возможен null)</param>
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment EditDepartment(int id, string title, string body, string image, bool allculture)
+        public mytrip_storedepartment EditDepartment(int id, string title, string body, bool allculture)
         {
             mytrip_storedepartment x = GetDepartment(id);
             x.Title = title;
-            x.Image = image;
             x.Body = body;
             x.Path = GeneralMethods.DecodingString(title);
             x.AllCulture = allculture;
@@ -221,7 +219,6 @@ namespace Mytrip.Store.Repository
                     CreationDate = DateTime.Now,
                     UserName = "mytripmvc",
                     Body = "null",
-                    Image = "null",
                     SubDepartmentId = 0,
                     AllCulture = false,
                     Culture = "zero"

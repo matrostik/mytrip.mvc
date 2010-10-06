@@ -1,4 +1,4 @@
-@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.ControlPanelModel>
+@model Mytrip.Mvc.Models.ControlPanelModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,11 +8,13 @@
 }
 @{
     View.Title = Html.MytripPageTitle(CoreLanguage.control_panel, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.control_panel, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.control_panel, ",");
 }
-
+@section csslink{}
+@section scriptlink{}
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.control_panel</h1>
 <table class="content">

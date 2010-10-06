@@ -98,7 +98,7 @@ namespace Mytrip.Store.Repository
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает mytrip_storeproducer</returns>
-        public mytrip_storeproducer CreateProducer(string title, string body, string image, bool allculture, string culture)
+        public mytrip_storeproducer CreateProducer(string title, string body, bool allculture, string culture)
         {
             mytrip_storeproducer x = new mytrip_storeproducer
             {
@@ -108,7 +108,6 @@ namespace Mytrip.Store.Repository
                 CreationDate = DateTime.Now,
                 UserName = HttpContext.Current.User.Identity.Name,
                 Body = body,
-                Image = image,
                 AllCulture = allculture,
                 Culture = culture
             };
@@ -125,11 +124,10 @@ namespace Mytrip.Store.Repository
         /// <param name="image">изображение производителя (возможен null)</param>
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <returns>возвращает mytrip_storeproducer</returns>
-        public mytrip_storeproducer EditProducer(int id, string title, string body, string image, bool allculture)
+        public mytrip_storeproducer EditProducer(int id, string title, string body, bool allculture)
         {
             mytrip_storeproducer x = GetProducer(id);
             x.Title = title;
-            x.Image = image;
             x.Body = body;
             x.AllCulture = allculture;
             entities.SaveChanges();

@@ -173,7 +173,6 @@
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Settings\CoreSetting.cs" />
-    <Compile Include="Settings\CustomNamespace.cs" />
     <Compile Include="Settings\EmailSetting.cs" />
     <Compile Include="Settings\GeneralMethods.cs" />
     <Compile Include="Settings\LocalisationSetting.cs" />
@@ -955,14 +954,12 @@
     <None Include="Views\Article\Archive.cshtml" />
     <None Include="Views\Article\ArchiveDetails.cshtml" />
     <None Include="Views\Article\Create.cshtml" />
-    <None Include="Views\Article\CreateCategory.cshtml" />
     <None Include="Views\Article\Edit.cshtml" />
-    <None Include="Views\Article\EditCategory.cshtml" />
-    <None Include="Views\Article\EditComment.cshtml" />
     <None Include="Views\Article\Editors.cshtml" />
     <None Include="Views\Article\Index.cshtml" />
     <None Include="Views\Article\Setting.cshtml" />
     <None Include="Views\Article\View.cshtml" />
+    <Content Include="Views\Article\Web.config" />
     <None Include="Views\Core\About.cshtml" />
     <None Include="Views\Core\ControlPanel.cshtml" />
     <None Include="Views\Core\CorSideBar.cshtml" />
@@ -978,6 +975,7 @@
     <None Include="Views\Gismeteo\Edit.cshtml" />
     <None Include="Views\Gismeteo\Manager.cshtml" />
     <None Include="Views\Gismeteo\Setting.cshtml" />
+    <Content Include="Views\Gismeteo\Web.config" />
     <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Profile.cshtml" />
@@ -989,6 +987,7 @@
     <None Include="Views\Rssparser\Index.cshtml" />
     <None Include="Views\Rssparser\Manager.cshtml" />
     <None Include="Views\Rssparser\Setting.cshtml" />
+    <Content Include="Views\Rssparser\Web.config" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_menu.cshtml" />
@@ -1000,9 +999,11 @@
     <None Include="Views\Store\Index.cshtml" />
     <None Include="Views\Store\Order.cshtml" />
     <None Include="Views\Store\View.cshtml" />
+    <Content Include="Views\Store\Web.config" />
     <None Include="Views\TextAreaFile\Index.cshtml" />
     <None Include="Views\TextAreaFile\Rename.cshtml" />
     <None Include="Views\TextAreaFile\_Layout.cshtml" />
+    <None Include="Views\TextAreaFile\_ViewStart.cshtml" />
     <None Include="Views\Users\Details.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
     <None Include="Views\Users\IndexRole.cshtml" />
@@ -1012,6 +1013,8 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Votes\Web.config" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreLanguage.en-us.resx">

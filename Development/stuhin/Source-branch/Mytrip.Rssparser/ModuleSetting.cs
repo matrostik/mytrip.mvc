@@ -33,16 +33,6 @@ namespace Mytrip.Rssparser
             _doc.Root.Element("installModules").Add(rssmodule);
             try
             {
-                _doc.Root.Elements("namespace").Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-            }
-            catch
-            {
-            }
-            _doc.Root.Element("namespace").Add(
-                new XElement("add", new XAttribute("name", "Mytrip.Rssparser"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Rssparser.Helpers")));
-            try
-            {
                 _doc.Root.Elements(moduleName).Remove();
             }
             catch
