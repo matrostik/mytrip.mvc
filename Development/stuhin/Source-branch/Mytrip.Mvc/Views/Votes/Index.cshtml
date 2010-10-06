@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Votes.Models.VotesModel>
+﻿@model Mytrip.Votes.Models.VotesModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,7 +8,6 @@
 }
 @{
     View.Title = Html.MytripPageTitle(VotesLanguage.votes_manager, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(VotesLanguage.votes_manager, ",");
     View.Description=Html.MytripPageTitle(VotesLanguage.votes_manager, ",");
 }
@@ -18,6 +17,8 @@
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.Delete.js,ui.datepicker.js,Page/Votes.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
  <h1 class="title">
 @VotesLanguage.votes_manager</h1>

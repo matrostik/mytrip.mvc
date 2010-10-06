@@ -71,13 +71,13 @@ namespace Mytrip.Store.Repository.DataEntities
             set;
         }
     
-        public virtual string Body
+        public virtual string Details
         {
             get;
             set;
         }
     
-        public virtual string Abstract
+        public virtual string Body
         {
             get;
             set;
@@ -125,12 +125,6 @@ namespace Mytrip.Store.Repository.DataEntities
             set;
         }
     
-        public virtual string Image
-        {
-            get;
-            set;
-        }
-    
         public virtual bool ViewPrice
         {
             get;
@@ -173,21 +167,6 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private mytrip_storedepartment _mytrip_storedepartment;
     
-        public virtual mytrip_storeproducer mytrip_storeproducer
-        {
-            get { return _mytrip_storeproducer; }
-            set
-            {
-                if (!ReferenceEquals(_mytrip_storeproducer, value))
-                {
-                    var previousValue = _mytrip_storeproducer;
-                    _mytrip_storeproducer = value;
-                    Fixupmytrip_storeproducer(previousValue);
-                }
-            }
-        }
-        private mytrip_storeproducer _mytrip_storeproducer;
-    
         public virtual ICollection<mytrip_storeoptions> mytrip_storeoptions
         {
             get
@@ -219,6 +198,21 @@ namespace Mytrip.Store.Repository.DataEntities
             }
         }
         private ICollection<mytrip_storeoptions> _mytrip_storeoptions;
+    
+        public virtual mytrip_storeproducer mytrip_storeproducer
+        {
+            get { return _mytrip_storeproducer; }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_storeproducer, value))
+                {
+                    var previousValue = _mytrip_storeproducer;
+                    _mytrip_storeproducer = value;
+                    Fixupmytrip_storeproducer(previousValue);
+                }
+            }
+        }
+        private mytrip_storeproducer _mytrip_storeproducer;
     
         public virtual ICollection<mytrip_storevotes> mytrip_storevotes
         {

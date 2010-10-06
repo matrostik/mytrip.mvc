@@ -309,4 +309,7 @@
   <data name="review_body" xml:space="preserve">
     <value>Добавьте свой отзыв</value>
   </data>
+  <data name="imageProduct1" xml:space="preserve">
+    <value>Дополнительные изображения для Продукта</value>
+  </data>
 </root>

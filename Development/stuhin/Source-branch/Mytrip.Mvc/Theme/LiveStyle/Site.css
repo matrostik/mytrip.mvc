@@ -108,7 +108,7 @@ input.deleteImg
 img.catImg
 {
     position: relative;
-    float: left;
+    float: left;margin-bottom: 4px;
 }
 img{border: 0 none;vertical-align:middle;}
 img.right{position: relative; float: right;}

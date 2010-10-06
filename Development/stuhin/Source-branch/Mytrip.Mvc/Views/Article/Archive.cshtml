@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.ArchiveIndexModel>
+﻿@model Mytrip.Articles.Models.ArchiveIndexModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,10 +8,13 @@
 }
 @{
     View.Title = Html.MytripPageTitle(ArticleLanguage.articles_manager, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(ArticleLanguage.articles_manager, ",");
     View.Description=Html.MytripPageTitle(ArticleLanguage.articles_manager, ",");
 }
+@section csslink{}
+@section scriptlink{}
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">
 @ArticleLanguage.articles_manager</h1>

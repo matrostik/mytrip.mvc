@@ -358,6 +358,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional images for Product.
+        /// </summary>
+        public static string imageProduct1 {
+            get {
+                return ResourceManager.GetString("imageProduct1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In {0} of products {1}, amount of {2}.
         /// </summary>
         public static string mycart {

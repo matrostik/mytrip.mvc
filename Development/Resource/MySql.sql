@@ -1,5 +1,5 @@
 ﻿-- Скрипт сгенерирован Devart dbForge Studio for MySQL, Версия 3.60.351.1
--- Дата: 9/27/2010 10:05:17 PM
+-- Дата: 10/7/2010 5:29:12 AM
 -- Версия сервера: 5.1.50-community
 -- Версия клиента: 4.1
 
@@ -30,7 +30,7 @@ CREATE TABLE mytrip_articlescategory(
   REFERENCES mytrip_articlescategory (CategoryId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 5461
+AVG_ROW_LENGTH = 8192
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
@@ -97,7 +97,6 @@ CREATE TABLE mytrip_storedepartment(
   UserName VARCHAR (100) NOT NULL,
   CreationDate DATETIME NOT NULL,
   Body TEXT DEFAULT NULL,
-  Image VARCHAR (256) DEFAULT NULL,
   SubDepartmentId INT (11) NOT NULL,
   PRIMARY KEY (DepartmentId),
   INDEX IX_mytrip_storedepartment USING BTREE (SubDepartmentId),
@@ -105,7 +104,7 @@ CREATE TABLE mytrip_storedepartment(
   REFERENCES mytrip_storedepartment (DepartmentId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 8192
+AVG_ROW_LENGTH = 4096
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
@@ -121,7 +120,6 @@ CREATE TABLE mytrip_storeproducer(
   AllCulture BIT (1) NOT NULL,
   UserName VARCHAR (100) NOT NULL,
   CreationDate DATETIME NOT NULL,
-  Image VARCHAR (256) DEFAULT NULL,
   PRIMARY KEY (ProducerId)
 )
 ENGINE = INNODB
@@ -223,8 +221,8 @@ CREATE TABLE mytrip_storeproduct(
   ProducerId INT (11) NOT NULL,
   Title VARCHAR (256) NOT NULL,
   Path VARCHAR (256) NOT NULL,
+  Details TEXT DEFAULT NULL,
   Body TEXT DEFAULT NULL,
-  Abstract TEXT DEFAULT NULL,
   CreationDate DATETIME NOT NULL,
   UserName VARCHAR (100) NOT NULL,
   Culture VARCHAR (50) NOT NULL,
@@ -232,7 +230,6 @@ CREATE TABLE mytrip_storeproduct(
   Price DECIMAL (18, 2) NOT NULL,
   TotalVotes DECIMAL (4, 2) NOT NULL,
   TotalCount INT (11) NOT NULL,
-  Image VARCHAR (256) DEFAULT NULL,
   ViewPrice BIT (1) NOT NULL,
   ViewVotes BIT (1) NOT NULL,
   ViewCount BIT (1) NOT NULL,
@@ -246,7 +243,7 @@ CREATE TABLE mytrip_storeproduct(
   REFERENCES mytrip_storeproducer (ProducerId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 16384
+AVG_ROW_LENGTH = 8192
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
@@ -377,6 +374,7 @@ CREATE TABLE mytrip_articlesvotes(
   REFERENCES mytrip_articles (ArticleId)
 )
 ENGINE = INNODB
+AVG_ROW_LENGTH = 16384
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
@@ -397,7 +395,6 @@ CREATE TABLE mytrip_storeoptions(
   REFERENCES mytrip_storeproduct (ProductId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 4096
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
@@ -417,7 +414,7 @@ CREATE TABLE mytrip_storevotes(
   REFERENCES mytrip_storeproduct (ProductId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 8192
+AVG_ROW_LENGTH = 16384
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
