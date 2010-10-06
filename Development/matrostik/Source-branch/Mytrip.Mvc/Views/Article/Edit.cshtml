@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Articles.Models.ArticleModel>
+﻿@model Mytrip.Articles.Models.ArticleModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,7 +8,6 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.PageTitle, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(Model.PageTitle, ",");
     View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
 }
@@ -18,6 +17,8 @@
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,ui.datepicker.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,Page/Article.Edit.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">
 @Model.PageTitle</h1>

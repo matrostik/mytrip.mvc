@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.CoreModel>
+﻿@model Mytrip.Mvc.Models.CoreModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,15 @@
 }
 @{
      View.Title = Html.MytripPageTitle(CoreLanguage.Core_Settings, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.Core_Settings, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.Core_Settings, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.CheckedShow.js")
 }
+@section contentBig{}
+@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.Core_Settings</h1>
 @{Html.EnableClientValidation();}
