@@ -51,7 +51,7 @@ namespace Mytrip.Mvc.Repository
             string name = Path.GetFileName(file.FileName);
             string extension = name.Remove(0,name.LastIndexOf("."));
             string extension2 = extension.Replace(".", "_");
-            name = GeneralMethods.DecodingString(name).Replace(extension2,extension);
+            name = GeneralMethods.DecodingString(name).Replace(extension2, extension.ToLower());
             string _absolutDirectory = Path.Combine(absolutDirectory, name);
             file.SaveAs(_absolutDirectory);
         }

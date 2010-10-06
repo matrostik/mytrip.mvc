@@ -114,6 +114,7 @@
       <DependentUpon>StorePocoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\DepartmentRepository.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Repository\IStoreRepository.cs" />
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />

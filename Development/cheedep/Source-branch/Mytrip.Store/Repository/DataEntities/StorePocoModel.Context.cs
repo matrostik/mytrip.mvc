@@ -23,19 +23,19 @@ namespace Mytrip.Store.Repository.DataEntities
         public Entities()
             : base(ConnectionString, ContainerName)
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
         }
     
         public Entities(string connectionString)
             : base(connectionString, ContainerName)
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
         }
     
         public Entities(EntityConnection connection)
             : base(connection, ContainerName)
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
         }
     
         #endregion
@@ -48,17 +48,17 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private ObjectSet<mytrip_storedepartment> _mytrip_storedepartment;
     
+        public ObjectSet<mytrip_storeoptions> mytrip_storeoptions
+        {
+            get { return _mytrip_storeoptions  ?? (_mytrip_storeoptions = CreateObjectSet<mytrip_storeoptions>("mytrip_storeoptions")); }
+        }
+        private ObjectSet<mytrip_storeoptions> _mytrip_storeoptions;
+    
         public ObjectSet<mytrip_storeproducer> mytrip_storeproducer
         {
             get { return _mytrip_storeproducer  ?? (_mytrip_storeproducer = CreateObjectSet<mytrip_storeproducer>("mytrip_storeproducer")); }
         }
         private ObjectSet<mytrip_storeproducer> _mytrip_storeproducer;
-    
-        public ObjectSet<mytrip_storevotes> mytrip_storevotes
-        {
-            get { return _mytrip_storevotes  ?? (_mytrip_storevotes = CreateObjectSet<mytrip_storevotes>("mytrip_storevotes")); }
-        }
-        private ObjectSet<mytrip_storevotes> _mytrip_storevotes;
     
         public ObjectSet<mytrip_storeproduct> mytrip_storeproduct
         {
@@ -66,11 +66,11 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private ObjectSet<mytrip_storeproduct> _mytrip_storeproduct;
     
-        public ObjectSet<mytrip_storeoptions> mytrip_storeoptions
+        public ObjectSet<mytrip_storevotes> mytrip_storevotes
         {
-            get { return _mytrip_storeoptions  ?? (_mytrip_storeoptions = CreateObjectSet<mytrip_storeoptions>("mytrip_storeoptions")); }
+            get { return _mytrip_storevotes  ?? (_mytrip_storevotes = CreateObjectSet<mytrip_storevotes>("mytrip_storevotes")); }
         }
-        private ObjectSet<mytrip_storeoptions> _mytrip_storeoptions;
+        private ObjectSet<mytrip_storevotes> _mytrip_storevotes;
 
         #endregion
     }
