@@ -26,7 +26,7 @@
         var settings = $(this).attr('rel').split(',');
         var type = settings[0];
         id = settings[1];
-
+        
         if (id == '')
             return;
         if (hideTimer)
@@ -40,8 +40,9 @@
         });
         $('#mtPopupContent').html('&nbsp;');
         $.ajax({
-            type: 'GET',
+            type: 'Get',
             url: '/Article/Tooltip',
+            cache: false,
             data: 'id=' + type + '&id1=' + id,
             success: function (data) {
                 $('#mtPopupContent').html(data);

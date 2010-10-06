@@ -38,16 +38,6 @@ namespace Mytrip.Votes
             _doc.Root.Element("installModules").Add(votesmodule);
             try
             {
-                _doc.Root.Elements("namespace").Elements("add").Where(x => x.Attribute("name").Value.Contains(moduleName)).Remove();
-            }
-            catch
-            {
-            }
-            _doc.Root.Element("namespace").Add(
-                new XElement("add", new XAttribute("name", "Mytrip.Votes"))
-                , new XElement("add", new XAttribute("name", "Mytrip.Votes.Helpers")));
-            try
-            {
                 _doc.Root.Elements(moduleName).Remove();
             }
             catch

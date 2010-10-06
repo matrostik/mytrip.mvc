@@ -271,7 +271,7 @@
     <value>Выберите не менее двух продуктов для сравнеия</value>
   </data>
   <data name="bodyProduct" xml:space="preserve">
-    <value>Подробности</value>
+    <value>Детали</value>
   </data>
   <data name="buy" xml:space="preserve">
     <value>Купить</value>
@@ -308,5 +308,8 @@
   </data>
   <data name="review_body" xml:space="preserve">
     <value>Добавьте свой отзыв</value>
+  </data>
+  <data name="imageProduct1" xml:space="preserve">
+    <value>Дополнительные изображения для Продукта</value>
   </data>
 </root>

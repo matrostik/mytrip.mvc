@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Store.Models.CartModel>
+﻿@model Mytrip.Store.Models.CartModel
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,13 +8,14 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.title, "/");
-    LayoutPage = "~/Views/Shared/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(Model.title, ",");
     View.Description=Html.MytripPageTitle(Model.title, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Page/Store.Cart.js")
 }
+@section content{}
 @section contentSmall{
 @Html.Partial("_sideBar") 
 }

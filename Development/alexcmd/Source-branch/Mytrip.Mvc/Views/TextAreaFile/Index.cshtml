@@ -1,4 +1,4 @@
-﻿@inherits System.Web.Mvc.WebViewPage<Mytrip.Mvc.Models.IndexFilesModels>
+﻿@model Mytrip.Mvc.Models.IndexFilesModels
 @{ 
     /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
        To learn more about Mytrip.Mvc visit  
@@ -8,10 +8,10 @@
 }
 @{
     View.Title = Html.MytripPageTitle(CoreLanguage.file_manager, "/");
-    LayoutPage = "~/Views/TextAreaFile/_Layout.cshtml";
     View.Keywords=Html.MytripPageTitle(CoreLanguage.file_manager, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.file_manager, ",");
 }
+@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Page/TextAreaFile.js")
 }
