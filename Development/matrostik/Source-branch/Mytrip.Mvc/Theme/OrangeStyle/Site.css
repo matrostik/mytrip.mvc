@@ -127,8 +127,8 @@ fieldset p{}
 .fadeSome {opacity:0.30;filter:alpha(opacity=30);-moz-opacity: 30%;}
 .fadeLots {opacity:0.50;filter:alpha(opacity=50);-moz-opacity: 0.5;}  
 .fadeCompletely {opacity:0.0;filter:alpha(opacity=0);-moz-opacity: 0.0;}
-ol.numbered{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');font-size: 0.8em;}
-ol.numbered li{}
+ul.styled{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');font-size: 0.8em;}
+ul.styled li{}
 ol.related{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');}
 input.otheroptions{width: 25px;height:25px;border-width: 0px;cursor:pointer;text-indent:-999px;}
 input.otheroptions img{width:16px;height: 20px;}

@@ -55,6 +55,27 @@ namespace Mytrip.Mvc.Models
     //****************** E N D **********************
     #endregion
 
+    #region Модель для страницы /Views/Account/ChangeEmail.cshtml
+    /// <summary>
+    /// Модель для страницы /Views/Account/ChangeEmail.cshtml
+    /// </summary>
+    public class ChangeEmailModel
+    {
+        /// <summary>
+        /// Email
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_email")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_email")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_error_email")]
+        [EmailRegister(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_duplicate_email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+    }
+
+    //****************** E N D **********************
+    #endregion
+
     #region Модель для страницы /Views/Account/LogOn.cshtml
     // **********************************************
     // Модель для страницы /Views/Account/LogOn.cshtml

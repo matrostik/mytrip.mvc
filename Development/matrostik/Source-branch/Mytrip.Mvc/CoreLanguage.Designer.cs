@@ -358,6 +358,15 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change e-mail.
+        /// </summary>
+        public static string change_email {
+            get {
+                return ResourceManager.GetString("change_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string change_password {
@@ -673,7 +682,7 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string Email {
             get {

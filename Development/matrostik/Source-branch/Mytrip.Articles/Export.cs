@@ -360,8 +360,8 @@ namespace Mytrip.Articles
         }
         public static HtmlString AccordionArticlesActivity()
         {
-            TagBuilder list = new TagBuilder("ol");
-            list.AddCssClass("numbered");
+            TagBuilder list = new TagBuilder("ul");
+            list.AddCssClass("styled");
             IArticleRepository ar = new IArticleRepository();
             TagBuilder title = new TagBuilder("center");
             title.InnerHtml = "<h4>" + ArticleLanguage.top_viewed+ "</h4>";
@@ -391,8 +391,8 @@ namespace Mytrip.Articles
         }
         public static HtmlString AccordionBlogsActivity()
         {
-            TagBuilder list = new TagBuilder("ol");
-            list.AddCssClass("numbered");
+            TagBuilder list = new TagBuilder("ul");
+            list.AddCssClass("styled");
             IArticleRepository ar = new IArticleRepository();
             TagBuilder title = new TagBuilder("center");
             title.InnerHtml = "<h4>" + ArticleLanguage.top_viewed + "</h4>";
@@ -535,16 +535,30 @@ namespace Mytrip.Articles
         #region Profile
         public static HtmlString Profile()
         {
-            if (ModuleSetting.blogs() && HttpContext.Current.User.Identity.IsAuthenticated)
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                return null;
+            IArticleRepository ar = new IArticleRepository();
+            StringBuilder _result = new StringBuilder();
+            TagBuilder ul = new TagBuilder("ul");
+            ul.AddCssClass("styled");
+            if (ModuleSetting.articles())
             {
-                IArticleRepository ar = new IArticleRepository();
-                StringBuilder _result = new StringBuilder();
-                TagBuilder ul = new TagBuilder("ul");
+                if (MytripUser.UserInRole(ModuleSetting.roleArticleEditor()))
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder a_createblog = new TagBuilder("a");
+                    a_createblog.MergeAttribute("href", "/Article/Create/0/");
+                    a_createblog.InnerHtml = ArticleLanguage.create_new_article;
+                    li.InnerHtml = a_createblog.ToString();
+                    _result.AppendLine(li.ToString());
+                }
+            }
+            if (ModuleSetting.blogs())
+            {
                 int countcomment = ar.comment.GetCount(HttpContext.Current.User.Identity.Name);
-                if ((!ModuleSetting.closecountCommentForBlogs()
-                    && countcomment >= ModuleSetting.countCommentForBlogs()
-                    && !MytripUser.UserInRole(ModuleSetting.roleBlogger()))
-                    || MytripUser.UserInRole(ModuleSetting.roleBlogger()))
+                bool isBlogger = MytripUser.UserInRole(ModuleSetting.roleBlogger());
+                if ((!ModuleSetting.closecountCommentForBlogs() && countcomment >= ModuleSetting.countCommentForBlogs()
+                    && !isBlogger)|| isBlogger)
                 {
                     if (ar.category.GetBlogsByUser(HttpContext.Current.User.Identity.Name, LocalisationSetting.culture()).Count() == 0)
                     {
@@ -567,7 +581,6 @@ namespace Mytrip.Articles
                         else
                         {
                             a_blog.MergeAttribute("href", "/MytripMvc/Language/" + item.Culture.ToLower() + "/(x)Article(x)Index(x)1(x)10(x)" + item.CategoryId + "(x)" + item.Path);
-                            
                             TagBuilder flag = new TagBuilder("img");
                             flag.MergeAttribute("src", "/Theme/" + ThemeSetting.theme() + "/images/" + item.Culture.ToLower() + ".png");
                             flag.MergeAttribute("style", "width:14px");

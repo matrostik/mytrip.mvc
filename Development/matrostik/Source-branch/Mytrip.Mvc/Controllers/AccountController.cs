@@ -87,7 +87,7 @@ namespace Mytrip.Mvc.Controllers
         //****************** E N D **********************
         #endregion
 
-        #region Регистрация через провайдера сайта
+        #region Регистрация через провайдер сайта
         // **********************************************
         // Регистрация через провайдера сайта
         // **********************************************
@@ -226,6 +226,29 @@ namespace Mytrip.Mvc.Controllers
             return View();
         }
 
+        /// <summary>GET: /Account/ChangeEmail
+        /// Change Email
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        [Authorize]
+        public ActionResult ChangeEmail()
+        {
+            ChangeEmailModel model = new ChangeEmailModel();
+            model.Email = coreRepo.membershipRepo.mtGetUserByUserNameMember(HttpContext.User.Identity.Name).mytrip_usersmembership.Email;
+            return View(model);
+        }
+        /// <summary>POST: /Account/ChangePassword
+        /// Обработка данных для смены пароля
+        /// </summary>
+        /// <param name="model">ChangePasswordModel</param>
+        /// <returns>ActionResult</returns>
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangeEmail(ChangeEmailModel model)
+        {
+            coreRepo.membershipRepo.ChangeEmail(model.Email);
+            return RedirectToAction("Index","Home");
+        }
         //****************** E N D **********************
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿$.getScript('/Scripts/jHtmlArea.Mytrip.js');
+$.getScript('/Scripts/jHtmlArea.Smiles.js');
 var theme = '';
 var identity = '';
 var link = '';
@@ -7,11 +8,6 @@ $(document).ready(function () {
     editComment();
     modalSetup();
     editCategory();
-    $('input.smile').click(function () {
-        var htmlText = $(this).val();
-        jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
-        $('div.mask, div.divsmile').hide();
-    });
 });
 function modalSetup() {
     

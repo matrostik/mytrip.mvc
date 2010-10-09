@@ -54,11 +54,6 @@ $(document).ready(function () {
         ["smile"], ["|"],["cut", "copy", "paste"]
         ]
             });
-            $('input.smile').click(function () {
-                var htmlText = $(this).val();
-                jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
-                $('div.mask, div.window').hide();
-            });
         }
     });
 });
@@ -165,7 +160,6 @@ function AddEditor() {
         return false;
     })
     $('#deleteeditor').click(function () {
-        //alert(ctr);
         $("div[id='editors'] div[id^='page_']:last").remove();
         ctr--;
         if (ctr == 2) {
@@ -201,7 +195,6 @@ function BuildjHtml(name) {
         ["smile"], ["|"], ["cut", "copy", "paste"]
         ]
             });
-
         }
     });
 }

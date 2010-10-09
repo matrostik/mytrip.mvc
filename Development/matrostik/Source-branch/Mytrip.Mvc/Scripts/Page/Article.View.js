@@ -9,12 +9,6 @@ $(document).ready(function () {
     Rating();
     Quote();
     BuildjHtml('article');
-    $('input.smile').click(function () {
-        alert(identity);
-        var htmlText = $(this).val();
-        jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
-        $('div.mask, div.divsmile').hide();
-    });
 });
 function modalSetup() {
     
@@ -68,12 +62,6 @@ function editComment() {
         obj.updateHtmlArea();
         return false;
     });
-    var dw = $('div.divsmile').html();
-    $('div.divsmile').html('<div class="modalTL"/><div class="modalTR"/>' + dw + '<div class="modalBL"/><div class="modalBR"/><div class="modalBC"/>');
-    $('div.divsmile').hide();
-    $('div.mask,div.modalTR').click(function () {
-        $('div.mask, div.divsmile').hide();
-    });
     $("input#okEditComment").live("click", function () {
         var comId = $("input#editId").val();
         var text = $('textarea#edit').val();
@@ -99,7 +87,6 @@ function editComment() {
         $("table.comment").show();
     });
 }
-
 function BuildjHtml(name) {
     if (!theme) {
         $.ajax({ type: "POST",
@@ -117,7 +104,6 @@ function BuildjHtml(name) {
         ]
      });
  }
-
 function getScrollY() {
     scrollY = 0;
     if (typeof window.pageYOffset == "number") {
