@@ -191,7 +191,7 @@ namespace Mytrip.Mvc.Helpers
             }
         }
         /// <summary>
-        /// 
+        /// Profile block in SideBar
         /// </summary>
         /// <param name="html"></param>
         /// <param name="profile"></param>
@@ -205,20 +205,27 @@ namespace Mytrip.Mvc.Helpers
                 welcome.MergeAttribute("href", "/Home/Profile/" + HttpContext.Current.User.Identity.Name);
                 welcome.InnerHtml = CoreLanguage.my_profile;
                 TagBuilder ul = new TagBuilder("ul");
-                TagBuilder li = new TagBuilder("li");
-                TagBuilder ChangePassword = new TagBuilder("a");
+                ul.AddCssClass("styled");
+                TagBuilder li_1 = new TagBuilder("li");
+                TagBuilder changePassword = new TagBuilder("a");
                 string Password = user.mtGetUserByUserNameMember(HttpContext.Current.User.Identity.Name).mytrip_usersmembership.Password;
                 if (Password == user.mtGetUserByUserNameMember(HttpContext.Current.User.Identity.Name).mytrip_usersmembership.PasswordSalt)
                 {
-                    ChangePassword.InnerHtml = Password.Substring(0, Password.IndexOf('/'));
+                    changePassword.InnerHtml = Password.Substring(0, Password.IndexOf('/'));
                 }
                 else
                 {
-                    ChangePassword.MergeAttribute("href", "/Account/ChangePassword");
-                    ChangePassword.InnerHtml = CoreLanguage.change_password;
+                    changePassword.MergeAttribute("href", "/Account/ChangePassword");
+                    changePassword.InnerHtml = CoreLanguage.change_password;
                 }
-                li.InnerHtml = ChangePassword.ToString();
-                ul.InnerHtml = li.ToString();
+                li_1.InnerHtml = changePassword.ToString();
+                // change email
+                TagBuilder li_2 = new TagBuilder("li");
+                TagBuilder changeEmail = new TagBuilder("a");
+                changeEmail.MergeAttribute("href", "/Account/ChangeEmail");
+                changeEmail.InnerHtml = CoreLanguage.change_email;
+                li_2.InnerHtml = changeEmail.ToString();
+                ul.InnerHtml = li_1.ToString() + li_2.ToString();
                 string _helper = string.Empty;
                 IDictionary<string, object> _menu = (profile == null ? new RouteValueDictionary() : new RouteValueDictionary(profile));
                 foreach (string key in _menu.Keys)
@@ -229,16 +236,17 @@ namespace Mytrip.Mvc.Helpers
                 TagBuilder divGravatar = new TagBuilder("a");
                 divGravatar.MergeAttribute("href", "/Home/Profile/" + HttpContext.Current.User.Identity.Name);
                 divGravatar.MergeAttribute("title", CoreLanguage.my_profile);
+                divGravatar.MergeAttribute("style", "float:right;");
                 divGravatar.InnerHtml =UsersSetting.unlockGravatar()? AvatarHelper.Avatar(html, user.mtGetUserByUserNameMember(HttpContext.Current.User.Identity.Name).mytrip_usersmembership.Email, new { width = 60 }).ToString():"";
-                string table = "<table class=\"noborders\"><tr><td>" + _helper + ul.ToString() +
-                    "</td><td>" + divGravatar + "</td></tr></table>";
-                HtmlString htmlresult = new HtmlString(GeneralMethods.Accordion(welcome.ToString(), table));
+                string table = "<table class=\"noborders\"><tr><td>" + divGravatar + _helper + ul.ToString() +
+                    "</td><td>"  + "</td></tr></table>";
+                HtmlString htmlresult = new HtmlString(GeneralMethods.Accordion(welcome.ToString(), divGravatar + _helper + ul.ToString()));
                 return htmlresult;
             }
             else { return null; }
         }
         /// <summary>
-        /// 
+        /// Profile
         /// </summary>
         /// <param name="html"></param>
         /// <param name="username"></param>
@@ -250,23 +258,26 @@ namespace Mytrip.Mvc.Helpers
             {
                 StringBuilder result = new StringBuilder();
                 MembershipRepository user = new MembershipRepository();
-
                 TagBuilder div_accordioncontent = new TagBuilder("div");
                 TagBuilder ul = new TagBuilder("ul");
+                ul.AddCssClass("styled");
                 TagBuilder li = new TagBuilder("li");
                 TagBuilder ChangePassword = new TagBuilder("a");
                 string Password = user.mtGetUserByUserNameMember(username).mytrip_usersmembership.Password;
                 if (Password == user.mtGetUserByUserNameMember(username).mytrip_usersmembership.PasswordSalt)
-                {
                     ChangePassword.InnerHtml = Password.Substring(0, Password.IndexOf('/'));
-                }
                 else
                 {
                     ChangePassword.MergeAttribute("href", "/Account/ChangePassword");
                     ChangePassword.InnerHtml = CoreLanguage.change_password;
                 }
                 li.InnerHtml = ChangePassword.ToString();
-                ul.InnerHtml = li.ToString();
+                TagBuilder li_2 = new TagBuilder("li");
+                TagBuilder changeEmail = new TagBuilder("a");
+                changeEmail.MergeAttribute("href", "/Account/ChangeEmail");
+                changeEmail.InnerHtml = CoreLanguage.change_email;
+                li_2.InnerHtml = changeEmail.ToString();
+                ul.InnerHtml = li.ToString() + li_2.ToString();
                 string _helper = string.Empty;
                 IDictionary<string, object> _menu = (profile == null ? new RouteValueDictionary() : new RouteValueDictionary(profile));
                 foreach (string key in _menu.Keys)
@@ -274,7 +285,6 @@ namespace Mytrip.Mvc.Helpers
                     if (_menu[key] != null)
                     _helper += _menu[key].ToString();
                 }
-
                 div_accordioncontent.InnerHtml = _helper + ul.ToString();
                 result.AppendLine(div_accordioncontent.ToString());
                 return new HtmlString(result.ToString());
@@ -282,10 +292,10 @@ namespace Mytrip.Mvc.Helpers
             else { return null; }
         }
         /// <summary>
-        /// 
+        /// User's info in profile page
         /// </summary>
         /// <param name="html"></param>
-        /// <param name="username"></param>
+        /// <param name="username">username</param>
         /// <returns></returns>
         public static HtmlString UserData(this HtmlHelper html, string username)
         {
@@ -295,36 +305,23 @@ namespace Mytrip.Mvc.Helpers
                 return new HtmlString(CoreLanguage.no_profile);
             #region table
             TagBuilder table = new TagBuilder("table");
-            table.MergeAttribute("style", "border:0px;");
+            table.AddCssClass("noborders");
             TagBuilder tr1 = new TagBuilder("tr");
-            tr1.MergeAttribute("style", "border:0px;border-bottom:1px solid grey");
+            tr1.MergeAttribute("style", "text-align: center;border-bottom:1px solid grey");
             TagBuilder td11 = new TagBuilder("td");
-            td11.MergeAttribute("style", "border:0px;");
-            td11.InnerHtml = "<b>" + CoreLanguage.member_since + ":</b> ";
+            td11.InnerHtml = "<b>" + CoreLanguage.member_since + ":</b><br/>" + user.mytrip_usersmembership.CreationDate.ToString("dd MMM, yyyy");
             tr1.InnerHtml = td11.ToString();
-            TagBuilder td12 = new TagBuilder("td");
-            td12.MergeAttribute("style", "width:100px;border:0px;");
-            td12.InnerHtml = user.mytrip_usersmembership.CreationDate.ToString("dd MMM, yyyy");
-            tr1.InnerHtml += td12.ToString();
             TagBuilder tr2 = new TagBuilder("tr");
-            tr2.MergeAttribute("style", "border:0px;border-bottom:1px solid grey");
+            tr2.MergeAttribute("style", "text-align: center;border-bottom:1px solid grey");
             TagBuilder td21 = new TagBuilder("td");
-            td21.MergeAttribute("style", "border:0px;");
-            td21.InnerHtml = "<b>" + CoreLanguage.last_visit + ":</b> ";
+            td21.InnerHtml = "<b>" + CoreLanguage.last_visit + ":</b><br/>" + user.LastActivityDate.ToString("dd MMM, yyyy HH:mm");
             tr2.InnerHtml = td21.ToString();
-            TagBuilder td22 = new TagBuilder("td");
-            td22.MergeAttribute("style", "border:0px;");
-            td22.InnerHtml = user.LastActivityDate.ToString("dd MMM, yyyy HH:mm");
-            tr2.InnerHtml += td22.ToString();
             table.InnerHtml = tr1.ToString() + tr2.ToString();
             #endregion
-            TagBuilder div = new TagBuilder("div");
-            div.MergeAttribute("style", "padding:0px 5px 5px 4px;");
-            div.InnerHtml = table.ToString();
-            return new HtmlString(div.ToString());
+            return new HtmlString(table.ToString());
         }
         /// <summary>
-        /// Collect all user's LastActivity drom all modules and build view
+        /// Collect all user's LastActivity from all modules and build view
         /// Собирает действия пользователя из всех модулей и строит представление
         /// </summary>
         /// <param name="html"></param>

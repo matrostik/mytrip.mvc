@@ -218,6 +218,7 @@
     <Content Include="Content\files\.cache.png" />
     <Content Include="Content\files\.config.png" />
     <Content Include="Content\files\.cs.png" />
+    <Content Include="Content\files\.cshtml.png" />
     <Content Include="Content\files\.csproj.png" />
     <Content Include="Content\files\.css.png" />
     <Content Include="Content\files\.dll.png" />
@@ -228,8 +229,12 @@
     <Content Include="Content\files\.pdb.png" />
     <Content Include="Content\files\.pdf.png" />
     <Content Include="Content\files\.rar.png" />
+    <Content Include="Content\files\.resx.png" />
     <Content Include="Content\files\.txt.png" />
     <Content Include="Content\files\.user.png" />
+    <Content Include="Content\files\.vspscc.png" />
+    <Content Include="Content\files\.xml.png" />
+    <Content Include="Content\files\.zip.png" />
     <Content Include="Content\files\foldergreen.png" />
     <Content Include="Content\files\Stuffed_Folder.png" />
     <Content Include="Content\Gismeteo\0\0.png" />
@@ -384,7 +389,6 @@
     <Content Include="Scripts\Page\Account.js" />
     <Content Include="Scripts\Page\Article.Create.js" />
     <Content Include="Scripts\Page\Article.Edit.js" />
-    <Content Include="Scripts\Page\Article.EditComment.js" />
     <Content Include="Scripts\Page\Article.Index.js" />
     <Content Include="Scripts\Page\Article.View.js" />
     <Content Include="Scripts\Page\Core.About.js" />
@@ -945,6 +949,7 @@
     <None Include="Theme\BlueStyle\images\Thumbs.db" />
     <None Include="Theme\GreenStyle\images\Green.design" />
     <None Include="Theme\OrangeStyle\images\Orange.design" />
+    <None Include="Views\Account\ChangeEmail.cshtml" />
     <None Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <None Include="Views\Account\Email.cshtml" />

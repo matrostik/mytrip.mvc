@@ -11,11 +11,9 @@
     View.Keywords=Html.MytripPageTitle(Model.Article.Title, ",");
     View.Description=Html.MytripPageTitle(Model.Article.Title, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,SLPlaerChrome.js,Page/Article.View.js")
 }
-@section content{}
 @section contentSmall{
 @Html.Partial("_sideBar") 
 }
@@ -132,7 +130,7 @@ if (Model.Blog){
 </td></tr></table>  
 <div class="button">
 @Html.MytripButton(CoreLanguage.cancel, true, "cancelEdit","right")
-@Html.MytripButton("   Ok   ", false, "edit","right")   
+@Html.MytripButton("   Ok   ", false, "okEditComment","right")   
 </div> 
 </div>   
 }

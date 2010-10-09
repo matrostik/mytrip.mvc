@@ -138,8 +138,8 @@ namespace Mytrip.Votes.Helpers
             div.InnerHtml = "<center><h4>" + question.Question + "</h4></center>" + VotesLanguage.total_responses + " "
                     + question.TotalVotes;
             float percent = float.Parse(question.TotalVotes.ToString()) / 100;
-            TagBuilder ol = new TagBuilder("ol");
-            ol.AddCssClass("numbered");
+            TagBuilder ol = new TagBuilder("ul");
+            ol.AddCssClass("styled");
             foreach (var a in question.mytrip_votesanswer.OrderBy(x => x.AnswerId))
             {
                 int percents = (int)Math.Round(a.TotalVotes / percent);

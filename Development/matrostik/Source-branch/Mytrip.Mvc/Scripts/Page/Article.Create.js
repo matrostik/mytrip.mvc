@@ -49,14 +49,7 @@ $(document).ready(function () {
         ["smile"], ["|"], ["cut", "copy", "paste"]
         ]
             });
-        $('input.smile').click(function () {
-    var htmlText = $(this).val();
-    jHtmlArea_API['#' + identity][0].pasteHTML(htmlText);
-    $('div.mask, div.window').hide();
-});
         }
-    
-
 });
 });
 function getScrollY() {

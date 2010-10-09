@@ -619,7 +619,20 @@ namespace Mytrip.Mvc.Repository
                 .Include("mytrip_usersmembership")
                 .OrderBy(x => x.UserName);
         }
-
+        /// <summary>
+        /// Change Email
+        /// </summary>
+        /// <param name="email">new e-mail</param>
+        /// <returns></returns>
+        internal void ChangeEmail(string email)
+        {
+            var user = entities.mytrip_users.Include("mytrip_usersmembership").FirstOrDefault(x => x.UserName == HttpContext.Current.User.Identity.Name);
+            if (user != null)
+            {
+                user.mytrip_usersmembership.Email = email;
+                entities.SaveChanges();
+            }
+        }
         #endregion
 
         #region MembershipProvider private

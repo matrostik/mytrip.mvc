@@ -1110,8 +1110,8 @@ namespace Mytrip.Articles.Controllers
         public string ArticlesActivity(string option)
         {
             string res = "";
-            TagBuilder list = new TagBuilder("ol");
-            list.AddCssClass("numbered");
+            TagBuilder list = new TagBuilder("ul");
+            list.AddCssClass("styled");
             IArticleRepository ar = new IArticleRepository();
             TagBuilder title = new TagBuilder("center");
             if (option == ArticleLanguage.most_viewed)
@@ -1196,8 +1196,8 @@ namespace Mytrip.Articles.Controllers
         public string PostsActivity(string option)
         {
             string res = "";
-            TagBuilder list = new TagBuilder("ol");
-            list.AddCssClass("numbered");
+            TagBuilder list = new TagBuilder("ul");
+            list.AddCssClass("styled");
             IArticleRepository ar = new IArticleRepository();
             TagBuilder title = new TagBuilder("center");
             if (option == ArticleLanguage.most_viewed)
