@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(Model.pagetitle, ",");
     View.Description=Html.MytripPageTitle(Model.pagetitle, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jquery.form.js,Page/Store.EditorCategory.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@Model.pagetitle</h1>
 <table class="content">

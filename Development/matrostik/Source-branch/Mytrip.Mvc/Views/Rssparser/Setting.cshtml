@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(RssparserLanguage.Rssparsersetting, ",");
     View.Description=Html.MytripPageTitle(RssparserLanguage.Rssparsersetting, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@RssparserLanguage.Rssparsersetting</h1>
 @{Html.EnableClientValidation();} 
