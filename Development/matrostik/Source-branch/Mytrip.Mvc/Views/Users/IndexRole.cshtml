@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.all_roles, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.all_roles, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.Delete.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h2 class="adminlink">@Html.ActionLink(CoreLanguage.all_users, "Index")</h2>
 <h1 class="title">@CoreLanguage.all_roles</h2>

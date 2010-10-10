@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.Email_setting, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.Email_setting, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.Email_setting</h1>
 @{Html.EnableClientValidation();}
