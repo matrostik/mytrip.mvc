@@ -211,6 +211,7 @@
     <Content Include="Content\calendar\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\calendar\ui.datepicker.css" />
     <Content Include="Content\captcha\zero\zero.txt" />
+    <Content Include="Theme\LiveStyle\images\checked.png" />
     <Content Include="Content\files\.asax.png" />
     <Content Include="Content\files\.ascx.png" />
     <Content Include="Content\files\.ashx.png" />
@@ -370,6 +371,7 @@
     <Content Include="Content\Store\Department\_2.jpg" />
     <Content Include="Content\Store\Department\_3.jpg" />
     <Content Include="Content\Store\Producer\_1.jpg" />
+    <Content Include="Theme\LiveStyle\images\unchecked.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jHtmlArea.Smiles.js" />
@@ -387,10 +389,7 @@
     <Content Include="Scripts\Mytrip.Mvc.Modal.js" />
     <Content Include="Scripts\Mytrip.Mvc.Textbox.js" />
     <Content Include="Scripts\Page\Account.js" />
-    <Content Include="Scripts\Page\Article.Create.js" />
-    <Content Include="Scripts\Page\Article.Edit.js" />
-    <Content Include="Scripts\Page\Article.Index.js" />
-    <Content Include="Scripts\Page\Article.View.js" />
+    <Content Include="Scripts\Page\Articles.js" />
     <Content Include="Scripts\Page\Core.About.js" />
     <Content Include="Scripts\Page\Core.CorSideBar.js" />
     <Content Include="Scripts\Page\Core.HomePage.js" />

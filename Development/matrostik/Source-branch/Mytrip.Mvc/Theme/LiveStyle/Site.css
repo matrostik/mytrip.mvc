@@ -148,3 +148,23 @@ ul.styled li{}
 ol.related{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');}
 input.otheroptions{width: 25px;height:25px;border-width: 0px;cursor:pointer;text-indent:-999px;}
 input.otheroptions img{width:16px;height: 20px;}
+
+.checkbox, .checkboxcheck {
+	width: 19px;
+	height: 22px;
+	margin: 0 5px 0 5px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align:middle;
+	cursor:pointer;
+	position:relative;
+}
+.checkbox
+{
+   background-image: url('images/unchecked.png');
+}
+
+.checkboxcheck
+{
+    background-image: url('images/checked.png');
+}

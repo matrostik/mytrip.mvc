@@ -178,42 +178,78 @@ namespace Mytrip.Articles.Repository
         {
             //Проблема при сортировке по просмотрам не тянется mytrip_articlescategory2 на новом коннекторе проверить
             // а пока делаем через жопу
-            if (sortBy == SortBy.Views)
+            if (sortBy == SortBy.CreateDate)
             {
                 var ids = entities.mytrip_articles.Include("mytrip_articlescategory")
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .Where(x => x.CloseDate >= DateTime.Now)
                 .Where(x => x.mytrip_articlescategory.SeparateBlock == false)
                 .Where(x => x.mytrip_articlescategory.Blog == false)
-                .OrderByDescending(x => x.Views)
+                .OrderByDescending(x => x.CreateDate)
                 .Select(x => x.ArticleId);
                 total = ids.Count();
                 ids = ids.Skip((pageIndex - 1) * pageSize).Take(pageSize);
                 List<mytrip_articles> a = new List<mytrip_articles>();
                 foreach (var id in ids.ToList())
                 {
-                    a.Add(entities.mytrip_articles.Include("mytrip_articlescategory").Include("mytrip_articlestag").Include("mytrip_articlescomments")
+                    a.Add(entities.mytrip_articles.Include("mytrip_articlescategory.mytrip_articlescategory2").Include("mytrip_articlestag").Include("mytrip_articlescomments")
+                         .FirstOrDefault(x => x.ArticleId == id));
+                }
+                return a.AsQueryable();
+            }
+            else if (sortBy == SortBy.TotalVotes)
+            {
+                var ids = entities.mytrip_articles.Include("mytrip_articlescategory")
+                .Where(x => x.Culture == culture || x.AllCulture == true)
+                .Where(x => x.CloseDate >= DateTime.Now)
+                .Where(x => x.mytrip_articlescategory.SeparateBlock == false)
+                .Where(x => x.mytrip_articlescategory.Blog == false)
+                .OrderByDescending(x => x.TotalVotes).ThenByDescending(x => x.ApprovedVotes)
+                .Select(x => x.ArticleId);
+                total = ids.Count();
+                ids = ids.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                List<mytrip_articles> a = new List<mytrip_articles>();
+                foreach (var id in ids.ToList())
+                {
+                    a.Add(entities.mytrip_articles.Include("mytrip_articlescategory.mytrip_articlescategory2").Include("mytrip_articlestag").Include("mytrip_articlescomments")
                          .FirstOrDefault(x => x.ArticleId == id));
                 }
                 return a.AsQueryable();
             }
             else
             {
-                var b = entities.mytrip_articles
-                .Include("mytrip_articlescategory")
-                .Include("mytrip_articlestag")
-                .Include("mytrip_articlescomments")
-                .Where(x => x.Culture == culture || x.AllCulture == true)
-                .Where(x => x.CloseDate >= DateTime.Now)
-                .Where(x => x.mytrip_articlescategory.SeparateBlock == false)
-                .Where(x => x.mytrip_articlescategory.Blog == false);
-                total = b.Count();
-                if (sortBy == SortBy.Views)
-                    return b.OrderByDescending(x => x.Views).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                else if (sortBy == SortBy.TotalVotes)
-                    return b.OrderByDescending(x => x.TotalVotes).ThenByDescending(x => x.ApprovedVotes).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-                else
-                    return b.OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                var ids = entities.mytrip_articles.Include("mytrip_articlescategory")
+               .Where(x => x.Culture == culture || x.AllCulture == true)
+               .Where(x => x.CloseDate >= DateTime.Now)
+               .Where(x => x.mytrip_articlescategory.SeparateBlock == false)
+               .Where(x => x.mytrip_articlescategory.Blog == false)
+               .OrderByDescending(x => x.Views)
+               .Select(x => x.ArticleId);
+                total = ids.Count();
+                ids = ids.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                List<mytrip_articles> a = new List<mytrip_articles>();
+                foreach (var id in ids.ToList())
+                {
+                    a.Add(entities.mytrip_articles.Include("mytrip_articlescategory.mytrip_articlescategory2").Include("mytrip_articlestag").Include("mytrip_articlescomments")
+                         .FirstOrDefault(x => x.ArticleId == id));
+                }
+                return a.AsQueryable();
+
+                //var b = entities.mytrip_articles
+                //.Include("mytrip_articlescategory")
+                //.Include("mytrip_articlestag")
+                //.Include("mytrip_articlescomments")
+                //.Where(x => x.Culture == culture || x.AllCulture == true)
+                //.Where(x => x.CloseDate >= DateTime.Now)
+                //.Where(x => x.mytrip_articlescategory.SeparateBlock == false)
+                //.Where(x => x.mytrip_articlescategory.Blog == false);
+                //total = b.Count();
+                //if (sortBy == SortBy.Views)
+                //    return b.OrderByDescending(x => x.Views).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                //else if (sortBy == SortBy.TotalVotes)
+                //    return b.OrderByDescending(x => x.TotalVotes).ThenByDescending(x => x.ApprovedVotes).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                //else
+                //    return b.OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             }
         }
         /// <summary>
