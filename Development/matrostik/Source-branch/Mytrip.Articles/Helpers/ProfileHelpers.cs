@@ -175,12 +175,12 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder tr1 = new TagBuilder("tr");
                 if (ctr % 2 == 0)
-                    tr1.MergeAttribute("style", "border-bottom:1px solid #CCCCCC;background-color:#F7F5F5");
+                    tr1.AddCssClass("profile1");
                 else
-                    tr1.MergeAttribute("style", "border-bottom:1px solid #CCCCCC;background-color:#EDEBEB");
+                    tr1.AddCssClass("profile2");
                 TagBuilder td11 = new TagBuilder("td");
                 td11.MergeAttribute("style", "text-align:center");
-                string imgEdit = GeneralMethods.ImgInput("/images/edite.png", item.Place, "rename", 15);
+                string imgEdit = GeneralMethods.ImageLink("modalJournalist_" + ctr, "#", ArticleLanguage.edit, item.Place, "/images/edite.png", "Edit", 15);
                 td11.InnerHtml = imgEdit;
                 tr1.InnerHtml = td11.ToString();
                 TagBuilder td12 = new TagBuilder("td");

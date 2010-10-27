@@ -223,8 +223,8 @@ namespace Mytrip.Articles.Controllers
                 }
             }
             model.Total = total;
-            model.DefaultCount = 10;            
-            model.Path = id3>0?mc.Path:"";
+            model.DefaultCount = 10;
+            model.Path = id4; //id3 > 0 ? mc.Path : "";
             model.CategoryId = id3;
             return View(model);
         }
@@ -243,12 +243,12 @@ namespace Mytrip.Articles.Controllers
         public ActionResult Category(int id, string path, string title, bool menu, bool allculture)
         {
             if (string.IsNullOrEmpty(title))
-                return Content(ArticleLanguage.title_empty);
+                return Content(ArticleLanguage.field_empty);
             else if (title.Length < 3 || title.Length > 255)
                 return Content(ArticleLanguage.title_lenght_5_255);
             else
             {
-                if (path == "CreateCategory")
+                if (path == "Add")
                 {
                     if (id == 0)
                         articleRepo.category.CreateСategory(title, menu, allculture, LocalisationSetting.culture());
@@ -256,7 +256,7 @@ namespace Mytrip.Articles.Controllers
                         articleRepo.category.CreateSubCategory(title, id, allculture);
                     return Content(string.Empty);
                 }
-                else if (path.StartsWith("(Tag)")||path=="Tags")
+                else if (path.Contains("Tag"))
                 {
                     articleRepo.article.UpdateTag(id, title);
                     return Content(string.Empty);
@@ -694,13 +694,13 @@ namespace Mytrip.Articles.Controllers
                 return View(model);
             }
         }
-        [HttpPost]
+        //[HttpPost]
         public ActionResult CheckAllCulture(string id)
         {
             try
             {
                 var mc = articleRepo.category.GetCategory(int.Parse(id));
-                return Content(mc.AllCulture.ToString());
+                return Content(mc.AllCulture.ToString().ToLower());
             }
             catch
             {

@@ -107,16 +107,14 @@ namespace Mytrip.Articles.Helpers
             {
                 TagBuilder img = new TagBuilder("img");
                 img.MergeAttribute("src", "/Theme/" + ThemeSetting.theme() + "/images/add.png");
+                img.MergeAttribute("alt", "Add");
                 img.MergeAttribute("style", "height:14px;");
                 if (ShowAddCategory)
                 {
                     TagBuilder CreateCategoryP = new TagBuilder("div");
                     TagBuilder CreateCategory = new TagBuilder("a");
                     CreateCategory.MergeAttribute("href", "#");
-                    if (id != 0)
-                        CreateCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
-                    else
-                        CreateCategory.MergeAttribute("id", "CreateCat_0");
+                    CreateCategory.MergeAttribute("id", "modalCategory_" + category.CategoryId);
                     CreateCategory.MergeAttribute("rel", "0_true_true_false_false");
                     CreateCategory.InnerHtml = ArticleLanguage.add_category + " " + img.ToString();
                     CreateCategoryP.InnerHtml = CreateCategory.ToString();
@@ -127,7 +125,7 @@ namespace Mytrip.Articles.Helpers
                     TagBuilder CreateSubCategoryP = new TagBuilder("div");
                     TagBuilder CreateSubCategory = new TagBuilder("a");
                     CreateSubCategory.MergeAttribute("href", "#");
-                    CreateSubCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
+                    CreateSubCategory.MergeAttribute("id", "modalCategory_" + category.CategoryId);
                     if (category.AllCulture)
                         CreateSubCategory.MergeAttribute("rel", category.CategoryId + "_false_true_false_false");
                     else
@@ -152,7 +150,7 @@ namespace Mytrip.Articles.Helpers
                 {
                     TagBuilder CreateSubCategoryP = new TagBuilder("div");
                     TagBuilder CreateSubCategory = new TagBuilder("a");
-                    CreateSubCategory.MergeAttribute("id", "CreateCat_" + category.CategoryId);
+                    CreateSubCategory.MergeAttribute("id", "modalCategory_" + category.CategoryId);
                     CreateSubCategory.MergeAttribute("rel", category.CategoryId + "_false_false_false_false");
                     CreateSubCategory.MergeAttribute("href", "#");
                     CreateSubCategory.InnerHtml = ArticleLanguage.add_topic + " " + img.ToString();
@@ -205,19 +203,17 @@ namespace Mytrip.Articles.Helpers
                         else
                             rel += "true_";
                         rel += cat.SeparateBlock.ToString().ToLower() + "_" + cat.AllCulture.ToString().ToLower();
-                        a += GeneralMethods.ImageLink("editCat_" + cat.CategoryId, ""
-                            + cat.Path, ArticleLanguage.edit, cat.Title, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
-                            + cat.CategoryId, "/Article/DeleteCategory/" + cat.CategoryId + "/"
-                            + cat.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
+                        a += GeneralMethods.ImageLink("modalCategory_" + cat.CategoryId, "", ArticleLanguage.edit, cat.Title, rel, "/images/edite.png", "Edit", 14) 
+                            + " " + GeneralMethods.ImageLink("deleteCat_" + cat.CategoryId, "/Article/DeleteCategory/" + cat.CategoryId + "/" + cat.Path,
+                            ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                     }
                     else
                     {
                         var tag = obj as mytrip_articlestag;
                         string rel = id + "_false_false_false_false";
-                        a += GeneralMethods.ImageLink("editCat_" + tag.TagId, ""
-                            + tag.Path, ArticleLanguage.edit, tag.TagName, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
-                            + tag.TagId, "/Article/DeleteCategory/" + tag.TagId + "/"
-                            + tag.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
+                        a += GeneralMethods.ImageLink("modalCategory_" + tag.TagId, "", ArticleLanguage.edit, tag.TagName, rel, "/images/edite.png", "EditTag", 14)
+                            + " " + GeneralMethods.ImageLink("deleteCat_" + tag.TagId, "/Article/DeleteCategory/" + tag.TagId + "/" + tag.Path,
+                            ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                     }
                     result.AppendLine(a);
                 }
@@ -381,9 +377,9 @@ namespace Mytrip.Articles.Helpers
                     td_first.AddCssClass("artcontent");
                     if (isUserHasRights(category, false))
                     {
-                        td_first.InnerHtml = GeneralMethods.ImageLink("editCat_" + category.CategoryId, "#"
-                            + category.Path, ArticleLanguage.edit, category.Title, category.CategoryId + "_false_false_false_false", "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
-                            + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"
+                        td_first.InnerHtml = GeneralMethods.ImageLink("modalCategory_" + category.CategoryId, "#", ArticleLanguage.edit,
+                            category.Title, category.CategoryId + "_false_false_false_false", "/images/edite.png", "Edit", 14) + " "
+                            + GeneralMethods.ImageLink("deleteCat_" + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"
                             + category.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14) + " ";
                     }
                     TagBuilder a_category = new TagBuilder("a");
@@ -431,11 +427,9 @@ namespace Mytrip.Articles.Helpers
                         else
                             rel += "true_";
                         rel += category.SeparateBlock.ToString().ToLower() + "_" + category.AllCulture.ToString().ToLower();
-                        string a = GeneralMethods.ImageLink("editCat_" + category.CategoryId, "#"
-                            + category.Path, ArticleLanguage.edit, category.Title, rel, "/images/edite.png", "Edit", 14) + " " + GeneralMethods.ImageLink("deleteCat_"
-                            + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"
-                            + category.Path, ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
-
+                        string a = GeneralMethods.ImageLink("modalCategory_" + category.CategoryId, "#", ArticleLanguage.edit, category.Title, rel, "/images/edite.png", "Edit", 14)
+                            + " " + GeneralMethods.ImageLink("deleteCat_" + category.CategoryId, "/Article/DeleteCategory/" + category.CategoryId + "/"+ category.Path, 
+                            ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                         h4.InnerHtml = a + " ";
                     #endregion
                     }
@@ -547,7 +541,7 @@ namespace Mytrip.Articles.Helpers
                         {
                             legend.InnerHtml += GeneralMethods.ImgInput("/images/approved.png", "/Article/ApproveComment/" + comment.CommentId + "/" + returnId + "/" + article.Path, "rename", 14) + " ";
                         }
-                        string a = GeneralMethods.ImageLink("editComment_" + comment.CommentId, "#", ArticleLanguage.edit,comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
+                        string a = GeneralMethods.ImageLink("inlineEditComment_" + comment.CommentId, "#", ArticleLanguage.edit, comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
                     + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId
                     , ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                         legend.InnerHtml += a + " ";

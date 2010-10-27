@@ -28,7 +28,7 @@
         var b = $(this).html();
         a.find("dt a").html(b);
         a.find("dd ul").hide();
-        var c = $("select[id="+id+"]");
+        var c = $("select[id=" + id + "]");
         c.val($(this).find("span.value").html());
         return false;
     });
