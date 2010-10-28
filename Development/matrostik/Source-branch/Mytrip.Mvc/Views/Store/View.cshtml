@@ -18,6 +18,7 @@
 @Html.Partial("_sideBar") 
 }
 @section contentBig{
+@Model.review2
 <div id="appr"></div><div class="last"></div> 
 @if(Model.comparison&&Model.comparison2){
 @Html.StoreProduct(Model.Product,100,1,false,false,true,Model.comparison2)
@@ -54,7 +55,7 @@ else if(!Model.comparison&&!Model.comparison2){
 @Html.MytripButton(CoreLanguage.remove, true, "enter","right")
 </div></div></div>
 <div id="review"class="window"> 
-<div class="modalTC">@StoreLanguage.review_body</div>
+<div class="modalTC">@Model.reviewTitle</div>
 <div class="modalC">
 @{Html.EnableClientValidation();}
 @using (Html.BeginForm()){

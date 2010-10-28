@@ -198,7 +198,7 @@ namespace Mytrip.Mvc.Helpers
         /// <returns></returns>
         public static HtmlString AccordionUserProfile(this HtmlHelper html, object profile)
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            if (UsersSetting.unlockVisibleProfileToSidebar()&&HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 MembershipRepository user = new MembershipRepository();
                 TagBuilder welcome = new TagBuilder("a");

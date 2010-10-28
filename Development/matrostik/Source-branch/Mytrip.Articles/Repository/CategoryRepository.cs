@@ -373,6 +373,7 @@ namespace Mytrip.Articles.Repository
         /// <returns></returns>
         public mytrip_articlescategory GetCategory(int categoryId)
         {
+            CreateСategoryZero();
             return entities.mytrip_articlescategory
                 .Include("mytrip_articles")
                 .Include("mytrip_articlescategory2")

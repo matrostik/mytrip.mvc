@@ -1,0 +1,10 @@
+﻿table.mainTab{padding: 0px;margin: 0px;width: 100%;border-width: 0px;}
+table.mainTab td{padding: 0px;margin: 0px;vertical-align: top;border-width: 0px;}
+div.mainC{background: #fff;padding: 1px 5px 0px 5px;}
+div.mainTL{position: relative;width: 5px;height: 5px;float: left;background:url(images/main.png);}
+div.mainBL{background:url(images/main.png);background-position: 0px -5px;position: relative;width: 5px;height: 5px;float: left;}
+div.mainTR{background:url(images/main.png);background-position: -5px 0px;position: relative;width: 5px;height: 5px;float: right;}
+div.mainBR{background:url(images/main.png);background-position: -5px -5px;position: relative;width: 5px;height: 5px;float: right;}
+div.mainTC{background-color: #FFFFFF;margin-right: 5px;margin-left: 5px;height: 5px;} 
+div.mainBC{background-color: #FFFFFF;height: 5px;margin-right: 5px;margin-left: 5px;}
+

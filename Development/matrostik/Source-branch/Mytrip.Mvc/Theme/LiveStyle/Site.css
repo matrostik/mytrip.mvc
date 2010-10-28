@@ -19,22 +19,15 @@
 @import url(TextArea.css);
 @import url(Baloon.css);
 /* Layout.cshtml BODY */
-body
-{
-    background: #DCE7F5 url(images/backgraund.png) repeat-x;
-    font-family: 'Trebuchet MS' , Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #4A4C4F;
-    font-size: .9em;
-}
+body{background: #DCE7F5 url(images/backgraund.png) repeat-x;font-family: 'Trebuchet MS' , Helvetica, Arial, sans-serif;margin: 0;padding: 0;color: #4A4C4F;font-size: .9em;}
 /* Layout.cshtml PRIMARY*/
-div.page{width: 90%; min-width: 800px;margin-left: auto; margin-right: auto;}
+div.page{width: 90%; min-width:800px;margin-left: auto; margin-right: auto;}
 #header{}
-*:first-child+html #header{height: 103px;}
+*:first-child+html #header{height:103px;}
 img.logo{border:0;}
-#title{}
-#main{margin-bottom: 5px;clear: both;}
+#title{margin-bottom: 5px;}
+#announce{margin-top:5px;position:relative;float:right;clear:both;}
+#main{margin-bottom:5px;clear:both;}
 #mainSmall{position: relative; float: right; width: 205px;}
 #mainBig{margin-right: 210px;}
 #footer{color: #1E395B;text-align: left;font-size: .9em; margin-bottom:5px;}
@@ -73,19 +66,18 @@ div.accVC{}
 div.accVC2{}
 div.accT{}
 /* CONTENT */
-div.content{}
+div.content{color: #4A4C4F;}
+div.dark{color: #4A4C4F;}
 div.noappr{}
-div.righttext
-{
-    text-align: right;
-}
+div.righttext{text-align: right;}
 div.last{height: 2px;}
 div.clear{clear: both;}
-div.right{position: relative;float: right;margin-left: 4px;}
+div.right,div._right{position: relative;float: right;margin-left: 4px;}
 div.left{position: relative;float: left;margin-right: 4px;}
-fieldset{border: 0px;padding: 10px;margin: 0px 0px 0px 0px;} 
+fieldset{border: 0px;padding: 0px;margin: 0px;} 
 legend{font-size: 1.2em;font-weight: bold;padding: 2px 4px 8px 4px;margin-top: -22px;}
 div.info{font-size: 0.8em;color: #1E395B;}
+div.info2{font-size: 0.8em;color: #000;}
 div.sort{margin-top: -5px;font-size: 0.8em;color: #1E395B;height: 15px;}
 span.right{float:right;}
 span.replasesearch{background-color: #ffff00; color: #ff0000;}
@@ -99,17 +91,8 @@ input[type="text"]{width: 214px;}
 input[type="password"]{width: 214px;}
 input.w40px, input.w80px, input.w100px,input.w20px{text-align:center;}
 /* IMAGE */
-input.deleteImg
-{
-    position: relative;
-    float: left;
-    margin-left: 2px;
-}
-img.catImg
-{
-    position: relative;
-    float: left;margin-bottom: 4px;
-}
+input.deleteImg{position: relative;float: left;margin-left: 2px;}
+img.catImg{position: relative;float: left;margin-bottom: 4px;}
 img{border: 0 none;vertical-align:middle;}
 img.right{position: relative; float: right;}
 img.imgabstract{position: relative;float: right;margin-bottom: 5px;margin-left: 5px;clear: both;}
@@ -129,6 +112,11 @@ div.div_border{border: 1px dotted #1E395B;}
 fieldset p{}
 #ErrorOpenId{color: Red;}
 .error{color: Red;}
+.sale
+{
+    color: #990000;
+}
+a.error{color: Red;font-weight: bold;}
 .field-validation-error{color: #ff0000;}
 .field-validation-valid{display: none;}
 .input-validation-error{border: 1px solid #ff0000;background-color: #ffeeee;}
@@ -143,12 +131,13 @@ fieldset p{}
 .fadeSome {opacity:0.30;filter:alpha(opacity=30);-moz-opacity: 30%;}
 .fadeLots {opacity:0.50;filter:alpha(opacity=50);-moz-opacity: 0.5;}  
 .fadeCompletely {opacity:0.0;filter:alpha(opacity=0);-moz-opacity: 0.0;}
+ol.numbered{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');font-size: 0.8em;}
+ol.numbered li{}
 ul.styled{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');font-size: 0.8em;}
 ul.styled li{}
 ol.related{padding: 0 5px 0 20px;color: #333;list-style-image: url('images/ul.png');}
 input.otheroptions{width: 25px;height:25px;border-width: 0px;cursor:pointer;text-indent:-999px;}
 input.otheroptions img{width:16px;height: 20px;}
-
 .checkbox, .checkboxcheck {
 	width: 19px;
 	height: 22px;

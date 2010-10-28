@@ -42,7 +42,12 @@
 </div><div class="editor-field">
 @Html.DropDownListFor(m => m.producerId, Model.SelectProducer)
 </div>
-
+<div class="editor-label">
+@Html.MytripLabelFor("namberCatalog", StoreLanguage.namberCatalog)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.namberCatalog)
+@Html.ValidationMessageFor(m => m.namberCatalog) 
+</div>
 <div class="editor-label">
 @Html.MytripLabelFor("_abstract", StoreLanguage._abstract)
 </div>
@@ -59,10 +64,12 @@
 @Html.ValidationMessageFor(m => m.body) 
 </div></div>
 <div class="editor-label">
-@Html.MytripLabelFor("price", StoreLanguage.titlePrice + Model.nameMoney)
+@Html.MytripLabelFor("price", StoreLanguage.titlePrice) 
 </div><div class="editor-field">
 @Html.TextBoxFor(m => m.price)
-@Html.ValidationMessageFor(m => m.price) 
+@Html.ValidationMessageFor(m => m.price)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.cultureMoney, Model.SelectCultureMoney) 
 </div>
 <div class="editor-label">
 @Html.MytripLabelFor("urlfile", StoreLanguage.packing)
@@ -97,6 +104,11 @@
 <div class="editor-label">
 @Html.CheckBoxFor(m => m.allculture)
 @Html.MytripLabelFor("allculture", StoreLanguage.allculture)
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Sale", StoreLanguage.Sale)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.Sale, Model.SelectSale)
 </div> 
 <div class="button">
 @Html.MytripButton(Model.submit, true,"left")

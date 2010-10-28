@@ -41,7 +41,14 @@
 <div class="editor-label">
 @Html.CheckBoxFor(m => m.allculture)
 @Html.MytripLabelFor("allculture", StoreLanguage.allculture)
-</div> 
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Sale", StoreLanguage.Sale)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.Sale, Model.SelectSale)
+</div>
+
+ 
 <div class="button">
 @Html.MytripButton(Model.submit, true,"left")
 </div>

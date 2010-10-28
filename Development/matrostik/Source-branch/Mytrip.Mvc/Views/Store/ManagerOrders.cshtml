@@ -1,0 +1,32 @@
+﻿@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(StoreLanguage.managerorders, "/");
+    View.Keywords=Html.MytripPageTitle(StoreLanguage.managerorders, ",");
+    View.Description=Html.MytripPageTitle(StoreLanguage.managerorders, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("Mytrip.Mvc.Delete.js,Page/Store.ManagerOrders.js")
+}
+@section content{
+<h1 class="title"><a href="/Store/Manager">@StoreLanguage.manager</a> / @StoreLanguage.managerorders</h1>
+@Html.GetOrdersManager()
+<div id="delete" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
+@Html.MytripButton(CoreLanguage.remove, true, "enter","right")
+</div></div></div>
+}
+

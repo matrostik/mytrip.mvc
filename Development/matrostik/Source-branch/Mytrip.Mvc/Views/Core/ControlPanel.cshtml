@@ -22,21 +22,21 @@
 </tr><tr>
 <td class="first2">
 @Html.MytripImage("/images/generalsetting.png","generalsetting","right")
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 <li><a href="/Core">@CoreLanguage.Core_Settings</a></li>
 @if(Model.viewAdmin){
 <li><a href="/Core/InstallModules">@CoreLanguage.InstallModules</a></li>
 <li><a href="/Core/Email">@CoreLanguage.Email_setting</a></li>
 }                    
-</ul>
+</ol>
 </td>
 @if(Model.viewAdmin){
 <td class="last2">
 @Html.MytripImage("/images/usersetting.png","usersetting","right")
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 <li><a href="/Users">@CoreLanguage.user_manager</a></li>
 <li><a href="/File/Index/()">@CoreLanguage.file_manager</a></li>
-</ul>
+</ol>
 </td>
 }
 </tr><tr>
@@ -51,21 +51,22 @@
 <td class="first2">
 
 @Html.MytripImage("/images/menusetting.png","menusetting","right")
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 <li><a href="/Core/HomePage">@CoreLanguage.homepage_setting</a></li>
 <li><a href="/Core/TopMenu">@CoreLanguage.topmenu_setting</a></li>
 <li><a href="/Core/CorSideBar">@CoreLanguage.sidebar_setting</a></li>                    
-</ul>
+</ol>
 </td><td class="last2">
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 @{/* WARNING AUTO GENERATE CODE */}
 @{/*--StartManagerControlPanel--*/}
 @Mytrip.Rssparser.Export.Manager()
 @Mytrip.Votes.Export.Manager()
 @Mytrip.Articles.Export.Manager()
 @Mytrip.Gismeteo.Export.Manager()
+@Mytrip.Store.Export.Manager()
 @{/*--EndManagerControlPanel--*/}     
-</ul>
+</ol>
 </td></tr><tr>
 <td class="first3"></td>
 <td class="last3"></td>
@@ -74,19 +75,20 @@
 <td class="last1"></td>
 </tr><tr>
 <td class="first2">
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 @{/* WARNING AUTO GENERATE CODE */}
 @{/*--StartSettingControlPanel--*/}
 @Mytrip.Rssparser.Export.Setting()
 @Mytrip.Votes.Export.Setting()
 @Mytrip.Articles.Export.Setting()
 @Mytrip.Gismeteo.Export.Setting()
+@Mytrip.Store.Export.Setting()
 @{/*--EndSettingControlPanel--*/}                  
-</ul>
+</ol>
 </td><td class="last2">
-<ul class="styled" style="font-size: inherit">
+<ol class="numbered" style="font-size: inherit">
 <li><a href="/Core/About">@CoreLanguage.edit_about</a></li> 
-</ul>
+</ol>
 </td></tr><tr>
 <td class="first3"></td>
 <td class="last3"></td>
