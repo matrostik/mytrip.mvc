@@ -285,6 +285,14 @@ namespace Mytrip.Store.Models
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
         public string review { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public HtmlString review2 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string reviewTitle { get; set; }
         
     }
 
@@ -309,6 +317,55 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string address { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string firstname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string lastname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string phone { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_email")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_email")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_error_email")]
+        [DataType(DataType.EmailAddress)]
+        public string useremail { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string valid { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organization{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organizationINN{ get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organizationKPP { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string viewOrganization { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string viewOrganizationRu { get; set; }
 
     }
 
@@ -369,6 +426,15 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string submit { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SelectList SelectSale { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Sale { get; set; }
     }
 
     //****************** E N D **********************
@@ -482,6 +548,181 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string nameMoney { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string packing { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public SelectList SelectCultureMoney { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string cultureMoney { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string namberCatalog { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SelectList SelectSale { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Sale { get; set; }
+    }
+
+    //****************** E N D **********************
+    #endregion
+
+    #region Модель для страницы /Views/Store/CreateSale.cshtml
+    // **********************************************
+    // Модель для страницы /Views/Store/CreateSale.cshtml
+    // **********************************************
+
+    /// <summary>Модель для страницы /Views/Store/CreateSale.cshtml 
+    /// </summary>
+    [MetadataType(typeof(CreateSaleModel))]
+    public class CreateSaleModel
+    {
+        public int sale { get; set; } 
+        public string datestart { get; set; }
+        public string dateclose { get; set; }
+    }
+    [MetadataType(typeof(CreateProductXmlModel))]
+    public class CreateProductXmlModel
+    {
+        public int departmentid { get; set; }
+        public int producerid { get; set; }
+        public SelectList SelectDepartment { get; set; }
+        public SelectList SelectProducer { get; set; }
+    }
+    [MetadataType(typeof(SettingStorelModel))]
+    public class SettingStorelModel
+    {
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string roleStoreManager { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string roleChiefStoreManager { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int styleProduct { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int widthImgProduct { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int columnProduct { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int styleDepartment { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int widthImgDepartment { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int columnDepartment { get; set; }
+        public bool onlineBuy { get; set; }
+        public bool unlockStore { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string nameProducer { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string nameStore { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public int MoneyProcent { get; set; }
+        public bool organizationBuy { get; set; }
+        public bool viewProduktTable { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string NameSearchPage { get; set; }
+    }
+    //****************** E N D **********************
+    #endregion
+
+    #region Модель для страницы /Views/Store/OrderDetails.cshtml
+    // **********************************************
+    // Модель для страницы /Views/Store/OrderDetails.cshtml
+    // **********************************************
+
+    /// <summary>Модель для страницы /Views/Store/OrderDetails.cshtml
+    /// </summary>
+    [MetadataType(typeof(OrderDetailsModel))]
+    public class OrderDetailsModel
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public HtmlString orderisproduct { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string address { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        public string firstname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string lastname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string phone { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_email")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_email")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_error_email")]
+        [DataType(DataType.EmailAddress)]
+        public string useremail { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organization { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organizationINN { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string organizationKPP { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string viewOrganization { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string viewOrganizationRu { get; set; }
+        public string delivery { get; set; }
+        public string moneyId { get; set; }
+        public SelectList SelectCultureMoney { get; set; }
+        public HtmlString total { get; set; }
+        public string priceInWords { get; set; }
+        public int? namberaccount { get; set; }
+        //SELLER
+        public string selleraccountant { get; set; }
+        public string selleraddress { get; set; }
+        public string sellerbank { get; set; }
+        public string sellerbankaccount { get; set; }
+        public string sellerbankaccountBIK { get; set; }
+        public string sellerbankaccountSeller { get; set; }
+        public string sellerdirector { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_email")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_email")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_error_email")]
+        [DataType(DataType.EmailAddress)]
+        public string selleremail { get; set; }
+        public bool sellerliteNDS { get; set; }
+        public string sellerorganization { get; set; }
+        public string sellerorganizationINN { get; set; }
+        public string sellerorganizationKPP { get; set; }
+        public string sellerphone { get; set; }
+
     }
 
     //****************** E N D **********************
@@ -513,8 +754,7 @@ namespace Mytrip.Store.Models
                     new { controller = "Account", action = "LogOn", returnUrl = HttpContext.Current.Request.Path.ToString() }));
             }
         }
-    }
-
+    }    
     //****************** E N D **********************
     #endregion
 }

@@ -15,15 +15,9 @@ using System.Collections.Specialized;
 
 namespace Mytrip.Store.Repository.DataEntities
 {
-    public partial class mytrip_storeoptions
+    public partial class mytrip_storeorderisproduct
     {
         #region Primitive Properties
-    
-        public virtual int OptionsId
-        {
-            get;
-            set;
-        }
     
         public virtual int ProductId
         {
@@ -42,31 +36,36 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private int _productId;
     
-        public virtual string Body
+        public virtual int Count
         {
             get;
             set;
         }
     
-        public virtual string Image
+        public virtual int OrderId
+        {
+            get { return _orderId; }
+            set
+            {
+                if (_orderId != value)
+                {
+                    if (mytrip_storeorder != null && mytrip_storeorder.OrderId != value)
+                    {
+                        mytrip_storeorder = null;
+                    }
+                    _orderId = value;
+                }
+            }
+        }
+        private int _orderId;
+    
+        public virtual decimal Price
         {
             get;
             set;
         }
     
-        public virtual string Title
-        {
-            get;
-            set;
-        }
-    
-        public virtual string UserName
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime CreationDate
+        public virtual string MoneyId
         {
             get;
             set;
@@ -74,6 +73,21 @@ namespace Mytrip.Store.Repository.DataEntities
 
         #endregion
         #region Navigation Properties
+    
+        public virtual mytrip_storeorder mytrip_storeorder
+        {
+            get { return _mytrip_storeorder; }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_storeorder, value))
+                {
+                    var previousValue = _mytrip_storeorder;
+                    _mytrip_storeorder = value;
+                    Fixupmytrip_storeorder(previousValue);
+                }
+            }
+        }
+        private mytrip_storeorder _mytrip_storeorder;
     
         public virtual mytrip_storeproduct mytrip_storeproduct
         {
@@ -93,18 +107,38 @@ namespace Mytrip.Store.Repository.DataEntities
         #endregion
         #region Association Fixup
     
+        private void Fixupmytrip_storeorder(mytrip_storeorder previousValue)
+        {
+            if (previousValue != null && previousValue.mytrip_storeorderisproduct.Contains(this))
+            {
+                previousValue.mytrip_storeorderisproduct.Remove(this);
+            }
+    
+            if (mytrip_storeorder != null)
+            {
+                if (!mytrip_storeorder.mytrip_storeorderisproduct.Contains(this))
+                {
+                    mytrip_storeorder.mytrip_storeorderisproduct.Add(this);
+                }
+                if (OrderId != mytrip_storeorder.OrderId)
+                {
+                    OrderId = mytrip_storeorder.OrderId;
+                }
+            }
+        }
+    
         private void Fixupmytrip_storeproduct(mytrip_storeproduct previousValue)
         {
-            if (previousValue != null && previousValue.mytrip_storeoptions.Contains(this))
+            if (previousValue != null && previousValue.mytrip_storeorderisproduct.Contains(this))
             {
-                previousValue.mytrip_storeoptions.Remove(this);
+                previousValue.mytrip_storeorderisproduct.Remove(this);
             }
     
             if (mytrip_storeproduct != null)
             {
-                if (!mytrip_storeproduct.mytrip_storeoptions.Contains(this))
+                if (!mytrip_storeproduct.mytrip_storeorderisproduct.Contains(this))
                 {
-                    mytrip_storeproduct.mytrip_storeoptions.Add(this);
+                    mytrip_storeproduct.mytrip_storeorderisproduct.Add(this);
                 }
                 if (ProductId != mytrip_storeproduct.ProductId)
                 {

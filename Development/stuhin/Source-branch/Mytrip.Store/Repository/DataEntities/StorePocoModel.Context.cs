@@ -48,11 +48,17 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private ObjectSet<mytrip_storedepartment> _mytrip_storedepartment;
     
-        public ObjectSet<mytrip_storeoptions> mytrip_storeoptions
+        public ObjectSet<mytrip_storeorder> mytrip_storeorder
         {
-            get { return _mytrip_storeoptions  ?? (_mytrip_storeoptions = CreateObjectSet<mytrip_storeoptions>("mytrip_storeoptions")); }
+            get { return _mytrip_storeorder  ?? (_mytrip_storeorder = CreateObjectSet<mytrip_storeorder>("mytrip_storeorder")); }
         }
-        private ObjectSet<mytrip_storeoptions> _mytrip_storeoptions;
+        private ObjectSet<mytrip_storeorder> _mytrip_storeorder;
+    
+        public ObjectSet<mytrip_storeorderisproduct> mytrip_storeorderisproduct
+        {
+            get { return _mytrip_storeorderisproduct  ?? (_mytrip_storeorderisproduct = CreateObjectSet<mytrip_storeorderisproduct>("mytrip_storeorderisproduct")); }
+        }
+        private ObjectSet<mytrip_storeorderisproduct> _mytrip_storeorderisproduct;
     
         public ObjectSet<mytrip_storeproducer> mytrip_storeproducer
         {
@@ -60,17 +66,35 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private ObjectSet<mytrip_storeproducer> _mytrip_storeproducer;
     
-        public ObjectSet<mytrip_storeproduct> mytrip_storeproduct
+        public ObjectSet<mytrip_storeprofile> mytrip_storeprofile
         {
-            get { return _mytrip_storeproduct  ?? (_mytrip_storeproduct = CreateObjectSet<mytrip_storeproduct>("mytrip_storeproduct")); }
+            get { return _mytrip_storeprofile  ?? (_mytrip_storeprofile = CreateObjectSet<mytrip_storeprofile>("mytrip_storeprofile")); }
         }
-        private ObjectSet<mytrip_storeproduct> _mytrip_storeproduct;
+        private ObjectSet<mytrip_storeprofile> _mytrip_storeprofile;
+    
+        public ObjectSet<mytrip_storesale> mytrip_storesale
+        {
+            get { return _mytrip_storesale  ?? (_mytrip_storesale = CreateObjectSet<mytrip_storesale>("mytrip_storesale")); }
+        }
+        private ObjectSet<mytrip_storesale> _mytrip_storesale;
+    
+        public ObjectSet<mytrip_storeseller> mytrip_storeseller
+        {
+            get { return _mytrip_storeseller  ?? (_mytrip_storeseller = CreateObjectSet<mytrip_storeseller>("mytrip_storeseller")); }
+        }
+        private ObjectSet<mytrip_storeseller> _mytrip_storeseller;
     
         public ObjectSet<mytrip_storevotes> mytrip_storevotes
         {
             get { return _mytrip_storevotes  ?? (_mytrip_storevotes = CreateObjectSet<mytrip_storevotes>("mytrip_storevotes")); }
         }
         private ObjectSet<mytrip_storevotes> _mytrip_storevotes;
+    
+        public ObjectSet<mytrip_storeproduct> mytrip_storeproduct
+        {
+            get { return _mytrip_storeproduct  ?? (_mytrip_storeproduct = CreateObjectSet<mytrip_storeproduct>("mytrip_storeproduct")); }
+        }
+        private ObjectSet<mytrip_storeproduct> _mytrip_storeproduct;
 
         #endregion
     }

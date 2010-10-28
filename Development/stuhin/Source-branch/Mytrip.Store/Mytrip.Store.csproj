@@ -72,9 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Mytrip_StoreExportController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Export.cs" />
+    <Compile Include="Helpers\AccountHelper.cs" />
+    <Compile Include="Helpers\CartHelper.cs" />
+    <Compile Include="Helpers\DepartmentAndProducerHelpers.cs" />
+    <Compile Include="Helpers\ManagerOrdersHelpers.cs" />
     <Compile Include="Helpers\MoneyHelpers.cs" />
+    <Compile Include="Helpers\ProductHelpers.cs" />
     <Compile Include="Helpers\StoreHelper.cs" />
     <Compile Include="Models\StoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,13 +97,25 @@
     <Compile Include="Repository\DataEntities\mytrip_storedepartment.cs">
       <DependentUpon>StorePocoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repository\DataEntities\mytrip_storeoptions.cs">
+    <Compile Include="Repository\DataEntities\mytrip_storeorder.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeorderisproduct.cs">
       <DependentUpon>StorePocoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\DataEntities\mytrip_storeproducer.cs">
       <DependentUpon>StorePocoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\DataEntities\mytrip_storeproduct.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeprofile.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storesale.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeseller.cs">
       <DependentUpon>StorePocoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\DataEntities\mytrip_storevotes.cs">
@@ -116,8 +134,14 @@
     <Compile Include="Repository\DepartmentRepository.cs" />
     <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Repository\IStoreRepository.cs" />
+    <Compile Include="Repository\ManagerOrderRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\SaleRepository.cs" />
+    <Compile Include="Repository\SellerRepository.cs" />
+    <Compile Include="StoreCreateDataBase.cs" />
     <Compile Include="StoreLanguage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

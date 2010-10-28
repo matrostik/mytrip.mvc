@@ -1,5 +1,5 @@
 ﻿-- Скрипт сгенерирован Devart dbForge Studio for MySQL, Версия 3.60.351.1
--- Дата: 10/7/2010 5:29:12 AM
+-- Дата: 10/29/2010 2:55:20 AM
 -- Версия сервера: 5.1.50-community
 -- Версия клиента: 4.1
 
@@ -11,7 +11,7 @@ USE mytripmvc;
 --
 -- Описание для таблицы mytrip_articlescategory
 --
-CREATE TABLE mytrip_articlescategory(
+CREATE TABLE IF NOT EXISTS mytrip_articlescategory(
   CategoryId INT (11) NOT NULL,
   Title VARCHAR (256) NOT NULL,
   Path VARCHAR (256) NOT NULL,
@@ -37,7 +37,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articlestag
 --
-CREATE TABLE mytrip_articlestag(
+CREATE TABLE IF NOT EXISTS mytrip_articlestag(
   TagId INT (11) NOT NULL,
   TagName VARCHAR (256) NOT NULL,
   Path VARCHAR (256) NOT NULL,
@@ -50,7 +50,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_gismeteo
 --
-CREATE TABLE mytrip_gismeteo(
+CREATE TABLE IF NOT EXISTS mytrip_gismeteo(
   GismeteoId INT (11) NOT NULL,
   Title VARCHAR (256) NOT NULL,
   UrlXml VARCHAR (256) NOT NULL,
@@ -68,7 +68,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_rssparser
 --
-CREATE TABLE mytrip_rssparser(
+CREATE TABLE IF NOT EXISTS mytrip_rssparser(
   RssparserId INT (11) NOT NULL,
   Title VARCHAR (256) NOT NULL,
   Path VARCHAR (256) NOT NULL,
@@ -86,41 +86,68 @@ CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
--- Описание для таблицы mytrip_storedepartment
+-- Описание для таблицы mytrip_storeprofile
 --
-CREATE TABLE mytrip_storedepartment(
-  DepartmentId INT (11) NOT NULL,
-  Title VARCHAR (256) NOT NULL,
-  Path VARCHAR (256) NOT NULL,
-  Culture VARCHAR (50) NOT NULL,
-  AllCulture BIT (1) NOT NULL,
-  UserName VARCHAR (100) NOT NULL,
-  CreationDate DATETIME NOT NULL,
-  Body TEXT DEFAULT NULL,
-  SubDepartmentId INT (11) NOT NULL,
-  PRIMARY KEY (DepartmentId),
-  INDEX IX_mytrip_storedepartment USING BTREE (SubDepartmentId),
-  CONSTRAINT FK_mytrip_storedepartment_mytrip_storedepartment FOREIGN KEY (SubDepartmentId)
-  REFERENCES mytrip_storedepartment (DepartmentId)
+CREATE TABLE IF NOT EXISTS mytrip_storeprofile(
+  ProfileId INT (11) NOT NULL,
+  UserName VARCHAR (256) NOT NULL,
+  UserEmail VARCHAR (256) NOT NULL,
+  Address TEXT DEFAULT NULL,
+  Phone VARCHAR (256) DEFAULT NULL,
+  IsAnonym BIT (1) NOT NULL,
+  FirstName VARCHAR (256) NOT NULL,
+  LastName VARCHAR (256) DEFAULT NULL,
+  Organization VARCHAR (256) DEFAULT NULL,
+  OrganizationINN VARCHAR (256) DEFAULT NULL,
+  OrganizationKPP VARCHAR (256) DEFAULT NULL,
+  UserIP VARCHAR (256) NOT NULL,
+  PRIMARY KEY (ProfileId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 4096
+AVG_ROW_LENGTH = 8192
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
--- Описание для таблицы mytrip_storeproducer
+-- Описание для таблицы mytrip_storesale
 --
-CREATE TABLE mytrip_storeproducer(
-  ProducerId INT (11) NOT NULL,
-  Title VARCHAR (256) NOT NULL,
-  Body TEXT DEFAULT NULL,
-  Path VARCHAR (256) NOT NULL,
+CREATE TABLE IF NOT EXISTS mytrip_storesale(
+  SaleId INT (11) NOT NULL,
+  Sale INT (11) NOT NULL,
+  Title VARCHAR (256) DEFAULT NULL,
+  CreationDate DATETIME NOT NULL,
+  CloseDate DATETIME NOT NULL,
+  UserName VARCHAR (256) DEFAULT NULL,
+  StartDate DATETIME NOT NULL,
+  ManagerName VARCHAR (256) NOT NULL,
+  PRIMARY KEY (SaleId)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 5461
+CHARACTER SET cp1251
+COLLATE cp1251_general_ci;
+
+--
+-- Описание для таблицы mytrip_storeseller
+--
+CREATE TABLE IF NOT EXISTS mytrip_storeseller(
+  SellerId INT (11) NOT NULL,
+  Organization VARCHAR (256) DEFAULT NULL,
+  Address TEXT DEFAULT NULL,
+  Phone VARCHAR (256) DEFAULT NULL,
+  Email VARCHAR (256) DEFAULT NULL,
+  OrganizationINN VARCHAR (256) DEFAULT NULL,
+  OrganizationKPP VARCHAR (256) DEFAULT NULL,
+  BankAccountSeller VARCHAR (256) DEFAULT NULL,
+  BankAccountBIK VARCHAR (256) DEFAULT NULL,
+  Bank VARCHAR (256) DEFAULT NULL,
+  BankAccount VARCHAR (256) DEFAULT NULL,
+  Director VARCHAR (256) DEFAULT NULL,
+  Accountant VARCHAR (256) DEFAULT NULL,
+  LiteNDS BIT (1) NOT NULL,
   Culture VARCHAR (50) NOT NULL,
   AllCulture BIT (1) NOT NULL,
-  UserName VARCHAR (100) NOT NULL,
-  CreationDate DATETIME NOT NULL,
-  PRIMARY KEY (ProducerId)
+  PRIMARY KEY (SellerId)
 )
 ENGINE = INNODB
 AVG_ROW_LENGTH = 16384
@@ -130,34 +157,34 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_users
 --
-CREATE TABLE mytrip_users(
+CREATE TABLE IF NOT EXISTS mytrip_users(
   UserId VARCHAR (50),
   UserName VARCHAR (100) NOT NULL,
   LastActivityDate DATETIME NOT NULL,
   PRIMARY KEY (UserId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 16384
+AVG_ROW_LENGTH = 8192
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
 -- Описание для таблицы mytrip_usersroles
 --
-CREATE TABLE mytrip_usersroles(
+CREATE TABLE IF NOT EXISTS mytrip_usersroles(
   RoleId INT (11) NOT NULL,
   RoleName VARCHAR (100) NOT NULL,
   PRIMARY KEY (RoleId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 5461
+AVG_ROW_LENGTH = 4096
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
 -- Описание для таблицы mytrip_votesquestion
 --
-CREATE TABLE mytrip_votesquestion(
+CREATE TABLE IF NOT EXISTS mytrip_votesquestion(
   QuestionId INT (11) NOT NULL,
   Question VARCHAR (256) NOT NULL,
   TotalVotes INT (11) NOT NULL,
@@ -178,7 +205,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articles
 --
-CREATE TABLE mytrip_articles(
+CREATE TABLE IF NOT EXISTS mytrip_articles(
   ArticleId INT (11) NOT NULL,
   SubArticleId INT (11) NOT NULL,
   CategoryId INT (11) NOT NULL,
@@ -213,34 +240,26 @@ CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
--- Описание для таблицы mytrip_storeproduct
+-- Описание для таблицы mytrip_storedepartment
 --
-CREATE TABLE mytrip_storeproduct(
-  ProductId INT (11) NOT NULL,
+CREATE TABLE IF NOT EXISTS mytrip_storedepartment(
   DepartmentId INT (11) NOT NULL,
-  ProducerId INT (11) NOT NULL,
   Title VARCHAR (256) NOT NULL,
   Path VARCHAR (256) NOT NULL,
-  Details TEXT DEFAULT NULL,
-  Body TEXT DEFAULT NULL,
-  CreationDate DATETIME NOT NULL,
-  UserName VARCHAR (100) NOT NULL,
   Culture VARCHAR (50) NOT NULL,
   AllCulture BIT (1) NOT NULL,
-  Price DECIMAL (18, 2) NOT NULL,
-  TotalVotes DECIMAL (4, 2) NOT NULL,
-  TotalCount INT (11) NOT NULL,
-  ViewPrice BIT (1) NOT NULL,
-  ViewVotes BIT (1) NOT NULL,
-  ViewCount BIT (1) NOT NULL,
-  UrlFile VARCHAR (256) DEFAULT NULL,
-  PRIMARY KEY (ProductId),
-  INDEX IX_mytrip_storeproduct_department USING BTREE (DepartmentId),
-  INDEX IX_mytrip_storeproduct_producer USING BTREE (ProducerId),
-  CONSTRAINT FK_mytrip_storeproduct_mytrip_storedepartment FOREIGN KEY (DepartmentId)
-  REFERENCES mytrip_storedepartment (DepartmentId),
-  CONSTRAINT FK_mytrip_storeproduct_mytrip_storeproducer FOREIGN KEY (ProducerId)
-  REFERENCES mytrip_storeproducer (ProducerId)
+  UserName VARCHAR (100) NOT NULL,
+  CreationDate DATETIME NOT NULL,
+  Body TEXT DEFAULT NULL,
+  SubDepartmentId INT (11) NOT NULL,
+  SaleId INT (11) NOT NULL,
+  PRIMARY KEY (DepartmentId),
+  INDEX IX_mytrip_storedepartment USING BTREE (SubDepartmentId),
+  INDEX mytrip_storedepartment_FK1 USING BTREE (SaleId),
+  CONSTRAINT mytrip_storedepartment_FK1 FOREIGN KEY (SaleId)
+  REFERENCES mytrip_storesale (SaleId),
+  CONSTRAINT mytrip_storedepartment_FK2 FOREIGN KEY (SubDepartmentId)
+  REFERENCES mytrip_storedepartment (DepartmentId)
 )
 ENGINE = INNODB
 AVG_ROW_LENGTH = 8192
@@ -248,9 +267,59 @@ CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
+-- Описание для таблицы mytrip_storeorder
+--
+CREATE TABLE IF NOT EXISTS mytrip_storeorder(
+  OrderId INT (11) NOT NULL,
+  Status INT (11) NOT NULL,
+  Culture VARCHAR (256) NOT NULL,
+  CreationDate DATETIME NOT NULL,
+  ManagerName VARCHAR (256) DEFAULT NULL,
+  Delivery DECIMAL (18, 2) NOT NULL,
+  MoneyId VARCHAR (50) NOT NULL,
+  PriceInWords VARCHAR (256) DEFAULT NULL,
+  NamberAccount INT (11) DEFAULT NULL,
+  DateAccount DATETIME DEFAULT NULL,
+  ProfileId INT (11) NOT NULL,
+  AccountPage TEXT DEFAULT NULL,
+  PRIMARY KEY (OrderId),
+  INDEX mytrip_storeorder_FK1 USING BTREE (MoneyId),
+  INDEX mytrip_storeorder_FK5 USING BTREE (ProfileId),
+  CONSTRAINT mytrip_storeorder_FK5 FOREIGN KEY (ProfileId)
+  REFERENCES mytrip_storeprofile (ProfileId)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 9830
+CHARACTER SET cp1251
+COLLATE cp1251_general_ci;
+
+--
+-- Описание для таблицы mytrip_storeproducer
+--
+CREATE TABLE IF NOT EXISTS mytrip_storeproducer(
+  ProducerId INT (11) NOT NULL,
+  Title VARCHAR (256) NOT NULL,
+  Body TEXT DEFAULT NULL,
+  Path VARCHAR (256) NOT NULL,
+  Culture VARCHAR (50) NOT NULL,
+  AllCulture BIT (1) NOT NULL,
+  UserName VARCHAR (100) NOT NULL,
+  CreationDate DATETIME NOT NULL,
+  SaleId INT (11) NOT NULL,
+  PRIMARY KEY (ProducerId),
+  INDEX mytrip_storeproducer_FK1 USING BTREE (SaleId),
+  CONSTRAINT mytrip_storeproducer_FK1 FOREIGN KEY (SaleId)
+  REFERENCES mytrip_storesale (SaleId)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 16384
+CHARACTER SET cp1251
+COLLATE cp1251_general_ci;
+
+--
 -- Описание для таблицы mytrip_usersinroles
 --
-CREATE TABLE mytrip_usersinroles(
+CREATE TABLE IF NOT EXISTS mytrip_usersinroles(
   UserId VARCHAR (50),
   RoleId INT (11) NOT NULL,
   PRIMARY KEY (UserId, RoleId),
@@ -261,14 +330,14 @@ CREATE TABLE mytrip_usersinroles(
   REFERENCES mytrip_usersroles (RoleId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 5461
+AVG_ROW_LENGTH = 4096
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
 -- Описание для таблицы mytrip_usersmembership
 --
-CREATE TABLE mytrip_usersmembership(
+CREATE TABLE IF NOT EXISTS mytrip_usersmembership(
   UserId VARCHAR (50),
   `Password` VARCHAR (100) NOT NULL,
   PasswordSalt VARCHAR (100) NOT NULL,
@@ -284,14 +353,14 @@ CREATE TABLE mytrip_usersmembership(
   REFERENCES mytrip_users (UserId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 16384
+AVG_ROW_LENGTH = 8192
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
 -- Описание для таблицы mytrip_votesanswer
 --
-CREATE TABLE mytrip_votesanswer(
+CREATE TABLE IF NOT EXISTS mytrip_votesanswer(
   AnswerId INT (11) NOT NULL,
   QuestionId INT (11) NOT NULL,
   Answer VARCHAR (256) NOT NULL,
@@ -308,7 +377,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articlescomments
 --
-CREATE TABLE mytrip_articlescomments(
+CREATE TABLE IF NOT EXISTS mytrip_articlescomments(
   CommentId INT (11) NOT NULL,
   ArticleId INT (11) NOT NULL,
   Body TEXT NOT NULL,
@@ -330,7 +399,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articlesintags
 --
-CREATE TABLE mytrip_articlesintags(
+CREATE TABLE IF NOT EXISTS mytrip_articlesintags(
   ArticleId INT (11) NOT NULL,
   TagId INT (11) NOT NULL,
   PRIMARY KEY (ArticleId, TagId),
@@ -347,7 +416,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articlessubscription
 --
-CREATE TABLE mytrip_articlessubscription(
+CREATE TABLE IF NOT EXISTS mytrip_articlessubscription(
   SubscribeId INT (11) NOT NULL,
   ArticleId INT (11) NOT NULL,
   UserName VARCHAR (100) NOT NULL,
@@ -363,7 +432,7 @@ COLLATE cp1251_general_ci;
 --
 -- Описание для таблицы mytrip_articlesvotes
 --
-CREATE TABLE mytrip_articlesvotes(
+CREATE TABLE IF NOT EXISTS mytrip_articlesvotes(
   VotesId INT (11) NOT NULL,
   ArticleId INT (11) NOT NULL,
   Vote INT (11) NOT NULL,
@@ -379,29 +448,74 @@ CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
--- Описание для таблицы mytrip_storeoptions
+-- Описание для таблицы mytrip_storeproduct
 --
-CREATE TABLE mytrip_storeoptions(
-  OptionsId INT (11) NOT NULL,
+CREATE TABLE IF NOT EXISTS mytrip_storeproduct(
   ProductId INT (11) NOT NULL,
+  DepartmentId INT (11) NOT NULL,
+  ProducerId INT (11) NOT NULL,
+  Title VARCHAR (256) NOT NULL,
+  Path VARCHAR (256) NOT NULL,
+  Details TEXT DEFAULT NULL,
   Body TEXT DEFAULT NULL,
-  Image VARCHAR (256) DEFAULT NULL,
-  Title VARCHAR (256) DEFAULT NULL,
-  UserName VARCHAR (100) NOT NULL,
   CreationDate DATETIME NOT NULL,
-  PRIMARY KEY (OptionsId),
-  INDEX IX_mytrip_storeoptions USING BTREE (ProductId),
-  CONSTRAINT FK_mytrip_storeoptions_mytrip_storeproduct FOREIGN KEY (ProductId)
-  REFERENCES mytrip_storeproduct (ProductId)
+  UserName VARCHAR (100) NOT NULL,
+  Culture VARCHAR (50) NOT NULL,
+  AllCulture BIT (1) NOT NULL,
+  Price DECIMAL (18, 2) NOT NULL,
+  TotalVotes DECIMAL (4, 2) NOT NULL,
+  TotalCount INT (11) NOT NULL,
+  ViewPrice BIT (1) NOT NULL,
+  ViewVotes BIT (1) NOT NULL,
+  ViewCount BIT (1) NOT NULL,
+  UrlFile VARCHAR (256) DEFAULT NULL,
+  Packing VARCHAR (256) DEFAULT NULL,
+  NamberCatalog VARCHAR (256) DEFAULT NULL,
+  SaleId INT (11) NOT NULL,
+  MoneyId VARCHAR (50) NOT NULL,
+  PRIMARY KEY (ProductId),
+  INDEX IX_mytrip_storeproduct_department USING BTREE (DepartmentId),
+  INDEX IX_mytrip_storeproduct_producer USING BTREE (ProducerId),
+  INDEX mytrip_storeproduct_FK1 USING BTREE (SaleId),
+  INDEX mytrip_storeproduct_FK2 USING BTREE (MoneyId),
+  CONSTRAINT FK_mytrip_storeproduct_mytrip_storedepartment FOREIGN KEY (DepartmentId)
+  REFERENCES mytrip_storedepartment (DepartmentId),
+  CONSTRAINT FK_mytrip_storeproduct_mytrip_storeproducer FOREIGN KEY (ProducerId)
+  REFERENCES mytrip_storeproducer (ProducerId),
+  CONSTRAINT mytrip_storeproduct_FK1 FOREIGN KEY (SaleId)
+  REFERENCES mytrip_storesale (SaleId)
 )
 ENGINE = INNODB
+AVG_ROW_LENGTH = 1328
+CHARACTER SET cp1251
+COLLATE cp1251_general_ci;
+
+--
+-- Описание для таблицы mytrip_storeorderisproduct
+--
+CREATE TABLE IF NOT EXISTS mytrip_storeorderisproduct(
+  ProductId INT (11) NOT NULL,
+  Count INT (11) NOT NULL,
+  OrderId INT (11) NOT NULL,
+  Price DECIMAL (18, 2) NOT NULL,
+  MoneyId VARCHAR (50) NOT NULL,
+  PRIMARY KEY (ProductId, OrderId),
+  INDEX mytrip_storeorderisproduct_FK1 USING BTREE (OrderId),
+  INDEX mytrip_storeorderisproduct_FK2 USING BTREE (MoneyId),
+  CONSTRAINT mytrip_storeorder_FK2 FOREIGN KEY (ProductId)
+  REFERENCES mytrip_storeproduct (ProductId),
+  CONSTRAINT mytrip_storeorderisproduct_FK1 FOREIGN KEY (OrderId)
+  REFERENCES mytrip_storeorder (OrderId)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 1489
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 
 --
 -- Описание для таблицы mytrip_storevotes
 --
-CREATE TABLE mytrip_storevotes(
+CREATE TABLE IF NOT EXISTS mytrip_storevotes(
   VotesId INT (11) NOT NULL,
   ProductId INT (11) NOT NULL,
   Vote INT (11) NOT NULL,
@@ -414,7 +528,7 @@ CREATE TABLE mytrip_storevotes(
   REFERENCES mytrip_storeproduct (ProductId)
 )
 ENGINE = INNODB
-AVG_ROW_LENGTH = 16384
+AVG_ROW_LENGTH = 4096
 CHARACTER SET cp1251
 COLLATE cp1251_general_ci;
 

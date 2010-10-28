@@ -11,6 +11,8 @@ using Mytrip.Mvc.Settings;
 using System.Web;
 using Mytrip.Store.Helpers;
 using SiteMechanics.PayPalDirect;
+using Mytrip.Mvc.Repository;
+using System.Xml.Linq;
 
 namespace Mytrip.Store.Controllers
 {
@@ -89,13 +91,13 @@ namespace Mytrip.Store.Controllers
             #region Store
             if (id3 == 0 && id4 == 0 && id6 != "Producer" && id8 == null)
             {
-                id2 = id2 * ModuleSetting.columnDepartment();
+                _id2 = id2 * ModuleSetting.columnProduct();
                 model.Department = store.department.GetAllDepartment(id, id2, LocalisationSetting.culture(), out total);
+                model.Product = store.product.GetProductForStore(id, _id2, id5, LocalisationSetting.culture(), out total);
                 model.total = total;
-                model.take = id2;
-                if (id2 < total)
-                    model.paging = true;
-                model.takepaging = (int)Math.Ceiling((double)total / ModuleSetting.columnDepartment());
+                model.take = _id2;
+                model.paging2 = true;
+                model.takepaging = (int)Math.Ceiling((double)total / ModuleSetting.columnProduct());
                 title = ModuleSetting.nameStore();
             }
             #endregion
@@ -199,6 +201,7 @@ namespace Mytrip.Store.Controllers
                     {
                         foreach (var art in searchproduct)
                         {
+                            art.NamberCatalog = GeneralMethods.ReplaceString(art.NamberCatalog, id6);
                             art.Title = GeneralMethods.ReplaceString(art.Title, id6);
                             art.Body = GeneralMethods.ReplaceString(art.Body, id6);
                         }
@@ -243,6 +246,7 @@ namespace Mytrip.Store.Controllers
                     {
                         foreach (var art in searchproduct)
                         {
+                            art.NamberCatalog = GeneralMethods.ReplaceString(art.NamberCatalog, id6);
                             art.Title = GeneralMethods.ReplaceString(art.Title, id6);
                             art.Body = GeneralMethods.ReplaceString(art.Body, id6);
                         }
@@ -297,6 +301,7 @@ namespace Mytrip.Store.Controllers
                     {
                         foreach (var art in searchproduct)
                         {
+                            art.NamberCatalog = GeneralMethods.ReplaceString(art.NamberCatalog, id6);
                             art.Title = GeneralMethods.ReplaceString(art.Title, id6);
                             art.Body = GeneralMethods.ReplaceString(art.Body, id6);
                         }
@@ -314,6 +319,7 @@ namespace Mytrip.Store.Controllers
                     {
                         foreach (var art in searchproduct)
                         {
+                            art.NamberCatalog = GeneralMethods.ReplaceString(art.NamberCatalog, id6);
                             art.Title = GeneralMethods.ReplaceString(art.Title, id6);
                             art.Body = GeneralMethods.ReplaceString(art.Body, id6);
                         }
@@ -394,7 +400,28 @@ namespace Mytrip.Store.Controllers
                     id8 = _BigPraice
                 });
         }
-
+        [HttpPost]
+        public ActionResult Search(string search, string url)
+        {
+            if (search != string.Empty)
+            {
+                search = GeneralMethods.DecodingSearch(search);
+                return RedirectToAction("Index", "Store",
+                new
+                {
+                    id = 1,
+                    id2 = 10,
+                    id3 = 0,
+                    id4 = 0,
+                    id5 = 1,
+                    id6 = search.Trim(),
+                    id7 = 0,
+                    id8 = 0
+                });
+            }
+            else
+                return Redirect(url);
+        }
         /// <summary>GET: /Store/CreateDepartment
         /// 
         /// </summary>
@@ -409,6 +436,7 @@ namespace Mytrip.Store.Controllers
             HttpCookie cookie = new HttpCookie("myTripTypeImage", id2);
             cookie.Expires = DateTime.Now.AddYears(1);
             Response.Cookies.Add(cookie);
+            model.Sale = 0;
             if (id2 == "CreateDepartment")
             {
                 model.image = store.file.GetFileForEdit("/Content/Store/Department", 0);
@@ -437,6 +465,7 @@ namespace Mytrip.Store.Controllers
                 model.title = department.Title;
                 model.body = department.Body;
                 model.allculture = department.AllCulture;
+                model.Sale = department.SaleId;
                 model.pagetitle = (department.SubDepartmentId == 0)
                     ? string.Format(StoreLanguage.editDepartment, model.title)
                     : string.Format(StoreLanguage.editSubdepartment, model.title, department.mytrip_storedepartment2.Title);
@@ -452,6 +481,7 @@ namespace Mytrip.Store.Controllers
                 model.title = department.Title;
                 model.body = department.Body;
                 model.allculture = department.AllCulture;
+                model.Sale = department.SaleId;
                 model.pagetitle = string.Format(StoreLanguage.editProducer, model.title);
 
             }
@@ -485,6 +515,7 @@ namespace Mytrip.Store.Controllers
                            id6 = "Producer"
                        });
             }
+            model.SelectSale = new SelectList(store.sale.SaleDictionary(), "Key", "Value", model.Sale);
             return View(model);
         }
 
@@ -502,7 +533,8 @@ namespace Mytrip.Store.Controllers
         {
             if (ModelState.IsValid && id2 == "CreateDepartment")
             {
-                var x = store.department.CreateDepartment(id, model.title, model.body,model.allculture, LocalisationSetting.culture());
+                var x = store.department.CreateDepartment(id, model.title, model.body,model.allculture, 
+                    LocalisationSetting.culture(),model.Sale);
                 store.file.RenameFile(x.DepartmentId, "/Content/Store/Department");
                 return RedirectToAction("Index", "Store",
                    new
@@ -518,7 +550,8 @@ namespace Mytrip.Store.Controllers
             else if (ModelState.IsValid && id2 == "EditDepartment")
             {
 
-                var x = store.department.EditDepartment(id, model.title, model.body,model.allculture);
+                var x = store.department.EditDepartment(id, model.title, model.body, model.allculture,
+                    model.Sale);
                 store.file.RenameFile(x.DepartmentId, "/Content/Store/Department");
                 return RedirectToAction("Index", "Store",
                    new
@@ -534,7 +567,7 @@ namespace Mytrip.Store.Controllers
             else if (ModelState.IsValid && id2 == "CreateProducer")
             {
 
-                var x = store.producer.CreateProducer(model.title, model.body, model.allculture, LocalisationSetting.culture());
+                var x = store.producer.CreateProducer(model.title, model.body, model.allculture, LocalisationSetting.culture(), model.Sale);
                 store.file.RenameFile(x.ProducerId, "/Content/Store/Producer");
                 return RedirectToAction("Index", "Store",
                    new
@@ -550,7 +583,7 @@ namespace Mytrip.Store.Controllers
             else if (ModelState.IsValid && id2 == "EditProducer")
             {
 
-                var x = store.producer.EditProducer(id, model.title, model.body, model.allculture);
+                var x = store.producer.EditProducer(id, model.title, model.body, model.allculture, model.Sale);
                 store.file.RenameFile(x.ProducerId, "/Content/Store/Producer");
                 return RedirectToAction("Index", "Store",
                    new
@@ -571,11 +604,14 @@ namespace Mytrip.Store.Controllers
         /// Отображение продукта или продуктов выбранных для сравнения
         /// </summary>
         /// <param name="id">индентификатор продукта</param>
+        /// <param name="id2"></param>
         /// <returns></returns>
-        public ActionResult View(int id)
+        public ActionResult View(int id,string id2)
         {
 
             ProductModel model = new ProductModel();
+            if(id2!=null && id2=="review")
+            model.review2=new HtmlString("<div id='review2'></div>");
             model.comparison = true;
             model.comparison2 = false;
             model.ViewProduct = null;
@@ -593,7 +629,16 @@ namespace Mytrip.Store.Controllers
                 model.comparison2 = true;
             }
             if (id > 0)
+            {
                 model.ViewProduct = store.product.GetProduct(id);
+                if (store.product.StatusReview(id) != null)
+                {
+                    model.review = store.product.StatusReview(id);
+                    model.reviewTitle = StoreLanguage.review_body_edit;
+                }
+                else
+                    model.reviewTitle = StoreLanguage.review_body;
+            }
             return View(model);
         }
         /// <summary>
@@ -608,14 +653,14 @@ namespace Mytrip.Store.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 store.product.CreateReview(id, model.review);
-                return RedirectToAction("View", "Store", new { id });
+                return RedirectToAction("View", "Store", new { id, id2="review" });
             }
             model.comparison = true;
             model.comparison2 = false;
             model.ViewProduct = null;
             model.Product = null;
+            model.review2 = new HtmlString("<div id='errorReview'></div>");
             if (id == 0 && (HttpContext.Request.Cookies["myTripProductComparison"] == null
                 || (HttpContext.Request.Cookies["myTripProductComparison"] != null
                 && !HttpContext.Request.Cookies["myTripProductComparison"].Value.Contains("]["))))
@@ -629,7 +674,15 @@ namespace Mytrip.Store.Controllers
                 model.comparison2 = true;
             }
             if (id > 0)
+            {
                 model.ViewProduct = store.product.GetProduct(id);
+                if (store.product.StatusReview(id) != null)
+                {
+                    model.reviewTitle = StoreLanguage.review_body_edit;
+                }
+                else
+                    model.reviewTitle = StoreLanguage.review_body;
+            }
             return View(model);
         }
         /// <summary>GET: /Store/EditorProduct
@@ -657,12 +710,14 @@ namespace Mytrip.Store.Controllers
             }
             model.imageOption =new HtmlString(result.ToString());
             model.image = new HtmlString(store.file.GetFileProduct(id + "_" + id3));
+            model.Sale = 0;
             if (id3 == "CreateProduct")
             {
                 model.pagetitle = StoreLanguage.createProduct;
                 model.submit = StoreLanguage.add;
                 model.producerId = id2;
                 model.departmentId = id;
+                model.cultureMoney = LocalisationSetting.culture().ToLower();
 
             }
             else if (id3 == "EditProduct")
@@ -682,6 +737,9 @@ namespace Mytrip.Store.Controllers
                 model.viewcount = product.ViewCount;
                 model.viewprice = product.ViewPrice;
                 model.viewvotes = product.ViewVotes;
+                model.cultureMoney = product.MoneyId;
+                model.namberCatalog = product.NamberCatalog;
+                model.Sale = product.SaleId;
             }
             else if (id3 == "DeleteProduct")
             {
@@ -699,6 +757,8 @@ namespace Mytrip.Store.Controllers
                            id6 = path
                        });
             }
+            model.SelectSale = new SelectList(store.sale.SaleDictionary(), "Key", "Value", model.Sale);
+            model.SelectCultureMoney = new SelectList(MoneyHelpers.CultureMoney(), "Key", "Value", model.cultureMoney);
             if (id > 0)
                 model.SelectDepartment = new SelectList(store.department.GetDepartmentForDdl(LocalisationSetting.culture(), false), "Key", "Value", model.departmentId);
             else
@@ -726,20 +786,28 @@ namespace Mytrip.Store.Controllers
             if (ModelState.IsValid && id3 == "CreateProduct")
             {
                 decimal pr = 0;
+                if(LocalisationSetting.culture().ToLower()=="ru-ru")
                 decimal.TryParse(model.price.Replace(".",","), out pr);
+                if (LocalisationSetting.culture().ToLower() == "en-us")
+                    decimal.TryParse(model.price.Replace(",", "."), out pr);
                 var x = store.product.CreateProduct(model.departmentId, model.producerId, model.title,
                 model.abstracts, model.body, LocalisationSetting.culture(), model.allculture, pr, model.totalcount,
-                model.urlfile, model.viewcount, model.viewprice, model.viewvotes);
+                model.urlfile, model.viewcount, model.viewprice, model.viewvotes,model.packing,model.cultureMoney,
+                model.namberCatalog,model.Sale);
                 store.file.RenameFolder(x.ProductId);
                 return RedirectToAction("View", "Store", new { id = x.ProductId });
             }
             else if (ModelState.IsValid && id3 == "EditProduct")
             {
                 decimal pr = 0;
-                decimal.TryParse(model.price.Replace(".", ","), out pr);
+                if (LocalisationSetting.culture().ToLower() == "ru-ru")
+                    decimal.TryParse(model.price.Replace(".", ","), out pr);
+                if (LocalisationSetting.culture().ToLower() == "en-us")
+                    decimal.TryParse(model.price.Replace(",", "."), out pr);
                 var x = store.product.EditProduct(id, model.departmentId, model.producerId, model.title,
                 model.abstracts, model.body, model.allculture, pr, model.totalcount,
-                model.urlfile, model.viewcount, model.viewprice, model.viewvotes);
+                model.urlfile, model.viewcount, model.viewprice, model.viewvotes,model.packing,model.cultureMoney,
+                model.namberCatalog,model.Sale);
                 return RedirectToAction("View", "Store", new { id = x.ProductId });
             }
             string[] a = store.file.GetFileProductOption(id + "_" + id3);
@@ -749,6 +817,7 @@ namespace Mytrip.Store.Controllers
                 result.Append("<img src='" + x + "' class='catImg' style='width:" + ModuleSetting.widthImgDepartment() + "px;'/>"
                   + GeneralMethods.ImgInput("/images/delete.png", "/Store/DeleteFile2/" + x.Replace("/", "()"), "deleteImg2", 14));
             }
+            model.SelectCultureMoney = new SelectList(MoneyHelpers.CultureMoney(), "Key", "Value", model.cultureMoney);
             model.imageOption = new HtmlString(result.ToString());
             model.image = new HtmlString(store.file.GetFileProduct(id + "_" + id3));
             model.SelectDepartment = new SelectList(store.department.GetDepartmentForDdl(LocalisationSetting.culture(), false), "Key", "Value", model.departmentId);
@@ -784,7 +853,7 @@ namespace Mytrip.Store.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return Content(StoreHelper.MyCart());
+                return Content(CartHelper.MyCart());
             }
             else return null;
         }
@@ -805,7 +874,7 @@ namespace Mytrip.Store.Controllers
                 HttpCookie cookie = new HttpCookie("myTripProductCart", _id);
                 cookie.Expires = DateTime.Now.AddYears(1);
                 Response.Cookies.Add(cookie);
-                return Content(StoreHelper.MyCart());
+                return Content(CartHelper.MyCart());
             }
             else return null;
         }
@@ -818,8 +887,88 @@ namespace Mytrip.Store.Controllers
         {
             CartModel model = new CartModel();
             model.title = StoreLanguage.mycarttitle;
-            model.cart = new HtmlString(StoreHelper.ViewMyCart(id));
+            model.cart = new HtmlString(CartHelper.ViewMyCart(id));
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                model.firstname = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x=>x.Key==1).Value;
+                model.lastname = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 2).Value;
+                model.useremail = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 3).Value;
+                model.phone = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 4).Value;
+                model.address = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 5).Value;
+                model.organization = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 6).Value;
+                model.organizationINN = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 7).Value;
+                model.organizationKPP = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 8).Value;
+            }
+            if (!ModuleSetting.organizationBuy())
+            {
+                model.viewOrganization = "none";
+            }
+            else model.viewOrganization = "show";
+            if (LocalisationSetting.culture().ToLower() != "ru-ru")
+            {
+                model.viewOrganizationRu = "none";
+            }
+            else model.viewOrganizationRu = "show";
+            model.valid = "no";
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult Cart(int? id,CartModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                store.order.CreateOrder(LocalisationSetting.culture(), model.address, model.firstname,
+                    model.lastname, model.phone, model.useremail,model.organization,model.organizationINN,
+                    model.organizationKPP);
+                HttpCookie cookie = new HttpCookie("myTripProductCart", "");
+                cookie.Expires = DateTime.Now.AddYears(1);
+                Response.Cookies.Add(cookie);
+                model.valid = "message";
+                model.cart = new HtmlString(StoreLanguage.buy_ok);
+                return View(model);
+            }
+            else
+            {
+                if (!ModuleSetting.organizationBuy())
+                {
+                    model.viewOrganization = "none";
+                }
+                else model.viewOrganization = "show";
+                if (LocalisationSetting.culture().ToLower() != "ru-ru")
+                {
+                    model.viewOrganizationRu = "none";
+                }
+                else model.viewOrganizationRu = "show";
+                model.valid = "yes";
+                model.cart = new HtmlString(CartHelper.ViewMyCart(id));
+                //if (HttpContext.User.Identity.IsAuthenticated)
+                //{
+                //    model.firstname = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x=>x.Key==1).Value;
+                //    model.lastname = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 2).Value;
+                //    model.useremail = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 3).Value;
+                //    model.phone = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 4).Value;
+                //    model.address = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 5).Value;
+                //    model.organisation = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 6).Value;
+                //    model.organisationINN = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 7).Value;
+                //    model.organisationKPP = store.managerorder.FirstName(HttpContext.User.Identity.Name).First(x => x.Key == 8).Value;
+                //}
+                return View(model);
+            }
+        }
+        [HttpPost]
+        public ActionResult TabCart(string ids)
+        {
+            string cart = (HttpContext.Request.Cookies["myTripTabCart"] == null)
+                        ? "orders0"
+                        : HttpContext.Request.Cookies["myTripTabCart"].Value;
+            if (ids.Contains("orders") && cart != ids)
+            {
+                HttpCookie cookie = new HttpCookie("myTripTabCart", ids);
+                cookie.Expires = DateTime.Now.AddYears(1);
+                Response.Cookies.Add(cookie);
+                return RedirectToAction(ids);
+            }
+            else { return RedirectToAction(cart); }
         }
         /// <summary>
         /// 
@@ -992,6 +1141,325 @@ namespace Mytrip.Store.Controllers
             }
             else return Content("");
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="id2"></param>
+        /// <returns></returns>
+        [Authorize]
+        public ActionResult DeleteOrder(int id, string id2)
+        {
+            store.managerorder.DeleteManagerOrder(id, HttpContext.User.Identity.Name);
+            return RedirectToAction("Cart", new { id = 0, id2 });
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="id2"></param>
+        /// <returns></returns>
+        [Authorize]
+        public ActionResult ApprovedOrder(int id, string id2)
+        {
+            store.managerorder.ApprovedOrder(id, HttpContext.User.Identity.Name);
+            return RedirectToAction("Cart", new { id = 0, id2 });
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [RoleStore]
+        public ActionResult Manager()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [RoleStore]
+        public ActionResult ManagerOrders()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [RoleStore]
+        public ActionResult MoveOrders(int id)
+        {
+            store.managerorder.MoveToArhivManagerOrder(id);
+            return RedirectToAction("ManagerOrders");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [RoleStore]
+        public ActionResult CountProductManager(int id, int id2, int id3)
+        {
+            store.order.CountOrders(id3, id2, id);
+            return RedirectToAction("OrderDetails", new { id=id3});
+        }
+        public ActionResult DeleteProductOrder(int id, int id2)
+        {
+            store.order.DeleteOrders(id2, id);
+            return RedirectToAction("OrderDetails", new { id = id2 });
+        }
+        [RoleStore]
+        public ActionResult OrderDetails(int id)
+        {
+            OrderDetailsModel model = new OrderDetailsModel();
+            var x = store.managerorder.GetOrderForManager(id);
+            decimal totalprice = 0;
+            model.orderisproduct = ManagerOrdersHelpers.ViewOrdersForOrderDetails(store.order.GetOrdersForUser(id),out totalprice);
+            model.id = id;
+            model.address = x.mytrip_storeprofile.Address;
+            model.firstname = x.mytrip_storeprofile.FirstName;
+            model.lastname = x.mytrip_storeprofile.LastName;
+            model.viewOrganization = "none";
+            model.viewOrganizationRu = "none";
+            model.total = ManagerOrdersHelpers.Total(totalprice,x.Delivery,x.MoneyId);
+            model.priceInWords = x.PriceInWords;
+            model.namberaccount = x.NamberAccount;
+            if (ModuleSetting.organizationBuy())
+            {
+                model.viewOrganization = "show";
+                model.organization = x.mytrip_storeprofile.Organization;
+                if (LocalisationSetting.culture().ToLower() == "ru-ru")
+                {
+                    model.viewOrganizationRu = "show";
+                    model.organizationINN = x.mytrip_storeprofile.OrganizationINN;
+                    model.organizationKPP = x.mytrip_storeprofile.OrganizationKPP;
+                }
+            }
+            model.phone = x.mytrip_storeprofile.Phone;
+            model.useremail = x.mytrip_storeprofile.UserEmail;
+            model.delivery = x.Delivery.ToString("0.00");
+            model.moneyId = x.MoneyId;
+            model.SelectCultureMoney = new SelectList(MoneyHelpers.CultureMoney(), "Key", "Value", model.moneyId);
+            //seller
+            var s = store.seller.GetSeller();
+            model.selleraccountant = s.Accountant;
+            model.selleraddress = s.Address;
+            model.sellerbank = s.Bank;
+            model.sellerbankaccount = s.BankAccount;
+            model.sellerbankaccountBIK = s.BankAccountBIK;
+            model.sellerbankaccountSeller = s.BankAccountSeller;
+            model.sellerdirector = s.Director;
+            model.selleremail = s.Email;
+            model.sellerliteNDS = s.LiteNDS;
+            model.sellerorganization = s.Organization;
+            model.sellerorganizationINN = s.OrganizationINN;
+            model.sellerorganizationKPP = s.OrganizationKPP;
+            model.sellerphone = s.Phone;
+            return View(model);
+        }
+        [RoleStore]
+        [HttpPost]
+        public ActionResult OrderDetails(int id, OrderDetailsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                decimal pr = 0;
+                if (LocalisationSetting.culture().ToLower() == "ru-ru")
+                    decimal.TryParse(model.delivery.Replace(".", ","), out pr);
+                if (LocalisationSetting.culture().ToLower() == "en-us")
+                    decimal.TryParse(model.delivery.Replace(",", "."), out pr);
+                int profileid = store.managerorder.UpdateOrder(id, model.priceInWords,
+                    pr, model.moneyId,model.namberaccount);
+                store.seller.UpdateSeller(model.selleraccountant, model.selleraddress,
+                    model.sellerbank, model.sellerbankaccount, model.sellerbankaccountBIK,
+                    model.sellerbankaccountSeller, model.sellerdirector, model.selleremail,
+                    model.sellerliteNDS, model.sellerorganization, model.sellerorganizationINN,
+                    model.sellerorganizationKPP, model.sellerphone);
+                store.profile.UpdateProfile(profileid, model.address, model.firstname, model.lastname,
+                    model.organization, model.organizationINN, model.organizationKPP, model.phone,
+                    model.useremail);
+                return RedirectToAction("OrderDetails", new { id });
+
+            }
+            return View(model);
+        }
+        [RoleStore]
+        public string CreateAccount(int id)
+        {
+            return AccountHelper.CreateAccount(id);
+        }
+        public string Account(int id)
+        {
+            var x = store.managerorder.GetOrderForManager(id);
+            return x.AccountPage;
+        }
+        [RoleStore]
+        public ActionResult SetAccount(int id)
+        {
+
+            store.managerorder.SetOrdersStatus1(id, AccountHelper.CreateAccount(id));
+
+            return RedirectToAction("ManagerOrders");
+        }
+        [RoleStore]
+        public ActionResult AddAccount(int id)
+        {
+            HttpCookie cookie = new HttpCookie("myTripAddAccount", id.ToString());
+            cookie.Expires = DateTime.Now.AddHours(1);
+            Response.Cookies.Add(cookie);
+            return RedirectToAction("Index", new { id = 1, id2 = 10, id3 = 0, id4 = 0, id5 = 1, id6 = "Department" }); 
+        }
+        [RoleStore]
+        public ActionResult AddPosition(int id,int id2)
+        {
+            store.order.AddPosition(id, id2);
+            HttpCookie cookie = new HttpCookie("myTripAddAccount", "0");
+            cookie.Expires = DateTime.Now.AddHours(-1);
+            Response.Cookies.Add(cookie);
+            return RedirectToAction("OrderDetails", new { id }); 
+        }
+        public ActionResult BillingOrder(int id)
+        {
+            store.managerorder.SetOrdersStatus2(id);
+            return RedirectToAction("ManagerOrders");
+        }
+        [RoleStore]
+        public ActionResult CreateSale()
+        {
+            CreateSaleModel model = new CreateSaleModel();
+            model.datestart = DateTime.Now.ToString("yyyy-MM-dd");
+            return View(model);
+        }
+        [RoleStore]
+        [HttpPost]
+        public ActionResult CreateSale(CreateSaleModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                store.sale.CreateSale(model.sale, DateTime.Parse(model.datestart), DateTime.Parse(model.dateclose));
+                return RedirectToAction("Manager");
+            }
+            return View(model);
+        }
+        [RoleStore]
+        public ActionResult CreateProductXml()
+        {
+            CreateProductXmlModel model = new CreateProductXmlModel();
+            model.SelectDepartment = new SelectList(store.department.GetDepartmentForDdl(LocalisationSetting.culture(), false), "Key", "Value");
+            model.SelectProducer = new SelectList(store.producer.GetProducerForDdl(LocalisationSetting.culture(), false), "Key", "Value");
+            return View(model);
+        }
+        [RoleStore]
+        [HttpPost]
+        public ActionResult CreateProductXml(CreateProductXmlModel model, HttpPostedFileBase id)
+        {
+            if (ModelState.IsValid&&id!=null)
+            {
+                store.product.CreateProductXml(model.departmentid,model.producerid,id);
+                return RedirectToAction("Manager");
+            }
+            model.SelectDepartment = new SelectList(store.department.GetDepartmentForDdl(LocalisationSetting.culture(), false), "Key", "Value");
+            model.SelectProducer = new SelectList(store.producer.GetProducerForDdl(LocalisationSetting.culture(), false), "Key", "Value");
+            return View(model);
+        }
+        [RoleAdminAndEditor]
+        public ActionResult Setting()
+        {
+            SettingStorelModel model = new SettingStorelModel();
+            model.columnDepartment = ModuleSetting.columnDepartment();
+            model.columnProduct = ModuleSetting.columnProduct();
+            model.MoneyProcent = ModuleSetting.MoneyProcent();
+            model.nameProducer = ModuleSetting.nameProducer();
+            model.NameSearchPage = ModuleSetting.NameSearchPage();
+            model.nameStore = ModuleSetting.nameStore();
+            model.onlineBuy = ModuleSetting.onlineBuy();
+            model.organizationBuy = ModuleSetting.organizationBuy();
+            model.roleChiefStoreManager = ModuleSetting.roleChiefStoreManager();
+            model.roleStoreManager = ModuleSetting.roleStoreManager();
+            model.styleDepartment = ModuleSetting.styleDepartment();
+            model.styleProduct = ModuleSetting.styleProduct();
+            model.unlockStore = ModuleSetting.unlockStore();
+            model.viewProduktTable = ModuleSetting.viewProduktTable();
+            model.widthImgDepartment = ModuleSetting.widthImgDepartment();
+            model.widthImgProduct = ModuleSetting.widthImgProduct();
+            return View(model);
+        }
+        [RoleAdminAndEditor]
+        [HttpPost]
+        public ActionResult Setting(SettingStorelModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                MytripUser.RenameRole(ModuleSetting.roleChiefStoreManager(), model.roleChiefStoreManager);
+                MytripUser.RenameRole(ModuleSetting.roleStoreManager(), model.roleStoreManager);
+                #region Сохранение данных в MytripConfiguration.xml
+                string _absolutDirectory = GeneralMethods.MytripConfigurationDirectory();
+                XDocument _doc = XDocument.Load(_absolutDirectory);
+                var a = _doc.Root.Elements("Mytrip.Store").Elements("add");
+                a.FirstOrDefault(x => x.Attribute("name").Value == "unlockStore")
+                    .SetAttributeValue("value", model.unlockStore.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "columnDepartment")
+                    .SetAttributeValue("value", model.columnDepartment.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "widthImgDepartment")
+                    .SetAttributeValue("value", model.widthImgDepartment.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "styleDepartment")
+                    .SetAttributeValue("value", model.widthImgDepartment.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "columnProduct")
+                    .SetAttributeValue("value", model.columnProduct.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "widthImgProduct")
+                    .SetAttributeValue("value", model.widthImgProduct.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "styleProduct")
+                    .SetAttributeValue("value", model.styleProduct.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "roleChiefStoreManager")
+                    .SetAttributeValue("value", model.roleChiefStoreManager.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "roleStoreManager")
+                    .SetAttributeValue("value", model.roleStoreManager.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "onlineBuy")
+                    .SetAttributeValue("value", model.onlineBuy.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "MoneyProcent")
+                   .SetAttributeValue("value", model.MoneyProcent.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "organizationBuy")
+                   .SetAttributeValue("value", model.organizationBuy.ToString());
+                a.FirstOrDefault(x => x.Attribute("name").Value == "viewProduktTable")
+                   .SetAttributeValue("value", model.viewProduktTable.ToString());
+                var nameStore = a.FirstOrDefault(x => x.Attribute("name").Value == "nameStore").Elements("add");
+                nameStore.FirstOrDefault(x => x.Attribute("value").Value ==LocalisationSetting.culture().ToLower())
+                    .SetAttributeValue("name", model.nameStore);
+                var nameProducer = a.FirstOrDefault(x => x.Attribute("name").Value == "nameProducer").Elements("add");
+                nameStore.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
+                    .SetAttributeValue("name", model.nameProducer);
+                var nameSearch = a.FirstOrDefault(x => x.Attribute("name").Value == "nameSearch").Elements("add");
+                nameStore.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
+                    .SetAttributeValue("name", model.NameSearchPage);
+                _doc.Save(_absolutDirectory);
+                #endregion
+
+                #region Очистка кеша
+                GeneralMethods.MytripCacheRemove("ss_viewprodukttable");
+                GeneralMethods.MytripCacheRemove("ss_organizationbuy");
+                GeneralMethods.MytripCacheRemove("ss_moneyprocent");
+                GeneralMethods.MytripCacheRemove("ss_unlockstore");
+                GeneralMethods.MytripCacheRemove("ss_onlinebuy");
+                GeneralMethods.MytripCacheRemove("ss_columndepartment");
+                GeneralMethods.MytripCacheRemove("ss_widthimgdepartment");
+                GeneralMethods.MytripCacheRemove("ss_styledepartment");
+                GeneralMethods.MytripCacheRemove("ss_columnproduct");
+                GeneralMethods.MytripCacheRemove("ss_widthimgproduct");
+                GeneralMethods.MytripCacheRemove("ss_styleproduct");
+                GeneralMethods.MytripCacheRemove("ss_rolechiefstoremanager");
+                GeneralMethods.MytripCacheRemove("ss_rolestoremanager");
+                GeneralMethods.MytripCacheRemove("ss_nameproducer", true);
+                GeneralMethods.MytripCacheRemove("ss_namestore", true);
+                GeneralMethods.MytripCacheRemove("ss_namesearch", true);
+                #endregion
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
         /*---------ОТЛОЖИЛ------------------*/
         /// <summary>
         /// 
@@ -1000,6 +1468,10 @@ namespace Mytrip.Store.Controllers
         //[Authorize]
         public ActionResult Order()
         {
+            if (!ModuleSetting.onlineBuy())
+            {
+ 
+            }
             //оформление заявки либо
             //редирект на оплату эл.деньгами
             //если доставка то снятие адреса у пользователя

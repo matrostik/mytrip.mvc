@@ -148,6 +148,41 @@ namespace Mytrip.Store.Repository.DataEntities
             get;
             set;
         }
+    
+        public virtual string Packing
+        {
+            get;
+            set;
+        }
+    
+        public virtual string NamberCatalog
+        {
+            get;
+            set;
+        }
+    
+        public virtual int SaleId
+        {
+            get { return _saleId; }
+            set
+            {
+                if (_saleId != value)
+                {
+                    if (mytrip_storesale != null && mytrip_storesale.SaleId != value)
+                    {
+                        mytrip_storesale = null;
+                    }
+                    _saleId = value;
+                }
+            }
+        }
+        private int _saleId;
+    
+        public virtual string MoneyId
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -167,37 +202,37 @@ namespace Mytrip.Store.Repository.DataEntities
         }
         private mytrip_storedepartment _mytrip_storedepartment;
     
-        public virtual ICollection<mytrip_storeoptions> mytrip_storeoptions
+        public virtual ICollection<mytrip_storeorderisproduct> mytrip_storeorderisproduct
         {
             get
             {
-                if (_mytrip_storeoptions == null)
+                if (_mytrip_storeorderisproduct == null)
                 {
-                    var newCollection = new FixupCollection<mytrip_storeoptions>();
-                    newCollection.CollectionChanged += Fixupmytrip_storeoptions;
-                    _mytrip_storeoptions = newCollection;
+                    var newCollection = new FixupCollection<mytrip_storeorderisproduct>();
+                    newCollection.CollectionChanged += Fixupmytrip_storeorderisproduct;
+                    _mytrip_storeorderisproduct = newCollection;
                 }
-                return _mytrip_storeoptions;
+                return _mytrip_storeorderisproduct;
             }
             set
             {
-                if (!ReferenceEquals(_mytrip_storeoptions, value))
+                if (!ReferenceEquals(_mytrip_storeorderisproduct, value))
                 {
-                    var previousValue = _mytrip_storeoptions as FixupCollection<mytrip_storeoptions>;
+                    var previousValue = _mytrip_storeorderisproduct as FixupCollection<mytrip_storeorderisproduct>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= Fixupmytrip_storeoptions;
+                        previousValue.CollectionChanged -= Fixupmytrip_storeorderisproduct;
                     }
-                    _mytrip_storeoptions = value;
-                    var newValue = value as FixupCollection<mytrip_storeoptions>;
+                    _mytrip_storeorderisproduct = value;
+                    var newValue = value as FixupCollection<mytrip_storeorderisproduct>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += Fixupmytrip_storeoptions;
+                        newValue.CollectionChanged += Fixupmytrip_storeorderisproduct;
                     }
                 }
             }
         }
-        private ICollection<mytrip_storeoptions> _mytrip_storeoptions;
+        private ICollection<mytrip_storeorderisproduct> _mytrip_storeorderisproduct;
     
         public virtual mytrip_storeproducer mytrip_storeproducer
         {
@@ -213,6 +248,21 @@ namespace Mytrip.Store.Repository.DataEntities
             }
         }
         private mytrip_storeproducer _mytrip_storeproducer;
+    
+        public virtual mytrip_storesale mytrip_storesale
+        {
+            get { return _mytrip_storesale; }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_storesale, value))
+                {
+                    var previousValue = _mytrip_storesale;
+                    _mytrip_storesale = value;
+                    Fixupmytrip_storesale(previousValue);
+                }
+            }
+        }
+        private mytrip_storesale _mytrip_storesale;
     
         public virtual ICollection<mytrip_storevotes> mytrip_storevotes
         {
@@ -289,11 +339,31 @@ namespace Mytrip.Store.Repository.DataEntities
             }
         }
     
-        private void Fixupmytrip_storeoptions(object sender, NotifyCollectionChangedEventArgs e)
+        private void Fixupmytrip_storesale(mytrip_storesale previousValue)
+        {
+            if (previousValue != null && previousValue.mytrip_storeproduct.Contains(this))
+            {
+                previousValue.mytrip_storeproduct.Remove(this);
+            }
+    
+            if (mytrip_storesale != null)
+            {
+                if (!mytrip_storesale.mytrip_storeproduct.Contains(this))
+                {
+                    mytrip_storesale.mytrip_storeproduct.Add(this);
+                }
+                if (SaleId != mytrip_storesale.SaleId)
+                {
+                    SaleId = mytrip_storesale.SaleId;
+                }
+            }
+        }
+    
+        private void Fixupmytrip_storeorderisproduct(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (mytrip_storeoptions item in e.NewItems)
+                foreach (mytrip_storeorderisproduct item in e.NewItems)
                 {
                     item.mytrip_storeproduct = this;
                 }
@@ -301,7 +371,7 @@ namespace Mytrip.Store.Repository.DataEntities
     
             if (e.OldItems != null)
             {
-                foreach (mytrip_storeoptions item in e.OldItems)
+                foreach (mytrip_storeorderisproduct item in e.OldItems)
                 {
                     if (ReferenceEquals(item.mytrip_storeproduct, this))
                     {
