@@ -448,6 +448,7 @@
     <Content Include="Theme\LiveStyle\images\content.png" />
     <Content Include="Theme\LiveStyle\images\contentcon.png" />
     <Content Include="Theme\LiveStyle\images\delete.png" />
+    <Content Include="Theme\LiveStyle\images\delete2.png" />
     <Content Include="Theme\LiveStyle\images\deletemodule.png" />
     <Content Include="Theme\LiveStyle\images\deleteUser.png" />
     <Content Include="Theme\LiveStyle\images\delete_copy.png" />
@@ -472,11 +473,17 @@
     <Content Include="Theme\LiveStyle\images\logmenu.png" />
     <Content Include="Theme\LiveStyle\images\logmenucon.png" />
     <Content Include="Theme\LiveStyle\images\logo.png" />
+    <Content Include="Theme\LiveStyle\images\logo2_copy1.png" />
+    <Content Include="Theme\LiveStyle\images\logoicon.png" />
     <Content Include="Theme\LiveStyle\images\main.png" />
     <Content Include="Theme\LiveStyle\images\main2.png" />
     <Content Include="Theme\LiveStyle\images\menu.png" />
+    <Content Include="Theme\LiveStyle\images\menuback.png" />
     <Content Include="Theme\LiveStyle\images\menucon.png" />
     <Content Include="Theme\LiveStyle\images\menusetting.png" />
+    <Content Include="Theme\LiveStyle\images\menuslide.png" />
+    <Content Include="Theme\LiveStyle\images\menuslidecon.png" />
+    <Content Include="Theme\LiveStyle\images\menuslidecontop.png" />
     <Content Include="Theme\LiveStyle\images\minus_blue.png" />
     <Content Include="Theme\LiveStyle\images\modal.png" />
     <Content Include="Theme\LiveStyle\images\modalcon.png" />
@@ -491,6 +498,7 @@
     <Content Include="Theme\LiveStyle\images\rambler.png" />
     <Content Include="Theme\LiveStyle\images\rightarrow_blue.png" />
     <Content Include="Theme\LiveStyle\images\rss.png" />
+    <Content Include="Theme\LiveStyle\images\rss1.png" />
     <Content Include="Theme\LiveStyle\images\ru-ru.png" />
     <Content Include="Theme\LiveStyle\images\search.png" />
     <Content Include="Theme\LiveStyle\images\searchfirst.png" />
@@ -565,6 +573,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UsersPocoModel.cs</LastGenOutput>
     </None>
+    <None Include="Views\Account\ChangeEmail.cshtml" />
     <None Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <None Include="Views\Account\Email.cshtml" />
@@ -609,11 +618,13 @@
     <None Include="Views\Rssparser\Setting.cshtml" />
     <Content Include="Views\Rssparser\Web.config" />
     <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_announce.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_menu.cshtml" />
     <None Include="Views\Shared\_sideBar.cshtml" />
     <None Include="Views\Shared\_sideBarExport.cshtml" />
     <None Include="Views\Store\Cart.cshtml" />
+    <None Include="Views\Store\CreateProductXml.cshtml" />
     <None Include="Views\Store\CreateSale.cshtml" />
     <None Include="Views\Store\EditorCategory.cshtml" />
     <None Include="Views\Store\EditorProduct.cshtml" />
