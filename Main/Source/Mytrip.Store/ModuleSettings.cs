@@ -60,12 +60,30 @@ namespace Mytrip.Store
                 new XElement("add", new XAttribute("name", "styleProduct"), new XAttribute("value", "2")),
                 new XElement("add", new XAttribute("name", "roleChiefStoreManager"), new XAttribute("value", "chief_store_manager")),
                 new XElement("add", new XAttribute("name", "roleStoreManager"), new XAttribute("value", "store_manager")),
+                new XElement("add", new XAttribute("name", "onlineBuy"), new XAttribute("value", "False")),
+                new XElement("add", new XAttribute("name", "MoneyProcent"), new XAttribute("value", "2")),
+                new XElement("add", new XAttribute("name", "organizationBuy"), new XAttribute("value", "True")),
+                new XElement("add", new XAttribute("name", "viewProduktTable"), new XAttribute("value", "True")),
                 new XElement("add", new XAttribute("name", "nameStore"),
                     new XElement("add", new XAttribute("name", "Store"), new XAttribute("value", "en-us")),
                     new XElement("add", new XAttribute("name", "Магазин"), new XAttribute("value", "ru-ru"))),
                 new XElement("add", new XAttribute("name", "nameProducer"),
                     new XElement("add", new XAttribute("name", "Producers"), new XAttribute("value", "en-us")),
-                    new XElement("add", new XAttribute("name", "Производители"), new XAttribute("value", "ru-ru")))    
+                    new XElement("add", new XAttribute("name", "Производители"), new XAttribute("value", "ru-ru"))),
+                new XElement("add", new XAttribute("name", "nameSearch"),
+                    new XElement("add", new XAttribute("name", "Search"), new XAttribute("value", "en-us")),
+                    new XElement("add", new XAttribute("name", "Поиск"), new XAttribute("value", "ru-ru"))),
+                new XElement("add", new XAttribute("name", "Money"),
+                    new XElement("add", new XAttribute("key", "USD"), new XAttribute("name", "$"), new XAttribute("value", "en-us")),
+                    new XElement("add", new XAttribute("key", "RUB"), new XAttribute("name", "руб."), new XAttribute("value", "ru-ru")),
+                    new XElement("add", new XAttribute("key", "EUR"), new XAttribute("name", "€"), new XAttribute("value", "null"))),
+                new XElement("add", new XAttribute("name", "Course"),
+                    new XElement("add", new XAttribute("key", "RUB"), new XAttribute("to", "USD"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")),
+                    new XElement("add", new XAttribute("key", "RUB"), new XAttribute("to", "EUR"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")),
+                    new XElement("add", new XAttribute("key", "USD"), new XAttribute("to", "RUB"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")),
+                    new XElement("add", new XAttribute("key", "USD"), new XAttribute("to", "EUR"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")),
+                    new XElement("add", new XAttribute("key", "EUR"), new XAttribute("to", "RUB"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")),
+                    new XElement("add", new XAttribute("key", "EUR"), new XAttribute("to", "USD"), new XAttribute("rate", "0"), new XAttribute("date", "22-10-2009")))
                     );
             _doc.Root.Add(article);
             _doc.Save(_absolutDirectory);
@@ -77,7 +95,22 @@ namespace Mytrip.Store
         // **********************************************
         // Данные из MytripConfiguration.xml
         // **********************************************
-
+        public static string NameSearchPage()
+        {
+            return GeneralMethods.MytripCache("ss_namesearch", moduleName, "nameSearch", true, null, 36000, CacheItemPriority.High).ToString();
+        }
+        public static bool viewProduktTable()
+        {
+            return bool.Parse(GeneralMethods.MytripCache("ss_viewprodukttable", moduleName, "viewProduktTable", false, null, 36000, CacheItemPriority.High).ToString());
+        }
+        public static bool organizationBuy()
+        {
+            return bool.Parse(GeneralMethods.MytripCache("ss_organizationbuy", moduleName, "organizationBuy", false, null, 36000, CacheItemPriority.High).ToString());
+        }
+        public static int MoneyProcent()
+        {
+            return int.Parse(GeneralMethods.MytripCache("ss_moneyprocent", moduleName, "MoneyProcent", false, null, 36000, CacheItemPriority.High).ToString());
+        }
         /// <summary>Название для магазина с учетом культуры
         /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_namestore")
         /// </summary>
@@ -103,15 +136,26 @@ namespace Mytrip.Store
         {
             return GeneralMethods.MytripCache("ss_namemoney", moduleName, "Money", true, null, 36000, CacheItemPriority.High).ToString();
         }
+        public static string keyMoney()
+        {
+            return MytripCache("ss_keymoney", moduleName, "Money", null, 36000, CacheItemPriority.High).ToString();
+        }
         /// <summary>Статус модуля - включен или отключен  (true = включен)
-        /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_unlockStore")
+        /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_unlockstore")
         /// </summary>
         /// <returns>возвращает bool</returns>
         public static bool unlockStore()
         {
-            return bool.Parse(GeneralMethods.MytripCache("ss_unlockStore", moduleName, "unlockStore", false, null, 36000, CacheItemPriority.High).ToString());
+            return bool.Parse(GeneralMethods.MytripCache("ss_unlockstore", moduleName, "unlockStore", false, null, 36000, CacheItemPriority.High).ToString());
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static bool onlineBuy()
+        {
+            return bool.Parse(GeneralMethods.MytripCache("ss_onlinebuy", moduleName, "onlineBuy", false, null, 36000, CacheItemPriority.High).ToString());
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -182,6 +226,32 @@ namespace Mytrip.Store
         public static string roleStoreManager()
         {
             return GeneralMethods.MytripCache("ss_rolestoremanager", moduleName, "roleStoreManager", false, null, 36000, CacheItemPriority.High).ToString();
+        }
+
+
+
+
+
+        public static object MytripCache(string key, string element, string attribute, int? absolutSek, int? spanSek, CacheItemPriority priority)
+        {
+            string _culture = LocalisationSetting.culture();
+            if (HttpContext.Current.Cache[key + _culture] == null)
+            {
+                TimeSpan _spanSek = spanSek == null ? TimeSpan.Zero : TimeSpan.FromSeconds((int)spanSek);
+                DateTime _absolutSek = absolutSek == null ? DateTime.MaxValue : DateTime.Now.AddSeconds((int)absolutSek);
+                HttpContext.Current.Cache.Insert(key + _culture, MytripConfigurationValue(element, attribute),
+                null, _absolutSek, _spanSek, priority, null);
+            }
+            return HttpContext.Current.Cache[key + _culture];
+        }
+        private static string MytripConfigurationValue(string element, string attribute)
+        {
+            string _absolutDirectory = GeneralMethods.MytripConfigurationDirectory();
+            XDocument _doc = XDocument.Load(_absolutDirectory);
+            string localization = LocalisationSetting.culture();
+            var core = _doc.Root.Elements(element).Elements("add").FirstOrDefault(x => x.Attribute("name").Value == attribute);
+            var _core = core.Elements("add").FirstOrDefault(x => x.Attribute("value").Value == localization.ToLower());
+            return _core.Attribute("key").Value;
         }
         //****************** E N D **********************
         #endregion

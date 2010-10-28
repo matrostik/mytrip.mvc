@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.edit_about, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.edit_about, ",");
 }
-@section csslink{}
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,Page/Core.About.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,Page/Core.About.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.edit_about</h1>
 @{Html.EnableClientValidation();}
@@ -33,11 +30,5 @@
 </div>
 </fieldset>
 }
-<div class="window"> 
-<div class="modalTC">Smiles</div>
-<div class="modalC">
-@Html.MytripSmiles("/Content/smiles")
-</div> 
-</div>      
 }
 

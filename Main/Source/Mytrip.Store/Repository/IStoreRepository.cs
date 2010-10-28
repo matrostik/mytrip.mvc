@@ -66,5 +66,75 @@ namespace Mytrip.Store.Repository
                return _FileRepository;
            }
        }
+       private OrderRepository _OrderRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public OrderRepository order
+       {
+           get
+           {
+               if (_OrderRepository == null)
+                   _OrderRepository = new OrderRepository();
+               return _OrderRepository;
+           }
+       }
+       private ManagerOrderRepository _ManagerOrderRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public ManagerOrderRepository managerorder
+       {
+           get
+           {
+               if (_ManagerOrderRepository == null)
+                   _ManagerOrderRepository = new ManagerOrderRepository();
+               return _ManagerOrderRepository;
+           }
+       }
+       private SellerRepository _SellerRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public SellerRepository seller
+       {
+           get
+           {
+               if (_SellerRepository == null)
+                   _SellerRepository = new SellerRepository();
+               return _SellerRepository;
+           }
+       }
+       private ProfileRepository _ProfileRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public ProfileRepository profile
+       {
+           get
+           {
+               if (_ProfileRepository == null)
+                   _ProfileRepository = new ProfileRepository();
+               return _ProfileRepository;
+           }
+       }
+       private SaleRepository _SaleRepository;
+
+       /// <summary>
+       /// 
+       /// </summary>
+       public SaleRepository sale
+       {
+           get
+           {
+               if (_SaleRepository == null)
+                   _SaleRepository = new SaleRepository();
+               return _SaleRepository;
+           }
+       }
     }
 }

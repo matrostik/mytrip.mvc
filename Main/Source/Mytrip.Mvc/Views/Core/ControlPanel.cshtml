@@ -11,10 +11,6 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.control_panel, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.control_panel, ",");
 }
-@section csslink{}
-@section scriptlink{}
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.control_panel</h1>
 <table class="content">
@@ -68,6 +64,7 @@
 @Mytrip.Votes.Export.Manager()
 @Mytrip.Articles.Export.Manager()
 @Mytrip.Gismeteo.Export.Manager()
+@Mytrip.Store.Export.Manager()
 @{/*--EndManagerControlPanel--*/}     
 </ol>
 </td></tr><tr>
@@ -85,6 +82,7 @@
 @Mytrip.Votes.Export.Setting()
 @Mytrip.Articles.Export.Setting()
 @Mytrip.Gismeteo.Export.Setting()
+@Mytrip.Store.Export.Setting()
 @{/*--EndSettingControlPanel--*/}                  
 </ol>
 </td><td class="last2">

@@ -87,7 +87,7 @@ namespace Mytrip.Mvc.Controllers
         //****************** E N D **********************
         #endregion
 
-        #region Регистрация через провайдера сайта
+        #region Регистрация через провайдер сайта
         // **********************************************
         // Регистрация через провайдера сайта
         // **********************************************
@@ -226,6 +226,29 @@ namespace Mytrip.Mvc.Controllers
             return View();
         }
 
+        /// <summary>GET: /Account/ChangeEmail
+        /// Change Email
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        [Authorize]
+        public ActionResult ChangeEmail()
+        {
+            ChangeEmailModel model = new ChangeEmailModel();
+            model.Email = coreRepo.membershipRepo.mtGetUserByUserNameMember(HttpContext.User.Identity.Name).mytrip_usersmembership.Email;
+            return View(model);
+        }
+        /// <summary>POST: /Account/ChangePassword
+        /// Обработка данных для смены пароля
+        /// </summary>
+        /// <param name="model">ChangePasswordModel</param>
+        /// <returns>ActionResult</returns>
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangeEmail(ChangeEmailModel model)
+        {
+            coreRepo.membershipRepo.ChangeEmail(model.Email);
+            return RedirectToAction("Index","Home");
+        }
         //****************** E N D **********************
         #endregion
 
@@ -283,13 +306,14 @@ namespace Mytrip.Mvc.Controllers
                             IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
                             email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
                         }
-                        if (email != "z" && UsersSetting.requiresUniqueEmail() && !coreRepo.membershipRepo.mtAccessibleEmail(email))
-                        {
-                            return RedirectToAction("Logon", new { returnUrl, error = CoreLanguage.register_duplicate_email }); 
-                        }
+                        //if (email != "z" && UsersSetting.requiresUniqueEmail() && !coreRepo.membershipRepo.mtAccessibleEmail(email))
+                        //{
+                        //    return RedirectToAction("Logon", new { returnUrl, error = CoreLanguage.register_duplicate_email }); 
+                        //}
+                        provider = "[" + provider + "][" + email + "]";
                         bool approved = false;
                         bool yes = false;
-                        string userName = coreRepo.membershipRepo.UserNameOpenId(email, provider, out approved, out yes);
+                        string userName = coreRepo.membershipRepo.UserNameOpenId(provider, out approved, out yes);
 
                         if (!approved && yes)
                         {
@@ -356,9 +380,9 @@ namespace Mytrip.Mvc.Controllers
             else
             {
                 model.UserName = id.Substring(0, id.IndexOf('@'));
-                model.Email = id; model.display = "none";
+                model.Email = id; 
+                model.display = "show";
             }
-            ViewData["prov"] = id2;
             return View(model);
         }
 

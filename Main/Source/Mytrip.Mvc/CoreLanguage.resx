@@ -223,7 +223,7 @@
     <value>Donate to project</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -680,5 +680,11 @@
   </data>
   <data name="date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="change_email" xml:space="preserve">
+    <value>Change e-mail</value>
+  </data>
+  <data name="ProfileSideBare" xml:space="preserve">
+    <value>Unlock Profile in Saide Bar</value>
   </data>
 </root>

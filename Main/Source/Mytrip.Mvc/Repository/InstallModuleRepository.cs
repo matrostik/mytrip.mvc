@@ -209,6 +209,38 @@ namespace Mytrip.Mvc.Repository
             }
             return result;
         }
+        internal IDictionary<string, string> AnoncePage(string culture)
+        {
+            IDictionary<string, string> result = new Dictionary<string, string>();
+            foreach (var x in alldllMassive())
+            {
+                string parser = GeneralMethods.HttpGetParsing(x.Value + "/AnoncePage", culture);
+                string name = x.Value.Replace("http://" + HttpContext.Current.Request.ServerVariables["HTTP_HOST"] + "/", "");
+                name = name.Replace("Export", "").Replace("_", ".");
+                if (parser != null && parser != "")
+                {
+                    string[] _parser = parser.Split('|');
+                    foreach (string q in _parser)
+                    {
+                        string[] _q = q.Split('_');
+                        int count = 1;
+                        string _name = string.Empty;
+                        string _name2 = string.Empty;
+                        foreach (string w in _q)
+                        {
+                            if (count == 1)
+                                _name = string.Concat(name, ".Export.", w, "()");
+                            else
+                                _name2 = w;
+                            count++;
+                        }
+                        result.Add(_name, _name2);
+
+                    }
+                }
+            }
+            return result;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -587,6 +619,17 @@ namespace Mytrip.Mvc.Repository
 
             }
             EditePageRepository.CreatePage("/Views/Shared/_sideBar.cshtml", result.ToString());
+        }
+        internal void CreateAnonce()
+        {
+            IDictionary<string, string> a = AnoncePage(LocalisationSetting.culture());
+            StringBuilder result = new StringBuilder();
+            foreach (var x in a)
+            {
+                result.AppendLine("@"+x.Key);
+
+            }
+            EditePageRepository.CreatePage("/Views/Shared/_announce.cshtml", result.ToString());
         }
         /// <summary>
         /// 

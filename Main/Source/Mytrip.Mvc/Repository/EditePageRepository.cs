@@ -11,14 +11,14 @@ namespace Mytrip.Mvc.Repository
     /// <summary>
     /// 
     /// </summary>
-    internal class EditePageRepository
+    public class EditePageRepository
     {
        /// <summary>
        /// 
        /// </summary>
        /// <param name="directory"></param>
        /// <returns></returns>
-        internal static string[] WritePage(string directory)
+        public static string[] WritePage(string directory)
        {
            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
            string[] file_in = File.ReadAllLines(absolutDirectory);
@@ -29,7 +29,7 @@ namespace Mytrip.Mvc.Repository
        /// </summary>
        /// <param name="directory"></param>
        /// <param name="files"></param>
-        internal static void CreatePage(string directory, string[] files)
+       public static void CreatePage(string directory, string[] files)
        {
            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
            File.WriteAllLines(absolutDirectory,files);
@@ -39,7 +39,7 @@ namespace Mytrip.Mvc.Repository
        /// </summary>
        /// <param name="directory"></param>
        /// <param name="files"></param>
-        internal static void CreatePage(string directory, string files)
+        public static void CreatePage(string directory, string files)
        {
            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
            File.WriteAllText(absolutDirectory, files);

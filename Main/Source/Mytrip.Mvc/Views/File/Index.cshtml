@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.file_manager, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.file_manager, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Page/File.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@CoreLanguage.file_manager</h1>
 @{Html.EnableClientValidation();}

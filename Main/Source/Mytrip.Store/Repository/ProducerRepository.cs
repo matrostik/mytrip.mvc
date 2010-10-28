@@ -26,6 +26,17 @@ namespace Mytrip.Store.Repository
                 return _entities;
             }
         }
+        SaleRepository _sale;
+
+        public SaleRepository sale
+        {
+            get
+            {
+                if (_sale == null)
+                    _sale = new SaleRepository();
+                return _sale;
+            }
+        }
         #endregion
 
         /// <summary>Все производители с учетом текущей культуры
@@ -37,6 +48,7 @@ namespace Mytrip.Store.Repository
         {
             return entities.mytrip_storeproducer
                 .Include("mytrip_storeproduct")
+                .Include("mytrip_storesale")
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .OrderBy(x => x.Title);
         }
@@ -53,6 +65,7 @@ namespace Mytrip.Store.Repository
         {
             var a = entities.mytrip_storeproducer
                 .Include("mytrip_storeproduct")
+                .Include("mytrip_storesale")
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .OrderBy(x => x.Title);
             total = a.Count();
@@ -67,6 +80,7 @@ namespace Mytrip.Store.Repository
         {
             return entities.mytrip_storeproducer
                 .Include("mytrip_storeproduct")
+                .Include("mytrip_storesale")
                 .FirstOrDefault(x => x.ProducerId == id);
         }
 
@@ -98,8 +112,9 @@ namespace Mytrip.Store.Repository
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает mytrip_storeproducer</returns>
-        public mytrip_storeproducer CreateProducer(string title, string body, bool allculture, string culture)
+        public mytrip_storeproducer CreateProducer(string title, string body, bool allculture, string culture,int saleid)
         {
+            sale.CreateSaleZero();
             mytrip_storeproducer x = new mytrip_storeproducer
             {
                 ProducerId=CreateProducerId(),
@@ -109,7 +124,8 @@ namespace Mytrip.Store.Repository
                 UserName = HttpContext.Current.User.Identity.Name,
                 Body = body,
                 AllCulture = allculture,
-                Culture = culture
+                Culture = culture,
+                SaleId=saleid
             };
             entities.mytrip_storeproducer.AddObject(x);
             entities.SaveChanges();
@@ -124,12 +140,13 @@ namespace Mytrip.Store.Repository
         /// <param name="image">изображение производителя (возможен null)</param>
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <returns>возвращает mytrip_storeproducer</returns>
-        public mytrip_storeproducer EditProducer(int id, string title, string body, bool allculture)
+        public mytrip_storeproducer EditProducer(int id, string title, string body, bool allculture,int saleid)
         {
             mytrip_storeproducer x = GetProducer(id);
             x.Title = title;
             x.Body = body;
             x.AllCulture = allculture;
+            x.SaleId = saleid;
             entities.SaveChanges();
             return x;
         }
@@ -142,8 +159,6 @@ namespace Mytrip.Store.Repository
             mytrip_storeproducer x = GetProducer(id);
             foreach (var y in x.mytrip_storeproduct.ToList())
             {
-                foreach (var z in y.mytrip_storeoptions.ToList())
-                { entities.mytrip_storeoptions.DeleteObject(z); }
                 foreach (var z in y.mytrip_storevotes.ToList())
                 { entities.mytrip_storevotes.DeleteObject(z); }
                 entities.mytrip_storeproduct.DeleteObject(y);

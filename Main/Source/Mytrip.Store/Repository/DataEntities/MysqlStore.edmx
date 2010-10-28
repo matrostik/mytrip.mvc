@@ -7,18 +7,14 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="mytrip_storedepartment" EntityType="Model.Store.mytrip_storedepartment" store:Type="Tables" Schema="mytripmvc" />
-          <EntitySet Name="mytrip_storeoptions" EntityType="Model.Store.mytrip_storeoptions" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeorder" EntityType="Model.Store.mytrip_storeorder" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeorderisproduct" EntityType="Model.Store.mytrip_storeorderisproduct" store:Type="Tables" Schema="mytripmvc" />
           <EntitySet Name="mytrip_storeproducer" EntityType="Model.Store.mytrip_storeproducer" store:Type="Tables" Schema="mytripmvc" />
           <EntitySet Name="mytrip_storeproduct" EntityType="Model.Store.mytrip_storeproduct" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeprofile" EntityType="Model.Store.mytrip_storeprofile" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storesale" EntityType="Model.Store.mytrip_storesale" store:Type="Tables" Schema="mytripmvc" />
+          <EntitySet Name="mytrip_storeseller" EntityType="Model.Store.mytrip_storeseller" store:Type="Tables" Schema="mytripmvc" />
           <EntitySet Name="mytrip_storevotes" EntityType="Model.Store.mytrip_storevotes" store:Type="Tables" Schema="mytripmvc" />
-          <AssociationSet Name="FK_mytrip_storedepartment_mytrip_storedepartment" Association="Model.Store.FK_mytrip_storedepartment_mytrip_storedepartment">
-            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
-            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_mytrip_storeoptions_mytrip_storeproduct" Association="Model.Store.FK_mytrip_storeoptions_mytrip_storeproduct">
-            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
-            <End Role="mytrip_storeoptions" EntitySet="mytrip_storeoptions" />
-          </AssociationSet>
           <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storedepartment" Association="Model.Store.FK_mytrip_storeproduct_mytrip_storedepartment">
             <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
             <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
@@ -31,6 +27,34 @@
             <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
             <End Role="mytrip_storevotes" EntitySet="mytrip_storevotes" />
           </AssociationSet>
+          <AssociationSet Name="mytrip_storedepartment_FK1" Association="Model.Store.mytrip_storedepartment_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storedepartment_FK2" Association="Model.Store.mytrip_storedepartment_FK2">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeorderisproduct_FK1" Association="Model.Store.mytrip_storeorderisproduct_FK1">
+            <End Role="mytrip_storeorder" EntitySet="mytrip_storeorder" />
+            <End Role="mytrip_storeorderisproduct" EntitySet="mytrip_storeorderisproduct" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeorder_FK2" Association="Model.Store.mytrip_storeorder_FK2">
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+            <End Role="mytrip_storeorderisproduct" EntitySet="mytrip_storeorderisproduct" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeorder_FK5" Association="Model.Store.mytrip_storeorder_FK5">
+            <End Role="mytrip_storeprofile" EntitySet="mytrip_storeprofile" />
+            <End Role="mytrip_storeorder" EntitySet="mytrip_storeorder" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeproducer_FK1" Association="Model.Store.mytrip_storeproducer_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storeproducer" EntitySet="mytrip_storeproducer" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeproduct_FK1" Association="Model.Store.mytrip_storeproduct_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="mytrip_storedepartment">
           <Key>
@@ -42,21 +66,38 @@
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="SaleId" Type="int" Nullable="false" />
           <Property Name="SubDepartmentId" Type="int" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-        <EntityType Name="mytrip_storeoptions">
+        <EntityType Name="mytrip_storeorder">
           <Key>
-            <PropertyRef Name="OptionsId" />
+            <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="Body" Type="text" />
+          <Property Name="AccountPage" Type="text" />
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="256" />
-          <Property Name="OptionsId" Type="int" Nullable="false" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="DateAccount" Type="datetime" />
+          <Property Name="Delivery" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ManagerName" Type="varchar" MaxLength="256" />
+          <Property Name="MoneyId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="NamberAccount" Type="int" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PriceInWords" Type="varchar" MaxLength="256" />
+          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_storeorderisproduct">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="MoneyId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="256" />
-          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="mytrip_storeproducer">
           <Key>
@@ -68,6 +109,7 @@
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="ProducerId" Type="int" Nullable="false" />
+          <Property Name="SaleId" Type="int" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
@@ -81,10 +123,14 @@
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="Details" Type="text" />
+          <Property Name="MoneyId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="NamberCatalog" Type="varchar" MaxLength="256" />
+          <Property Name="Packing" Type="varchar" MaxLength="256" />
           <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ProducerId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SaleId" Type="int" Nullable="false" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="TotalCount" Type="int" Nullable="false" />
           <Property Name="TotalVotes" Type="decimal" Nullable="false" Precision="4" Scale="2" />
@@ -93,6 +139,57 @@
           <Property Name="ViewCount" Type="bit" Nullable="false" />
           <Property Name="ViewPrice" Type="bit" Nullable="false" />
           <Property Name="ViewVotes" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_storeprofile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="Address" Type="text" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="IsAnonym" Type="bit" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="256" />
+          <Property Name="Organization" Type="varchar" MaxLength="256" />
+          <Property Name="OrganizationINN" Type="varchar" MaxLength="256" />
+          <Property Name="OrganizationKPP" Type="varchar" MaxLength="256" />
+          <Property Name="Phone" Type="varchar" MaxLength="256" />
+          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserIP" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="mytrip_storesale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="CloseDate" Type="datetime" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ManagerName" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Sale" Type="int" Nullable="false" />
+          <Property Name="SaleId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="mytrip_storeseller">
+          <Key>
+            <PropertyRef Name="SellerId" />
+          </Key>
+          <Property Name="Accountant" Type="varchar" MaxLength="256" />
+          <Property Name="Address" Type="text" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="Bank" Type="varchar" MaxLength="256" />
+          <Property Name="BankAccount" Type="varchar" MaxLength="256" />
+          <Property Name="BankAccountBIK" Type="varchar" MaxLength="256" />
+          <Property Name="BankAccountSeller" Type="varchar" MaxLength="256" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Director" Type="varchar" MaxLength="256" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+          <Property Name="LiteNDS" Type="bit" Nullable="false" />
+          <Property Name="Organization" Type="varchar" MaxLength="256" />
+          <Property Name="OrganizationINN" Type="varchar" MaxLength="256" />
+          <Property Name="OrganizationKPP" Type="varchar" MaxLength="256" />
+          <Property Name="Phone" Type="varchar" MaxLength="256" />
+          <Property Name="SellerId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="mytrip_storevotes">
           <Key>
@@ -105,30 +202,6 @@
           <Property Name="Vote" Type="int" Nullable="false" />
           <Property Name="VotesId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_mytrip_storedepartment_mytrip_storedepartment">
-          <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="1" />
-          <End Role="mytrip_storedepartment1" Type="Model.Store.mytrip_storedepartment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mytrip_storedepartment">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="mytrip_storedepartment1">
-              <PropertyRef Name="SubDepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mytrip_storeoptions_mytrip_storeproduct">
-          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="1" />
-          <End Role="mytrip_storeoptions" Type="Model.Store.mytrip_storeoptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mytrip_storeproduct">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="mytrip_storeoptions">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_mytrip_storeproduct_mytrip_storedepartment">
           <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="1" />
           <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="*" />
@@ -165,27 +238,113 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="mytrip_storedepartment_FK1">
+          <End Role="mytrip_storesale" Type="Model.Store.mytrip_storesale" Multiplicity="1" />
+          <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storedepartment_FK2">
+          <End Role="mytrip_storedepartment" Type="Model.Store.mytrip_storedepartment" Multiplicity="1" />
+          <End Role="mytrip_storedepartment1" Type="Model.Store.mytrip_storedepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment1">
+              <PropertyRef Name="SubDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeorderisproduct_FK1">
+          <End Role="mytrip_storeorder" Type="Model.Store.mytrip_storeorder" Multiplicity="1" />
+          <End Role="mytrip_storeorderisproduct" Type="Model.Store.mytrip_storeorderisproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeorder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="mytrip_storeorderisproduct">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeorder_FK2">
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="1" />
+          <End Role="mytrip_storeorderisproduct" Type="Model.Store.mytrip_storeorderisproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeproduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="mytrip_storeorderisproduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeorder_FK5">
+          <End Role="mytrip_storeprofile" Type="Model.Store.mytrip_storeprofile" Multiplicity="1" />
+          <End Role="mytrip_storeorder" Type="Model.Store.mytrip_storeorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeprofile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="mytrip_storeorder">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeproducer_FK1">
+          <End Role="mytrip_storesale" Type="Model.Store.mytrip_storesale" Multiplicity="1" />
+          <End Role="mytrip_storeproducer" Type="Model.Store.mytrip_storeproducer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproducer">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeproduct_FK1">
+          <End Role="mytrip_storesale" Type="Model.Store.mytrip_storesale" Multiplicity="1" />
+          <End Role="mytrip_storeproduct" Type="Model.Store.mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="mytrip_storedepartment" EntityType="Model.mytrip_storedepartment" />
-          <EntitySet Name="mytrip_storeoptions" EntityType="Model.mytrip_storeoptions" />
+          <EntitySet Name="mytrip_storeorderisproduct" EntityType="Model.mytrip_storeorderisproduct" />
           <EntitySet Name="mytrip_storeproducer" EntityType="Model.mytrip_storeproducer" />
           <EntitySet Name="mytrip_storeproduct" EntityType="Model.mytrip_storeproduct" />
+          <EntitySet Name="mytrip_storeprofile" EntityType="Model.mytrip_storeprofile" />
+          <EntitySet Name="mytrip_storeseller" EntityType="Model.mytrip_storeseller" />
           <EntitySet Name="mytrip_storevotes" EntityType="Model.mytrip_storevotes" />
-          <AssociationSet Name="FK_mytrip_storedepartment_mytrip_storedepartment" Association="Model.FK_mytrip_storedepartment_mytrip_storedepartment">
-            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
-            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
-          </AssociationSet>
           <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storedepartment" Association="Model.FK_mytrip_storeproduct_mytrip_storedepartment">
             <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
             <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_mytrip_storeoptions_mytrip_storeproduct" Association="Model.FK_mytrip_storeoptions_mytrip_storeproduct">
+          <AssociationSet Name="mytrip_storedepartment_FK2" Association="Model.mytrip_storedepartment_FK2">
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+            <End Role="mytrip_storedepartment1" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeorder_FK2" Association="Model.mytrip_storeorder_FK2">
             <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
-            <End Role="mytrip_storeoptions" EntitySet="mytrip_storeoptions" />
+            <End Role="mytrip_storeorderisproduct" EntitySet="mytrip_storeorderisproduct" />
           </AssociationSet>
           <AssociationSet Name="FK_mytrip_storeproduct_mytrip_storeproducer" Association="Model.FK_mytrip_storeproduct_mytrip_storeproducer">
             <End Role="mytrip_storeproducer" EntitySet="mytrip_storeproducer" />
@@ -194,6 +353,28 @@
           <AssociationSet Name="FK_mytrip_storevotes_mytrip_storeproduct" Association="Model.FK_mytrip_storevotes_mytrip_storeproduct">
             <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
             <End Role="mytrip_storevotes" EntitySet="mytrip_storevotes" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_storeorder" EntityType="Model.mytrip_storeorder" />
+          <AssociationSet Name="mytrip_storeorderisproduct_FK1" Association="Model.mytrip_storeorderisproduct_FK1">
+            <End Role="mytrip_storeorder" EntitySet="mytrip_storeorder" />
+            <End Role="mytrip_storeorderisproduct" EntitySet="mytrip_storeorderisproduct" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeorder_FK5" Association="Model.mytrip_storeorder_FK5">
+            <End Role="mytrip_storeprofile" EntitySet="mytrip_storeprofile" />
+            <End Role="mytrip_storeorder" EntitySet="mytrip_storeorder" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_storesale" EntityType="Model.mytrip_storesale" />
+          <AssociationSet Name="mytrip_storedepartment_FK1" Association="Model.mytrip_storedepartment_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storedepartment" EntitySet="mytrip_storedepartment" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeproducer_FK1" Association="Model.mytrip_storeproducer_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storeproducer" EntitySet="mytrip_storeproducer" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_storeproduct_FK1" Association="Model.mytrip_storeproduct_FK1">
+            <End Role="mytrip_storesale" EntitySet="mytrip_storesale" />
+            <End Role="mytrip_storeproduct" EntitySet="mytrip_storeproduct" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="mytrip_storedepartment">
@@ -206,25 +387,27 @@
           <Property Type="String" Name="Culture" Nullable="false" />
           <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="String" Name="Path" Nullable="false" />
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
           <Property Type="Int32" Name="SubDepartmentId" Nullable="false" />
           <Property Type="String" Name="Title" Nullable="false" />
           <Property Type="String" Name="UserName" Nullable="false" />
-          <NavigationProperty Name="mytrip_storedepartment1" Relationship="Model.FK_mytrip_storedepartment_mytrip_storedepartment" FromRole="mytrip_storedepartment" ToRole="mytrip_storedepartment1" />
-          <NavigationProperty Name="mytrip_storedepartment2" Relationship="Model.FK_mytrip_storedepartment_mytrip_storedepartment" FromRole="mytrip_storedepartment1" ToRole="mytrip_storedepartment" />
           <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeproduct_mytrip_storedepartment" FromRole="mytrip_storedepartment" ToRole="mytrip_storeproduct" />
+          <NavigationProperty Name="mytrip_storedepartment1" Relationship="Model.mytrip_storedepartment_FK2" FromRole="mytrip_storedepartment" ToRole="mytrip_storedepartment1" />
+          <NavigationProperty Name="mytrip_storedepartment2" Relationship="Model.mytrip_storedepartment_FK2" FromRole="mytrip_storedepartment1" ToRole="mytrip_storedepartment" />
+          <NavigationProperty Name="mytrip_storesale" Relationship="Model.mytrip_storedepartment_FK1" FromRole="mytrip_storedepartment" ToRole="mytrip_storesale" />
         </EntityType>
-        <EntityType Name="mytrip_storeoptions">
+        <EntityType Name="mytrip_storeorderisproduct">
           <Key>
-            <PropertyRef Name="OptionsId" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Type="String" Name="Body" />
-          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
-          <Property Type="String" Name="Image" />
-          <Property Type="Int32" Name="OptionsId" Nullable="false" />
+          <Property Type="Int32" Name="Count" Nullable="false" />
+          <Property Type="String" Name="MoneyId" Nullable="false" />
+          <Property Type="Int32" Name="OrderId" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
-          <Property Type="String" Name="Title" />
-          <Property Type="String" Name="UserName" Nullable="false" />
-          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeoptions_mytrip_storeproduct" FromRole="mytrip_storeoptions" ToRole="mytrip_storeproduct" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.mytrip_storeorder_FK2" FromRole="mytrip_storeorderisproduct" ToRole="mytrip_storeproduct" />
+          <NavigationProperty Name="mytrip_storeorder" Relationship="Model.mytrip_storeorderisproduct_FK1" FromRole="mytrip_storeorderisproduct" ToRole="mytrip_storeorder" />
         </EntityType>
         <EntityType Name="mytrip_storeproducer">
           <Key>
@@ -236,9 +419,11 @@
           <Property Type="String" Name="Culture" Nullable="false" />
           <Property Type="String" Name="Path" Nullable="false" />
           <Property Type="Int32" Name="ProducerId" Nullable="false" />
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
           <Property Type="String" Name="Title" Nullable="false" />
           <Property Type="String" Name="UserName" Nullable="false" />
           <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storeproduct_mytrip_storeproducer" FromRole="mytrip_storeproducer" ToRole="mytrip_storeproduct" />
+          <NavigationProperty Name="mytrip_storesale" Relationship="Model.mytrip_storeproducer_FK1" FromRole="mytrip_storeproducer" ToRole="mytrip_storesale" />
         </EntityType>
         <EntityType Name="mytrip_storeproduct">
           <Key>
@@ -250,10 +435,14 @@
           <Property Type="String" Name="Culture" Nullable="false" />
           <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="String" Name="Details" />
+          <Property Type="String" Name="MoneyId" Nullable="false" />
+          <Property Type="String" Name="NamberCatalog" />
+          <Property Type="String" Name="Packing" />
           <Property Type="String" Name="Path" Nullable="false" />
           <Property Type="Decimal" Name="Price" Nullable="false" />
           <Property Type="Int32" Name="ProducerId" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
           <Property Type="String" Name="Title" Nullable="false" />
           <Property Type="Int32" Name="TotalCount" Nullable="false" />
           <Property Type="Decimal" Name="TotalVotes" Nullable="false" />
@@ -263,9 +452,49 @@
           <Property Type="Boolean" Name="ViewPrice" Nullable="false" />
           <Property Type="Boolean" Name="ViewVotes" Nullable="false" />
           <NavigationProperty Name="mytrip_storedepartment" Relationship="Model.FK_mytrip_storeproduct_mytrip_storedepartment" FromRole="mytrip_storeproduct" ToRole="mytrip_storedepartment" />
-          <NavigationProperty Name="mytrip_storeoptions" Relationship="Model.FK_mytrip_storeoptions_mytrip_storeproduct" FromRole="mytrip_storeproduct" ToRole="mytrip_storeoptions" />
+          <NavigationProperty Name="mytrip_storeorderisproduct" Relationship="Model.mytrip_storeorder_FK2" FromRole="mytrip_storeproduct" ToRole="mytrip_storeorderisproduct" />
           <NavigationProperty Name="mytrip_storeproducer" Relationship="Model.FK_mytrip_storeproduct_mytrip_storeproducer" FromRole="mytrip_storeproduct" ToRole="mytrip_storeproducer" />
           <NavigationProperty Name="mytrip_storevotes" Relationship="Model.FK_mytrip_storevotes_mytrip_storeproduct" FromRole="mytrip_storeproduct" ToRole="mytrip_storevotes" />
+          <NavigationProperty Name="mytrip_storesale" Relationship="Model.mytrip_storeproduct_FK1" FromRole="mytrip_storeproduct" ToRole="mytrip_storesale" />
+        </EntityType>
+        <EntityType Name="mytrip_storeprofile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Type="String" Name="Address" />
+          <Property Type="String" Name="FirstName" Nullable="false" />
+          <Property Type="Boolean" Name="IsAnonym" Nullable="false" />
+          <Property Type="String" Name="LastName" />
+          <Property Type="String" Name="Organization" />
+          <Property Type="String" Name="OrganizationINN" />
+          <Property Type="String" Name="OrganizationKPP" />
+          <Property Type="String" Name="Phone" />
+          <Property Type="Int32" Name="ProfileId" Nullable="false" />
+          <Property Type="String" Name="UserEmail" Nullable="false" />
+          <Property Type="String" Name="UserIP" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" />
+          <NavigationProperty Name="mytrip_storeorder" Relationship="Model.mytrip_storeorder_FK5" FromRole="mytrip_storeprofile" ToRole="mytrip_storeorder" />
+        </EntityType>
+        <EntityType Name="mytrip_storeseller">
+          <Key>
+            <PropertyRef Name="SellerId" />
+          </Key>
+          <Property Type="String" Name="Accountant" />
+          <Property Type="String" Name="Address" />
+          <Property Type="Boolean" Name="AllCulture" Nullable="false" />
+          <Property Type="String" Name="Bank" />
+          <Property Type="String" Name="BankAccount" />
+          <Property Type="String" Name="BankAccountBIK" />
+          <Property Type="String" Name="BankAccountSeller" />
+          <Property Type="String" Name="Culture" Nullable="false" />
+          <Property Type="String" Name="Director" />
+          <Property Type="String" Name="Email" />
+          <Property Type="Boolean" Name="LiteNDS" Nullable="false" />
+          <Property Type="String" Name="Organization" />
+          <Property Type="String" Name="OrganizationINN" />
+          <Property Type="String" Name="OrganizationKPP" />
+          <Property Type="String" Name="Phone" />
+          <Property Type="Int32" Name="SellerId" Nullable="false" />
         </EntityType>
         <EntityType Name="mytrip_storevotes">
           <Key>
@@ -279,18 +508,6 @@
           <Property Type="Int32" Name="VotesId" Nullable="false" />
           <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.FK_mytrip_storevotes_mytrip_storeproduct" FromRole="mytrip_storevotes" ToRole="mytrip_storeproduct" />
         </EntityType>
-        <Association Name="FK_mytrip_storedepartment_mytrip_storedepartment">
-          <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment" Multiplicity="1" />
-          <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mytrip_storedepartment">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="mytrip_storedepartment1">
-              <PropertyRef Name="SubDepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_mytrip_storeproduct_mytrip_storedepartment">
           <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment" Multiplicity="1" />
           <End Type="Model.mytrip_storeproduct" Role="mytrip_storeproduct" Multiplicity="*" />
@@ -303,14 +520,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_mytrip_storeoptions_mytrip_storeproduct">
+        <Association Name="mytrip_storedepartment_FK2">
+          <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment" Multiplicity="1" />
+          <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storedepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment1">
+              <PropertyRef Name="SubDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeorder_FK2">
           <End Type="Model.mytrip_storeproduct" Role="mytrip_storeproduct" Multiplicity="1" />
-          <End Type="Model.mytrip_storeoptions" Role="mytrip_storeoptions" Multiplicity="*" />
+          <End Type="Model.mytrip_storeorderisproduct" Role="mytrip_storeorderisproduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="mytrip_storeproduct">
               <PropertyRef Name="ProductId" />
             </Principal>
-            <Dependent Role="mytrip_storeoptions">
+            <Dependent Role="mytrip_storeorderisproduct">
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -339,6 +568,101 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="mytrip_storeorder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Type="String" Name="AccountPage" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <Property Type="String" Name="Culture" Nullable="false" />
+          <Property Type="DateTime" Name="DateAccount" />
+          <Property Type="Decimal" Name="Delivery" Nullable="false" />
+          <Property Type="String" Name="ManagerName" />
+          <Property Type="String" Name="MoneyId" Nullable="false" />
+          <Property Type="Int32" Name="NamberAccount" />
+          <Property Type="Int32" Name="OrderId" Nullable="false" />
+          <Property Type="String" Name="PriceInWords" />
+          <Property Type="Int32" Name="ProfileId" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <NavigationProperty Name="mytrip_storeorderisproduct" Relationship="Model.mytrip_storeorderisproduct_FK1" FromRole="mytrip_storeorder" ToRole="mytrip_storeorderisproduct" />
+          <NavigationProperty Name="mytrip_storeprofile" Relationship="Model.mytrip_storeorder_FK5" FromRole="mytrip_storeorder" ToRole="mytrip_storeprofile" />
+        </EntityType>
+        <Association Name="mytrip_storeorderisproduct_FK1">
+          <End Type="Model.mytrip_storeorder" Role="mytrip_storeorder" Multiplicity="1" />
+          <End Type="Model.mytrip_storeorderisproduct" Role="mytrip_storeorderisproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeorder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="mytrip_storeorderisproduct">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeorder_FK5">
+          <End Type="Model.mytrip_storeprofile" Role="mytrip_storeprofile" Multiplicity="1" />
+          <End Type="Model.mytrip_storeorder" Role="mytrip_storeorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storeprofile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="mytrip_storeorder">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="mytrip_storesale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Type="DateTime" Name="CloseDate" Nullable="false" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="false" />
+          <Property Type="String" Name="ManagerName" Nullable="false" />
+          <Property Type="Int32" Name="Sale" Nullable="false" />
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="String" Name="Title" />
+          <Property Type="String" Name="UserName" />
+          <NavigationProperty Name="mytrip_storedepartment" Relationship="Model.mytrip_storedepartment_FK1" FromRole="mytrip_storesale" ToRole="mytrip_storedepartment" />
+          <NavigationProperty Name="mytrip_storeproducer" Relationship="Model.mytrip_storeproducer_FK1" FromRole="mytrip_storesale" ToRole="mytrip_storeproducer" />
+          <NavigationProperty Name="mytrip_storeproduct" Relationship="Model.mytrip_storeproduct_FK1" FromRole="mytrip_storesale" ToRole="mytrip_storeproduct" />
+        </EntityType>
+        <Association Name="mytrip_storedepartment_FK1">
+          <End Type="Model.mytrip_storesale" Role="mytrip_storesale" Multiplicity="1" />
+          <End Type="Model.mytrip_storedepartment" Role="mytrip_storedepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storedepartment">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeproducer_FK1">
+          <End Type="Model.mytrip_storesale" Role="mytrip_storesale" Multiplicity="1" />
+          <End Type="Model.mytrip_storeproducer" Role="mytrip_storeproducer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproducer">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_storeproduct_FK1">
+          <End Type="Model.mytrip_storesale" Role="mytrip_storesale" Multiplicity="1" />
+          <End Type="Model.mytrip_storeproduct" Role="mytrip_storeproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_storesale">
+              <PropertyRef Name="SaleId" />
+            </Principal>
+            <Dependent Role="mytrip_storeproduct">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -351,6 +675,7 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="SubDepartmentId" ColumnName="SubDepartmentId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="Culture" ColumnName="Culture" />
@@ -360,16 +685,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mytrip_storeoptions">
-            <EntityTypeMapping TypeName="Model.mytrip_storeoptions">
-              <MappingFragment StoreEntitySet="mytrip_storeoptions">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
+          <EntitySetMapping Name="mytrip_storeorderisproduct">
+            <EntityTypeMapping TypeName="Model.mytrip_storeorderisproduct">
+              <MappingFragment StoreEntitySet="mytrip_storeorderisproduct">
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="OptionsId" ColumnName="OptionsId" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="MoneyId" ColumnName="MoneyId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -378,6 +701,7 @@
               <MappingFragment StoreEntitySet="mytrip_storeproducer">
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
                 <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Culture" ColumnName="Culture" />
@@ -398,16 +722,60 @@
                 <ScalarProperty Name="TotalVotes" ColumnName="TotalVotes" />
                 <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="NamberCatalog" ColumnName="NamberCatalog" />
+                <ScalarProperty Name="MoneyId" ColumnName="MoneyId" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="Culture" ColumnName="Culture" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeprofile">
+            <EntityTypeMapping TypeName="Model.mytrip_storeprofile">
+              <MappingFragment StoreEntitySet="mytrip_storeprofile">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OrganizationKPP" ColumnName="OrganizationKPP" />
+                <ScalarProperty Name="OrganizationINN" ColumnName="OrganizationINN" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IsAnonym" ColumnName="IsAnonym" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeseller">
+            <EntityTypeMapping TypeName="Model.mytrip_storeseller">
+              <MappingFragment StoreEntitySet="mytrip_storeseller">
+                <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OrganizationKPP" ColumnName="OrganizationKPP" />
+                <ScalarProperty Name="OrganizationINN" ColumnName="OrganizationINN" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="LiteNDS" ColumnName="LiteNDS" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="BankAccountSeller" ColumnName="BankAccountSeller" />
+                <ScalarProperty Name="BankAccountBIK" ColumnName="BankAccountBIK" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -420,6 +788,38 @@
                 <ScalarProperty Name="Reviews" ColumnName="Reviews" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storeorder">
+            <EntityTypeMapping TypeName="Model.mytrip_storeorder">
+              <MappingFragment StoreEntitySet="mytrip_storeorder">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="PriceInWords" ColumnName="PriceInWords" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="NamberAccount" ColumnName="NamberAccount" />
+                <ScalarProperty Name="MoneyId" ColumnName="MoneyId" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+                <ScalarProperty Name="DateAccount" ColumnName="DateAccount" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="AccountPage" ColumnName="AccountPage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_storesale">
+            <EntityTypeMapping TypeName="Model.mytrip_storesale">
+              <MappingFragment StoreEntitySet="mytrip_storesale">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -444,34 +844,57 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="MysqlStore">
-        <EntityTypeShape EntityType="Model.mytrip_storedepartment" Width="1.5" PointX="0.75" PointY="7.125" Height="2.9070849609374996" />
-        <EntityTypeShape EntityType="Model.mytrip_storeoptions" Width="1.5" PointX="5.25" PointY="1.125" Height="2.2496956380208317" />
-        <EntityTypeShape EntityType="Model.mytrip_storeproducer" Width="1.5" PointX="0.75" PointY="2.375" Height="2.4140429687499991" />
-        <EntityTypeShape EntityType="Model.mytrip_storeproduct" Width="1.5" PointX="3" PointY="1.375" Height="4.5505582682291674" />
-        <EntityTypeShape EntityType="Model.mytrip_storevotes" Width="1.5" PointX="5.25" PointY="4.125" Height="2.0853483072916674" />
-        <AssociationConnector Association="Model.FK_mytrip_storedepartment_mytrip_storedepartment" >
-          <ConnectorPoint PointX="1.2819230769230767" PointY="10.0320849609375" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="10.2820849609375" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="10.2820849609375" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="10.0320849609375" />
-        </AssociationConnector>
+      <Diagram Name="MysqlStore" ZoomLevel="95">
+        <EntityTypeShape EntityType="Model.mytrip_storedepartment" Width="1.5" PointX="2.5" PointY="1.625" Height="3.2357796223958317" />
+        <EntityTypeShape EntityType="Model.mytrip_storeorderisproduct" Width="1.5" PointX="6.625" PointY="3.125" Height="2.0853483072916674" />
+        <EntityTypeShape EntityType="Model.mytrip_storeproducer" Width="1.5" PointX="0.5" PointY="4" Height="2.7427376302083317" />
+        <EntityTypeShape EntityType="Model.mytrip_storeproduct" Width="1.5" PointX="4.625" PointY="0.5" Height="5.3722949218750031" />
+        <EntityTypeShape EntityType="Model.mytrip_storeprofile" Width="1.5" PointX="4.625" PointY="6.375" Height="3.0714322916666674" />
+        <EntityTypeShape EntityType="Model.mytrip_storeseller" Width="1.5" PointX="2.5" PointY="6.375" Height="3.5644742838541674" />
+        <EntityTypeShape EntityType="Model.mytrip_storevotes" Width="1.5" PointX="6.625" PointY="0.5" Height="2.0853483072916674" />
         <AssociationConnector Association="Model.FK_mytrip_storeproduct_mytrip_storedepartment" >
-          <ConnectorPoint PointX="2.25" PointY="8.57854248046875" />
-          <ConnectorPoint PointX="3.75" PointY="8.57854248046875" />
-          <ConnectorPoint PointX="3.75" PointY="5.9255582682291674" />
+          <ConnectorPoint PointX="4" PointY="3.2428898111979159" />
+          <ConnectorPoint PointX="4.625" PointY="3.2428898111979159" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.FK_mytrip_storeoptions_mytrip_storeproduct" >
-          <ConnectorPoint PointX="4.5" PointY="2.3748478190104159" />
-          <ConnectorPoint PointX="5.25" PointY="2.3748478190104159" />
+        <AssociationConnector Association="Model.mytrip_storedepartment_FK2" >
+          <ConnectorPoint PointX="3.0319230769230767" PointY="4.8607796223958326" />
+          <ConnectorPoint PointX="3.0319230769230767" PointY="5.1107796223958326" />
+          <ConnectorPoint PointX="3.4784615384615383" PointY="5.1107796223958326" />
+          <ConnectorPoint PointX="3.4784615384615383" PointY="4.8607796223958326" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mytrip_storeorder_FK2" >
+          <ConnectorPoint PointX="6.125" PointY="4.1676741536458337" />
+          <ConnectorPoint PointX="6.625" PointY="4.1676741536458337" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FK_mytrip_storeproduct_mytrip_storeproducer" >
-          <ConnectorPoint PointX="2.25" PointY="3.582021484375" />
-          <ConnectorPoint PointX="3" PointY="3.582021484375" />
+          <ConnectorPoint PointX="2" PointY="5.5540372721354156" />
+          <ConnectorPoint PointX="4.625" PointY="5.5540372721354156" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FK_mytrip_storevotes_mytrip_storeproduct" >
-          <ConnectorPoint PointX="4.5" PointY="5.0252791341145837" />
-          <ConnectorPoint PointX="5.25" PointY="5.0252791341145837" />
+          <ConnectorPoint PointX="6.125" PointY="1.5426741536458337" />
+          <ConnectorPoint PointX="6.625" PointY="1.5426741536458337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.mytrip_storeorder" Width="1.5" PointX="6.875" PointY="6.25" Height="3.2357796223958344" />
+        <AssociationConnector Association="Model.mytrip_storeorderisproduct_FK1" >
+          <ConnectorPoint PointX="7.5" PointY="6.25" />
+          <ConnectorPoint PointX="7.5" PointY="5.2103483072916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mytrip_storeorder_FK5" >
+          <ConnectorPoint PointX="6.125" PointY="7.9107161458333328" />
+          <ConnectorPoint PointX="6.875" PointY="7.9107161458333328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.mytrip_storesale" Width="1.5" PointX="0.5" PointY="0.625" Height="2.7427376302083313" />
+        <AssociationConnector Association="Model.mytrip_storedepartment_FK1" >
+          <ConnectorPoint PointX="2" PointY="2.4963688151041659" />
+          <ConnectorPoint PointX="2.5" PointY="2.4963688151041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mytrip_storeproducer_FK1" >
+          <ConnectorPoint PointX="1.25" PointY="3.3677376302083313" />
+          <ConnectorPoint PointX="1.25" PointY="4" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mytrip_storeproduct_FK1" >
+          <ConnectorPoint PointX="2" PointY="1.09375" />
+          <ConnectorPoint PointX="4.625" PointY="1.09375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

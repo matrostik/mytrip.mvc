@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(VotesLanguage.votessetting, ",");
     View.Description=Html.MytripPageTitle(VotesLanguage.votessetting, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@VotesLanguage.votessetting</h1>
 @{Html.EnableClientValidation();}

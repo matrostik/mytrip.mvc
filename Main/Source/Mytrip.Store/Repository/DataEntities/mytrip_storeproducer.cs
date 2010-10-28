@@ -66,9 +66,41 @@ namespace Mytrip.Store.Repository.DataEntities
             get;
             set;
         }
+    
+        public virtual int SaleId
+        {
+            get { return _saleId; }
+            set
+            {
+                if (_saleId != value)
+                {
+                    if (mytrip_storesale != null && mytrip_storesale.SaleId != value)
+                    {
+                        mytrip_storesale = null;
+                    }
+                    _saleId = value;
+                }
+            }
+        }
+        private int _saleId;
 
         #endregion
         #region Navigation Properties
+    
+        public virtual mytrip_storesale mytrip_storesale
+        {
+            get { return _mytrip_storesale; }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_storesale, value))
+                {
+                    var previousValue = _mytrip_storesale;
+                    _mytrip_storesale = value;
+                    Fixupmytrip_storesale(previousValue);
+                }
+            }
+        }
+        private mytrip_storesale _mytrip_storesale;
     
         public virtual ICollection<mytrip_storeproduct> mytrip_storeproduct
         {
@@ -104,6 +136,26 @@ namespace Mytrip.Store.Repository.DataEntities
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupmytrip_storesale(mytrip_storesale previousValue)
+        {
+            if (previousValue != null && previousValue.mytrip_storeproducer.Contains(this))
+            {
+                previousValue.mytrip_storeproducer.Remove(this);
+            }
+    
+            if (mytrip_storesale != null)
+            {
+                if (!mytrip_storesale.mytrip_storeproducer.Contains(this))
+                {
+                    mytrip_storesale.mytrip_storeproducer.Add(this);
+                }
+                if (SaleId != mytrip_storesale.SaleId)
+                {
+                    SaleId = mytrip_storesale.SaleId;
+                }
+            }
+        }
     
         private void Fixupmytrip_storeproduct(object sender, NotifyCollectionChangedEventArgs e)
         {

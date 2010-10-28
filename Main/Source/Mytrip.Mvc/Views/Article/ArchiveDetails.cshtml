@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(Model.PageTitle, ",");
     View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
 }
-@section csslink{}
 @section scriptlink{
-@Html.ScriptLink("Page/Article.Index.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js")
+@Html.ScriptLink("Page/Articles.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
  <h1 class="title">@Model.PageTitle </h1>
 <div class="content">
@@ -42,32 +39,32 @@
 </div> 
 </div>
 
-<div id="editCategory" class="window"> 
+<div id="modalCategory" class="window"> 
 <div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
 @ArticleLanguage.edit</div>
 <div class="modalC">
 <table class="leftmidle"><tr><td>
 </td><td>
-@Html.MytripLabelFor("Title", ArticleLanguage.name)
+@Html.MytripLabelFor("catTitle", ArticleLanguage.name)
 @Html.TextBox("catTitle")
 <span class="field-validation-valid" id="Title_Error"></span>
-
+@Html.Hidden("modalEditId")
 @Html.HiddenFor(model => model.Path)
-<div id="showMenu">
-@Html.CheckBox("SeparateBlock")
-@Html.MytripLabelFor("SeparateBlock", ArticleLanguage.add_to_menu)
-</div><div id="showLang">
-@Html.CheckBox("AllCulture")
-@Html.MytripLabelFor("AllCulture", ArticleLanguage.display_all_lang)
+<div id="modalShowMenu">
+@Html.CheckBox("modalSeparateBlock")
+@Html.MytripLabelFor("modalSeparateBlock", ArticleLanguage.add_to_menu)
+</div><div id="modalShowLang">
+@Html.CheckBox("modalAllCulture")
+@Html.MytripLabelFor("modalAllCulture", ArticleLanguage.display_all_lang)
 </div></td></tr></table>  
 <div class="button">
 @Html.MytripButton(CoreLanguage.cancel, true, "cancel","right")
-@Html.MytripButton("   Ok   ", false, "ok","right")   
+@Html.MytripButton("   Ok   ", false, "okEditCategory","right")   
 </div>
 </div> 
 </div>
 
-<div id="editComment" class="window""> 
+<div id="modalComment" class="window""> 
 <div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
 @ArticleLanguage.edit_comment</div>
 <div class="modalC">
@@ -75,7 +72,7 @@
 <tr>
 <td>
 <div class="editor-field"><div class="dark">
-@Html.TextArea("EditComment", new { id = "edit", style = "height: 150px; width:450px;" })
+@Html.TextArea("EditComment", new { id = "modalCommentEditor", style = "height: 175px;" })
 </div></div>
 <span class="field-validation-valid" id="Comment_Error"></span>
 </td></tr></table>  
