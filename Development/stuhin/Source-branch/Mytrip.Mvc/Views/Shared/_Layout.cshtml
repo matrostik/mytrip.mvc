@@ -14,10 +14,9 @@
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link href="/RssArticle/RssArticles" rel="alternate" type="application/rss+xml" title="Articles" />
 <link href="/RssArticle/RssBlogs" rel="alternate" type="application/rss+xml" title="Blogs" />
-@Html.CssLink("Site.css") @RenderSection("csslink") 
-@Html.ScriptLink("jquery-1.4.2.js,Mytrip.Mvc.Include.js") @RenderSection("scriptlink")
+@Html.CssLink("Site.css") @RenderSection("csslink",required: false) 
+@Html.ScriptLink("jquery-1.4.2.js,Mytrip.Mvc.Include.js") @RenderSection("scriptlink",required: false)
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-18731834-2']);
   _gaq.push(['_trackPageview']);
@@ -27,7 +26,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 <meta name="keywords" content="@View.Keywords" />
 <meta name="description" content="@View.Description" />	
@@ -38,6 +36,9 @@
 <div id="logindisplay">
 @Html.LanguageMenu()@Html.ThemeMenu()@Html.LogonMenu()
 </div>
+<div id="announce">
+@Html.Partial("_announce")
+</div>
 <div id="title">
 @Html.Logo()
 </div>
@@ -46,11 +47,11 @@
 </div>
 </div>
 <div id="main">
-@RenderSection("content")
+@RenderSection("content",required: false)
 <div id="mainSmall">
-@RenderSection("contentSmall")
+@RenderSection("contentSmall",required: false)
 </div><div id="mainBig">
-@RenderSection("contentBig")
+@RenderSection("contentBig",required: false)
 </div>
 <div class="clear"></div>
 </div>

@@ -11,10 +11,6 @@
     View.Keywords=Html.MytripPageTitle(CoreLanguage.Edit_page, ",");
     View.Description=Html.MytripPageTitle(CoreLanguage.Edit_page, ",");
 }
-@section csslink{}
-@section scriptlink{}
-@section contentBig{}
-@section contentSmall{}
 @section content{
 @{string idd =(Model.directory.LastIndexOf("()") > 2)?Model.directory.Remove(Model.directory.LastIndexOf("()")): "()";}
 <h1 class="title">@CoreLanguage.Edit_page</h1>

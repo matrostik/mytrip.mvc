@@ -1,8 +1,0 @@
-﻿div.footerC{background: url(images/accordioncontentcon.png);padding: 0px 5px 0px 5px;height: 35px;}
-div.footerTL{position: relative;width: 3px;height: 3px;float: left;background: url(images/accordioncontent.png);}
-div.footerBL{position: relative;width: 3px;height: 3px;float: left;background: url(images/accordioncontent.png);background-position: 0px -3px;}
-div.footerTR{position: relative;width: 3px;height: 3px;float: right;background: url(images/accordioncontent.png);background-position: -4px 0px;}
-div.footerBR{position: relative;width: 3px;height: 3px;float: right;background: url(images/accordioncontent.png);background-position: -4px -3px;}
-div.footerTC{background: url(images/accordioncontentcon.png);height: 3px;margin-right: 3px;margin-left: 3px;} 
-div.footerBC{background: url(images/accordioncontentcon.png);height: 3px;margin-right: 3px;margin-left: 3px;}
-

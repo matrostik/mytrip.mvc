@@ -414,7 +414,6 @@ namespace Mytrip.Mvc.Settings
             result.MergeAttribute("alt", alt);
             return result.ToString();
         }
-
         /// <summary>Изображение с ссылкой
         /// </summary>
         /// <param name="linkUrl"></param>
@@ -646,7 +645,26 @@ namespace Mytrip.Mvc.Settings
             result.Append("</div>");
             return result.ToString();
         }
-
+        /// <summary>Оформление [input type="submit" id="id"/]
+        /// </summary>
+        /// <param name="value">текст</param>
+        /// <param name="warning">выделение цветом (true - выделен)</param>
+        /// <param name="id">индентификатор</param>
+        /// <param name="_float">положение "left" "right"</param>
+        /// <returns>возвращает string</returns>
+        public static string Tab(string value,string id)
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append("<div class=\"tabI\">");
+            TagBuilder _result = new TagBuilder("input");
+            _result.AddCssClass("button");
+            _result.MergeAttribute("type", "submit");
+            _result.MergeAttribute("value", value);
+            _result.MergeAttribute("id", id);
+            result.Append(_result.ToString());
+            result.Append("</div>");
+            return result.ToString();
+        }
         /// <summary>Оформление [input type="image" value="value" class="_class"/]
         /// если ссылка не содержит "Content" перенаправление в
         /// папку текущей темы

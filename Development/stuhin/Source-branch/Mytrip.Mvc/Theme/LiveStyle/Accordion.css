@@ -12,14 +12,7 @@ div.accTC.ac a:hover{color: #4A4C4F;text-decoration: none;}
 div.accTL.ac{position: relative;width: 20px;height: 30px;float: left;background: url(images/accordion.png);background-position: 0px -60px;}
 div.accTR.ac{position: relative;width: 3px;height: 30px;float: right;background: url(images/accordion.png);background-position: -81px -60px;}
 /*------visible-----------------*/
-div.accC
-{
-    border-style: solid;
-    border-width: 0px 1px 0px 1px;
-    border-color: #7DA2CE;
-    padding: 5px 5px 5px 5px;
-    background-color: #CEE3FD;
-}
+div.accC{border-style: solid;border-width: 0px 1px 0px 1px;border-color: #7DA2CE;padding: 5px 5px 5px 5px;background-color: #CEE3FD;}
 div.accC ul{margin: 0px;padding: 0px 5px 10px 20px;list-style-image: url('images/ul.png');}
 div.accC ul li{padding: 0px 0px 5px 0px;}
 div.accC2 ul{margin: 0px;padding: 0px 5px 10px 20px;list-style-image: url('images/ul.png');}

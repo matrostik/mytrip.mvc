@@ -619,7 +619,20 @@ namespace Mytrip.Mvc.Repository
                 .Include("mytrip_usersmembership")
                 .OrderBy(x => x.UserName);
         }
-
+        /// <summary>
+        /// Change Email
+        /// </summary>
+        /// <param name="email">new e-mail</param>
+        /// <returns></returns>
+        internal void ChangeEmail(string email)
+        {
+            var user = entities.mytrip_users.Include("mytrip_usersmembership").FirstOrDefault(x => x.UserName == HttpContext.Current.User.Identity.Name);
+            if (user != null)
+            {
+                user.mytrip_usersmembership.Email = email;
+                entities.SaveChanges();
+            }
+        }
         #endregion
 
         #region MembershipProvider private
@@ -818,26 +831,16 @@ namespace Mytrip.Mvc.Repository
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="email"></param>
         /// <param name="provider"></param>
         /// <param name="approved"></param>
         /// <param name="yes"></param>
         /// <returns></returns>
-        internal string UserNameOpenId(string email, string provider, out bool approved, out bool yes)
+        internal string UserNameOpenId(string provider, out bool approved, out bool yes)
         {
             mytrip_users user = null;
-            if (email != "z")
-            {
                 user = entities.mytrip_users.Include("mytrip_usersmembership")
                     .Where(x => x.mytrip_usersmembership.Password == provider)
-                    .FirstOrDefault(x => x.mytrip_usersmembership.Email == email);
-            }
-            else
-            {
-                user = entities.mytrip_users.Include("mytrip_usersmembership")
-                    .Where(x => x.mytrip_usersmembership.Password == provider)
-                    .FirstOrDefault(x => x.mytrip_usersmembership.PasswordSalt == provider);
-            }
+                    .FirstOrDefault(x => x.mytrip_usersmembership.PasswordSalt == provider);            
             string result = string.Empty;
             approved = false;
             yes = false;

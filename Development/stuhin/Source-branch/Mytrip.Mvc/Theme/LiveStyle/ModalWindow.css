@@ -5,9 +5,7 @@ div.modalTL{position: relative;width: 12px;height: 30px;float: left;background: 
 div.modalTR{position: relative;width: 22px;height: 30px;float: right;background: url(images/modal.png);background-position: -62px 0px;cursor: pointer;}
 div.modalTR:hover{position: relative;width: 22px;height: 30px;float: right;background: url(images/modal.png);background-position: -62px -30px;cursor: pointer;}
 div.modalTC{background: url(images/modalcon.png);background-repeat: repeat-x;color: #000;height: 25px;padding-top: 5px;margin-right: 22px;margin-left: 12px;}
-div.modalC{background: #CEE3FD;border-style: solid;
-    border-width: 0px 1px 0px 1px;
-    border-color: #7DA2CE;padding: 5px 10px 10px 10px;}
+div.modalC{background: #CEE3FD;border-style: solid;border-width: 0px 1px 0px 1px;border-color: #7DA2CE;padding: 5px 10px 10px 10px;}
 div.modalBL{position: relative;width: 3px;height: 3px;float: left;background: url(images/accordioncontent.png);background-position: 0px -3px;}
 div.modalBR{position: relative;width: 3px;height: 3px;float: right;background: url(images/accordioncontent.png);background-position: -4px -4px;}
 div.modalBC{border-bottom: 1px solid #7DA2CE;background:#CEE3FD;height: 2px;margin-right: 3px;margin-left: 3px;}
