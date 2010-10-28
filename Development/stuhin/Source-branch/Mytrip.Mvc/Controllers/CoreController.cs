@@ -67,7 +67,8 @@ namespace Mytrip.Mvc.Controllers
             model.nameAbout = CoreSetting.NameAboutPage();
             model.nameTitle = CoreSetting.NameTitlePage();
             model.ControlPanelSideBare = CoreSetting.ControlPanelSideBare();
-            model.DonateSideBare = CoreSetting.DonateSideBare();            
+            model.DonateSideBare = CoreSetting.DonateSideBare();
+            model.ProfileSideBare = UsersSetting.unlockVisibleProfileToSidebar();
             return View(model);
         }
 
@@ -154,6 +155,8 @@ namespace Mytrip.Mvc.Controllers
                 var profile = _doc.Root.Elements("profile").Elements("add");
                 profile.FirstOrDefault(x => x.Attribute("name").Value == "unlockGravatar")
                     .SetAttributeValue("value", model.unlockGravatar.ToString());
+                profile.FirstOrDefault(x => x.Attribute("name").Value == "unlockVisibleProfileToSidebar")
+                    .SetAttributeValue("value", model.ProfileSideBare.ToString());
                 var pagename = _doc.Root.Elements("core").Elements("add");
                 var content = pagename.FirstOrDefault(x => x.Attribute("name").Value == "nameHome").Elements("add");
                 content.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
@@ -195,6 +198,7 @@ namespace Mytrip.Mvc.Controllers
                 GeneralMethods.MytripCacheRemove("us_unlockvisiblelogon");
                 GeneralMethods.MytripCacheRemove("us_unlockapprovedemail");
                 GeneralMethods.MytripCacheRemove("us_rolechiefeditor");
+                GeneralMethods.MytripCacheRemove("us_unlockvisibleprofiletosidebar");
                 #endregion
 
                 return RedirectToAction("ControlPanel");
@@ -244,6 +248,7 @@ namespace Mytrip.Mvc.Controllers
             coreRepo.installModuleRepo.CreateProfileSmall();
             coreRepo.installModuleRepo.CreateProfile(LocalisationSetting.culture());
             coreRepo.installModuleRepo.CreateControlPanel();
+            coreRepo.installModuleRepo.CreateAnonce();
 
             string _absolutDirectory = HttpContext.Server.MapPath("/Web.config");
             XDocument _doc = XDocument.Load(_absolutDirectory);

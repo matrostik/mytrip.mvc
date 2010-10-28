@@ -49,6 +49,20 @@
                         $(this).css({ width: ((b + c + d) + 'px') });
                 }
             });
+            $('div.tabI').each(function () {
+                var a = $(this).html();
+                if (data == 'IE_7.0')
+                    var b = $(this).children('input').width();
+                    $(this).html('<div class="tabR"/><div class="tabL"/><div class="tabC">' + a + '</div>');                
+                if (data == 'IE_7.0') {
+                    var c = $('div.tabL').width();
+                    var d = $('div.tabR').width();
+                    if (b > 0)
+                        $(this).css({ width: ((b + c + d) + 'px') });
+                }
+            });
+            $('div.tabI:first').find("div.tabR, div.tabL, div.tabC").addClass("ac");
+
         }
     });
     $('div.buttonIL,div.buttonIR,div.buttonAL,div.buttonAR').hover(function () {

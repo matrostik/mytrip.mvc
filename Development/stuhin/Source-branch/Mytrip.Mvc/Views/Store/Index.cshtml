@@ -11,17 +11,15 @@
     View.Keywords=Html.MytripPageTitle(Model.titleDepartmentModel.title, ",");
     View.Description=Html.MytripPageTitle(Model.titleDepartmentModel.title, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Mytrip.Mvc.Delete.js,Page/Store.Index.js")
 }
-@section content{}
 @section contentSmall{
 @Html.Partial("_sideBar") 
 }
 @section contentBig{
 <div id="appr"></div>
-@Html.StoreTitleDepartment(Model.titleDepartmentModel)
+@Html.StoreTitleDepartmentAndProducer(Model.titleDepartmentModel)
 <div class="content"><div style="min-height:70px;">
 @using (Html.BeginForm()){
 <table class="right"><tr><td>

@@ -11,12 +11,9 @@
     View.Keywords=Html.MytripPageTitle(Model.pagetitle, ",");
     View.Description=Html.MytripPageTitle(Model.pagetitle, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jquery.form.js,Page/Store.EditorCategory.js")
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">@Model.pagetitle</h1>
 <table class="content">
@@ -44,7 +41,14 @@
 <div class="editor-label">
 @Html.CheckBoxFor(m => m.allculture)
 @Html.MytripLabelFor("allculture", StoreLanguage.allculture)
-</div> 
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("Sale", StoreLanguage.Sale)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.Sale, Model.SelectSale)
+</div>
+
+ 
 <div class="button">
 @Html.MytripButton(Model.submit, true,"left")
 </div>

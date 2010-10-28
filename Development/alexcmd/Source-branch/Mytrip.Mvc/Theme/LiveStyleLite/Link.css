@@ -1,9 +1,0 @@
-﻿input.link{font-family: 'Trebuchet MS' , Helvetica, Arial, sans-serif;font-size: inherit;border: 0;background: none;text-decoration: underline;cursor: pointer;color: #1E4173;}
-input.link:hover{font-family: 'Trebuchet MS', Helvetica, Arial,  sans-serif;border: 0;background: none;text-decoration: none;color:#1E4173;cursor: pointer;}
-a{color: #1E4173;text-decoration: underline;}
-a:link{color: #1E4173;text-decoration: underline;}
-a:visited{color: #1E4173;}
-a:hover{color: #1E4173;text-decoration: none;}
-a:active{color: #1E4173;}
-a.hometitle{font-weight: bold;color: #00050F;}
-a.pagerStaticText{cursor: default;text-decoration: none;font-size: 1.3em;color: #1E395B;}
