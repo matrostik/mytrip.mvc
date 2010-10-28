@@ -7,6 +7,7 @@ using System.Web;
 using Mytrip.Store.Repository;
 using System.Web.Mvc;
 using Mytrip.Mvc.Settings;
+using Mytrip.Store.Helpers;
 
 namespace Mytrip.Store
 {
@@ -58,7 +59,74 @@ namespace Mytrip.Store
             }
             else { return null; }
         }
-        
+
+        #region HomePage
+        public static HtmlString HomePage(int categoryId, int line, int column, int content, int imgwidth, int style, bool viewtitle)
+        {
+            IStoreRepository ar = new IStoreRepository();
+                int take = line * column;
+                var articles = ar.product.GetProductForStore(LocalisationSetting.culture(), take);
+                int _count = articles.Count();
+                if (column > _count)
+                    column = _count;
+                int _count2 = 0;
+                int _line = 1;
+                if (_count > column)
+                {
+                    Math.DivRem(_count, column, out _count2);
+                    _line = (int)Math.Ceiling((double)_count / column);
+                }
+                int count = 1;
+                int tr = 0;
+                int width = 100;
+                if (column > 0)
+                    width = 100 / column;
+                StringBuilder result = new StringBuilder();
+                TagBuilder table = new TagBuilder("table");
+                string _content = string.Empty;
+                int _line2 = 0;
+                string finaltr = string.Empty;
+                string start = string.Empty;
+                string end = string.Empty;
+                string styletable = string.Empty;
+                foreach (var article in articles)
+                {
+                    _content = ProductHelpers.ViewProduct(article, content, imgwidth);
+
+                    int tr2 = 0;
+                    int _line3 = 0;
+                    result.AppendLine(GeneralMethods.StyleTable(column, style, tr, width, _content,
+                        count, _count2, _line, _line2, out tr2, out _line3, out finaltr, out start, out end, out styletable));
+                    tr = tr2;
+                    _line2 = _line3;
+                    count++;
+                }
+                if (tr > 0 && tr % 2 != 0)
+                    result.AppendLine(finaltr);
+                table.AddCssClass(styletable);
+                table.InnerHtml = result.ToString();
+                string LangName = "<a href=\"/Store/Index/1/10/0/0/1/Department\">" + ModuleSetting.nameStore() + "</a>";
+                string _CategoryName = string.Empty;
+                if (viewtitle)
+                    _CategoryName = "<h3 class=\"title\">" + LangName + "</h3>";
+                if (column > 0)
+                    return new HtmlString(_CategoryName + start + table.ToString() + end);
+                else
+                    return null;
+            
+        }
+        #endregion
+
+
+        public static HtmlString AccordionSearch()
+        {
+            TagBuilder form = new TagBuilder("form");
+            string url = (HttpContext.Current.Request.Path.ToString() == "/") ? "/Home/Index" : HttpContext.Current.Request.Path.ToString();
+            form.MergeAttribute("action", string.Concat("/Store/Search?url=", url));
+            form.MergeAttribute("method", "post");
+            form.InnerHtml = "<div class='search'><input  type='submit' value='' class='_search' ></input></div><input name='search' type='text' value='' class='search' />";
+            return new HtmlString(GeneralMethods.Accordion(ModuleSetting.NameSearchPage(), form.ToString()));
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -90,6 +158,78 @@ namespace Mytrip.Store
                 return new HtmlString(GeneralMethods.Accordion(cssclacc, a_title.ToString(), ul.ToString()));
             }
             else { return null; }
+        }
+        public static HtmlString AccordionProducer()
+        {
+            if (ModuleSetting.unlockStore())
+            {
+                TagBuilder a_title = new TagBuilder("a");
+                a_title.MergeAttribute("href", "/Store/Index/1/10/0/0/1/Producer");
+                a_title.InnerHtml = ModuleSetting.nameProducer();
+                TagBuilder ul = new TagBuilder("ul");
+                IStoreRepository ar = new IStoreRepository();
+                StringBuilder _result = new StringBuilder();
+                int count = 0;
+                foreach (var item in ar.producer.GetAllProducer(LocalisationSetting.culture()))
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Store/Index/1/10/0/" + item.ProducerId + "/1/" + item.Path);
+                    a.InnerHtml = item.Title;
+                    li.InnerHtml = a.ToString();
+                    _result.AppendLine(li.ToString());
+                    count++;
+                }
+                ul.InnerHtml = _result.ToString(); bool cssclacc = false;
+                if (count > 0)
+                    cssclacc = true;
+                return new HtmlString(GeneralMethods.Accordion(cssclacc, a_title.ToString(), ul.ToString()));
+            }
+            else { return null; }
+        }
+        public static HtmlString AccordionCart()
+        {
+            if (ModuleSetting.unlockStore())
+            {
+                TagBuilder a_title = new TagBuilder("a");
+                a_title.MergeAttribute("href", "/Store/Cart");
+                a_title.InnerHtml = StoreLanguage.mycarttitle;
+                return new HtmlString(GeneralMethods.Accordion(false, a_title.ToString(), null));
+            }
+            else { return null; }
+        }
+        public static HtmlString AnnounceCart()
+        {
+            if (ModuleSetting.unlockStore())
+            {
+                TagBuilder a_title = new TagBuilder("a");
+                a_title.MergeAttribute("href", "/Store/Cart");
+                a_title.InnerHtml = StoreLanguage.mycarttitle;
+                return new HtmlString(GeneralMethods.ImageLink(null, "/Store/Cart", StoreLanguage.mycarttitle, null, "/images/cart.png", StoreLanguage.mycarttitle,67));
+            }
+            else { return null; }
+        }
+
+        public static HtmlString Manager()
+        {
+            TagBuilder li_votes = new TagBuilder("li");
+            TagBuilder a_archive = new TagBuilder("a");
+            a_archive.MergeAttribute("href", "/Store/Manager");
+            a_archive.InnerHtml = StoreLanguage.manager;
+            li_votes.InnerHtml = a_archive.ToString();
+            HtmlString htmlresult = new HtmlString(li_votes.ToString());
+            return htmlresult;
+        }
+        public static HtmlString Setting()
+        {
+            TagBuilder li = new TagBuilder("li");
+            TagBuilder a = new TagBuilder("a");
+            a.MergeAttribute("href", "/Store/Setting");
+            a.InnerHtml = StoreLanguage.storeSetting;
+            li.InnerHtml = a.ToString();
+            HtmlString htmlresult = new HtmlString(li.ToString());
+            return htmlresult;
+
         }
     }
 }
