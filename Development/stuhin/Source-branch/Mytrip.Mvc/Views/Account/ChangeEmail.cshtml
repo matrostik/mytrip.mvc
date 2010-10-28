@@ -1,0 +1,35 @@
+﻿@model Mytrip.Mvc.Models.ChangeEmailModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(CoreLanguage.change_email, "/");
+    View.Keywords=Html.MytripPageTitle(CoreLanguage.change_email, ",");
+    View.Description=Html.MytripPageTitle(CoreLanguage.change_email, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
+}
+@section content{
+	<h1 class="title">@CoreLanguage.change_email</h1>
+@{Html.EnableClientValidation();}
+@using (Html.BeginForm()){ 
+<fieldset>
+<div class="editor-label">
+@Html.MytripLabelFor("Email",CoreLanguage.Email)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(m => m.Email)
+@Html.ValidationMessageFor(m => m.Email)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+</div>
+</fieldset>
+} 
+	}
+
