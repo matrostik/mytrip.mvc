@@ -82,7 +82,7 @@ namespace Mytrip.Mvc.Helpers
                 _result.MergeAttribute("href", UrlAction);
             }
             else if (extension == ".Master" || extension == ".master" || extension == ".cs" || extension == ".cshtml" || extension == ".css" || extension == ".aspx" || extension == ".xml"
-                || extension == ".txt" || extension == ".config" || extension == ".ascx" || extension == ".js")
+                || extension == ".txt" || extension == ".config" || extension == ".ascx" || extension == ".js" || extension == ".resx")
             {
                 directory = directory.Replace("/", "()");
                 directory = directory.Replace(".", "(x)");
@@ -111,7 +111,7 @@ namespace Mytrip.Mvc.Helpers
             _result.MergeAttribute("href", UrlAction);
             }
             else if (extension == ".Master" || extension == ".master" || extension == ".cs" || extension == ".cshtml" || extension == ".css" || extension == ".aspx" || extension == ".xml"
-                || extension == ".txt" || extension == ".config" || extension == ".ascx" || extension == ".js")
+                || extension == ".txt" || extension == ".config" || extension == ".ascx" || extension == ".js" || extension == ".resx")
             {
                 directory = directory.Replace("/", "()");
                 directory = directory.Replace(".", "(x)");

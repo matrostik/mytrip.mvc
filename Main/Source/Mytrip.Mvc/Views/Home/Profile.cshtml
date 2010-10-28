@@ -11,7 +11,6 @@
     View.Keywords=Html.MytripPageTitle(Model.UserName, ",");
     View.Description=Html.MytripPageTitle(Model.UserName, ",");
 }
-@section csslink{}
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js")
 <script type='text/javascript'\> 
@@ -26,8 +25,6 @@ var st = $('.dropdown dt a').find('span.value').html();
 	});
 </script>
 }
-@section contentBig{}
-@section contentSmall{}
 @section content{
 <h1 class="title">
 @string.Format(CoreLanguage.profile, Model.UserName)</h1>

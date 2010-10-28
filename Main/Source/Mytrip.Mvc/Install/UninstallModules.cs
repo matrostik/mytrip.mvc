@@ -155,6 +155,23 @@ namespace Mytrip.Mvc.Install
             //****************** E N D **********************
             #endregion
 
+            #region Удаление записей из /Views/Shared/_announce.cshtml
+            // **********************************************
+            // Удаление записей из /Views/Shared/_announce.cshtml
+            // **********************************************
+
+            profile = EditePageRepository.WritePage("/Views/Shared/_announce.cshtml");
+            _profile = new StringBuilder();
+            foreach (string x in profile)
+            {
+                if (!x.Contains(_moduleName))
+                    _profile.AppendLine(x);
+            }
+            EditePageRepository.CreatePage("/Views/Shared/_announce.cshtml", _profile.ToString());
+
+            //****************** E N D **********************
+            #endregion
+
             #region Удаление записей из /Views/Core/ControlPanel.cshtml
             // **********************************************
             // Удаление записей из /Views/Core/ControlPanel.cshtml

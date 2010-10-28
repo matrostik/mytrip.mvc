@@ -188,6 +188,10 @@ namespace Mytrip.Mvc.Models
         /// </summary>
         public bool DonateSideBare { get; set; }
 
+        /// <summary>Показ Профиля в сайдбаре (true - включен)
+        /// </summary>
+        public bool ProfileSideBare { get; set; }
+
         /// <summary>Вход OpenId (true - разрешен)
         /// </summary>
         public bool unlockOpenId { get; set; }

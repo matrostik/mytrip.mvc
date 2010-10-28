@@ -225,4 +225,12 @@ function () {
         var d = $(this).html();
         $(this).html('<div class="noapprTR"/><div class="noapprTL"/><div class="noapprTC"/><div class="noapprC">' + d + '</div><div class="noapprBR"/><div class="noapprBL"/><div class="noapprBC"/>');
     });
+    $('div.appr').each(function () {
+        var d = $(this).html();
+        $(this).html('<div class="apprTR"/><div class="apprTL"/><div class="apprTC"/><div class="apprC">' + d + '</div><div class="apprBR"/><div class="apprBL"/><div class="apprBC"/>');
+    });
+    $('div.tabc').each(function () {
+        var d = $(this).html();
+        $(this).html('<div class="tabcC">' + d + '</div><div class="tabcBR"/><div class="tabcBL"/><div class="tabcBC"/>');
+    });
 });

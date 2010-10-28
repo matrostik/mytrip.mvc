@@ -11,9 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>@View.Title</title>
 @Html.CssLink("Site.css")
-@RenderSection("csslink")
+@RenderSection("csslink",required: false)
 @Html.ScriptLink("jquery-1.4.2.js,Mytrip.Mvc.Include.js")
-@RenderSection("scriptlink")
+@RenderSection("scriptlink",required: false)
 <meta name="keywords" content="@View.Keywords" />
 <meta name="description" content="@View.Description" />
 </head>

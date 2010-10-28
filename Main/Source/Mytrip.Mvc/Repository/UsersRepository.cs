@@ -13,8 +13,7 @@ using Mytrip.Mvc.Settings;
 
 namespace Mytrip.Mvc.Repository
 {
-    /// <summary>
-    /// Методы для работы пользователями
+    /// <summary>Методы для работы пользователями
     /// </summary>
     public static class MytripUser
     {
@@ -52,8 +51,7 @@ namespace Mytrip.Mvc.Repository
         // Публичные методы для работы с капчей
         // **********************************************
 
-        /// <summary>
-        /// Хешированное значение капчи
+        /// <summary>Хешированное значение капчи
         /// </summary>
         /// <param name="captcha">значение капчи</param>
         /// <returns>возвращает string</returns>
@@ -72,8 +70,7 @@ namespace Mytrip.Mvc.Repository
         // Публичные методы для работы с кешем пользователей
         // **********************************************
 
-        /// <summary>
-        /// Проверка текущего пользователя на принадлежность к роли
+        /// <summary>Проверка текущего пользователя на принадлежность к роли
         /// </summary>
         /// <param name="roleName">Имя роли</param>
         /// <returns>возвращает bool</returns>
@@ -91,8 +88,7 @@ namespace Mytrip.Mvc.Repository
             return result;
         }
 
-        /// <summary>
-        /// Получение Email для текущего пользователя
+        /// <summary>Получение Email для текущего пользователя
         /// </summary>
         /// <returns>возвращает string</returns>
         public static string UserEmail()
@@ -106,8 +102,7 @@ namespace Mytrip.Mvc.Repository
             return string.Empty;
         }
 
-        /// <summary>
-        /// Получение Email для пользователя по его имени
+        /// <summary>Получение Email для пользователя по его имени
         /// </summary>
         /// <param name="userName">Имя пользователя</param>
         /// <returns>возвращает string</returns>
@@ -120,10 +115,9 @@ namespace Mytrip.Mvc.Repository
             }
             return string.Empty;
         }
-        /// <summary>
-        /// 
+        /// <summary>Получение списка пользователей принадлежащих к определенной роли
         /// </summary>
-        /// <param name="role"></param>
+        /// <param name="role">имя роли</param>
         /// <returns></returns>
         public static IEnumerable<ListUsers> GetUsers(string role)
         {

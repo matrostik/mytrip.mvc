@@ -27,6 +27,17 @@ namespace Mytrip.Store.Repository
                 return _entities;
             }
         }
+        SaleRepository _sale;
+
+        public SaleRepository sale
+        {
+            get
+            {
+                if (_sale == null)
+                    _sale = new SaleRepository();
+                return _sale;
+            }
+        }
         #endregion
 
         /// <summary>Все отделы с учетом текущей культуры
@@ -38,6 +49,8 @@ namespace Mytrip.Store.Repository
         {
             return entities.mytrip_storedepartment
                 .Include("mytrip_storedepartment1")
+                .Include("mytrip_storesale")
+                .Include("mytrip_storedepartment2.mytrip_storesale")
                 .Where(x => x.SubDepartmentId == 0)
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .OrderBy(x => x.Title);
@@ -56,6 +69,8 @@ namespace Mytrip.Store.Repository
             var a = entities.mytrip_storedepartment
                 .Include("mytrip_storeproduct")
                 .Include("mytrip_storedepartment1.mytrip_storeproduct")
+                .Include("mytrip_storesale")
+                .Include("mytrip_storedepartment2.mytrip_storesale")
                 .Where(x => x.SubDepartmentId == 0)
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .OrderBy(x => x.Title);
@@ -74,6 +89,8 @@ namespace Mytrip.Store.Repository
             return entities.mytrip_storedepartment
                 .Include("mytrip_storeproduct")
                 .Include("mytrip_storedepartment1.mytrip_storeproduct")
+                .Include("mytrip_storesale")
+                .Include("mytrip_storedepartment2.mytrip_storesale")
                 .Where(x => x.SubDepartmentId == id)
                 .Where(x => x.Culture == culture || x.AllCulture == true)
                 .OrderBy(x => x.Title);
@@ -89,6 +106,8 @@ namespace Mytrip.Store.Repository
                 .Include("mytrip_storeproduct")
                 .Include("mytrip_storedepartment2")
                 .Include("mytrip_storedepartment1.mytrip_storeproduct")
+                .Include("mytrip_storesale")
+                .Include("mytrip_storedepartment2.mytrip_storesale")
                 .FirstOrDefault(x => x.DepartmentId == id);
         }
 
@@ -127,9 +146,10 @@ namespace Mytrip.Store.Repository
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <param name="culture">текущая культура</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment CreateDepartment(int id, string title, string body, bool allculture, string culture)
+        public mytrip_storedepartment CreateDepartment(int id, string title, string body, bool allculture, string culture,int saleid)
         {
             CreateDepartmentZero();
+            sale.CreateSaleZero();
             mytrip_storedepartment x = new mytrip_storedepartment
             {
                 DepartmentId = CreateDepartmentId(),
@@ -140,7 +160,8 @@ namespace Mytrip.Store.Repository
                 Body = body,
                 SubDepartmentId = id,
                 AllCulture = allculture,
-                Culture = culture
+                Culture = culture,
+                SaleId=saleid
             };
             entities.mytrip_storedepartment.AddObject(x);
             entities.SaveChanges();
@@ -155,13 +176,14 @@ namespace Mytrip.Store.Repository
         /// <param name="image">изображение отдела (возможен null)</param>
         /// <param name="allculture">показывать для всех культур (true для всех)</param>
         /// <returns>возвращает mytrip_storedepartment</returns>
-        public mytrip_storedepartment EditDepartment(int id, string title, string body, bool allculture)
+        public mytrip_storedepartment EditDepartment(int id, string title, string body, bool allculture,int saleid)
         {
             mytrip_storedepartment x = GetDepartment(id);
             x.Title = title;
             x.Body = body;
             x.Path = GeneralMethods.DecodingString(title);
             x.AllCulture = allculture;
+            x.SaleId = saleid;
             entities.SaveChanges();
             return x;
         }
@@ -176,8 +198,6 @@ namespace Mytrip.Store.Repository
             {
                 foreach (var q in y.mytrip_storeproduct.ToList())
                 {
-                    foreach (var z in q.mytrip_storeoptions.ToList())
-                    { entities.mytrip_storeoptions.DeleteObject(z); }
                     foreach (var z in q.mytrip_storevotes.ToList())
                     { entities.mytrip_storevotes.DeleteObject(z); }
                     entities.mytrip_storeproduct.DeleteObject(q);
@@ -185,8 +205,6 @@ namespace Mytrip.Store.Repository
             }
             foreach (var y in x.mytrip_storeproduct.ToList())
             {
-                foreach (var z in y.mytrip_storeoptions.ToList())
-                { entities.mytrip_storeoptions.DeleteObject(z); }
                 foreach (var z in y.mytrip_storevotes.ToList())
                 { entities.mytrip_storevotes.DeleteObject(z); }
                 entities.mytrip_storeproduct.DeleteObject(y);
@@ -211,6 +229,7 @@ namespace Mytrip.Store.Repository
             mytrip_storedepartment zero = entities.mytrip_storedepartment.FirstOrDefault(x => x.DepartmentId == 0);
             if (zero == null)
             {
+                sale.CreateSaleZero();
                 mytrip_storedepartment x = new mytrip_storedepartment
                 {
                     DepartmentId = 0,
@@ -221,7 +240,8 @@ namespace Mytrip.Store.Repository
                     Body = "null",
                     SubDepartmentId = 0,
                     AllCulture = false,
-                    Culture = "zero"
+                    Culture = "zero",
+                    SaleId=0
                 };
                 entities.mytrip_storedepartment.AddObject(x);
                 entities.SaveChanges();

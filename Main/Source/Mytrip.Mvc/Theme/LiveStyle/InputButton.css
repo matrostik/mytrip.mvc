@@ -19,4 +19,20 @@ div.buttonCW.ac{background-position: 0px -78px;}
 div.buttonLW.ac{background-position: 0px -78px;}
 div.buttonRW.ac{background-position: -71px -78px;}
 
+div.tabI{margin: 0px 1px 0px 0px;position: relative;float: left;}
+div.tabI.ac{margin: 0px 1px 0px 0px;position: relative;float: left;}
+div.tabC input[type="submit"]{padding: 0px;font-family: inherit;font-size: 0.9em;border: 0;background: none;text-decoration: none;cursor: pointer;color: inherit;}
+*:first-child + html div.tabC input[type="submit"]{margin: 0px 0px 0px -8px;color: #1E395B;}
+div.tabC.ac input[type="submit"]{padding: 0px;font-family: inherit;font-size: 0.9em;border: 0;background: none;text-decoration: none;cursor: pointer;color: inherit;}
+*:first-child + html div.tabC.ac input[type="submit"]{margin: 0px 0px 0px -8px;color: #1E395B;}
+/* passive */
+div.tabC{margin: 0px 9px 0px 9px;padding: 3px 0px 0px 0px;background: url(images/tabcon.png) repeat-x 0px -27px;color: #1E395B;height: 23px;}
+div.tabC a{color: #1E395B;text-decoration: none;}  
+div.tabL{background: url(images/tab.png) 0px -27px;position: relative;width: 9px;height: 26px;float: left;}
+div.tabR{background: url(images/tab.png) -71px -27px;position: relative;width: 9px;height: 26px;float: right;}
+div.tabC.ac{padding: 3px 0px 0px 0px;margin: 0px 9px 0px 9px;background: url(images/tabcon.png) repeat-x 0px 0px;color: #1E395B;height: 24px;}  
+div.tabC.ac a{color: #1E395B;text-decoration: none;}
+div.tabL.ac{background: url(images/tab.png) 0px 0px;position: relative;width: 9px;height: 27px;float: left;}
+div.tabR.ac{background: url(images/tab.png) -71px 0px;position: relative;width: 9px;height: 27px;float: right;}
+
 
