@@ -37,6 +37,8 @@ namespace Mytrip.Mvc.Repository
             directory = String.IsNullOrEmpty(directory) ? "/" : directory.Replace("()", "/");
             string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
+            if (!_absolutDirectory.Exists)
+                _absolutDirectory.Create();
             FileInfo[] result = _absolutDirectory.GetFiles();
             return result;
         }

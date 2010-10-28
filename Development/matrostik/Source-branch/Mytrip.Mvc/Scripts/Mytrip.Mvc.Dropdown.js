@@ -32,7 +32,65 @@
         c.val($(this).find("span.value").html());
         return false;
     });
-}); 
+    //checkboxes   .css({"z-index":"-9999","position":"relative"})
+    $("input:checkbox").each(function () {
+        var id = $(this).attr('id'); //alert(id);
+        var cbx = $(this).css({ "z-index": "-9999", "position": "relative" });
+        //cbx.hide();
+        if (cbx.is(':checked')) {
+            $(cbx).wrap('<span id="mtmcbx' + id + '" class="checkboxcheck" />');
+        }
+        else {
+            $(cbx).wrap('<span id="mtmcbx' + id + '" class="checkbox" />');
+        }
+    });
+    $("span.checkbox").live("click", function () {
+        //var id = $(this).attr('id').replace("mtmcbx", "");
+        var ck = $(this).find('"input:checkbox"');
+        //alert(ck.attr('id') + "  " + ck.attr('checked'));
+        var id = ck.attr('id');
+        //alert('span');
+        $("input[id=" + id + "]").attr('checked', true);
+        $("input[id=" + id + "]").triggerHandler('click');
+
+        $(this).removeClass('checkbox').addClass('checkboxcheck');
+        createChecbox();
+    });
+    $("span.checkboxcheck").live("click", function () {
+        //var id = $(this).attr('id').replace("mtmcbx", "");
+        var ck = $(this).find('"input:checkbox"');
+        //alert(ck.attr('id') + "  " + ck.attr('checked'));
+        var id = ck.attr('id');
+        //alert('span');
+        $("input[id=" + id + "]").attr('checked', false);
+        $("input[id=" + id + "]").triggerHandler('click');
+
+
+
+        $(this).removeClass('checkboxcheck').addClass('checkbox');
+        createChecbox();
+    });
+//    $("input#IncludeAnonymComment").bind('change', function () {
+//        var id = "mtmcbx" + $(this).attr('id');
+//        alert('change id=' + id);
+//        //$(this).triggerHandler('click');
+//    });
+    $("input#IncludeAnonymComment").load(function () {
+        alert('loaded');
+        //$(this).triggerHandler('click');
+    });
+    //
+});
+function createChecbox() {
+    $("span.checkboxcheck,span.checkbox").each(function () {
+        //alert($(this).attr('id'));
+        var cbx = $(this).find('input:checkbox').is(':checked'); //alert($(this).attr('id')+'='+cbx);
+        if (cbx != $(this).hasClass('checkboxcheck')) {
+            //alert($(this).attr('id') + ' - no');
+            $(this).removeClass('checkboxcheck').addClass('checkbox');
+        }
+    });
+}
 function createDropDown() { 
 var a = $("select");
 $("select").each(function () {

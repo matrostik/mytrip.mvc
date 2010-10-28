@@ -79,11 +79,266 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Перед оплатой счета проверьте правильность заказанных позиций!.
+        /// </summary>
+        public static string account1 {
+            get {
+                return ResourceManager.GetString("account1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to от.
+        /// </summary>
+        public static string account10 {
+            get {
+                return ResourceManager.GetString("account10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to г..
+        /// </summary>
+        public static string account11 {
+            get {
+                return ResourceManager.GetString("account11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Плательщик.
+        /// </summary>
+        public static string account12 {
+            get {
+                return ResourceManager.GetString("account12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to №.
+        /// </summary>
+        public static string account13 {
+            get {
+                return ResourceManager.GetString("account13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наименование&lt;br/&gt;товара.
+        /// </summary>
+        public static string account14 {
+            get {
+                return ResourceManager.GetString("account14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Единица&lt;br/&gt;изме-&lt;br/&gt;рения.
+        /// </summary>
+        public static string account15 {
+            get {
+                return ResourceManager.GetString("account15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Коли-&lt;br/&gt;чество.
+        /// </summary>
+        public static string account16 {
+            get {
+                return ResourceManager.GetString("account16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сумма.
+        /// </summary>
+        public static string account17 {
+            get {
+                return ResourceManager.GetString("account17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Без налога (НДС):.
+        /// </summary>
+        public static string account18 {
+            get {
+                return ResourceManager.GetString("account18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всего наименований {0}, на сумму {1}, без налога (НДС)..
+        /// </summary>
+        public static string account19 {
+            get {
+                return ResourceManager.GetString("account19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Реквизиты.
+        /// </summary>
+        public static string account2 {
+            get {
+                return ResourceManager.GetString("account2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Организация находится на упрощенной системе налогообложения..
+        /// </summary>
+        public static string account20 {
+            get {
+                return ResourceManager.GetString("account20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Счет действителен в течении 15 банковских дней..
+        /// </summary>
+        public static string account21 {
+            get {
+                return ResourceManager.GetString("account21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Руководитель предприятия.
+        /// </summary>
+        public static string account22 {
+            get {
+                return ResourceManager.GetString("account22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Главный бухгалтер.
+        /// </summary>
+        public static string account23 {
+            get {
+                return ResourceManager.GetString("account23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всего к оплате:.
+        /// </summary>
+        public static string account24 {
+            get {
+                return ResourceManager.GetString("account24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ИНН.
+        /// </summary>
+        public static string account3 {
+            get {
+                return ResourceManager.GetString("account3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to КПП.
+        /// </summary>
+        public static string account4 {
+            get {
+                return ResourceManager.GetString("account4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Получатель.
+        /// </summary>
+        public static string account5 {
+            get {
+                return ResourceManager.GetString("account5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сч. №.
+        /// </summary>
+        public static string account6 {
+            get {
+                return ResourceManager.GetString("account6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Банк получателя.
+        /// </summary>
+        public static string account7 {
+            get {
+                return ResourceManager.GetString("account7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to БИК.
+        /// </summary>
+        public static string account8 {
+            get {
+                return ResourceManager.GetString("account8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to СЧЕТ №.
+        /// </summary>
+        public static string account9 {
+            get {
+                return ResourceManager.GetString("account9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Счет на оплату&lt;/b&gt;&lt;br/&gt;=====================================&lt;br/&gt;
+        ///Для просмотра и распечатки счета пройдите по ссылке {0}
+        ///&lt;br/&gt;=====================================
+        ///&lt;br/&gt;Вы получили это письмо, т.к произвели покупки на сайте {1}..
+        /// </summary>
+        public static string accountcustomeremail {
+            get {
+                return ResourceManager.GetString("accountcustomeremail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string add {
             get {
                 return ResourceManager.GetString("add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add position.
+        /// </summary>
+        public static string addaccount {
+            get {
+                return ResourceManager.GetString("addaccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string address {
+            get {
+                return ResourceManager.GetString("address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Почтовый адрес.
+        /// </summary>
+        public static string address1 {
+            get {
+                return ResourceManager.GetString("address1", resourceCulture);
             }
         }
         
@@ -151,6 +406,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;h1&gt;Thank you for your purchase!  &lt;/h1&gt;In the near future you will be contacted our manager..
+        /// </summary>
+        public static string buy_ok {
+            get {
+                return ResourceManager.GetString("buy_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to {0}.
         /// </summary>
         public static string cart {
@@ -165,6 +429,33 @@ namespace Mytrip.Store {
         public static string cart2 {
             get {
                 return ResourceManager.GetString("cart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сheckout.
+        /// </summary>
+        public static string checkout {
+            get {
+                return ResourceManager.GetString("checkout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column Department and Producer.
+        /// </summary>
+        public static string columnDepartment {
+            get {
+                return ResourceManager.GetString("columnDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column Product.
+        /// </summary>
+        public static string columnProduct {
+            get {
+                return ResourceManager.GetString("columnProduct", resourceCulture);
             }
         }
         
@@ -223,6 +514,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Sale.
+        /// </summary>
+        public static string createsale {
+            get {
+                return ResourceManager.GetString("createsale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Subdepartment in Department &quot;{0}&quot;.
         /// </summary>
         public static string createSubDepartment {
@@ -241,11 +541,56 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сustomer.
+        /// </summary>
+        public static string customer {
+            get {
+                return ResourceManager.GetString("customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to date .
         /// </summary>
         public static string date {
             get {
                 return ResourceManager.GetString("date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Close Sale.
+        /// </summary>
+        public static string dateclose {
+            get {
+                return ResourceManager.GetString("dateclose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Start Sale.
+        /// </summary>
+        public static string datestart {
+            get {
+                return ResourceManager.GetString("datestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery:.
+        /// </summary>
+        public static string Delivery {
+            get {
+                return ResourceManager.GetString("Delivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery.
+        /// </summary>
+        public static string Delivery1 {
+            get {
+                return ResourceManager.GetString("Delivery1", resourceCulture);
             }
         }
         
@@ -313,6 +658,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string firstname {
+            get {
+                return ResourceManager.GetString("firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Images ({0}).
         /// </summary>
         public static string foto {
@@ -327,6 +681,15 @@ namespace Mytrip.Store {
         public static string found {
             get {
                 return ResourceManager.GetString("found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free.
+        /// </summary>
+        public static string free {
+            get {
+                return ResourceManager.GetString("free", resourceCulture);
             }
         }
         
@@ -367,6 +730,51 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string lastname {
+            get {
+                return ResourceManager.GetString("lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to log in to your account.
+        /// </summary>
+        public static string logon {
+            get {
+                return ResourceManager.GetString("logon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manager Store.
+        /// </summary>
+        public static string manager {
+            get {
+                return ResourceManager.GetString("manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manager Orders.
+        /// </summary>
+        public static string managerorders {
+            get {
+                return ResourceManager.GetString("managerorders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Procent.
+        /// </summary>
+        public static string MoneyProcent {
+            get {
+                return ResourceManager.GetString("MoneyProcent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In {0} of products {1}, amount of {2}.
         /// </summary>
         public static string mycart {
@@ -394,6 +802,69 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To view the status of orders You need to {0} or {1}..
+        /// </summary>
+        public static string myorder_anonym {
+            get {
+                return ResourceManager.GetString("myorder_anonym", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Namber Account.
+        /// </summary>
+        public static string namberaccount {
+            get {
+                return ResourceManager.GetString("namberaccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Namber to  Catalog  Producer.
+        /// </summary>
+        public static string namberCatalog {
+            get {
+                return ResourceManager.GetString("namberCatalog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Producer.
+        /// </summary>
+        public static string nameProducer {
+            get {
+                return ResourceManager.GetString("nameProducer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Search.
+        /// </summary>
+        public static string NameSearchPage {
+            get {
+                return ResourceManager.GetString("NameSearchPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name Store.
+        /// </summary>
+        public static string nameStore {
+            get {
+                return ResourceManager.GetString("nameStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My orders.
+        /// </summary>
+        public static string new_orders {
+            get {
+                return ResourceManager.GetString("new_orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products not selected for comparison.
         /// </summary>
         public static string nocompare {
@@ -412,6 +883,126 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Online Buy.
+        /// </summary>
+        public static string onlineBuy {
+            get {
+                return ResourceManager.GetString("onlineBuy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} delete order #{1}.
+        /// </summary>
+        public static string orderdelete {
+            get {
+                return ResourceManager.GetString("orderdelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order #{0}.
+        /// </summary>
+        public static string orderdetailstitle {
+            get {
+                return ResourceManager.GetString("orderdetailstitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order  from &lt;b&gt;{0}&lt;/b&gt;&lt;br/&gt;=====================================
+        ///&lt;br/&gt;&lt;b&gt;Client: &lt;/b&gt;{1}&lt;br/&gt;&lt;b&gt;Date: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Order: &lt;/b&gt;{3}
+        ///&lt;br/&gt;=====================================
+        ///&lt;br/&gt;You receive this mail because you have registered on the site {4} and have subscribed to receive notifications by e-mail ..
+        /// </summary>
+        public static string ordermanageremail {
+            get {
+                return ResourceManager.GetString("ordermanageremail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have orders to watch..
+        /// </summary>
+        public static string ordernull {
+            get {
+                return ResourceManager.GetString("ordernull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        public static string orderTitle {
+            get {
+                return ResourceManager.GetString("orderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization.
+        /// </summary>
+        public static string organization {
+            get {
+                return ResourceManager.GetString("organization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy for Organization.
+        /// </summary>
+        public static string organizationBuy {
+            get {
+                return ResourceManager.GetString("organizationBuy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to organizationINN.
+        /// </summary>
+        public static string organizationINN {
+            get {
+                return ResourceManager.GetString("organizationINN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to organizationKPP.
+        /// </summary>
+        public static string organizationKPP {
+            get {
+                return ResourceManager.GetString("organizationKPP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packing.
+        /// </summary>
+        public static string packing {
+            get {
+                return ResourceManager.GetString("packing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string phone {
+            get {
+                return ResourceManager.GetString("phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string Preview {
+            get {
+                return ResourceManager.GetString("Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Price from:.
         /// </summary>
         public static string Price_from {
@@ -426,6 +1017,24 @@ namespace Mytrip.Store {
         public static string Price_to {
             get {
                 return ResourceManager.GetString("Price_to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price In Words.
+        /// </summary>
+        public static string priceInWords {
+            get {
+                return ResourceManager.GetString("priceInWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to print.
+        /// </summary>
+        public static string print {
+            get {
+                return ResourceManager.GetString("print", resourceCulture);
             }
         }
         
@@ -475,6 +1084,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to register.
+        /// </summary>
+        public static string register {
+            get {
+                return ResourceManager.GetString("register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to results.
         /// </summary>
         public static string results {
@@ -493,11 +1111,56 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit your review.
+        /// </summary>
+        public static string review_body_edit {
+            get {
+                return ResourceManager.GetString("review_body_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reviews ({0}).
         /// </summary>
         public static string reviews {
             get {
                 return ResourceManager.GetString("reviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Chief Store Manager.
+        /// </summary>
+        public static string roleChiefStoreManager {
+            get {
+                return ResourceManager.GetString("roleChiefStoreManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Store Manager.
+        /// </summary>
+        public static string roleStoreManager {
+            get {
+                return ResourceManager.GetString("roleStoreManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sale.
+        /// </summary>
+        public static string Sale {
+            get {
+                return ResourceManager.GetString("Sale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sale {0}% to {1}.
+        /// </summary>
+        public static string saleView {
+            get {
+                return ResourceManager.GetString("saleView", resourceCulture);
             }
         }
         
@@ -511,11 +1174,164 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seller.
+        /// </summary>
+        public static string seller {
+            get {
+                return ResourceManager.GetString("seller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accountant.
+        /// </summary>
+        public static string selleraccountant {
+            get {
+                return ResourceManager.GetString("selleraccountant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title Bank.
+        /// </summary>
+        public static string sellerbank {
+            get {
+                return ResourceManager.GetString("sellerbank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Bank.
+        /// </summary>
+        public static string sellerbankaccount {
+            get {
+                return ResourceManager.GetString("sellerbankaccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BIK Bank.
+        /// </summary>
+        public static string sellerbankaccountBIK {
+            get {
+                return ResourceManager.GetString("sellerbankaccountBIK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Seller to Bank.
+        /// </summary>
+        public static string sellerbankaccountSeller {
+            get {
+                return ResourceManager.GetString("sellerbankaccountSeller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Director.
+        /// </summary>
+        public static string sellerdirector {
+            get {
+                return ResourceManager.GetString("sellerdirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lite NDS?.
+        /// </summary>
+        public static string sellerliteNDS {
+            get {
+                return ResourceManager.GetString("sellerliteNDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bill.
+        /// </summary>
+        public static string setaccount {
+            get {
+                return ResourceManager.GetString("setaccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort by:.
         /// </summary>
         public static string Sorted {
             get {
                 return ResourceManager.GetString("Sorted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to awaiting registration.
+        /// </summary>
+        public static string status_0 {
+            get {
+                return ResourceManager.GetString("status_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to awaiting confirmation of payment.
+        /// </summary>
+        public static string status_1 {
+            get {
+                return ResourceManager.GetString("status_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paid.
+        /// </summary>
+        public static string status_2 {
+            get {
+                return ResourceManager.GetString("status_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to paid for and delivered.
+        /// </summary>
+        public static string status_3 {
+            get {
+                return ResourceManager.GetString("status_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to anonyms.
+        /// </summary>
+        public static string status_4 {
+            get {
+                return ResourceManager.GetString("status_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Store Setting.
+        /// </summary>
+        public static string storeSetting {
+            get {
+                return ResourceManager.GetString("storeSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Department and Producer.
+        /// </summary>
+        public static string styleDepartment {
+            get {
+                return ResourceManager.GetString("styleDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style Product.
+        /// </summary>
+        public static string styleProduct {
+            get {
+                return ResourceManager.GetString("styleProduct", resourceCulture);
             }
         }
         
@@ -583,11 +1399,47 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total:.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Count.
         /// </summary>
         public static string totalCount {
             get {
                 return ResourceManager.GetString("totalCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total delivery:.
+        /// </summary>
+        public static string Totaldelivery {
+            get {
+                return ResourceManager.GetString("Totaldelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Store.
+        /// </summary>
+        public static string unlockStore {
+            get {
+                return ResourceManager.GetString("unlockStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create list of products from file. Xml.
+        /// </summary>
+        public static string uploadproductxml {
+            get {
+                return ResourceManager.GetString("uploadproductxml", resourceCulture);
             }
         }
         
@@ -619,6 +1471,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Produkt Table.
+        /// </summary>
+        public static string viewProduktTable {
+            get {
+                return ResourceManager.GetString("viewProduktTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unlock reviews and rating.
         /// </summary>
         public static string viewvotes {
@@ -633,6 +1494,24 @@ namespace Mytrip.Store {
         public static string votes {
             get {
                 return ResourceManager.GetString("votes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width Img Department and Producer.
+        /// </summary>
+        public static string widthImgDepartment {
+            get {
+                return ResourceManager.GetString("widthImgDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width Img Product.
+        /// </summary>
+        public static string widthImgProduct {
+            get {
+                return ResourceManager.GetString("widthImgProduct", resourceCulture);
             }
         }
         

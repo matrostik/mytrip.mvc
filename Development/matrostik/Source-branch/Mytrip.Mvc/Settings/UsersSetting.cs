@@ -57,6 +57,10 @@ namespace Mytrip.Mvc.Settings
         {
             return bool.Parse(GeneralMethods.MytripCache("us_requiresuniqueemail", "membership", "requiresUniqueEmail", false, null, 36000, CacheItemPriority.High).ToString());
         }
+        internal static bool unlockVisibleProfileToSidebar()
+        {
+            return bool.Parse(GeneralMethods.MytripCache("us_unlockvisibleprofiletosidebar", "profile", "unlockVisibleProfileToSidebar", false, null, 36000, CacheItemPriority.High).ToString());
+        }
         /// <summary>Вход и регистрация пользователей через OpenId (true = включено)
         /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "us_unlockopenid")
         /// </summary>

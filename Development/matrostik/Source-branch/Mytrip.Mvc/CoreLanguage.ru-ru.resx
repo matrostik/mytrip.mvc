@@ -684,4 +684,7 @@
   <data name="change_email" xml:space="preserve">
     <value>Изменить e-mail</value>
   </data>
+  <data name="ProfileSideBare" xml:space="preserve">
+    <value>Включить профиль в сайдбар</value>
+  </data>
 </root>

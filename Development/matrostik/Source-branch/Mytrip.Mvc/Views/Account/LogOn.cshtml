@@ -54,21 +54,21 @@
 }@if (Model.unlockOpenId){ 
 <td class="last2" style="@Model.tableWidth text-align: center; padding-top: 5px;">
 <div>
-@Html.MytripImgInput("/Content/images/google.png","https://google.com/accounts/o8/id&ReturnUrl="+Model.returnUrl,"nonameopenid")
-@Html.MytripImgInput("/Content/images/aol.png","http://openid.aol.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")  
-@Html.MytripImgInput("/Content/images/yahoo.png","https://me.yahoo.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")  
+@Html.MytripImgInput("/images/google.png","https://google.com/accounts/o8/id&ReturnUrl="+Model.returnUrl,"nonameopenid")
+@Html.MytripImgInput("/images/aol.png","http://openid.aol.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")  
+@Html.MytripImgInput("/images/yahoo.png","https://me.yahoo.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")  
 </div>
-@Html.MytripImgInput("/Content/images/myopenid.png","https://www.myopenid.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")
-@Html.MytripImgInput("/Content/images/claimid.png","http://claimid.com/{0}/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
-@Html.MytripImgInput("/Content/images/myid.png","http://myid.net/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
+@Html.MytripImgInput("/images/myopenid.png","https://www.myopenid.com/&ReturnUrl="+Model.returnUrl,"nonameopenid")
+@Html.MytripImgInput("/images/claimid.png","http://claimid.com/{0}/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
+@Html.MytripImgInput("/images/myid.png","http://myid.net/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
 <div>
-@Html.MytripImgInput("/Content/images/openid.png","{0}&ReturnUrl="+Model.returnUrl,"URL (http://sitename...)","nameopenid")
-@Html.MytripImgInput("/Content/images/livejournal.png","http://{0}.livejournal.com/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
-@Html.MytripImgInput("/Content/images/wordpress.png","http://{0}.wordpress.com/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
+@Html.MytripImgInput("/images/openid.png","{0}&ReturnUrl="+Model.returnUrl,"URL (http://sitename...)","nameopenid")
+@Html.MytripImgInput("/images/livejournal.png","http://{0}.livejournal.com/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
+@Html.MytripImgInput("/images/wordpress.png","http://{0}.wordpress.com/&ReturnUrl="+Model.returnUrl,CoreLanguage.UserName,"nameopenid")
 </div><div>
-@Html.MytripImgInput("/Content/images/verisignlabs.png","https://pip.verisignlabs.com/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
-@Html.MytripImgInput("/Content/images/rambler.png","http://rambler.ru/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
-@Html.MytripImgInput("/Content/images/yandex.png","http://openid.yandex.ru/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
+@Html.MytripImgInput("/images/verisignlabs.png","https://pip.verisignlabs.com/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
+@Html.MytripImgInput("/images/rambler.png","http://rambler.ru/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
+@Html.MytripImgInput("/images/yandex.png","http://openid.yandex.ru/&ReturnUrl="+Model.returnUrl,"nonameopenid") 
 </div></td>
 } 
 </tr><tr>@if (Model.unlockSiteId){ 

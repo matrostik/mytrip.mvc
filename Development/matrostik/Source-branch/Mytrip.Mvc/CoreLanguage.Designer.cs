@@ -1168,6 +1168,15 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unlock Profile in Saide Bar.
+        /// </summary>
+        public static string ProfileSideBare {
+            get {
+                return ResourceManager.GetString("ProfileSideBare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provider.
         /// </summary>
         public static string Provider {

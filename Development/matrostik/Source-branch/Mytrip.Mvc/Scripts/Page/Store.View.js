@@ -2,8 +2,26 @@
     $.ajax({ type: "POST", url: "/Store/ProductCart",
         success: function (data) {
             $("#appr").html(data);
+            if ($("div#review2").length != 0)
+            { $("input#review").click(); }
+            if ($("div#errorReview").length != 0) {
+                $("input#review").click();
+                var id = 'div.window#review';
+                $(id).css({ width: (326 + 'px') });
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
+                $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+                $('div.mask').show();
+                $('div.mask').fadeTo("fast", 0.1);
+                var winH = $(window).height();
+                var winW = $(window).width();
+                $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+                $(id).css('left', winW / 2 - $(id).width() / 2);
+                $(id).slideDown('slow');
+            }
         }
     });
+    
     Rating();
     $("input.comparision").bind('click', function () {
 
@@ -21,18 +39,36 @@
         });
     });
     $("input#options").live('click', function () {
+        $('div.tabI').each(function () {
+            $(this).find("div.tabR, div.tabL, div.tabC").removeClass("ac");
+        });
+        var a = $(this).parent("div.tabC");
+        var b = $(a).parent("div.tabI");
+        $(b).find("div.tabR, div.tabL, div.tabC").addClass("ac");
         $("div#_foto").hide();
         $("div#_review").hide();
         $("div#_options").show();
 
     });
     $("input#foto").live('click', function () {
+        $('div.tabI').each(function () {
+            $(this).find("div.tabR, div.tabL, div.tabC").removeClass("ac");
+        });
+        var a = $(this).parent("div.tabC");
+        var b = $(a).parent("div.tabI");
+        $(b).find("div.tabR, div.tabL, div.tabC").addClass("ac");
         $("div#_options").hide();
         $("div#_review").hide();
         $("div#_foto").show();
 
     });
     $("input#review").live('click', function () {
+        $('div.tabI').each(function () {
+            $(this).find("div.tabR, div.tabL, div.tabC").removeClass("ac");
+        });
+        var a = $(this).parent("div.tabC");
+        var b = $(a).parent("div.tabI");
+        $(b).find("div.tabR, div.tabL, div.tabC").addClass("ac");
         $("div#_options").hide();
         $("div#_foto").hide();
         $("div#_review").show();
@@ -89,7 +125,7 @@ function Rating() {
     });
     $("#votes input[name='vote']").click(function () {
         if ($("#votes input[name='vote']").attr('onclick') == null) {
-        /*start review*/
+            /*start review*/
             var id = 'div.window#review';
             $(id).css({ width: (326 + 'px') });
             var maskHeight = $(document).height();
@@ -102,11 +138,12 @@ function Rating() {
             $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
             $(id).css('left', winW / 2 - $(id).width() / 2);
             $(id).slideDown('slow');
-        /*end review*/
+            /*end review*/
             var vote = $(this).val();
             var count = $("#votes input[id='VotesCount']").val();
             var id = $("#Store_StoreId").val();
             $("#votes").load("/Store/Rate", { id: id, vote: vote, count: count });
+            $("input#review").click();
         }
     });
     $("#votes input[name='vote']").mouseover(function () {

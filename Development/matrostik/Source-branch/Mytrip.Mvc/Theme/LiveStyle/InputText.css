@@ -7,25 +7,25 @@ div.textC{padding: 3px 0px 0px 0px;margin: 0px 3px 0px 3px;background: url(image
 div.textL{position: relative;width: 3px;height: 25px;float: left;background: url(images/textbox.png)  0px -25px;}
 div.textR{position: relative;width: 3px;height: 25px;float: right;background: url(images/textbox.png)  -21px -25px;}
 textarea.message, textarea.messag{background: none;border: 0;font-family: 'Trebuchet MS' , Arial, Helvetica, sans-serif;font-size: 12px;scrollbar-3dlight-color: #fff;scrollbar-arrow-color: #1E395B;scrollbar-base-color: #F5F6F7;scrollbar-darkshadow-color: #F5F6F7;scrollbar-face-color: #F5F6F7;scrollbar-highlight-color: #F5F6F7;scrollbar-shadow-color: #1E395B;}
-div.textareaC{background: #F5F6F7;padding: 0px 2px 0px 2px;margin: -2px 0px -2px 0px;border-left:1px solid #ccc;border-right:1px solid #ccc;}
+div.textareaC{background: #F1F5FB;padding: 0px 2px 0px 2px;margin: -2px 0px -2px 0px;border-left:1px solid #767676;border-right:1px solid #767676;}
 div.textareaTL{position: relative;width: 3px;height: 3px;float: left;background: url(images/textbox.png)  0px -25px;}
 div.textareaBL{position: relative;width: 3px;height: 3px;float: left;background: url(images/textbox.png)  0px -47px;}
 div.textareaTR{position: relative;width: 3px;height: 3px;float: right;background: url(images/textbox.png)  -21px -25px;}
 div.textareaBR{position: relative;width: 3px;height: 3px;float: right;background: url(images/textbox.png)  -21px -47px;}
-div.textareaTC{margin: 0px 3px 0px 3px;border-top: 1px solid #ccc;background-color: #F5F6F7;height: 2px;} 
-div.textareaBC{margin: 0px 3px 0px 3px;border-bottom: 1px solid #ccc;background-color: #F5F6F7;height: 2px;}
+div.textareaTC{margin: 0px 3px 0px 3px;border-top: 1px solid #767676;background-color: #F1F5FB;height: 2px;} 
+div.textareaBC{margin: 0px 3px 0px 3px;border-bottom: 1px solid #767676;background-color: #F1F5FB;height: 2px;}
 /* active */
 div.textC.ac{background-position: 0px 0px;}
 div.textL.ac{background-position: 0px 0px;}
 div.textR.ac{background-position: -21px 0px;}
 textarea.message.ac{scrollbar-3dlight-color: #F5F6F7;scrollbar-arrow-color: #1E395B;scrollbar-base-color: #fff;scrollbar-darkshadow-color: #fff;scrollbar-face-color: #fff;scrollbar-highlight-color: #fff;}
-div.textareaC.ac{background: #fff;border-left: 1px solid #ccc;border-right: 1px solid #ccc;}
+div.textareaC.ac{background: #fff;border-left: 1px solid #767676;border-right: 1px solid #767676;}
 div.textareaTL.ac{background-position: 0px 0px;}
 div.textareaBL.ac{background-position: 0px -22px;}
 div.textareaTR.ac{background-position: -21px 0px;}
 div.textareaBR.ac{background-position: -21px -22px;}
-div.textareaTC.ac{border-top: 1px solid #ccc;background: #fff;} 
-div.textareaBC.ac{border-bottom: 1px solid #ccc;background: #fff;}
+div.textareaTC.ac{border-top: 1px solid #767676;background: #fff;} 
+div.textareaBC.ac{border-bottom: 1px solid #767676;background: #fff;}
 /* error */
 div.textC.er{background-position: 0px -50px;}
 div.textL.er{background-position: 0px -50px;}

@@ -57,7 +57,7 @@ function editCategory() {
         $("input#catTitle").removeClass('input-validation-error');
         $('span#titleError').removeClass('field-validation-error').addClass('field-validation-valid');
         $("input#modalEditId").val(0);
-        $("input#catTitle").attr('name', $(this).find('img').attr('alt')); alert($(this).find('img').attr('alt'));
+        $("input#catTitle").attr('name', $(this).find('img').attr('alt'));
         $("div#modalddlcategories").hide();
         $("#modalShowMenu,#modalShowLang").show();
         $("#modalCategory input:checkbox").attr('checked', false);
@@ -131,28 +131,28 @@ function editCategory() {
         return false;
     });
     $("input#okEditCategory").live("click", function () {
-        alert('id=' + $("input#modalEditId").val() 
-                    + '&path=' + $("input#catTitle").attr('name') + '&title='
-                    + $("input#catTitle").val()
-                    + '&menu=' + $("#modalSeparateBlock").attr('checked')
-                    + '&allculture=' + $("#modalAllCulture").attr('checked'));
-//        $.ajax({
-//            type: 'POST',
-//            url: '/Article/Category',
-//            data: 'id=' + $("input#modalEditId").val() + '&path=' + $("input#catTitle").attr('name') + '&title=' + $("input#catTitle").val() + '&menu=' + $("#modalSeparateBlock").attr('checked')
-//            + '&allculture=' + $("#modalAllCulture").attr('checked'),
-//            success: function (data) {
-//                if (data) {
-//                    var err = $('span#titleError');
-//                    err.text(data);
-//                    err.removeClass('field-validation-valid').addClass('field-validation-error');
-//                    $("input#catTitle").addClass('input-validation-error');
-//                }
-//                else {
-//                    location.reload();
-//                }
-//            }
-//        });
+//        alert('id=' + $("input#modalEditId").val() 
+//                    + '&path=' + $("input#catTitle").attr('name') + '&title='
+//                    + $("input#catTitle").val()
+//                    + '&menu=' + $("#modalSeparateBlock").attr('checked')
+//                    + '&allculture=' + $("#modalAllCulture").attr('checked'));
+        $.ajax({
+            type: 'POST',
+            url: '/Article/Category',
+            data: 'id=' + $("input#modalEditId").val() + '&path=' + $("input#catTitle").attr('name') + '&title=' + $("input#catTitle").val() + '&menu=' + $("#modalSeparateBlock").attr('checked')
+            + '&allculture=' + $("#modalAllCulture").attr('checked'),
+            success: function (data) {
+                if (data) {
+                    var err = $('span#titleError');
+                    err.text(data);
+                    err.removeClass('field-validation-valid').addClass('field-validation-error');
+                    $("input#catTitle").addClass('input-validation-error');
+                }
+                else {
+                    location.reload();
+                }
+            }
+        });
     });
 }
 function EditComment() {
@@ -252,18 +252,18 @@ function CreateEditArticleOptions() {
         }
     });
     $("#ApprovedComment").click(function () {
-        alert('trigger checkbox click raised');
+        //alert('trigger checkbox click raised');
         var comchecked = $(this).is(':checked');
-        alert(comchecked + "  attr=" + $(this).attr('checked'));
+        //alert("на входе="+comchecked);
         if (comchecked) {
-            alert('true');
+            //alert('true');
             if (!$("#OnlyForRegisterUser").is(':checked')) {
                 $("#showAnonymComment").show();
             }
             $("#moderateComments").show();
         }
         else {
-            alert('false');
+            //alert('false');
             $("#showAnonymComment").hide();
             $("#moderateComments").hide();
             $("#IncludeAnonymComment").attr('checked', false);

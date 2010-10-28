@@ -1,0 +1,40 @@
+﻿div.accFR{height: 2px; clear: both;}
+/*------------Passive--------------------*/
+div.accTC{cursor: default;background: url(images/accordioncon.png);background-repeat: repeat-x;color: #fff;height: 25px;padding-top: 5px;margin-right: 20px;margin-left: 12px;}
+div.accTC a{color: #FFFFFF;text-decoration: none;}
+div.accTC a:hover{color: #FFFFFF;text-decoration: none;}
+div.accTL{position: relative;width: 12px;height: 30px;float: left;background: url(images/accordion.png);}
+div.accTR{position: relative;width: 20px;height: 30px;float: right;background: url(images/accordion.png);background-position: -64px 0px;}
+/*------.ac-----------------*/
+div.accTC.ac{cursor: default;background: url(images/accordioncon.png);background-repeat: repeat-x;color: #fff;height: 25px;padding-top: 5px;margin-right: 20px;margin-left: 12px;}
+div.accTC.ac a{color: #fff;text-decoration: none;}
+div.accTC.ac a:hover{color: #fff;text-decoration: none;}
+div.accTL.ac{position: relative;width: 12px;height: 30px;float: left;background: url(images/accordion.png);background-position: 0px -60px;}
+div.accTR.ac{position: relative;width: 20px;height: 30px;float: right;background: url(images/accordion.png);background-position: -64px -60px;}
+/*------visible-----------------*/
+div.accC{background: url(images/accordioncontentcon.png);padding: 5px 5px 5px 5px;}
+div.accC ul{margin: 0px;padding: 0px 5px 10px 20px;list-style-image: url('images/ul.png');}
+div.accC ul li{padding: 0px 0px 5px 0px;}
+div.accC2 ul{margin: 0px;padding: 0px 5px 10px 20px;list-style-image: url('images/ul.png');}
+div.accC2 ul li{padding: 0px 0px 5px 0px;}
+div.accBL{position: relative;width: 3px;height: 3px;float: left;background: url(images/accordioncontent.png);background-position: 0px -3px;}
+div.accBR{position: relative;width: 3px;height: 3px;float: right;background: url(images/accordioncontent.png);background-position: -4px -3px;}
+div.accBC{background: url(images/accordioncontentcon.png);height: 3px;margin-right: 3px;margin-left: 3px;}
+/*------no-----------------*/
+div.noaccTC{cursor: default;background: url(images/accordioncon.png);background-repeat: repeat-x;color: #fff;height: 25px;padding-top: 5px;margin-right: 11px;margin-left: 12px;}
+div.noaccTC a{color: #fff;text-decoration: none;}
+div.noaccTC a:hover{color: #fff;text-decoration: none;}
+div.noaccTL{position: relative;width: 12px;height: 30px;float: left;background: url(images/accordion.png);background-position: 0px -60px;}
+div.noaccTR{position: relative;width: 11px;height: 30px;float: right;background: url(images/accordion.png);background-position: -73px -60px;}
+/*------------HOVER--------------------*/
+div.accTC.ho{cursor: default;background: url(images/accordioncon.png);background-repeat: repeat-x;background-position: 0px -30px;color: #fff;height: 25px;padding-top: 5px;margin-right: 20px;margin-left: 12px;} 
+div.accTC.ho a{color: #fff;text-decoration: none;}
+div.accTC.ho a:hover{color: #fff;text-decoration: none;}  
+div.accTL.ho{position: relative;width: 12px;height: 30px;float: left;background: url(images/accordion.png);background-position: 0px -90px;}
+div.accTR.ho{position: relative;width: 20px;height: 30px;float: right;background: url(images/accordion.png);background-position: -64px -90px;}
+/*------------HOVER OPEN--------------------*/
+div.accTC.hoo{cursor: default;background: url(images/accordioncon.png);background-repeat: repeat-x;background-position: 0px -30px;color: #fff;height: 25px;padding-top: 5px;margin-right: 20px;margin-left: 12px;}
+div.accTC.hoo a{color: #FFFFFF;text-decoration: none;}
+div.accTC.hoo a:hover{color: #FFFFFF;text-decoration: none;}
+div.accTL.hoo{position: relative;width: 12px;height: 30px;float: left;background: url(images/accordion.png);background-position: 0px -30px;}
+div.accTR.hoo{position: relative;width: 20px;height: 30px;float: right;background: url(images/accordion.png);background-position: -64px -30px;}
