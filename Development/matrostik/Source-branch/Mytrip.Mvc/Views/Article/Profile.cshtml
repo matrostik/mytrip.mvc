@@ -1,0 +1,47 @@
+﻿@model Mytrip.Articles.Models.ArticleProfile
+@{
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(Model.Title, "/");
+    View.Keywords = Html.MytripPageTitle(Model.Title, ",");
+    View.Description = Html.MytripPageTitle(Model.Title, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("Page/Articles.js")
+}
+@section content{
+<h1 class="title">@Model.Title</h1>
+
+<table class="noborders">
+<tr>
+<td style="width: 180px;">
+         <div style="text-align: center;"><a href='/Home/Profile/@TempData["username"].ToString()'>
+@Html.Avatar(TempData["useremail"].ToString(), new { title=ArticleLanguage.view_user_profile})</a></div>
+     @Html.Partial("_profileSmall")
+</td>
+<td>
+@Html.ArticlesProfile(Model.UserName,Model.Path)
+</td></tr>
+</table>
+@Html.MytripButton("/Home/Index/", CoreLanguage.back_to_main,true,"left")  
+
+<div id="deleteModal" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel","right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok","right")      
+</div>
+</div> 
+</div>
+}

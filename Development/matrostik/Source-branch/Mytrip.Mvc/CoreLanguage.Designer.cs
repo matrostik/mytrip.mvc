@@ -664,11 +664,20 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit page &quot;About&quot;.
+        ///   Looks up a localized string similar to Edit &quot;About&quot; page.
         /// </summary>
         public static string edit_about {
             get {
                 return ResourceManager.GetString("edit_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit footer.
+        /// </summary>
+        public static string edit_footer {
+            get {
+                return ResourceManager.GetString("edit_footer", resourceCulture);
             }
         }
         

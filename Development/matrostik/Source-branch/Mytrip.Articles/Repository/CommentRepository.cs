@@ -263,6 +263,26 @@ namespace Mytrip.Articles.Repository
                .Where(x => x.IsApproved == false)
                .OrderByDescending(x => x.CreateDate).Take(count);
         }
+        /// <summary>
+        /// Получить колличество неодобренные комментарии для модерации
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <returns></returns>
+        public int GetCountModeration(string username)
+        {
+            // || x.mytrip_articles.mytrip_articlescategory.UserName == username
+             return entities.mytrip_articlescomments.Include("mytrip_articles.mytrip_articlescategory")
+                .Where(x=>x.IsApproved==false)
+                .Where(x => x.mytrip_articles.UserName == username)
+                .Count();
+        }
+        public IQueryable<mytrip_articlescomments> GetComments(string username)
+        {
+            // || x.mytrip_articles.mytrip_articlescategory.UserName == username
+            return entities.mytrip_articlescomments.Include("mytrip_articles.mytrip_articlescategory.mytrip_articlescategory2")
+               .Where(x => x.IsApproved == false)
+               .Where(x => x.mytrip_articles.UserName == username).OrderBy(x=>x.CreateDate);
+        }
         #endregion
 
         /*  РАЗДЕЛ 3  */

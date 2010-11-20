@@ -223,6 +223,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Article.
+        /// </summary>
+        public static string article {
+            get {
+                return ResourceManager.GetString("article", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Articles Setting.
         /// </summary>
         public static string article_setting {
@@ -273,6 +282,15 @@ namespace Mytrip.Articles {
         public static string author {
             get {
                 return ResourceManager.GetString("author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Awaiting moderation.
+        /// </summary>
+        public static string awaiting_moderation {
+            get {
+                return ResourceManager.GetString("awaiting_moderation", resourceCulture);
             }
         }
         
@@ -879,6 +897,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last comment.
+        /// </summary>
+        public static string last_comment {
+            get {
+                return ResourceManager.GetString("last_comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Visit.
         /// </summary>
         public static string last_visit {
@@ -956,6 +983,15 @@ namespace Mytrip.Articles {
         public static string most_viewed {
             get {
                 return ResourceManager.GetString("most_viewed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My subscriptions.
+        /// </summary>
+        public static string my_subscriptions {
+            get {
+                return ResourceManager.GetString("my_subscriptions", resourceCulture);
             }
         }
         

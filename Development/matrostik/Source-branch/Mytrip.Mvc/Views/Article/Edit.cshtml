@@ -97,6 +97,7 @@ if (tag.mytrip_articles.FirstOrDefault(x => x.ArticleId == Model.ArticleId) != n
 @Html.CheckBox("tag"+tag.TagId)
 }
 @Html.MytripLabelFor("tag"+tag.TagId,tag.TagName) 
+<span style="margin-right: 7px;"></span>
 }<br />
 @Html.MytripLabelFor("NewTags", ArticleLanguage.enter_new_tags)<br />
 @Html.TextBoxFor(model=>model.NewTags)

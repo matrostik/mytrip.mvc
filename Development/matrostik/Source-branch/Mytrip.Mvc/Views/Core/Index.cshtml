@@ -34,8 +34,8 @@
 @Html.ValidationMessageFor(model => model.Provider)
 </div>
 <div class="editor-label">  
-@Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "integ" })
-@Html.MytripLabelFor("IntegratedSecurity",CoreLanguage.IntegratedSecurity)
+@Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "IntegratedSecurity_hideOnDiv" })
+@Html.MytripLabelFor("IntegratedSecurity_hideOnDiv",CoreLanguage.IntegratedSecurity)
 </div>
 <div class="editor-label">
 @Html.MytripLabelFor("Server",CoreLanguage.Server)
@@ -51,7 +51,7 @@
 @Html.TextBoxFor(model => model.DataBase)
 @Html.ValidationMessageFor(model => model.DataBase)
 </div>
-<div id="_integ" style="display: none">
+<div name="IntegratedSecurity" style="display: none">
 <div class="editor-label">
 @Html.MytripLabelFor("UserName",CoreLanguage.UserName)
 </div>
@@ -70,14 +70,14 @@
 <td class="last2">
 <h3 class="hometitle">@CoreLanguage.Membership_Settings</h3>
 <div class="editor-label">
-@Html.CheckBoxFor(model => model.unlockSiteId, new { id = "integ2" })
-@Html.MytripLabelFor("unlockSiteId",CoreLanguage.unlockSiteId)
+@Html.CheckBoxFor(model => model.unlockSiteId, new { id = "unlockSiteId_hideOffDiv" })
+@Html.MytripLabelFor("unlockSiteId_hideOffDiv",CoreLanguage.unlockSiteId)
 </div>
 <div class="editor-label">
 @Html.CheckBoxFor(model => model.unlockOpenId)
 @Html.MytripLabelFor("unlockOpenId",CoreLanguage.unlockOpenId)
 </div>    
-<div id="_integ2" style="display: none">
+<div name="unlockSiteId" style="display: none">
 <div class="editor-label">
 @Html.MytripLabelFor("minRequiredPasswordLength",CoreLanguage.minRequiredPasswordLength)
 </div>

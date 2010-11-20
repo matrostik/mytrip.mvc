@@ -538,12 +538,10 @@ namespace Mytrip.Articles.Helpers
                     if (hasRights)
                     {
                         if (article.ModerateComments && !comment.IsApproved && isUserHasRights(article, false))
-                        {
-                            legend.InnerHtml += GeneralMethods.ImgInput("/images/approved.png", "/Article/ApproveComment/" + comment.CommentId + "/" + returnId + "/" + article.Path, "rename", 14) + " ";
-                        }
+                            legend.InnerHtml += GeneralMethods.ImgInput("/images/approved.png", "/Article/ApproveComment/" + comment.CommentId + "/" + returnId + "/" + HttpContext.Current.Request.Path.Replace("/", "(x)"), "rename", 14) + " ";
                         string a = GeneralMethods.ImageLink("inlineEditComment_" + comment.CommentId, "#", ArticleLanguage.edit, comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
-                    + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId
-                    , ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
+                    + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId + "/"
+                    + HttpContext.Current.Request.Path.Replace("/", "(x)") , ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
                         legend.InnerHtml += a + " ";
                     }
                     TagBuilder profile = new TagBuilder("a");

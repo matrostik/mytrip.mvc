@@ -629,4 +629,16 @@
   <data name="closed" xml:space="preserve">
     <value>closed</value>
   </data>
+  <data name="my_subscriptions" xml:space="preserve">
+    <value>My subscriptions</value>
+  </data>
+  <data name="last_comment" xml:space="preserve">
+    <value>Last comment</value>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="awaiting_moderation" xml:space="preserve">
+    <value>Awaiting moderation</value>
+  </data>
 </root>

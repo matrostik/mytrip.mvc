@@ -364,6 +364,41 @@ namespace Mytrip.Mvc.Controllers
 
         }
 
+        /// <summary>GET: /Core/Footer
+        /// Редактирование нижнего колонтитула
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        [RoleAdminAndEditor]
+        public ActionResult Footer()
+        {
+            FooterModel model = new FooterModel();
+            //string[] page = EditePageRepository.WritePage("/Views/Shared/_footer.cshtml");
+             string[] page= EditePageRepository.WritePage("/Views/Shared/_footer.cshtml");
+             model.Content = string.Concat(page);// page.ToString();
+            return View(model);
+
+        }
+
+        /// <summary>POST: /Core/Footer
+        /// Сохранение измененных данных нижнего колонтитула
+        /// </summary>
+        /// <param name="model">FooterModel</param>
+        /// <returns>ActionResult</returns>
+        [HttpPost]
+        [RoleAdminAndEditor]
+        [ValidateInput(false)]
+        public ActionResult Footer(FooterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                EditePageRepository.CreatePage("/Views/Shared/_footer.cshtml", model.Content);
+                return RedirectToAction("ControlPanel", "Core");
+            }
+            model.Content = EditePageRepository.WritePage("/Views/Shared/_footer.cshtml").ToString();
+            return View(model);
+
+        }
+
         /// <summary>GET: /Core/HomePage
         /// Настройка главной страницы (добавление и удаление модулей)
         /// </summary>

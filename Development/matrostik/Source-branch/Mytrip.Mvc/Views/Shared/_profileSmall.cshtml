@@ -1,4 +1,3 @@
-@model Mytrip.Mvc.Models.ProfileUsersModel
 @{
 /* WARNING AUTO GENERATE CODE */
 
@@ -10,11 +9,10 @@ license: Microsoft Public License (Ms-PL) */
 
 /* WARNING AUTO GENERATE CODE */
 }
-@Html.PageUserProfile(Model.UserName,new{
+@Html.PageUserProfile(TempData["username"].ToString(),new{
 /*--StartProfile--*/
 i1=Mytrip.Articles.Export.Profile()
 /*--EndProfile--*/
 })
-
 
 

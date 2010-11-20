@@ -495,6 +495,24 @@ namespace Mytrip.Mvc.Models
     //****************** E N D **********************
     #endregion
 
+    #region Модель для страницы /Views/Core/Footer.cshtml
+    // **********************************************
+    // Модель для страницы /Views/Core/Footer.cshtml
+    // **********************************************
+
+    /// <summary>Модель для страницы /Views/Home/Footer.cshtml
+    /// </summary>
+    public class FooterModel
+    {
+        /// <summary>Редактируемый Footer
+        /// </summary>
+        public string Content { get; set; }
+
+    }
+
+    //****************** E N D **********************
+    #endregion
+
     /// <summary>
     /// 
     /// </summary>

@@ -19,7 +19,7 @@
 }
 @section content{
 <h1 class="title">
-@Model.PageTitle</h2>
+@Model.PageTitle</h1>
 @{Html.EnableClientValidation();}
 @using (Html.BeginForm()){
 <fieldset>
@@ -86,6 +86,7 @@
 @foreach (var tag in Model.Tags){
 @Html.CheckBox("tag"+tag.TagId)
 @Html.MytripLabelFor("tag"+tag.TagId,tag.TagName)
+<span style="margin-right: 7px;"></span>
 }<br />
 @Html.MytripLabelFor("NewTags", ArticleLanguage.enter_new_tags)
 <br />
