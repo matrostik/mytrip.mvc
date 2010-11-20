@@ -634,4 +634,16 @@ e-mail. Внимание! Это письмо сгенерировано авт�
   <data name="closed" xml:space="preserve">
     <value>закрыта</value>
   </data>
+  <data name="my_subscriptions" xml:space="preserve">
+    <value>Мои подписки</value>
+  </data>
+  <data name="last_comment" xml:space="preserve">
+    <value>Последний комментарий</value>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="awaiting_moderation" xml:space="preserve">
+    <value>Ожидают проверки</value>
+  </data>
 </root>

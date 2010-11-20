@@ -27,8 +27,8 @@
 @Html.ValidationMessageFor(model => model.Provider)
 </div>
 <div class="editor-label">  
-@Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "integ" })
-@Html.MytripLabelFor("Provider",CoreLanguage.IntegratedSecurity)
+@Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "IntegratedSecurity_hideOnDiv" })
+@Html.MytripLabelFor("IntegratedSecurity_hideOnDiv",CoreLanguage.IntegratedSecurity)
 </div>   
 <div class="editor-label">
 @Html.MytripLabelFor("Server",CoreLanguage.Server )
@@ -44,7 +44,7 @@
 @Html.TextBoxFor(model => model.DataBase)
 @Html.ValidationMessageFor(model => model.DataBase) 
 </div>
-<div id="_integ" style="display: none">
+<div name="IntegratedSecurity" style="display: none">
 <div class="editor-label">
 @Html.MytripLabelFor("User",CoreLanguage.UserName) 
 </div>	    

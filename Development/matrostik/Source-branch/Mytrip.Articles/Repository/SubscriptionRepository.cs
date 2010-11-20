@@ -64,16 +64,26 @@ namespace Mytrip.Articles.Repository
         }
         #endregion
         
-        #region  Get subscriptions by ArticleId
+        #region  Get subscriptions
         /// <summary>
         /// Get subscriptions by ArticleId
         /// </summary>
-        /// <param name="articleId">subscribeId</param>
+        /// <param name="articleId">articleId</param>
         /// <returns></returns>
         public IQueryable<mytrip_articlessubscription> GetSubsciptions(int articleId)
         {
             return entities.mytrip_articlessubscription
                 .Where(x => x.ArticleId == articleId);
+        }
+        /// <summary>
+        /// Get subscriptions by Username
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <returns></returns>
+        public IQueryable<mytrip_articlessubscription> GetSubsciptions(string username)
+        {
+            return entities.mytrip_articlessubscription.Include("mytrip_articles.mytrip_articlescomments").Include("mytrip_articles.mytrip_articlescategory.mytrip_articlescategory2")
+                .Where(x => x.UserName == username);
         }
         #endregion
 

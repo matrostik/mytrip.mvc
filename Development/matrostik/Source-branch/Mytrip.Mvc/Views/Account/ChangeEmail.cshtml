@@ -16,7 +16,15 @@
 }
 @section content{
 	<h1 class="title">@CoreLanguage.change_email</h1>
-@{Html.EnableClientValidation();}
+<table class="noborders">
+<tr>
+<td style="width: 180px;">
+         <div style="text-align: center;"><a href='/Home/Profile/@TempData["username"].ToString()'>
+@Html.Avatar(TempData["useremail"].ToString(), new { title="Profile"})</a></div>
+     @Html.Partial("_profileSmall")
+</td>
+<td>
+	 @{Html.EnableClientValidation();}
 @using (Html.BeginForm()){ 
 <fieldset>
 <div class="editor-label">
@@ -26,10 +34,13 @@
 @Html.TextBoxFor(m => m.Email)
 @Html.ValidationMessageFor(m => m.Email)
 </div>
-<div class="button">
+<div class="button"  style="height: 100px;">
 @Html.MytripButton(CoreLanguage.save, true,"left")
 </div>
 </fieldset>
 } 
+</td></tr>
+</table>
+
 	}
 

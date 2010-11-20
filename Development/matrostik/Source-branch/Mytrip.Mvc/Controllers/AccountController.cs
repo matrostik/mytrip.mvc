@@ -13,6 +13,7 @@ using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using Mytrip.Mvc.Models;
 using Mytrip.Mvc.Settings;
+using Mytrip.Mvc.Repository;
 
 namespace Mytrip.Mvc.Controllers
 {
@@ -194,6 +195,8 @@ namespace Mytrip.Mvc.Controllers
         {
             ChangePasswordModel model = new ChangePasswordModel();
             model.minRequiredPasswordLength = UsersSetting.minRequiredPasswordLength();
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             return View(model);
         }
         
@@ -223,6 +226,8 @@ namespace Mytrip.Mvc.Controllers
         /// <returns>ActionResult</returns>
         public ActionResult ChangePasswordSuccess()
         {
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             return View();
         }
 
@@ -234,7 +239,8 @@ namespace Mytrip.Mvc.Controllers
         public ActionResult ChangeEmail()
         {
             ChangeEmailModel model = new ChangeEmailModel();
-            model.Email = coreRepo.membershipRepo.mtGetUserByUserNameMember(HttpContext.User.Identity.Name).mytrip_usersmembership.Email;
+            TempData["useremail"]=model.Email =MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             return View(model);
         }
         /// <summary>POST: /Account/ChangePassword

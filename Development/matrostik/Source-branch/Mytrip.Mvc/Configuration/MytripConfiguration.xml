@@ -25,18 +25,18 @@
     </add>
   </core>
   <connection>
-    <!--<add name="Provider" value="MySql" />
+    <add name="Provider" value="MySql" />
     <add name="IntegratedSecurity" value="False" />
     <add name="Server" value="localhost" />
     <add name="DataBase" value="mytripmvc" />
     <add name="User" value="root" />
-    <add name="Password" value="tolsty" />-->
-    <add name="Provider" value="MSSQL" />
+    <add name="Password" value="tolsty" />
+    <!--<add name="Provider" value="MSSQL" />
     <add name="IntegratedSecurity" value="True" />
     <add name="Server" value="." />
     <add name="DataBase" value="mytripmvc" />
     <add name="User" value="*" />
-    <add name="Password" value="*" />
+    <add name="Password" value="*" />-->
   </connection>
   <membership>
     <add name="minRequiredPasswordLength" value="6" />
@@ -82,7 +82,7 @@
   </installModules>
   <email>
     <add name="unlockSendEmail" value="True" />
-    <add name="EmailAdress" value="888" />
+    <add name="EmailAdress" value="yoursite@yoursite.com" />
     <add name="Smtp" value="s888" />
     <add name="Port" value="587" />
     <add name="Ssl" value="True" />

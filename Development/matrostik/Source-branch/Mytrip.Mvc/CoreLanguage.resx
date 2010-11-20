@@ -514,7 +514,7 @@
     <value>Unlock approved to Email</value>
   </data>
   <data name="edit_about" xml:space="preserve">
-    <value>Edit page "About"</value>
+    <value>Edit "About" page</value>
   </data>
   <data name="Email_account_body" xml:space="preserve">
     <value>Message with account  activation instructions was sent to your e-mail address.Thank you for registering at our site.</value>
@@ -686,5 +686,8 @@
   </data>
   <data name="ProfileSideBare" xml:space="preserve">
     <value>Unlock Profile in Saide Bar</value>
+  </data>
+  <data name="edit_footer" xml:space="preserve">
+    <value>Edit footer</value>
   </data>
 </root>

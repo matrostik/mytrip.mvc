@@ -6,3 +6,4 @@ $.getScript('/Scripts/Mytrip.Mvc.Accordion.js');
 $.getScript('/Scripts/Mytrip.Mvc.Modal.js');
 $.getScript('/Scripts/Mytrip.Mvc.Captcha.js');
 $.getScript('/Scripts/Mytrip.Mvc.Baloon.js');
+$.getScript('/Scripts/Mytrip.Mvc.Checkbox.js');

@@ -687,4 +687,7 @@
   <data name="ProfileSideBare" xml:space="preserve">
     <value>Включить профиль в сайдбар</value>
   </data>
+  <data name="edit_footer" xml:space="preserve">
+    <value>Редактировать нижний колонтитул</value>
+  </data>
 </root>

@@ -133,23 +133,20 @@ namespace Mytrip.Articles.Models
         public string Path { get; set; }
         public string Url { get; set; }
     }
-    [MetadataType(typeof(ProfileModel))]
-    public class ProfileModel
+
+    public class ArticleProfile
     {
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PageTitle { get; set; }
-        public SelectList Places { get; set; }
+        public string Title { get; set; }
         public string Path { get; set; }
+        public string UserName { get; set; }
     }
+
     public class RoleArticleAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (MytripUser.UserInRole(ModuleSetting.roleArticleEditor()) || MytripUser.UserInRole(ModuleSetting.roleBlogger()) || MytripUser.UserInRole(ModuleSetting.roleChiefEditor()))
-            {
-                
-            }
+            { }
             else
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(

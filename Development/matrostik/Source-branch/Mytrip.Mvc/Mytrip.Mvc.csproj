@@ -74,6 +74,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -376,6 +377,7 @@
     <Content Include="Scripts\jquery-1.4.2.js" />
     <Content Include="Scripts\Mytrip.Mvc.Button.js" />
     <Content Include="Scripts\Mytrip.Mvc.Captcha.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Checkbox.js" />
     <Content Include="Scripts\Mytrip.Mvc.CheckedShow.js" />
     <Content Include="Scripts\Mytrip.Mvc.Dropdown.js" />
     <Content Include="Scripts\Mytrip.Mvc.Include.js" />
@@ -419,6 +421,7 @@
     <Content Include="Theme\LiveStyle\baloon\balloon_topLeft.png" />
     <Content Include="Theme\LiveStyle\baloon\balloon_topRight.png" />
     <Content Include="Theme\LiveStyle\Captcha.css" />
+    <Content Include="Theme\LiveStyle\Checkbox.css" />
     <Content Include="Theme\LiveStyle\Content.css" />
     <Content Include="Theme\LiveStyle\Dropdown.css" />
     <Content Include="Theme\LiveStyle\Footer.css" />
@@ -441,6 +444,7 @@
     <Content Include="Theme\LiveStyle\images\button.png" />
     <Content Include="Theme\LiveStyle\images\buttoncon.png" />
     <Content Include="Theme\LiveStyle\images\cart.png" />
+    <Content Include="Theme\LiveStyle\images\checkbox.png" />
     <Content Include="Theme\LiveStyle\images\checked.png" />
     <Content Include="Theme\LiveStyle\images\claimid.png" />
     <Content Include="Theme\LiveStyle\images\comment.png" />
@@ -535,7 +539,9 @@
     <Content Include="Theme\LiveStyle\Table.css" />
     <Content Include="Theme\LiveStyle\TextArea.css" />
     <Content Include="Theme\LiveStyle\TextAreaContainer.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -586,6 +592,7 @@
     <None Include="Views\Article\Edit.cshtml" />
     <None Include="Views\Article\Editors.cshtml" />
     <None Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\Profile.cshtml" />
     <None Include="Views\Article\Setting.cshtml" />
     <None Include="Views\Article\View.cshtml" />
     <Content Include="Views\Article\Web.config" />
@@ -594,6 +601,7 @@
     <None Include="Views\Core\CorSideBar.cshtml" />
     <None Include="Views\Core\CreateBase.cshtml" />
     <None Include="Views\Core\Email.cshtml" />
+    <None Include="Views\Core\Footer.cshtml" />
     <None Include="Views\Core\HomePage.cshtml" />
     <None Include="Views\Core\Index.cshtml" />
     <None Include="Views\Core\InstallModules.cshtml" />
@@ -611,7 +619,7 @@
     <None Include="Views\Home\_homePage.cshtml" />
     <None Include="Views\Home\_license.cshtml" />
     <None Include="Views\Home\_profileBig.cshtml" />
-    <None Include="Views\Home\_profileSmall.cshtml" />
+    <None Include="Views\Shared\_profileSmall.cshtml" />
     <None Include="Views\Rssparser\Edit.cshtml" />
     <None Include="Views\Rssparser\Index.cshtml" />
     <None Include="Views\Rssparser\Manager.cshtml" />
@@ -619,6 +627,7 @@
     <Content Include="Views\Rssparser\Web.config" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_announce.cshtml" />
+    <None Include="Views\Shared\_footer.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_menu.cshtml" />
     <None Include="Views\Shared\_sideBar.cshtml" />
@@ -660,10 +669,12 @@
     <EmbeddedResource Include="CoreLanguage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreLanguage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CoreLanguage.ru-ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreLanguage.ru-ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

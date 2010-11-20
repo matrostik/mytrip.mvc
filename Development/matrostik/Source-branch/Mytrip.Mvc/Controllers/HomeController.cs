@@ -78,8 +78,8 @@ namespace Mytrip.Mvc.Controllers
         public ActionResult Profile(string id, string path)
         {
             ProfileUsersModel model = new ProfileUsersModel();
-            model.UserName = id;
-            model.Email = MytripUser.UserEmail(id);
+            TempData["username"] = model.UserName = id;
+            TempData["useremail"] = model.Email = MytripUser.UserEmail(id);
             if (string.IsNullOrEmpty(path))
                 model.Path = CoreLanguage.all;
             else

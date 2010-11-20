@@ -12,7 +12,10 @@ $(document).ready(function () {
     QuoteComment();
     AddRemoveEditors();
     CreateEditArticleOptions();
-    //Manage editors
+    editJournalists();
+});
+//Manage editors
+function editJournalists() {
     var st = $('dl#mtmddlUser dt a').find('span.value').html();
     $('dl#mtmddlUser dd ul li a').click(function () {
         var selected = $(this).find('span.value').html();
@@ -34,8 +37,7 @@ $(document).ready(function () {
         $("#modalJournalistForm").submit();
         $('div.mask, div.window').hide();
     });
-    //
-});
+}
 function modalSetup() {
     $("a[id^='delete']").click(function () {
         link = $(this).attr('href');
@@ -61,6 +63,7 @@ function editCategory() {
         $("div#modalddlcategories").hide();
         $("#modalShowMenu,#modalShowLang").show();
         $("#modalCategory input:checkbox").attr('checked', false);
+        fixCheckbox();
         setModalMask('modalCategory');
         return false;
     });
@@ -88,6 +91,7 @@ function editCategory() {
         else {
             $("#modalShowLang").hide();
             $("#modalAllCulture").attr('checked', false);
+            fixCheckbox();
         }
         $("input#modalEditId").val(selectedid);
     });
@@ -127,15 +131,11 @@ function editCategory() {
             else
                 $("#modalAllCulture").attr('checked', false);
         }
+        fixCheckbox();
         setModalMask('modalCategory');
         return false;
     });
     $("input#okEditCategory").live("click", function () {
-//        alert('id=' + $("input#modalEditId").val() 
-//                    + '&path=' + $("input#catTitle").attr('name') + '&title='
-//                    + $("input#catTitle").val()
-//                    + '&menu=' + $("#modalSeparateBlock").attr('checked')
-//                    + '&allculture=' + $("#modalAllCulture").attr('checked'));
         $.ajax({
             type: 'POST',
             url: '/Article/Category',
@@ -350,6 +350,8 @@ function BuildjHtml(name) {
             }
         });
     }
+    if ($('textarea#' + name).length == 0)
+        return false;
     if (name == "fotoabstract") {
         $('#fotoabstract').htmlarea({
             css: '/Theme/' + theme + '/TextAreaContainer.css',
