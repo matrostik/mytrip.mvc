@@ -465,9 +465,6 @@
   <data name="tags1" xml:space="preserve">
     <value>Теги</value>
   </data>
-  <data name="thanks_for_vote" xml:space="preserve">
-    <value>Спасибо, что проголосовали!</value>
-  </data>
   <data name="three_months_ago" xml:space="preserve">
     <value>Три месяца назад</value>
   </data>
@@ -536,9 +533,6 @@
   </data>
   <data name="yesterday" xml:space="preserve">
     <value>Вчера</value>
-  </data>
-  <data name="you_have_a_voted" xml:space="preserve">
-    <value>Вы уже голосовали</value>
   </data>
   <data name="recent_posts" xml:space="preserve">
     <value>Новые посты</value>
@@ -645,5 +639,8 @@ e-mail. Внимание! Это письмо сгенерировано авт�
   </data>
   <data name="awaiting_moderation" xml:space="preserve">
     <value>Ожидают проверки</value>
+  </data>
+  <data name="enable_comment_votes" xml:space="preserve">
+    <value>Включить оценку комментариев</value>
   </data>
 </root>

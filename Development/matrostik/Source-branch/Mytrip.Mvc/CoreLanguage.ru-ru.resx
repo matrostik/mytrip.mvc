@@ -690,4 +690,10 @@
   <data name="edit_footer" xml:space="preserve">
     <value>Редактировать нижний колонтитул</value>
   </data>
+  <data name="you_have_a_voted" xml:space="preserve">
+    <value>Вы уже проголосовали</value>
+  </data>
+  <data name="thanks_for_vote" xml:space="preserve">
+    <value>Спасибо, что проголосовали!</value>
+  </data>
 </root>

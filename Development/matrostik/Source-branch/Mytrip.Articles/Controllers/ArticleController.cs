@@ -441,9 +441,9 @@ namespace Mytrip.Articles.Controllers
             StringBuilder result = new StringBuilder();
             result.AppendLine(GeneralMethods.CoreRating(true, false, total, newcount));
             if (count == newcount)
-                result.AppendLine("<br/>" + ArticleLanguage.you_have_a_voted);
+                result.AppendLine("<br/>" + CoreLanguage.you_have_a_voted); 
             else
-                result.AppendLine("<br/>" + ArticleLanguage.thanks_for_vote);
+                result.AppendLine("<br/>" + CoreLanguage.thanks_for_vote);
             return result.ToString(); ;
         }
         // *************************************
@@ -498,12 +498,12 @@ namespace Mytrip.Articles.Controllers
                 {
                     article = articleRepo.article.CreateArticle(model.CategoryId, model.Title, model.Abstract, model.Body
                           , model.ApprovedComment, model.ImageForAbstract, model.OnlyForRegisterUser, model.ApprovedVotes, model.IncludeAnonymComment
-                          , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.Pages);
+                          , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.CommentVotes, model.Pages);
                 }
                 else
                 {
                     article = articleRepo.article.CreatePost(model.CategoryId, model.Title, model.Abstract, model.Body
-                         , model.ImageForAbstract, model.OnlyForRegisterUser, model.IncludeAnonymComment, model.ModerateComments, model.Pages);
+                         , model.ImageForAbstract, model.OnlyForRegisterUser, model.IncludeAnonymComment, model.ModerateComments, model.CommentVotes, model.Pages);
                 }
                 #region tags
                 IQueryable<mytrip_articlestag> ts = articleRepo.article.GetAllTags();
@@ -555,6 +555,7 @@ namespace Mytrip.Articles.Controllers
             model.IncludeAnonymComment = article.IncludeAnonymComment;
             model.AllCulture = article.AllCulture;
             model.ModerateComments = article.ModerateComments;
+            model.CommentVotes = article.CommentVotes;
             if (!article.ApprovedComment || article.OnlyForRegisterUser)
                 model.ShowIncludeAnonymComment = "none";
             if (!LocalisationSetting.unlockAllCulture() || !article.mytrip_articlescategory.AllCulture)
@@ -589,7 +590,7 @@ namespace Mytrip.Articles.Controllers
             {
                 articleRepo.article.UpdateArtiсle(model.ArticleId, model.CategoryId, model.Title, model.Abstract, model.Body
                     , model.ApprovedComment, model.ImageForAbstract, model.OnlyForRegisterUser, model.ApprovedVotes, model.IncludeAnonymComment
-                    , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.Pages);
+                    , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.CommentVotes, model.Pages);
                 if (!model.ModerateComments)
                     articleRepo.comment.CloseModeration(model.ArticleId);
                 IQueryable<mytrip_articlestag> ts = articleRepo.article.GetAllTags();
@@ -770,6 +771,24 @@ namespace Mytrip.Articles.Controllers
                 return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
             articleRepo.article.OnOffComments(id);
             return RedirectToAction("View", new { id = id2, id2 = id3 });
+        }
+        //[HttpPost]
+        public ActionResult VoteComment(int id, bool id2)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                    return Content("Авторизуйтесь");
+                if (articleRepo.comment.CheckCommentVote(id))
+                    return Content("<div class='right' style='margin-right:10px;text-align:center;width:50px'><b>" 
+                        + articleRepo.comment.CreateCommentVote(id, id2).ToString() + "</b></div>");
+                else
+                    return Content(CoreLanguage.you_have_a_voted);
+            }
+            catch
+            {
+                return Content("Error");
+            }
         }
         #endregion
 

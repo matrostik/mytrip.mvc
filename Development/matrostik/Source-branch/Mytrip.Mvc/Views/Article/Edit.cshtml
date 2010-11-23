@@ -111,25 +111,31 @@ if (tag.mytrip_articles.FirstOrDefault(x => x.ArticleId == Model.ArticleId) != n
 </div>
 <div class="editor-label" style="display:@Model.ShowOnlyForRegisted">
 @Html.CheckBoxFor(model => model.OnlyForRegisterUser, new { id = "OnlyForRegisterUser" })
-@Html.MytripLabelFor("OnlyForRegisterUser", ArticleLanguage.only_for_register)
+@Html.LabelFor(x => x.OnlyForRegisterUser, ArticleLanguage.only_for_register)
 </div>
 <div class="editor-label" style="display:@Model.ShowArticleOptions">
 @Html.CheckBoxFor(model => model.ApprovedComment)
-@Html.MytripLabelFor("ApprovedComment", ArticleLanguage.enable_comments)
+@Html.LabelFor(x => x.ApprovedComment, ArticleLanguage.enable_comments)
 </div>
 <div id="showAnonymComment" class="editor-label" style="display:@Model.ShowIncludeAnonymComment">
 @Html.CheckBoxFor(model => model.IncludeAnonymComment)
-@Html.MytripLabelFor("IncludeAnonymComment", ArticleLanguage.enable_comments_for_anonymous)
-</div><div id="moderateComments" class="editor-label" style="display: ">
+@Html.LabelFor(x => x.IncludeAnonymComment, ArticleLanguage.enable_comments_for_anonymous)
+</div>
+<div id="commentVotes" class="editor-label" style="display:none">
+@Html.CheckBoxFor(model => model.CommentVotes)
+@Html.LabelFor(x => x.CommentVotes, ArticleLanguage.enable_comment_votes)
+</div>
+<div id="moderateComments" class="editor-label" style="display: ">
 @Html.CheckBoxFor(model => model.ModerateComments)
-@Html.MytripLabelFor("ModerateComments", ArticleLanguage.moderate_comments)
-</div><div class="editor-label" style="display:@Model.ShowArticleOptions">
+@Html.LabelFor(x => x.ModerateComments, ArticleLanguage.moderate_comments)
+</div>
+<div class="editor-label" style="display:@Model.ShowArticleOptions">
 @Html.CheckBoxFor(model => model.ApprovedVotes)
-@Html.MytripLabelFor("ApprovedVotes", ArticleLanguage.enable_voting)
+@Html.LabelFor(x => x.ApprovedVotes, ArticleLanguage.enable_voting)
 </div>
 <div id="ShowAllCulture" class="editor-label" style="display:@Model.ShowAllCulture @Model.ShowArticleOptions">
 @Html.CheckBoxFor(model => model.AllCulture)
-@Html.MytripLabelFor("AllCulture", ArticleLanguage.display_all_lang)
+@Html.LabelFor(x => x.AllCulture, ArticleLanguage.display_all_lang)
 </div></td></tr>
 </table>
 <div class="button">

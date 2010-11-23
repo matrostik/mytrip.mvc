@@ -1555,6 +1555,15 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thanks for your vote!.
+        /// </summary>
+        public static string thanks_for_vote {
+            get {
+                return ResourceManager.GetString("thanks_for_vote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         public static string theme {
@@ -1776,6 +1785,15 @@ namespace Mytrip.Mvc {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have already voted.
+        /// </summary>
+        public static string you_have_a_voted {
+            get {
+                return ResourceManager.GetString("you_have_a_voted", resourceCulture);
             }
         }
     }

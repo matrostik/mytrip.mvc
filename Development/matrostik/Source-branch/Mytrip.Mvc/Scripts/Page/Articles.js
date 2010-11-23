@@ -13,6 +13,7 @@ $(document).ready(function () {
     AddRemoveEditors();
     CreateEditArticleOptions();
     editJournalists();
+    CommentVote();
 });
 //Manage editors
 function editJournalists() {
@@ -237,7 +238,7 @@ function EditComment() {
 }
 function CreateEditArticleOptions() {
     if ($("#ApprovedComment").is(':checked')) {
-        $("#moderateComments").show();
+        $("#moderateComments,#commentVotes").show();
     }
     else {
         $("#moderateComments").hide();
@@ -252,22 +253,15 @@ function CreateEditArticleOptions() {
         }
     });
     $("#ApprovedComment").click(function () {
-        //alert('trigger checkbox click raised');
         var comchecked = $(this).is(':checked');
-        //alert("на входе="+comchecked);
         if (comchecked) {
-            //alert('true');
-            if (!$("#OnlyForRegisterUser").is(':checked')) {
+            if (!$("#OnlyForRegisterUser").is(':checked'))
                 $("#showAnonymComment").show();
-            }
-            $("#moderateComments").show();
+            $("#moderateComments,#commentVotes").show();
         }
         else {
-            //alert('false');
-            $("#showAnonymComment").hide();
-            $("#moderateComments").hide();
-            $("#IncludeAnonymComment").attr('checked', false);
-            $("#ModerateComments").attr('checked', false);
+            $("#moderateComments,#commentVotes,#showAnonymComment").hide();
+            $("#ModerateComments,#CommentVotes,#IncludeAnonymComment").attr('checked', false);
         }
     });
     $("#OnlyForRegisterUser").click(function () {
@@ -417,6 +411,35 @@ function CheckCategoryAllCulture(selectedid) {
         data: 'id=' + selectedid,
         async: false
     }).responseText;
+}
+function CommentVote() {
+    $("a[id^='voteComment_']").click(function () {
+        var a = $(this).attr('name');
+        var id = $(this).attr('rel');
+        //alert(a + id);
+//        var t= $.ajax({
+//            url: "/Article/VoteComment",
+//            data: 'id=' + id + '&id2=' + a,
+//            async: false
+//            }).responseText;
+//        $('div#voteCommentDiv' + id).html(t);
+        $.ajax({
+            url: "/Article/VoteComment",
+            data: 'id=' + id + '&id2=' + a,
+            cache: false,
+            success: function (html) {
+                $('div#voteCommentDiv' + id).html(html);
+            }
+        });
+        return false;
+    });
+    
+    var selectedid = 5;
+//    return $.ajax({
+//        url: "/Article/CheckAllCulture",
+//        data: 'id=' + selectedid,
+//        async: false
+//    }).responseText;
 }
 function getScrollY() {
     scrollY = 0;

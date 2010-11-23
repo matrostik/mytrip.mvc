@@ -77,6 +77,12 @@ namespace Mytrip.Articles.Repository.DataEntities
             get;
             set;
         }
+    
+        public virtual int Votes
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -95,6 +101,38 @@ namespace Mytrip.Articles.Repository.DataEntities
             }
         }
         private mytrip_articles _mytrip_articles;
+    
+        public virtual ICollection<mytrip_commentvotes> mytrip_commentvotes
+        {
+            get
+            {
+                if (_mytrip_commentvotes == null)
+                {
+                    var newCollection = new FixupCollection<mytrip_commentvotes>();
+                    newCollection.CollectionChanged += Fixupmytrip_commentvotes;
+                    _mytrip_commentvotes = newCollection;
+                }
+                return _mytrip_commentvotes;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mytrip_commentvotes, value))
+                {
+                    var previousValue = _mytrip_commentvotes as FixupCollection<mytrip_commentvotes>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupmytrip_commentvotes;
+                    }
+                    _mytrip_commentvotes = value;
+                    var newValue = value as FixupCollection<mytrip_commentvotes>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupmytrip_commentvotes;
+                    }
+                }
+            }
+        }
+        private ICollection<mytrip_commentvotes> _mytrip_commentvotes;
 
         #endregion
         #region Association Fixup
@@ -115,6 +153,28 @@ namespace Mytrip.Articles.Repository.DataEntities
                 if (ArticleId != mytrip_articles.ArticleId)
                 {
                     ArticleId = mytrip_articles.ArticleId;
+                }
+            }
+        }
+    
+        private void Fixupmytrip_commentvotes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (mytrip_commentvotes item in e.NewItems)
+                {
+                    item.mytrip_articlescomments = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (mytrip_commentvotes item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.mytrip_articlescomments, this))
+                    {
+                        item.mytrip_articlescomments = null;
+                    }
                 }
             }
         }

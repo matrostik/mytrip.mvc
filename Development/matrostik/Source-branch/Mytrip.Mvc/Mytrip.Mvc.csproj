@@ -185,6 +185,10 @@
     <Compile Include="StylesTable\StyleTableClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\mtm.mdf" />
+    <Content Include="App_Data\mtm_log.ldf">
+      <DependentUpon>mtm.mdf</DependentUpon>
+    </Content>
     <Content Include="Configuration\About.xml" />
     <Content Include="Configuration\MytripConfiguration.xml">
       <SubType>Designer</SubType>
@@ -488,7 +492,7 @@
     <Content Include="Theme\LiveStyle\images\menuslide.png" />
     <Content Include="Theme\LiveStyle\images\menuslidecon.png" />
     <Content Include="Theme\LiveStyle\images\menuslidecontop.png" />
-    <Content Include="Theme\LiveStyle\images\minus_blue.png" />
+    <Content Include="Theme\LiveStyle\images\minus.png" />
     <Content Include="Theme\LiveStyle\images\modal.png" />
     <Content Include="Theme\LiveStyle\images\modalcon.png" />
     <Content Include="Theme\LiveStyle\images\myid.png" />
@@ -496,7 +500,7 @@
     <Content Include="Theme\LiveStyle\images\noalert.png" />
     <Content Include="Theme\LiveStyle\images\noapproved.png" />
     <Content Include="Theme\LiveStyle\images\openid.png" />
-    <Content Include="Theme\LiveStyle\images\plus_blue.png" />
+    <Content Include="Theme\LiveStyle\images\plus.png" />
     <Content Include="Theme\LiveStyle\images\poll.png" />
     <Content Include="Theme\LiveStyle\images\poll1.gif" />
     <Content Include="Theme\LiveStyle\images\rambler.png" />
