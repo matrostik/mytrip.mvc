@@ -77,6 +77,12 @@ namespace Mytrip.Articles.Repository.DataEntities
             get { return _mytrip_articlesvotes  ?? (_mytrip_articlesvotes = CreateObjectSet<mytrip_articlesvotes>("mytrip_articlesvotes")); }
         }
         private ObjectSet<mytrip_articlesvotes> _mytrip_articlesvotes;
+    
+        public ObjectSet<mytrip_commentvotes> mytrip_commentvotes
+        {
+            get { return _mytrip_commentvotes  ?? (_mytrip_commentvotes = CreateObjectSet<mytrip_commentvotes>("mytrip_commentvotes")); }
+        }
+        private ObjectSet<mytrip_commentvotes> _mytrip_commentvotes;
 
         #endregion
     }

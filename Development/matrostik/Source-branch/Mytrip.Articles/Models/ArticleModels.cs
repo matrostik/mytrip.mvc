@@ -110,6 +110,7 @@ namespace Mytrip.Articles.Models
         public bool AllCulture { get; set; }
         public bool OnlyForRegisterUser { get; set; }
         public bool ModerateComments { get; set; }
+        public bool CommentVotes { get; set; }
         public string ShowArticleOptions { get; set; }
         public string ShowOnlyForRegisted { get; set; }
         public string ShowIncludeAnonymComment { get; set; }

@@ -762,6 +762,15 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable comments voting.
+        /// </summary>
+        public static string enable_comment_votes {
+            get {
+                return ResourceManager.GetString("enable_comment_votes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable comments.
         /// </summary>
         public static string enable_comments {
@@ -1365,15 +1374,6 @@ namespace Mytrip.Articles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for your vote!.
-        /// </summary>
-        public static string thanks_for_vote {
-            get {
-                return ResourceManager.GetString("thanks_for_vote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Three months ago.
         /// </summary>
         public static string three_months_ago {
@@ -1604,15 +1604,6 @@ namespace Mytrip.Articles {
         public static string yesterday {
             get {
                 return ResourceManager.GetString("yesterday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have already voted.
-        /// </summary>
-        public static string you_have_a_voted {
-            get {
-                return ResourceManager.GetString("you_have_a_voted", resourceCulture);
             }
         }
     }

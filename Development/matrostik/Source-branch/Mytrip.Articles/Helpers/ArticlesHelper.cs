@@ -555,6 +555,9 @@ namespace Mytrip.Articles.Helpers
                         profile.InnerHtml = comment.UserName;
                     }
                     legend.InnerHtml += "  #" + count + " " + profile + " " + comment.CreateDate.ToString("dd MMMM yy HH:mm");
+                    if (article.CommentVotes)
+                        legend.InnerHtml += "<div  id='voteCommentDiv" + comment.CommentId + "' class='right'><div class='right' style='margin-right:10px;text-align:center;width:50px;height:11px'>" + CommentVotes(comment.CommentId, comment.Votes) + "</div></div>";
+                    TagBuilder divGravatar = new TagBuilder("div");
                     TagBuilder quote = new TagBuilder("a");
                     if (!comment.IsApproved)
                         legend.InnerHtml += " (" + ArticleLanguage.waiting_for_moderation + ")";
@@ -566,22 +569,16 @@ namespace Mytrip.Articles.Helpers
                     }
                     if (UsersSetting.unlockGravatar())
                     {
-                        TagBuilder divGravatar = new TagBuilder("div");
                         divGravatar.MergeAttribute("style", "position: relative; float: right");
                         TagBuilder gravatar = new TagBuilder("a");
                         gravatar.MergeAttribute("href", "/Home/Profile/" + HttpContext.Current.User.Identity.Name);
                         gravatar.MergeAttribute("title", ArticleLanguage.view_user_profile);
                         gravatar.InnerHtml = AvatarHelper.Avatar(html, comment.UserEmail, new { width = 50 }).ToString();
                         divGravatar.InnerHtml = gravatar.ToString();
-                        fieldset.InnerHtml = "<table class='comment'><tr><td class='first'>" + legend.ToString() + "<div class='comment'>" + comment.Body + "</div>"
-                            + "<div class='right'><div class='info'>" + quote + "</div></div>" + "</td><td class='last'>"
-                            + divGravatar.ToString() + "</td></tr></table>";
                     }
-                    else
-                    {
-                        fieldset.InnerHtml = "<table class='comment'><tr><td class='first'>" + legend.ToString() + "<div class='comment'>" + comment.Body + "</div>"
-                         + "<div class='right'><div class='info'>" + quote + "</div></div>" + "</td></tr></table>";
-                    }
+                    fieldset.InnerHtml = "<table class='comment'><tr><td class='first'>" + legend.ToString() + "<div class='comment'>" + comment.Body + "</div>"
+                           + "<div class='right'><div class='info'>" + quote + "</div></div>"
+                           + "</td><td class='last'>" + divGravatar.ToString() + "</td></tr></table>";
                         result.AppendLine(fieldset.ToString() + "<div class='last'></div>");
                    
                     count++;
@@ -926,7 +923,13 @@ namespace Mytrip.Articles.Helpers
             }
             return result.ToString();
         }
-
+        static string CommentVotes(int id,int votes)
+        {
+            string result = GeneralMethods.ImageLink("voteComment_" + id, "#", "-", "false", id.ToString(), "/images/minus.png", "Minus", 11)
+                +" <b>"+votes+"</b> "+ GeneralMethods.ImageLink("voteComment_" + id, "#", "+","true", id.ToString(), "/images/plus.png", "Plus", 11);
+            TagBuilder minus = new TagBuilder("a");
+            return result;
+        }
         #endregion
     }
 }
