@@ -160,6 +160,12 @@ namespace Mytrip.Articles.Repository.DataEntities
             get;
             set;
         }
+    
+        public virtual bool CommentVotes
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

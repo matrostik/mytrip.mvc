@@ -32,6 +32,13 @@ namespace Mytrip.Mvc
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            string name = "Mytrip";
+            int namber = 0;
+            foreach (var item in MytripRewrite.GetMytripRewrite())
+            {
+                routes.MapRoute(name+namber,item.Key,item.Value);
+                namber++;
+            }
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}/{id9}/{id10}",

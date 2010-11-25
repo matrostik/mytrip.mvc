@@ -39,6 +39,8 @@ namespace Mytrip.Articles
                 IDictionary<int, string> _result = new Dictionary<int, string>();
                 bool tab_category = false;
                 int key = 1;
+                string merge = "";
+                string title = "";
                 foreach (var item in ar.category.GetCategories(false, LocalisationSetting.culture()))
                 {
                     if (Controller == "Article")
@@ -58,10 +60,18 @@ namespace Mytrip.Articles
                     a.MergeAttribute("href", "/Article/Index/1/10/" + item.CategoryId + "/" + item.Path);
                     a.InnerHtml = item.Title;
                     _result.Add(key, a.ToString());
+                    merge = "/Article/Index/1/10/" + item.CategoryId + "/" + item.Path;
+                    title = item.Title;
                     key++;
                 } bool drop = true;
-                if (key == 1)
+                if (key < 3)
                     drop = false;
+                if (key == 2)
+                {
+                    article.MergeAttribute("href", merge);
+                    article.InnerHtml = title;
+                    _result = null;
+                }
                 if (Controller == "Article")
                 {
                     if (id == 0 && param == "Articles")
@@ -195,7 +205,7 @@ namespace Mytrip.Articles
         {
             TagBuilder form = new TagBuilder("form");
             string url = (HttpContext.Current.Request.Path.ToString() == "/") ? "/Home/Index" : HttpContext.Current.Request.Path.ToString();
-            form.MergeAttribute("action", string.Concat("/Article/Search?url=",url));
+            form.MergeAttribute("action", string.Concat("/Article/Search?url=", url));
             form.MergeAttribute("method", "post");
             form.InnerHtml = "<div class='search'><input  type='submit' value='' class='_search' ></input></div><input name='search' type='text' value='' class='search' />";
             return new HtmlString(GeneralMethods.Accordion(ModuleSetting.NameSearchPage(), form.ToString()));
@@ -308,7 +318,7 @@ namespace Mytrip.Articles
                 int _count = 0;
                 foreach (var item in ar.article.GetAllTags())
                 {
-                    int count = item.mytrip_articles.Count(x => x.Culture.ToLower() == LocalisationSetting.culture()|| x.AllCulture == true);
+                    int count = item.mytrip_articles.Count(x => x.Culture.ToLower() == LocalisationSetting.culture() || x.AllCulture == true);
                     if (count > 0)
                     {
                         int e = 10;
@@ -364,8 +374,8 @@ namespace Mytrip.Articles
             list.AddCssClass("styled");
             IArticleRepository ar = new IArticleRepository();
             TagBuilder title = new TagBuilder("center");
-            title.InnerHtml = "<h4>" + ArticleLanguage.top_viewed+ "</h4>";
-            foreach (var item in ar.article.GetArticles(LocalisationSetting.culture(),SortBy.Views, 5))
+            title.InnerHtml = "<h4>" + ArticleLanguage.top_viewed + "</h4>";
+            foreach (var item in ar.article.GetArticles(LocalisationSetting.culture(), SortBy.Views, 5))
             {
                 TagBuilder li = new TagBuilder("li");
                 TagBuilder a = new TagBuilder("a");
@@ -433,7 +443,7 @@ namespace Mytrip.Articles
             {
                 IArticleRepository ar = new IArticleRepository();
                 int take = line * column;
-                IQueryable<mytrip_articles> articles = ar.article.GetArticles(categoryId,LocalisationSetting.culture(), take);
+                IQueryable<mytrip_articles> articles = ar.article.GetArticles(categoryId, LocalisationSetting.culture(), take);
                 int _count = articles.Count();
                 if (column > _count)
                     column = _count;
@@ -475,7 +485,7 @@ namespace Mytrip.Articles
                         __cat = true;
                     }
                     _content = ArticlesHomeHelper.articleContent(article, content, imgwidth);
-                    
+
                     int tr2 = 0;
                     int _line3 = 0;
                     result.AppendLine(GeneralMethods.StyleTable(column, style, tr, width, _content,
@@ -541,24 +551,13 @@ namespace Mytrip.Articles
             StringBuilder _result = new StringBuilder();
             TagBuilder ul = new TagBuilder("ul");
             ul.AddCssClass("styled");
-            if (ModuleSetting.articles())
-            {
-                if (MytripUser.UserInRole(ModuleSetting.roleArticleEditor()))
-                {
-                    TagBuilder li = new TagBuilder("li");
-                    TagBuilder a_createblog = new TagBuilder("a");
-                    a_createblog.MergeAttribute("href", "/Article/Create/0/");
-                    a_createblog.InnerHtml = ArticleLanguage.create_new_article;
-                    li.InnerHtml = a_createblog.ToString();
-                    _result.AppendLine(li.ToString());
-                }
-            }
+            
             if (ModuleSetting.blogs())
             {
                 int countcomment = ar.comment.GetCount(HttpContext.Current.User.Identity.Name);
                 bool isBlogger = MytripUser.UserInRole(ModuleSetting.roleBlogger());
                 if ((!ModuleSetting.closecountCommentForBlogs() && countcomment >= ModuleSetting.countCommentForBlogs()
-                    && !isBlogger)|| isBlogger)
+                    && !isBlogger) || isBlogger)
                 {
                     if (ar.category.GetBlogsByUser(HttpContext.Current.User.Identity.Name, LocalisationSetting.culture()).Count() == 0)
                     {
@@ -601,10 +600,39 @@ namespace Mytrip.Articles
                     li.InnerHtml = a_com.ToString();
                     _result.AppendLine(li.ToString());
                 }
-                ul.InnerHtml = _result.ToString();
-                return new HtmlString(ul.ToString());
             }
-            else { return null; }
+            if (ModuleSetting.articles())
+            {
+                if (MytripUser.UserInRole(ModuleSetting.roleArticleEditor()))
+                {
+                    TagBuilder li = new TagBuilder("li");
+                    TagBuilder a = new TagBuilder("a");
+                    a.MergeAttribute("href", "/Article/Create/0/");
+                    a.InnerHtml = ArticleLanguage.create_new_article;
+                    li.InnerHtml = a.ToString();
+                    TagBuilder li1 = new TagBuilder("li");
+                    TagBuilder a1 = new TagBuilder("a");
+                    a1.MergeAttribute("href", "/Article/Profile/AwaitingModeration/");
+                    //Вывести к-во комментов, которые ждут модерацию
+                   int ctr= ar.comment.GetCountModeration(HttpContext.Current.User.Identity.Name);
+                    a1.InnerHtml = ArticleLanguage.awaiting_moderation+ " (<b>"+ctr+"</b>)";
+                    li1.InnerHtml = a1.ToString();
+                    _result.AppendLine(li.ToString()+li1.ToString());
+                }
+            }
+            if (ModuleSetting.articles()||ModuleSetting.blogs())
+            {
+                TagBuilder li = new TagBuilder("li");
+                TagBuilder a = new TagBuilder("a");
+                a.MergeAttribute("href", "/Article/Profile/Subscriptions/");
+                a.InnerHtml = ArticleLanguage.my_subscriptions;
+                li.InnerHtml = a.ToString();
+                
+                _result.AppendLine(li.ToString());
+            }
+            //else { return null; }
+            ul.InnerHtml = _result.ToString();
+            return new HtmlString(ul.ToString());
         }
 
         public static List<LastActivity> LastActivity(string username)

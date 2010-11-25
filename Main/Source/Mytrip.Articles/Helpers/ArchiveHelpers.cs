@@ -2000,7 +2000,7 @@ namespace Mytrip.Articles.Helpers
             {
                 mytrip_articlescomments comment = obj as mytrip_articlescomments;
                 return GeneralMethods.ImageLink("editComment_" + comment.CommentId, "" , ArticleLanguage.edit, comment.CommentId.ToString(), "/images/edite.png", "Edit", 14) + " "
-                    + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId + "/Archive/"
+                    + GeneralMethods.ImageLink("deleteComment_" + comment.CommentId, "/Article/DeleteComment/" + comment.CommentId + "/" + comment.ArticleId + "/"
                     + HttpContext.Current.Request.Path.Replace("/", "(x)"), ArticleLanguage.delete, "", "/images/delete.png", "Delete", 14);
 
             }
@@ -2019,8 +2019,8 @@ namespace Mytrip.Articles.Helpers
         {
             if (!comment.IsApproved)
             {
-                return GeneralMethods.ImageLink("approveComment_" + comment.CommentId, "/Article/ApproveComment/" + comment.CommentId + "/" + comment.ArticleId + "/Archive/"
-                    + HttpContext.Current.Request.Path.Replace("/", "(x)"), ArticleLanguage.approve_comment, "", "/images/approved.png", "Delete", 14);
+                return GeneralMethods.ImageLink("approveComment_" + comment.CommentId, "/Article/ApproveComment/" + comment.CommentId + "/" + comment.ArticleId + "/"
+                    + HttpContext.Current.Request.Path.Replace("/", "(x)"), ArticleLanguage.approve_comment, "", "/images/approved.png", "Approve", 14);
             }
             else
                 return "";

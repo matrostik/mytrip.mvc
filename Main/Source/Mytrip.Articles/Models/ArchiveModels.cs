@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mytrip.Articles.Models
 {
-        [MetadataType(typeof(ArchiveIndexModel))]
         public class ArchiveIndexModel
         {
             public string PageTitle { get; set; }

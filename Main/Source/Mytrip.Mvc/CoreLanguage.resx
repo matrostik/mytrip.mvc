@@ -505,16 +505,16 @@
     <value>Unlock view button Logon</value>
   </data>
   <data name="bodyEmail" xml:space="preserve">
-    <value>Hello! You or someone else has used your email account to register an account at {0}. To finish the registration process you should visit the following link to activate your user account: http://{0}/Account/ApprovedAccount/{1} . Site Administration {0}.</value>
+    <value>Hello!&lt;br/&gt; You or someone else has used your email account to register an account at {0}. &lt;br/&gt;To finish the registration process you should visit the following link to activate your user account: {1} .&lt;br/&gt;Site Administration {0}.</value>
   </data>
   <data name="subjectEmail" xml:space="preserve">
-    <value>Registration new Account!</value>
+    <value>Registration new Account {0}! </value>
   </data>
   <data name="unlockApprovedEmail" xml:space="preserve">
     <value>Unlock approved to Email</value>
   </data>
   <data name="edit_about" xml:space="preserve">
-    <value>Edit page "About"</value>
+    <value>Edit "About" page</value>
   </data>
   <data name="Email_account_body" xml:space="preserve">
     <value>Message with account  activation instructions was sent to your e-mail address.Thank you for registering at our site.</value>
@@ -686,5 +686,74 @@
   </data>
   <data name="ProfileSideBare" xml:space="preserve">
     <value>Unlock Profile in Saide Bar</value>
+  </data>
+  <data name="addHomePage" xml:space="preserve">
+    <value>Add to Home Page</value>
+  </data>
+  <data name="addMenu" xml:space="preserve">
+    <value>Add to Menu</value>
+  </data>
+  <data name="body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Edit Page {0}</value>
+  </data>
+  <data name="emailForm" xml:space="preserve">
+    <value>Unlock Email Form</value>
+  </data>
+  <data name="sideBar" xml:space="preserve">
+    <value>Unlock Side Bar</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="viewOnlyHomePage" xml:space="preserve">
+    <value>View only Home Page</value>
+  </data>
+  <data name="CreateSubPage" xml:space="preserve">
+    <value>Create Subpage</value>
+  </data>
+  <data name="bodyForgot" xml:space="preserve">
+    <value>Hello  {2}! You or someone else has used your email for recovery  password an account at {0}.  To finish the recovery  password process you should visit the following link {1}  (link is valid for one day ).  Site Administration {0}</value>
+  </data>
+  <data name="email_success" xml:space="preserve">
+    <value>Your email has been changed successfully.</value>
+  </data>
+  <data name="Email_forgot_body" xml:space="preserve">
+    <value>On Your Email has been sent with a link to reset your password (the link is valid for one day).</value>
+  </data>
+  <data name="ForgotDateError" xml:space="preserve">
+    <value>Do links have expired. You need to repeat the operation.</value>
+  </data>
+  <data name="forgotEmail" xml:space="preserve">
+    <value>Enter the email used during registration</value>
+  </data>
+  <data name="forgotOpenid" xml:space="preserve">
+    <value>You are logged via OpenId. To recover your password, contact your OpenId.</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="recovryPassword" xml:space="preserve">
+    <value>Password recovery {0}.</value>
+  </data>
+  <data name="RecoveryPassword" xml:space="preserve">
+    <value>Recovery Password</value>
+  </data>
+  <data name="RecoveryPasswordMess" xml:space="preserve">
+    <value>Password restored!</value>
+  </data>
+  <data name="edit_footer" xml:space="preserve">
+    <value>Edit footer</value>
+  </data>
+  <data name="thanks_for_vote" xml:space="preserve">
+    <value>Thanks for your vote!</value>
+  </data>
+  <data name="you_have_a_voted" xml:space="preserve">
+    <value>You have already voted</value>
   </data>
 </root>

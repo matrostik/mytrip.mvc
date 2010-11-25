@@ -263,6 +263,26 @@ namespace Mytrip.Articles.Repository
                .Where(x => x.IsApproved == false)
                .OrderByDescending(x => x.CreateDate).Take(count);
         }
+        /// <summary>
+        /// Получить колличество неодобренные комментарии для модерации
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <returns></returns>
+        public int GetCountModeration(string username)
+        {
+            // || x.mytrip_articles.mytrip_articlescategory.UserName == username
+            return entities.mytrip_articlescomments.Include("mytrip_articles.mytrip_articlescategory")
+               .Where(x => x.IsApproved == false)
+               .Where(x => x.mytrip_articles.UserName == username)
+               .Count();
+        }
+        public IQueryable<mytrip_articlescomments> GetComments(string username)
+        {
+            // || x.mytrip_articles.mytrip_articlescategory.UserName == username
+            return entities.mytrip_articlescomments.Include("mytrip_articles.mytrip_articlescategory.mytrip_articlescategory2")
+               .Where(x => x.IsApproved == false)
+               .Where(x => x.mytrip_articles.UserName == username).OrderBy(x => x.CreateDate);
+        }
         #endregion
 
         /*  РАЗДЕЛ 3  */
@@ -304,7 +324,8 @@ namespace Mytrip.Articles.Repository
                     UserName = HttpContext.Current.User.Identity.Name,
                     UserEmail = MytripUser.UserEmail(),
                     IsAnonym = false,
-                    IsApproved = isApproved
+                    IsApproved = isApproved,
+                    Votes = 0
                 };
                 entities.mytrip_articlescomments.AddObject(x);
                 entities.SaveChanges();
@@ -332,7 +353,8 @@ namespace Mytrip.Articles.Repository
                 UserName = username,
                 UserEmail = email,
                 IsAnonym = true,
-                IsApproved = isApproved
+                IsApproved = isApproved,
+                Votes = 0
             };
             entities.mytrip_articlescomments.AddObject(x);
             entities.SaveChanges();
@@ -372,10 +394,68 @@ namespace Mytrip.Articles.Repository
         /// <param name="commentId">номер комментария</param>
         public void DeleteComment(int commentId)
         {
-            mytrip_articlescomments x = GetComment(commentId);
-            entities.mytrip_articlescomments.DeleteObject(x);
+            mytrip_articlescomments c = entities.mytrip_articlescomments.Include("mytrip_commentvotes").FirstOrDefault(x => x.CommentId == commentId);
+            foreach (var v in c.mytrip_commentvotes.ToList())
+            {
+                entities.mytrip_commentvotes.DeleteObject(v);
+            }
+            entities.mytrip_articlescomments.DeleteObject(c);
             entities.SaveChanges();
         }
         #endregion
+
+        /*  РАЗДЕЛ 4  */
+
+        #region Создать оценку комментария
+        /// <summary>
+        ///  Создать оценку комментария
+        /// </summary>
+        /// <param name="commentId">commentId</param>
+        /// <param name="vote">true for positive and false for negative</param>
+        /// <returns>int</returns>
+        public int CreateCommentVote(int commentId, bool vote)
+        {
+            mytrip_commentvotes mcv = new mytrip_commentvotes()
+            {
+                Id = CreateCommentVoteId(),
+                CommentId = commentId,
+                UserName = HttpContext.Current.User.Identity.Name
+            };
+            entities.mytrip_commentvotes.AddObject(mcv);
+            var com = entities.mytrip_articlescomments.FirstOrDefault(x => x.CommentId == commentId);
+            if (vote)
+                com.Votes++;
+            else
+                com.Votes--;
+            entities.SaveChanges();
+            return com.Votes;
+        }
+        /// <summary>
+        /// _Создать уникальный commentVoteId
+        /// </summary>
+        /// <returns>int</returns>
+        private int CreateCommentVoteId()
+        {
+            int commentVoteId;
+            for (commentVoteId = 1; entities.mytrip_commentvotes.Count(x => x.Id == commentVoteId) != 0; commentVoteId++) ;
+            return commentVoteId;
+        }
+        #endregion
+
+        #region Проверить голосовал ли юзер
+        /// <summary>
+        /// Проверить голосовал ли юзер
+        /// </summary>
+        /// <param name="commentId"></param>
+        /// <returns>bool</returns>
+        public bool CheckCommentVote(int commentId)
+        {
+            if (entities.mytrip_commentvotes.Count(x => x.CommentId == commentId && x.UserName == HttpContext.Current.User.Identity.Name) == 0)
+                return true;
+            else
+                return false;
+        }
+        #endregion
+
     }
 }

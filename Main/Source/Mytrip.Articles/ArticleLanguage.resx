@@ -465,9 +465,6 @@
   <data name="tags1" xml:space="preserve">
     <value>Tags</value>
   </data>
-  <data name="thanks_for_vote" xml:space="preserve">
-    <value>Thanks for your vote!</value>
-  </data>
   <data name="three_months_ago" xml:space="preserve">
     <value>Three months ago</value>
   </data>
@@ -533,9 +530,6 @@
   </data>
   <data name="yesterday" xml:space="preserve">
     <value>Yesterday</value>
-  </data>
-  <data name="you_have_a_voted" xml:space="preserve">
-    <value>You have already voted</value>
   </data>
   <data name="recent_posts" xml:space="preserve">
     <value>Recent posts</value>
@@ -628,5 +622,20 @@
   </data>
   <data name="closed" xml:space="preserve">
     <value>closed</value>
+  </data>
+  <data name="my_subscriptions" xml:space="preserve">
+    <value>My subscriptions</value>
+  </data>
+  <data name="last_comment" xml:space="preserve">
+    <value>Last comment</value>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="awaiting_moderation" xml:space="preserve">
+    <value>Awaiting moderation</value>
+  </data>
+  <data name="enable_comment_votes" xml:space="preserve">
+    <value>Enable comments voting</value>
   </data>
 </root>

@@ -726,10 +726,11 @@ namespace Mytrip.Articles.Repository
         /// <param name="closedate">дата закрытия</param>
         /// <param name="allCulture">show in all cultures</param>
         /// <param name="moderateComments">moderate comments</param>
+        /// <param name="commentVotes">оценка комментариев</param>
         /// <returns></returns>
         public mytrip_articles CreateArticle(int categoryId, string title, string description,
             string body, bool addComment, string imageForAbstract, bool onlyRegistered, bool approvedVotes,
-            bool includeAnonymComment, DateTime closeDate, bool allCulture, bool moderateComments, string[] pages)
+            bool includeAnonymComment, DateTime closeDate, bool allCulture, bool moderateComments,bool commentVotes, string[] pages)
         {
             CreateArticleZero();
             mytrip_articlescategory category = entities.mytrip_articlescategory.Single(c => c.CategoryId == categoryId);
@@ -756,6 +757,7 @@ namespace Mytrip.Articles.Repository
                 AllCulture = allCulture,
                 Culture = category.Culture,
                 ModerateComments = moderateComments,
+                CommentVotes=commentVotes
             };
             entities.mytrip_articles.AddObject(a);
             entities.SaveChanges();
@@ -795,6 +797,7 @@ namespace Mytrip.Articles.Repository
                         AllCulture = a.AllCulture,
                         Culture = "none",
                         ModerateComments = a.ModerateComments,
+                        CommentVotes=false
                     };
                     entities.mytrip_articles.AddObject(s);
                     entities.SaveChanges();
@@ -863,9 +866,11 @@ namespace Mytrip.Articles.Repository
         /// <param name="includeAnonymComment">разрешить анонимам оставлять комментарии</param>
         /// <param name="closeDate">дата закрытия</param>
         /// <param name="allCulture">для всех языков</param>
+        ///  <param name="moderateComments">модерация комментариев</param>
+        /// <param name="commentVotes">оценка комментариев</param>
         public void UpdateArtiсle(int id, int categoryId, string title, string description,
             string body, bool addComment, string imageForAbstract, bool onlyRegistered,
-            bool approvedVotes, bool includeAnonymComment, DateTime closeDate, bool allCulture, bool moderateComments, string[] pages)
+            bool approvedVotes, bool includeAnonymComment, DateTime closeDate, bool allCulture, bool moderateComments,bool commentVotes, string[] pages)
         {
             mytrip_articles a = entities.mytrip_articles
                 .FirstOrDefault(x => x.ArticleId == id);
@@ -882,6 +887,7 @@ namespace Mytrip.Articles.Repository
             a.Path = GeneralMethods.DecodingString(title);
             a.AllCulture = allCulture;
             a.ModerateComments = moderateComments;
+            a.CommentVotes = commentVotes;
             foreach (var item in GetSubArticles(id))
             {
                 entities.mytrip_articles.DeleteObject(item);
@@ -913,7 +919,7 @@ namespace Mytrip.Articles.Repository
         /// <param name="moderateComments">moderate comments</param>
         /// <returns></returns>
         public mytrip_articles CreatePost(int categoryId, string title, string description, string body, string imageForAbstract,
-            bool onlyRegistered, bool includeAnonymComment, bool moderateComments, string[] pages)
+            bool onlyRegistered, bool includeAnonymComment, bool moderateComments, bool commentVotes, string[] pages)
         {
             CreateArticleZero();
             mytrip_articlescategory cat = entities.mytrip_articlescategory.First(y => y.CategoryId == categoryId);
@@ -937,7 +943,8 @@ namespace Mytrip.Articles.Repository
                 CloseDate = DateTime.MaxValue,
                 Culture = cat.Culture,
                 AllCulture = cat.AllCulture,
-                ModerateComments = moderateComments
+                ModerateComments = moderateComments,
+                CommentVotes=commentVotes
             };
             entities.mytrip_articles.AddObject(p);
             entities.SaveChanges();
@@ -957,7 +964,7 @@ namespace Mytrip.Articles.Repository
         /// <param name="imageForAbstract">фото в кратко</param>
         /// <param name="onlyRegistered">просмотр только зарегистрированным</param>
         public void UpdatePost(int id, string title, string description,
-            string body, string imageForAbstract, bool onlyRegistered, string[] pages)
+            string body, string imageForAbstract, bool onlyRegistered, bool moderateComments,bool commentVotes, string[] pages)
         {
             mytrip_articles a = entities.mytrip_articles
                 .FirstOrDefault(x => x.ArticleId == id);
@@ -970,6 +977,8 @@ namespace Mytrip.Articles.Repository
             a.Path = GeneralMethods.DecodingString(title);
             a.Culture = cat.Culture;
             a.AllCulture = cat.AllCulture;
+            a.ModerateComments = moderateComments;
+            a.CommentVotes = commentVotes;
             foreach (var item in GetSubArticles(id))
             {
                 entities.mytrip_articles.DeleteObject(item);
@@ -999,7 +1008,7 @@ namespace Mytrip.Articles.Repository
                 entities.mytrip_articles.DeleteObject(t);
             }
             mytrip_articles article = entities.mytrip_articles
-                .Include("mytrip_articlescomments")
+                .Include("mytrip_articlescomments.mytrip_commentvotes")
                 .Include("mytrip_articlesvotes")
                 .FirstOrDefault(x => x.ArticleId == id);
             foreach (var t in article.mytrip_articlessubscription.ToList())
@@ -1012,6 +1021,10 @@ namespace Mytrip.Articles.Repository
             }
             foreach (var t in article.mytrip_articlescomments.ToList())
             {
+                foreach (var v in t.mytrip_commentvotes.ToList())
+                {
+                    entities.mytrip_commentvotes.DeleteObject(v);
+                }
                 entities.mytrip_articlescomments.DeleteObject(t);
             }
             foreach (var t in article.mytrip_articlestag.ToList())

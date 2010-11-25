@@ -46,15 +46,20 @@ namespace Mytrip.Articles.Controllers
         public string HomePage()
         {
             var a = artrepo.category.GetCategories(true);
-            string result = "-1_globe_" + ArticleLanguage.articles + "|-2_globe_" + ArticleLanguage.blogs;
+            StringBuilder result = new StringBuilder();
+            result.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            result.AppendLine("<root_el>");
+            result.AppendLine("<first_el>-1_globe_" + ArticleLanguage.articles + "|-2_globe_" + ArticleLanguage.blogs);
             foreach (var b in a)
             {
                 string _culture = "globe_";
                 if (!b.AllCulture)
                     _culture = b.Culture.ToLower() + "_";
-                result += "|" + b.CategoryId + "_" + _culture + b.Title;
+                result.AppendLine("|" + b.CategoryId + "_" + _culture + b.Title);
             }
-            return result;
+            result.AppendLine("</first_el>"); 
+            result.AppendLine("</root_el>"); 
+            return result.ToString();
         }
         public string MenuPage()
         {
