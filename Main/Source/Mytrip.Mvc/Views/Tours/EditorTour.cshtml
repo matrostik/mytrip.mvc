@@ -1,0 +1,128 @@
+﻿@model Mytrip.Tourism.Models.EditorTourModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+       To learn more about Mytrip.Mvc visit
+       http://mytripmvc.net  http://mytripmvc.codeplex.com
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */
+}
+@{
+    View.Title = Html.MytripPageTitle(Model.TitlePage, "/");
+    View.Keywords=Html.MytripPageTitle(Model.TitlePage, ",");
+    View.Description=Html.MytripPageTitle(Model.TitlePage, ",");
+}
+@section csslink{
+<link href="/Content/calendar/ui.datepicker.css" rel="stylesheet" type="text/css" />
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,ui.datepicker.js,jHtmlArea.Mytrip.js,jquery.form.js,Page/Tour.EditorTour.js")
+}
+@section content{
+<h1 class="title">@Model.TitlePage</h1>
+<fieldset>
+
+@using (Html.BeginForm()){
+<div class="editor-label">
+@Html.MytripLabelFor("title",ToursLanguage.title)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.title)
+@Html.ValidationMessageFor(m => m.title) 
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("categoryid", ToursLanguage.category)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.categoryid, Model.category)
+</div>
+<table class="noborders">
+<tr><td style="width: 200px">
+@Html.MytripLabelFor("image", ToursLanguage.image)
+</td><td>
+@Html.MytripLabelFor("body",ToursLanguage.body)
+</td></tr><tr><td>
+<div class="dark">
+@Html.TextAreaFor(model => model.image, new { id = "fotoabstract", style = "height: 200px; width:200px;" })
+@Html.ValidationMessageFor(model => model.image)
+</div>
+</td><td>
+<div class="dark">
+@Html.TextAreaFor(model => model.body, new { id = "article", style = "height: 200px; width:100%;" })
+@Html.ValidationMessageFor(model => model.body) 
+</div>
+</td>
+</tr>
+</table>
+<div class="content">
+<div id="_myForm">
+@Html.TourVariantyForEditor(Model.varianty)
+</div>
+<div style="height:30px; padding-top:10px;">
+<div class="right" id="varr">
+@Html.MytripButton("#",ToursLanguage.addvariant, true,"left")
+</div></div>
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("startdate",ToursLanguage.startdate)
+@Html.ValidationMessageFor(model => model.startdate)<br />
+@Html.TextBoxFor(model => model.startdate)
+</div>
+
+<div class="editor-label">
+@Html.MytripLabelFor("stopdate",ToursLanguage.stopdate)
+@Html.ValidationMessageFor(model => model.stopdate)<br />
+@Html.TextBoxFor(model => model.stopdate)
+</div>
+
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.allculture)
+@Html.MytripLabelFor("allculture", ToursLanguage.allculture)
+</div>
+
+<div class="button">
+@Html.MytripButton(Model.submit, true,"left")
+</div>
+
+}
+
+
+</fieldset>
+<div id="smile" class="window"> 
+<div class="modalTC">Smiles</div>
+<div class="modalC">
+@Html.MytripSmiles("/Content/smiles")
+</div> 
+</div>
+ 
+<div id="variantForm" class="window"> 
+<div class="modalTC">@ToursLanguage.Varianty</div>
+<div class="modalC">
+<form id="myForm" action="/Tours/AddVariant" method="post" enctype="multipart/form-data" >
+<div class="editor-label">
+@Html.HiddenFor(m=>m.tourid)
+@Html.MytripLabelFor("hotel",ToursLanguage.Hotel)
+</div><div class="editor-field"><div class="dark">
+@Html.TextAreaFor(model => model.hotel, new {@class="hotel", style = "height: 100px; width:300px;" })
+@Html.ValidationMessageFor(m => m.hotel) 
+</div></div>
+<div class="editor-label">
+@Html.MytripLabelFor("services",ToursLanguage.Services)
+</div><div class="editor-field"><div class="dark">
+@Html.TextAreaFor(model => model.services, new {@class="services", style = "height: 100px; width:300px;" })
+@Html.ValidationMessageFor(m => m.services) 
+</div></div>
+<div class="editor-label">
+@Html.MytripLabelFor("price",ToursLanguage.Price)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.price)
+@Html.ValidationMessageFor(m => m.price) 
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(m => m.momeyid, Model.money)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.create, true,"left")
+</div>
+</form>
+</div> 
+</div>
+}
+
