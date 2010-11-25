@@ -78,12 +78,55 @@ namespace Mytrip.Mvc.Controllers
         public ActionResult Profile(string id, string path)
         {
             ProfileUsersModel model = new ProfileUsersModel();
-            model.UserName = id;
-            model.Email = MytripUser.UserEmail(id);
+            TempData["username"] = model.UserName = id;
+            TempData["useremail"] = model.Email = MytripUser.UserEmail(id);
             if (string.IsNullOrEmpty(path))
                 model.Path = CoreLanguage.all;
             else
                 model.Path = path;
+            return View(model);
+        }
+        public ActionResult Page(int id)
+        {
+            CorePageModel model = new CorePageModel();
+            model.id = id;
+            var x = coreRepo.corePageRepo.GetPages(id);
+            model.pages = x;
+            if (x.EmailForm && EmailSetting.unlockSendEmail())
+                model.approvedemail = true;
+            else
+                model.approvedemail = false;
+            model.title = x.Title;
+            model.body = new HtmlString(x.Body);
+            model.sideBar = x.SideBar;
+            if (User.Identity.IsAuthenticated)
+            {
+                model.name = User.Identity.Name;
+                model.email = MytripUser.UserEmail();
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Page(int id,CorePageModel model)
+        {
+            coreRepo.emailRepo.SendEmail(EmailSetting.from_email(), (model.email + " " + model.name), model.messege);
+            model.body = new HtmlString(coreRepo.aboutRepo.GetAbout(LocalisationSetting.culture()));
+            model.approvedemail = EmailSetting.unlockSendEmail();
+            model.id = id;
+            var x = coreRepo.corePageRepo.GetPages(id);
+            model.pages = x;
+            if (x.EmailForm && EmailSetting.unlockSendEmail())
+                model.approvedemail = true;
+            else
+                model.approvedemail = false;
+            model.title = x.Title;
+            model.body = new HtmlString(x.Body);
+            model.sideBar = x.SideBar;
+            if (User.Identity.IsAuthenticated)
+            {
+                model.name = User.Identity.Name;
+                model.email = MytripUser.UserEmail();
+            }
             return View(model);
         }
     }

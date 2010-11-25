@@ -120,5 +120,18 @@ namespace Mytrip.Mvc.Repository
                 return _installModuleRepo;
             }
         }
+        CorePageRepository _corePageRepo;
+
+        /// <summary>Инициализация CorePageRepository
+        /// </summary>
+        internal CorePageRepository corePageRepo
+        {
+            get
+            {
+                if (_corePageRepo == null)
+                    _corePageRepo = new CorePageRepository();
+                return _corePageRepo;
+            }
+        }
     }
 }

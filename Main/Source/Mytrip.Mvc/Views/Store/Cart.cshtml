@@ -8,95 +8,135 @@
 }
 @{
     View.Title = Html.MytripPageTitle(Model.title, "/");
-    View.Keywords=Html.MytripPageTitle(Model.title, ",");
-    View.Description=Html.MytripPageTitle(Model.title, ",");
+    View.Keywords = Html.MytripPageTitle(Model.title, ",");
+    View.Description = Html.MytripPageTitle(Model.title, ",");
 }
 @section scriptlink{
 @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,MicrosoftMvcValidation.js,Mytrip.Mvc.Delete.js,Page/Store.Cart.js")
 }
 @section contentSmall{
-@Html.Partial("_sideBar") 
+@Html.Partial("_sideBar")
 }
 @section contentBig{
 <h1 class="title">@Model.title</h1>
 <div class="appr">
-@Model.cart
-</div><div class="last"></div> 
+    @Model.cart
+</div>
+<div class="last">
+</div>
 <h1>@StoreLanguage.new_orders</h1>
 @Html.GetOrders()
-<div id="valid" class="@Model.valid"></div>
-<div id="_order" class="window"> 
-<div class="modalTC">@StoreLanguage.checkout</div>
-<div class="modalC">
-@{Html.EnableClientValidation();}
-@using (Html.BeginForm()){
-<div class="editor-label">
-@Html.MytripLabelFor("firstname", StoreLanguage.firstname)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.firstname)
-@Html.ValidationMessageFor(m => m.firstname) 
+<div id="valid" class="@Model.valid">
 </div>
-<div class="editor-label">
-@Html.MytripLabelFor("lastname", StoreLanguage.lastname)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.lastname)
-@Html.ValidationMessageFor(m => m.lastname) 
+<div id="_order" class="window">
+    <div class="modalTC">@StoreLanguage.checkout</div>
+    <div class="modalC">
+   
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" id="orgOrPriv" name="organizationOrPrivte" value="false" />
+            <div class="editor-label">
+                @Html.MytripLabelFor("firstname", StoreLanguage.firstname)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.firstname) @Html.ValidationMessageFor(m => m.firstname)
+            </div>
+            <div class="editor-label">
+                @Html.MytripLabelFor("lastname", StoreLanguage.lastname)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.lastname) @Html.ValidationMessageFor(m => m.lastname)
+            </div>
+            <div class="editor-label">
+                @Html.MytripLabelFor("useremail", CoreLanguage.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.useremail) @Html.ValidationMessageFor(m => m.useremail)
+            </div>
+            <div class="editor-label">
+                @Html.MytripLabelFor("phone", StoreLanguage.phone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.phone) @Html.ValidationMessageFor(m => m.phone)
+            </div>
+            <div id="vorg" style="display: @Model.viewOrganization" >
+                <div class="editor-label">
+                    @Html.MytripLabelFor("phone", StoreLanguage.organization)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.organization) @Html.ValidationMessageFor(m => m.organization)
+                </div>
+                <div style="display: @Model.viewOrganizationRu" >
+                    <div class="editor-label">
+                        @Html.MytripLabelFor("phone", StoreLanguage.organizationINN)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.organizationINN) @Html.ValidationMessageFor(m => m.organizationINN)
+                    </div>
+                    <div class="editor-label">
+                        @Html.MytripLabelFor("phone", StoreLanguage.organizationKPP)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.organizationKPP) @Html.ValidationMessageFor(m => m.organizationKPP)
+                    </div>
+                </div>
+            </div>
+            <div class="editor-label">
+                @Html.MytripLabelFor("address", StoreLanguage.address)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(m => m.address, new { @class = "message", style = "height: 50px; width:300px;" })
+                @Html.ValidationMessageFor(m => m.address)
+            </div>
+            <div class="button">
+                @Html.MytripButton(CoreLanguage.send, true, "right")
+            </div>
+        }
+    </div>
 </div>
-<div class="editor-label">
-@Html.MytripLabelFor("useremail", CoreLanguage.Email)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.useremail)
-@Html.ValidationMessageFor(m => m.useremail) 
+<div id="_variant" class="window">
+    <div class="modalTC">@StoreLanguage.checkout</div>
+    <div class="modalC">
+        <table class="noborders">
+            <tr>
+                <td>
+             <div class="button">
+            @Html.MytripButton(StoreLanguage.organization, false, "organisation", "left") 
+        </div>
+                </td>
+                <td>
+                  <div class="button">
+            @Html.MytripButton(StoreLanguage.people, false, "people", "right") 
+        </div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
 </div>
-<div class="editor-label">
-@Html.MytripLabelFor("phone", StoreLanguage.phone)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.phone)
-@Html.ValidationMessageFor(m => m.phone) 
+<div id="_onlinebuy" class="window">
+    <div class="modalTC">@StoreLanguage.checkout</div>
+    <div class="modalC">
+    <div class="righttext">
+       @Html.OnlineBuy()</div>
+    </div>
 </div>
-<div style="display: @Model.viewOrganization" >
-<div class="editor-label">
-@Html.MytripLabelFor("phone", StoreLanguage.organization)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.organization)
-@Html.ValidationMessageFor(m => m.organization) 
+<div id="delete" class="window">
+    <div class="modalTC">@CoreLanguage.delete</div>
+    <div class="modalC">
+        <table class="leftmidle">
+            <tr>
+                <td>
+                    @Html.MytripImage("/images/warning.png", "warning", "i")
+                </td>
+                <td>
+                    <h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+                </td>
+            </tr>
+        </table>
+        <div class="button">
+            @Html.MytripButton(CoreLanguage.cancel, false, "close", "right") @Html.MytripButton(CoreLanguage.remove, true, "enter", "right")
+        </div>
+    </div>
 </div>
-<div style="display: @Model.viewOrganizationRu" >
-<div class="editor-label">
-@Html.MytripLabelFor("phone", StoreLanguage.organizationINN)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.organizationINN)
-@Html.ValidationMessageFor(m => m.organizationINN) 
-</div>
-<div class="editor-label">
-@Html.MytripLabelFor("phone", StoreLanguage.organizationKPP)
-</div><div class="editor-field">
-@Html.TextBoxFor(m => m.organizationKPP)
-@Html.ValidationMessageFor(m => m.organizationKPP) 
-</div>
-</div>
-</div>
-<div class="editor-label">
-@Html.MytripLabelFor("address", StoreLanguage.address)
-</div><div class="editor-field">
-@Html.TextAreaFor(m => m.address, new {@class="message", style = "height: 50px; width:300px;" })
-@Html.ValidationMessageFor(m => m.address) 
-</div>
-<div class="button">
-@Html.MytripButton(CoreLanguage.send, true,"right")
-</div>
-}
-</div></div>
-<div id="delete" class="window"> 
-<div class="modalTC">@CoreLanguage.delete</div>
-<div class="modalC">
-<table class="leftmidle"><tr><td>
-@Html.MytripImage("/images/warning.png","warning","i")
-</td><td>
-<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
-</td></tr></table>  
-<div class="button">
-@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
-@Html.MytripButton(CoreLanguage.remove, true, "enter","right")
-</div></div></div>
 }

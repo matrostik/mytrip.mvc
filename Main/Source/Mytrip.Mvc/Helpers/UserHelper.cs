@@ -351,7 +351,9 @@ namespace Mytrip.Mvc.Helpers
             TagBuilder table = new TagBuilder("table");
             table.MergeAttribute("class", "noborders");
             TagBuilder tr0 = new TagBuilder("tr");
-            TagBuilder th1 = new TagBuilder("th");
+            tr0.AddCssClass("profile2");
+            TagBuilder th1 = new TagBuilder("td");
+            th1.MergeAttribute("colspan","2");
 
             #region Form + Dropdown
             TagBuilder form = new TagBuilder("form");
@@ -370,13 +372,12 @@ namespace Mytrip.Mvc.Helpers
             }
             form.InnerHtml = select.ToString();
             #endregion
-            
-            th1.InnerHtml = form.ToString();
-            TagBuilder th2 = new TagBuilder("th");
-            th2.InnerHtml = CoreLanguage.activity;
-            TagBuilder th3 = new TagBuilder("th");
+
+            th1.InnerHtml = "<div style='float:left'>" + form.ToString() + "</div>";
+            TagBuilder th3 = new TagBuilder("td");
+            th3.MergeAttribute("style","text-align:center;");
             th3.InnerHtml = CoreLanguage.date;
-            tr0.InnerHtml = th1.ToString() + th2.ToString() + th3.ToString();
+            tr0.InnerHtml = th1.ToString() + th3.ToString();
             table.InnerHtml += tr0;
             int ctr = 0;
             foreach (var item in acts.OrderByDescending(x => x.Date))

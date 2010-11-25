@@ -54,20 +54,20 @@ namespace Mytrip.Mvc.Settings
         // **********************************************
 
         /// <summary>Абсолютная дирректория для файла MytripConfiguration.xml в папке Configuration
-        /// /Configuration/MytripConfiguration.xml</summary>
+        /// /App_Data/MytripConfiguration.xml</summary>
         /// <returns>возвращает string</returns>
         public static string MytripConfigurationDirectory()
         {
-            return HttpContext.Current.Server.MapPath("/Configuration/MytripConfiguration.xml");
+            return HttpContext.Current.Server.MapPath("/App_Data/MytripConfiguration.xml");
         }
 
         /// <summary>Абсолютная дирректория для файлов .xml в папке Configuration
-        /// /Configuration/{имя файла}.xml</summary>
-        /// <param name="filename">имя файла (/Configuration/{имя файла}.xml)</param>
+        /// /App_Data/{имя файла}.xml</summary>
+        /// <param name="filename">имя файла (/App_Data/{имя файла}.xml)</param>
         /// <returns>возвращает string</returns>
         public static string MytripConfigurationDirectory(string filename)
         {
-            return HttpContext.Current.Server.MapPath("/Configuration/" + filename + ".xml");
+            return HttpContext.Current.Server.MapPath("/App_Data/" + filename + ".xml");
         }
 
         /// <summary>Метод для кеширования данных из MytripConfiguration.xml
@@ -309,9 +309,9 @@ namespace Mytrip.Mvc.Settings
         /// <returns></returns>
         public static string[] UrlDictionary(string urlPath)
         {
-            string[] _urlPath = urlPath.Split('/');
+            string url = MytripRewrite.GetMytripRewriteForPath(urlPath);
+            string[] _urlPath = url.Split('/');
             return _urlPath;
-
         }
 
         /// <summary>Изображение

@@ -122,7 +122,6 @@ namespace Mytrip.Mvc.Models
             }
         }
     }
-
     //****************** E N D **********************
     #endregion
 

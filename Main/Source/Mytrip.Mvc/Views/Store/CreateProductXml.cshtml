@@ -17,7 +17,6 @@
 @section content{
 <h1 class="title">@StoreLanguage.uploadproductxml</h1>
 
-@{Html.EnableClientValidation();}
 <form id="myForm" action="/Store/CreateProductXml" method="post" enctype="multipart/form-data" >
 <div class="textboxR">@Html.MytripInputFile("file","id")</div>
 <div id="divfiletext" class="textboxR">@Html.TextBox("a", "", new { id="filetext"})</div>

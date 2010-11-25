@@ -18,12 +18,12 @@ $(document).ready(function () {
             /*Logon*/
             $('div.logonI').each(function () {
                 var d = $(this).children('div');
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var e = $(d).children('a').width();
                 var f = $(this).html();
                 if ($(this).children('div.logonC').length != 0) {
                     $(this).html('<div class="logonR"/><div class="logonL"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonR').width();
                         var h = $('div.logonL').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 }
                 else if ($(this).children('div.logonCD').length != 0) {
                     $(this).html('<div class="logonRD"/><div class="logonL"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonRD').width();
                         var h = $('div.logonL').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
@@ -40,7 +40,7 @@ $(document).ready(function () {
                 else if (
 $(this).children('div.logonCV').length != 0) {
                     $(this).html('<div class="logonRV"/><div class="logonLV"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonRV').width();
                         var h = $('div.logonLV').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
@@ -48,21 +48,21 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.logonCVD').length != 0) {
                     $(this).html('<div class="logonRVD"/><div class="logonLV"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonRVD').width();
                         var h = $('div.logonLV').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
                     }
                 } else if ($(this).children('div.logonCW').length != 0) {
                     $(this).html('<div class="logonRW"/><div class="logonLW"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonRW').width();
                         var h = $('div.logonLW').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
                     }
                 } else if ($(this).children('div.logonCWD').length != 0) {
                     $(this).html('<div class="logonRWD"/><div class="logonLW"/>' + f);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var g = $('div.logonRWD').width();
                         var h = $('div.logonLW').width();
                         $(this).css({ width: ((e + g + h) + 'px') });
@@ -72,7 +72,7 @@ $(this).children('div.logonCV').length != 0) {
             $('div.logonUL').each(function () {
 
                 var d = $(this).html();
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var e = $(this).parent('div.logonI').width();
                     var f = 0;
                     $(this).find('a').each(function () {
@@ -91,7 +91,7 @@ $(this).children('div.logonCV').length != 0) {
 
             /*Menu*/
             $('div.menuI').each(function () {
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var d = $(this).children('div');
                     var f = $(d).children('a').html();
                     var g = f.replace(' ', '_');
@@ -102,7 +102,7 @@ $(this).children('div.logonCV').length != 0) {
                 var h = $(this).html();
                 if ($(this).children('div.menuC').length != 0) {
                     $(this).html('<div class="menuR"/><div class="menuL"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuR').width();
                         var r = $('div.menuL').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -110,7 +110,7 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.menuCD').length != 0) {
                     $(this).html('<div class="menuRD"/><div class="menuL"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuRD').width();
                         var r = $('div.menuL').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -118,7 +118,7 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.menuCV').length != 0) {
                     $(this).html('<div class="menuRV"/><div class="menuLV"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuRV').width();
                         var r = $('div.menuLV').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -126,7 +126,7 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.menuCVD').length != 0) {
                     $(this).html('<div class="menuRVD"/><div class="menuLV"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuRVD').width();
                         var r = $('div.menuLV').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -134,7 +134,7 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.menuCW').length != 0) {
                     $(this).html('<div class="menuRW"/><div class="menuLW"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuRW').width();
                         var r = $('div.menuLW').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -142,7 +142,7 @@ $(this).children('div.logonCV').length != 0) {
                 }
                 else if ($(this).children('div.menuCWD').length != 0) {
                     $(this).html('<div class="menuRWD"/><div class="menuLW"/>' + h);
-                    if (data == 'IE_7.0') {
+                    if (data == 'IE_7.0'||data == 'IE_6.0') {
                         var j = $('div.menuRWD').width();
                         var r = $('div.menuLW').width();
                         $(this).css({ width: ((e + j + r) + 'px') });
@@ -151,7 +151,7 @@ $(this).children('div.logonCV').length != 0) {
             });
             $('div.menuUL').each(function () {
                 var ulmenu = $(this).html();
-                if (data == 'IE_7.0') 
+                if (data == 'IE_7.0'||data == 'IE_6.0') 
                 {
                     var e = $(this).parent('div.menuI').width();
                     var h = 0;

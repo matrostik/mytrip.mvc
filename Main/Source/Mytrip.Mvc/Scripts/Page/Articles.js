@@ -1,5 +1,5 @@
-﻿$.getScript('/Scripts/jHtmlArea.Mytrip.js');
-$.getScript('/Scripts/jHtmlArea.Smiles.js');
+﻿/*$.getScript('/Scripts/jHtmlArea.Mytrip.js');
+$.getScript('/Scripts/jHtmlArea.Smiles.js');*/
 var jHtmlArea_API = new Object();
 var theme = '';
 var identity = '';
@@ -12,7 +12,11 @@ $(document).ready(function () {
     QuoteComment();
     AddRemoveEditors();
     CreateEditArticleOptions();
-    //Manage editors
+    editJournalists();
+    CommentVote();
+});
+//Manage editors
+function editJournalists() {
     var st = $('dl#mtmddlUser dt a').find('span.value').html();
     $('dl#mtmddlUser dd ul li a').click(function () {
         var selected = $(this).find('span.value').html();
@@ -34,8 +38,7 @@ $(document).ready(function () {
         $("#modalJournalistForm").submit();
         $('div.mask, div.window').hide();
     });
-    //
-});
+}
 function modalSetup() {
     $("a[id^='delete']").click(function () {
         link = $(this).attr('href');
@@ -61,6 +64,7 @@ function editCategory() {
         $("div#modalddlcategories").hide();
         $("#modalShowMenu,#modalShowLang").show();
         $("#modalCategory input:checkbox").attr('checked', false);
+        fixCheckbox();
         setModalMask('modalCategory');
         return false;
     });
@@ -88,6 +92,7 @@ function editCategory() {
         else {
             $("#modalShowLang").hide();
             $("#modalAllCulture").attr('checked', false);
+            fixCheckbox();
         }
         $("input#modalEditId").val(selectedid);
     });
@@ -127,15 +132,11 @@ function editCategory() {
             else
                 $("#modalAllCulture").attr('checked', false);
         }
+        fixCheckbox();
         setModalMask('modalCategory');
         return false;
     });
     $("input#okEditCategory").live("click", function () {
-//        alert('id=' + $("input#modalEditId").val() 
-//                    + '&path=' + $("input#catTitle").attr('name') + '&title='
-//                    + $("input#catTitle").val()
-//                    + '&menu=' + $("#modalSeparateBlock").attr('checked')
-//                    + '&allculture=' + $("#modalAllCulture").attr('checked'));
         $.ajax({
             type: 'POST',
             url: '/Article/Category',
@@ -237,7 +238,7 @@ function EditComment() {
 }
 function CreateEditArticleOptions() {
     if ($("#ApprovedComment").is(':checked')) {
-        $("#moderateComments").show();
+        $("#moderateComments,#commentVotes").show();
     }
     else {
         $("#moderateComments").hide();
@@ -252,22 +253,15 @@ function CreateEditArticleOptions() {
         }
     });
     $("#ApprovedComment").click(function () {
-        //alert('trigger checkbox click raised');
         var comchecked = $(this).is(':checked');
-        //alert("на входе="+comchecked);
         if (comchecked) {
-            //alert('true');
-            if (!$("#OnlyForRegisterUser").is(':checked')) {
+            if (!$("#OnlyForRegisterUser").is(':checked'))
                 $("#showAnonymComment").show();
-            }
-            $("#moderateComments").show();
+            $("#moderateComments,#commentVotes").show();
         }
         else {
-            //alert('false');
-            $("#showAnonymComment").hide();
-            $("#moderateComments").hide();
-            $("#IncludeAnonymComment").attr('checked', false);
-            $("#ModerateComments").attr('checked', false);
+            $("#moderateComments,#commentVotes,#showAnonymComment").hide();
+            $("#ModerateComments,#CommentVotes,#IncludeAnonymComment").attr('checked', false);
         }
     });
     $("#OnlyForRegisterUser").click(function () {
@@ -350,6 +344,8 @@ function BuildjHtml(name) {
             }
         });
     }
+    if ($('textarea#' + name).length == 0)
+        return false;
     if (name == "fotoabstract") {
         $('#fotoabstract').htmlarea({
             css: '/Theme/' + theme + '/TextAreaContainer.css',
@@ -415,6 +411,35 @@ function CheckCategoryAllCulture(selectedid) {
         data: 'id=' + selectedid,
         async: false
     }).responseText;
+}
+function CommentVote() {
+    $("a[id^='voteComment_']").click(function () {
+        var a = $(this).attr('name');
+        var id = $(this).attr('rel');
+        //alert(a + id);
+//        var t= $.ajax({
+//            url: "/Article/VoteComment",
+//            data: 'id=' + id + '&id2=' + a,
+//            async: false
+//            }).responseText;
+//        $('div#voteCommentDiv' + id).html(t);
+        $.ajax({
+            url: "/Article/VoteComment",
+            data: 'id=' + id + '&id2=' + a,
+            cache: false,
+            success: function (html) {
+                $('div#voteCommentDiv' + id).html(html);
+            }
+        });
+        return false;
+    });
+    
+    var selectedid = 5;
+//    return $.ajax({
+//        url: "/Article/CheckAllCulture",
+//        data: 'id=' + selectedid,
+//        async: false
+//    }).responseText;
 }
 function getScrollY() {
     scrollY = 0;

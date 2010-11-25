@@ -11,18 +11,13 @@ license: Microsoft Public License (Ms-PL) */
 }
 @Html.AccordionUsersAndFiles(new {
 /*--StartManagerControlPanel--*/
-i1=Mytrip.Rssparser.Export.Manager(),
-i2=Mytrip.Votes.Export.Manager(),
-i3=Mytrip.Articles.Export.Manager(),
-i4=Mytrip.Gismeteo.Export.Manager(),
-i5=Mytrip.Store.Export.Manager()
+i1=Mytrip.Store.Export.Manager(),
+i2=Mytrip.Articles.Export.Manager()
 /*--EndManagerControlPanel--*/
 },new {
 /*--StartSettingControlPanel--*/
-i1=Mytrip.Rssparser.Export.Setting(),
-i2=Mytrip.Votes.Export.Setting(),
-i3=Mytrip.Articles.Export.Setting(),
-i4=Mytrip.Gismeteo.Export.Setting()
+i1=Mytrip.Store.Export.Setting(),
+i2=Mytrip.Articles.Export.Setting()
 /*--EndSettingControlPanel--*/
 }, true)
 @Html.AccordionUserProfile(new {
@@ -32,6 +27,8 @@ i1=Mytrip.Articles.Export.Profile()
 })
 @Html.AccordionDonateProject()
 @Html.Partial("_sideBarExport")
+
+
 
 
 

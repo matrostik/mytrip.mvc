@@ -56,22 +56,22 @@
 </th><td>
 @if (Model.IsApproved){
 @CoreLanguage.user_is_approved
-@Html.MytripImage("/Content/images/approved.png", CoreLanguage.user_is_approved, 15, 0, 0)
+@Html.MytripImage("/images/approved.png", CoreLanguage.user_is_approved, 15, 0, 0)
 <span>[</span>
-@Html.MytripImageLink(Url.Action("IsApproved", new { id = Model.UserName }),"/Content/images/noapproved.png", CoreLanguage.user_is_not_approved, 15, 0, 0)
+@Html.MytripImageLink(Url.Action("IsApproved", new { id = Model.UserName }),"/images/noapproved.png", CoreLanguage.user_is_not_approved, 15, 0, 0)
 <span>]</span>
 }else{
 @CoreLanguage.user_is_not_approved
-@Html.MytripImage("/Content/images/noapproved.png", CoreLanguage.user_is_not_approved, 15, 0, 0)
+@Html.MytripImage("/images/noapproved.png", CoreLanguage.user_is_not_approved, 15, 0, 0)
 <span>[</span>
-@Html.MytripImageLink(Url.Action("IsApproved", new { id = Model.UserName }),"/Content/images/approved.png", CoreLanguage.user_is_approved, 15, 0, 0)
+@Html.MytripImageLink(Url.Action("IsApproved", new { id = Model.UserName }),"/images/approved.png", CoreLanguage.user_is_approved, 15, 0, 0)
 <span>]</span>
 } 
 </td></tr><tr>
 <th class="oneinput">
 <h2 class="white">@CoreLanguage.role_information</h2>
 </th>
-@{Html.EnableClientValidation();} 
+ 
 @using (Html.BeginForm()){
 <th>
 <div><div class="textboxR">
@@ -88,10 +88,10 @@
 @item
 </th><td>
 @CoreLanguage.user_in_role
-@Html.MytripImage("/Content/images/approved.png", CoreLanguage.user_in_role, 15, 0, 0)
+@Html.MytripImage("/images/approved.png", CoreLanguage.user_in_role, 15, 0, 0)
 <span>[</span>
 @Html.MytripImageLink(Url.Action("IsUserInRole", new { id = Model.UserName, id2 = item }),
-                                        "/Content/images/noapproved.png", "delete", 15, 0, 0)
+                                        "/images/noapproved.png", "delete", 15, 0, 0)
 <span>]</span>
 </td></tr>
 }

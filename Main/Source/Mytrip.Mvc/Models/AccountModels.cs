@@ -4,6 +4,7 @@
    mytripmvc@gmail.com
    license: Microsoft Public License (Ms-PL) */
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Mytrip.Mvc.Models
 {
@@ -15,7 +16,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Account/ChangePassword.cshtml
     /// </summary>
-    [MetadataType(typeof(ChangePasswordModel))]
     public class ChangePasswordModel
     {
         /// <summary>
@@ -50,6 +50,7 @@ namespace Mytrip.Mvc.Models
         /// Минимальная длина пароля
         /// </summary>
         public int minRequiredPasswordLength { get; set; }
+        public bool Change { get; set; }
     }
 
     //****************** E N D **********************
@@ -70,6 +71,7 @@ namespace Mytrip.Mvc.Models
         [EmailRegister(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_duplicate_email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public bool Change { get; set; }
 
     }
 
@@ -84,7 +86,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Account/LogOn.cshtml
     /// </summary>
-    [MetadataType(typeof(LogOnModel))]
     public class LogOnModel
     {
         /// <summary>
@@ -153,7 +154,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Account/Register.cshtml
     /// </summary>
-    [MetadataType(typeof(RegisterModel))]
     public class RegisterModel
     {
         /// <summary>
@@ -207,6 +207,7 @@ namespace Mytrip.Mvc.Models
         /// Минимальная длина пароля
         /// </summary>
         public int minRequiredPasswordLength { get; set; }
+        public bool sendemail { get; set; }
     }
 
     //****************** E N D **********************
@@ -220,7 +221,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Account/OpenIdRegister.cshtml
     /// </summary>
-    [MetadataType(typeof(OpenIdRegisterModel))]
     public class OpenIdRegisterModel
     {
         /// <summary>
@@ -248,6 +248,47 @@ namespace Mytrip.Mvc.Models
 
     }
 
+    //****************** E N D **********************
+    #endregion
+
+    #region Модель для страницы /Views/Account/ForgotPassword.cshtml
+    /// <summary>
+    /// Модель для страницы /Views/Account/ForgotPassword.cshtml
+    /// </summary>
+    public class ForgotPasswordModel
+    {
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_email")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_email")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_error_email")]
+        [EmailRegister(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "register_duplicate_email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        public bool sendemail { get; set; }
+        
+        public HtmlString message { get; set; }
+    }
+    //****************** E N D **********************
+    #endregion
+
+    #region Модель для страницы /Views/Account/RecoveryPassword.cshtml
+    /// <summary>
+    /// Модель для страницы /Views/Account/RecoveryPassword.cshtml
+    /// </summary>
+    public class RecoveryPasswordModel
+    {
+        public bool sendemail { get; set; }
+        public string returnUrl { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_password")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_password")]
+        [MinPassword(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_error_password")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_null_password")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "account_max_length_password")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+    
+    }
     //****************** E N D **********************
     #endregion
 }

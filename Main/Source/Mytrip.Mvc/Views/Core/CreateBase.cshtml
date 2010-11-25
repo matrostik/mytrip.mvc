@@ -16,11 +16,11 @@
 }
 @section content{
 <h1 class="title">@CoreLanguage.CreateBase</h1>
-@{ Html.EnableClientValidation(); }
+
 @using (Html.BeginForm()) {
 <fieldset>
 <div class="editor-label">
-@Html.MytripLabelFor("Provider",CoreLanguage.Provider)
+@Html.LabelFor(model => model.Provider, CoreLanguage.Provider)
 </div>
 <div class="editor-field">
 @Html.DropDownListFor(model => model.Provider, Model.AllProvider)             
@@ -28,17 +28,17 @@
 </div>
 <div class="editor-label">  
 @Html.CheckBoxFor(model => model.IntegratedSecurity, new { id = "integ" })
-@Html.MytripLabelFor("Provider",CoreLanguage.IntegratedSecurity)
+@Html.LabelFor(model => model.IntegratedSecurity, CoreLanguage.IntegratedSecurity)
 </div>   
 <div class="editor-label">
-@Html.MytripLabelFor("Server",CoreLanguage.Server )
+@Html.LabelFor(model => model.Server, CoreLanguage.Server)
 </div>	    
 <div class="editor-field">
 @Html.TextBoxFor(model => model.Server)
 @Html.ValidationMessageFor(model => model.Server) 
 </div>
 <div class="editor-label">	
-@Html.MytripLabelFor("DataBase",CoreLanguage.DataBase) 
+@Html.LabelFor(model => model.DataBase, CoreLanguage.DataBase) 
 </div>	    
 <div class="editor-field">
 @Html.TextBoxFor(model => model.DataBase)
@@ -46,14 +46,14 @@
 </div>
 <div id="_integ" style="display: none">
 <div class="editor-label">
-@Html.MytripLabelFor("User",CoreLanguage.UserName) 
+@Html.LabelFor(model => model.User, CoreLanguage.UserName) 
 </div>	    
 <div  class="editor-field" >
 @Html.TextBoxFor(model => model.User)  
 @Html.ValidationMessageFor(model => model.User) 
 </div>
 <div class="editor-label" >	
-@Html.MytripLabelFor("Password",CoreLanguage.Password) 
+@Html.LabelFor(model => model.Password, CoreLanguage.Password) 
 </div>	    
 <div  class="editor-field" >
 @Html.TextBoxFor(model => model.Password)

@@ -5,6 +5,7 @@ using System.Text;
 using Mytrip.Rssparser.Repository.DataEntities;
 using System.Xml.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Mytrip.Rssparser.Models
 {
@@ -19,14 +20,12 @@ namespace Mytrip.Rssparser.Models
        public bool category { get; set; }
 
     }
-   [MetadataType(typeof(RssparserSettingModel))]
    public class RssparserSettingModel
    {
        public bool unlockRssparser { get; set; }
        [Required(ErrorMessageResourceType = typeof(RssparserLanguage), ErrorMessageResourceName = "nullvalue")]
        public string nameRssparser { get; set; }
    }
-   [MetadataType(typeof(ManagerModel))]
    public class ManagerModel
    {
        public int RssId { get; set; }
@@ -36,6 +35,7 @@ namespace Mytrip.Rssparser.Models
        [Required(ErrorMessageResourceType = typeof(RssparserLanguage), ErrorMessageResourceName = "rssurl_null")]
        [RegularExpression(@"^(http|https)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$", ErrorMessageResourceType = typeof(RssparserLanguage), ErrorMessageResourceName = "rssurl_wrong")]
        public string RssUrl { get; set; }
+       [SkipRequestValidation]
        public string ImgUrl { get; set; }
    }
 }

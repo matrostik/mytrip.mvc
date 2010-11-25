@@ -203,7 +203,6 @@ namespace Mytrip.Mvc.Controllers
         /// <param name="id">файловая дирректория</param>
         /// <returns>ActionResult</returns>
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult EditPage(PageModel model, string id)
         {
             id = id.Replace("()()", "()");

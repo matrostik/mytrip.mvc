@@ -160,6 +160,9 @@ namespace Mytrip.Mvc.Repository
                 string parser = GeneralMethods.HttpGetParsing(x.Value + "/HomePage", culture);
                 string name = x.Value.Replace("http://" + HttpContext.Current.Request.ServerVariables["HTTP_HOST"] + "/", "");
                 name = name.Replace("Export", "").Replace("_", ".");
+                parser = parser.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>","")
+                    .Replace("<root_el>", "").Replace("<first_el>", "")
+                    .Replace("</first_el>", "").Replace("</root_el>", "");
                 if (parser != null && parser != "")
                 {
                     string[] _parser = parser.Split('|');
@@ -356,7 +359,7 @@ namespace Mytrip.Mvc.Repository
         private IDictionary<string, string> CreateLinkForProfile()
         {
             IDictionary<string, string> result = new Dictionary<string, string>();
-            string[] sidebar = EditePageRepository.WritePage("/Views/Home/_profileSmall.cshtml");
+            string[] sidebar = EditePageRepository.WritePage("/Views/Shared/_profileSmall.cshtml");
             int count = 1;
             int StartProfile = 0;
             int EndProfile = 0;
@@ -406,7 +409,7 @@ namespace Mytrip.Mvc.Repository
                 result.AppendLine(x.Value);
 
             }
-            EditePageRepository.CreatePage("/Views/Home/_profileSmall.cshtml", result.ToString());
+            EditePageRepository.CreatePage("/Views/Shared/_profileSmall.cshtml", result.ToString());
         }
         /// <summary>
         /// 
@@ -439,7 +442,7 @@ namespace Mytrip.Mvc.Repository
             result.AppendLine(" ");
             result.AppendLine("/* WARNING AUTO GENERATE CODE */");
             result.AppendLine("}");
-            result.AppendLine("@Html.LastActivity(new {");
+            result.AppendLine("@Html.LastActivity(Model.Path, new {");
             result.AppendLine("/*--StartLastActivity--*/");
             bool end = false;
             foreach (string x in sidebar)

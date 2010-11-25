@@ -70,7 +70,7 @@ namespace Mytrip.Mvc.Install
             // Удаление записей из /Views/Home/_profileSmall.cshtml
             // **********************************************
 
-            profile = EditePageRepository.WritePage("/Views/Home/_profileSmall.cshtml");
+            profile = EditePageRepository.WritePage("/Views/Shared/_profileSmall.cshtml");
             a = string.Empty;
             foreach (string x in profile)
             {
@@ -78,7 +78,7 @@ namespace Mytrip.Mvc.Install
                     a += string.Concat(x.Trim(), "|");
             }
             profile = a.Replace(",|/*--EndProfile--*/", "|/*--EndProfile--*/").Split('|');
-            EditePageRepository.CreatePage("/Views/Home/_profileSmall.cshtml", profile);
+            EditePageRepository.CreatePage("/Views/Shared/_profileSmall.cshtml", profile);
 
             //****************** E N D **********************
             #endregion
