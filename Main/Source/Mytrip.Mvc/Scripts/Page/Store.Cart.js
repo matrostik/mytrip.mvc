@@ -27,8 +27,73 @@
         $(id).css('left', winW / 2 - $(id).width() / 2);
         $(id).slideDown('slow');
     }
+    if ($('div.onlinebuy').length != 0) {
+        var id = 'div.window#_onlinebuy';
+        $(id).css({ width: (326 + 'px') });
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+        $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+        $('div.mask').show();
+        $('div.mask').fadeTo("fast", 0.1);
+        var winH = $(window).height();
+        var winW = $(window).width();
+        $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+        $(id).css('left', winW / 2 - $(id).width() / 2);
+        $(id).slideDown('slow');
+    }
     $('input#order').live('click',
         function () {
+            var id = 'div.window#_order';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        });
+    $('input#variant').live('click',
+        function () {
+            var id = 'div.window#_variant';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        });
+    $('input#organisation').live('click',
+        function () {
+            $('input#orgOrPriv').val('true');
+            $('div#vorg').show();
+            $('div.mask, div.window').hide();
+            var id = 'div.window#_order';
+            $(id).css({ width: (326 + 'px') });
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+            $('div.mask').css({ 'width': maskWidth, 'height': maskHeight });
+            $('div.mask').show();
+            $('div.mask').fadeTo("fast", 0.1);
+            var winH = $(window).height();
+            var winW = $(window).width();
+            $(id).css('top', (winH / 2 - $(id).height() / 2) + getScrollY());
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+            $(id).slideDown('slow');
+        });
+    $('input#people').live('click',
+        function () {
+            $('input#orgOrPriv').val('false');
+            $('div#vorg').hide();
+            $('div.mask, div.window').hide();
             var id = 'div.window#_order';
             $(id).css({ width: (326 + 'px') });
             var maskHeight = $(document).height();

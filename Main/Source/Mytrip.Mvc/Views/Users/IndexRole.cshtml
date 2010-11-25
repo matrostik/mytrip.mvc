@@ -17,7 +17,7 @@
 @section content{
 <h2 class="adminlink">@Html.ActionLink(CoreLanguage.all_users, "Index")</h2>
 <h1 class="title">@CoreLanguage.all_roles</h2>
-@{Html.EnableClientValidation();}
+
 @using (Html.BeginForm()){
 <div><div class="textboxR">
 @Html.ValidationMessageFor(m=>m.RoleName)

@@ -523,8 +523,6 @@
     </None>
     <None Include="Views\Account\ChangeEmail.cshtml" />
     <None Include="Views\Account\ChangePassword.cshtml" />
-    <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <None Include="Views\Account\Email.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\LogOn.cshtml" />
     <None Include="Views\Account\OpenIdRegister.cshtml" />
@@ -565,7 +563,6 @@
     <None Include="Views\Home\_homePage.cshtml" />
     <None Include="Views\Home\_license.cshtml" />
     <None Include="Views\Home\_profileBig.cshtml" />
-    <None Include="Views\Home\_profileSmall.cshtml" />
     <None Include="Views\Rssparser\Edit.cshtml" />
     <None Include="Views\Rssparser\Index.cshtml" />
     <None Include="Views\Rssparser\Manager.cshtml" />
@@ -587,7 +584,6 @@
     <None Include="Views\Store\Index.cshtml" />
     <None Include="Views\Store\Manager.cshtml" />
     <None Include="Views\Store\ManagerOrders.cshtml" />
-    <None Include="Views\Store\Order.cshtml" />
     <None Include="Views\Store\OrderDetails.cshtml" />
     <None Include="Views\Store\Setting.cshtml" />
     <None Include="Views\Store\View.cshtml" />

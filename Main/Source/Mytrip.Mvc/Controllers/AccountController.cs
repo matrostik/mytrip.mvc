@@ -13,6 +13,8 @@ using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using Mytrip.Mvc.Models;
 using Mytrip.Mvc.Settings;
+using System.Web;
+using Mytrip.Mvc.Repository;
 
 namespace Mytrip.Mvc.Controllers
 {
@@ -57,7 +59,7 @@ namespace Mytrip.Mvc.Controllers
             if (UsersSetting.unlockSiteId() && ModelState.IsValid & ValidateLogon(model.UserName, model.Password))
             {
                 coreRepo.formsService.SignIn(model.UserName, model.RememberMe);
-                    if (!String.IsNullOrEmpty(returnUrl))
+                    if (!String.IsNullOrEmpty(returnUrl)&&!returnUrl.Contains("Password"))
                         return Redirect(returnUrl);
                     else
                         return RedirectToAction("Index", "Home");
@@ -103,6 +105,7 @@ namespace Mytrip.Mvc.Controllers
                 RegisterModel model = new RegisterModel();
                 model.unlockCaptcha = CoreSetting.Development() ? false : UsersSetting.unlockCaptcha();
                 model.minRequiredPasswordLength = UsersSetting.minRequiredPasswordLength();
+                model.sendemail = false;
                 return View(model);
             }
             else
@@ -127,11 +130,14 @@ namespace Mytrip.Mvc.Controllers
                     GeneralMethods.MytripCacheRemove("cacherole");
                     if (!CoreSetting.Development() && EmailSetting.unlockSendEmail() && UsersSetting.unlockApprovedEmail())
                     {
-                        string userId=coreRepo.membershipRepo.BlokUserEmail(model.UserName);
+                        string userId = coreRepo.membershipRepo.BlokUserEmail(model.UserName);
+                        string linksite="<a href='http://"+UsersSetting.applicationName()+"'>"+UsersSetting.applicationName()+"</a>";
+                        string appremail = "<a href='http://" + UsersSetting.applicationName() + "/Account/ApprovedAccount?_id=" + userId + "&returnUrl=" + returnUrl + "'>" + UsersSetting.applicationName() + "/Account/ApprovedAccount</a>";
+                        
                         string subject = string.Format(CoreLanguage.subjectEmail, UsersSetting.applicationName());
-                        string body = string.Format(CoreLanguage.bodyEmail, UsersSetting.applicationName(), userId);
+                        string body = string.Format(CoreLanguage.bodyEmail, linksite, appremail);
                         coreRepo.emailRepo.SendEmail(model.Email, subject, body);
-                        return RedirectToAction("Email");
+                        model.sendemail = true;
                     }
                     else
                     {
@@ -155,34 +161,28 @@ namespace Mytrip.Mvc.Controllers
             return View(model);
         }
 
-        /// <summary>GET: /Account/Email
-        /// Сообщение пользователю о отправке на его почту пистма с ссылкой 
-        /// для подтверждения регистрации
-        /// </summary>
-        /// <returns>ActionResult</returns>
-        public ActionResult Email()
-        { 
-            return View(); 
-        }
-
         /// <summary>GET: /Account/ApprovedAccount
         /// Потверждение и одобрение пользователя по Email
         /// </summary>
-        /// <param name="id">индентификатор пользователя</param>
+        /// <param name="_id">индентификатор пользователя</param>
         /// <returns>ActionResult</returns>
-        public ActionResult ApprovedAccount(string id)
+        public ActionResult ApprovedAccount(string _id, string returnUrl)
         { 
-          string userName = coreRepo.membershipRepo.ApprovedUserEmail(id);
+          string userName = coreRepo.membershipRepo.ApprovedUserEmail(_id);
           coreRepo.formsService.SignIn(userName, false);
-          return RedirectToAction("Index", "Home");
+
+          if (string.IsNullOrEmpty(returnUrl))
+              return RedirectToAction("Index", "Home");
+          else
+              return Redirect(returnUrl);
         }
 
         //****************** E N D **********************
         #endregion
 
-        #region Смена пароля
+        #region Восстановление и смена пароля, смена email
         // **********************************************
-        // Смена пароля
+        // Восстановление и смена пароля, смена email
         // **********************************************
 
         /// <summary>GET: /Account/ChangePassword
@@ -194,6 +194,9 @@ namespace Mytrip.Mvc.Controllers
         {
             ChangePasswordModel model = new ChangePasswordModel();
             model.minRequiredPasswordLength = UsersSetting.minRequiredPasswordLength();
+            model.Change = false;
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             return View(model);
         }
         
@@ -210,22 +213,14 @@ namespace Mytrip.Mvc.Controllers
             {
                 if (coreRepo.membershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
                 {
-                    return RedirectToAction("ChangePasswordSuccess");
+                    model.Change = true;
                 }
             }
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             model.minRequiredPasswordLength = UsersSetting.minRequiredPasswordLength();
             return View(model);
         }
-
-        /// <summary>GET: /Account/ChangePasswordSuccess
-        /// Успешная смена пароля
-        /// </summary>
-        /// <returns>ActionResult</returns>
-        public ActionResult ChangePasswordSuccess()
-        {
-            return View();
-        }
-
         /// <summary>GET: /Account/ChangeEmail
         /// Change Email
         /// </summary>
@@ -234,7 +229,9 @@ namespace Mytrip.Mvc.Controllers
         public ActionResult ChangeEmail()
         {
             ChangeEmailModel model = new ChangeEmailModel();
-            model.Email = coreRepo.membershipRepo.mtGetUserByUserNameMember(HttpContext.User.Identity.Name).mytrip_usersmembership.Email;
+            model.Change = false;
+            TempData["useremail"] = model.Email = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
             return View(model);
         }
         /// <summary>POST: /Account/ChangePassword
@@ -246,8 +243,82 @@ namespace Mytrip.Mvc.Controllers
         [HttpPost]
         public ActionResult ChangeEmail(ChangeEmailModel model)
         {
-            coreRepo.membershipRepo.ChangeEmail(model.Email);
-            return RedirectToAction("Index","Home");
+            if (ModelState.IsValid)
+            {
+                coreRepo.membershipRepo.ChangeEmail(model.Email);
+                model.Change = true;
+            }
+            TempData["useremail"] = model.Email = MytripUser.UserEmail(User.Identity.Name);
+            TempData["username"] = User.Identity.Name;
+            return View(model);
+        }
+
+        public ActionResult ForgotPassword(bool _id,string returnUrl)
+        {
+            ForgotPasswordModel model = new ForgotPasswordModel();
+            model.sendemail = false;
+           if(!_id)
+               model.message = new HtmlString("<div class='noappr'>" +CoreLanguage.ForgotDateError+ "</div><div class='last'></div>");
+          
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string returnUrl,ForgotPasswordModel model)
+        {
+            model.sendemail = false;
+            if (ModelState.IsValid) 
+            {
+                var x = coreRepo.membershipRepo.GetMembershipForForgotPassword(model.Email);
+                foreach (var _x in x)
+                    {
+                        if (_x.Password == _x.PasswordSalt)
+                        {
+                            if (!model.sendemail)
+                            {
+                                model.sendemail = true;
+                                model.message = new HtmlString(CoreLanguage.forgotOpenid);
+                            }
+                        }
+                        else
+                        {
+                            coreRepo.membershipRepo.CreateDateCangePassword(_x);
+                            string userId = _x.UserId;
+                            string username = _x.mytrip_users.UserName;
+                            string linksite = "<a href='http://" + UsersSetting.applicationName() + "'>" + UsersSetting.applicationName() + "</a>";
+                            string appremail = "<a href='http://" + UsersSetting.applicationName() + "/Account/RecoveryPassword?_id=" + userId + "&returnUrl=" + returnUrl + "'>" + UsersSetting.applicationName() + "/Account/RecoveryPassword</a>";
+                        
+                            string subject = string.Format(CoreLanguage.recovryPassword, UsersSetting.applicationName());
+                            string body = string.Format(CoreLanguage.bodyForgot, linksite, appremail,username);
+                            coreRepo.emailRepo.SendEmail(model.Email, subject, body);
+                            model.message = new HtmlString(CoreLanguage.Email_forgot_body);
+                            model.sendemail = true;
+                        }
+                    }
+                coreRepo.membershipRepo.SaveChanges();
+                    
+            }
+            return View(model);
+        }
+        public ActionResult RecoveryPassword(string _id, string returnUrl)
+        {
+            bool a = coreRepo.membershipRepo.DateCangePassword(_id);
+            if (!a)
+                return RedirectToAction("ForgotPassword", new { _id=a,returnUrl});
+            RecoveryPasswordModel model = new RecoveryPasswordModel();
+            model.sendemail = false;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult RecoveryPassword(string _id, string returnUrl, RecoveryPasswordModel model)
+        {
+            if (ModelState.IsValid & ValidateConfirmPassword(model.Password, model.ConfirmPassword, "Password"))
+            {
+                string userName=coreRepo.membershipRepo.RecoveryPassword(_id, model.Password);
+                coreRepo.formsService.SignIn(userName, false);
+                model.sendemail = true;
+                model.returnUrl = returnUrl;
+            }
+            return View(model);
         }
         //****************** E N D **********************
         #endregion
@@ -396,7 +467,6 @@ namespace Mytrip.Mvc.Controllers
         /// <param name="returnUrl">url для возврата пользователя</param>
         /// <returns>ActionResult</returns>
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult OpenIdRegister(OpenIdRegisterModel model,string id2, string returnUrl)
         {
             if (ModelState.IsValid)

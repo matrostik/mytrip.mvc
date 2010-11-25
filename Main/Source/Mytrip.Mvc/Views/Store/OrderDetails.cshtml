@@ -17,7 +17,6 @@
 @section content{
 <h1 class="title"><a href="/Store/ManagerOrders">@StoreLanguage.managerorders</a> / @string.Format(StoreLanguage.orderdetailstitle,Model.id)</h1>
 
-@{Html.EnableClientValidation();}
 @using (Html.BeginForm()){
 <fieldset>
 @Model.orderisproduct

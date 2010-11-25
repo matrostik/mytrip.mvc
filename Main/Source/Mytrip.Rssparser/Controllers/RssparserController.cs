@@ -104,7 +104,6 @@ namespace Mytrip.Rssparser.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult Manager(ManagerModel model)
         {
             rss.Create(model.Title, culture, model.AllCulture, model.RssUrl, model.ImgUrl);
@@ -130,7 +129,6 @@ namespace Mytrip.Rssparser.Controllers
         }
         [RoleAdminAndEditor]
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult Edit(ManagerModel model)
         {
             rss.Edit(model.RssId, model.Title, model.AllCulture, model.RssUrl, model.ImgUrl);

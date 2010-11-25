@@ -4,12 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mytripmvcModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="mytripmvcModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="mytripmvcModelStoreContainer">
+          <EntitySet Name="mytrip_corepages" EntityType="mytripmvcModel.Store.mytrip_corepages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_users" EntityType="mytripmvcModel.Store.mytrip_users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_usersinroles" EntityType="mytripmvcModel.Store.mytrip_usersinroles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_usersmembership" EntityType="mytripmvcModel.Store.mytrip_usersmembership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_usersroles" EntityType="mytripmvcModel.Store.mytrip_usersroles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_mytrip_corepages_mytrip_corepages" Association="mytripmvcModel.Store.FK_mytrip_corepages_mytrip_corepages">
+            <End Role="mytrip_corepages" EntitySet="mytrip_corepages" />
+            <End Role="mytrip_corepages1" EntitySet="mytrip_corepages" />
+          </AssociationSet>
           <AssociationSet Name="FK_mytrip_Membership_mytrip_Users" Association="mytripmvcModel.Store.FK_mytrip_Membership_mytrip_Users">
             <End Role="mytrip_users" EntitySet="mytrip_users" />
             <End Role="mytrip_usersmembership" EntitySet="mytrip_usersmembership" />
@@ -23,6 +28,23 @@
             <End Role="mytrip_usersinroles" EntitySet="mytrip_usersinroles" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="mytrip_corepages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" />
+          <Property Name="Path" Type="nvarchar" MaxLength="256" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="ViewOnlyHomePage" Type="bit" Nullable="false" />
+          <Property Name="SideBar" Type="bit" Nullable="false" />
+          <Property Name="EmailForm" Type="bit" Nullable="false" />
+          <Property Name="AddMenu" Type="bit" Nullable="false" />
+          <Property Name="AddHomePage" Type="bit" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="SubPagesId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="mytrip_users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -61,6 +83,18 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_mytrip_corepages_mytrip_corepages">
+          <End Role="mytrip_corepages" Type="mytripmvcModel.Store.mytrip_corepages" Multiplicity="1" />
+          <End Role="mytrip_corepages1" Type="mytripmvcModel.Store.mytrip_corepages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_corepages">
+              <PropertyRef Name="PageId" />
+            </Principal>
+            <Dependent Role="mytrip_corepages1">
+              <PropertyRef Name="SubPagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_mytrip_Membership_mytrip_Users">
           <End Role="mytrip_users" Type="mytripmvcModel.Store.mytrip_users" Multiplicity="1" />
           <End Role="mytrip_usersmembership" Type="mytripmvcModel.Store.mytrip_usersmembership" Multiplicity="0..1" />
@@ -97,8 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mytripmvcModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -113,6 +146,11 @@
           <AssociationSet Name="mytrip_usersinroles" Association="mytripmvcModel.mytrip_usersinroles">
             <End Role="mytrip_usersroles" EntitySet="mytrip_usersroles" />
             <End Role="mytrip_users" EntitySet="mytrip_users" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_corepages" EntityType="mytripmvcModel.mytrip_corepages" />
+          <AssociationSet Name="FK_mytrip_corepages_mytrip_corepages" Association="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages">
+            <End Role="mytrip_corepages" EntitySet="mytrip_corepages" />
+            <End Role="mytrip_corepages1" EntitySet="mytrip_corepages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="mytrip_users">
@@ -165,6 +203,37 @@
           <End Role="mytrip_usersroles" Type="mytripmvcModel.mytrip_usersroles" Multiplicity="*" />
           <End Role="mytrip_users" Type="mytripmvcModel.mytrip_users" Multiplicity="*" />
         </Association>
+        <EntityType Name="mytrip_corepages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Path" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ViewOnlyHomePage" Nullable="false" />
+          <Property Type="Boolean" Name="SideBar" Nullable="false" />
+          <Property Type="Boolean" Name="EmailForm" Nullable="false" />
+          <Property Type="Boolean" Name="AddMenu" Nullable="false" />
+          <Property Type="Boolean" Name="AddHomePage" Nullable="false" />
+          <Property Type="String" Name="Culture" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AllCulture" Nullable="false" />
+          <Property Type="Int32" Name="SubPagesId" Nullable="false" />
+          <NavigationProperty Name="mytrip_corepages1" Relationship="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" FromRole="mytrip_corepages" ToRole="mytrip_corepages1" />
+          <NavigationProperty Name="mytrip_corepages2" Relationship="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" FromRole="mytrip_corepages1" ToRole="mytrip_corepages" />
+        </EntityType>
+        <Association Name="FK_mytrip_corepages_mytrip_corepages">
+          <End Type="mytripmvcModel.mytrip_corepages" Role="mytrip_corepages" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_corepages" Role="mytrip_corepages1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_corepages">
+              <PropertyRef Name="PageId" />
+            </Principal>
+            <Dependent Role="mytrip_corepages1">
+              <PropertyRef Name="SubPagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -200,6 +269,24 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="mytrip_corepages">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_corepages">
+              <MappingFragment StoreEntitySet="mytrip_corepages">
+                <ScalarProperty Name="SubPagesId" ColumnName="SubPagesId" />
+                <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="AddHomePage" ColumnName="AddHomePage" />
+                <ScalarProperty Name="AddMenu" ColumnName="AddMenu" />
+                <ScalarProperty Name="EmailForm" ColumnName="EmailForm" />
+                <ScalarProperty Name="SideBar" ColumnName="SideBar" />
+                <ScalarProperty Name="ViewOnlyHomePage" ColumnName="ViewOnlyHomePage" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -232,6 +319,13 @@
         <AssociationConnector Association="mytripmvcModel.mytrip_usersinroles" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.547841796875" />
           <ConnectorPoint PointX="3" PointY="2.547841796875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_corepages" Width="1.5" PointX="0.625" PointY="3.75" Height="3.7109993489583317" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" >
+          <ConnectorPoint PointX="1.1569230769230767" PointY="7.4609993489583317" />
+          <ConnectorPoint PointX="1.1569230769230767" PointY="7.7109993489583317" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="7.7109993489583317" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="7.4609993489583317" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

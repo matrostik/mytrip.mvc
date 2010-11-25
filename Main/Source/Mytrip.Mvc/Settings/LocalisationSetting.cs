@@ -74,16 +74,13 @@ namespace Mytrip.Mvc.Settings
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             DirectoryInfo[] result = _absolutDirectory.GetDirectories();
-            string _result = string.Empty;
-            bool namber = true;
+            string _result = "en-us";
             foreach (DirectoryInfo x in result)
             {
-                string start = namber ? string.Empty : "|";
+                string start ="|";
                 if (!x.Name.Contains("bin"))
                 {
                     _result += start + x.Name;
-                    if (namber)
-                        namber = false;
                 }
             }
             return _result;

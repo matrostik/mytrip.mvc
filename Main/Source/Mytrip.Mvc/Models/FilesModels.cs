@@ -13,6 +13,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Mytrip.Mvc.Models
 {
@@ -24,12 +25,12 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/EditPage.cshtml
     /// </summary>
-    [MetadataType(typeof(PageModel))]
     public class PageModel
     {
         /// <summary>
         /// Содержание текстового файла
         /// </summary>
+        [SkipRequestValidation]
         public HtmlString page { get; set; }
 
         /// <summary>
@@ -49,7 +50,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/Rename.cshtml
     /// </summary>
-    [MetadataType(typeof(RenameModels))]
     public class RenameModels
     {
         /// <summary>
@@ -94,7 +94,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/File/Index.cshtml
     /// </summary>
-    [MetadataType(typeof(IndexFilesModels))]
     public class IndexFilesModels
     {
         /// <summary>

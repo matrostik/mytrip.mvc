@@ -3,10 +3,10 @@
         success: function (data) {
             $('div.buttonIWL,div.buttonIWR').each(function () {
                 var a = $(this).html();
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var b = $(this).children('input').width();
                 $(this).html('<div class="buttonRW"/><div class="buttonLW"/><div class="buttonCW">' + a + '</div>');
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var c = $('div.buttonLW').width();
                     var d = $('div.buttonRW').width();
                     if (b > 0)
@@ -15,10 +15,10 @@
             });
             $('div.buttonIL,div.buttonIR').each(function () {
                 var a = $(this).html();
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var b = $(this).children('input').width();
                 $(this).html('<div class="buttonR"/><div class="buttonL"/><div class="buttonC">' + a + '</div>');
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var c = $('div.buttonL').width();
                     var d = $('div.buttonR').width();
                     if (b > 0)
@@ -27,10 +27,10 @@
             });
             $('div.buttonAWL,div.buttonAWR').each(function () {
                 var a = $(this).html();
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var b = $(this).children('a').width();
                 $(this).html('<div class="buttonRW"/><div class="buttonLW"/><div class="buttonCW">' + a + '</div>');
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var c = $('div.buttonLW').width();
                     var d = $('div.buttonRW').width();
                     if (b > 0)
@@ -39,10 +39,10 @@
             });
             $('div.buttonAL,div.buttonAR').each(function () {
                 var a = $(this).html();
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var b = $(this).children('a').width();
                 $(this).html('<div class="buttonR"/><div class="buttonL"/><div class="buttonC">' + a + '</div>');
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var c = $('div.buttonL').width();
                     var d = $('div.buttonR').width();
                     if (b > 0)
@@ -51,10 +51,10 @@
             });
             $('div.tabI').each(function () {
                 var a = $(this).html();
-                if (data == 'IE_7.0')
+                if (data == 'IE_7.0'||data == 'IE_6.0')
                     var b = $(this).children('input').width();
                     $(this).html('<div class="tabR"/><div class="tabL"/><div class="tabC">' + a + '</div>');                
-                if (data == 'IE_7.0') {
+                if (data == 'IE_7.0'||data == 'IE_6.0') {
                     var c = $('div.tabL').width();
                     var d = $('div.tabR').width();
                     if (b > 0)

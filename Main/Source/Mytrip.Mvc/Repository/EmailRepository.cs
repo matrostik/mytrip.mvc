@@ -24,17 +24,26 @@ namespace Mytrip.Mvc.Repository
         /// <param name="body"></param>
         internal void SendEmail(string to_email, string subject, string body)
         {
-            MailMessage Message = new MailMessage();
-            Message.Subject = subject;
-            Message.Body = body;
-            Message.IsBodyHtml = true;
-            Message.From = new System.Net.Mail.MailAddress(EmailSetting.from_email());
-            Message.To.Add(new MailAddress(to_email));
-            SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
-            Smtp.Host = EmailSetting.smtp();
-            Smtp.EnableSsl = EmailSetting.ssl();
-            Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
-            Smtp.Send(Message);
+            try
+            {
+                MailMessage Message = new MailMessage();
+                Message.Subject = subject;
+                Message.Body = body;
+                Message.IsBodyHtml = true;
+                Message.From = new System.Net.Mail.MailAddress(EmailSetting.from_email());
+                Message.To.Add(new MailAddress(to_email));
+                SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
+                Smtp.Host = EmailSetting.smtp();
+                Smtp.EnableSsl = EmailSetting.ssl();
+                Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
+                //Smtp.Send(Message);
+                EmailThread ethread = new EmailThread(Message, Smtp);
+                Thread t = new Thread(new ThreadStart(ethread.SendEmail));
+                t.IsBackground = true;
+                t.Start();
+            }
+            catch
+            { }
         }
         /// <summary>
         /// 
@@ -44,17 +53,26 @@ namespace Mytrip.Mvc.Repository
         /// <param name="body"></param>
         internal void SendEmail(MailAddress to_email, string subject, string body)
         {
-            MailMessage Message = new MailMessage();
-            Message.Subject = subject;
-            Message.Body = body;
-            Message.IsBodyHtml = true;
-            Message.From = new System.Net.Mail.MailAddress(EmailSetting.from_email());
-            Message.To.Add(to_email);
-            SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
-            Smtp.Host = EmailSetting.smtp();
-            Smtp.EnableSsl = EmailSetting.ssl();
-            Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
-            Smtp.Send(Message);
+            try
+            {
+                MailMessage Message = new MailMessage();
+                Message.Subject = subject;
+                Message.Body = body;
+                Message.IsBodyHtml = true;
+                Message.From = new System.Net.Mail.MailAddress(EmailSetting.from_email());
+                Message.To.Add(to_email);
+                SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
+                Smtp.Host = EmailSetting.smtp();
+                Smtp.EnableSsl = EmailSetting.ssl();
+                Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
+                //Smtp.Send(Message);
+                EmailThread ethread = new EmailThread(Message, Smtp);
+                Thread t = new Thread(new ThreadStart(ethread.SendEmail));
+                t.IsBackground = true;
+                t.Start();
+            }
+            catch
+            { }
         }
         /// <summary>
         /// 
@@ -62,15 +80,21 @@ namespace Mytrip.Mvc.Repository
         /// <param name="mail_msg"></param>
         internal void SendEmail(MailMessage mail_msg)
         {
-            SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
-            Smtp.Host = EmailSetting.smtp();
-            Smtp.EnableSsl = EmailSetting.ssl();
-            Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
+            try
+            {
+                SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
+                Smtp.Host = EmailSetting.smtp();
+                Smtp.EnableSsl = EmailSetting.ssl();
+                Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
 
-            EmailThread ethread = new EmailThread(mail_msg, Smtp);
-            Thread t = new Thread(new ThreadStart(ethread.SendEmail));
-            t.IsBackground = true;
-            t.Start();
+                EmailThread ethread = new EmailThread(mail_msg, Smtp);
+                Thread t = new Thread(new ThreadStart(ethread.SendEmail));
+                t.IsBackground = true;
+                t.Start();
+            }
+            catch
+            { }
+
         }
         /// <summary>
         /// 
@@ -78,15 +102,20 @@ namespace Mytrip.Mvc.Repository
         /// <param name="msgs"></param>
         internal void SendEmail(List<MailMessage> msgs)
         {
-            SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
-            Smtp.Host = EmailSetting.smtp();
-            Smtp.EnableSsl = EmailSetting.ssl();
-            Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
+            try
+            {
+                SmtpClient Smtp = new SmtpClient(EmailSetting.smtp(), EmailSetting.port());
+                Smtp.Host = EmailSetting.smtp();
+                Smtp.EnableSsl = EmailSetting.ssl();
+                Smtp.Credentials = new System.Net.NetworkCredential(EmailSetting.login_email(), EmailSetting.pass_email());
 
-            EmailThread ethread = new EmailThread(msgs, Smtp);
-            Thread t = new Thread(new ThreadStart(ethread.SendEmails));
-            t.IsBackground = true;
-            t.Start();
+                EmailThread ethread = new EmailThread(msgs, Smtp);
+                Thread t = new Thread(new ThreadStart(ethread.SendEmails));
+                t.IsBackground = true;
+                t.Start();
+            }
+            catch
+            { }
         }
         /// <summary>
         /// 
@@ -146,7 +175,12 @@ namespace Mytrip.Mvc.Repository
         /// </summary>
         public void SendEmail()
         {
-            smtp_client.Send(mail_msg);
+            try
+            {
+                smtp_client.Send(mail_msg);
+            }
+            catch
+            { }
         }
         /// <summary>
         /// 
@@ -155,7 +189,12 @@ namespace Mytrip.Mvc.Repository
         {
             foreach (var m in mail_msgs)
             {
-                smtp_client.Send(m);
+                try
+                {
+                    smtp_client.Send(m);
+                }
+                catch
+                { }
             }
         }
     }

@@ -16,35 +16,36 @@
 }
 @section content{
 <h1 class="title">@CoreLanguage.create_account</h1>
+@if(!Model.sendemail){
 <p>@CoreLanguage.register_text_first</p>
 <p>@string.Format(CoreLanguage.register_text_last, Model.minRequiredPasswordLength)</p>
-@{Html.EnableClientValidation();}
-@using (Html.BeginForm()){ 
+
+using (Html.BeginForm()){ 
 <fieldset>
 <div class="editor-label">
-@Html.MytripLabelFor("UserName", CoreLanguage.UserName)
+@Html.LabelFor(m => m.UserName, CoreLanguage.UserName)
 </div><div class="editor-field">
 @Html.TextBoxFor(m => m.UserName)
 @Html.ValidationMessageFor(m => m.UserName) 
 </div><div class="editor-label">
-@Html.MytripLabelFor("Email", CoreLanguage.Email)
+@Html.LabelFor(m => m.Email, CoreLanguage.Email)
 </div><div class="editor-field">
 @Html.TextBoxFor(m => m.Email)
 @Html.ValidationMessageFor(m => m.Email)
 </div><div class="editor-label">
-@Html.MytripLabelFor("Password", CoreLanguage.Password)
+@Html.LabelFor(m => m.Password, CoreLanguage.Password)
 </div><div class="editor-field">
 @Html.PasswordFor(m => m.Password)
 @Html.ValidationMessageFor(m => m.Password) 
 </div><div class="editor-label">
-@Html.MytripLabelFor("ConfirmPassword", CoreLanguage.ConfirmPassword)
+@Html.LabelFor(m => m.ConfirmPassword, CoreLanguage.ConfirmPassword)
 </div><div class="editor-field">
 @Html.PasswordFor(m => m.ConfirmPassword)
 @Html.ValidationMessageFor(m => m.ConfirmPassword) 
 </div>
 @if (Model.unlockCaptcha){ 
 <div class="editor-label">
-@Html.MytripLabelFor("Captcha",CoreLanguage.Captcha)
+@Html.LabelFor(m => m.Captcha, CoreLanguage.Captcha)
 @Html.CaptchaImage(202, 60, "Times New Roman")
 </div><div class="editor-field">
 @Html.TextBoxFor(m => m.Captcha)
@@ -55,6 +56,11 @@
 @Html.MytripButton(CoreLanguage.register, true,"left")
 </div>
 </fieldset>    
+}
+}else{
+<div class="appr">
+<p>@CoreLanguage.Email_account_body</p>
+</div>
 } 
 }
 

@@ -23,7 +23,7 @@
     });
     
     Rating();
-    $("input.comparision").bind('click', function () {
+    $("input.comparision").live('click', function () {
 
         var a = "id=" + $(this).attr('value');
         $.ajax({ type: "POST", url: "/Store/ProductForComparison", data: a });

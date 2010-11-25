@@ -57,7 +57,7 @@ else if(!Model.comparison&&!Model.comparison2){
 <div id="review"class="window"> 
 <div class="modalTC">@Model.reviewTitle</div>
 <div class="modalC">
-@{Html.EnableClientValidation();}
+
 @using (Html.BeginForm()){
 <div class="editor-field">
 @Html.TextAreaFor(model => model.review, new {@class="message", style = "height: 50px; width:300px;" })

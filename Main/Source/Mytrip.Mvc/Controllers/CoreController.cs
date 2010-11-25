@@ -351,7 +351,6 @@ namespace Mytrip.Mvc.Controllers
         /// <returns>ActionResult</returns>
         [HttpPost]
         [RoleAdminAndEditor]
-        [ValidateInput(false)]
         public ActionResult About(EditAboutModel model)
         {
             if (ModelState.IsValid)
@@ -401,18 +400,19 @@ namespace Mytrip.Mvc.Controllers
                 int id = 0;
                 if (!String.IsNullOrEmpty(item.Value))
                 {
-                    string[] opts = item.Value.Split('_');
-                    id = int.Parse(opts[0]);
-                    cult = opts[1];
-                    name = opts[2];
-                    var existitem = exists.Where(a => a.Assembly == assembly).FirstOrDefault(x => x.Id == id);
-                    if (existitem != null)
-                    {
-                        existitem.Name = name;
-                        existitem.Culture = cult;
-                    }
-                    else
-                        newItems.Add(new HomePageItem(assembly, name, cult, id, 0, 1, 1, 100, 100, 2, true));
+                        string[] opts = item.Value.Split('_');
+                        int.TryParse(opts[0], out id);
+                        cult = opts[1];
+                        name = opts[2];
+                        var existitem = exists.Where(a => a.Assembly == assembly).FirstOrDefault(x => x.Id == id);
+                        if (existitem != null)
+                        {
+                            existitem.Name = name;
+                            existitem.Culture = cult;
+                        }
+                        else
+                            newItems.Add(new HomePageItem(assembly, name, cult, id, 0, 1, 1, 100, 100, 2, true));
+                    
                 }
             }
             HomePageModel model = new HomePageModel();
@@ -439,9 +439,11 @@ namespace Mytrip.Mvc.Controllers
                 StringBuilder result = new StringBuilder();
                 foreach (string x in page)
                 {
-                    if (!x.Contains("Export.HomePage"))
+                    if (!x.Contains("Export.HomePage") && !x.Contains("HomePageAnonce"))
                         result.AppendLine(x);
                 }
+                int anonce = 0;
+                result.AppendLine("@Html.HomePageAnonce("+anonce+")");
                 foreach (var item in ids.Split('|'))
                 {
                     if (string.IsNullOrEmpty(item))
@@ -459,6 +461,8 @@ namespace Mytrip.Mvc.Controllers
                     newLine += assembly + ".Export.HomePage(" + id + "," + rows + "," + columns + "," + content + ","
                         + image + "," + style + "," + showtitle.ToString().ToLower() + ")";
                     result.AppendLine(newLine);
+                    anonce++;
+                    result.AppendLine("@Html.HomePageAnonce(" + anonce + ")");
                 }
                 EditePageRepository.CreatePage(path, result.ToString());
                 return Content(CoreLanguage.save_success);
@@ -692,7 +696,103 @@ namespace Mytrip.Mvc.Controllers
             EditePageRepository.CreatePage(path, result.ToString());
             return RedirectToAction("TopMenu");
         }
+        [RoleAdminAndEditor]
+        public ActionResult EditorPage(int id, string id2)
+        {
+            EditorPageModel model = new EditorPageModel();
+            if (id2 == "CreatePage")
+            {
+                
+                model.pagetitle = id==0?CoreLanguage.CreatePage:CoreLanguage.CreateSubPage;
+                model.submit = CoreLanguage.create;
+            }
+            else if (id2 == "EditPage")
+            {
+                var x = coreRepo.corePageRepo.GetPages(id);
+                model.pagetitle = string.Format(CoreLanguage.EditPage,x.Title);
+                model.submit = CoreLanguage.edit;                
+                model.addHomePage = x.AddHomePage;
+                model.addMenu = x.AddMenu;
+                model.allCulture = x.AllCulture;
+                model.body = x.Body;
+                model.emailForm = x.EmailForm;
+                model.sideBar = x.SideBar;
+                model.title = x.Title;
+                model.viewOnlyHomePage = x.ViewOnlyHomePage;
+            }
+            else if (id2 == "DeletePage")
+            {
+                var x = coreRepo.corePageRepo.GetPages(id);
+                if (x.SubPagesId > 0)
+                {
+                    int _id = x.SubPagesId;
+                    string path = x.Path;
+                    coreRepo.corePageRepo.DeletePage(id);
+                    return RedirectToAction("Page", "Home", new { id = _id, id2 = path });
+                }
+                else
+                {
+                    coreRepo.corePageRepo.DeletePage(id);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(model);
+        }
+        [RoleAdminAndEditor]
+        [HttpPost]
+        public ActionResult EditorPage(int id, string id2, EditorPageModel model)
+        {
+            if (ModelState.IsValid && id2 == "CreatePage")
+            {
+                var x = coreRepo.corePageRepo.CreatePage(model.title, model.body, LocalisationSetting.culture(),
+                    id, model.sideBar, model.emailForm, model.allCulture, model.addMenu, model.addHomePage, model.viewOnlyHomePage);
+                return RedirectToAction("Page", "Home", new { id=x.PageId,id2=x.Path});
+            }
+            else if (ModelState.IsValid && id2 == "EditPage")
+            {
+                var x = coreRepo.corePageRepo.EditPage(model.title, model.body,
+                                   id, model.sideBar, model.emailForm, model.allCulture, model.addMenu, model.addHomePage, model.viewOnlyHomePage);
+                if(!x.ViewOnlyHomePage)
+                return RedirectToAction("Page", "Home", new { id = x.PageId, id2 = x.Path });
+                else
+                    return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
 
+        /// <summary>GET: /Core/Footer
+        /// Редактирование нижнего колонтитула
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        [RoleAdminAndEditor]
+        public ActionResult Footer()
+        {
+            FooterModel model = new FooterModel();
+            //string[] page = EditePageRepository.WritePage("/Views/Shared/_footer.cshtml");
+            string[] page = EditePageRepository.WritePage("/Views/Shared/_footer.cshtml");
+            model.Content = string.Concat(page);// page.ToString();
+            return View(model);
+
+        }
+
+        /// <summary>POST: /Core/Footer
+        /// Сохранение измененных данных нижнего колонтитула
+        /// </summary>
+        /// <param name="model">FooterModel</param>
+        /// <returns>ActionResult</returns>
+        [HttpPost]
+        [RoleAdminAndEditor]
+        public ActionResult Footer(FooterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                EditePageRepository.CreatePage("/Views/Shared/_footer.cshtml", model.Content);
+                return RedirectToAction("ControlPanel", "Core");
+            }
+            model.Content = EditePageRepository.WritePage("/Views/Shared/_footer.cshtml").ToString();
+            return View(model);
+
+        }
         //****************** E N D **********************
         #endregion
 

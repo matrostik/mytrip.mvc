@@ -605,8 +605,9 @@ namespace Mytrip.Mvc.Repository
                     x.IsApproved = true;
                 }
                 entities.SaveChanges();
-            }
-            return user.mytrip_users.UserName;
+                return user.mytrip_users.UserName;
+            }else
+            return string.Empty;
         }
         /// <summary>
         /// 
@@ -902,5 +903,33 @@ namespace Mytrip.Mvc.Repository
         }
 
         #endregion
+
+        internal IQueryable<mytrip_usersmembership> GetMembershipForForgotPassword(string email)
+        {
+            return entities.mytrip_usersmembership.Include("mytrip_users").Where(x => x.Email == email)
+                .OrderBy(x=>x.Email);
+        }
+        internal void CreateDateCangePassword(mytrip_usersmembership x)
+        {
+            x.LastPasswordChangedDate = DateTime.Now.AddDays(1);
+            
+        }
+        internal void SaveChanges()
+        { entities.SaveChanges(); }
+        internal bool DateCangePassword(string id)
+        {
+            var x = entities.mytrip_usersmembership.FirstOrDefault(y => y.UserId == id); 
+            bool result = (x!=null&&DateTime.Now <= x.LastPasswordChangedDate) ? true : false;
+            return result;
+        }
+        internal string RecoveryPassword(string id,string password)
+        {
+            string newGuid = Guid.NewGuid().ToString();
+            var x = entities.mytrip_usersmembership.Include("mytrip_users").FirstOrDefault(y => y.UserId == id); 
+            x.Password = mtHashPassword(password, newGuid);
+            x.PasswordSalt = newGuid;
+            entities.SaveChanges();
+            return x.mytrip_users.UserName;
+        }
     }
 }

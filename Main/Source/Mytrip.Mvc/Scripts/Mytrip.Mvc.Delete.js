@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var openid = new Object();
-    $('input.delete').click(
+    $('input.delete').live("click",
         function () {
             openid = this.value;
             var id = 'div.window#delete';
@@ -16,7 +16,7 @@
             $(id).css('left', winW / 2 - $(id).width() / 2);
             $(id).slideDown('slow');
         });
-    $('input.rename').click(
+        $('input.rename').live("click",
         function () {
             openid = this.value;
             $(location).attr('href', openid);

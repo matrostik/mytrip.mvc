@@ -17,12 +17,12 @@ namespace Mytrip.Mvc.Models
 
     /// <summary>Модель для страницы /Views/Home/EditAbout.cshtml
     /// </summary>
-    [MetadataType(typeof(EditAboutModel))]
     public class EditAboutModel
     {
         /// <summary>Редактируемый текст About
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        [SkipRequestValidation]
         public string body { get; set; }
 
     }
@@ -38,7 +38,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/InstallModules.cshtml
     /// </summary>
-    [MetadataType(typeof(ModulesModel))]
     public class ModulesModel
     {
         /// <summary>
@@ -62,7 +61,6 @@ namespace Mytrip.Mvc.Models
 
     /// <summary>Модель для страницы /Views/Core/Index.cshtml
     /// </summary>
-    [MetadataType(typeof(CoreModel))]
     public class CoreModel
     {
         /// <summary>Интегрированная система аутентификации SQL (true - включена)
@@ -112,13 +110,13 @@ namespace Mytrip.Mvc.Models
         /// <summary>Роль администратора сайта
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_null")]
-        [StringLength(50,ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_max_length")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_max_length")]
         public string roleAdmin { get; set; }
 
         /// <summary>Роль главного редактора сайта
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_null")]
-        [StringLength(50,ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_max_length")]
+        [StringLength(50, ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "rolename_max_length")]
         public string roleChiefEditor { get; set; }
 
         /// <summary>Регистрация (true - разрешена)
@@ -217,7 +215,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/Email.cshtml
     /// </summary>
-    [MetadataType(typeof(EmailModel))]
     public class EmailModel
     {
         /// <summary>
@@ -267,7 +264,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/CreateBase.cshtml
     /// </summary>
-    [MetadataType(typeof(CreateBaseModel))]
     public class CreateBaseModel
     {
         /// <summary>
@@ -319,7 +315,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// Модель для страницы /Views/Core/HomePage.cshtml
     /// </summary>
-    [MetadataType(typeof(HomePageModel))]
     public class HomePageModel
     {
         /// <summary>
@@ -495,6 +490,20 @@ namespace Mytrip.Mvc.Models
     //****************** E N D **********************
     #endregion
 
+    public class EditorPageModel
+    {
+        public string pagetitle { get; set; }
+        public string title { get; set; }
+        [SkipRequestValidation]
+        public string body { get; set; }
+        public bool sideBar { get; set; }
+        public bool emailForm { get; set; }
+        public bool allCulture { get; set; }
+        public bool addMenu { get; set; }
+        public bool addHomePage { get; set; }
+        public bool viewOnlyHomePage { get; set; }
+        public string submit { get; set; }
+    }
     /// <summary>
     /// 
     /// </summary>
@@ -505,4 +514,21 @@ namespace Mytrip.Mvc.Models
         /// </summary>
         public bool viewAdmin { get; set; }
     }
+    #region Модель для страницы /Views/Core/Footer.cshtml
+    // **********************************************
+    // Модель для страницы /Views/Core/Footer.cshtml
+    // **********************************************
+
+    /// <summary>Модель для страницы /Views/Home/Footer.cshtml
+    /// </summary>
+    public class FooterModel
+    {
+        /// <summary>Редактируемый Footer
+        /// </summary>
+        [SkipRequestValidation]
+        public string Content { get; set; }
+    }
+
+    //****************** E N D **********************
+    #endregion
 }

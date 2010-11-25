@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 using System.Data.Objects;
 using System.Data.EntityClient;
 
@@ -58,6 +59,12 @@ namespace Mytrip.Mvc.Repository.DataEntities
             get { return _mytrip_usersroles  ?? (_mytrip_usersroles = CreateObjectSet<mytrip_usersroles>("mytrip_usersroles")); }
         }
         private ObjectSet<mytrip_usersroles> _mytrip_usersroles;
+    
+        public ObjectSet<mytrip_corepages> mytrip_corepages
+        {
+            get { return _mytrip_corepages  ?? (_mytrip_corepages = CreateObjectSet<mytrip_corepages>("mytrip_corepages")); }
+        }
+        private ObjectSet<mytrip_corepages> _mytrip_corepages;
 
         #endregion
     }

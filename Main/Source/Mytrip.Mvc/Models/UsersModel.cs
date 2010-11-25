@@ -13,7 +13,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// 
     /// </summary>
-    [MetadataType(typeof(ProfileUsersModel))]
     public class ProfileUsersModel
     {
         /// <summary>
@@ -32,7 +31,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// 
     /// </summary>
-    [MetadataType(typeof(IndexUsersModel))]
     public class IndexUsersModel
     {
         /// <summary>
@@ -57,7 +55,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// 
     /// </summary>
-    [MetadataType(typeof(IndexRolesModel))]
     public class IndexRolesModel
     {
         /// <summary>
@@ -83,7 +80,6 @@ namespace Mytrip.Mvc.Models
     /// <summary>
     /// 
     /// </summary>
-    [MetadataType(typeof(DetailsUserModel))]
     public class DetailsUserModel
     {
         /// <summary>

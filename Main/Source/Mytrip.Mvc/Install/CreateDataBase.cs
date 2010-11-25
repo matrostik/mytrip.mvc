@@ -357,7 +357,30 @@ namespace Mytrip.Mvc.Install
             "ENGINE = INNODB",
             "AVG_ROW_LENGTH = 2340",
             "CHARACTER SET cp1251",
-            "COLLATE cp1251_general_ci;"                
+            "COLLATE cp1251_general_ci;",
+            "",
+            "CREATE TABLE IF NOT EXISTS mytrip_corepages(",
+            "PageId INT (11) NOT NULL,",
+            "Title VARCHAR (256) DEFAULT NULL,",
+            "Path VARCHAR (256) DEFAULT NULL,",
+            "Body TEXT DEFAULT NULL,",
+            "ViewOnlyHomePage BIT (1) NOT NULL,",
+            "SideBar BIT (1) NOT NULL,",
+            "EmailForm BIT (1) NOT NULL,",
+            "AddMenu BIT (1) NOT NULL,",
+            "AddHomePage BIT (1) NOT NULL,",
+            "Culture VARCHAR (100) NOT NULL,",
+            "AllCulture BIT (1) NOT NULL,",
+            "SubPagesId INT (11) NOT NULL,",
+            "PRIMARY KEY (PageId),",
+            "INDEX mytrip_corepages_FK1 USING BTREE (SubPagesId),",
+            "CONSTRAINT mytrip_corepages_FK1 FOREIGN KEY (SubPagesId)",
+            "REFERENCES mytrip_corepages (PageId)",
+            ")",
+            "ENGINE = INNODB",
+            "AVG_ROW_LENGTH = 8192",
+            "CHARACTER SET cp1251",
+            "COLLATE cp1251_general_ci;"    
             };
             return result;
 

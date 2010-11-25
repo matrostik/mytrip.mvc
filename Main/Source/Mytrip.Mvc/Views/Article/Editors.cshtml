@@ -12,25 +12,22 @@
      View.Description=Html.MytripPageTitle(Model.PageTitle, ",");
 }
 @section scriptlink{
-@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,Page/Articles.js")
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,Page/Articles.js")
 }
 @section content{
 <h1 class="title">
 @Model.PageTitle</h1>
 
  <table id="drop" class="noborders">
-    <tr>
-      <th style="width: 100px">
+    <tr class="profile2">
+      <td colspan="2"><div style='float:left'>
 		@using (Html.BeginForm("Editors","Article", FormMethod.Post, new { id = "journalistForm" }))  {
 		@Html.DropDownListFor(model => model.User, Model.Editors)
-		}
-      </th>
-      <th>
-         @ArticleLanguage.activity
-      </th>
-      <th style="width: 125px">
+		}</div>
+      </td>
+      <td style="width: 125px;text-align:center;">
          @ArticleLanguage.date
-      </th>
+      </td>
     </tr>
 	 @Html.EditorActivity(Model.User)
  </table>
