@@ -1,0 +1,75 @@
+﻿@model Mytrip.Mvc.Models.EditorPageModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    View.Title = Html.MytripPageTitle(Model.pagetitle, "/");
+    View.Keywords = Html.MytripPageTitle(Model.pagetitle, ",");
+    View.Description = Html.MytripPageTitle(Model.pagetitle, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcValidation.js,jHtmlArea.Mytrip.js,jHtmlArea.Smiles.js,Page/Core.About.js")
+}
+@section content{
+<h1 class="title">@Model.pagetitle</h1>
+
+@using (Html.BeginForm()) {
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title,CoreLanguage.title)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.body,CoreLanguage.body)
+        </div>
+        <div class="editor-field"><div class="dark">
+            @Html.TextAreaFor(model => model.body, new { id = "article", style = "height: 400px; width:100%;" })
+            @Html.ValidationMessageFor(model => model.body)
+        </div></div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.sideBar)
+            @Html.LabelFor(model => model.sideBar,CoreLanguage.sideBar)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.emailForm)
+            @Html.LabelFor(model => model.emailForm,CoreLanguage.emailForm)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.addMenu)
+            @Html.LabelFor(model => model.addMenu,CoreLanguage.addMenu)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.addHomePage)
+            @Html.LabelFor(model => model.addHomePage,CoreLanguage.addHomePage)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.viewOnlyHomePage)
+            @Html.LabelFor(model => model.viewOnlyHomePage,CoreLanguage.viewOnlyHomePage)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.allCulture)
+            @Html.LabelFor(model => model.allCulture,CoreLanguage.all_languages)
+        </div>
+
+        <div class="button">
+            @Html.MytripButton(Model.submit, true,"left")
+            @Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+        </div>
+
+    </fieldset>
+}
+}
+

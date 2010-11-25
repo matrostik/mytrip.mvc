@@ -1,0 +1,50 @@
+﻿@model Mytrip.Tourism.Models.EditorCategoryModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+       To learn more about Mytrip.Mvc visit
+       http://mytripmvc.net  http://mytripmvc.codeplex.com
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */
+}
+@{
+    View.Title = Html.MytripPageTitle(Model.TitlePage, "/");
+    View.Keywords=Html.MytripPageTitle(Model.TitlePage, ",");
+    View.Description=Html.MytripPageTitle(Model.TitlePage, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,jHtmlArea.Mytrip.js,Page/Tour.EditorCategory.js")
+}
+@section content{
+<h1 class="title">@Model.TitlePage</h1>
+<fieldset>
+
+@using (Html.BeginForm()){
+<div class="editor-label">
+@Html.MytripLabelFor("title",ToursLanguage.title)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.title)
+@Html.ValidationMessageFor(m => m.title) 
+</div>
+<div class="editor-label">
+@Html.MytripLabelFor("body", ToursLanguage.body)
+</div>
+<div class="editor-field"><div class="dark">
+@Html.TextAreaFor(m => m.body, new { id = "article", style = "height: 200px; width:100%;" })
+@Html.ValidationMessageFor(m => m.body) 
+</div></div>
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.allculture)
+@Html.MytripLabelFor("allculture", ToursLanguage.allculture)
+</div>
+<div class="button">
+@Html.MytripButton(Model.submit, true,"left")
+</div>
+}
+</fieldset>
+<div id="smile" class="window"> 
+<div class="modalTC">Smiles</div>
+<div class="modalC">
+@Html.MytripSmiles("/Content/smiles")
+</div> 
+</div>  
+}
