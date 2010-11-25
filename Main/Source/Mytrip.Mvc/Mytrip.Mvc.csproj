@@ -67,12 +67,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
@@ -108,6 +114,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CorePageHelper.cs" />
     <Compile Include="Helpers\DonateHelper.cs" />
     <Compile Include="Helpers\AvatarHelper.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
@@ -134,6 +141,7 @@
     <Compile Include="Repository\AboutRepository.cs" />
     <Compile Include="Repository\AccountMembershipRepository.cs" />
     <Compile Include="Repository\CaptchaRepository.cs" />
+    <Compile Include="Repository\CorePageRepository.cs" />
     <Compile Include="Repository\DataEntities\MssqlModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +151,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MysqlModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_corepages.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\DataEntities\mytrip_users.cs">
       <DependentUpon>UsersPocoModel.tt</DependentUpon>
@@ -176,6 +187,7 @@
     <Compile Include="Settings\EmailSetting.cs" />
     <Compile Include="Settings\GeneralMethods.cs" />
     <Compile Include="Settings\LocalisationSetting.cs" />
+    <Compile Include="Settings\MytripRewrite.cs" />
     <Compile Include="Settings\ThemeSetting.cs" />
     <Compile Include="Settings\UsersSetting.cs" />
     <Compile Include="Install\CreateDataBase.cs" />
@@ -184,6 +196,9 @@
     <Compile Include="StylesTable\StyleTableClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\About.xml" />
+    <Content Include="App_Data\MytripConfiguration.xml" />
+    <Content Include="App_Data\MytripUrlRewrite.xml" />
     <Content Include="Configuration\About.xml" />
     <Content Include="Configuration\MytripConfiguration.xml">
       <SubType>Designer</SubType>
@@ -218,6 +233,7 @@
     <Content Include="Content\files\.cache.png" />
     <Content Include="Content\files\.config.png" />
     <Content Include="Content\files\.cs.png" />
+    <Content Include="Content\files\.cshtml.png" />
     <Content Include="Content\files\.csproj.png" />
     <Content Include="Content\files\.css.png" />
     <Content Include="Content\files\.dll.png" />
@@ -228,8 +244,12 @@
     <Content Include="Content\files\.pdb.png" />
     <Content Include="Content\files\.pdf.png" />
     <Content Include="Content\files\.rar.png" />
+    <Content Include="Content\files\.resx.png" />
     <Content Include="Content\files\.txt.png" />
     <Content Include="Content\files\.user.png" />
+    <Content Include="Content\files\.vspscc.png" />
+    <Content Include="Content\files\.xml.png" />
+    <Content Include="Content\files\.zip.png" />
     <Content Include="Content\files\foldergreen.png" />
     <Content Include="Content\files\Stuffed_Folder.png" />
     <Content Include="Content\Gismeteo\0\0.png" />
@@ -367,6 +387,7 @@
     <Content Include="Content\Store\noprint.css" />
     <Content Include="Content\Store\print.css" />
     <Content Include="Content\Store\Producer\_1.jpg" />
+    <Content Include="Content\Store\Seller\empty.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jHtmlArea.Smiles.js" />
@@ -376,6 +397,7 @@
     <Content Include="Scripts\jquery-1.4.2.js" />
     <Content Include="Scripts\Mytrip.Mvc.Button.js" />
     <Content Include="Scripts\Mytrip.Mvc.Captcha.js" />
+    <Content Include="Scripts\Mytrip.Mvc.Checkbox.js" />
     <Content Include="Scripts\Mytrip.Mvc.CheckedShow.js" />
     <Content Include="Scripts\Mytrip.Mvc.Dropdown.js" />
     <Content Include="Scripts\Mytrip.Mvc.Include.js" />
@@ -402,6 +424,9 @@
     <Content Include="Scripts\Page\Store.OrdersDetails.js" />
     <Content Include="Scripts\Page\Store.View.js" />
     <Content Include="Scripts\Page\TextAreaFile.js" />
+    <Content Include="Scripts\Page\Tour.EditorCategory.js" />
+    <Content Include="Scripts\Page\Tour.EditorTour.js" />
+    <Content Include="Scripts\Page\Tour.OrderTour.js" />
     <Content Include="Scripts\Page\Votes.js" />
     <Content Include="Scripts\SLPlaerChrome.js" />
     <Content Include="Scripts\SLPlaerChrome.xap" />
@@ -419,6 +444,7 @@
     <Content Include="Theme\LiveStyle\baloon\balloon_topLeft.png" />
     <Content Include="Theme\LiveStyle\baloon\balloon_topRight.png" />
     <Content Include="Theme\LiveStyle\Captcha.css" />
+    <Content Include="Theme\LiveStyle\Checkbox.css" />
     <Content Include="Theme\LiveStyle\Content.css" />
     <Content Include="Theme\LiveStyle\Dropdown.css" />
     <Content Include="Theme\LiveStyle\Footer.css" />
@@ -441,6 +467,7 @@
     <Content Include="Theme\LiveStyle\images\button.png" />
     <Content Include="Theme\LiveStyle\images\buttoncon.png" />
     <Content Include="Theme\LiveStyle\images\cart.png" />
+    <Content Include="Theme\LiveStyle\images\checkbox.png" />
     <Content Include="Theme\LiveStyle\images\checked.png" />
     <Content Include="Theme\LiveStyle\images\claimid.png" />
     <Content Include="Theme\LiveStyle\images\comment.png" />
@@ -484,6 +511,7 @@
     <Content Include="Theme\LiveStyle\images\menuslide.png" />
     <Content Include="Theme\LiveStyle\images\menuslidecon.png" />
     <Content Include="Theme\LiveStyle\images\menuslidecontop.png" />
+    <Content Include="Theme\LiveStyle\images\minus.png" />
     <Content Include="Theme\LiveStyle\images\minus_blue.png" />
     <Content Include="Theme\LiveStyle\images\modal.png" />
     <Content Include="Theme\LiveStyle\images\modalcon.png" />
@@ -492,6 +520,8 @@
     <Content Include="Theme\LiveStyle\images\noalert.png" />
     <Content Include="Theme\LiveStyle\images\noapproved.png" />
     <Content Include="Theme\LiveStyle\images\openid.png" />
+    <Content Include="Theme\LiveStyle\images\PayPal.png" />
+    <Content Include="Theme\LiveStyle\images\plus.png" />
     <Content Include="Theme\LiveStyle\images\plus_blue.png" />
     <Content Include="Theme\LiveStyle\images\poll.png" />
     <Content Include="Theme\LiveStyle\images\poll1.gif" />
@@ -577,8 +607,10 @@
     <None Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <None Include="Views\Account\Email.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\LogOn.cshtml" />
     <None Include="Views\Account\OpenIdRegister.cshtml" />
+    <Content Include="Views\Account\RecoveryPassword.cshtml" />
     <None Include="Views\Account\Register.cshtml" />
     <None Include="Views\Article\Archive.cshtml" />
     <None Include="Views\Article\ArchiveDetails.cshtml" />
@@ -586,6 +618,7 @@
     <None Include="Views\Article\Edit.cshtml" />
     <None Include="Views\Article\Editors.cshtml" />
     <None Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\Profile.cshtml" />
     <None Include="Views\Article\Setting.cshtml" />
     <None Include="Views\Article\View.cshtml" />
     <Content Include="Views\Article\Web.config" />
@@ -593,7 +626,9 @@
     <None Include="Views\Core\ControlPanel.cshtml" />
     <None Include="Views\Core\CorSideBar.cshtml" />
     <None Include="Views\Core\CreateBase.cshtml" />
+    <Content Include="Views\Core\EditorPage.cshtml" />
     <None Include="Views\Core\Email.cshtml" />
+    <Content Include="Views\Core\Footer.cshtml" />
     <None Include="Views\Core\HomePage.cshtml" />
     <None Include="Views\Core\Index.cshtml" />
     <None Include="Views\Core\InstallModules.cshtml" />
@@ -607,6 +642,7 @@
     <Content Include="Views\Gismeteo\Web.config" />
     <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
     <None Include="Views\Home\Profile.cshtml" />
     <None Include="Views\Home\_homePage.cshtml" />
     <None Include="Views\Home\_license.cshtml" />
@@ -619,8 +655,10 @@
     <Content Include="Views\Rssparser\Web.config" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_announce.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\Shared\_profileSmall.cshtml" />
     <None Include="Views\Shared\_sideBar.cshtml" />
     <None Include="Views\Shared\_sideBarExport.cshtml" />
     <None Include="Views\Store\Cart.cshtml" />
@@ -640,6 +678,13 @@
     <None Include="Views\TextAreaFile\Rename.cshtml" />
     <None Include="Views\TextAreaFile\_Layout.cshtml" />
     <None Include="Views\TextAreaFile\_ViewStart.cshtml" />
+    <Content Include="Views\Tours\EditorCategory.cshtml" />
+    <Content Include="Views\Tours\EditorTour.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
+    <Content Include="Views\Tours\OrderTour.cshtml" />
+    <Content Include="Views\Tours\TourModule.cshtml" />
+    <Content Include="Views\Tours\View.cshtml" />
+    <Content Include="Views\Tours\Web.config" />
     <None Include="Views\Users\Details.cshtml" />
     <None Include="Views\Users\Index.cshtml" />
     <None Include="Views\Users\IndexRole.cshtml" />
