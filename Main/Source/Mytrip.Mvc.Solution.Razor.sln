@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytrip.Tourism", "Mytrip.To
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs02
 		SccLocalPath0 = .
@@ -33,6 +33,15 @@ Global
 		SccProjectUniqueName4 = Mytrip.Tourism\\Mytrip.Tourism.csproj
 		SccProjectName4 = Mytrip.Tourism
 		SccLocalPath4 = Mytrip.Tourism
+		SccProjectUniqueName5 = Mytrip.Votes\\Mytrip.Votes.csproj
+		SccProjectName5 = Mytrip.Votes/Mytrip.Votes
+		SccLocalPath5 = Mytrip.Votes
+		SccProjectUniqueName6 = Mytrip.Gismeteo\\Mytrip.Gismeteo.csproj
+		SccProjectName6 = Mytrip.Gismeteo/Mytrip.Gismeteo
+		SccLocalPath6 = Mytrip.Gismeteo
+		SccProjectUniqueName7 = Mytrip.Rssparser\\Mytrip.Rssparser.csproj
+		SccProjectName7 = Mytrip.Rssparser/Mytrip.Rssparser
+		SccLocalPath7 = Mytrip.Rssparser
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
