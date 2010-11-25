@@ -609,4 +609,10 @@
   <data name="widthImgProduct" xml:space="preserve">
     <value>Width Img Product</value>
   </data>
+  <data name="people" xml:space="preserve">
+    <value>Private Person</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Download</value>
+  </data>
 </root>

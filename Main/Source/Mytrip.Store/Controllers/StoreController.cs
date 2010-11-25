@@ -10,7 +10,6 @@ using Mytrip.Mvc;
 using Mytrip.Mvc.Settings;
 using System.Web;
 using Mytrip.Store.Helpers;
-using SiteMechanics.PayPalDirect;
 using Mytrip.Mvc.Repository;
 using System.Xml.Linq;
 
@@ -92,13 +91,13 @@ namespace Mytrip.Store.Controllers
             if (id3 == 0 && id4 == 0 && id6 != "Producer" && id8 == null)
             {
                 _id2 = id2 * ModuleSetting.columnProduct();
-                model.Department = store.department.GetAllDepartment(id, id2, LocalisationSetting.culture(), out total);
+                model.Department = store.department.GetAllDepartment(1, int.MaxValue, LocalisationSetting.culture(), out total);
                 model.Product = store.product.GetProductForStore(id, _id2, id5, LocalisationSetting.culture(), out total);
                 model.total = total;
                 model.take = _id2;
                 model.paging2 = true;
                 model.takepaging = (int)Math.Ceiling((double)total / ModuleSetting.columnProduct());
-                title = ModuleSetting.nameStore();
+                title = ModuleSetting.nameStore();                
             }
             #endregion
             #region Department & SubDepartment
@@ -111,13 +110,13 @@ namespace Mytrip.Store.Controllers
                 {
                     foreach (var x in model.Department)
                     {
-                        count += x.mytrip_storeproduct.Count();
+                        count += x.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                     }
                 }
                 var department = store.department.GetDepartment(id3);
                 user = department.UserName;
                 subuser = department.mytrip_storedepartment2.UserName;
-                count += department.mytrip_storeproduct.Count();
+                count += department.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                 title = department.Title;
                 body = department.Body;
                 int _id = department.mytrip_storedepartment2.DepartmentId;
@@ -160,7 +159,7 @@ namespace Mytrip.Store.Controllers
                 count = 0;
                 var department = store.producer.GetProducer(id4);
                 user = department.UserName;
-                count += department.mytrip_storeproduct.Count();
+                count += department.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                 title = department.Title;
                 body = department.Body;
                 _id2 = _id2 * ModuleSetting.columnProduct();
@@ -193,7 +192,7 @@ namespace Mytrip.Store.Controllers
                     producer = true;
                     count = 0;
                     var department = store.producer.GetProducer(id4);
-                    count += department.mytrip_storeproduct.Count();
+                    count += department.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                     title = department.Title;
                     body = department.Body;
                     var searchproduct = store.product.GetProductForProducer(id4, id, _id2, id5, (int)id7, (int)id8, LocalisationSetting.culture(), id6, out total);
@@ -219,13 +218,13 @@ namespace Mytrip.Store.Controllers
                     {
                         foreach (var x in model.Department)
                         {
-                            count += x.mytrip_storeproduct.Count();
+                            count += x.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                         }
                     }
                     var department = store.department.GetDepartment(id3);
                     user = department.UserName;
                     subuser = department.mytrip_storedepartment2.UserName;
-                    count += department.mytrip_storeproduct.Count();
+                    count += department.mytrip_storeproduct.Where(q => q.Culture == LocalisationSetting.culture() || q.AllCulture == true).Count();
                     title = department.Title;
                     body = department.Body;
                     int _id = department.mytrip_storedepartment2.DepartmentId;
@@ -528,7 +527,6 @@ namespace Mytrip.Store.Controllers
         /// <returns></returns>
         [HttpPost]
         [RoleStore]
-        [ValidateInput(false)]
         public ActionResult EditorCategory(int id, string id2, EditorCategoryModel model)
         {
             if (ModelState.IsValid && id2 == "CreateDepartment")
@@ -780,7 +778,6 @@ namespace Mytrip.Store.Controllers
         /// <returns></returns>
         [HttpPost]
         [RoleStore]
-        [ValidateInput(false)]
         public ActionResult EditorProduct(int id, int id2, string id3, EditorProductModel model)
         {
             if (ModelState.IsValid && id3 == "CreateProduct")
@@ -883,7 +880,7 @@ namespace Mytrip.Store.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Cart(int? id)
+        public ActionResult Cart(int? id,string message)
         {
             CartModel model = new CartModel();
             model.title = StoreLanguage.mycarttitle;
@@ -909,6 +906,9 @@ namespace Mytrip.Store.Controllers
                 model.viewOrganizationRu = "none";
             }
             else model.viewOrganizationRu = "show";
+            if(message!=null&&message.Length>0)
+                model.valid = message;
+            else
             model.valid = "no";
             return View(model);
         }
@@ -917,13 +917,28 @@ namespace Mytrip.Store.Controllers
         {
             if (ModelState.IsValid)
             {
-                store.order.CreateOrder(LocalisationSetting.culture(), model.address, model.firstname,
-                    model.lastname, model.phone, model.useremail,model.organization,model.organizationINN,
-                    model.organizationKPP);
-                HttpCookie cookie = new HttpCookie("myTripProductCart", "");
-                cookie.Expires = DateTime.Now.AddYears(1);
-                Response.Cookies.Add(cookie);
-                model.valid = "message";
+                
+                if (ModuleSetting.onlineBuy()&&!model.organizationOrPrivte)
+                {
+                    string guidforuser = Guid.NewGuid().ToString();
+                    store.order.CreateOrder(LocalisationSetting.culture(), model.address, model.firstname,
+                       model.lastname, model.phone, model.useremail, "privatePerson", guidforuser,
+                       model.organizationKPP);
+                       model.valid = "onlinebuy";
+                       HttpCookie cookie = new HttpCookie("myTripOnlineBuy", guidforuser);
+                       cookie.Expires = DateTime.Now.AddYears(1);
+                       Response.Cookies.Add(cookie);
+                }
+                else if (!ModuleSetting.onlineBuy()||model.organizationOrPrivte)
+                {
+                    store.order.CreateOrder(LocalisationSetting.culture(), model.address, model.firstname,
+                       model.lastname, model.phone, model.useremail, model.organization, model.organizationINN,
+                       model.organizationKPP);
+                    HttpCookie cookie = new HttpCookie("myTripProductCart", "");
+                    cookie.Expires = DateTime.Now.AddYears(1);
+                    Response.Cookies.Add(cookie);
+                    model.valid = "message";
+                }
                 model.cart = new HtmlString(StoreLanguage.buy_ok);
                 return View(model);
             }
@@ -954,6 +969,17 @@ namespace Mytrip.Store.Controllers
                 //}
                 return View(model);
             }
+        }
+        public ActionResult OnlineBuy()
+        {
+            string cart = (HttpContext.Request.Cookies["myTripOnlineBuy"] == null)
+                                    ? "0"
+                                    : HttpContext.Request.Cookies["myTripOnlineBuy"].Value;
+            HttpCookie cookie = new HttpCookie("myTripProductCart", "");
+            cookie.Expires = DateTime.Now.AddYears(1);
+            Response.Cookies.Add(cookie);
+            store.managerorder.SetOrdersOnlineStatus2("privatePerson", cart);
+            return RedirectToAction("Cart", new { message = "message" });
         }
         [HttpPost]
         public ActionResult TabCart(string ids)
@@ -1406,7 +1432,7 @@ namespace Mytrip.Store.Controllers
                 a.FirstOrDefault(x => x.Attribute("name").Value == "widthImgDepartment")
                     .SetAttributeValue("value", model.widthImgDepartment.ToString());
                 a.FirstOrDefault(x => x.Attribute("name").Value == "styleDepartment")
-                    .SetAttributeValue("value", model.widthImgDepartment.ToString());
+                    .SetAttributeValue("value", model.styleDepartment.ToString());
                 a.FirstOrDefault(x => x.Attribute("name").Value == "columnProduct")
                     .SetAttributeValue("value", model.columnProduct.ToString());
                 a.FirstOrDefault(x => x.Attribute("name").Value == "widthImgProduct")
@@ -1429,10 +1455,10 @@ namespace Mytrip.Store.Controllers
                 nameStore.FirstOrDefault(x => x.Attribute("value").Value ==LocalisationSetting.culture().ToLower())
                     .SetAttributeValue("name", model.nameStore);
                 var nameProducer = a.FirstOrDefault(x => x.Attribute("name").Value == "nameProducer").Elements("add");
-                nameStore.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
+                nameProducer.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
                     .SetAttributeValue("name", model.nameProducer);
                 var nameSearch = a.FirstOrDefault(x => x.Attribute("name").Value == "nameSearch").Elements("add");
-                nameStore.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
+                nameSearch.FirstOrDefault(x => x.Attribute("value").Value == LocalisationSetting.culture().ToLower())
                     .SetAttributeValue("name", model.NameSearchPage);
                 _doc.Save(_absolutDirectory);
                 #endregion
@@ -1466,47 +1492,47 @@ namespace Mytrip.Store.Controllers
         /// </summary>
         /// <returns></returns>
         //[Authorize]
-        public ActionResult Order()
-        {
-            if (!ModuleSetting.onlineBuy())
-            {
+        //public ActionResult Order()
+        //{
+        //    if (!ModuleSetting.onlineBuy())
+        //    {
  
-            }
-            //оформление заявки либо
-            //редирект на оплату эл.деньгами
-            //если доставка то снятие адреса у пользователя
-            //и контактных данных
-            //резервирование товара на складе
-            return View();
-        }
+        //    }
+        //    //оформление заявки либо
+        //    //редирект на оплату эл.деньгами
+        //    //если доставка то снятие адреса у пользователя
+        //    //и контактных данных
+        //    //резервирование товара на складе
+        //    return View();
+        //}
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public ActionResult PayPal()
-        {
+        //public ActionResult PayPal()
+        //{
 
-            MerchantProfile merchant = new MerchantProfile(
-            "blabla_1234567890_biz[at]email.com",
-             "1234567890",
-             "odifhp9p83948rlwkcmnwli430948f3ojldkjflskdjlsdkjsf0o98209",
-             "sandbox");
-            BuyerProfile buyer = new BuyerProfile(
-            "John", "Doe",
-            "1 Main St", "", "San Jose", "CA", "95131",
-            "Visa", "4197058882575379", "926",
-            10, 2010
-            );
-            PayPalResponse PayPalResponse = PayPalHelper.DoDirectPayment("13.45", merchant, buyer);
-            if (PayPalResponse.Ack == AckType.Success)
-            {
-                //ok
-            }
-            else
-            {
-                var error = PayPalResponse.Errors.First();
-            }
-            return View();
-        }
+        //    MerchantProfile merchant = new MerchantProfile(
+        //    "blabla_1234567890_biz[at]email.com",
+        //     "1234567890",
+        //     "odifhp9p83948rlwkcmnwli430948f3ojldkjflskdjlsdkjsf0o98209",
+        //     "sandbox");
+        //    BuyerProfile buyer = new BuyerProfile(
+        //    "John", "Doe",
+        //    "1 Main St", "", "San Jose", "CA", "95131",
+        //    "Visa", "4197058882575379", "926",
+        //    10, 2010
+        //    );
+        //    PayPalResponse PayPalResponse = PayPalHelper.DoDirectPayment("13.45", merchant, buyer);
+        //    if (PayPalResponse.Ack == AckType.Success)
+        //    {
+        //        //ok
+        //    }
+        //    else
+        //    {
+        //        var error = PayPalResponse.Errors.First();
+        //    }
+        //    return View();
+        //}
     }
 }

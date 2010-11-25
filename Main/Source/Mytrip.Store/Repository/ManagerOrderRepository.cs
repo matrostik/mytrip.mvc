@@ -107,10 +107,11 @@ namespace Mytrip.Store.Repository
         }
         public void DeleteManagerOrder(int id, string userName)
         {
+            string _email = MytripUser.UserEmail(userName);
             mytrip_storeorder z = entities.mytrip_storeorder
                 .Include("mytrip_storeorderisproduct")
                 .Include("mytrip_storeprofile")
-                .Where(x => x.mytrip_storeprofile.UserName == userName)
+                .Where(x => x.mytrip_storeprofile.UserEmail == _email)
                 .FirstOrDefault(x => x.OrderId == id);
             int status = 0;
             if (z != null && z.Status == 0)
@@ -186,6 +187,19 @@ namespace Mytrip.Store.Repository
             }
 
         }
+        public void SetOrdersOnlineStatus2(string organisation,string inn)
+        {
+            mytrip_storeorder z = entities.mytrip_storeorder
+                .Include("mytrip_storeprofile").Where(x => x.mytrip_storeprofile.Organization == organisation)
+                      .FirstOrDefault(x => x.mytrip_storeprofile.OrganizationINN==inn);
+            if (z != null)
+            {
+                z.Status = 2;
+                z.DateAccount = DateTime.Now;
+                entities.SaveChanges();
+            }
+
+        }
         public void SetOrdersStatus2(int id)
         {
             mytrip_storeorder z = entities.mytrip_storeorder
@@ -197,10 +211,11 @@ namespace Mytrip.Store.Repository
         }
         public void ApprovedOrder(int id, string username)
         {
+            string email = MytripUser.UserEmail(username);
             int profileid = 0;
             mytrip_storeprofile y = entities.mytrip_storeprofile
                 .Where(x => x.IsAnonym == true)
-                .FirstOrDefault(x => x.UserName == username);
+                .FirstOrDefault(x => x.UserEmail == email);
             if (y != null)
             {
                 profileid = y.ProfileId;

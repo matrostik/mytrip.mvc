@@ -13,12 +13,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytrip.Store", "Mytrip.Stor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytrip.Votes", "Mytrip.Votes\Mytrip.Votes.csproj", "{51B48DC9-FA48-4121-98AD-1A33A4A6E38C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mytrip.Tourism", "Mytrip.Tourism\Mytrip.Tourism.csproj", "{013EF795-7093-4443-8C42-E83967552BAC}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs02
 		SccLocalPath0 = .
+		SccProjectUniqueName1 = Mytrip.Mvc\\Mytrip.Mvc.csproj
+		SccProjectName1 = Mytrip.Mvc
+		SccLocalPath1 = Mytrip.Mvc
+		SccProjectUniqueName2 = Mytrip.Articles\\Mytrip.Articles.csproj
+		SccProjectName2 = Mytrip.Articles
+		SccLocalPath2 = Mytrip.Articles
+		SccProjectUniqueName3 = Mytrip.Store\\Mytrip.Store.csproj
+		SccProjectName3 = Mytrip.Store
+		SccLocalPath3 = Mytrip.Store
+		SccProjectUniqueName4 = Mytrip.Tourism\\Mytrip.Tourism.csproj
+		SccProjectName4 = Mytrip.Tourism
+		SccLocalPath4 = Mytrip.Tourism
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +63,10 @@ Global
 		{51B48DC9-FA48-4121-98AD-1A33A4A6E38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51B48DC9-FA48-4121-98AD-1A33A4A6E38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51B48DC9-FA48-4121-98AD-1A33A4A6E38C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{013EF795-7093-4443-8C42-E83967552BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013EF795-7093-4443-8C42-E83967552BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013EF795-7093-4443-8C42-E83967552BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013EF795-7093-4443-8C42-E83967552BAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -613,6 +613,15 @@ namespace Mytrip.Store {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string download {
+            get {
+                return ResourceManager.GetString("download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string edit {
@@ -981,6 +990,15 @@ namespace Mytrip.Store {
         public static string packing {
             get {
                 return ResourceManager.GetString("packing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private Person.
+        /// </summary>
+        public static string people {
+            get {
+                return ResourceManager.GetString("people", resourceCulture);
             }
         }
         

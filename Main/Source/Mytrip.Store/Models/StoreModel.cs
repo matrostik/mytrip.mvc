@@ -16,7 +16,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/Index.cshtml 
     /// </summary>
-    [MetadataType(typeof(DepartmentModel))]
     public class DepartmentModel
     {
         /// <summary>
@@ -121,8 +120,7 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель Титла для страницы /Views/Store/Index.cshtml
     /// </summary>
-    [MetadataType(typeof(TitleDepartmentModel))]
-    public class TitleDepartmentModel
+   public class TitleDepartmentModel
     {
         /// <summary>
         /// 
@@ -261,7 +259,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/View.cshtml
     /// </summary>
-    [MetadataType(typeof(ProductModel))]
     public class ProductModel
     {
         /// <summary>
@@ -306,7 +303,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/View.cshtml
     /// </summary>
-    [MetadataType(typeof(CartModel))]
     public class CartModel
     {
         /// <summary>
@@ -366,6 +362,10 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         public string viewOrganizationRu { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool organizationOrPrivte { get; set; }
 
     }
 
@@ -379,7 +379,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/EditorCategory.cshtml
     /// </summary>
-    [MetadataType(typeof(EditorCategoryModel))]
     public class EditorCategoryModel
     {
         /// <summary>
@@ -396,6 +395,7 @@ namespace Mytrip.Store.Models
         /// <summary>
         /// 
         /// </summary>
+        [SkipRequestValidation]
         public string body { get; set; }
         /// <summary>
         /// 
@@ -447,7 +447,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/EditorProduct.cshtml
     /// </summary>
-    [MetadataType(typeof(EditorProductModel))]
     public class EditorProductModel
     {
         /// <summary>
@@ -482,11 +481,13 @@ namespace Mytrip.Store.Models
         /// 
         /// </summary>
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
+        [SkipRequestValidation]
         public string abstracts { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [SkipRequestValidation]
         public string body { get; set; }
 
         /// <summary>
@@ -585,14 +586,12 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/CreateSale.cshtml 
     /// </summary>
-    [MetadataType(typeof(CreateSaleModel))]
     public class CreateSaleModel
     {
         public int sale { get; set; } 
         public string datestart { get; set; }
         public string dateclose { get; set; }
     }
-    [MetadataType(typeof(CreateProductXmlModel))]
     public class CreateProductXmlModel
     {
         public int departmentid { get; set; }
@@ -600,7 +599,6 @@ namespace Mytrip.Store.Models
         public SelectList SelectDepartment { get; set; }
         public SelectList SelectProducer { get; set; }
     }
-    [MetadataType(typeof(SettingStorelModel))]
     public class SettingStorelModel
     {
         [Required(ErrorMessageResourceType = typeof(CoreLanguage), ErrorMessageResourceName = "core_null")]
@@ -642,7 +640,6 @@ namespace Mytrip.Store.Models
 
     /// <summary>Модель для страницы /Views/Store/OrderDetails.cshtml
     /// </summary>
-    [MetadataType(typeof(OrderDetailsModel))]
     public class OrderDetailsModel
     {
         /// <summary>

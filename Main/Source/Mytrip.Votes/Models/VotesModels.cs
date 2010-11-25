@@ -8,7 +8,6 @@ using Mytrip.Votes.Repository.DataEntities;
 
 namespace Mytrip.Votes.Models
 {
-    [MetadataType(typeof(VotesModel))]
     public class VotesModel
     {
         public int QuestionId { get; set; }
@@ -25,7 +24,6 @@ namespace Mytrip.Votes.Models
         public bool Active { get; set; }
         public string Theme { get; set; }
     }
-    [MetadataType(typeof(VotesSettingModel))]
     public class VotesSettingModel
     {
         public bool unlockVotes { get; set; }
