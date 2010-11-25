@@ -43,11 +43,11 @@ namespace Mytrip.Store.Helpers
             string styletable = string.Empty;
             foreach (var article in department)
             {
-                int countproduct = article.mytrip_storeproduct.Count();
+                int countproduct = article.mytrip_storeproduct.Where(x => x.Culture == LocalisationSetting.culture() || x.AllCulture == true).Count();
                 string subdepartment = string.Empty;
                 foreach (var item in article.mytrip_storedepartment1)
                 {
-                    int _countproduct = item.mytrip_storeproduct.Count();
+                    int _countproduct = item.mytrip_storeproduct.Where(x => x.Culture == LocalisationSetting.culture() || x.AllCulture == true).Count();
                     subdepartment += string.Format("<li><a href=\"/Store/Index/1/10/{0}/0/1/{1}\" >{2} ({3})</a></li>", item.DepartmentId, item.Path, item.Title, _countproduct);
                     countproduct += _countproduct;
                 }
@@ -188,7 +188,7 @@ namespace Mytrip.Store.Helpers
             string styletable = string.Empty;
             foreach (var article in department)
             {
-                int countproduct = article.mytrip_storeproduct.Count();
+                int countproduct = article.mytrip_storeproduct.Where(x => x.Culture == LocalisationSetting.culture() || x.AllCulture == true).Count();
 
                 string _content = "<a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\">" + StoreHelper.GetImage(article.ProducerId, "/Content/Store/Producer", ModuleSetting.widthImgDepartment()) + "</a>";
                 _content += "<b><a href=\"/Store/Index/1/10/0/" + article.ProducerId + "/1/" + article.Path + "\" class=\"hometitle\" >" +

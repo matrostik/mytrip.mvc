@@ -84,9 +84,97 @@ namespace Mytrip.Store.Helpers
                     }
 
                 }
-                result.Append(string.Format(StoreLanguage.mycart, "<a href='/Store/Cart'>" + StoreLanguage.mycart2 + "</a>", "<b>" + totalcount + "</b>", "<b>" + MoneyHelpers.ConvertMoney(ModuleSetting.keyMoney(),totalprice) + "</b>"));
-                result.Append("</div></div><div class='apprBR'/><div class='apprBL'/><div class='apprBC'/>");
-                return result.ToString();
+                if (totalcount > 0)
+                {
+                    result.Append(string.Format(StoreLanguage.mycart, "<a href='/Store/Cart'>" + StoreLanguage.mycart2 + "</a>", "<b>" + totalcount + "</b>", "<b>" + MoneyHelpers.ConvertMoney(ModuleSetting.keyMoney(), totalprice) + "</b>"));
+                    result.Append("</div></div><div class='apprBR'/><div class='apprBL'/><div class='apprBC'/>");
+                    return result.ToString();
+                }
+                else return null;
+            }
+            else
+                return null;
+        }
+        public static string MyCartLayout()
+        {
+            string cart = (HttpContext.Current.Request.Cookies["myTripProductCart"] == null)
+                        ? string.Empty
+                        : HttpContext.Current.Request.Cookies["myTripProductCart"].Value;
+            if (cart != null)
+            {
+                IStoreRepository istore = new IStoreRepository();
+                cart = cart.Replace("][", "|").Replace("[", "").Replace("]", "");
+                string[] _cart = cart.Split('|');
+                StringBuilder result = new StringBuilder();
+                result.Append("<div class='righttext'><b>");
+                decimal totalprice = 0;
+                int totalcount = 0;
+                foreach (string x in _cart)
+                {
+                    string[] _x = x.Split('_');
+                    if (_x.Count() == 3)
+                    {
+                        int id = 0;
+                        int.TryParse(_x[1], out id);
+                        int count = 0;
+                        int.TryParse(_x[2], out count);
+                        if (id > 0 && count > 0)
+                        {
+                            var product = istore.product.GetProduct(id);
+                            if (product != null)
+                            {
+                                int sale1 = 0;
+                                //Отображение скидки для отдела
+                                if ((product.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+                                    product.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
+                                    (product.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
+                                    product.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
+                                    (product.mytrip_storeproducer.mytrip_storesale.Sale > 0 &&
+                                    product.mytrip_storeproducer.mytrip_storesale.CloseDate > DateTime.Now) ||
+                                    (product.mytrip_storesale.Sale > 0 && product.mytrip_storesale.CloseDate > DateTime.Now))
+                                {
+                                    sale1 = (product.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ? product.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale : 0;
+                                    int sale2 = (product.mytrip_storesale.CloseDate > DateTime.Now) ? product.mytrip_storesale.Sale : 0;
+                                    int sale3 = (product.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ? product.mytrip_storedepartment.mytrip_storesale.Sale : 0;
+                                    int sale4 = (product.mytrip_storeproducer.mytrip_storesale.CloseDate > DateTime.Now) ? product.mytrip_storeproducer.mytrip_storesale.Sale : 0;
+                                    if (sale2 > sale1)
+                                    {
+                                        sale1 = sale2;
+                                    }
+                                    if (sale3 > sale1)
+                                    {
+                                        sale1 = sale3;
+                                    }
+                                    if (sale4 > sale1)
+                                    {
+                                        sale1 = sale4;
+                                    }
+                                }
+
+                                if (sale1 > 0)
+                                {
+                                    totalprice += MoneyHelpers.ConvertMoneyDecimal(product.MoneyId, (product.Price / 100) * (100 - sale1)) * count;
+
+                                }
+                                else
+                                    totalprice += MoneyHelpers.ConvertMoneyDecimal(product.MoneyId, product.Price) * count;
+                                totalcount += count;
+                            }
+                        }
+                    }
+
+                }
+                if (totalcount > 0)
+                {
+                    result.Append(string.Format(StoreLanguage.mycart, "<a href='/Store/Cart'>" + StoreLanguage.mycart2 + "</a>", "<b>" + totalcount + "</b>", "<b>" + MoneyHelpers.ConvertMoney(ModuleSetting.keyMoney(), totalprice) + "</b>"));
+                    result.Append("</b></div>");
+                    return result.ToString();
+                }
+                else {
+                    result.Append(string.Format(StoreLanguage.mycart, "<a href='/Store/Cart'>" + StoreLanguage.mycart2 + "</a>", "<b>" + totalcount + "</b>", "<b>" + 0 + ".</b>"));
+                    result.Append("</b></div>");
+                    return result.ToString();
+                }
             }
             else
                 return null;
@@ -216,14 +304,21 @@ namespace Mytrip.Store.Helpers
                     buy = true;}
                 }
             }
-            result.Append("<div class='righttext'>");
-            result.Append(string.Format(StoreLanguage.mycart, StoreLanguage.mycart2, "<b>" + totalcount + "</b>", "<b>" + MoneyHelpers.ConvertMoney(ModuleSetting.keyMoney(),totalprice) + "</b>"));
-            if (buy)
+            if (totalcount > 0)
             {
-                result.Append("</div><div class='button'>");
-                result.Append(GeneralMethods.Button(StoreLanguage.buy, true, "order", "right"));
+                result.Append("<div class='righttext'>");
+                result.Append(string.Format(StoreLanguage.mycart, StoreLanguage.mycart2, "<b>" + totalcount + "</b>", "<b>" + MoneyHelpers.ConvertMoney(ModuleSetting.keyMoney(), totalprice) + "</b>"));
+                if (buy)
+                {
+
+                    result.Append("</div><div class='button'>");
+                    if (ModuleSetting.organizationBuy() && ModuleSetting.privatepersonBuy())
+                        result.Append(GeneralMethods.Button(StoreLanguage.buy, true, "variant", "right"));
+                    else
+                        result.Append(GeneralMethods.Button(StoreLanguage.buy, true, "order", "right"));
+                }
+                result.Append("</div>");
             }
-            result.Append("</div>");
             return result.ToString();
         }
         /// <summary>

@@ -62,8 +62,11 @@ namespace Mytrip.Store
                 new XElement("add", new XAttribute("name", "roleStoreManager"), new XAttribute("value", "store_manager")),
                 new XElement("add", new XAttribute("name", "onlineBuy"), new XAttribute("value", "False")),
                 new XElement("add", new XAttribute("name", "MoneyProcent"), new XAttribute("value", "2")),
-                new XElement("add", new XAttribute("name", "organizationBuy"), new XAttribute("value", "True")),
+                new XElement("add", new XAttribute("name", "organizationBuy"), new XAttribute("value", "False")),
+                new XElement("add", new XAttribute("name", "privatepersonBuy"), new XAttribute("value", "True")),
                 new XElement("add", new XAttribute("name", "viewProduktTable"), new XAttribute("value", "True")),
+                new XElement("add", new XAttribute("name", "paypal"), new XAttribute("value", "True")),
+                new XElement("add", new XAttribute("name", "paypalseller"), new XAttribute("value", "***")),
                 new XElement("add", new XAttribute("name", "nameStore"),
                     new XElement("add", new XAttribute("name", "Store"), new XAttribute("value", "en-us")),
                     new XElement("add", new XAttribute("name", "Магазин"), new XAttribute("value", "ru-ru"))),
@@ -93,7 +96,7 @@ namespace Mytrip.Store
 
         #region Данные из MytripConfiguration.xml
         // **********************************************
-        // Данные из MytripConfiguration.xml
+        // Данные из MytripConfiguration.xml<add name="privatepersonBuy" value="True" />
         // **********************************************
         public static string NameSearchPage()
         {
@@ -102,6 +105,21 @@ namespace Mytrip.Store
         public static bool viewProduktTable()
         {
             return bool.Parse(GeneralMethods.MytripCache("ss_viewprodukttable", moduleName, "viewProduktTable", false, null, 36000, CacheItemPriority.High).ToString());
+        }
+        public static bool privatepersonBuy()
+        {
+            if (organizationBuy())
+                return bool.Parse(GeneralMethods.MytripCache("ss_privatepersonbuy", moduleName, "privatepersonBuy", false, null, 36000, CacheItemPriority.High).ToString());
+            else
+                return true;
+        }
+        public static bool paypal()
+        {
+            return bool.Parse(GeneralMethods.MytripCache("ss_paypal", moduleName, "paypal", false, null, 36000, CacheItemPriority.High).ToString());
+        }
+        public static string paypalseller()
+        {
+            return GeneralMethods.MytripCache("ss_paypalseller", moduleName, "paypalseller", false, null, 36000, CacheItemPriority.High).ToString();
         }
         public static bool organizationBuy()
         {
@@ -138,7 +156,7 @@ namespace Mytrip.Store
         }
         public static string keyMoney()
         {
-            return MytripCache("ss_keymoney", moduleName, "Money", null, 36000, CacheItemPriority.High).ToString();
+            return StoreCache("ss_keymoney", moduleName, "Money", null, 36000, CacheItemPriority.High).ToString();
         }
         /// <summary>Статус модуля - включен или отключен  (true = включен)
         /// (данные закешированы, приоритет "High", скользящее 36000 секунд, key = "ss_unlockstore")
@@ -232,19 +250,19 @@ namespace Mytrip.Store
 
 
 
-        public static object MytripCache(string key, string element, string attribute, int? absolutSek, int? spanSek, CacheItemPriority priority)
+        public static object StoreCache(string key, string element, string attribute, int? absolutSek, int? spanSek, CacheItemPriority priority)
         {
             string _culture = LocalisationSetting.culture();
             if (HttpContext.Current.Cache[key + _culture] == null)
             {
                 TimeSpan _spanSek = spanSek == null ? TimeSpan.Zero : TimeSpan.FromSeconds((int)spanSek);
                 DateTime _absolutSek = absolutSek == null ? DateTime.MaxValue : DateTime.Now.AddSeconds((int)absolutSek);
-                HttpContext.Current.Cache.Insert(key + _culture, MytripConfigurationValue(element, attribute),
+                HttpContext.Current.Cache.Insert(key + _culture, StoreConfigurationValue(element, attribute),
                 null, _absolutSek, _spanSek, priority, null);
             }
             return HttpContext.Current.Cache[key + _culture];
         }
-        private static string MytripConfigurationValue(string element, string attribute)
+        private static string StoreConfigurationValue(string element, string attribute)
         {
             string _absolutDirectory = GeneralMethods.MytripConfigurationDirectory();
             XDocument _doc = XDocument.Load(_absolutDirectory);

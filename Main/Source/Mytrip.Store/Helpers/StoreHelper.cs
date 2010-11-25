@@ -32,6 +32,8 @@ namespace Mytrip.Store.Helpers
             string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
             string _directory = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            if (!_absolutDirectory2.Exists)
+                _absolutDirectory2.Create();
             FileInfo[] result = _absolutDirectory2.GetFiles();
             foreach (var x in result)
             {
@@ -62,7 +64,7 @@ namespace Mytrip.Store.Helpers
             {
                 if (x.Name.Contains(name))
                 {
-                    _directory = "<img src='/Content/Store/Product/" + id + "/" + x.Name + "'class='imgabstract' style='width:" + width + "px;'/>";
+                    _directory = "<img src='/Content/Store/Product/" + id + "/" + x.Name + "'class='imgabstract' style='width:" + width + "px; float:left;'/>";
                     break;
                 }
             }
@@ -79,12 +81,14 @@ namespace Mytrip.Store.Helpers
             string absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
             string _directory = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
+            if (!_absolutDirectory2.Exists)
+                _absolutDirectory2.Create();
             FileInfo[] result = _absolutDirectory2.GetFiles();
             foreach (var x in result)
             {
                 if (x.Name.Contains(name))
                 {
-                    _directory = "<img src='/Content/Store/Product/" + id + "/" + x.Name + "'class='imgabstract2'/>";
+                    _directory = "<img src='/Content/Store/Product/" + id + "/" + x.Name + "'class='imgabstract2' style='float:left;'/>"; 
                     break;
                 }
             }

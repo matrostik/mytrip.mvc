@@ -122,7 +122,7 @@ namespace Mytrip.Store.Helpers
         /// <returns></returns>
         public static string ConvertMoney(string key,decimal price)
         {
-            if (price.ToString("0.00") != "0.00" || price.ToString("0.00") != "0,00")
+            if (price > 0)
             {
                 string result = price.ToString("0.00") + " " + ModuleSetting.nameMoney();
                 if (key.ToUpper() != ModuleSetting.keyMoney().ToUpper())

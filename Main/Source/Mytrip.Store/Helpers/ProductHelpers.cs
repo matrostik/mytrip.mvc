@@ -77,7 +77,7 @@ namespace Mytrip.Store.Helpers
                 int sale1 = 0;
                 DateTime saledate = DateTime.Now;
                 //Отображение скидки для отдела
-                if ((article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+                if (article.Price>0&&(article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
                     article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
                     (article.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
                     article.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
@@ -141,7 +141,10 @@ namespace Mytrip.Store.Helpers
                     
                         packing = StoreLanguage.packing + ": <b>" + article.Packing + "</b><br/>";
                 }
-                string mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
+                string mycart = GeneralMethods.Button("/Store/View/" + article.ProductId + "/" + article.Path, StoreLanguage.free, false, "right");
+                if(article.Price>0)
+                    mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
+                
                 if (HttpContext.Current.Request.Cookies["myTripAddAccount"] != null && HttpContext.Current.Request.Cookies["myTripAddAccount"].Value != "0")
                 { mycart = GeneralMethods.Button("/Store/AddPosition/" +HttpContext.Current.Request.Cookies["myTripAddAccount"].Value+"/"+ article.ProductId, StoreLanguage.addaccount, false, "right"); }
                 string checkeds = (HttpContext.Current.Request.Cookies["myTripProductComparison"] != null
@@ -153,14 +156,19 @@ namespace Mytrip.Store.Helpers
                     && HttpContext.Current.Request.Cookies["myTripProductCart"].Value.Contains(string.Format("_{0}_", article.ProductId)))
                 ? "checked=\"checked\""
                 : string.Empty;
+
                 string _date = string.Format("{0:dd MMMM yyyy}", article.CreationDate) + "<br/>";
                 
                 string nambercatalog = "";
                 if (article.NamberCatalog != null)
                     nambercatalog = article.NamberCatalog + "  ";
-                string storecart = "<br/><input " + cart + " type='checkbox' value='_" + article.ProductId
+                string storecart = "";
+                if(article.Price>0)
+                    storecart = "<br/><input " + cart + " type='checkbox' id='cart" + article.ProductId
+                        + "' value='_" + article.ProductId
                     + "_1' class='cart' /> " + string.Format(StoreLanguage.cart, "<a href='/Store/Cart/" + article.ProductId + "'>" + StoreLanguage.cart2 + "</a>");
-                string comparision = "<br/><input " + checkeds + " type='checkbox' value='" + article.ProductId
+                string comparision = "<br/><input " + checkeds + " type='checkbox' id='compare" + article.ProductId
+                    + "' value='" + article.ProductId
                     + "' class='comparision' /> " + string.Format(StoreLanguage.compare, "<a href='/Store/View/0/Comparision'>" + StoreLanguage.compare2 + "</a>");
                 string _content = "<table class='noborders'><tr><td>";
                 _content += "<b><a href=\"/Store/View/" + article.ProductId + "/" + article.Path + "\" class=\"hometitle\" >" +
@@ -258,7 +266,7 @@ namespace Mytrip.Store.Helpers
                 {
 
                     //Отображение скидки для отдела
-                    if ((article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+                    if (article.Price>0&&(article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
                         article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
                         (article.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
                         article.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
@@ -410,7 +418,7 @@ namespace Mytrip.Store.Helpers
                 int sale1 = 0;
                 DateTime saledate = DateTime.Now;
                 //Отображение скидки для отдела
-                if ((article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+                if (article.Price>0&&(article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
                     article.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
                     (article.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
                     article.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
@@ -484,7 +492,9 @@ namespace Mytrip.Store.Helpers
                     else
                         packing = StoreLanguage.packing + ": <b>" + article.Packing + "</b><br/>";
                 }
-                string mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
+                string mycart = GeneralMethods.Button("/Store/View/" + article.ProductId + "/" + article.Path, StoreLanguage.free, false, "right");
+                if(article.Price>0)
+                mycart = GeneralMethods.Button("/Store/Cart/" + article.ProductId, StoreLanguage.buy, false, "right");
                 if (HttpContext.Current.Request.Cookies["myTripAddAccount"] != null && HttpContext.Current.Request.Cookies["myTripAddAccount"].Value != "0")
                 { mycart = GeneralMethods.Button("/Store/AddPosition/" +HttpContext.Current.Request.Cookies["myTripAddAccount"].Value+"/"+ article.ProductId, StoreLanguage.addaccount, false, "right"); }
                 string checkeds = (HttpContext.Current.Request.Cookies["myTripProductComparison"] != null
@@ -502,9 +512,13 @@ namespace Mytrip.Store.Helpers
                 string nambercatalog = "";
                 if (article.NamberCatalog != null)
                     nambercatalog = " (" + article.NamberCatalog + ")";
-                string storecart = "<br/><input " + cart + " type='checkbox' value='_" + article.ProductId
+                string storecart = "";
+                if(article.Price>0)
+                    storecart = "<br/><input " + cart + " type='checkbox' id='cart" + article.ProductId
+                        + "' value='_" + article.ProductId
                     + "_1' class='cart' /> " + string.Format(StoreLanguage.cart, "<a href='/Store/Cart/" + article.ProductId + "'>" + StoreLanguage.cart2 + "</a>");
-                string comparision = "<br/><input " + checkeds + " type='checkbox' value='" + article.ProductId
+                string comparision = "<br/><input " + checkeds + " type='checkbox' id='compar" + article.ProductId
+                    + "' value='" + article.ProductId
                     + "' class='comparision' /> " + string.Format(StoreLanguage.compare, "<a href='/Store/View/0/Comparision'>" + StoreLanguage.compare2 + "</a>");
                 string _content = "<table class='noborders'><tr><td><a href=\"/Store/View/" + article.ProductId + "/" + article.Path + "\">" + StoreHelper.GetImageProduct(article.ProductId, ModuleSetting.widthImgDepartment()) + "</a>";
                 _content += "<b><a href=\"/Store/View/" + article.ProductId + "/" + article.Path + "\" class=\"hometitle\" >" +
@@ -572,15 +586,19 @@ namespace Mytrip.Store.Helpers
                 && HttpContext.Current.Request.Cookies["myTripProductCart"].Value.Contains(string.Format("_{0}_", x.ProductId)))
             ? "checked=\"checked\""
             : string.Empty;
-            string storecart = "<br/><input " + cart + " type='checkbox' value='_" + x.ProductId
+            string storecart = "";
+            if(x.Price>0)
+                storecart = "<br/><input " + cart + " type='checkbox' id='cart" + x.ProductId
+                    + "' value='_" + x.ProductId
                    + "_1' class='cart' /> " + string.Format(StoreLanguage.cart, "<a href='/Store/Cart/" + x.ProductId + "'>" + StoreLanguage.cart2 + "</a>");
-            string comparision = "<br/><input " + checkeds + " type='checkbox' value='" + x.ProductId
+            string comparision = "<br/><input " + checkeds + " type='checkbox' id='compar" + x.ProductId
+                + "' value='" + x.ProductId
                 + "' class='comparision' /> " + string.Format(StoreLanguage.compare, "<a href='/Store/View/0/Comparision'>" + StoreLanguage.compare2 + "</a>");
             string saleprice = "<br/>";
             int sale1 = 0;
             DateTime saledate = DateTime.Now;
             //Отображение скидки для отдела
-            if ((x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+            if (x.Price>0&&(x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
                 x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
                 (x.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
                 x.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
@@ -633,7 +651,11 @@ namespace Mytrip.Store.Helpers
             string votes = string.Empty;
             if (x.ViewVotes)
                 votes = GeneralMethods.CoreRating(x.ViewVotes, true, (double)x.TotalVotes, x.mytrip_storevotes.Count()) + "</b><br/>";
-            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
+            string mycart ="";
+            if(x.Price>0)
+            mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
+            else if(x.Price==0&&x.UrlFile!=null&&x.UrlFile.Length>2)
+                mycart = GeneralMethods.Button(x.UrlFile, StoreLanguage.download, true, "right");
             if (HttpContext.Current.Request.Cookies["myTripAddAccount"] != null && HttpContext.Current.Request.Cookies["myTripAddAccount"].Value != "0")
             { mycart = GeneralMethods.Button("/Store/AddPosition/" + HttpContext.Current.Request.Cookies["myTripAddAccount"].Value + "/" + x.ProductId, StoreLanguage.addaccount, false, "right"); }
             string _content = "<div id='votes' class='right'>" + votes +
@@ -786,7 +808,7 @@ namespace Mytrip.Store.Helpers
             int sale1 = 0;
             DateTime saledate = DateTime.Now;
             //Отображение скидки для отдела
-            if ((x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
+            if (x.Price>0&&(x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.Sale > 0 &&
                 x.mytrip_storedepartment.mytrip_storedepartment2.mytrip_storesale.CloseDate > DateTime.Now) ||
                 (x.mytrip_storedepartment.mytrip_storesale.Sale > 0 &&
                 x.mytrip_storedepartment.mytrip_storesale.CloseDate > DateTime.Now) ||
@@ -840,14 +862,18 @@ namespace Mytrip.Store.Helpers
             string body = x.Body.Length > content ? x.Body.Remove(content) + "..." : x.Body;
             if (x.ViewVotes)
                 votes = GeneralMethods.CoreRating(x.ViewVotes, false, (double)x.TotalVotes, -1) + "</b><br/>";
-            string mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "right");
+
+            string mycart = GeneralMethods.Button("/Store/View/" + x.ProductId + "/" + x.Path, StoreLanguage.free, true, "left");
+            if(x.Price>0)
+                mycart = GeneralMethods.Button("/Store/Cart/" + x.ProductId, StoreLanguage.buy, true, "left");
+            
             if (HttpContext.Current.Request.Cookies["myTripAddAccount"] != null && HttpContext.Current.Request.Cookies["myTripAddAccount"].Value != "0")
-            { mycart = GeneralMethods.Button("/Store/AddPosition/" + HttpContext.Current.Request.Cookies["myTripAddAccount"].Value + "/" + x.ProductId, StoreLanguage.addaccount, false, "right"); }
-            string _content = "<div id='votes' class='right'>" + votes +
-                "</div>" + StoreHelper.GetImageProduct(x.ProductId, imgwidth) +
+            { mycart = GeneralMethods.Button("/Store/AddPosition/" + HttpContext.Current.Request.Cookies["myTripAddAccount"].Value + "/" + x.ProductId, StoreLanguage.addaccount, false, "left"); }
+            string _content = StoreHelper.GetImageProduct(x.ProductId, imgwidth) +
                 "<h3 class=\"hometitle\" ><a href=\"/Store/View/" + x.ProductId + "/" + x.Path + "\" class=\"hometitle\" >" +
                    x.Title + nambercatalog + "</a></h3><table class='noborders'><tr><td>"
-                + body + "</td></tr></table>" + mycart + prise + departmentlink;
+                + body + "</td></tr></table>" + mycart + "<div id='votes' class='right'>" + votes +
+                "</div><div class='right'>" + prise + departmentlink+"</div>";
             return _content;
         }
     }

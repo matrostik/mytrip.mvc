@@ -21,9 +21,13 @@ namespace Mytrip.Store.Controllers
             }
         }
         public string HomePage()
-        {
-            string result = "1_globe_" + ModuleSetting.nameStore();
-            return result;
+        { StringBuilder result = new StringBuilder();
+            result.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            result.AppendLine("<root_el>");
+            result.AppendLine("<first_el>1_globe_" + ModuleSetting.nameStore());
+            result.AppendLine("</first_el>");
+            result.AppendLine("</root_el>");
+            return result.ToString();
         }
         public string MenuPage()
         {
