@@ -15,7 +15,6 @@ using Mytrip.Articles.Repository.DataEntities;
 
 namespace Mytrip.Articles.Models
 {
-    [MetadataType(typeof(CategoryModel))]
     public class CategoryModel
     {
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
@@ -30,7 +29,6 @@ namespace Mytrip.Articles.Models
         public string ShowSeparateBlock { get; set; }
         public string ShowAllCulture { get; set; }
     }
-    [MetadataType(typeof(ArticleIndexModel))]
     public class ArticleIndexModel
     {
         public IQueryable<mytrip_articlescategory> Categories { get; set; }
@@ -49,7 +47,6 @@ namespace Mytrip.Articles.Models
         public int Total { get; set; }
         public int DefaultCount { get; set; }
     }
-    [MetadataType(typeof(ArticleViewModel))]
     public class ArticleViewModel
     {
         public mytrip_articles Article { get; set; }
@@ -59,6 +56,7 @@ namespace Mytrip.Articles.Models
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "invalid_email")]
         public string AnonymEmail { get; set; }
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
+        [SkipRequestValidation]
         public string Comment { get; set; }
         [_CaptchaNullString(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "field_empty")]
         [_CaptchaError(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "account_error_captcha")]
@@ -78,7 +76,6 @@ namespace Mytrip.Articles.Models
         public int ReturnId { get; set; }
         public string tableWidth { get; set; }
     }
-    [MetadataType(typeof(ArticleVote))]
     public class ArticleVote
     {
         public int ArticleId { get; set; }
@@ -86,7 +83,6 @@ namespace Mytrip.Articles.Models
         public int TotalVotes { get; set; }
         public double AverageVotes { get; set; }
     }
-    [MetadataType(typeof(ArticleModel))]
     public class ArticleModel
     {
         public string PageTitle { get; set; }
@@ -96,10 +92,13 @@ namespace Mytrip.Articles.Models
         [RegularExpression("^(.){5,255}$", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "title_lenght_5_255")]
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "title_empty")]
         public string Title { get; set; }
+        [SkipRequestValidation]
         public string ImageForAbstract { get; set; }
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "short_desc_empty")]
+        [SkipRequestValidation]
         public string Abstract { get; set; }
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "content_empty")]
+        [SkipRequestValidation]
         public string Body { get; set; }
         [RegularExpression(@"^\s*(\d{2,4})\-(\d{1,2})\-(\d{1,2})\s*$", ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "invalid_date")]
         [Required(ErrorMessageResourceType = typeof(ArticleLanguage), ErrorMessageResourceName = "close_date_empty")]
@@ -110,6 +109,7 @@ namespace Mytrip.Articles.Models
         public bool AllCulture { get; set; }
         public bool OnlyForRegisterUser { get; set; }
         public bool ModerateComments { get; set; }
+        public bool CommentVotes { get; set; }
         public string ShowArticleOptions { get; set; }
         public string ShowOnlyForRegisted { get; set; }
         public string ShowIncludeAnonymComment { get; set; }
@@ -119,9 +119,9 @@ namespace Mytrip.Articles.Models
         public IQueryable<mytrip_articlestag> Tags { get; set; }
         public string NewTags { get; set; }
         public string Theme { get; set; }
+        [SkipRequestValidation]
         public string[] Pages { get; set; }
     }
-    [MetadataType(typeof(CommentModel))]
     public class CommentModel
     {
         public int CommentId { get; set; }
@@ -133,23 +133,20 @@ namespace Mytrip.Articles.Models
         public string Path { get; set; }
         public string Url { get; set; }
     }
-    [MetadataType(typeof(ProfileModel))]
-    public class ProfileModel
+
+    public class ArticleProfile
     {
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PageTitle { get; set; }
-        public SelectList Places { get; set; }
+        public string Title { get; set; }
         public string Path { get; set; }
+        public string UserName { get; set; }
     }
+
     public class RoleArticleAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (MytripUser.UserInRole(ModuleSetting.roleArticleEditor()) || MytripUser.UserInRole(ModuleSetting.roleBlogger()) || MytripUser.UserInRole(ModuleSetting.roleChiefEditor()))
-            {
-                
-            }
+            { }
             else
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(

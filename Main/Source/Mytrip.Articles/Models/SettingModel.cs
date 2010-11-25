@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace Mytrip.Articles.Models
 {
-    [MetadataType(typeof(ArticleSettingModel))]
     public class ArticleSettingModel
     {
         public bool articles { get; set; }
@@ -36,7 +35,6 @@ namespace Mytrip.Articles.Models
         public bool showRelatedLinks { get; set; }
         public string viewAdmin { get; set; }
     }
-    [MetadataType(typeof(EditorsModel))]
     public class EditorsModel
     {
         public string PageTitle { get; set; }

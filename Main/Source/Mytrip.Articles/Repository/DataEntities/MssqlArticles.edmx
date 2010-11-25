@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="Database1ModelStoreContainer">
           <EntitySet Name="mytrip_articles" EntityType="Database1Model.Store.mytrip_articles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_articlescategory" EntityType="Database1Model.Store.mytrip_articlescategory" store:Type="Tables" Schema="dbo" />
@@ -13,6 +13,7 @@
           <EntitySet Name="mytrip_articlessubscription" EntityType="Database1Model.Store.mytrip_articlessubscription" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_articlestag" EntityType="Database1Model.Store.mytrip_articlestag" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mytrip_articlesvotes" EntityType="Database1Model.Store.mytrip_articlesvotes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_commentvotes" EntityType="Database1Model.Store.mytrip_commentvotes" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_mytrip_Article_mytrip_ArticleCategory" Association="Database1Model.Store.FK_mytrip_Article_mytrip_ArticleCategory">
             <End Role="mytrip_articlescategory" EntitySet="mytrip_articlescategory" />
             <End Role="mytrip_articles" EntitySet="mytrip_articles" />
@@ -45,7 +46,11 @@
             <End Role="mytrip_articles" EntitySet="mytrip_articles" />
             <End Role="mytrip_articlesvotes" EntitySet="mytrip_articlesvotes" />
           </AssociationSet>
-          </EntityContainer>
+          <AssociationSet Name="FK_mytrip_commentvotes_mytrip_articlescomments" Association="Database1Model.Store.FK_mytrip_commentvotes_mytrip_articlescomments">
+            <End Role="mytrip_articlescomments" EntitySet="mytrip_articlescomments" />
+            <End Role="mytrip_commentvotes" EntitySet="mytrip_commentvotes" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="mytrip_articles">
           <Key>
             <PropertyRef Name="ArticleId" />
@@ -70,6 +75,7 @@
           <Property Name="AllCulture" Type="bit" Nullable="false" />
           <Property Name="TotalVotes" Type="decimal" Nullable="false" Precision="4" Scale="2" />
           <Property Name="ModerateComments" Type="bit" Nullable="false" />
+          <Property Name="CommentVotes" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="mytrip_articlescategory">
           <Key>
@@ -100,6 +106,7 @@
           <Property Name="UserEmail" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="IsAnonym" Type="bit" Nullable="false" />
           <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="Votes" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="mytrip_articlesintags">
           <Key>
@@ -132,6 +139,14 @@
           <Property Name="VotesId" Type="int" Nullable="false" />
           <Property Name="ArticleId" Type="int" Nullable="false" />
           <Property Name="Vote" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="mytrip_commentvotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <Association Name="FK_mytrip_Article_mytrip_ArticleCategory">
@@ -230,8 +245,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_mytrip_commentvotes_mytrip_articlescomments">
+          <End Role="mytrip_articlescomments" Type="Database1Model.Store.mytrip_articlescomments" Multiplicity="1" />
+          <End Role="mytrip_commentvotes" Type="Database1Model.Store.mytrip_commentvotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_articlescomments">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="mytrip_commentvotes">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mytripArticles" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -270,6 +296,11 @@
             <End Role="mytrip_articles" EntitySet="mytrip_articles" />
             <End Role="mytrip_articlestag" EntitySet="mytrip_articlestag" />
           </AssociationSet>
+          <EntitySet Name="mytrip_commentvotes" EntityType="mytripArticles.mytrip_commentvotes" />
+          <AssociationSet Name="FK_mytrip_commentvotes_mytrip_articlescomments" Association="mytripArticles.FK_mytrip_commentvotes_mytrip_articlescomments">
+            <End Role="mytrip_articlescomments" EntitySet="mytrip_articlescomments" />
+            <End Role="mytrip_commentvotes" EntitySet="mytrip_commentvotes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="mytrip_articles">
           <Key>
@@ -302,6 +333,7 @@
           <NavigationProperty Name="mytrip_articlessubscription" Relationship="mytripArticles.FK_mytrip_articlessubscription_mytrip_articles" FromRole="mytrip_articles" ToRole="mytrip_articlessubscription" />
           <NavigationProperty Name="mytrip_articlesvotes" Relationship="mytripArticles.FK_mytrip_ArticlesVotes_mytrip_Articles" FromRole="mytrip_articles" ToRole="mytrip_articlesvotes" />
           <NavigationProperty Name="mytrip_articlestag" Relationship="mytripArticles.mytrip_articlesintags" FromRole="mytrip_articles" ToRole="mytrip_articlestag" />
+          <Property Type="Boolean" Name="CommentVotes" Nullable="false" />
         </EntityType>
         <EntityType Name="mytrip_articlescategory">
           <Key>
@@ -336,6 +368,8 @@
           <Property Name="IsAnonym" Type="Boolean" Nullable="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="mytrip_articles" Relationship="mytripArticles.FK_mytrip_ArticleComment_mytrip_Article" FromRole="mytrip_articlescomments" ToRole="mytrip_articles" />
+          <Property Type="Int32" Name="Votes" Nullable="false" />
+          <NavigationProperty Name="mytrip_commentvotes" Relationship="mytripArticles.FK_mytrip_commentvotes_mytrip_articlescomments" FromRole="mytrip_articlescomments" ToRole="mytrip_commentvotes" />
         </EntityType>
         <EntityType Name="mytrip_articlessubscription">
           <Key>
@@ -441,6 +475,27 @@
           <End Role="mytrip_articles" Type="mytripArticles.mytrip_articles" Multiplicity="*" />
           <End Role="mytrip_articlestag" Type="mytripArticles.mytrip_articlestag" Multiplicity="*" />
         </Association>
+        <EntityType Name="mytrip_commentvotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="CommentId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mytrip_articlescomments" Relationship="mytripArticles.FK_mytrip_commentvotes_mytrip_articlescomments" FromRole="mytrip_commentvotes" ToRole="mytrip_articlescomments" />
+        </EntityType>
+        <Association Name="FK_mytrip_commentvotes_mytrip_articlescomments">
+          <End Type="mytripArticles.mytrip_articlescomments" Role="mytrip_articlescomments" Multiplicity="1" />
+          <End Type="mytripArticles.mytrip_commentvotes" Role="mytrip_commentvotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_articlescomments">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="mytrip_commentvotes">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -448,7 +503,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="mytrip_articles"><EntityTypeMapping TypeName="mytripArticles.mytrip_articles"><MappingFragment StoreEntitySet="mytrip_articles">
-            <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            <ScalarProperty Name="CommentVotes" ColumnName="CommentVotes" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
             <ScalarProperty Name="SubArticleId" ColumnName="SubArticleId" />
             <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
             <ScalarProperty Name="Title" ColumnName="Title" />
@@ -484,7 +540,8 @@
             <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="mytrip_articlescomments"><EntityTypeMapping TypeName="mytripArticles.mytrip_articlescomments"><MappingFragment StoreEntitySet="mytrip_articlescomments">
-            <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+            <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
             <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
             <ScalarProperty Name="Body" ColumnName="Body" />
             <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -517,6 +574,15 @@
               <ScalarProperty Name="TagId" ColumnName="TagId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="mytrip_commentvotes">
+            <EntityTypeMapping TypeName="mytripArticles.mytrip_commentvotes">
+              <MappingFragment StoreEntitySet="mytrip_commentvotes">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -540,42 +606,47 @@
     <Diagrams>
       <Diagram Name="MssqlArticles">
         <EntityTypeShape EntityType="mytripArticles.mytrip_articles" Width="2.125" PointX="3" PointY="0.5" Height="6.21091796875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytripArticles.mytrip_articlescategory" Width="1.5" PointX="0.5" PointY="0.5" Height="3.9033007812500005" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripArticles.mytrip_articlescategory" Width="1.75" PointX="0.5" PointY="0.5" Height="3.9033007812500005" IsExpanded="true" />
         <EntityTypeShape EntityType="mytripArticles.mytrip_articlescomments" Width="2.125" PointX="6.125" PointY="0.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytripArticles.mytrip_articlessubscription" Width="2.125" PointX="6.125" PointY="3.5" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytripArticles.mytrip_articlestag" Width="2.125" PointX="6.125" PointY="5.625" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytripArticles.mytrip_articlesvotes" Width="1.5" PointX="0.5" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripArticles.mytrip_articlessubscription" Width="2.125" PointX="6.125" PointY="4" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripArticles.mytrip_articlestag" Width="2.125" PointX="6.125" PointY="6.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripArticles.mytrip_articlesvotes" Width="1.75" PointX="0.5" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
         <AssociationConnector Association="mytripArticles.FK_mytrip_Article_mytrip_ArticleCategory" ManuallyRouted="false">
-          <ConnectorPoint PointX="2" PointY="2.451650390625" />
-          <ConnectorPoint PointX="3" PointY="2.451650390625" />
+          <ConnectorPoint PointX="2.25" PointY="2.4516503906250002" />
+          <ConnectorPoint PointX="3" PointY="2.4516503906250002" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.FK_mytrip_ArticleComment_mytrip_Article" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.125" PointY="1.8747460937499998" />
-          <ConnectorPoint PointX="6.125" PointY="1.8747460937499998" />
+          <ConnectorPoint PointX="5.125" PointY="2.0670475260416667" />
+          <ConnectorPoint PointX="6.125" PointY="2.0670475260416667" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.FK_mytrip_articles_mytrip_articles" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.7535576923076923" PointY="6.71091796875" />
-          <ConnectorPoint PointX="3.7535576923076923" PointY="6.96091796875" />
-          <ConnectorPoint PointX="4.3861538461538458" PointY="6.96091796875" />
-          <ConnectorPoint PointX="4.3861538461538458" PointY="6.71091796875" />
+          <ConnectorPoint PointX="3.7535576923076923" PointY="6.9032194010416665" />
+          <ConnectorPoint PointX="3.7535576923076923" PointY="7.1532194010416674" />
+          <ConnectorPoint PointX="4.3861538461538458" PointY="7.1532194010416674" />
+          <ConnectorPoint PointX="4.3861538461538458" PointY="6.9032194010416665" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.FK_mytrip_articlessubscription_mytrip_articles" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.125" PointY="4.3939925130208328" />
-          <ConnectorPoint PointX="6.125" PointY="4.3939925130208328" />
+          <ConnectorPoint PointX="5.125" PointY="4.8939925130208328" />
+          <ConnectorPoint PointX="6.125" PointY="4.8939925130208328" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.FK_mytrip_ArticlesVotes_mytrip_Articles" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="5.730458984375" />
-          <ConnectorPoint PointX="2" PointY="5.730458984375" />
+          <ConnectorPoint PointX="3" PointY="5.7401432291666659" />
+          <ConnectorPoint PointX="2.25" PointY="5.7401432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.FK_mytrip_ArticleCategory_mytrip_ArticleCategory" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.0319230769230769" PointY="4.4033007812500005" />
-          <ConnectorPoint PointX="1.0319230769230769" PointY="4.65330078125" />
-          <ConnectorPoint PointX="1.4784615384615383" PointY="4.65330078125" />
-          <ConnectorPoint PointX="1.4784615384615383" PointY="4.4033007812500005" />
+          <ConnectorPoint PointX="1.1205769230769231" PointY="4.4033007812500005" />
+          <ConnectorPoint PointX="1.1205769230769231" PointY="4.6533007812500005" />
+          <ConnectorPoint PointX="1.6415384615384618" PointY="4.6533007812500005" />
+          <ConnectorPoint PointX="1.6415384615384618" PointY="4.4033007812500005" />
         </AssociationConnector>
         <AssociationConnector Association="mytripArticles.mytrip_articlesintags" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.125" PointY="6.167958984375" />
-          <ConnectorPoint PointX="6.125" PointY="6.167958984375" />
+          <ConnectorPoint PointX="5.125" PointY="6.5141097005208337" />
+          <ConnectorPoint PointX="6.125" PointY="6.5141097005208337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripArticles.mytrip_commentvotes" Width="1.875" PointX="9" PointY="0.5" Height="1.7879850260416674" />
+        <AssociationConnector Association="mytripArticles.FK_mytrip_commentvotes_mytrip_articlescomments" >
+          <ConnectorPoint PointX="8.25" PointY="1.3939925130208337" />
+          <ConnectorPoint PointX="9" PointY="1.3939925130208337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -239,7 +239,14 @@ namespace Mytrip.Articles.Controllers
             else
                 return Redirect(url);
         }
+        #endregion
+
+        #region Category and Tags Actions
+        // *********************************************
+        // URL: /Article/Category
+        // **  создать редактировать рубрику/тему  **
         [HttpPost]
+        [Authorize]
         public ActionResult Category(int id, string path, string title, bool menu, bool allculture)
         {
             if (string.IsNullOrEmpty(title))
@@ -254,67 +261,14 @@ namespace Mytrip.Articles.Controllers
                         articleRepo.category.CreateСategory(title, menu, allculture, LocalisationSetting.culture());
                     else
                         articleRepo.category.CreateSubCategory(title, id, allculture);
-                    return Content(string.Empty);
                 }
                 else if (path.Contains("Tag"))
-                {
                     articleRepo.article.UpdateTag(id, title);
-                    return Content(string.Empty);
-                }
                 else
-                {
                     articleRepo.category.UpdateCategory(id, title, menu, allculture);
-                    return Content(string.Empty);
-                }
-            }
-        }
-        // ************************************
-        // URL: /Article/Comment/Id/
-        // ******  получить комментарий  ******
-        public string Comment(int id)
-        {
-            mytrip_articlescomments comment = articleRepo.comment.GetComment(id);
-            return comment.Body;
-
-        }
-        // *****************************************
-        // URL: /Article/Comment/Id/comment/approved/
-        // ******  редактировать комментарий  ******
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Comment(int id, string comment,bool approved)
-        {
-            if (string.IsNullOrEmpty(comment) || comment == "<P>")
-            {
-                return Content(ArticleLanguage.field_empty);
-            }
-            else
-            {
-                var com = articleRepo.comment.UpdateComment(id, comment, approved);
-                string email = MytripUser.UserEmail(com.mytrip_articles.UserName);
-                if (!string.IsNullOrEmpty(email) && EmailSetting.unlockSendEmail() && !approved)
-                {
-                    string domain = Request.Url.Host;
-                    string articlelink = string.Format("<a href=\"{0}/Article/View/{1}/{2}\" title=\"{3}\">{3}</a>", domain, com.ArticleId, com.mytrip_articles.Path, com.mytrip_articles.Title);
-                    string profilelink = string.Format("<a href=\"{0}/Home/Profile/{1}\" title=\"{2}\">{1}</a>", domain, com.UserName, ArticleLanguage.view_user_profile);
-                    string sitelink = string.Format(CoreSetting.NameTitlePage(), "<a href=\"" + domain + "\" title=\"" + domain + "\">" + domain + "</a>");
-
-                    //письмо модеру о редактировании коммента
-                    MailMessage msg = new MailMessage();
-                    msg.To.Add(email);
-                    msg.From = new MailAddress(EmailSetting.from_email(), string.Format(CoreSetting.NameTitlePage(), domain));
-                    msg.Subject = string.Format(CoreSetting.NameTitlePage(), ArticleLanguage.new_comment);
-                    msg.Body = string.Format(ArticleLanguage.email_commentmoderate, com.mytrip_articles.UserName, articlelink
-                               , profilelink, com.CreateDate, com.Body, sitelink);
-                    msg.IsBodyHtml = true;
-                    EmailSetting.SendEmail(msg);
-                }
                 return Content(string.Empty);
             }
         }
-        #endregion
-
-        #region Category and Tags Actions
         // ****************************************
         // URL: /Article/CreateBlog
         // *****  создать блог  *******
@@ -335,7 +289,7 @@ namespace Mytrip.Articles.Controllers
                 return RedirectToAction("Index", "Article", new { id = 1, id2 = 10, id3 = blog.CategoryId, id4 = blog.Path });
             }
             else { return RedirectToAction("Index", "Article", new { id = 1, id2 = 10, id3 = 0, id4 = "Blogs" }); }
-        } 
+        }
         // **********************************************
         // URL: /Article/DeleteCategory/id/Path/
         // *****  удалить рубрику или подрубрику  *******
@@ -407,7 +361,6 @@ namespace Mytrip.Articles.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult View(ArticleViewModel model, int id)
         {
             try
@@ -476,31 +429,8 @@ namespace Mytrip.Articles.Controllers
             }
         }
         // *************************************
-        // URL: /Article/SubscribeComments/Id/
-        // *****  Subscribe to comments  *******
-        [HttpPost]
-        [Authorize]
-        public string SubscribeComments(int id)
-        {
-            bool isSubs = articleRepo.subscription.Subscribe(id);
-            TagBuilder input = new TagBuilder("input");
-            input.MergeAttribute("type", "submit");
-            input.MergeAttribute("name", "id");
-            input.MergeAttribute("id", "subscribe");
-            input.MergeAttribute("value", id.ToString());
-            input.AddCssClass("otheroptions");
-            if (isSubs)
-            {
-                input.MergeAttribute("title", ArticleLanguage.unsubscribe_comments);
-                input.MergeAttribute("style", "background:url('/Theme/" + ThemeSetting.theme() + "/images/noalert.png')");
-            }
-            else
-            {
-                input.MergeAttribute("title", ArticleLanguage.subscribe_comments);
-                input.MergeAttribute("style", "background:url('/Theme/" + ThemeSetting.theme() + "/images/alert.png')");
-            }
-            return input.ToString();
-        }
+        // URL: /Article/Rate/Id/vote/count/
+        // *****  Rate article  *******
         [HttpPost]
         [Authorize]
         public string Rate(int id, int vote, int count)
@@ -510,9 +440,9 @@ namespace Mytrip.Articles.Controllers
             StringBuilder result = new StringBuilder();
             result.AppendLine(GeneralMethods.CoreRating(true, false, total, newcount));
             if (count == newcount)
-                result.AppendLine("<br/>" + ArticleLanguage.you_have_a_voted);
+                result.AppendLine("<br/>" + CoreLanguage.you_have_a_voted); 
             else
-                result.AppendLine("<br/>" + ArticleLanguage.thanks_for_vote);
+                result.AppendLine("<br/>" + CoreLanguage.thanks_for_vote);
             return result.ToString(); ;
         }
         // *************************************
@@ -556,7 +486,6 @@ namespace Mytrip.Articles.Controllers
         }
         [HttpPost]
         [Authorize]
-        [ValidateInput(false)]
         public ActionResult Create(ArticleModel model)
         {
             if (ModelState.IsValid)
@@ -567,12 +496,12 @@ namespace Mytrip.Articles.Controllers
                 {
                     article = articleRepo.article.CreateArticle(model.CategoryId, model.Title, model.Abstract, model.Body
                           , model.ApprovedComment, model.ImageForAbstract, model.OnlyForRegisterUser, model.ApprovedVotes, model.IncludeAnonymComment
-                          , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.Pages);
+                          , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.CommentVotes, model.Pages);
                 }
                 else
                 {
                     article = articleRepo.article.CreatePost(model.CategoryId, model.Title, model.Abstract, model.Body
-                         , model.ImageForAbstract, model.OnlyForRegisterUser, model.IncludeAnonymComment, model.ModerateComments, model.Pages);
+                         , model.ImageForAbstract, model.OnlyForRegisterUser, model.IncludeAnonymComment, model.ModerateComments, model.CommentVotes, model.Pages);
                 }
                 #region tags
                 IQueryable<mytrip_articlestag> ts = articleRepo.article.GetAllTags();
@@ -624,6 +553,7 @@ namespace Mytrip.Articles.Controllers
             model.IncludeAnonymComment = article.IncludeAnonymComment;
             model.AllCulture = article.AllCulture;
             model.ModerateComments = article.ModerateComments;
+            model.CommentVotes = article.CommentVotes;
             if (!article.ApprovedComment || article.OnlyForRegisterUser)
                 model.ShowIncludeAnonymComment = "none";
             if (!LocalisationSetting.unlockAllCulture() || !article.mytrip_articlescategory.AllCulture)
@@ -651,14 +581,13 @@ namespace Mytrip.Articles.Controllers
         }
         [HttpPost]
         [Authorize]
-        [ValidateInput(false)]
         public ActionResult Edit(ArticleModel model)
         {
             try
             {
                 articleRepo.article.UpdateArtiсle(model.ArticleId, model.CategoryId, model.Title, model.Abstract, model.Body
                     , model.ApprovedComment, model.ImageForAbstract, model.OnlyForRegisterUser, model.ApprovedVotes, model.IncludeAnonymComment
-                    , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.Pages);
+                    , DateTime.Parse(model.CloseDate), model.AllCulture, model.ModerateComments, model.CommentVotes, model.Pages);
                 if (!model.ModerateComments)
                     articleRepo.comment.CloseModeration(model.ArticleId);
                 IQueryable<mytrip_articlestag> ts = articleRepo.article.GetAllTags();
@@ -732,50 +661,33 @@ namespace Mytrip.Articles.Controllers
         #endregion
 
         #region Comments Actions
-        // *****************************************
-        // URL: /Article/EditComment/Id/Id2/Path/Url/
-        // ******  редактировать комментарий  ******
-        [Authorize]
-        public ActionResult EditComment(int id, int id2, string id3, string id4)
+        // ************************************
+        // URL: /Article/Comment/Id/
+        // ******  получить комментарий  ******
+        public string Comment(int id)
         {
             mytrip_articlescomments comment = articleRepo.comment.GetComment(id);
-            if (!userHasRights(comment, false))
-                return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
-            CommentModel model = new CommentModel();
-            model.CommentId = id;
-            model.Comment = comment.Body;
-            model.ArticleId = id2;
-            model.PageTitle = ArticleLanguage.edit_comment;
-            if (comment.mytrip_articles.ModerateComments)
-                model.CommentApproved = userHasRights(comment.mytrip_articles, false);
-            else
-                model.CommentApproved = true;
-            if (id3 == "Archive")
-            {
-                model.Path = id3;
-                model.Url = id4.Replace("(x)", "/");
-            }
-            else
-            {
-                model.Path = comment.mytrip_articles.Path;
-                model.Url = Url.Action("View", new { id = id2, id2 = comment.mytrip_articles.Path });
-            }
-            return View(model);
+            return comment.Body;
         }
+        // *****************************************
+        // URL: /Article/Comment/Id/comment/approved/
+        // ******  редактировать комментарий  ******
         [HttpPost]
         [Authorize]
         [ValidateInput(false)]
-        public ActionResult EditComment(CommentModel model)
+        public ActionResult Comment(int id, string comment, bool approved)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(comment) || comment == "<P>")
+                return Content(ArticleLanguage.field_empty);
+            else
             {
-                var comment = articleRepo.comment.UpdateComment(model.CommentId, model.Comment, model.CommentApproved);
-                string email = MytripUser.UserEmail(comment.mytrip_articles.UserName);
-                if (!string.IsNullOrEmpty(email) && EmailSetting.unlockSendEmail() && !model.CommentApproved)
+                var com = articleRepo.comment.UpdateComment(id, comment, approved);
+                string email = MytripUser.UserEmail(com.mytrip_articles.UserName);
+                if (!string.IsNullOrEmpty(email) && EmailSetting.unlockSendEmail() && !approved)
                 {
                     string domain = Request.Url.Host;
-                    string articlelink = string.Format("<a href=\"{0}/Article/View/{1}/{2}\" title=\"{3}\">{3}</a>", domain, comment.ArticleId, comment.mytrip_articles.Path, comment.mytrip_articles.Title);
-                    string profilelink = string.Format("<a href=\"{0}/Home/Profile/{1}\" title=\"{2}\">{1}</a>", domain, comment.UserName, ArticleLanguage.view_user_profile);
+                    string articlelink = string.Format("<a href=\"{0}/Article/View/{1}/{2}\" title=\"{3}\">{3}</a>", domain, com.ArticleId, com.mytrip_articles.Path, com.mytrip_articles.Title);
+                    string profilelink = string.Format("<a href=\"{0}/Home/Profile/{1}\" title=\"{2}\">{1}</a>", domain, com.UserName, ArticleLanguage.view_user_profile);
                     string sitelink = string.Format(CoreSetting.NameTitlePage(), "<a href=\"" + domain + "\" title=\"" + domain + "\">" + domain + "</a>");
 
                     //письмо модеру о редактировании коммента
@@ -783,14 +695,13 @@ namespace Mytrip.Articles.Controllers
                     msg.To.Add(email);
                     msg.From = new MailAddress(EmailSetting.from_email(), string.Format(CoreSetting.NameTitlePage(), domain));
                     msg.Subject = string.Format(CoreSetting.NameTitlePage(), ArticleLanguage.new_comment);
-                    msg.Body = string.Format(ArticleLanguage.email_commentmoderate, comment.mytrip_articles.UserName, articlelink
-                               , profilelink, comment.CreateDate, comment.Body, sitelink);
+                    msg.Body = string.Format(ArticleLanguage.email_commentmoderate, com.mytrip_articles.UserName, articlelink
+                               , profilelink, com.CreateDate, com.Body, sitelink);
                     msg.IsBodyHtml = true;
                     EmailSetting.SendEmail(msg);
                 }
-                return Redirect(model.Url);
+                return Content(string.Empty);
             }
-            return View(model);
         }
         // **********************************************
         // URL: /Article/DeleteComment/Id/Id2/Path/Url/
@@ -802,16 +713,13 @@ namespace Mytrip.Articles.Controllers
             if (!userHasRights(comment, false))
                 return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
             articleRepo.comment.DeleteComment(id);
-            if (id3 == "Archive")
-                return Redirect(id4.Replace("(x)", "/"));
-            else
-                return RedirectToAction("View", new { id = id2, id2 = id3 });
+            return Redirect(id3.Replace("(x)", "/"));
         }
         // **********************************************
         // URL: /Article/ApproveComment/Id/Id2/Path/Url/
         // *****  Approve Comment  *******
         [Authorize]
-        public ActionResult ApproveComment(int id, int id2, string id3, string id4)
+        public ActionResult ApproveComment(int id, int id2, string id3)
         {
             var comment = articleRepo.comment.GetComment(id);
             if (!userHasRights(comment, false))
@@ -842,10 +750,12 @@ namespace Mytrip.Articles.Controllers
                 if (msgs.Count != 0)
                     EmailSetting.SendEmail(msgs);
             }
-            if (id3 == "Archive")
-                return Redirect(id4.Replace("(x)", "/"));
-            else
-                return RedirectToAction("View", new { id = id2, id2 = id3 });
+            //if (id3 == "Archive")
+            //    return Redirect(id4.Replace("(x)", "/"));
+            //else
+            //    return RedirectToAction("View", new { id = id2, id2 = id3 });
+
+            return Redirect(id3.Replace("(x)", "/"));
         }
         // **********************************************
         // URL: /Article/OnOffComments/Id/Id2/Path/Url/
@@ -858,6 +768,69 @@ namespace Mytrip.Articles.Controllers
                 return RedirectToAction("LogOn", "Account", new { Request.Url.AbsolutePath });
             articleRepo.article.OnOffComments(id);
             return RedirectToAction("View", new { id = id2, id2 = id3 });
+        }
+        //[HttpPost]
+        public ActionResult VoteComment(int id, bool id2)
+        {
+            try
+            {
+                if (!User.Identity.IsAuthenticated)
+                    return Content("Авторизуйтесь");
+                if (articleRepo.comment.CheckCommentVote(id))
+                    return Content("<div class='right' style='margin-right:10px;text-align:center;width:50px'><b>" 
+                        + articleRepo.comment.CreateCommentVote(id, id2).ToString() + "</b></div>");
+                else
+                    return Content(CoreLanguage.you_have_a_voted);
+            }
+            catch
+            {
+                return Content("Error");
+            }
+        }
+        #endregion
+
+        #region Subscription
+        // *************************************
+        // URL: /Article/SubscribeComments/Id/
+        // *****  Subscribe to comments  *******
+        [HttpPost]
+        [Authorize]
+        public string SubscribeComments(int id)
+        {
+            bool isSubs = articleRepo.subscription.Subscribe(id);
+            TagBuilder input = new TagBuilder("input");
+            input.MergeAttribute("type", "submit");
+            input.MergeAttribute("name", "id");
+            input.MergeAttribute("id", "subscribe");
+            input.MergeAttribute("value", id.ToString());
+            input.AddCssClass("otheroptions");
+            if (isSubs)
+            {
+                input.MergeAttribute("title", ArticleLanguage.unsubscribe_comments);
+                input.MergeAttribute("style", "background:url('/Theme/" + ThemeSetting.theme() + "/images/noalert.png')");
+            }
+            else
+            {
+                input.MergeAttribute("title", ArticleLanguage.subscribe_comments);
+                input.MergeAttribute("style", "background:url('/Theme/" + ThemeSetting.theme() + "/images/alert.png')");
+            }
+            return input.ToString();
+        }
+        // *************************************
+        // URL: /Article/Subscriptions/Id/
+        // *****  Subscriptions  *******
+        [Authorize]
+        public ActionResult Subscriptions()
+        {
+            TempData["username"] = User.Identity.Name;
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            return View();
+        }
+        [Authorize]
+        public ActionResult DeleteSubscription(int id)
+        {
+            articleRepo.subscription.Subscribe(id);
+            return RedirectToAction("Subscriptions");
         }
         #endregion
 
@@ -1103,6 +1076,23 @@ namespace Mytrip.Articles.Controllers
             return RedirectToAction("Editors", "Article", new { id = model.User });
         }
 
+        #endregion
+
+        #region Profile
+        [Authorize]
+        public ActionResult Profile(string id)
+        {
+            ArticleProfile model = new ArticleProfile();
+            model.Path = id;
+            if (id == "AwaitingModeration")
+                model.Title = ArticleLanguage.awaiting_moderation;
+            else if (id == "Subscriptions")
+                model.Title = ArticleLanguage.my_subscriptions;
+
+            TempData["username"] = model.UserName = User.Identity.Name;
+            TempData["useremail"] = MytripUser.UserEmail(User.Identity.Name);
+            return View(model);
+        }
         #endregion
 
         #region SideBar

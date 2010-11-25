@@ -124,6 +124,9 @@
     <Compile Include="Repository\DataEntities\mytrip_articlesvotes.cs">
       <DependentUpon>ArticlesPocoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_commentvotes.cs">
+      <DependentUpon>ArticlesPocoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\IArticleRepository.cs" />
     <Compile Include="Models\ArchiveModels.cs" />
     <Compile Include="Models\ArticleModels.cs" />

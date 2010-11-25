@@ -505,10 +505,10 @@
     <value>Включить показ кнопки Вход</value>
   </data>
   <data name="bodyEmail" xml:space="preserve">
-    <value>Здравствуйте! Вы получили это письмо так как на сайте {0} была произведена регистрация с использованием Вашего Email. Для активации Аккаунта Вам необходимо пройти по ссылке http://{0}/Account/ApprovedAccount/{1} . Администрация сайта {0}</value>
+    <value>Здравствуйте!&lt;br/&gt; Вы получили это письмо так как на сайте {0} была произведена регистрация с использованием Вашего Email.&lt;br/&gt; Для активации Аккаунта Вам необходимо пройти по ссылке {1} . &lt;br/&gt;Администрация сайта {0}</value>
   </data>
   <data name="subjectEmail" xml:space="preserve">
-    <value>Регистрация нового пользователя!</value>
+    <value>Регистрация нового пользователя {0}!</value>
   </data>
   <data name="unlockApprovedEmail" xml:space="preserve">
     <value>Включить подтверждение по Email при регистрации</value>
@@ -686,5 +686,74 @@
   </data>
   <data name="ProfileSideBare" xml:space="preserve">
     <value>Включить профиль в сайдбар</value>
+  </data>
+  <data name="addHomePage" xml:space="preserve">
+    <value>Добавить на Главную</value>
+  </data>
+  <data name="addMenu" xml:space="preserve">
+    <value>Добавить в Меню</value>
+  </data>
+  <data name="body" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Создать Страницу</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Редактировать Страницу {0}</value>
+  </data>
+  <data name="emailForm" xml:space="preserve">
+    <value>Включить Форму Email</value>
+  </data>
+  <data name="sideBar" xml:space="preserve">
+    <value>Включить Сайд Бар</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="viewOnlyHomePage" xml:space="preserve">
+    <value>Отображать только на Главной</value>
+  </data>
+  <data name="CreateSubPage" xml:space="preserve">
+    <value>Создать Субстраницу</value>
+  </data>
+  <data name="bodyForgot" xml:space="preserve">
+    <value>Здравствуйте {2}! Вы получили это письмо так как на сайте {0} был произведен запрос на восстановление пароля с использованием Вашего Email. Для восстановления  пароля Вам необходимо пройти по ссылке {1}  (ссылка действительна в течении одних суток). Администрация сайта {0}</value>
+  </data>
+  <data name="email_success" xml:space="preserve">
+    <value>Ваш email успешно изменен.</value>
+  </data>
+  <data name="Email_forgot_body" xml:space="preserve">
+    <value>На Ваш Email было выслано письмо с ссылкой для восстановления пароля (ссылка действительна в течении суток).</value>
+  </data>
+  <data name="ForgotDateError" xml:space="preserve">
+    <value>У ссылки истек срок действия. Вам необходимо повторить операцию. </value>
+  </data>
+  <data name="forgotEmail" xml:space="preserve">
+    <value>Введите email использовавшийся при регистрации</value>
+  </data>
+  <data name="forgotOpenid" xml:space="preserve">
+    <value>Вы зарегистрированны через OpenId. Для восстановления пароля обратитесь к поставщику вашего OpenId.</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="recovryPassword" xml:space="preserve">
+    <value>Восстановление пароля {0}.</value>
+  </data>
+  <data name="RecoveryPassword" xml:space="preserve">
+    <value>Восстановление Пароля</value>
+  </data>
+  <data name="RecoveryPasswordMess" xml:space="preserve">
+    <value>Пароль восстановлен! </value>
+  </data>
+  <data name="edit_footer" xml:space="preserve">
+    <value>Редактировать нижний колонтитул</value>
+  </data>
+  <data name="thanks_for_vote" xml:space="preserve">
+    <value>Спасибо, что проголосовали!</value>
+  </data>
+  <data name="you_have_a_voted" xml:space="preserve">
+    <value>Вы уже проголосовали</value>
   </data>
 </root>

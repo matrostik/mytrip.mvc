@@ -611,8 +611,12 @@ namespace Mytrip.Articles.Repository
                 {
                     entities.mytrip_articlesvotes.DeleteObject(v);
                 }
-                foreach (var v in entities.mytrip_articlescomments.Where(x => x.ArticleId == id))
+                foreach (var v in entities.mytrip_articlescomments.Include("mytrip_commentvotes").Where(x => x.ArticleId == id))
                 {
+                    foreach (var c in v.mytrip_commentvotes.ToList())
+                    {
+                        entities.mytrip_commentvotes.DeleteObject(c);
+                    }
                     entities.mytrip_articlescomments.DeleteObject(v);
                 }
                 foreach (var v in entities.mytrip_articlessubscription.Where(x=>x.ArticleId==id))

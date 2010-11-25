@@ -223,6 +223,24 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Home Page.
+        /// </summary>
+        public static string addHomePage {
+            get {
+                return ResourceManager.GetString("addHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Menu.
+        /// </summary>
+        public static string addMenu {
+            get {
+                return ResourceManager.GetString("addMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string all {
@@ -313,11 +331,29 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello! You or someone else has used your email account to register an account at {0}. To finish the registration process you should visit the following link to activate your user account: http://{0}/Account/ApprovedAccount/{1} . Site Administration {0}..
+        ///   Looks up a localized string similar to Body.
+        /// </summary>
+        public static string body {
+            get {
+                return ResourceManager.GetString("body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello!&lt;br/&gt; You or someone else has used your email account to register an account at {0}. &lt;br/&gt;To finish the registration process you should visit the following link to activate your user account: {1} .&lt;br/&gt;Site Administration {0}..
         /// </summary>
         public static string bodyEmail {
             get {
                 return ResourceManager.GetString("bodyEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello  {2}! You or someone else has used your email for recovery  password an account at {0}.  To finish the recovery  password process you should visit the following link {1}  (link is valid for one day ).  Site Administration {0}.
+        /// </summary>
+        public static string bodyForgot {
+            get {
+                return ResourceManager.GetString("bodyForgot", resourceCulture);
             }
         }
         
@@ -547,6 +583,24 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Page.
+        /// </summary>
+        public static string CreatePage {
+            get {
+                return ResourceManager.GetString("CreatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Subpage.
+        /// </summary>
+        public static string CreateSubPage {
+            get {
+                return ResourceManager.GetString("CreateSubPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creation Date.
         /// </summary>
         public static string CreationDate {
@@ -664,11 +718,20 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit page &quot;About&quot;.
+        ///   Looks up a localized string similar to Edit &quot;About&quot; page.
         /// </summary>
         public static string edit_about {
             get {
                 return ResourceManager.GetString("edit_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit footer.
+        /// </summary>
+        public static string edit_footer {
+            get {
+                return ResourceManager.GetString("edit_footer", resourceCulture);
             }
         }
         
@@ -678,6 +741,15 @@ namespace Mytrip.Mvc {
         public static string Edit_page {
             get {
                 return ResourceManager.GetString("Edit_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Page {0}.
+        /// </summary>
+        public static string EditPage {
+            get {
+                return ResourceManager.GetString("EditPage", resourceCulture);
             }
         }
         
@@ -700,6 +772,15 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to On Your Email has been sent with a link to reset your password (the link is valid for one day)..
+        /// </summary>
+        public static string Email_forgot_body {
+            get {
+                return ResourceManager.GetString("Email_forgot_body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error send test messenge.
         /// </summary>
         public static string Email_send_error {
@@ -714,6 +795,24 @@ namespace Mytrip.Mvc {
         public static string Email_setting {
             get {
                 return ResourceManager.GetString("Email_setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email has been changed successfully..
+        /// </summary>
+        public static string email_success {
+            get {
+                return ResourceManager.GetString("email_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Email Form.
+        /// </summary>
+        public static string emailForm {
+            get {
+                return ResourceManager.GetString("emailForm", resourceCulture);
             }
         }
         
@@ -795,6 +894,42 @@ namespace Mytrip.Mvc {
         public static string file_null_name {
             get {
                 return ResourceManager.GetString("file_null_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do links have expired. You need to repeat the operation..
+        /// </summary>
+        public static string ForgotDateError {
+            get {
+                return ResourceManager.GetString("ForgotDateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the email used during registration.
+        /// </summary>
+        public static string forgotEmail {
+            get {
+                return ResourceManager.GetString("forgotEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are logged via OpenId. To recover your password, contact your OpenId..
+        /// </summary>
+        public static string forgotOpenid {
+            get {
+                return ResourceManager.GetString("forgotOpenid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot password?.
+        /// </summary>
+        public static string forgotPassword {
+            get {
+                return ResourceManager.GetString("forgotPassword", resourceCulture);
             }
         }
         
@@ -1195,6 +1330,33 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recovery Password.
+        /// </summary>
+        public static string RecoveryPassword {
+            get {
+                return ResourceManager.GetString("RecoveryPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password restored!.
+        /// </summary>
+        public static string RecoveryPasswordMess {
+            get {
+                return ResourceManager.GetString("RecoveryPasswordMess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password recovery {0}..
+        /// </summary>
+        public static string recovryPassword {
+            get {
+                return ResourceManager.GetString("recovryPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string register {
@@ -1510,6 +1672,15 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unlock Side Bar.
+        /// </summary>
+        public static string sideBar {
+            get {
+                return ResourceManager.GetString("sideBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sidebar Setting.
         /// </summary>
         public static string sidebar_setting {
@@ -1537,11 +1708,20 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration new Account!.
+        ///   Looks up a localized string similar to Registration new Account {0}! .
         /// </summary>
         public static string subjectEmail {
             get {
                 return ResourceManager.GetString("subjectEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for your vote!.
+        /// </summary>
+        public static string thanks_for_vote {
+            get {
+                return ResourceManager.GetString("thanks_for_vote", resourceCulture);
             }
         }
         
@@ -1560,6 +1740,15 @@ namespace Mytrip.Mvc {
         public static string Theme_Settings {
             get {
                 return ResourceManager.GetString("Theme_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string title {
+            get {
+                return ResourceManager.GetString("title", resourceCulture);
             }
         }
         
@@ -1762,11 +1951,29 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View only Home Page.
+        /// </summary>
+        public static string viewOnlyHomePage {
+            get {
+                return ResourceManager.GetString("viewOnlyHomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome {0}!.
         /// </summary>
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have already voted.
+        /// </summary>
+        public static string you_have_a_voted {
+            get {
+                return ResourceManager.GetString("you_have_a_voted", resourceCulture);
             }
         }
     }

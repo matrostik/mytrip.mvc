@@ -70,7 +70,6 @@ namespace Mytrip.Rssparser.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult Manager(ManagerModel model)
         {
             rss.CreateGismeteo(model.Title, LocalisationSetting.culture(), model.AllCulture, model.UrlXml, model.VisibleInformer);
@@ -94,8 +93,7 @@ namespace Mytrip.Rssparser.Controllers
             model.AllCulture = a.AllCulture;
             return View(model);
         }
-        [HttpPost]
-        [ValidateInput(false)]
+        [HttpPost]        
         public ActionResult Edit(ManagerModel model,int id)
         {
             rss.EditGismeteo(id, model.Title, model.AllCulture, model.UrlXml, model.VisibleInformer);

@@ -101,11 +101,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreLanguage.resx</DependentUpon>
     </Compile>
-    <Compile Include="CoreLanguage.en-us.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CoreLanguage.en-us.resx</DependentUpon>
-    </Compile>
     <Compile Include="CoreLanguage.ru-ru.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,18 +194,6 @@
     <Content Include="App_Data\About.xml" />
     <Content Include="App_Data\MytripConfiguration.xml" />
     <Content Include="App_Data\MytripUrlRewrite.xml" />
-    <Content Include="Configuration\About.xml" />
-    <Content Include="Configuration\MytripConfiguration.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content\Articles\admin\video1.png" />
-    <Content Include="Content\Articles\matrostik\aspnetmvc2.png" />
-    <Content Include="Content\Articles\matrostik\flag_israel.png" />
-    <Content Include="Content\Articles\matrostik\mysql_logo.png" />
-    <Content Include="Content\Articles\matrostik\vs2010_logo.png" />
-    <Content Include="Content\Articles\stuhin\pingvin.png" />
-    <Content Include="Content\Articles\stuhin\skala.png" />
-    <Content Include="Content\Articles\stuhin\velo.png" />
     <Content Include="Content\calendar\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\calendar\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\calendar\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -225,7 +208,6 @@
     <Content Include="Content\calendar\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\calendar\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\calendar\ui.datepicker.css" />
-    <Content Include="Content\captcha\zero\zero.txt" />
     <Content Include="Content\files\.asax.png" />
     <Content Include="Content\files\.ascx.png" />
     <Content Include="Content\files\.ashx.png" />
@@ -260,72 +242,6 @@
     <Content Include="Content\Gismeteo\2\1.png" />
     <Content Include="Content\Gismeteo\2\2.png" />
     <Content Include="Content\Gismeteo\2\3.png" />
-    <Content Include="Content\images\add.png" />
-    <Content Include="Content\images\addarticle.png" />
-    <Content Include="Content\images\addtextarea.png" />
-    <Content Include="Content\images\aol.png" />
-    <Content Include="Content\images\approved.png" />
-    <Content Include="Content\images\arrow.png" />
-    <Content Include="Content\images\blogspot.png" />
-    <Content Include="Content\images\claimid.png" />
-    <Content Include="Content\images\cut.png" />
-    <Content Include="Content\images\delete.png" />
-    <Content Include="Content\images\downarrow_blue.png" />
-    <Content Include="Content\images\download.png" />
-    <Content Include="Content\images\edite.png" />
-    <Content Include="Content\images\empty.gif" />
-    <Content Include="Content\images\en-us.png" />
-    <Content Include="Content\images\error.png" />
-    <Content Include="Content\images\flickr.png" />
-    <Content Include="Content\images\google.png" />
-    <Content Include="Content\images\he-il.png" />
-    <Content Include="Content\images\help.png" />
-    <Content Include="Content\images\images\aol.gif" />
-    <Content Include="Content\images\images\blogger.ico" />
-    <Content Include="Content\images\images\claimid.ico" />
-    <Content Include="Content\images\images\facebook.gif" />
-    <Content Include="Content\images\images\flickr.ico" />
-    <Content Include="Content\images\images\google.gif" />
-    <Content Include="Content\images\images\livejournal.ico" />
-    <Content Include="Content\images\images\myopenid.ico" />
-    <Content Include="Content\images\images\openid-inputicon.gif" />
-    <Content Include="Content\images\images\openid.gif" />
-    <Content Include="Content\images\images\technorati.ico" />
-    <Content Include="Content\images\images\verisign.ico" />
-    <Content Include="Content\images\images\vidoop.ico" />
-    <Content Include="Content\images\images\wordpress.ico" />
-    <Content Include="Content\images\images\yahoo.gif" />
-    <Content Include="Content\images\info.png" />
-    <Content Include="Content\images\jHtmlArea.png" />
-    <Content Include="Content\images\Keys.png" />
-    <Content Include="Content\images\leftarrow_blue.png" />
-    <Content Include="Content\images\livejournal.png" />
-    <Content Include="Content\images\minus_blue.png" />
-    <Content Include="Content\images\myid.png" />
-    <Content Include="Content\images\myopenid.png" />
-    <Content Include="Content\images\noapproved.png" />
-    <Content Include="Content\images\openid.png" />
-    <Content Include="Content\images\PayPal.gif" />
-    <Content Include="Content\images\PayPal.png" />
-    <Content Include="Content\images\plus_blue.png" />
-    <Content Include="Content\images\poll1.gif" />
-    <Content Include="Content\images\rambler.png" />
-    <Content Include="Content\images\rename.png" />
-    <Content Include="Content\images\rightarrow_blue.png" />
-    <Content Include="Content\images\ru-ru.png" />
-    <Content Include="Content\images\search.png" />
-    <Content Include="Content\images\star.png" />
-    <Content Include="Content\images\star100.png" />
-    <Content Include="Content\images\star25.png" />
-    <Content Include="Content\images\star50.png" />
-    <Content Include="Content\images\star75.png" />
-    <Content Include="Content\images\uparrow_blue.png" />
-    <Content Include="Content\images\Users.png" />
-    <Content Include="Content\images\verisignlabs.png" />
-    <Content Include="Content\images\Warning.png" />
-    <Content Include="Content\images\wordpress.png" />
-    <Content Include="Content\images\yahoo.png" />
-    <Content Include="Content\images\yandex.png" />
     <Content Include="Content\smiles\aa.gif" />
     <Content Include="Content\smiles\ab.gif" />
     <Content Include="Content\smiles\ac.gif" />
@@ -577,6 +493,8 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Articles\" />
+    <Folder Include="Content\captcha\" />
     <Folder Include="Content\Store\Product\" />
   </ItemGroup>
   <ItemGroup>
@@ -698,10 +616,6 @@
     <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CoreLanguage.en-us.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CoreLanguage.en-us.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="CoreLanguage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreLanguage.Designer.cs</LastGenOutput>
