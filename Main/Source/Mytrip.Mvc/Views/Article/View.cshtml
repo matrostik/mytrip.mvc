@@ -59,8 +59,7 @@
 @if (Model.Article.ApprovedComment && (User.Identity.IsAuthenticated || Model.Article.IncludeAnonymComment)) {
 if (Model.Blog){
 <h3 class="title">@ArticleLanguage.add_comment</h3>
-}  
-{Html.EnableClientValidation();}
+}
 {using (Html.BeginForm(new {id=Model.Article.ArticleId })){
 <div class="last"></div>
 <div class="content">
@@ -71,12 +70,12 @@ if (Model.Blog){
 @Html.HiddenFor(model => model.ReturnId)
 @if (!User.Identity.IsAuthenticated && Model.Article.IncludeAnonymComment){
 <div class="editor-label">
-@Html.MytripLabelFor("AnonymName", ArticleLanguage.name)
+@Html.LabelFor(model => model.AnonymName, ArticleLanguage.name)
 </div><div class="editor-field">
 @Html.TextBoxFor(model => model.AnonymName)
 @Html.ValidationMessageFor(model => model.AnonymName)
 </div><div class="editor-label">
-@Html.MytripLabelFor("AnonymEmail", ArticleLanguage.email)
+@Html.LabelFor(model => model.AnonymEmail, ArticleLanguage.email)
 </div><div class="editor-field">
 @Html.TextBoxFor(model => model.AnonymEmail) 
 @Html.ValidationMessageFor(model => model.AnonymEmail)

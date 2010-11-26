@@ -29,14 +29,14 @@
 @Html.HiddenFor(model => model.Url)
 </div>
 <div class="editor-label">
-@Html.MytripLabelFor("Title", ArticleLanguage.title)
+@Html.LabelFor(model => model.Title, ArticleLanguage.title)
 </div>
 <div class="editor-field">
 @Html.TextBoxFor(model => model.Title)
 @Html.ValidationMessageFor(model => model.Title)
 </div>
 <div class="editor-label">
-@Html.MytripLabelFor("CategoryId", ArticleLanguage.category)
+@Html.LabelFor(model => model.CategoryId, ArticleLanguage.category)
 </div>
 <div class="editor-field">
 <table class="noborders">
@@ -48,9 +48,9 @@
 </div>
 <table class="noborders">
 <tr><td style="width: 200px">
-@Html.MytripLabelFor("ImageForAbstract", ArticleLanguage.image_for_abstract)
+@Html.LabelFor(model => model.ImageForAbstract, ArticleLanguage.image_for_abstract)
 </td><td>
-@Html.MytripLabelFor("Abstract",ArticleLanguage.short_description)
+@Html.LabelFor(model => model.Abstract, ArticleLanguage.short_description)
 </td></tr><tr><td>
 <div class="dark">
 @Html.TextAreaFor(model => model.ImageForAbstract, new { id = "fotoabstract", style = "height: 200px; width:200px;" })
@@ -67,7 +67,7 @@
 <table class="noborders">
 <tr><td>
 <div class="editor-label">
-@Html.MytripLabelFor("Body", ArticleLanguage.content)
+@Html.LabelFor(model => model.Body, ArticleLanguage.content)
 </div><div  id="editors" class="editor-field"><div class="dark">
 @Html.TextAreaFor(model => model.Body, new { id = "article", style = "height: 400px; width:100%;" })
 @Html.ValidationMessageFor(model => model.Body)
@@ -99,13 +99,13 @@ if (tag.mytrip_articles.FirstOrDefault(x => x.ArticleId == Model.ArticleId) != n
 @Html.MytripLabelFor("tag"+tag.TagId,tag.TagName) 
 <span style="margin-right: 7px;"></span>
 }<br />
-@Html.MytripLabelFor("NewTags", ArticleLanguage.enter_new_tags)<br />
+@Html.LabelFor(model => model.NewTags, ArticleLanguage.enter_new_tags)<br />
 @Html.TextBoxFor(model=>model.NewTags)
 </div></td>
 </tr><tr>
 <td>
 <div class="editor-label" style="display:@Model.ShowArticleOptions">
-@Html.MytripLabelFor("CloseDate",ArticleLanguage.close_date)
+@Html.LabelFor(model => model.CloseDate, ArticleLanguage.close_date)
 @Html.ValidationMessageFor(model => model.CloseDate)<br />
 @Html.TextBoxFor(model => model.CloseDate)
 </div>

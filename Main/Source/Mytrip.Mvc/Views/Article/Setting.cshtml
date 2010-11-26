@@ -16,18 +16,17 @@
 }
 @section content{
 <h1 class="title">@ArticleLanguage.article_setting</h1>
-@{Html.EnableClientValidation();}
 @using (Html.BeginForm()) {
 <fieldset>       
 <div class="editor-field">
 @Html.CheckBoxFor(model => model.articles)
-@Html.MytripLabelFor("articles",ArticleLanguage.unlock_articles)
+@Html.LabelFor(model => model.articles, ArticleLanguage.unlock_articles)
 </div><div class="editor-field">
 @Html.CheckBoxFor(model => model.blogs)
-@Html.MytripLabelFor("blogs", ArticleLanguage.unlock_blogs)
+@Html.LabelFor(model => model.blogs, ArticleLanguage.unlock_blogs)
 </div><div name="closecountCommentForBlogs" style="display: none">
 <div class="editor-label">
-@Html.MytripLabelFor("countCommentForBlogs", ArticleLanguage.countCommentForBlogs)
+@Html.LabelFor(model => model.countCommentForBlogs, ArticleLanguage.countCommentForBlogs)
 </div><div class="editor-field">
 @Html.TextBoxFor(model => model.countCommentForBlogs)
 @Html.ValidationMessageFor(model => model.countCommentForBlogs)

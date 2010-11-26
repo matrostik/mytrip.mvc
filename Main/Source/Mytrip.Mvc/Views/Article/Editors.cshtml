@@ -47,7 +47,7 @@
 @Html.DropDownListFor(model => model.NewUser, Model.NewEditors)
 <div id="subcats">
 @Html.CheckBoxFor(model => model.SubCategory)
-@Html.MytripLabelFor("SubCategory", ArticleLanguage.include_subcategories)
+@Html.LabelFor(model => model.SubCategory, ArticleLanguage.include_subcategories)
 </div>
 @Html.HiddenFor(model => model.User)
 @Html.HiddenFor(model => model.Data)

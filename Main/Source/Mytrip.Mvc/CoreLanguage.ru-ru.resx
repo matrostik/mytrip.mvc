@@ -421,7 +421,7 @@
     <value>Ошибка при подключении к базе данных.</value>
   </data>
   <data name="DataBase" xml:space="preserve">
-    <value>База Данных (.mdf только для SQLEXPRESS)</value>
+    <value>База Данных</value>
   </data>
   <data name="IntegratedSecurity" xml:space="preserve">
     <value>Интегрированная Аутентификация (для локальных серверов MsSql)</value>

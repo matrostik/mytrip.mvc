@@ -421,7 +421,7 @@
     <value>Error connect to data base.</value>
   </data>
   <data name="DataBase" xml:space="preserve">
-    <value>Data Base (.mdf only for SQLEXPRESS)</value>
+    <value>Data Base </value>
   </data>
   <data name="IntegratedSecurity" xml:space="preserve">
     <value>Integrated Security (for local server MsSql)</value>

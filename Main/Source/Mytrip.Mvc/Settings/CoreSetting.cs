@@ -152,7 +152,7 @@ namespace Mytrip.Mvc.Settings
         public static string connectionStringMSSQL(string entitiesName)
         {
             string result = (Server().IndexOf("SQLEXPRESS") != -1)
-            ? string.Format(@"Data Source={0}; AttachDbFilename=|DataDirectory|\{1};Integrated Security=True;User Instance=True;", Server(), DataBase())
+            ? string.Format(@"Data Source={0}; AttachDbFilename=|DataDirectory|\{1}.mdf;Integrated Security=True;User Instance=True;", Server(), DataBase())
             : (!IntegratedSecurity()
             ? string.Format("Data Source={0}; Initial Catalog={1}; Persist Security Info=True; User ID={2}; Password={3};", Server(), DataBase(), User(), Password())
             : string.Format("Data Source={0}; Initial Catalog={1}; Integrated Security=True;", Server(), DataBase()));
