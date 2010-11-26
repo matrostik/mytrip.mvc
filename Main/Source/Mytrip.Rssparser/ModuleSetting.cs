@@ -12,7 +12,7 @@ namespace Mytrip.Rssparser
         // Данные по модулю
         // **********************************************
         static string moduleName = "Mytrip.Rssparser";
-        static string moduleVersion = "1.0.47.0";
+        static string moduleVersion = "1.0.48.0";
         static string moduleStatus = "Beta";
         static string _absolutDirectory = GeneralMethods.MytripConfigurationDirectory();
 

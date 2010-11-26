@@ -610,7 +610,7 @@ namespace Mytrip.Mvc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Base (.mdf only for SQLEXPRESS).
+        ///   Looks up a localized string similar to Data Base .
         /// </summary>
         public static string DataBase {
             get {

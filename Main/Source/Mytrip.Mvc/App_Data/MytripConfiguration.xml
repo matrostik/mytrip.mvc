@@ -8,7 +8,7 @@
   -->
 <MytripConfiguration>
   <core>
-    <add name="Development" value="False" />
+    <add name="Development" value="True" />
     <add name="ControlPanelSideBare" value="False" />
     <add name="DonateSideBare" value="False" />
     <add name="nameHome">
@@ -25,10 +25,10 @@
     </add>
   </core>
   <connection>
-    <add name="Provider" value="MySql" />
-    <add name="IntegratedSecurity" value="False" />
-    <add name="Server" value="localhost" />
-    <add name="DataBase" value="mytripmvc" />
+    <add name="Provider" value="MSSQL" />
+    <add name="IntegratedSecurity" value="True" />
+    <add name="Server" value=".\SQLEXPRESS" />
+    <add name="DataBase" value="Database1" />
     <add name="User" value="root" />
     <add name="Password" value="tolsty" />
   </connection>
@@ -66,10 +66,7 @@
     <add name="System.Web.Helpers.dll" />
     <add name="System.Web.WebPages.dll" />
   </no.module.dll>
-  <installModules>
-    <add name="Mytrip.Store" version="1.0.47.0" status="Alfa" />
-    <add name="Mytrip.Articles" version="1.0.47.0" status="Beta" />
-  </installModules>
+  <installModules></installModules>
   <email>
     <add name="unlockSendEmail" value="False" />
     <add name="EmailAdress" value="username@gmail.com" />
@@ -79,75 +76,4 @@
     <add name="Login" value="username" />
     <add name="Password" value="username" />
   </email>
-  <Mytrip.Store>
-    <add name="unlockStore" value="True" />
-    <add name="columnDepartment" value="3" />
-    <add name="widthImgDepartment" value="100" />
-    <add name="styleDepartment" value="2" />
-    <add name="columnProduct" value="3" />
-    <add name="widthImgProduct" value="100" />
-    <add name="styleProduct" value="2" />
-    <add name="roleChiefStoreManager" value="chief_store_manager" />
-    <add name="roleStoreManager" value="store_manager" />
-    <add name="onlineBuy" value="False" />
-    <add name="MoneyProcent" value="2" />
-    <add name="organizationBuy" value="False" />
-    <add name="privatepersonBuy" value="True" />
-    <add name="viewProduktTable" value="True" />
-    <add name="paypal" value="True" />
-    <add name="paypalseller" value="***" />
-    <add name="nameStore">
-      <add name="Store" value="en-us" />
-      <add name="Магазин" value="ru-ru" />
-    </add>
-    <add name="nameProducer">
-      <add name="Producers" value="en-us" />
-      <add name="Производители" value="ru-ru" />
-    </add>
-    <add name="nameSearch">
-      <add name="Search" value="en-us" />
-      <add name="Поиск" value="ru-ru" />
-    </add>
-    <add name="Money">
-      <add key="USD" name="$" value="en-us" />
-      <add key="RUB" name="руб." value="ru-ru" />
-      <add key="EUR" name="€" value="null" />
-    </add>
-    <add name="Course">
-      <add key="RUB" to="USD" rate="0" date="22-10-2009" />
-      <add key="RUB" to="EUR" rate="0" date="22-10-2009" />
-      <add key="USD" to="RUB" rate="0" date="22-10-2009" />
-      <add key="USD" to="EUR" rate="0" date="22-10-2009" />
-      <add key="EUR" to="RUB" rate="0" date="22-10-2009" />
-      <add key="EUR" to="USD" rate="0" date="22-10-2009" />
-    </add>
-  </Mytrip.Store>
-  <Mytrip.Articles>
-    <add name="articles" value="True" />
-    <add name="blogs" value="True" />
-    <add name="countCommentForBlogs" value="5" />
-    <add name="roleArticleEditor" value="article_editor" />
-    <add name="roleBlogger" value="blogger" />
-    <add name="viewInfoClosedComments" value="True" />
-    <add name="viewInfoAuthorArticle" value="True" />
-    <add name="viewInfoViewsArticle" value="True" />
-    <add name="closecountCommentForBlogs" value="False" />
-    <add name="showRelatedLinks" value="False" />
-    <add name="nameArticles">
-      <add name="Articles" value="en-us" />
-      <add name="Статьи" value="ru-ru" />
-    </add>
-    <add name="nameBlogs">
-      <add name="Blogs" value="en-us" />
-      <add name="Блоги" value="ru-ru" />
-    </add>
-    <add name="nameTags">
-      <add name="Tags" value="en-us" />
-      <add name="Теги" value="ru-ru" />
-    </add>
-    <add name="nameSearch">
-      <add name="Search" value="en-us" />
-      <add name="Поиск" value="ru-ru" />
-    </add>
-  </Mytrip.Articles>
 </MytripConfiguration>

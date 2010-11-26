@@ -56,33 +56,33 @@ namespace Mytrip.Mvc.Helpers
                 ICoreRepository core = new ICoreRepository();
                 var x = core.corePageRepo.GetPagesForMenu(LocalisationSetting.culture());
                 foreach (var _x in x)
-                {
-                    IDictionary<int, string> _result = new Dictionary<int, string>();
-                    bool drop = false;
-                    if (_x.mytrip_corepages1 != null)
                     {
-                        int key = 1;
-                        foreach (var __x in _x.mytrip_corepages1)
+                        IDictionary<int, string> _result = new Dictionary<int, string>();
+                        bool drop = false;
+                        if (_x.mytrip_corepages1 != null)
                         {
-                            if (__x.AddMenu == true)
+                            int key = 1;
+                            foreach (var __x in _x.mytrip_corepages1)
                             {
-                                drop = true;
-                                TagBuilder a = new TagBuilder("a");
-                                a.MergeAttribute("href", "/Home/Page/" + __x.PageId + "/" + __x.Path);
-                                a.InnerHtml = __x.Title;
-                                _result.Add(key, a.ToString());
-                                key++;
+                                if (__x.AddMenu == true)
+                                {
+                                    drop = true;
+                                    TagBuilder a = new TagBuilder("a");
+                                    a.MergeAttribute("href", "/Home/Page/" + __x.PageId + "/" + __x.Path);
+                                    a.InnerHtml = __x.Title;
+                                    _result.Add(key, a.ToString());
+                                    key++;
+                                }
                             }
                         }
-                    }
-                    TagBuilder _a = new TagBuilder("a");
-                    _a.MergeAttribute("href", "/Home/Page/" + _x.PageId + "/" + _x.Path);
-                    _a.InnerHtml = _x.Title;
-                    if (Action == "Page" && id == _x.PageId.ToString())
-                        result.Append(GeneralMethods.Menu(_a.ToString(), _result, true, false, true, drop));
-                    else
-                        result.Append(GeneralMethods.Menu(_a.ToString(), _result, false, false, true, drop));
-                }
+                        TagBuilder _a = new TagBuilder("a");
+                        _a.MergeAttribute("href", "/Home/Page/" + _x.PageId + "/" + _x.Path);
+                        _a.InnerHtml = _x.Title;
+                        if (Action == "Page" && id == _x.PageId.ToString())
+                            result.Append(GeneralMethods.Menu(_a.ToString(), _result, true, false, true, drop));
+                        else
+                            result.Append(GeneralMethods.Menu(_a.ToString(), _result, false, false, true, drop));
+                    }                
                 if (Action == "About")
                     result.Append(GeneralMethods.Menu(about.ToString(), null, true, false, true, false));
                 else

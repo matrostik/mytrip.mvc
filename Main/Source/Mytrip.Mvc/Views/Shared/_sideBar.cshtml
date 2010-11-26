@@ -11,18 +11,13 @@ license: Microsoft Public License (Ms-PL) */
 }
 @Html.AccordionUsersAndFiles(new {
 /*--StartManagerControlPanel--*/
-i1=Mytrip.Store.Export.Manager(),
-i2=Mytrip.Articles.Export.Manager()
 /*--EndManagerControlPanel--*/
 },new {
 /*--StartSettingControlPanel--*/
-i1=Mytrip.Store.Export.Setting(),
-i2=Mytrip.Articles.Export.Setting()
 /*--EndSettingControlPanel--*/
 }, true)
 @Html.AccordionUserProfile(new {
 /*--StartProfile--*/
-i1=Mytrip.Articles.Export.Profile()
 /*--EndProfile--*/
 })
 @Html.AccordionDonateProject()

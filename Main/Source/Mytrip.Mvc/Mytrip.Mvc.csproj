@@ -66,6 +66,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -192,6 +193,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\About.xml" />
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\MytripConfiguration.xml" />
     <Content Include="App_Data\MytripUrlRewrite.xml" />
     <Content Include="bin\DotNetOpenAuth.dll" />

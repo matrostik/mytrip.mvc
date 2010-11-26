@@ -16,8 +16,8 @@ namespace Mytrip.Tourism
         // Данные по модулю
         // **********************************************
         static string moduleName = "Mytrip.Tourism";
-        static string moduleVersion = "1.0.47.0";
-        static string moduleStatus = "Alfa";
+        static string moduleVersion = "1.0.48.0";
+        static string moduleStatus = "Beta";
         static string _absolutDirectory = GeneralMethods.MytripConfigurationDirectory();
 
         /// <summary>
