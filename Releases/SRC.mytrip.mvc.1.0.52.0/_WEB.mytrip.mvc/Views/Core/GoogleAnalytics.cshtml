@@ -1,0 +1,31 @@
+﻿@model mtm.Core.Models.FooterModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.googleAnalytics, "/");
+    ViewBag.Keywords = Html.MytripPageTitle(CoreLanguage.googleAnalytics, ",");
+    ViewBag.Description = Html.MytripPageTitle(CoreLanguage.googleAnalytics, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.googleAnalytics</h1>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.Content, new { @class = "message", style = "height: 400px; width:100%;" })
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>
+}
+}
+

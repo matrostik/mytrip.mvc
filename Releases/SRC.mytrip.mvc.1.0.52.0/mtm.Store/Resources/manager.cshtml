@@ -1,0 +1,37 @@
+﻿@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(StoreLanguage.manager, "/");
+    ViewBag.Keywords=Html.MytripPageTitle(StoreLanguage.manager, ",");
+    ViewBag.Description=Html.MytripPageTitle(StoreLanguage.manager, ",");
+}
+@section content{
+<h1 class="title">@StoreLanguage.manager</h1>
+<div class="content">
+<ol class="numbered" style="font-size: inherit"><li>
+<a href="/Store/ManagerOrders">@StoreLanguage.managerorders</a>
+</li>
+
+</ol><ol class="numbered" style="font-size: inherit">
+<li>
+<a href="/Store/EditorCategory/0/CreateDepartment">@StoreLanguage.createDepartment</a>
+</li>
+<li>
+<a href="/Store/EditorCategory/0/CreateProducer">@StoreLanguage.createProducer</a>
+</li>
+<li>
+<a href="/Store/CreateSale">@StoreLanguage.createsale</a>
+</li>
+<li>
+<a href="/Store/CreateProductXml">@StoreLanguage.uploadproductxml</a>
+</li>
+</ol>
+
+</div>
+}
+
