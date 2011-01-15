@@ -1,0 +1,37 @@
+﻿@model mtm.Votes.Models.VotesSettingModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(VotesLanguage.votessetting, "/");
+    ViewBag.Keywords=Html.MytripPageTitle(VotesLanguage.votessetting, ",");
+    ViewBag.Description=Html.MytripPageTitle(VotesLanguage.votessetting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+<h1 class="title">@VotesLanguage.votessetting</h1>
+@using (Html.BeginForm()) {
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockVotes)
+@Html.LabelFor(model => model.unlockVotes, VotesLanguage.unlockvotes)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.nameVotes, VotesLanguage.namevotes)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameVotes)
+@Html.ValidationMessageFor(model => model.nameVotes)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+

@@ -1,0 +1,6 @@
+﻿input[type="file"]{background: none;border-width: 0px;width: 34px;position: relative;float: right;-moz-opacity: 0;filter: alpha(opacity: 0);opacity: 0;cursor: pointer;}
+div.file{background: url(../images/filebrouse.png);background-repeat: repeat-x;width: 34px;height: 23px;padding-top: 3px;text-align: right;} 
+div.file.ac{background: url(../images/filebrouse.png);background-repeat: repeat-x;background-position: 0px -26px;height: 23px;padding-top: 3px;text-align: right;}
+div.fileinputs{position: relative;}
+div.fakefile{z-index: 1;}
+div.filebutton{position: relative;float: right;}
