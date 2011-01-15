@@ -1,0 +1,33 @@
+﻿@model mtm.Core.Models.FooterModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+	ViewBag.Title = Html.MytripPageTitle(CoreLanguage.edit_footer, "/");
+    ViewBag.Keywords=Html.MytripPageTitle(CoreLanguage.edit_footer, ",");
+    ViewBag.Description=Html.MytripPageTitle(CoreLanguage.edit_footer, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Core.About.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.edit_footer</h1>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+<div class="dark">
+@Html.TextAreaFor(model => model.Content, new { id = "article", style = "height: 400px; width:100%;" })
+</div></div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>
+}
+}
+
+

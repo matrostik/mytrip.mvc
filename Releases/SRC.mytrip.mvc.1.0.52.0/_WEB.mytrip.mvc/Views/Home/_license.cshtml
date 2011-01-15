@@ -1,0 +1,18 @@
+﻿@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+<h1 class="title">@CoreLanguage.license_agreement</h1>
+<fieldset>
+<textarea cols="80" rows="20" style="width: 100%;" class="messag">
+@string.Join("", mtm.Core.Install.License.ViewLicense())
+</textarea>
+<div class="button">
+@Html.MytripButton("/Core/CreateBase", CoreLanguage.i_agree, true,"right") 
+</div>
+</fieldset>
+
+        

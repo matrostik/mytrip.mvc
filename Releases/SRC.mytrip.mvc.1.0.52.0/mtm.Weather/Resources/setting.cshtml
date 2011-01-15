@@ -1,0 +1,37 @@
+﻿@model mtm.Weather.Models.WeatherSettingModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(WeatherLanguage.Weathersetting, "/");
+    ViewBag.Keywords=Html.MytripPageTitle(WeatherLanguage.Weathersetting, ",");
+    ViewBag.Description=Html.MytripPageTitle(WeatherLanguage.Weathersetting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+<h1 class="title">@WeatherLanguage.Weathersetting</h1>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockWeather)
+@Html.LabelFor(model => model.unlockWeather, WeatherLanguage.unlockWeather)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.nameWeather, WeatherLanguage.nameWeather)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameWeather)
+@Html.ValidationMessageFor(model => model.nameWeather)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+

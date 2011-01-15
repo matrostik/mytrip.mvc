@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="department" xml:space="preserve">
+    <value>Раздел:</value>
+  </data>
+  <data name="Prise" xml:space="preserve">
+    <value>Цена:</value>
+  </data>
+  <data name="Producer" xml:space="preserve">
+    <value>Производитель:</value>
+  </data>
+  <data name="Producers" xml:space="preserve">
+    <value>Производители</value>
+  </data>
+  <data name="subdepartment" xml:space="preserve">
+    <value>Подраздел:</value>
+  </data>
+  <data name="AllDepartment" xml:space="preserve">
+    <value>Все разделы</value>
+  </data>
+  <data name="AllProducer" xml:space="preserve">
+    <value>Все производители</value>
+  </data>
+  <data name="found" xml:space="preserve">
+    <value>найдено</value>
+  </data>
+  <data name="Price_from" xml:space="preserve">
+    <value>Цена от:</value>
+  </data>
+  <data name="Price_to" xml:space="preserve">
+    <value>до:</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>результатов</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="_for" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>дате</value>
+  </data>
+  <data name="prise_" xml:space="preserve">
+    <value>цене</value>
+  </data>
+  <data name="Sorted" xml:space="preserve">
+    <value>Сортировать по:</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>названию</value>
+  </data>
+  <data name="votes" xml:space="preserve">
+    <value>рейтингу</value>
+  </data>
+  <data name="allculture" xml:space="preserve">
+    <value>Для всех языков</value>
+  </data>
+  <data name="body" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="imageDepartment" xml:space="preserve">
+    <value>Изображение для Отдела</value>
+  </data>
+  <data name="titleDepartment" xml:space="preserve">
+    <value>Название Отдела</value>
+  </data>
+  <data name="createDepartment" xml:space="preserve">
+    <value>Создать Отдел</value>
+  </data>
+  <data name="createSubDepartment" xml:space="preserve">
+    <value>Создать Суботдел в Отделе "{0}"</value>
+  </data>
+  <data name="createProducer" xml:space="preserve">
+    <value>Добавить Производителя</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="editDepartment" xml:space="preserve">
+    <value>Редактировать Отдел "{0}"</value>
+  </data>
+  <data name="editProducer" xml:space="preserve">
+    <value>Редактировать Производителя "{0}"</value>
+  </data>
+  <data name="editSubdepartment" xml:space="preserve">
+    <value>Редактировать Суботдел "{0}" из Отдела "{1}"</value>
+  </data>
+  <data name="imageProducer" xml:space="preserve">
+    <value>Изображение для Производителя</value>
+  </data>
+  <data name="titleProducer" xml:space="preserve">
+    <value>Название Производителя</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="createProduct" xml:space="preserve">
+    <value>Добавить Продукт</value>
+  </data>
+  <data name="createSubDepartment2" xml:space="preserve">
+    <value>Создать Суботдел</value>
+  </data>
+  <data name="editProduct" xml:space="preserve">
+    <value>Редактировать Продукт "{0}"</value>
+  </data>
+  <data name="imageProduct" xml:space="preserve">
+    <value>Изображение для Продукта</value>
+  </data>
+  <data name="titleProduct" xml:space="preserve">
+    <value>Название Продукта</value>
+  </data>
+  <data name="_abstract" xml:space="preserve">
+    <value>Oписание</value>
+  </data>
+  <data name="departmentId" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="producerId" xml:space="preserve">
+    <value>Производитель</value>
+  </data>
+  <data name="titlePrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="totalCount" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="UrlFile" xml:space="preserve">
+    <value>Url файла для загрузки</value>
+  </data>
+  <data name="viewcount" xml:space="preserve">
+    <value>Включить показ количества</value>
+  </data>
+  <data name="viewprice" xml:space="preserve">
+    <value>Включить показ цены</value>
+  </data>
+  <data name="viewvotes" xml:space="preserve">
+    <value>Включить отзывы и оценки</value>
+  </data>
+  <data name="compare" xml:space="preserve">
+    <value>Отметьте продукт для {0}</value>
+  </data>
+  <data name="compare2" xml:space="preserve">
+    <value>сравнения</value>
+  </data>
+  <data name="nocompare" xml:space="preserve">
+    <value>Продукты для сравнения не выбраны</value>
+  </data>
+  <data name="nocompare2" xml:space="preserve">
+    <value>Выберите не менее двух продуктов для сравнеия</value>
+  </data>
+  <data name="bodyProduct" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="buy" xml:space="preserve">
+    <value>Купить</value>
+  </data>
+  <data name="cart" xml:space="preserve">
+    <value>Добавить в {0}</value>
+  </data>
+  <data name="cart2" xml:space="preserve">
+    <value>корзину</value>
+  </data>
+  <data name="mycart" xml:space="preserve">
+    <value>В {0} товаров {1}, на сумму {2}</value>
+  </data>
+  <data name="mycart2" xml:space="preserve">
+    <value>корзине</value>
+  </data>
+  <data name="amount_of" xml:space="preserve">
+    <value>На сумму</value>
+  </data>
+  <data name="mycarttitle" xml:space="preserve">
+    <value>Моя корзина</value>
+  </data>
+  <data name="foto" xml:space="preserve">
+    <value>Фотографии ({0})</value>
+  </data>
+  <data name="reviews" xml:space="preserve">
+    <value>Отзывы ({0})</value>
+  </data>
+  <data name="thanks_for_vote" xml:space="preserve">
+    <value>Спасибо что проголосовали!</value>
+  </data>
+  <data name="you_have_a_voted" xml:space="preserve">
+    <value>Вы уже голосовали</value>
+  </data>
+  <data name="review_body" xml:space="preserve">
+    <value>Добавьте свой отзыв</value>
+  </data>
+  <data name="imageProduct1" xml:space="preserve">
+    <value>Дополнительные изображения для Продукта</value>
+  </data>
+  <data name="packing" xml:space="preserve">
+    <value>Упаковка</value>
+  </data>
+  <data name="free" xml:space="preserve">
+    <value>Бесплатно</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="checkout" xml:space="preserve">
+    <value>Оформление</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="ordermanageremail" xml:space="preserve">
+    <value>Заказ  от &lt;b&gt;{0}&lt;/b&gt;&lt;br/&gt;=====================================
+&lt;br/&gt;&lt;b&gt;Заказчик: &lt;/b&gt;{1}&lt;br/&gt;&lt;b&gt;Дата: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Заказ: &lt;/b&gt;{3}
+&lt;br/&gt;=====================================
+&lt;br/&gt;Вы получили это письмо, т.к зарегистрировались на сайте {4} и подписались на получение уведомлений по 
+e-mail. Внимание! Это письмо сгенерировано автоматически, на него отвечать не надо!</value>
+  </data>
+  <data name="orderTitle" xml:space="preserve">
+    <value>Заказ</value>
+  </data>
+  <data name="new_orders" xml:space="preserve">
+    <value>Мои заказы</value>
+  </data>
+  <data name="status_0" xml:space="preserve">
+    <value>ожидает регистрации</value>
+  </data>
+  <data name="buy_ok" xml:space="preserve">
+    <value>&lt;h1&gt;Спасибо за покупку! &lt;/h1&gt;В ближайшее время с Вами свяжется наш менеджер.</value>
+  </data>
+  <data name="logon" xml:space="preserve">
+    <value>войти под своей учетной записью</value>
+  </data>
+  <data name="myorder_anonym" xml:space="preserve">
+    <value>Для просмотра состояния заказов Вам необходимо {0}  или {1}.</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>зарегистрироватся</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Доставка:</value>
+  </data>
+  <data name="status_1" xml:space="preserve">
+    <value>ожидает подтверждения оплаты</value>
+  </data>
+  <data name="status_2" xml:space="preserve">
+    <value>оплачено</value>
+  </data>
+  <data name="status_3" xml:space="preserve">
+    <value>оплачено и доставлено</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Итого:</value>
+  </data>
+  <data name="Totaldelivery" xml:space="preserve">
+    <value>Итого с доставкой:</value>
+  </data>
+  <data name="ordernull" xml:space="preserve">
+    <value>У Вас еще  нет заказов для просмотра.</value>
+  </data>
+  <data name="review_body_edit" xml:space="preserve">
+    <value>Редактировать свой отзыв</value>
+  </data>
+  <data name="organization" xml:space="preserve">
+    <value>Организация</value>
+  </data>
+  <data name="organizationINN" xml:space="preserve">
+    <value>ИНН организации</value>
+  </data>
+  <data name="organizationKPP" xml:space="preserve">
+    <value>КПП организации</value>
+  </data>
+  <data name="saleView" xml:space="preserve">
+    <value>Скидка {0}%  до {1}</value>
+  </data>
+  <data name="manager" xml:space="preserve">
+    <value>Управление Магазином</value>
+  </data>
+  <data name="managerorders" xml:space="preserve">
+    <value>Управление Заказами</value>
+  </data>
+  <data name="namberCatalog" xml:space="preserve">
+    <value>Номер в Каталоге Производителя</value>
+  </data>
+  <data name="orderdelete" xml:space="preserve">
+    <value>Пользователь {0} удалил заказ #{1}</value>
+  </data>
+  <data name="status_4" xml:space="preserve">
+    <value>анонимные</value>
+  </data>
+  <data name="orderdetailstitle" xml:space="preserve">
+    <value>Заказ #{0}</value>
+  </data>
+  <data name="customer" xml:space="preserve">
+    <value>Заказчик</value>
+  </data>
+  <data name="Delivery1" xml:space="preserve">
+    <value>Доставка</value>
+  </data>
+  <data name="seller" xml:space="preserve">
+    <value>Продавец</value>
+  </data>
+  <data name="account1" xml:space="preserve">
+    <value>Перед оплатой счета проверьте правильность заказанных позиций!</value>
+  </data>
+  <data name="account10" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="account11" xml:space="preserve">
+    <value>г.</value>
+  </data>
+  <data name="account12" xml:space="preserve">
+    <value>Плательщик</value>
+  </data>
+  <data name="account13" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="account14" xml:space="preserve">
+    <value>Наименование&lt;br/&gt;товара</value>
+  </data>
+  <data name="account15" xml:space="preserve">
+    <value>Единица&lt;br/&gt;изме-&lt;br/&gt;рения</value>
+  </data>
+  <data name="account16" xml:space="preserve">
+    <value>Коли-&lt;br/&gt;чество</value>
+  </data>
+  <data name="account17" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="account18" xml:space="preserve">
+    <value>Без налога (НДС):</value>
+  </data>
+  <data name="account19" xml:space="preserve">
+    <value>Всего наименований {0}, на сумму {1}, без налога (НДС).</value>
+  </data>
+  <data name="account2" xml:space="preserve">
+    <value>Реквизиты</value>
+  </data>
+  <data name="account20" xml:space="preserve">
+    <value>Организация находится на упрощенной системе налогообложения.</value>
+  </data>
+  <data name="account21" xml:space="preserve">
+    <value>Счет действителен в течении 15 банковских дней.</value>
+  </data>
+  <data name="account22" xml:space="preserve">
+    <value>Руководитель предприятия</value>
+  </data>
+  <data name="account23" xml:space="preserve">
+    <value>Главный бухгалтер</value>
+  </data>
+  <data name="account24" xml:space="preserve">
+    <value>Всего к оплате:</value>
+  </data>
+  <data name="account3" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="account4" xml:space="preserve">
+    <value>КПП</value>
+  </data>
+  <data name="account5" xml:space="preserve">
+    <value>Получатель</value>
+  </data>
+  <data name="account6" xml:space="preserve">
+    <value>Сч. №</value>
+  </data>
+  <data name="account7" xml:space="preserve">
+    <value>Банк получателя</value>
+  </data>
+  <data name="account8" xml:space="preserve">
+    <value>БИК</value>
+  </data>
+  <data name="account9" xml:space="preserve">
+    <value>СЧЕТ №</value>
+  </data>
+  <data name="address1" xml:space="preserve">
+    <value>Почтовый адрес</value>
+  </data>
+  <data name="namberaccount" xml:space="preserve">
+    <value>Номер Счета</value>
+  </data>
+  <data name="priceInWords" xml:space="preserve">
+    <value>Цена прописью</value>
+  </data>
+  <data name="selleraccountant" xml:space="preserve">
+    <value>Бухгалтер</value>
+  </data>
+  <data name="sellerbank" xml:space="preserve">
+    <value>Название Банка</value>
+  </data>
+  <data name="sellerbankaccount" xml:space="preserve">
+    <value>Счет Банка</value>
+  </data>
+  <data name="sellerbankaccountBIK" xml:space="preserve">
+    <value>БИК Банка</value>
+  </data>
+  <data name="sellerbankaccountSeller" xml:space="preserve">
+    <value>Счет Продавца в Банке</value>
+  </data>
+  <data name="sellerdirector" xml:space="preserve">
+    <value>Директор</value>
+  </data>
+  <data name="sellerliteNDS" xml:space="preserve">
+    <value>Упрощенный НДС?</value>
+  </data>
+  <data name="accountcustomeremail" xml:space="preserve">
+    <value>Счет на оплату&lt;/b&gt;&lt;br/&gt;=====================================&lt;br/&gt;
+Для просмотра и распечатки счета пройдите по ссылке {0}
+&lt;br/&gt;=====================================
+&lt;br/&gt;Вы получили это письмо, т.к произвели покупки на сайте {1}.</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="setaccount" xml:space="preserve">
+    <value>Выставить счет</value>
+  </data>
+  <data name="addaccount" xml:space="preserve">
+    <value>добавить позицию</value>
+  </data>
+  <data name="print" xml:space="preserve">
+    <value>распечатать</value>
+  </data>
+  <data name="createsale" xml:space="preserve">
+    <value>Создать Скидку</value>
+  </data>
+  <data name="dateclose" xml:space="preserve">
+    <value>Дата закрытия скидки</value>
+  </data>
+  <data name="datestart" xml:space="preserve">
+    <value>Дата начала скидки</value>
+  </data>
+  <data name="Sale" xml:space="preserve">
+    <value>Скидка</value>
+  </data>
+  <data name="uploadproductxml" xml:space="preserve">
+    <value>Создание списка продуктов из файла (.xls or .xlsx)</value>
+  </data>
+  <data name="columnDepartment" xml:space="preserve">
+    <value>Столбцы Отделов и Производителей</value>
+  </data>
+  <data name="columnProduct" xml:space="preserve">
+    <value>Столбцы Продуктов</value>
+  </data>
+  <data name="MoneyProcent" xml:space="preserve">
+    <value>Процент при смене валюты</value>
+  </data>
+  <data name="nameProducer" xml:space="preserve">
+    <value>Название Производителей</value>
+  </data>
+  <data name="NameSearchPage" xml:space="preserve">
+    <value>Название Поиска</value>
+  </data>
+  <data name="nameStore" xml:space="preserve">
+    <value>Название Магазина</value>
+  </data>
+  <data name="onlineBuy" xml:space="preserve">
+    <value>Продажи онлайн</value>
+  </data>
+  <data name="organizationBuy" xml:space="preserve">
+    <value>Продажи для Организаций</value>
+  </data>
+  <data name="roleChiefStoreManager" xml:space="preserve">
+    <value>Название роли главного менеджера</value>
+  </data>
+  <data name="roleStoreManager" xml:space="preserve">
+    <value>Название роли  менеджера</value>
+  </data>
+  <data name="storeSetting" xml:space="preserve">
+    <value>Настройка Магазина</value>
+  </data>
+  <data name="styleDepartment" xml:space="preserve">
+    <value>Стиль Отделов и Производителей</value>
+  </data>
+  <data name="styleProduct" xml:space="preserve">
+    <value>Стиль Продуктов</value>
+  </data>
+  <data name="unlockStore" xml:space="preserve">
+    <value>Включить Магазин</value>
+  </data>
+  <data name="viewProduktTable" xml:space="preserve">
+    <value>Отображать продукты кратко таблично</value>
+  </data>
+  <data name="widthImgDepartment" xml:space="preserve">
+    <value>Ширина Изображения  Отделов и Производителей</value>
+  </data>
+  <data name="widthImgProduct" xml:space="preserve">
+    <value>Ширина Изображения Продукта</value>
+  </data>
+  <data name="people" xml:space="preserve">
+    <value>Частное Лицо</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="deleteallposition" xml:space="preserve">
+    <value>Удалить с сайта позиции отсутствующие в файле?</value>
+  </data>
+  <data name="file_not_allowed_img" xml:space="preserve">
+    <value>Недопустимый тип файла (gif, jpg, jpeg, png)</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+</root>

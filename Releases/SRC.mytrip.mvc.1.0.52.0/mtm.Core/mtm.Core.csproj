@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C09AD82-5086-4DD1-83FE-9240FD9FDFF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mtm.Core</RootNamespace>
+    <AssemblyName>mtm.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\_WEB.mytrip.mvc\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth">
+      <HintPath>..\Mytrip.Mvc\bin\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoreController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ICoreController.cs" />
+    <Compile Include="Controllers\mtmController.cs" />
+    <Compile Include="Controllers\TextAreaFileController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CoreLanguage.Designer.cs">
+      <DependentUpon>CoreLanguage.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CoreLanguage.ru-ru.Designer.cs">
+      <DependentUpon>CoreLanguage.ru-ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Files\FilesIcon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FilesIcon.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\ScriptSql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptSql.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\SmilesCollection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmilesCollection.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AvatarHelper.cs" />
+    <Compile Include="Helpers\CorePageHelper.cs" />
+    <Compile Include="Helpers\DonateHelper.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
+    <Compile Include="Helpers\LayoutHelper.cs" />
+    <Compile Include="Helpers\MapHelper.cs" />
+    <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Helpers\MytripHtmlHelper.cs" />
+    <Compile Include="Helpers\PagerHelper.cs" />
+    <Compile Include="Helpers\RewriteHelper.cs" />
+    <Compile Include="Helpers\SearchHelper.cs" />
+    <Compile Include="Helpers\StatisticHelper.cs" />
+    <Compile Include="Helpers\TextAreaFileHelper.cs" />
+    <Compile Include="Helpers\ThemeHelper.cs" />
+    <Compile Include="Helpers\UserDataHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Install\CreateContent.cs" />
+    <Compile Include="Install\CreateDataBase.cs" />
+    <Compile Include="Install\Cripto.cs" />
+    <Compile Include="Install\License.cs" />
+    <Compile Include="Install\UninstallModules.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ActionFilterAttribute.cs" />
+    <Compile Include="Models\CoreModel.cs" />
+    <Compile Include="Models\FilesModels.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\RssAction.cs" />
+    <Compile Include="Models\UsersModel.cs" />
+    <Compile Include="Models\ValidationAttribute.cs" />
+    <Compile Include="MvcApplication.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AccountMembershipRepository.cs" />
+    <Compile Include="Repository\CaptchaRepository.cs" />
+    <Compile Include="Repository\CorePageRepository.cs" />
+    <Compile Include="Repository\DataEntities\MssqlModel.Designer.cs">
+      <DependentUpon>MssqlModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Repository\DataEntities\MysqlModel.Designer.cs">
+      <DependentUpon>MysqlModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_corepages.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_corestatistic.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_geocity.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_geocountry.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_georegion.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_users.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_usersmembership.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_usersprofile.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_usersroles.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\UsersPocoModel.Context.cs">
+      <DependentUpon>UsersPocoModel.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Repository\DataEntities\UsersPocoModel.cs">
+      <DependentUpon>UsersPocoModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Repository\EditePageRepository.cs" />
+    <Compile Include="Repository\EmailRepository.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Repository\FormsAuthenticationRepository .cs" />
+    <Compile Include="Repository\GeoRepository.cs" />
+    <Compile Include="Repository\Geo\Country.cs" />
+    <Compile Include="Repository\Geo\DatabaseInfo.cs" />
+    <Compile Include="Repository\Geo\Location.cs" />
+    <Compile Include="Repository\Geo\LookupService.cs" />
+    <Compile Include="Repository\Geo\Region.cs" />
+    <Compile Include="Repository\Geo\RegionName.cs" />
+    <Compile Include="Repository\ICoreRepository.cs" />
+    <Compile Include="Repository\InstallModuleRepository.cs" />
+    <Compile Include="Repository\LingToExcel\ChangeSet.cs" />
+    <Compile Include="Repository\LingToExcel\ChangeState.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelColumnAttribute.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelConnectionString.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelMapReader.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelProvider.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelSheet.cs" />
+    <Compile Include="Repository\LingToExcel\ExcelSheetAttribute.cs" />
+    <Compile Include="Repository\LingToExcel\ObjectState.cs" />
+    <Compile Include="Repository\LingToExcel\PropertyManager.cs" />
+    <Compile Include="Repository\MembershipRepository.cs" />
+    <Compile Include="Repository\RoleRepository.cs" />
+    <Compile Include="Repository\StatisticRepository.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="Settings\CoreSetting.cs" />
+    <Compile Include="Settings\EmailSetting.cs" />
+    <Compile Include="Settings\GeneralMethods.cs" />
+    <Compile Include="Settings\GeoSetting.cs" />
+    <Compile Include="Settings\LocalisationSetting.cs" />
+    <Compile Include="Settings\MytripRewrite.cs" />
+    <Compile Include="Settings\ProfileSetting.cs" />
+    <Compile Include="Settings\StatisticSetting.cs" />
+    <Compile Include="Settings\ThemeSetting.cs" />
+    <Compile Include="Settings\UsersSetting.cs" />
+    <Compile Include="StylesTable\StyleTableClass.cs" />
+    <Compile Include="Wrap\WrapRes.cs" />
+    <Compile Include="Wrap\YesWrapRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YesWrapRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Wrap\NoWrapRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoWrapRes.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MssqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MssqlModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MysqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MysqlModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Repository\DataEntities\UsersPocoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UsersPocoModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Repository\DataEntities\UsersPocoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UsersPocoModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CoreLanguage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreLanguage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CoreLanguage.ru-ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CoreLanguage.ru-ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\FilesIcon.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FilesIcon.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\ScriptSql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScriptSql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\SmilesCollection.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SmilesCollection.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wrap\YesWrapRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>YesWrapRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wrap\NoWrapRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoWrapRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cshtml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ascx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aspx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cache.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\csproj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\css.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\js.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ldf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\txt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vspscc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asax.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\at.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\au.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\av.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aw.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ax.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ay.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\az.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ba.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bb.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bc.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bd.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\be.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bf.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bh.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bi.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bj.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bk.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bl.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bm.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bq.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\br.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bs.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bv.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bw.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bx.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ca.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cd.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ce.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ch.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ci.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aa.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ab.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ac.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ad.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ae.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\af.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ah.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ai.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aj.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ak.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\al.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\am.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\an.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ao.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ap.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aq.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\as.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScriptMSSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScriptMySql.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
