@@ -1,0 +1,50 @@
+﻿@model mtm.Core.Models.CoreGeoModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.geoSetting, "/");
+    ViewBag.Keywords = Html.MytripPageTitle(CoreLanguage.geoSetting, ",");
+    ViewBag.Description = Html.MytripPageTitle(CoreLanguage.geoSetting, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.CheckedShow.js")
+}
+@section content{
+<h1 class="title">@CoreLanguage.geoSetting</h1>
+@using (Html.BeginForm()) {
+<fieldset>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockGeo, new { id = "Geo_hideOffDiv" })
+@Html.LabelFor("Geo_hideOffDiv", CoreLanguage.unlockGeo)
+</div> <div name="Geo" style="display: none">
+<div class="editor-label">
+@Html.LabelFor(model => model.Url, CoreLanguage.geoUrl)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.Url, new { style = "width:500px;" })
+@Html.ValidationMessageFor(model => model.Url)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.keyBingMap, CoreLanguage.keyBingMap)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.keyBingMap, new { style = "width:500px;" })
+@Html.ValidationMessageFor(model => model.keyBingMap)
+</div>
+</div>
+
+<div class="button">
+ 
+@Html.MytripButton(CoreLanguage.save, true, "left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false, "left") 
+
+</div>
+</fieldset>
+} 
+}
+

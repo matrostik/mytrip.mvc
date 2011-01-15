@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{56A8C2E7-A22D-4DC0-9E63-EF1200B4C63D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mtm.Store</RootNamespace>
+    <AssemblyName>mtm.Store</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\_WEB.mytrip.mvc\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\mtm_StoreExportController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Export.cs" />
+    <Compile Include="Files\Content.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Content.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\JScripts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JScripts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\Localisation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localisation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\ScriptSql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptSql.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\WebPages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebPages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AccountHelper.cs" />
+    <Compile Include="Helpers\CartHelper.cs" />
+    <Compile Include="Helpers\DepartmentAndProducerHelpers.cs" />
+    <Compile Include="Helpers\ManagerOrdersHelpers.cs" />
+    <Compile Include="Helpers\MoneyHelpers.cs" />
+    <Compile Include="Helpers\OnlineBuyHelper.cs" />
+    <Compile Include="Helpers\ProductHelpers.cs" />
+    <Compile Include="Helpers\SearchHelpers.cs" />
+    <Compile Include="Helpers\StoreHelper.cs" />
+    <Compile Include="Models\StoreModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DataEntities\ExcelDepartment.cs" />
+    <Compile Include="Repository\DataEntities\ExcelProducer.cs" />
+    <Compile Include="Repository\DataEntities\ExcelProduct.cs" />
+    <Compile Include="Repository\DataEntities\ExcelSale.cs" />
+    <Compile Include="Repository\DataEntities\MssqlStore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MssqlStore.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\MysqlStore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MysqlStore.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storedepartment.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeorder.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeorderisproduct.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeproducer.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeproduct.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeprofile.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storesale.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storeseller.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_storevotes.cs">
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\StorePocoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorePocoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\StorePocoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorePocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DepartmentRepository.cs" />
+    <Compile Include="Repository\ExcelRepository.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
+    <Compile Include="Repository\IStoreRepository.cs" />
+    <Compile Include="Repository\ManagerOrderRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\ProducerRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\SaleRepository.cs" />
+    <Compile Include="Repository\SellerRepository.cs" />
+    <Compile Include="InstallAndUninstall.cs" />
+    <Compile Include="StoreLanguage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreLanguage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreLanguage.ru-ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreLanguage.ru-ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\Content.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Content.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\JScripts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>JScripts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\Localisation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localisation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\ScriptSql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScriptSql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\WebPages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebPages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreLanguage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StoreLanguage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreLanguage.ru-ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StoreLanguage.ru-ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MssqlStore.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MssqlStore.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MysqlStore.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MysqlStore.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\DataEntities\StorePocoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StorePocoModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Repository\DataEntities\StorePocoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StorePocoModel.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\cart.cshtml" />
+    <None Include="Resources\createproductxml.cshtml" />
+    <None Include="Resources\createsale.cshtml" />
+    <None Include="Resources\editorcategory.cshtml" />
+    <None Include="Resources\editorproduct.cshtml" />
+    <None Include="Resources\empty.zip" />
+    <None Include="Resources\index.cshtml" />
+    <None Include="Resources\manager.cshtml" />
+    <None Include="Resources\managerorders.cshtml" />
+    <None Include="Resources\mytrip_products.xls" />
+    <None Include="Resources\mytrip_products.xlsx" />
+    <None Include="Resources\orderdetails.cshtml" />
+    <None Include="Resources\setting.cshtml" />
+    <None Include="Resources\view.cshtml" />
+    <None Include="Resources\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mtm.Core\mtm.Core.csproj">
+      <Project>{7C09AD82-5086-4DD1-83FE-9240FD9FDFF9}</Project>
+      <Name>mtm.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ru_ru.mtm.Store.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteScriptMysql.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScriptMSSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteScriptMSSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScriptMySql.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.cart.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.createproductxml.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.createsale.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.editorcategory.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.editorproduct.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.index.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.managerorders.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.ordersdetails.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.view.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

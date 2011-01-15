@@ -1,0 +1,8 @@
+﻿#mtPopupContainer{position:absolute;left:0;top:0;display:none;z-index: 20000;border: 0;max-width:300px;}
+#mtPopupContent{padding: 0px 1px 0px 5px;background: url(../images/menuslidecon.png) repeat-y right;border-left: 1px solid #767676;min-width: 175px; max-width: 600px;min-height: 50px;}  
+div.mtPopupTL{position: relative;width: 4px;height: 10px;float: left;background:url(../images/menuslide.png);margin-top: 4px;}
+div.mtPopupBL{background:url(../images/menuslide.png);background-position: 0px -11px;position: relative;width: 7px;height: 7px;float: left;}
+div.mtPopupTR{background:url(../images/menuslide.png);background-position: -7px 0px;margin-top: 4px;position: relative;width: 7px;height: 10px;float: right;}
+div.mtPopupBR{background:url(../images/menuslide.png);background-position: -7px -11px;position: relative;width: 7px;height: 7px;float: right;}
+div.mtPopupTC{background:url(../images/menuslidecontop.png);margin-top: 4px;margin-right: 7px;margin-left: 4px;height: 10px;}  
+div.mtPopupBC{background: url(../images/menuslidecontop.png) repeat-x 0px -11px;height: 7px;margin-right: 7px;margin-left: 7px;}

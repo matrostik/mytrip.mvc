@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS mytrip_storevotes;                 
+DROP TABLE IF EXISTS mytrip_storeorderisproduct;
+DROP TABLE IF EXISTS mytrip_storeproduct;
+DROP TABLE IF EXISTS mytrip_storeproducer;
+DROP TABLE IF EXISTS mytrip_storeorder;
+DROP TABLE IF EXISTS mytrip_storedepartment;
+DROP TABLE IF EXISTS mytrip_storeseller;
+DROP TABLE IF EXISTS mytrip_storesale;
+DROP TABLE IF EXISTS mytrip_storeprofile;
