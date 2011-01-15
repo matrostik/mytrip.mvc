@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<urlrewrite>
-    <add url="About.php" rewrite="Home/About"/>
-    <add url="Article/Index/1/10/0/Articles" rewrite="Store/Index/1/10/0/0/1/Department"/>
-</urlrewrite>
