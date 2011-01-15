@@ -1,0 +1,69 @@
+@model mtm.Core.Models.HomeSearchModel
+@{
+/* Copyright ?? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+To learn more about mytrip.mvc visit
+http://mytripmvc.net  http://mytripmvc.codeplex.com
+mytripmvc@gmail.com
+license: Microsoft Public License (Ms-PL) */
+}
+@{
+ViewBag.Title = Html.MytripPageTitle(Model.title, "/");
+ViewBag.Keywords = Html.MytripPageTitle(Model.title, ",");
+ViewBag.Description = Html.MytripPageTitle(Model.title, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,mtm.Delete.js")
+}
+@section contentBig{
+@{int total = 0;HtmlString item = Html.SearchPage(new{
+/* WARNING AUTO GENERATE CODE */
+/*--StartLastActivity--*/
+/*--EndLastActivity--*/
+},Model.page,Model.count,Model.search,out total);}
+<h1 class="title">@string.Format(CoreLanguage.search_for_found_results, Model.search, total)</h1>
+@Html.MytripPager(Model.defsize,total,"...")
+<div class="last"></div>
+@item
+@Html.MytripPager(Model.defsize,total,"...")
+}
+@section contentSmall{
+@Html.Partial("_sideBar")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

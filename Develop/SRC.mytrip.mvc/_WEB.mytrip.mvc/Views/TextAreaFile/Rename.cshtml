@@ -1,0 +1,34 @@
+﻿@model mtm.Core.Models.RenameModels
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.rename_file_or_folder, "/");
+    ViewBag.Keywords=Html.MytripPageTitle(CoreLanguage.rename_file_or_folder, ",");
+    ViewBag.Description=Html.MytripPageTitle(CoreLanguage.rename_file_or_folder, ",");
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+<h1>@CoreLanguage.rename_file_or_folder</h1>
+<div class="content">
+@Html.MytripImage("/mtm/FileIcon/folder", Membership.ApplicationName,0,32,0) 
+@Html.MytripDirectory(Model.Directory, "TextAreaFile",Model.Param)
+</div>
+@using (Html.BeginForm()){
+<div class="last"></div> 
+<div class="content">
+<div class="editor-label">
+@Html.LabelFor(model => model.Name, CoreLanguage.choose_new_name)
+</div><div class="editor-field">
+@Html.TextBoxFor(m=>m.Name)
+@Html.ValidationMessageFor(m => m.Name) 
+</div><div class="button">
+@Html.MytripButton(CoreLanguage.rename,true,"left")
+@Html.MytripButton(Url.Action("Index", "TextAreaFile", new { id = Model.Back, id2 = Model.Param }), CoreLanguage.back_to_list, false,"left") 
+</div></div>
+} 

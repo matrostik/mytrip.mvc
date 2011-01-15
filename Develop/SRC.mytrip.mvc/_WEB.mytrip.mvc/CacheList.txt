@@ -1,0 +1,150 @@
+﻿----------------------------------------------------------------
+mtm.Core.Repository.MembershipRepository (MembershipRepository.cs)
+----------------------------------------------------------------
+"mtm_getlatestusers" + count
+----------------------------------------------------------------
+mtm.Core.Repository.CorePageRepository (CorePageRepository.cs)
+----------------------------------------------------------------
+"mtm_getpagesformenu" + culture
+"mtm_getpagesforhomepage"
+"mtm_getpagesforsearch" + search + culture
+"mtm_getpages" + id
+"mtm_getpages" + id + culture
+----------------------------------------------------------------
+mtm.Core.Repository.MytripUser (UsersRepository.cs)
+----------------------------------------------------------------
+"mtm_cacherole"
+----------------------------------------------------------------
+mtm.Core.Settings.CoreSetting (CoreSetting.cs)
+----------------------------------------------------------------
+"mtm_cs_nametitlepage" + culture
+"mtm_cs_provider"
+"mtm_cs_development"
+"mtm_cs_countlatestusers"
+"mtm_cs_namehomepage" + culture
+"mtm_cs_server"
+"mtm_cs_database"
+"mtm_cs_user"
+"mtm_cs_password"
+"mtm_cs_integratedsecurity"
+"mtm_cs_sidebarposition"
+"mtm_cs_menuposition"
+----------------------------------------------------------------
+mtm.Core.Settings.EmailSetting (EmailSetting.cs)
+----------------------------------------------------------------
+"mtm_es_unlocksendemail"
+"mtm_es_fromemail"
+"mtm_es_smtp"
+"mtm_es_port"
+"mtm_es_ssl"
+"mtm_es_user"
+"mtm_es_password"
+----------------------------------------------------------------
+mtm.Core.Settings.ThemeSetting (ThemeSetting.cs)
+----------------------------------------------------------------
+"mtm_ts_defaulttheme"
+"mtm_ts_unlocktheme"
+----------------------------------------------------------------
+mtm.Core.Settings.UsersSetting (UsersSetting.cs)
+----------------------------------------------------------------
+"mtm_us_minrequiredpasswordlength"
+"mtm_us_maxinvalidpasswordattempts"
+"mtm_us_requiresuniqueemail"
+"mtm_us_unlockvisibleprofiletosidebar"
+"mtm_us_unlockopenid"
+"mtm_us_unlocksiteid"
+"mtm_us_unlockcaptcha"
+"mtm_us_roleadmin"
+"mtm_us_unlockgravatar"
+"mtm_us_unlockregistration"
+"mtm_us_unlockvisiblelogon"
+"mtm_us_unlockapprovedemail"
+"mtm_us_rolechiefeditor"
+----------------------------------------------------------------
+mtm.Articles.Repository.CategoryRepository (CategoryRepository.cs)
+----------------------------------------------------------------
+"as_getcategories" + forMenu + culture
+"as_getcategory" + categoryId
+"as_getblogs" + culture
+----------------------------------------------------------------
+mtm.Articles.Repository.ArticleRepository (ArticleRepository.cs)
+----------------------------------------------------------------
+"as_getalltags"
+"as_getarticles" + sortBy + take + culture
+"as_getarticles" + categoryId + "_" + take + culture
+"as_getarticles" + take + culture
+"as_getarticlessearch" + search + culture
+"as_getarticles" + pageIndex+"_"+pageSize + sortBy + culture
+"as_getarticlestotal" + culture
+"as_getpostspopular" + take + culture
+"as_getposts" + take + culture
+----------------------------------------------------------------
+mtm.Articles.ModuleSetting (ModuleSetting.cs)
+----------------------------------------------------------------
+"as_namearticles" + culture
+"as_nameblogs" + culture
+"as_nametags" + culture
+"as_namesearch" + culture
+"as_articles"
+"as_blogs"
+"as_viewinfoauthorarticle"
+"as_viewinfoviewsarticle"
+"as_showrelatedlinks"
+"as_closecountcommentforblogs"
+"as_countcommentforblogs"
+"as_rolearticleeditor"
+"as_roleblogger"
+----------------------------------------------------------------
+mtm.Weather.ModuleSettings (ModuleSettings.cs)
+----------------------------------------------------------------
+"gm_nameWeather" + culture
+"gm_unlockWeather"
+----------------------------------------------------------------
+mtm.RssParser.ModuleSetting (ModuleSetting.cs)
+----------------------------------------------------------------
+"rsp_namerssparser" + culture
+"rsp_unlockrssparser"
+----------------------------------------------------------------
+mtm.Store.ModuleSetting (ModuleSettings.cs)
+----------------------------------------------------------------
+"ss_namesearch" + culture
+"ss_viewprodukttable"
+"ss_privatepersonbuy"
+"ss_paypal"
+"ss_paypalseller"
+"ss_organizationbuy"
+"ss_moneyprocent"
+"ss_namestore" + culture
+"ss_nameproducer" + culture
+"ss_namemoney" + culture
+"ss_unlockstore"
+"ss_onlinebuy"
+"ss_columndepartment"
+"ss_widthimgdepartment"
+"ss_styledepartment"
+"ss_columnproduct"
+"ss_widthimgproduct"
+"ss_styleproduct"
+"ss_rolechiefstoremanager"
+"ss_rolestoremanager"
+----------------------------------------------------------------
+mtm.Tourism.ModuleSetting (ModuleSettings.cs)
+----------------------------------------------------------------
+"st_unlocktours"
+"st_paginaltours"
+"st_viewdescription"
+"st_columntours"
+"st_styletours"
+"st_nametours" + culture
+"st_moneyprocent"
+"st_widthimgtours"
+"st_closetour"
+"st_namemoney" + culture
+"st_keymoney"
+"st_rolechieftourmanager"
+"st_rolestoremanager"
+----------------------------------------------------------------
+mtm.Votes.ModuleSetting (ModuleSettings.cs)
+----------------------------------------------------------------
+"vs_namevotes" + culture
+"vs_unlockvotes"

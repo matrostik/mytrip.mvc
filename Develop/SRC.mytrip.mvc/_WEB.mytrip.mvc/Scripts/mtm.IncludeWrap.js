@@ -1,0 +1,9 @@
+﻿$.getScript('/Scripts/Wrap/mtm.Layout.js');
+$.getScript('/Scripts/Wrap/mtm.Dropdown.js');
+$.getScript('/Scripts/Wrap/mtm.Button.js');
+$.getScript('/Scripts/Wrap/mtm.Textbox.js');
+$.getScript('/Scripts/Wrap/mtm.Accordion.js');
+$.getScript('/Scripts/Wrap/mtm.Modal.js');
+$.getScript('/Scripts/Wrap/mtm.Captcha.js');
+$.getScript('/Scripts/Wrap/mtm.Baloon.js');
+$.getScript('/Scripts/Wrap/mtm.Checkbox.js');
