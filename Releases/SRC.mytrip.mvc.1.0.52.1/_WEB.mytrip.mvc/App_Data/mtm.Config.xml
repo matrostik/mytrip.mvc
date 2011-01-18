@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+   To learn more about mytrip.mvc visit  
+   http://mytripmvc.net  http://mytripmvc.codeplex.com 
+   mytripmvc@gmail.com
+   license: Microsoft Public License (Ms-PL)
+  -->
+<mtm.Config>
+  <core>
+    <add name="Development" value="True" />
+    <add name="CountLatestUsers" value="9" />
+    <add name="SideBarPosition" value="right" />
+    <add name="MenuPosition" value="left" />
+    <add name="nameHome">
+      <add name="Home" value="en-us" />
+      <add name="Главная" value="ru-ru" />
+    </add>
+    <add name="nameTitle">
+      <add name="CMS mytrip.mvc ({0})" value="en-us" />
+      <add name="CMS mytrip.mvc ({0})" value="ru-ru" />
+    </add>
+    <add name="nameLogo">
+      <add name="mytrip.mvc" value="en-us" />
+      <add name="mytrip.mvc" value="ru-ru" />
+    </add>
+  </core>
+  <geo>
+    <add name="unlockGeo" value="False" />
+    <add name="Url" value="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" />
+    <add name="DownloadGeo" value="False" />
+    <add name="keyBingMap" value="AtOtKz-XwZVcKPE1F_spY8N5Iehj2hrS415xcg8-r-6vpewZn8_OBIbQRprxBukO" />
+  </geo>
+  <statistic>
+    <add name="defaultCity" value="False" />
+    <add name="unlockStatistic" value="False" />
+    <add name="Anonym" value="False" />
+    <add name="User" value="False" />
+  </statistic>
+  <connection>
+    <add name="Provider" value="MSSQL" />
+    <add name="IntegratedSecurity" value="True" />
+    <add name="Server" value="SPo8wvR0zcZQlFDuwiiLGA==" />
+    <add name="DataBase" value="qYn567ksIPTcE/+gD5nnsQ==" />
+    <add name="User" value="rjdW5rgFcKfWbcAu64R98g==" />
+    <add name="Password" value="rjdW5rgFcKfWbcAu64R98g==" />
+  </connection>
+  <membership>
+    <add name="minRequiredPasswordLength" value="6" />
+    <add name="maxInvalidPasswordAttempts" value="5" />
+    <add name="requiresUniqueEmail" value="False" />
+    <add name="unlockCaptcha" value="True" />
+    <add name="unlockRegistration" value="True" />
+    <add name="unlockVisibleLogon" value="True" />
+    <add name="roleAdmin" value="admin" />
+    <add name="roleChiefEditor" value="chief_editor" />
+    <add name="unlockApprovedEmail" value="False" />
+    <add name="unlockOpenId" value="True" />
+    <add name="unlockSiteId" value="True" />
+  </membership>
+  <language>
+    <add name="defaultCulture" value="ru-ru" />
+    <add name="unlockAllCulture" value="True" />
+  </language>
+  <theme>
+    <add name="defaultTheme" value="LiveStyle" />
+    <add name="unlockTheme" value="True" />
+    <add name="unlockWrap" value="False" />
+  </theme>
+  <profile>
+    <add name="unlockGravatar" value="True" />
+  </profile>
+  <installModules />
+  <email>
+    <add name="unlockSendEmail" value="True" />
+    <add name="EmailAdress" value="rjdW5rgFcKfWbcAu64R98g==" />
+    <add name="Smtp" value="rjdW5rgFcKfWbcAu64R98g==" />
+    <add name="Port" value="587" />
+    <add name="Ssl" value="True" />
+    <add name="Login" value="rjdW5rgFcKfWbcAu64R98g==" />
+    <add name="Password" value="rjdW5rgFcKfWbcAu64R98g==" />
+  </email>
+</mtm.Config>
