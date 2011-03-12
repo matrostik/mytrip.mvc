@@ -1,0 +1,86 @@
+﻿@model mtm.Core.Models.IndexFilesModels
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    Layout = "~/Views/TextAreaFile/_Layout.cshtml";
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.file_manager);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,Page/TextAreaFile.js")
+}
+<h1 class="title">@CoreLanguage.file_manager</h1>
+<div class="content">
+@using (Html.BeginForm()){
+<div>
+<div class="textboxR">
+@Html.ValidationMessageFor(m => m.Name) 
+</div></div><br />
+@Html.MytripButton(CoreLanguage.create,true,"right")
+<div class="textboxR">@Html.TextBoxFor(m=>m.Name)</div>
+<div class="textboxR">@CoreLanguage.create_new_folder</div>
+}@using (Html.BeginForm("Upload", "TextAreaFile", new { id = Model.Directory,id2=Model.Param}, FormMethod.Post,new {enctype = "multipart/form-data" })){
+<div style="clear: both;">
+<div class="textboxR">@Html.ValidationMessageFor(m => m.Error)</div>
+</div>
+<br /><div class="textboxR" style="z-index:1000;">
+@Html.MytripButton(CoreLanguage.upload, true, "right")</div>
+<div class="textboxR">@Html.MytripInputFile("file", "id3")</div>
+<div id="divfiletext" class="textboxR">@Html.TextBox("a", "", new { id = "filetext" })</div>
+<div class="textboxR">@CoreLanguage.upload_file</div> 
+ }
+<div style="height: 2px;clear: both;"></div></div>
+<div class="last"></div>
+<div class="content">
+@Html.MytripImage("/mtm/FileIcon/folder", Membership.ApplicationName, 0, 32, 0) 
+
+@Html.MytripDirectory(Model.Directory, "TextAreaFile", Model.Param)
+</div>
+<div class="last"></div>
+<div class="content">
+<table>
+<tr>
+<th class="editdelite"></th>
+<th class="folderfile"></th>
+<th></th>
+<th class="filechangedate">@CoreLanguage.change_date</th>
+<th class="filesize">@CoreLanguage.size</th>
+</tr>
+@foreach (System.IO.DirectoryInfo x in Model.Folders)
+{
+    string directory = Model.Directory + "()" + x.Name;          
+<tr><td>
+@Html.MytripImgInput("/images/rename.png", "/TextAreaFile/Rename/" + directory + "/" + Model.Param + "/folder", "rename")
+@Html.MytripImgInput("/images/delete.png", "/TextAreaFile/Delete/" + directory + "/" + Model.Param + "/folder", "delete")
+</td><td>
+@Html.MytripImageLink(Url.Action("Index", "TextAreaFile", new { id = directory, id2 = Model.Param }), "/mtm/FileIcon/folder", x.Name, 0, 32, 0)
+</td><td>
+@Html.MytripActionLink(Url.Action("Index", "TextAreaFile", new { id = directory, id2 = Model.Param }), x.Name)
+</td><td></td>
+<td></td></tr>
+}@foreach (System.IO.FileInfo x in Model.Files)
+ {
+     string directory = Model.Directory + "()" + x.Name; 
+<tr> <td>
+@Html.MytripAddTextArea(directory.Replace("()", "/"), x.Name, x.Extension, "add", Model.Param)
+@Html.MytripImgInput("/images/rename.png", "/TextAreaFile/Rename/" + directory + "/" + Model.Param + "/file", "rename")
+@Html.MytripImgInput("/images/delete.png", "/TextAreaFile/Delete/" + directory + "/" + Model.Param + "/file", "delete")
+</td>
+<td>@Html.MytripImage(directory.Replace("()", "/"), x.Name, 0, 32, 0)
+</td><td>
+@x.Name
+</td><td>
+@x.LastWriteTime
+</td><td>
+@x.Length 
+@CoreLanguage.bytes
+</td></tr>
+ }
+</table></div>
+@Html.Partial("Partial/_deleteModal") 

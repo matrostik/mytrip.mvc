@@ -1,0 +1,52 @@
+@model mtm.Tourism.Models.ToursIndexModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+       To learn more about mytrip.mvc visit
+       http://mytripmvc.net  http://mytripmvc.codeplex.com
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.seoTitle);
+    ViewBag.Keywords=Model.seokeywords;
+    ViewBag.Description=Model.seodescription;
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,mtm.Delete.js")
+}
+@section contentSmall{
+@Html.Partial("Partial/_sideBar") 
+}
+@section contentBig{
+@Html.BreadCumps(">", Model.bread)
+<table class="noborders"><tr><td>
+@Html.CategoryTitle(Model.Category,Model.CategoryOnly,Model.Country,Model.CountryOnly,Model._country)
+</td></tr></table>
+<div class="content"><div style="min-height:70px;">
+@using (Html.BeginForm())
+{
+<table class="right"><tr><td>
+@Html.TextBoxFor(m => m.__search)</td><td>
+@ToursLanguage.from
+</td><td>
+@Html.TextBoxFor(m => m.__startdate, new { style = "width:100px" })
+</td><td>
+@ToursLanguage.to 
+</td><td>
+@Html.TextBoxFor(m => m.__stopdate, new { style = "width:100px" })
+</td><td><div class="search">
+<input class="_search" type="submit" value=""/></div></td></tr></table>
+<table class="right">
+<tr><td>
+@Html.DropDownListFor(m => m.__category, Model.__categorylist, new {id="category" })
+</td><td>
+@Html.DropDownListFor(m => m.__country, Model.__countrylist, new { id = "country" })
+</td></tr></table>
+}</div></div> 
+@Html.MytripPager(10, Model.total, "...")
+<div class="last"></div>
+@Html.ToursIndex(Model.Tours,Model.CategoryOnly,Model.countryview)
+@Html.MytripPager(10, Model.total, "...")
+@Html.Partial("Partial/_deleteModal") 
+}
+

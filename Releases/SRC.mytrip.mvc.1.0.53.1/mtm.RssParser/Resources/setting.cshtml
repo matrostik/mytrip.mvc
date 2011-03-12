@@ -1,0 +1,103 @@
+@model mtm.RssParser.Models.RssparserSettingModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(RssparserLanguage.Rssparsersetting);
+    ViewBag.Keywords = mtm.RssParser.ModuleSetting.RssparserKeyWords();
+    ViewBag.Description = mtm.RssParser.ModuleSetting.RssparserDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+<h1 class="title">@RssparserLanguage.Rssparsersetting</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockRssparser)
+@Html.LabelFor(model => model.unlockRssparser, RssparserLanguage.unlockRssparser)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialMenuLogon, "Partial Menu Logon")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialMenuLogon)
+@Html.ValidationMessageFor(model => model.partialMenuLogon)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialMenuLogonWrap, "Partial Menu Logon Wrap")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialMenuLogonWrap)
+@Html.ValidationMessageFor(model => model.partialMenuLogonWrap)
+</div>
+<table class="noborders"><tr><td style="Display:@Model.view_en_us">  
+<div class="editor-label">
+@Html.LabelFor(model => model.nameRssparser_en_us, RssparserLanguage.nameRssparser + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameRssparser_en_us)
+@Html.ValidationMessageFor(model => model.nameRssparser_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.titleRssparser_en_us, "Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleRssparser_en_us)
+@Html.ValidationMessageFor(model => model.titleRssparser_en_us)
+</div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.Rssparser_seokeywords_en_us, "Keywords (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Rssparser_seokeywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.Rssparser_seokeywords_en_us)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rssparser_seodescription_en_us, "Description (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Rssparser_seodescription_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.Rssparser_seodescription_en_us)
+        </div>
+</td><td style="Display:@Model.view_ru_ru">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameRssparser_ru_ru, RssparserLanguage.nameRssparser + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameRssparser_ru_ru)
+@Html.ValidationMessageFor(model => model.nameRssparser_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.titleRssparser_ru_ru, "Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleRssparser_ru_ru)
+@Html.ValidationMessageFor(model => model.titleRssparser_ru_ru)
+</div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.Rssparser_seokeywords_ru_ru, "Keywords (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Rssparser_seokeywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.Rssparser_seokeywords_ru_ru)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rssparser_seodescription_ru_ru, "Description (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Rssparser_seodescription_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.Rssparser_seodescription_ru_ru)
+        </div>
+</td></tr></table>
+
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+

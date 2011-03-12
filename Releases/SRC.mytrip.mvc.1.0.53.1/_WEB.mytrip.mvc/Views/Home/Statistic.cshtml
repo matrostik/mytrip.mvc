@@ -1,0 +1,58 @@
+﻿@model mtm.Core.Models.StatisticModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.title);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+    ViewBag.BodyOnload = Model.bodyonload;
+    
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,ui.datepicker.js,Page/Home.Statistic.js")
+@if (mtm.Core.Settings.LocalisationSetting.culture() == "ru-ru")
+{
+@Html.ScriptLink("ui.datepicker-ru.js")
+}
+@if (mtm.Core.Settings.GeoSetting.unlockGeo())
+{
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+@Html.ScriptLink("Map/Map.js")
+@Html.ScriptStatisticBingMap(Model.body)
+    }
+}
+@section content{
+@Html.BreadCumps(">", string.Format(CoreLanguage.statisticTitle, ""))
+<div class="right">
+@using (Html.BeginForm()){
+    <table class="noborders">
+    <tr>
+    <td>
+    <div style="display:none"> @Html.TextBox("a")</div>
+    @Html.TextBoxFor(m => m.DateStart, new { style = "width:100px;" }) <br />
+    @Html.ValidationMessageFor(m => m.DateStart)
+    </td>
+    <td>
+    @Html.TextBoxFor(m => m.DateEnd, new { style = "width:100px;" }) <br />
+    @Html.ValidationMessageFor(m => m.DateEnd)
+    </td>
+    <td>
+@Html.MytripButton(CoreLanguage.view, true, "right")
+
+    </td>
+    </tr>
+    </table>
+}
+</div>
+<h1 class="title">
+@Model.title
+</h1>
+<div style="clear:both;"></div>
+@Html.StatisticMap()
+@Html.Statistic(Model.body)
+}

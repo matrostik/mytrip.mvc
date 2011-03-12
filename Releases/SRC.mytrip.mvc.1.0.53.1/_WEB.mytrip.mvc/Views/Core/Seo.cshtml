@@ -1,0 +1,121 @@
+﻿@model mtm.Core.Models.SeoModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.seo_setting);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.CheckedShow.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.seo_setting</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<table class="noborders"><tr><td style="Display:@Model.view_en_us">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameLogo_en_us, CoreLanguage.nameLogo+" (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameLogo_en_us)
+@Html.ValidationMessageFor(model => model.nameLogo_en_us)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTitle_en_us, CoreLanguage.nameTitle + " (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameTitle_en_us)
+@Html.ValidationMessageFor(model => model.nameTitle_en_us)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameHome_en_us, CoreLanguage.homepage_name + " (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameHome_en_us)
+@Html.ValidationMessageFor(model => model.nameHome_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.seoTitle_en_us, "Title (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.seoTitle_en_us)
+@Html.ValidationMessageFor(model => model.seoTitle_en_us)
+</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seokeywords_en_us, "Keywords (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seokeywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seokeywords_en_us)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seodescription_en_us, "Description (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seodescription_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seodescription_en_us)
+        </div>
+
+</td><td style="Display:@Model.view_ru_ru">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameLogo_ru_ru, CoreLanguage.nameLogo+" (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameLogo_ru_ru)
+@Html.ValidationMessageFor(model => model.nameLogo_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTitle_ru_ru, CoreLanguage.nameTitle + " (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameTitle_ru_ru)
+@Html.ValidationMessageFor(model => model.nameTitle_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameHome_ru_ru, CoreLanguage.homepage_name + " (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.nameHome_ru_ru)
+@Html.ValidationMessageFor(model => model.nameHome_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.seoTitle_ru_ru, "Title (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.seoTitle_ru_ru)
+@Html.ValidationMessageFor(model => model.seoTitle_ru_ru)
+</div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.seokeywords_ru_ru, "Keywords (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seokeywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seokeywords_ru_ru)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seodescription_ru_ru, "Description (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seodescription_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seodescription_ru_ru)
+        </div>
+</td></tr></table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true, "left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false, "left") 
+</div>
+</fieldset>
+}
+}
+

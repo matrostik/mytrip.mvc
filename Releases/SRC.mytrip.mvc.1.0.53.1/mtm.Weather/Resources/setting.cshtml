@@ -1,0 +1,62 @@
+@model mtm.Weather.Models.WeatherSettingModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(WeatherLanguage.Weathersetting);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+<h1 class="title">@WeatherLanguage.Weathersetting</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockWeather)
+@Html.LabelFor(model => model.unlockWeather, WeatherLanguage.unlockWeather)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialAccordion, "Partial Accordion")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialAccordion)
+@Html.ValidationMessageFor(model => model.partialAccordion)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialNoAccordion, "Partial No Accordion")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialNoAccordion)
+@Html.ValidationMessageFor(model => model.partialNoAccordion)
+</div>
+<table class="noborders"><tr><td style="Display:@Model.view_en_us"> 
+<div class="editor-label">
+@Html.LabelFor(model => model.nameWeather_en_us, WeatherLanguage.nameWeather+"(en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameWeather_en_us)
+@Html.ValidationMessageFor(model => model.nameWeather_en_us)
+</div>
+</td><td style="Display:@Model.view_ru_ru">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameWeather_ru_ru, WeatherLanguage.nameWeather + "(ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameWeather_ru_ru)
+@Html.ValidationMessageFor(model => model.nameWeather_ru_ru)
+</div>
+</td></tr></table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+

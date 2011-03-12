@@ -1,0 +1,44 @@
+﻿@model mtm.Core.Models.IndexRolesModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.all_roles);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.Delete.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h2 class="adminlink">@Html.ActionLink(CoreLanguage.all_users, "Index")</h2>
+<h1 class="title">@CoreLanguage.all_roles</h1>
+
+@using (Html.BeginForm()){
+<div><div class="textboxR">
+@Html.ValidationMessageFor(m=>m.RoleName)
+</div></div><br />
+@Html.MytripButton(CoreLanguage.add_role,true,"right")
+<div class="textboxR"> 
+@Html.TextBoxFor(m=>m.RoleName)  
+</div>
+}
+<div style="clear: both;"></div><div class="last"></div> 
+@Html.MytripPager(Model.DefaultCount, Model.Total,"...")<div class="last"></div> 
+<table>
+<tr><th class="editdelite">
+</th><th>
+@Html.ActionLink(CoreLanguage.RoleName, "IndexRole", new { id = 1, id2 = Model.DefaultCount, id3 = Html.MytripSort("RoleName") })
+</th><th>
+@Html.ActionLink(CoreLanguage.UserCount, "IndexRole", new { id = 1, id2 = Model.DefaultCount, id3 = Html.MytripSort("UserCount") })
+</th></tr>
+@Html.RoleIndex(Model.Roles,CoreLanguage.are_you_sure) 
+</table>
+@Html.MytripPager(Model.DefaultCount, Model.Total,"...")
+@Html.Partial("Partial/_deleteModal") 
+}

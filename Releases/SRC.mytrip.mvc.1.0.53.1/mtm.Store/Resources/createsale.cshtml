@@ -1,0 +1,47 @@
+@model mtm.Store.Models.CreateSaleModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(StoreLanguage.createsale);
+    ViewBag.Keywords = mtm.Store.ModuleSetting.nameStoreKeyWords();
+    ViewBag.Description = mtm.Store.ModuleSetting.nameStoreDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,ui.datepicker.js,Page/Store.CreateSale.js")
+@if (mtm.Core.Settings.LocalisationSetting.culture() == "ru-ru")
+{
+@Html.ScriptLink("ui.datepicker-ru.js")
+}
+}
+@section content{
+@Html.BreadCumps(">",Model.Bread)
+<h1 class="title">@StoreLanguage.createsale</h1>
+
+@using (Html.BeginForm()){
+<div class="editor-label">
+@Html.LabelFor(m => m.sale, "%")
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.sale)
+@Html.ValidationMessageFor(m => m.sale) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.datestart, StoreLanguage.datestart)
+@Html.ValidationMessageFor(model => model.datestart)<br />
+@Html.TextBoxFor(model => model.datestart)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.dateclose, StoreLanguage.dateclose)
+@Html.ValidationMessageFor(model => model.dateclose)<br />
+@Html.TextBoxFor(model => model.dateclose)
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+</div>
+}
+}
+

@@ -1,0 +1,112 @@
+@model mtm.Articles.Models.ArchiveIndexModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.PageTitle);
+    ViewBag.Keywords = mtm.Articles.ModuleSetting.ArticlesPageKeyWords();
+    ViewBag.Description = mtm.Articles.ModuleSetting.ArticlesPageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Articles.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+ <h1 class="title">@Model.PageTitle </h1>
+<div class="content">
+@Html.CulturePager(Model.Path)
+@Html.ShowDetails(Model.Path,Model.Culture)
+<div class="button">
+@Html.MytripButton("/Article/Archive", ArticleLanguage.back_to_archive, true,"left")</div>
+</div>
+
+@Html.Hidden("editId")
+<div id="deleteModal" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel","right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok","right")      
+</div>
+</div> 
+</div>
+<div id="modalCategory" class="window">
+        <div class="modalTC">@Html.MytripImage("/images/edite.png", "edit", "img14")
+            @ArticleLanguage.edit</div>
+        <div class="modalC">
+            <div class="editor-label">
+                @Html.LabelFor("catTitle", ArticleLanguage.name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("catTitle")
+                <span class="field-validation-valid" id="titleError"></span>
+            </div>
+            @Html.Hidden("modalEditId")
+            @Html.HiddenFor(model => model.Path)
+            <div id="modalShowMenu">
+                @Html.CheckBox("modalSeparateBlock")
+                @Html.LabelFor("modalSeparateBlock", ArticleLanguage.add_to_menu)
+            </div>
+            <div id="modalShowLang">
+                @Html.CheckBox("modalAllCulture")
+                @Html.LabelFor("modalAllCulture", ArticleLanguage.display_all_lang)
+            </div>
+            <div id="seoOptions">@*@Model.edittag*@
+                <div class="editor-label">
+                    @Html.LabelFor("catPath", "Path")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("catPath")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("catSeoTitle", "Title")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("catSeoTitle")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("Keywords", "Keywords")
+                </div>
+                <div class="editor-field">
+                    @Html.TextArea("Keywords", new { @class = "message", style = "height: 50px; width:400px;" })
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("Description", "Description")
+                </div>
+                <div class="editor-field">
+                    @Html.TextArea("Description", new { @class = "message", style = "height: 50px; width:400px;" })
+                </div>
+            </div>
+            <div class="button">
+                @Html.MytripButton(CoreLanguage.cancel, true, "cancel", "right")
+                @Html.MytripButton("   Ok   ", false, "okEditCategory", "right")
+            </div>
+        </div>
+    </div>
+<div id="modalComment" class="window""> 
+<div class="modalTC">@Html.MytripImage("/images/edite.png","edit","img14")
+@ArticleLanguage.edit_comment</div>
+<div class="modalC">
+<table>
+<tr>
+<td>
+<div class="editor-field"><div class="dark">
+@Html.TextArea("EditComment", new { id = "modalCommentEditor", style = "height:175px;width:99%;" })
+</div></div>
+<span class="field-validation-valid" id="Comment_Error"></span>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, true, "cancel","right")
+@Html.MytripButton("   Ok   ", false, "okEditComment","right")   
+</div> 
+</div></div>        
+}

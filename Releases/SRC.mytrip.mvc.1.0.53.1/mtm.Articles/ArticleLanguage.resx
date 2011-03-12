@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="account_error_captcha" xml:space="preserve">
+    <value>Captcha is entered with errors.</value>
+  </data>
+  <data name="activated_a_blog" xml:space="preserve">
+    <value>Activated a blog</value>
+  </data>
+  <data name="activation_blog" xml:space="preserve">
+    <value>Create {0} comments to activate your blog.</value>
+  </data>
+  <data name="added_a_comment" xml:space="preserve">
+    <value>Added a comment</value>
+  </data>
+  <data name="added_by" xml:space="preserve">
+    <value>added by</value>
+  </data>
+  <data name="add_article" xml:space="preserve">
+    <value>Add Article</value>
+  </data>
+  <data name="add_category" xml:space="preserve">
+    <value>Add Category</value>
+  </data>
+  <data name="add_comment" xml:space="preserve">
+    <value>Add comment</value>
+  </data>
+  <data name="add_post" xml:space="preserve">
+    <value>Add Post</value>
+  </data>
+  <data name="add_subcategory" xml:space="preserve">
+    <value>Add SubCategory</value>
+  </data>
+  <data name="add_tags" xml:space="preserve">
+    <value>Add tags</value>
+  </data>
+  <data name="add_topic" xml:space="preserve">
+    <value>Add Topic</value>
+  </data>
+  <data name="add_to_menu" xml:space="preserve">
+    <value>Add to menu</value>
+  </data>
+  <data name="all_languages" xml:space="preserve">
+    <value>All Languages</value>
+  </data>
+  <data name="are_you_sure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="articles" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="articles_for_tag" xml:space="preserve">
+    <value>Articles for tag</value>
+  </data>
+  <data name="articles_manager" xml:space="preserve">
+    <value>Articles Manager</value>
+  </data>
+  <data name="articles_popular_recent" xml:space="preserve">
+    <value>{0}: Popular/Recent</value>
+  </data>
+  <data name="article_setting" xml:space="preserve">
+    <value>Articles setting</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="back_to_archive" xml:space="preserve">
+    <value>Back to Archive</value>
+  </data>
+  <data name="back_to_category" xml:space="preserve">
+    <value>Back to Category</value>
+  </data>
+  <data name="back_to_list" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="blog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
+  <data name="blogs" xml:space="preserve">
+    <value>Blogs</value>
+  </data>
+  <data name="blogs_popular_recent" xml:space="preserve">
+    <value>{0}: Popular/Recent</value>
+  </data>
+  <data name="by" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="cacheSeconds" xml:space="preserve">
+    <value>Cache for menu and accordion (second)</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="categories_and_subcategories" xml:space="preserve">
+    <value>Categories and Subcategories</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="closecountCommentForBlogs" xml:space="preserve">
+    <value>Close ativation Blogs </value>
+  </data>
+  <data name="closed_articles" xml:space="preserve">
+    <value>Closed Articles</value>
+  </data>
+  <data name="close_comments" xml:space="preserve">
+    <value>Close comments</value>
+  </data>
+  <data name="close_date" xml:space="preserve">
+    <value>Close date</value>
+  </data>
+  <data name="close_date_empty" xml:space="preserve">
+    <value>Close date cannot be an empty!</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="comments_closed" xml:space="preserve">
+    <value>Comments are closed</value>
+  </data>
+  <data name="comments_in_blogs" xml:space="preserve">
+    <value>Comments in Blogs</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="content_empty" xml:space="preserve">
+    <value>Content cannot be an empty!</value>
+  </data>
+  <data name="countCommentForBlogs" xml:space="preserve">
+    <value>Count comment for activation blog</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="created_an_article" xml:space="preserve">
+    <value>Created an article</value>
+  </data>
+  <data name="created_a_category" xml:space="preserve">
+    <value>Created a category</value>
+  </data>
+  <data name="created_a_post" xml:space="preserve">
+    <value>Created a post</value>
+  </data>
+  <data name="created_a_subcategory" xml:space="preserve">
+    <value>Created a subcategory</value>
+  </data>
+  <data name="created_a_topic" xml:space="preserve">
+    <value>Created a topic</value>
+  </data>
+  <data name="create_blog" xml:space="preserve">
+    <value>Create Blog</value>
+  </data>
+  <data name="create_category" xml:space="preserve">
+    <value>Create Category</value>
+  </data>
+  <data name="create_date" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="create_new_article" xml:space="preserve">
+    <value>Create New Article</value>
+  </data>
+  <data name="create_new_category" xml:space="preserve">
+    <value>Create New Category</value>
+  </data>
+  <data name="create_new_post" xml:space="preserve">
+    <value>Create New Post</value>
+  </data>
+  <data name="create_subcategory_for" xml:space="preserve">
+    <value>Create SubCategory for</value>
+  </data>
+  <data name="create_topic_for" xml:space="preserve">
+    <value>Create Topic for</value>
+  </data>
+  <data name="data_lenght_3_255" xml:space="preserve">
+    <value>Data lenght must be between 3 and 255</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="display_all_lang" xml:space="preserve">
+    <value>Display in all languages</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="edit_category" xml:space="preserve">
+    <value>Edit Category</value>
+  </data>
+  <data name="edit_comment" xml:space="preserve">
+    <value>Edit Comment</value>
+  </data>
+  <data name="edit_tag" xml:space="preserve">
+    <value>Edit tag</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="enable_comments" xml:space="preserve">
+    <value>Enable comments</value>
+  </data>
+  <data name="enable_comments_for_anonymous" xml:space="preserve">
+    <value>Enable comments for anonymous</value>
+  </data>
+  <data name="enable_comments_for_anonymous1" xml:space="preserve">
+    <value>(* Works only if comments are enabled)</value>
+  </data>
+  <data name="enable_voting" xml:space="preserve">
+    <value>Enable voting</value>
+  </data>
+  <data name="enter_new_tags" xml:space="preserve">
+    <value>Enter new tags seperated by comma or leave this field empty</value>
+  </data>
+  <data name="field_empty" xml:space="preserve">
+    <value>This field cannot be an empty!</value>
+  </data>
+  <data name="four_weeks_ago" xml:space="preserve">
+    <value>Four weeks ago</value>
+  </data>
+  <data name="guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="hours_ago" xml:space="preserve">
+    <value>hours ago</value>
+  </data>
+  <data name="image_for_abstract" xml:space="preserve">
+    <value>Image for short description</value>
+  </data>
+  <data name="invalid_date" xml:space="preserve">
+    <value>Invalid date!.Accepted format is yyyy-mm-dd</value>
+  </data>
+  <data name="invalid_email" xml:space="preserve">
+    <value>The entered email is not valid</value>
+  </data>
+  <data name="in_the" xml:space="preserve">
+    <value>in the</value>
+  </data>
+  <data name="last_visit" xml:space="preserve">
+    <value>Last Visit</value>
+  </data>
+  <data name="latest_updates" xml:space="preserve">
+    <value>Latest Updates</value>
+  </data>
+  <data name="member_since" xml:space="preserve">
+    <value>Member Since</value>
+  </data>
+  <data name="minutes_ago" xml:space="preserve">
+    <value>minutes ago</value>
+  </data>
+  <data name="month_ago" xml:space="preserve">
+    <value>Month ago</value>
+  </data>
+  <data name="most_rated" xml:space="preserve">
+    <value>Most Rated</value>
+  </data>
+  <data name="most_viewed" xml:space="preserve">
+    <value>Most Viewed</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="nameArticles" xml:space="preserve">
+    <value>Name Articles for menu, accardion and page</value>
+  </data>
+  <data name="nameBlogs" xml:space="preserve">
+    <value>Name Blogs for menu, accardion and page</value>
+  </data>
+  <data name="nameSearch" xml:space="preserve">
+    <value>Name Search for accardion</value>
+  </data>
+  <data name="nameTags" xml:space="preserve">
+    <value>Name Tags for accardion</value>
+  </data>
+  <data name="no_comments_yet" xml:space="preserve">
+    <value>No comments yet</value>
+  </data>
+  <data name="older" xml:space="preserve">
+    <value>Older</value>
+  </data>
+  <data name="only_for_register" xml:space="preserve">
+    <value>Only for registered users</value>
+  </data>
+  <data name="open_comments" xml:space="preserve">
+    <value>Open comments</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="popular_articles" xml:space="preserve">
+    <value>Popular Articles</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Posts</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="recent" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+  <data name="recent_activity" xml:space="preserve">
+    <value>Recent Activity</value>
+  </data>
+  <data name="recent_articles" xml:space="preserve">
+    <value>Recent articles</value>
+  </data>
+  <data name="recent_comments" xml:space="preserve">
+    <value>Recent comments</value>
+  </data>
+  <data name="roleArticleEditor" xml:space="preserve">
+    <value>Role Article Editor</value>
+  </data>
+  <data name="roleBlogger" xml:space="preserve">
+    <value>Role Blogger</value>
+  </data>
+  <data name="roleChiefEditor" xml:space="preserve">
+    <value>Role Chief Editor</value>
+  </data>
+  <data name="score_votes" xml:space="preserve">
+    <value>Score: {0} ( {1} Votes )</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="search_for_found_results" xml:space="preserve">
+    <value>Search for '{0}' found  {1} results</value>
+  </data>
+  <data name="short_description" xml:space="preserve">
+    <value>Short description</value>
+  </data>
+  <data name="short_desc_empty" xml:space="preserve">
+    <value>Short description cannot be an empty!</value>
+  </data>
+  <data name="statistic" xml:space="preserve">
+    <value>Statistic</value>
+  </data>
+  <data name="subcategory" xml:space="preserve">
+    <value>SubCategory</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>Tags:</value>
+  </data>
+  <data name="tags1" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="three_months_ago" xml:space="preserve">
+    <value>Three months ago</value>
+  </data>
+  <data name="three_weeks_ago" xml:space="preserve">
+    <value>Three weeks ago</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="title_empty" xml:space="preserve">
+    <value>Title cannot be an empty!</value>
+  </data>
+  <data name="title_lenght_5_255" xml:space="preserve">
+    <value>Title lenght must be between 5 and 255</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="topic" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Topics</value>
+  </data>
+  <data name="top_rated" xml:space="preserve">
+    <value>Top Rated</value>
+  </data>
+  <data name="top_viewed" xml:space="preserve">
+    <value>Top Viewed</value>
+  </data>
+  <data name="two_months_ago" xml:space="preserve">
+    <value>Two months ago</value>
+  </data>
+  <data name="two_weeks_ago" xml:space="preserve">
+    <value>Two weeks ago</value>
+  </data>
+  <data name="unlock_articles" xml:space="preserve">
+    <value>Unlock articles</value>
+  </data>
+  <data name="unlock_blogs" xml:space="preserve">
+    <value>Unlock blogs</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="viewInfoAuthorArticle" xml:space="preserve">
+    <value>Unlock info Author Article</value>
+  </data>
+  <data name="viewInfoClosedComments" xml:space="preserve">
+    <value>Unlock info Closed Comments</value>
+  </data>
+  <data name="viewInfoViewsArticle" xml:space="preserve">
+    <value>Unlock info Views Article</value>
+  </data>
+  <data name="views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="view_user_profile" xml:space="preserve">
+    <value>View user's profile</value>
+  </data>
+  <data name="week_ago" xml:space="preserve">
+    <value>Week ago</value>
+  </data>
+  <data name="yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="recent_posts" xml:space="preserve">
+    <value>Recent posts</value>
+  </data>
+  <data name="related_links" xml:space="preserve">
+    <value>Related Links</value>
+  </data>
+  <data name="showRelatedLinks" xml:space="preserve">
+    <value>Show related links</value>
+  </data>
+  <data name="moderate_comments" xml:space="preserve">
+    <value>Enable comments moderation</value>
+  </data>
+  <data name="subscribe_comments" xml:space="preserve">
+    <value>Subscribe to comments</value>
+  </data>
+  <data name="approve_comment" xml:space="preserve">
+    <value>Approve comment</value>
+  </data>
+  <data name="email_commentupdates" xml:space="preserve">
+    <value>Hello, &lt;b&gt;{0}&lt;/b&gt;.&lt;br/&gt;You received this message because you subscribed to the discussion in &lt;b&gt;{1}
+&lt;/b&gt;.&lt;br/&gt;=====================================
+&lt;br/&gt;&lt;b&gt;Author: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Date: &lt;/b&gt;{3}&lt;br/&gt;&lt;b&gt;Comment: &lt;/b&gt;{4}
+&lt;br/&gt;=====================================
+&lt;br/&gt;You receive this mail because you have registered on the site {5} and have subscribed to receive notifications by e-mail . Attention! This email is generated automatically ,do not respond to it !</value>
+  </data>
+  <data name="new_comment" xml:space="preserve">
+    <value>New comment</value>
+  </data>
+  <data name="email_commentmoderate" xml:space="preserve">
+    <value>Hello, &lt;b&gt;{0}&lt;/b&gt;.&lt;br/&gt;You received this email because you have agreed to moderate &lt;b&gt;{1}
+&lt;/b&gt;.&lt;br/&gt;=====================================
+&lt;br/&gt;&lt;b&gt;Author: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Date: &lt;/b&gt;{3}&lt;br/&gt;&lt;b&gt;Comment: &lt;/b&gt;{4}
+&lt;br/&gt;=====================================
+&lt;br/&gt;You receive this mail because you have registered on the site {5} and have subscribed to receive notifications by e-mail . Attention! This email is generated automatically ,do not respond to it !</value>
+  </data>
+  <data name="unsubscribe_comments" xml:space="preserve">
+    <value>Unsubscribe from comments</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="add_new_page" xml:space="preserve">
+    <value>Add page</value>
+  </data>
+  <data name="by_date" xml:space="preserve">
+    <value>By Date</value>
+  </data>
+  <data name="unapproved_comments" xml:space="preserve">
+    <value>Unapproved Comments</value>
+  </data>
+  <data name="waiting_for_moderation" xml:space="preserve">
+    <value>Waiting for moderation</value>
+  </data>
+  <data name="journalists_manager" xml:space="preserve">
+    <value>Journalists Manager</value>
+  </data>
+  <data name="select_user" xml:space="preserve">
+    <value>Select user</value>
+  </data>
+  <data name="include_subcategories" xml:space="preserve">
+    <value>Include subcategories</value>
+  </data>
+  <data name="reassign_journalist" xml:space="preserve">
+    <value>Reassign journalist</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="subcategories" xml:space="preserve">
+    <value>Subcategories</value>
+  </data>
+  <data name="menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="quote" xml:space="preserve">
+    <value>Quote</value>
+  </data>
+  <data name="closed" xml:space="preserve">
+    <value>closed</value>
+  </data>
+  <data name="my_subscriptions" xml:space="preserve">
+    <value>My subscriptions</value>
+  </data>
+  <data name="last_comment" xml:space="preserve">
+    <value>Last comment</value>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="awaiting_moderation" xml:space="preserve">
+    <value>Awaiting moderation</value>
+  </data>
+  <data name="enable_comment_votes" xml:space="preserve">
+    <value>Enable comments voting</value>
+  </data>
+  <data name="article_seo" xml:space="preserve">
+    <value>Article SEO setting</value>
+  </data>
+</root>

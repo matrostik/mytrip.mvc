@@ -1,0 +1,164 @@
+@model mtm.Articles.Models.ArticleSeoModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(ArticleLanguage.article_setting);
+    ViewBag.Keywords = mtm.Articles.ModuleSetting.ArticlesPageKeyWords();
+    ViewBag.Description = mtm.Articles.ModuleSetting.ArticlesPageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@ArticleLanguage.article_setting</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()) {
+<fieldset>
+<table class="noborders"><tr><td style="Display:@Model.view_en_us">       
+<div class="editor-label">
+@Html.LabelFor(model => model.nameArticles_en_us, ArticleLanguage.nameArticles+" (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameArticles_en_us)
+@Html.ValidationMessageFor(model => model.nameArticles_en_us)
+</div>
+<div style="Display:@Model.view_blog">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameBlogs_en_us, ArticleLanguage.nameBlogs + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameBlogs_en_us)
+@Html.ValidationMessageFor(model => model.nameBlogs_en_us)
+</div></div><div class="editor-label">
+@Html.LabelFor(model => model.nameSearch_en_us, ArticleLanguage.nameSearch + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameSearch_en_us)
+@Html.ValidationMessageFor(model => model.nameSearch_en_us)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.nameTags_en_us, ArticleLanguage.nameTags + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTags_en_us)
+@Html.ValidationMessageFor(model => model.nameTags_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.titleArticles_en_us, mtm.Articles.ModuleSetting.NameArticlesPage() + " Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleArticles_en_us)
+@Html.ValidationMessageFor(model => model.titleArticles_en_us)
+</div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.article_seokeywords_en_us, mtm.Articles.ModuleSetting.NameArticlesPage() + " Keywords (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.article_seokeywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.article_seokeywords_en_us)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.article_seodescription_en_us, mtm.Articles.ModuleSetting.NameArticlesPage() + " Description (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.article_seodescription_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.article_seodescription_en_us)
+        </div>
+        <div style="Display:@Model.view_blog">
+        <div class="editor-label">
+@Html.LabelFor(model => model.titleBlogs_en_us, mtm.Articles.ModuleSetting.NameBlogsPage() + " Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleBlogs_en_us)
+@Html.ValidationMessageFor(model => model.titleBlogs_en_us)
+</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.blogs_seokeywords_en_us, mtm.Articles.ModuleSetting.NameBlogsPage() + " Keywords (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.blogs_seokeywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.blogs_seokeywords_en_us)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.blogs_seodescription_en_us, mtm.Articles.ModuleSetting.NameBlogsPage() + " Description (en-us)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.blogs_seodescription_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.blogs_seodescription_en_us)
+        </div>
+        
+        </div>
+</td><td style="Display:@Model.view_ru_ru">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameArticles_ru_ru, ArticleLanguage.nameArticles + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameArticles_ru_ru)
+@Html.ValidationMessageFor(model => model.nameArticles_ru_ru)
+</div>
+<div style="Display:@Model.view_blog">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameBlogs_ru_ru, ArticleLanguage.nameBlogs + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameBlogs_ru_ru)
+@Html.ValidationMessageFor(model => model.nameBlogs_ru_ru)
+</div></div><div class="editor-label">
+@Html.LabelFor(model => model.nameSearch_ru_ru, ArticleLanguage.nameSearch + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameSearch_ru_ru)
+@Html.ValidationMessageFor(model => model.nameSearch_ru_ru)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.nameTags_ru_ru, ArticleLanguage.nameTags + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTags_ru_ru)
+@Html.ValidationMessageFor(model => model.nameTags_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.titleArticles_ru_ru, mtm.Articles.ModuleSetting.NameArticlesPage() + " Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleArticles_ru_ru)
+@Html.ValidationMessageFor(model => model.titleArticles_ru_ru)
+</div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.article_seokeywords_ru_ru, mtm.Articles.ModuleSetting.NameArticlesPage() + " Keywords (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.article_seokeywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.article_seokeywords_ru_ru)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.article_seodescription_ru_ru, mtm.Articles.ModuleSetting.NameArticlesPage() + " Description (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.article_seodescription_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.article_seodescription_ru_ru)
+        </div>
+        <div style="Display:@Model.view_blog">
+        <div class="editor-label">
+@Html.LabelFor(model => model.titleBlogs_ru_ru, mtm.Articles.ModuleSetting.NameBlogsPage() + " Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.titleBlogs_ru_ru)
+@Html.ValidationMessageFor(model => model.titleBlogs_ru_ru)
+</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.blogs_seokeywords_ru_ru, mtm.Articles.ModuleSetting.NameBlogsPage() + " Keywords (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.blogs_seokeywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.blogs_seokeywords_ru_ru)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.blogs_seodescription_ru_ru, mtm.Articles.ModuleSetting.NameBlogsPage() + " Description (ru-ru)")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.blogs_seodescription_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.blogs_seodescription_ru_ru)
+        </div>        
+        </div>
+</td></tr></table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") </div>
+</fieldset> 
+}
+}
+

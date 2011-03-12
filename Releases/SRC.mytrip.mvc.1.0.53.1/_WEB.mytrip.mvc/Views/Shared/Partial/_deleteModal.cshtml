@@ -1,0 +1,14 @@
+﻿<div id="deleteModal" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png", "warning", "i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel", "right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok", "right")      
+</div>
+</div> 
+</div>

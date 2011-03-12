@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3667EA50-4612-4E51-B3E2-B0E7E009469D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mtm.RssParser</RootNamespace>
+    <AssemblyName>mtm.RssParser</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\_WEB.mytrip.mvc\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Mytrip.Mvc\bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\mtm_RssparserExportController.cs" />
+    <Compile Include="Controllers\RssparserController.cs" />
+    <Compile Include="Export.cs" />
+    <Compile Include="Files\JScripts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JScripts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\Localisation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localisation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\ScriptSql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptSql.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\WebPages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebPages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\RssparserHelpers.cs" />
+    <Compile Include="Models\RssparserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DataEntities\MssqlRssparser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MssqlRssparser.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\MysqlRssparser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MysqlRssparser.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\mytrip_rssparser.cs">
+      <DependentUpon>RssparserPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\RssparserPocoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RssparserPocoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\DataEntities\RssparserPocoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RssparserPocoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\RssparserRepository.cs" />
+    <Compile Include="InstallAndUninstall.cs" />
+    <Compile Include="RssparserLanguage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RssparserLanguage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RssparserLanguage.ru-ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RssparserLanguage.ru-ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleSetting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Repository\DataEntities\MssqlRssparser.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MssqlRssparser.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Repository\DataEntities\MysqlRssparser.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MysqlRssparser.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\DataEntities\RssparserPocoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RssparserPocoModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Repository\DataEntities\RssparserPocoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RssparserPocoModel.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\setting.cshtml" />
+    <None Include="Resources\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\JScripts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>JScripts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\Localisation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localisation.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\ScriptSql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ScriptSql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Files\WebPages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebPages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RssparserLanguage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RssparserLanguage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RssparserLanguage.ru-ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RssparserLanguage.ru-ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mtm.Core\mtm.Core.csproj">
+      <Project>{7C09AD82-5086-4DD1-83FE-9240FD9FDFF9}</Project>
+      <Name>mtm.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.cshtml" />
+    <None Include="Resources\index.cshtml" />
+    <None Include="Resources\manager.cshtml" />
+    <None Include="Resources\ScriptMySql.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteScriptMysql.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScriptMSSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteScriptMSSQL.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ru_ru.mtm.RssParser.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rssparser.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

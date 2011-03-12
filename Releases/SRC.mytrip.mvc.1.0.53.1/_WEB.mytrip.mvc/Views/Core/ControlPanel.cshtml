@@ -1,0 +1,81 @@
+@model mtm.Core.Models.ControlPanelModel
+@{ 
+    /* Copyright ?? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.control_panel);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section content{
+@Html.BreadCumps(">", CoreLanguage.control_panel)
+<h1 class="title">@CoreLanguage.control_panel</h1>
+<table class="separate">
+<tr>
+<td style="width:50%;">
+@Html.MytripImage("/images/generalsetting.png", "generalsetting", "right")
+<ol class="numbered" style="font-size: inherit">
+@if (Model.viewAdmin)
+{
+    <li><a href="/Core/CreateBase">@CoreLanguage.database_connection</a></li>
+<li><a href="/Core/InstallModules">@CoreLanguage.InstallModules</a></li>
+<li><a href="/Core/Email">@CoreLanguage.Email_setting</a></li>
+    <li><a href="/Core/Statistic">@CoreLanguage.statisticSetting</a></li>
+    <li><a href="/Core/Geo">@CoreLanguage.geoSetting</a></li>
+}                    
+</ol>
+</td>
+@if (Model.viewAdmin)
+{
+<td style="width:50%;">
+@Html.MytripImage("/images/usersetting.png", "usersetting", "right")
+<ol class="numbered" style="font-size: inherit">
+<li><a href="/Core/Logon">@CoreLanguage.Membership_Settings</a></li>
+<li><a href="/Users">@CoreLanguage.user_manager</a></li>
+<li><a href="/File/Index/()">@CoreLanguage.file_manager</a></li>
+<li><a href="/Core/EditorRewrite">@CoreLanguage.rewritetitle</a>(rewrite)</li>
+</ol>
+</td>
+}
+</tr><tr>
+<td style="width:50%;">
+@Html.MytripImage("/images/menusetting.png", "menusetting", "right")
+<ol class="numbered" style="font-size: inherit">
+
+<li><a href="/Core/HomePage">@CoreLanguage.homepage_setting</a></li>
+<li><a href="/Core/TopMenu">@CoreLanguage.topmenu_setting</a></li>
+<li><a href="/Core/CorSideBar">@CoreLanguage.sidebar_setting</a></li> 
+<li><a href="/Core/Announce">@CoreLanguage.announce</a></li>                   
+</ol>
+</td>
+<td style="width:50%;">
+<ol class="numbered" style="font-size: inherit"> 
+<li><a href="/Core">@CoreLanguage.Core_Settings</a></li>
+<li><a href="/Core/Seo">@CoreLanguage.seo_setting</a></li> 
+<li><a href="/Core/Footer">@CoreLanguage.edit_footer</a></li>
+<li><a href="/Core/GoogleAnalytics">@CoreLanguage.googleAnalytics</a></li>
+<li><a href="/Core/EditorPage/0/CreatePage">@CoreLanguage.CreatePage</a></li>
+</ol>
+</td>
+</tr><tr>
+<td style="width:50%;">
+<ol class="numbered" style="font-size: inherit">
+@{/* WARNING AUTO GENERATE CODE */}
+@{/*--StartSettingControlPanel--*/}
+@{/*--EndSettingControlPanel--*/}                  
+</ol>
+</td>
+<td style="width:50%;">
+<ol class="numbered" style="font-size: inherit">
+@{/* WARNING AUTO GENERATE CODE */}
+@{/*--StartManagerControlPanel--*/}
+@{/*--EndManagerControlPanel--*/}     
+</ol>
+</td>
+</tr>
+</table>
+}

@@ -1,0 +1,117 @@
+@model mtm.Tourism.Models.OrderTourModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich
+       To learn more about mytrip.mvc visit
+       http://mytripmvc.net  http://mytripmvc.codeplex.com
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.seoTitle);
+    ViewBag.Keywords=Model.seokeywords;
+    ViewBag.Description=Model.seodescription;
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,ui.datepicker.js,Page/Tour.OrderTour.js")
+@if (mtm.Core.Settings.LocalisationSetting.culture() == "ru-ru")
+{
+@Html.ScriptLink("ui.datepicker-ru.js")
+}
+}
+@section contentSmall{
+@Html.Partial("Partial/_sideBar") 
+}
+@section contentBig{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@Model.PageTitle</h1>
+@if(Model.mess){
+ <div class="appr">
+<p>@ToursLanguage.ordersend</p>
+</div> 
+}
+else
+{<div id="errorsumm"></div>
+<div class="last"></div><fieldset>
+
+    @using (Html.BeginForm())
+    {
+<table class="noborders">
+<tr>
+<td>
+<div class="editor-label">
+@Html.LabelFor(model => model.Name, CoreLanguage.UserName)
+<br />
+@Html.TextBoxFor(model => model.Name)
+@Html.ValidationMessageFor(model => model.Name)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.Email, CoreLanguage.Email)
+<br />
+@Html.TextBoxFor(model => model.Email)
+@Html.ValidationMessageFor(model => model.Email)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.Phone, ToursLanguage.Phone)
+<br />
+@Html.TextBoxFor(model => model.Phone)
+@Html.ValidationMessageFor(model => model.Phone)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.Country, ToursLanguage.Country)
+<br />
+@Html.TextBoxFor(model => model.Country)
+@Html.ValidationMessageFor(model => model.Country)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.FromCity, ToursLanguage.FromCity)
+<br />
+@Html.TextBoxFor(model => model.FromCity)
+@Html.ValidationMessageFor(model => model.FromCity)
+</div>
+</td><td>
+<div class="editor-label">
+@Html.LabelFor(model => model.CountPeople, ToursLanguage.CountPeople)
+<br />
+@Html.TextBoxFor(model => model.CountPeople)
+@Html.ValidationMessageFor(model => model.CountPeople)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.StartDate, ToursLanguage.startdate)
+<br />
+@Html.TextBoxFor(model => model.StartDate)
+@Html.ValidationMessageFor(model => model.StartDate)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.StopDate, ToursLanguage.stopdate)
+<br />
+@Html.TextBoxFor(model => model.StopDate)
+@Html.ValidationMessageFor(model => model.StopDate)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.Hotel, ToursLanguage.Hotel)
+<br />
+@Html.TextBoxFor(model => model.Hotel)
+@Html.ValidationMessageFor(model => model.Hotel)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.Resort, ToursLanguage.Resort)
+<br />
+@Html.TextBoxFor(model => model.Resort)
+@Html.ValidationMessageFor(model => model.Resort)
+</div>
+</td></tr></table>
+<div class="editor-label">
+ @Html.LabelFor(model => model.Body, CoreLanguage.message) 
+ </div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.Body, new { @class = "message", style = "height: 150px; width:400px;" })
+@Html.ValidationMessageFor(model => model.Body) 
+</div>
+<div class="button">
+@Html.MytripButton(ToursLanguage.ordertour, true, "left")
+</div> 
+    }
+
+</fieldset>}
+}
+

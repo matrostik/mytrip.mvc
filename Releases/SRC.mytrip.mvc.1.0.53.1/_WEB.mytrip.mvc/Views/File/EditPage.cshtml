@@ -1,0 +1,34 @@
+﻿@model mtm.Core.Models.PageModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.Edit_page);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section content{
+@{string idd =(Model.directory.LastIndexOf("()") > 2)?Model.directory.Remove(Model.directory.LastIndexOf("()")): "()";}
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.Edit_page</h1>
+<div class="content">
+@Html.MytripImageLink(Url.Action("Index",new{id=string.Empty}),"/mtm/FileIcon/folder", Membership.ApplicationName,0,32,0)
+@Html.ActionLink(Membership.ApplicationName, "Index", new { id = "()" })
+@Html.MytripDirectory(Model.directory)
+</div>
+@using (Html.BeginForm()){
+<div class="last"></div> 
+<div class="content">
+<div class="editor-field">
+@Html.TextAreaFor(model => model.page, new { style="width:99%;height:600px;"})
+@Html.ValidationMessageFor(model => model.page) 
+</div>
+<div class="button">@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton(Url.Action("Index", "File", new { id = idd }), CoreLanguage.back_to_list, false,"left")  
+</div></div>
+} 
+}

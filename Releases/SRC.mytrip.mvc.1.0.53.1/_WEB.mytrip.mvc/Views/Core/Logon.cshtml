@@ -1,0 +1,97 @@
+﻿@model mtm.Core.Models.CoreLogonModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.Membership_Settings);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.CheckedShow.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.Membership_Settings</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()) {
+<fieldset>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockSiteId, new { id = "unlockSiteId_hideOffDiv" })
+@Html.LabelFor("unlockSiteId_hideOffDiv", CoreLanguage.unlockSiteId)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockOpenId)
+@Html.LabelFor(model => model.unlockOpenId, CoreLanguage.unlockOpenId)
+</div>    
+<div name="unlockSiteId" style="display: none">
+<div class="editor-label">
+@Html.LabelFor(model => model.minRequiredPasswordLength, CoreLanguage.minRequiredPasswordLength)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.minRequiredPasswordLength)
+@Html.ValidationMessageFor(model => model.minRequiredPasswordLength)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.maxInvalidPasswordAttempts, CoreLanguage.maxInvalidPasswordAttempts)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.maxInvalidPasswordAttempts)
+@Html.ValidationMessageFor(model => model.maxInvalidPasswordAttempts)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.requiresUniqueEmail)
+@Html.LabelFor(model => model.requiresUniqueEmail, CoreLanguage.requiresUniqueEmail)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.EmailasUsername)
+@Html.LabelFor(model => model.EmailasUsername, CoreLanguage.EmailasUsername)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.AutoGenerateUserName)
+@Html.LabelFor(model => model.AutoGenerateUserName, CoreLanguage.AutoGenerateUserName)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockCaptcha)
+@Html.LabelFor(model => model.unlockCaptcha, CoreLanguage.unlockCaptcha)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockApprovedEmail)
+@Html.LabelFor(model => model.unlockApprovedEmail, CoreLanguage.unlockApprovedEmail)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockRegistration)
+@Html.LabelFor(model => model.unlockRegistration, CoreLanguage.unlockRegistration)
+</div></div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockVisibleLogon)
+@Html.LabelFor(model => model.unlockVisibleLogon, CoreLanguage.unlockVisibleLogon)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.roleAdmin, CoreLanguage.roleAdmin)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.roleAdmin)
+@Html.ValidationMessageFor(model => model.roleAdmin)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.roleChiefEditor, CoreLanguage.roleChiefEditor)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.roleChiefEditor)
+@Html.ValidationMessageFor(model => model.roleChiefEditor)
+</div>  
+<div class="button">
+ 
+@Html.MytripButton(CoreLanguage.save, true, "left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false, "left") 
+
+</div>
+</fieldset>
+} 
+}

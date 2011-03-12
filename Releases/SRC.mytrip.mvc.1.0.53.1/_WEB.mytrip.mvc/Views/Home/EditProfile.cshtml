@@ -1,0 +1,128 @@
+﻿@model mtm.Core.Models.EditProfileModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.editProfile);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+    ViewBag.BodyOnload = Model.bodyonload;
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Core.ProfileEdit.js")
+@if (mtm.Core.Settings.GeoSetting.unlockGeo())
+{
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+@Html.ScriptLink("Map/Map.js,mtm.Delete.js")
+@Html.ScriptProfileBingMap(Model.UserProfile, true)
+}
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+
+<table class="noborders">
+    <tr>
+        <td style="width: 180px;">
+            <div style="text-align: center;">
+                <a href='/Home/Profile/@TempData["username"].ToString()'>@Html.Avatar(TempData["useremail"].ToString(), new { title = "Profile" })</a></div>
+            @Html.Partial("Partial/_profileSmall")
+        </td>
+        <td>
+        <h1 class="title">@CoreLanguage.editProfile</h1>
+        <div id="errorsumm"></div>
+<div class="last"></div>
+            @using (Html.BeginForm())
+            {
+                <fieldset>
+                    <table class="noborders">
+                        <tr>
+                            <td> <table class="noborders">
+                        <tr>
+                            <td>
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.firstname, CoreLanguage.firstname)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.firstname) 
+                                    @Html.ValidationMessageFor(m => m.firstname)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.lastname, CoreLanguage.lastname)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.lastname) 
+                                    @Html.ValidationMessageFor(m => m.lastname)
+                                </div>
+                                 <div class="editor-label">
+                                    @Html.LabelFor(m => m.description, CoreLanguage.description)
+                                </div>
+                                <div class="editor-field"><div class="dark">
+                                    @Html.TextAreaFor(m => m.description, new { id = "article", style = "height: 100px; width:100%;" }) 
+                                    @Html.ValidationMessageFor(m => m.description)
+                                </div> </div>                              
+                               
+                                <div class="editor-field">
+                                    @Html.HiddenFor(m => m.latitude) 
+                                    @Html.HiddenFor(m => m.longitude) 
+                                </div>
+                                <div class="button">
+                                    @Html.MytripButton(CoreLanguage.save, true, "left")
+                                </div></td>
+                                <td>
+                                 <div class="editor-field">
+                                    @Html.CheckBoxFor(m => m.profilclose) 
+                                    @Html.LabelFor(m => m.profilclose, CoreLanguage.profilclose)
+                                </div>
+                                 <div class="editor-label">
+                                    @Html.LabelFor(m => m.phone, CoreLanguage.phone)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.phone) 
+                                    @Html.ValidationMessageFor(m => m.phone)
+                                </div>
+                                 <div class="editor-label">
+                                    @Html.LabelFor(m => m.site, CoreLanguage.site)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.site) 
+                                    @Html.ValidationMessageFor(m => m.site)
+                                </div>
+                                 <div class="editor-label">
+                                    @Html.LabelFor(m => m.icq, "ICQ")
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.icq) 
+                                    @Html.ValidationMessageFor(m => m.icq)
+                                </div>                              
+                               
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.skype, "Skype")
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(m => m.skype) 
+                                    @Html.ValidationMessageFor(m => m.skype)
+                                </div>  
+                                </td>
+                                </tr> </table>
+                            </td>
+                        </tr>
+                        @if (mtm.Core.Settings.GeoSetting.unlockGeo())
+                        {
+                            <tr>
+                                <td>
+                                    <div id='mapDiv' style='position: relative; height: 400px;'>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </fieldset>
+            }
+        </td>
+    </tr>
+</table>
+}

@@ -1,0 +1,123 @@
+@model mtm.Articles.Models.ArticleViewModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.Article.SeoTitle);
+    ViewBag.Keywords = Model.seokeywords;
+    ViewBag.Description = Model.seodescription;
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,jquery.validate.min.js,jquery.validate.unobtrusive.min.js,SLPlaerChrome.js,mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Articles.js")
+}
+@section contentSmall{
+@Html.Partial("Partial/_sideBar") 
+}
+@section contentBig{
+<div id="votes" class="right">
+@Html.ArticleRating(Model.Article.ApprovedVotes, true, Model.Article.TotalVotes, Model.VotesCount)
+@Html.HiddenFor(x=>x.VotesCount)
+@Html.HiddenFor(x=>x.Article.ArticleId)
+</div>
+@Html.BreadCumps(">", Model.bread)
+@Html.ShowTitleArticle(Model.Article, Model.ReturnId) 
+<div class="content">
+@Html.ShowBodyArticle(Model.Article) 
+<table class="noborders"><tr><td>
+@Html.ArticlePager(Model.PagesIds,Model.Path)
+</td><td>
+@Html.ArticleOptions(Model.Article,Model.isSubscribed)
+</td></tr></table>
+</div><div class="last"></div> 
+<table class="separate">
+<tr>
+<td style="@Model.tableWidth">
+<div class="info">
+@Html.ShowArticleTags(Model.Article)
+@Html.ArticleSpecification(Model.Article)
+</div>
+</td>
+@if (Model.showRelatedLinks)
+{ 
+<td style="@Model.tableWidth">
+<div class="info">
+@Html.ShowRelated(Model.Article)
+</div>
+</td>
+}
+</tr>
+</table>
+@Html.ShowComments(Model.Article, Model.ReturnId)     
+@if (Model.Article.ApprovedComment && (User.Identity.IsAuthenticated || Model.Article.IncludeAnonymComment))
+{
+    if (Model.Blog)
+    {
+<h3 class="title">@ArticleLanguage.add_comment</h3>
+    }
+    {
+        using (Html.BeginForm(new { id = Model.Article.ArticleId }))
+        {
+<div class="last"></div>
+<div class="content">
+@Html.HiddenFor(model => model.Blog)
+@Html.HiddenFor(model => model.Path)
+@Html.HiddenFor(model => model.Title)
+@Html.HiddenFor(model => model.Username)
+@Html.HiddenFor(model => model.ReturnId)
+@if (!User.Identity.IsAuthenticated && Model.Article.IncludeAnonymComment)
+{
+<div class="editor-label">
+@Html.LabelFor(model => model.AnonymName, ArticleLanguage.name)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.AnonymName)
+@Html.ValidationMessageFor(model => model.AnonymName)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.AnonymEmail, ArticleLanguage.email)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.AnonymEmail) 
+@Html.ValidationMessageFor(model => model.AnonymEmail)
+</div>
+} 
+<div id="editor" class="editor-field"><div class="dark">
+@Html.TextAreaFor(model => model.Comment, new { id = "addCommentEditor", style = "height:150px;width:99%;" })
+@Html.ValidationMessageFor(model => model.Comment)
+</div></div>
+@if (!User.Identity.IsAuthenticated && Model.Article.IncludeAnonymComment)
+{
+<div class="editor-label">
+@Html.CaptchaImage(202, 60, "Times New Roman")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.Captcha)
+@Html.ValidationMessageFor(model => model.Captcha)
+</div>   
+} 
+@Html.HiddenFor(model => model.CommentApproved)
+<div class="button">
+@Html.MytripButton(ArticleLanguage.create, true, "okAddComment", "left")
+</div></div>
+        }
+    }
+}
+@Html.Partial("Partial/_deleteModal") 
+<div id="inlineEditComment" style="display:none;"> 
+<div>@Html.MytripImage("/images/edite.png", "edit", "img14")
+@ArticleLanguage.edit_comment</div>
+<table>
+<tr>
+<td>
+<div class="editor-field"><div class="dark">
+@Html.TextArea("EditComment", new { id = "inlineCommentEditor", style = "height:150px;width:99%" })
+</div></div>
+<span class="field-validation-valid" id="Comment_Error"></span>
+@Html.Hidden("editId")
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, true, "cancelInlineEdit", "right")
+@Html.MytripButton("   Ok   ", false, "okInlineEditComment","right")   
+</div> 
+</div>   
+}

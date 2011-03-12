@@ -1,0 +1,9 @@
+﻿body{padding: 0px;font-family: 'Trebuchet MS' , Arial, Helvetica, sans-serif;color: #333; font-size: .9em;}
+div.quote
+{
+    border: 1px dotted #000000;
+    background: #EBEBEB;
+    padding: 3px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

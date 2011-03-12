@@ -1,0 +1,14 @@
+﻿@model string[]
+<li>
+    @Html.Raw(Model[0])
+    @if (Model.Count() > 1 && Model[1] != null)
+    {
+      <ul>         
+              @foreach (var a in Model[1].Split('|'))
+              {  <li>               
+                  @Html.Raw(a)   
+                  </li>  
+              }          
+      </ul>
+    }
+</li>

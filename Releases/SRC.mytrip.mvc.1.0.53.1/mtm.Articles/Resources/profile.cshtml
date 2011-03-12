@@ -1,0 +1,33 @@
+@model mtm.Articles.Models.ArticleProfile
+@{
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.Title);
+    ViewBag.Keywords = mtm.Articles.ModuleSetting.ArticlesPageKeyWords();
+    ViewBag.Description = mtm.Articles.ModuleSetting.ArticlesPageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Articles.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<table class="noborders">
+<tr>
+<td style="width: 180px;">
+         <div style="text-align: center;"><a href='/Home/Profile/@TempData["username"].ToString()'>
+@Html.Avatar(TempData["useremail"].ToString(), new { title=ArticleLanguage.view_user_profile})</a></div>
+     @Html.Partial("Partial/_profileSmall")
+</td>
+<td>
+<h1 class="title">@Model.Title</h1>
+<div class="content">
+@Html.ArticlesProfile(Model.UserName, Model.Path)</div>
+</td></tr>
+</table>
+@Html.Partial("Partial/_deleteModal") 
+}

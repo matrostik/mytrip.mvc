@@ -1,0 +1,112 @@
+﻿@model mtm.Core.Models.EditorPageModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.pagetitle);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Core.About.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@Model.pagetitle</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()) {
+    <fieldset>
+    @Html.HiddenFor(m=>m.id)
+    @Html.HiddenFor(m=>m.id2)
+    <div class="right" id="seo">SEO</div>
+    <div id="seoModal" class="window"> 
+<div class="modalTC">SEO</div>
+<div class="modalC">
+<div class="editor-label">
+            @Html.LabelFor(model => model.seotitle,"Title")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.seotitle)
+            @Html.ValidationMessageFor(model => model.seotitle)
+        </div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.path,"Path")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.path)
+            @Html.ValidationMessageFor(model => model.path)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seokeywords,"Keywords")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seokeywords, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seokeywords)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seodescription,"Description")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seodescription, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seodescription)
+        </div>
+</div> 
+</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title,CoreLanguage.title)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.body,CoreLanguage.body)
+        </div>
+        <div class="editor-field"><div class="dark">
+            @Html.TextAreaFor(model => model.body, new { id = "article", style = "height: 400px; width:100%;" })
+            @Html.ValidationMessageFor(model => model.body)
+        </div></div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.sideBar)
+            @Html.LabelFor(model => model.sideBar,CoreLanguage.sideBar)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.emailForm)
+            @Html.LabelFor(model => model.emailForm,CoreLanguage.emailForm)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.addMenu)
+            @Html.LabelFor(model => model.addMenu,CoreLanguage.addMenu)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.addHomePage)
+            @Html.LabelFor(model => model.addHomePage,CoreLanguage.addHomePage)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.viewOnlyHomePage)
+            @Html.LabelFor(model => model.viewOnlyHomePage,CoreLanguage.viewOnlyHomePage)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.allCulture)
+            @Html.LabelFor(model => model.allCulture,CoreLanguage.all_languages)
+        </div>
+
+        <div class="button">
+            @Html.MytripButton(Model.submit, true,"left")
+            @Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+        </div>
+
+    </fieldset>
+}
+}
