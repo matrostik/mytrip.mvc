@@ -1,0 +1,55 @@
+﻿@model mtm.Core.Models.ModulesModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.InstallModules);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.Delete.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.InstallModules</h1>
+<table class="separate">
+<tr>   
+<td style="width:50%;">
+<h3 class="hometitle">@CoreLanguage.InstallModules</h3>
+<table class="leftmidle" style="width: 100%;">
+@foreach (var x in Model.install){
+<tr class="pane-list"><td style="width:40px;">
+@Html.MytripImgInput("/images/addmodule.png","/Core/InstallModule/"+x.Key,"rename")
+</td><td>
+<h4><b> @x.Value[0]</b>  @x.Value[1]</h4>
+<div style="padding-top: 3px; padding-bottom: 3px">@CoreLanguage.by: @x.Value[2]</div>
+@x.Value[3]
+</td></tr>
+}
+</table> 
+</td>
+<td style="width:50%;">
+<h3 class="hometitle">@CoreLanguage.uninstallmodules</h3>
+<table class="leftmidle" style="width: 100%;">
+@foreach (var x in Model.uninstall)
+{
+<tr class="pane-list"><td style="width:40px;">
+@Html.MytripImgInput("/images/deletemodule.png", "/Core/UninstallModule/" + x.Key, "delete")
+</td><td> 
+<h4><b> @x.Value[0]</b>  @x.Value[1]</h4>
+<div style="padding-top: 3px; padding-bottom: 3px">@CoreLanguage.by: @x.Value[2]</div>
+@x.Value[3]
+</td></tr>
+} 
+</table> 
+</td>
+</tr></table>
+<div class="button">
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.Backtocontrolpanel, true, "left")</div>
+@Html.Partial("Partial/_deleteModal") 
+}

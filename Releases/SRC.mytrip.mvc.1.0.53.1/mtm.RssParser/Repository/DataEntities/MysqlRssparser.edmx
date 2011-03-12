@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MysqlRssparserModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MysqlRssparserModelStoreContainer">
+          <EntitySet Name="mytrip_rssparser" EntityType="MysqlRssparserModel.Store.mytrip_rssparser" store:Type="Tables" Schema="mytripmvc" />
+        </EntityContainer>
+        <EntityType Name="mytrip_rssparser">
+          <Key>
+            <PropertyRef Name="RssparserId" />
+          </Key>
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="256" />
+            <Property Name="SeoTitle" Type="varchar" MaxLength="256" />
+            <Property Name="SeoKeyword" Type="text" />
+            <Property Name="SeoDescription" Type="text" />
+          <Property Name="Path" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="RssparserId" Type="int" Nullable="false" />
+          <Property Name="RssUrl" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Views" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MysqlRssparserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="mytrip_rssparser" EntityType="MysqlRssparserModel.mytrip_rssparser" />
+        </EntityContainer>
+        <EntityType Name="mytrip_rssparser">
+          <Key>
+            <PropertyRef Name="RssparserId" />
+          </Key>
+          <Property Name="AllCulture" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" />
+            <Property Type="String" Name="SeoTitle" />
+            <Property Type="String" Name="SeoKeyword"  />
+            <Property Type="String" Name="SeoDescription"  />
+          <Property Name="Path" Type="String" Nullable="false" />
+          <Property Name="RssparserId" Type="Int32" Nullable="false" />
+          <Property Name="RssUrl" Type="String" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MysqlRssparserModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="mytrip_rssparser"><EntityTypeMapping TypeName="MysqlRssparserModel.mytrip_rssparser"><MappingFragment StoreEntitySet="mytrip_rssparser">
+            <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+                <ScalarProperty Name="SeoKeyword" ColumnName="SeoKeyword" />
+                <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+                <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="Culture" ColumnName="Culture" />
+            <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+            <ScalarProperty Name="Path" ColumnName="Path" />
+            <ScalarProperty Name="RssparserId" ColumnName="RssparserId" />
+            <ScalarProperty Name="RssUrl" ColumnName="RssUrl" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Views" ColumnName="Views" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MysqlRssparser">
+        <EntityTypeShape EntityType="MysqlRssparserModel.mytrip_rssparser" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

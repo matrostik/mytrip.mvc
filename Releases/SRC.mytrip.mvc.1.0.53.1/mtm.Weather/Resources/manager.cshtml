@@ -1,0 +1,68 @@
+@model mtm.Weather.Models.ManagerModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(WeatherLanguage.Weather_manager);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.Delete.js")
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+<h1 class="title">@WeatherLanguage.Weather_manager</h1>
+<div class="content">
+@Html.WeatherList()
+</div>
+<h1 class="title">@WeatherLanguage.add_Weather</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-label">
+@Html.LabelFor(model => model.Title, WeatherLanguage.Title)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Title, new { style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Title)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.UrlXml, WeatherLanguage.UrlXml)
+ <a href="http://informer.gismeteo.ru/getcode/xml.php" target="_blank">informer.gismeteo.ru</a>
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.UrlXml, new { style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.UrlXml)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.VisibleInformer)
+@Html.LabelFor(model => model.VisibleInformer, WeatherLanguage.VisibleInformer)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.AllCulture)
+@Html.LabelFor(model => model.AllCulture, WeatherLanguage.AllCulture)
+</div>
+<div class="button">
+@Html.MytripButton(WeatherLanguage.add_Weather,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>
+}
+<div id="delete" class="window">  
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
+@Html.MytripButton(CoreLanguage.remove, true, "enter","right")      
+</div>
+</div> 
+</div>
+}
+
+

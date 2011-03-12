@@ -1,0 +1,46 @@
+﻿@model mtm.Core.Models.CoreStatisticModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.statisticSetting);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.CheckedShow.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.statisticSetting</h1>
+@using (Html.BeginForm()) {
+<fieldset>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockStatistic, new { id = "Statistic_hideOffDiv" })
+@Html.LabelFor("Statistic_hideOffDiv", CoreLanguage.unlockStatictic)
+</div> <div name="Statistic" style="display: none">
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.Anonym, new { id = "User_hideOnDiv" })
+@Html.LabelFor("User_hideOnDiv", CoreLanguage.statisticAnonym)
+</div>
+   
+<div name="User" style="display: none">
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.User)
+@Html.LabelFor(model => model.User, CoreLanguage.statisticUser)
+</div>
+</div></div>
+
+<div class="button">
+ 
+@Html.MytripButton(CoreLanguage.save, true, "left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false, "left") 
+
+</div>
+</fieldset>
+} 
+}

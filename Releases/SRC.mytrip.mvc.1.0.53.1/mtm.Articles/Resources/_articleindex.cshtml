@@ -1,0 +1,26 @@
+@model mtm.Articles.Repository.DataEntities.mytrip_articles
+<div class="content">  
+<table class="content"><tr>
+<td class="artspcific">
+<div class="info">
+@Html.ArticleSpecification(Model, Model.Path)
+</div></td>
+<td class="artcontent">
+<div class="right">
+@Html.ArticleRating(Model.ApprovedVotes, false, Model.TotalVotes)
+</div>
+<h3 class="hometitle">
+@Html.MytripActionLink(Url.Action("View", new { id = Model.ArticleId, id2 = Model.Path }), Model.Title)
+</h3>
+@Html.MytripActionLink(Url.Action("View", new { id = Model.ArticleId, id2 = Model.Path }), Html.MytripImageForAbstract(Model.ImageForAbstract, 150).ToString())
+@if (Model.OnlyForRegisterUser)
+{  
+<div class="left">
+@Html.MytripImage("/images/Keys.png","", "imgkeys")
+</div>
+}
+@Html.Raw(Model.Abstract)
+<div class="artteg">
+@Html.ShowArticleTags(Model)
+</div></td></tr></table></div>
+<div class="last"></div>

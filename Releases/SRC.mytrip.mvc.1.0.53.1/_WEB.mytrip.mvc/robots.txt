@@ -1,0 +1,8 @@
+﻿User-agent: * 
+Disallow: /Account
+Disallow: /Theme
+Disallow: /mtm
+Disallow: /Scripts
+Disallow: /Content
+
+# WebMatrix 1.0

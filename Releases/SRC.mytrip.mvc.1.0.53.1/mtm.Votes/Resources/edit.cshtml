@@ -1,0 +1,140 @@
+@model mtm.Votes.Models.VotesModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(VotesLanguage.edit_vote);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,ui.datepicker.js,Page/Votes.js")
+@if (mtm.Core.Settings.LocalisationSetting.culture() == "ru-ru")
+{
+@Html.ScriptLink("ui.datepicker-ru.js")
+}
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+<h1 class="title">
+@VotesLanguage.edit_vote</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>    
+<div class="editor-label">
+@Html.HiddenFor(x=>x.QuestionId)
+@Html.LabelFor(model => model.Question, VotesLanguage.question_max_lenght)
+</div><div class="editor-field">
+@Html.TextAreaFor(x=>x.Question,new {@class="message", style = "width: 350px;height:50px"})
+@Html.ValidationMessageFor(model => model.Question)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.Count, VotesLanguage.choose_number_of_answers)
+@Html.DropDownListFor(model => model.Count, Model.QtAnswers)
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers1, VotesLanguage.answer + " " + 1)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers1, new { @class="an",style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers1)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers2, VotesLanguage.answer + " " + 2)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers2, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers2)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers3, VotesLanguage.answer + " " + 3)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers3, new {@class="an" ,style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers3)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers4, VotesLanguage.answer + " " + 4)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers4, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers4)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers5, VotesLanguage.answer + " " + 5)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers5, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers5)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers6, VotesLanguage.answer + " " + 6)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers6, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers6)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers7, VotesLanguage.answer + " " + 7)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers7, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers7)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers8, VotesLanguage.answer + " " + 8)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers8, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers8)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers9, VotesLanguage.answer + " " + 9)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers9, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers9)
+</div>
+</div>
+<div class="ansv">
+<div class="editor-label">
+@Html.LabelFor(model => model.Answers10, VotesLanguage.answer + " " + 10)
+</div><div class="editor-field">   
+@Html.TextBoxFor(model => model.Answers10, new {@class="an", style = "width: 350px;" })
+@Html.ValidationMessageFor(model => model.Answers10)
+</div>
+</div> 
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.AllCulture) 
+@Html.LabelFor(model => model.AllCulture, VotesLanguage.display_in_all_languages)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.OnlyForRegisterUser)
+@Html.LabelFor(model => model.OnlyForRegisterUser, VotesLanguage.only_for_registered_users)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.Active)
+@Html.LabelFor(model => model.Active, VotesLanguage.make_active)
+</div><div class="editor-label">
+@Html.LabelFor(model => model.CloseDate, VotesLanguage.close_date) 
+</div><div class="editor-field"> 
+@Html.TextBoxFor(model => model.CloseDate)
+@Html.ValidationMessageFor(model => model.CloseDate)
+</div><div class="button">
+@Html.MytripButton(VotesLanguage.edit,true,"left")
+@Html.MytripButton("/Votes/Index", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>
+} 
+}
+

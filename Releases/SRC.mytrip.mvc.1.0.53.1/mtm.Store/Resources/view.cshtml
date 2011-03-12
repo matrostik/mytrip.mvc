@@ -1,0 +1,78 @@
+@model mtm.Store.Models.ProductModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.seotitle);
+    ViewBag.Keywords = Model.seokeywords;
+    ViewBag.Description = Model.seodescription;
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,Page/Store.View.js")
+}
+@section contentSmall{
+@Html.Partial("Partial/_sideBar") 
+}
+@section contentBig{
+@Html.BreadCumps(">",Model.Bread)
+@Model.review2
+<div id="appr"></div><div class="last"></div> 
+@if(Model.comparison&&Model.comparison2){
+@Html.StoreProduct(Model.Product,100,1,false,false,true,Model.comparison2)
+}
+else if(Model.comparison&&!Model.comparison2)
+{
+<div class="content">
+@Html.ViewProduct(Model.ViewProduct)
+</div>
+<div class="last"></div>
+
+@Html.ViewOptions(Model.ViewProduct)
+
+}
+else if(!Model.comparison&&!Model.comparison2){
+<div class="noappr">
+<h1 class="error">@StoreLanguage.nocompare</h1>
+<br/>
+<span class="error">@StoreLanguage.nocompare2</span>
+</div>
+}
+<div id="delete"class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png","warning","i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "close","right")
+@Html.MytripButton(CoreLanguage.remove, true, "enter","right")
+</div></div></div>
+
+<div id="review"class="window"> 
+<div class="modalTC">@Model.reviewTitle</div>
+<div class="modalC">
+
+@using (Html.BeginForm()){
+<div class="editor-field">
+@Html.TextAreaFor(model => model.review, new {@class="message", style = "height: 50px; width:300px;" })
+@Html.ValidationMessageFor(model => model.review) 
+</div>
+<div class="button">
+@Html.MytripButton(CoreLanguage.send, true,"right")
+</div>
+}</div></div>
+
+<div id="zoom" class="window"> 
+<div class="modalTC"></div>
+<div class="modalC">
+<img alt="product" src=""/>
+</div>
+</div>
+}
+

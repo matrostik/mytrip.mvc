@@ -1,0 +1,150 @@
+﻿@model mtm.Core.Models.CorePageModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.seotitle);
+    ViewBag.Keywords = Model.seokeywords;
+    ViewBag.Description = Model.seodescription;
+}
+@section scriptlink{
+    @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.Delete.js")
+}
+@section contentBig{
+    @if (Model.sideBar)
+    {    
+ 
+      
+        <table class="noborders">
+            <tr>
+                <td>
+                    @Html.BreadCumps(">", Model.bread)
+                    <h1 class="title">
+                        @Html.EditorPage(Model.id) @Model.title
+                    </h1>
+                </td>
+                <td>
+                    <div class="right">@Html.AddPageAndSubPage(Model.pages)</div>
+                </td>
+            </tr>
+        </table>
+        <div class="content">
+            @Model.body
+        </div>
+        @Html.LinkPageAndSubpage(Model.pages)
+   if (Model.approvedemail)
+   { if (Model.sendemail)
+       {
+        <div class="last">
+        </div>
+        <div class="appr">
+            <p>@CoreLanguage.send_email</p>
+        </div>    
+       }
+       else
+       {
+       using (Html.BeginForm())
+       {
+        <div class="last">
+        </div> 
+        <div class="content">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.name, CoreLanguage.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email, CoreLanguage.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.messege, CoreLanguage.message)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.messege, new { @class = "message", style = "height: 150px; width:400px;" })
+                @Html.ValidationMessageFor(model => model.messege)
+            </div>
+            <div class="button">
+                @Html.MytripButton(CoreLanguage.send, true, "left")
+            </div>
+        </div>
+       }
+   }
+    }}
+}
+@section contentSmall{
+    @if (Model.sideBar)
+    {
+        @Html.Partial("Partial/_sideBar")
+    }
+}
+@section content{
+    @if (!Model.sideBar)
+    {
+    
+        <div class="right">@Html.AddPageAndSubPage(Model.pages)</div> 
+        @Html.BreadCumps(">", Model.bread)
+        <h1 class="title">
+            @Html.EditorPage(Model.id) @Model.title
+        </h1>
+        <div class="content">
+            @Model.body
+        </div>
+        @Html.LinkPageAndSubpage(Model.pages)
+   if (Model.approvedemail)
+   {
+       if (Model.sendemail)
+       {
+        <div class="last">
+        </div>
+        <div class="appr">
+            <p>@CoreLanguage.send_email</p>
+        </div>    
+       }
+       else
+       {
+           using (Html.BeginForm())
+           {
+        <div class="last">
+        </div>  
+        <div class="content">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.name, CoreLanguage.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email, CoreLanguage.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.messege, CoreLanguage.message)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.messege, new { @class = "message", style = "height: 150px; width:400px;" })
+                @Html.ValidationMessageFor(model => model.messege)
+            </div>
+            <div class="button">
+                @Html.MytripButton(CoreLanguage.send, true, "left")
+            </div>
+        </div>
+           }
+       }
+     }
+   }
+    @Html.Partial("Partial/_deleteModal")
+}

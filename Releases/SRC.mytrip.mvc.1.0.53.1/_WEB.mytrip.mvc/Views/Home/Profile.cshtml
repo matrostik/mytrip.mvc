@@ -1,0 +1,54 @@
+﻿@model mtm.Core.Models.ProfileUsersModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.title);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+    ViewBag.BodyOnload = Model.bodyonload;
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+@if (mtm.Core.Settings.GeoSetting.unlockGeo() && !Model.closeprofile)
+{
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+@Html.ScriptLink("Map/Map.js,mtm.Delete.js")
+@Html.ScriptProfileBingMap(Model.UserProfile,false)
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var st = $('.dropdown dt a').find('span.value').html();
+        $('.dropdown dd ul li a').click(function () {
+            var selected = $(this).find('span.value').html();
+            if (st != selected) {
+                window.location.href = '/Home/Profile/@(Model.UserName)/'+selected;
+            }
+        });
+    });
+</script>
+
+}
+@section content{
+@Html.BreadCumps(">", Model.title)
+<table class="noborders">
+<tr>
+<td style="width: 180px;">
+<div style="text-align: center;">
+@Html.Avatar(Model.Email, new { title=Model.UserName})</div>
+@Html.UserData(Model.UserName)
+@Html.Partial("Partial/_profileSmall")
+</td>
+<td style="border: 0;">
+<h1 class="title">
+@Model.title</h1>
+<div class="content">
+@Html.ProfileInfo(Model.UserProfile)         
+@Html.Partial("Partial/_profileBig") </div>        
+</td></tr>
+</table>
+}

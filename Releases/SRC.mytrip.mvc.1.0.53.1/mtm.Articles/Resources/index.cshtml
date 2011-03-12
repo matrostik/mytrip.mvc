@@ -1,0 +1,124 @@
+@model mtm.Articles.Models.ArticleIndexModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.seoTitle);
+    ViewBag.Keywords = Model.seokeywords;
+    ViewBag.Description = Model.seodescription;
+}
+@section scriptlink{
+    @Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,jquery.validate.min.js,jquery.validate.unobtrusive.min.js,mtm.jHtmlArea.js,mtm.jHtmlArea.Smiles.js,Page/Articles.js")
+}
+@section contentSmall{
+    @Html.Partial("Partial/_sideBar")
+}
+@section contentBig{
+    @Html.BreadCumps(">", Model.bread)
+    <table class="noborders">
+        <tr>
+            <td>
+                <div class="right">
+                    @Html.EditorCategory(Model.ShowAddCategory, Model.ShowAddSubCategory, Model.ShowAddArticle, Model.ShowAddBlog, Model.ShowAddPost, Model.CategoryId)
+                </div>
+                @Html.ParrentCategory(Model.ParentCategory, Model.Path)
+                <h1 class="title">
+                    @Html.EditDeleteCategory(Model.ShowEditDelete, Model.CategoryId, Model.Path)
+                    @Model.PageTitle
+                    @Html.ArticleRssLink(Model.PageTitle, Model.Path, Model.CategoryId, 14)
+                </h1>
+            </td>
+        </tr>
+    </table>
+    @Html.ShowDetailsBlog(Model.ShowDetailsBlog, Model.ParentCategory)
+    @if (Model.Articles == null)
+    {
+        @Html.MytripPager(Model.DefaultCount, Model.Total, "...")
+    }
+    <div class="last">
+    </div>
+    @Html.ListCategories(Model.Categories, Model.Path)
+    @if (Model.Articles == null)
+    {
+        @Html.MytripPager(Model.DefaultCount, Model.Total, "...")
+    }
+    else
+    {
+        <div class="last">
+        </div> 
+        @Html.MytripPager(Model.DefaultCount, Model.Total, "...")
+        <div class="last">
+        </div>
+        <div class="content">
+            <div class="sort">
+                @Html.SortPager(Model.Path, Model.CategoryId)</div>
+        </div>
+        <div class="last">
+        </div>
+           {
+               foreach (var article in Model.Articles)
+               {
+        @Html.Partial("Partial/_articleindex", article)  
+               }
+           }
+        @Html.MytripPager(Model.DefaultCount, Model.Total, "...")
+    }
+    @Html.Partial("Partial/_deleteModal")
+    <div id="modalCategory" class="window">
+        <div class="modalTC">@Html.MytripImage("/images/edite.png", "edit", "img14")
+            @ArticleLanguage.edit</div>
+        <div class="modalC">
+            <div class="editor-label">
+                @Html.LabelFor("catTitle", ArticleLanguage.name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("catTitle")
+                <span class="field-validation-valid" id="titleError"></span>
+            </div>
+            @Html.Hidden("modalEditId")
+            @Html.HiddenFor(model => model.Path)
+            <div id="modalShowMenu">
+                @Html.CheckBox("modalSeparateBlock")
+                @Html.LabelFor("modalSeparateBlock", ArticleLanguage.add_to_menu)
+            </div>
+            <div id="modalShowLang">
+                @Html.CheckBox("modalAllCulture")
+                @Html.LabelFor("modalAllCulture", ArticleLanguage.display_all_lang)
+            </div>
+            <div id="seoOptions">
+                <div class="editor-label">
+                    @Html.LabelFor("catPath", "Path")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("catPath")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("catSeoTitle", "Title")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("catSeoTitle")
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("Keywords", "Keywords")
+                </div>
+                <div class="editor-field">
+                    @Html.TextArea("Keywords", new { @class = "message", style = "height: 50px; width:400px;" })
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor("Description", "Description")
+                </div>
+                <div class="editor-field">
+                    @Html.TextArea("Description", new { @class = "message", style = "height: 50px; width:400px;" })
+                </div>
+            </div>
+            <div class="button">
+                @Html.MytripButton(CoreLanguage.cancel, true, "cancel", "right")
+                @Html.MytripButton("   Ok   ", false, "okEditCategory", "right")
+            </div>
+        </div>
+    </div>
+}

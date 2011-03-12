@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="account_error_captcha" xml:space="preserve">
+    <value>Капча введена неверно.</value>
+  </data>
+  <data name="activated_a_blog" xml:space="preserve">
+    <value>Активировал(а) блог</value>
+  </data>
+  <data name="activation_blog" xml:space="preserve">
+    <value>Создайте {0} комментариев для активации Вашего блога.</value>
+  </data>
+  <data name="added_a_comment" xml:space="preserve">
+    <value>Добавил(а) комментарий</value>
+  </data>
+  <data name="added_by" xml:space="preserve">
+    <value>Добавил(а)</value>
+  </data>
+  <data name="add_article" xml:space="preserve">
+    <value>Добавить статью</value>
+  </data>
+  <data name="add_category" xml:space="preserve">
+    <value>Добавить рубрику</value>
+  </data>
+  <data name="add_comment" xml:space="preserve">
+    <value>Добавить комментарий</value>
+  </data>
+  <data name="add_post" xml:space="preserve">
+    <value>Добавить пост</value>
+  </data>
+  <data name="add_subcategory" xml:space="preserve">
+    <value>Добавить подрубрику</value>
+  </data>
+  <data name="add_tags" xml:space="preserve">
+    <value>Добавить теги</value>
+  </data>
+  <data name="add_topic" xml:space="preserve">
+    <value>Добавить тему</value>
+  </data>
+  <data name="add_to_menu" xml:space="preserve">
+    <value>Добавить в меню</value>
+  </data>
+  <data name="all_languages" xml:space="preserve">
+    <value>Все языки</value>
+  </data>
+  <data name="are_you_sure" xml:space="preserve">
+    <value>Вы уверены?</value>
+  </data>
+  <data name="articles" xml:space="preserve">
+    <value>Статьи</value>
+  </data>
+  <data name="articles_for_tag" xml:space="preserve">
+    <value>Статьи с тегом</value>
+  </data>
+  <data name="articles_manager" xml:space="preserve">
+    <value>Управление Статьями</value>
+  </data>
+  <data name="articles_popular_recent" xml:space="preserve">
+    <value>{0}: Популярное/Новое</value>
+  </data>
+  <data name="article_setting" xml:space="preserve">
+    <value>Настройка Статей</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="back_to_archive" xml:space="preserve">
+    <value>Назад в архив</value>
+  </data>
+  <data name="back_to_category" xml:space="preserve">
+    <value>Назад в рубрику</value>
+  </data>
+  <data name="back_to_list" xml:space="preserve">
+    <value>Назад к списку</value>
+  </data>
+  <data name="blog" xml:space="preserve">
+    <value>Блог</value>
+  </data>
+  <data name="blogs" xml:space="preserve">
+    <value>Блоги</value>
+  </data>
+  <data name="blogs_popular_recent" xml:space="preserve">
+    <value>{0}: Популярное/Новое</value>
+  </data>
+  <data name="by" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cacheSeconds" xml:space="preserve">
+    <value>Кеш для меню и аккордиона (секунды)</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Рубрики</value>
+  </data>
+  <data name="categories_and_subcategories" xml:space="preserve">
+    <value>Рубрики и Подрубрики</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Рубрика</value>
+  </data>
+  <data name="closecountCommentForBlogs" xml:space="preserve">
+    <value>Закрыть активацию Блогов</value>
+  </data>
+  <data name="closed_articles" xml:space="preserve">
+    <value>Закрытые статьи</value>
+  </data>
+  <data name="close_comments" xml:space="preserve">
+    <value>Закрыть комментарии</value>
+  </data>
+  <data name="close_date" xml:space="preserve">
+    <value>Дата закрытия</value>
+  </data>
+  <data name="close_date_empty" xml:space="preserve">
+    <value>Дата закрытия не может быть пустой!</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="comments_closed" xml:space="preserve">
+    <value>Комментарии закрыты</value>
+  </data>
+  <data name="comments_in_blogs" xml:space="preserve">
+    <value>Комментарии в блогах</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="content_empty" xml:space="preserve">
+    <value>Содержание не может быть пустым!</value>
+  </data>
+  <data name="countCommentForBlogs" xml:space="preserve">
+    <value>Количество комментариев для активации блога</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="created_an_article" xml:space="preserve">
+    <value>Добавил(а) статью</value>
+  </data>
+  <data name="created_a_category" xml:space="preserve">
+    <value>Создал(а) рубрику</value>
+  </data>
+  <data name="created_a_post" xml:space="preserve">
+    <value>Добавил(а) пост</value>
+  </data>
+  <data name="created_a_subcategory" xml:space="preserve">
+    <value>Создал(а) подрубрику</value>
+  </data>
+  <data name="created_a_topic" xml:space="preserve">
+    <value>Добавил(а) тему</value>
+  </data>
+  <data name="create_blog" xml:space="preserve">
+    <value>Создать блог</value>
+  </data>
+  <data name="create_category" xml:space="preserve">
+    <value>Создать рубрику</value>
+  </data>
+  <data name="create_date" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="create_new_article" xml:space="preserve">
+    <value>Создать новую статью</value>
+  </data>
+  <data name="create_new_category" xml:space="preserve">
+    <value>Создать новую рубрику</value>
+  </data>
+  <data name="create_new_post" xml:space="preserve">
+    <value>Создать новый пост</value>
+  </data>
+  <data name="create_subcategory_for" xml:space="preserve">
+    <value>Создать Подрубрику для</value>
+  </data>
+  <data name="create_topic_for" xml:space="preserve">
+    <value>Создать Тему для</value>
+  </data>
+  <data name="data_lenght_3_255" xml:space="preserve">
+    <value>Длина поля должна быть между 3 и 255</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="display_all_lang" xml:space="preserve">
+    <value>Показывать во всех языках</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="edit_category" xml:space="preserve">
+    <value>Редактировать рубрику</value>
+  </data>
+  <data name="edit_comment" xml:space="preserve">
+    <value>Редактировать комментарий</value>
+  </data>
+  <data name="edit_tag" xml:space="preserve">
+    <value>Редактировать тег</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="enable_comments" xml:space="preserve">
+    <value>Включить комментарии</value>
+  </data>
+  <data name="enable_comments_for_anonymous" xml:space="preserve">
+    <value>Разрешить комментарии для анонимов</value>
+  </data>
+  <data name="enable_comments_for_anonymous1" xml:space="preserve">
+    <value>(* Действительно только, если комментарии включены)</value>
+  </data>
+  <data name="enable_voting" xml:space="preserve">
+    <value>Включить голосование</value>
+  </data>
+  <data name="enter_new_tags" xml:space="preserve">
+    <value>Введите теги разделенные запятой или оставтьте поле пустым</value>
+  </data>
+  <data name="field_empty" xml:space="preserve">
+    <value>Это поле не может быть пустым!</value>
+  </data>
+  <data name="four_weeks_ago" xml:space="preserve">
+    <value>Четыре недели назад</value>
+  </data>
+  <data name="guest" xml:space="preserve">
+    <value>Гость</value>
+  </data>
+  <data name="hours_ago" xml:space="preserve">
+    <value>часов назад</value>
+  </data>
+  <data name="image_for_abstract" xml:space="preserve">
+    <value>Картинка для краткого содержания</value>
+  </data>
+  <data name="invalid_date" xml:space="preserve">
+    <value>Неверная дата! Правильный формат: s yyyy-mm-dd</value>
+  </data>
+  <data name="invalid_email" xml:space="preserve">
+    <value>Вы ввели неверный email</value>
+  </data>
+  <data name="in_the" xml:space="preserve">
+    <value>в</value>
+  </data>
+  <data name="last_visit" xml:space="preserve">
+    <value>Последний визит</value>
+  </data>
+  <data name="latest_updates" xml:space="preserve">
+    <value>Последние обновления</value>
+  </data>
+  <data name="member_since" xml:space="preserve">
+    <value>Зарегистрирован</value>
+  </data>
+  <data name="minutes_ago" xml:space="preserve">
+    <value>минут назад</value>
+  </data>
+  <data name="month_ago" xml:space="preserve">
+    <value>Месяц назад</value>
+  </data>
+  <data name="most_rated" xml:space="preserve">
+    <value>По рейтингу</value>
+  </data>
+  <data name="most_viewed" xml:space="preserve">
+    <value>По просмотрам</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="nameArticles" xml:space="preserve">
+    <value>Название Статей для меню, аккардиона и страницы</value>
+  </data>
+  <data name="nameBlogs" xml:space="preserve">
+    <value>Название Блогов для меню, аккардиона и страницы</value>
+  </data>
+  <data name="nameSearch" xml:space="preserve">
+    <value>Название Поиска для аккардиона</value>
+  </data>
+  <data name="nameTags" xml:space="preserve">
+    <value>Название Тегов для аккардиона</value>
+  </data>
+  <data name="no_comments_yet" xml:space="preserve">
+    <value>Нет комментариев</value>
+  </data>
+  <data name="older" xml:space="preserve">
+    <value>Совсем давно</value>
+  </data>
+  <data name="only_for_register" xml:space="preserve">
+    <value>Только для зарегистрированных пользователей</value>
+  </data>
+  <data name="open_comments" xml:space="preserve">
+    <value>Открыть комментарии</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="popular_articles" xml:space="preserve">
+    <value>Популярные статьи</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Пост</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Посты</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="recent" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="recent_activity" xml:space="preserve">
+    <value>Последние действия</value>
+  </data>
+  <data name="recent_articles" xml:space="preserve">
+    <value>Новые статьи</value>
+  </data>
+  <data name="recent_comments" xml:space="preserve">
+    <value>Новые комментарии</value>
+  </data>
+  <data name="roleArticleEditor" xml:space="preserve">
+    <value>Роль Журналиста</value>
+  </data>
+  <data name="roleBlogger" xml:space="preserve">
+    <value>Роль Блоггера</value>
+  </data>
+  <data name="roleChiefEditor" xml:space="preserve">
+    <value>Роль Главного Редактора</value>
+  </data>
+  <data name="score_votes" xml:space="preserve">
+    <value>Оценка: {0} ( {1} Голосов )</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="search_for_found_results" xml:space="preserve">
+    <value>Поиск по '{0}' найдено  {1} ответов</value>
+  </data>
+  <data name="short_description" xml:space="preserve">
+    <value>Краткое содержание</value>
+  </data>
+  <data name="short_desc_empty" xml:space="preserve">
+    <value>Краткое содержание не может быть пустым!</value>
+  </data>
+  <data name="statistic" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="subcategory" xml:space="preserve">
+    <value>Подрубрика</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>Теги:</value>
+  </data>
+  <data name="tags1" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="three_months_ago" xml:space="preserve">
+    <value>Три месяца назад</value>
+  </data>
+  <data name="three_weeks_ago" xml:space="preserve">
+    <value>Три недели назад</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="title_empty" xml:space="preserve">
+    <value>Заголовок не может быть пустым!</value>
+  </data>
+  <data name="title_lenght_5_255" xml:space="preserve">
+    <value>Длина поля должна быть между 5 и 255</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="topic" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="topics" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="top_rated" xml:space="preserve">
+    <value>Топ по рейтингу</value>
+  </data>
+  <data name="top_viewed" xml:space="preserve">
+    <value>Топ по просмотрам</value>
+  </data>
+  <data name="total_votes" xml:space="preserve">
+    <value>Всего проголосовало</value>
+  </data>
+  <data name="two_months_ago" xml:space="preserve">
+    <value>Два месяца назад</value>
+  </data>
+  <data name="two_weeks_ago" xml:space="preserve">
+    <value>Две недели назад</value>
+  </data>
+  <data name="unlock_articles" xml:space="preserve">
+    <value>Включить статьи</value>
+  </data>
+  <data name="unlock_blogs" xml:space="preserve">
+    <value>Включить блоги</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="viewInfoAuthorArticle" xml:space="preserve">
+    <value>Включить показ автора статьи</value>
+  </data>
+  <data name="viewInfoClosedComments" xml:space="preserve">
+    <value>Включить показ сообщения при закрытых комментариях</value>
+  </data>
+  <data name="viewInfoViewsArticle" xml:space="preserve">
+    <value>Включить показ количества просмотров статьи</value>
+  </data>
+  <data name="views" xml:space="preserve">
+    <value>Просмотров</value>
+  </data>
+  <data name="view_user_profile" xml:space="preserve">
+    <value>Посмотреть профиль пользователя</value>
+  </data>
+  <data name="week_ago" xml:space="preserve">
+    <value>Неделю назад</value>
+  </data>
+  <data name="yesterday" xml:space="preserve">
+    <value>Вчера</value>
+  </data>
+  <data name="recent_posts" xml:space="preserve">
+    <value>Новые посты</value>
+  </data>
+  <data name="related_links" xml:space="preserve">
+    <value>Похожие ссылки</value>
+  </data>
+  <data name="showRelatedLinks" xml:space="preserve">
+    <value>Включить показ похожих ссылок</value>
+  </data>
+  <data name="moderate_comments" xml:space="preserve">
+    <value>Включить модерацию комментариев</value>
+  </data>
+  <data name="subscribe_comments" xml:space="preserve">
+    <value>Подписаться на комментарии</value>
+  </data>
+  <data name="approve_comment" xml:space="preserve">
+    <value>Одобрить комментарий</value>
+  </data>
+  <data name="email_commentupdates" xml:space="preserve">
+    <value>Здравствуйте, &lt;b&gt;{0}&lt;/b&gt;.&lt;br/&gt;Вы получили данное письмо, так как подписаны на обсуждение  &lt;b&gt;{1}
+&lt;/b&gt;.&lt;br/&gt;=====================================
+&lt;br/&gt;&lt;b&gt;Автор: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Дата: &lt;/b&gt;{3}&lt;br/&gt;&lt;b&gt;Сообщение: &lt;/b&gt;{4}
+&lt;br/&gt;=====================================
+&lt;br/&gt;Вы получили это письмо, т.к зарегистрировались на сайте {5} и подписались на получение уведомлений по 
+e-mail. Внимание! Это письмо сгенерировано автоматически, на него отвечать не надо!</value>
+  </data>
+  <data name="new_comment" xml:space="preserve">
+    <value>Новый комментарий</value>
+  </data>
+  <data name="email_commentmoderate" xml:space="preserve">
+    <value>Здравствуйте, &lt;b&gt;{0}&lt;/b&gt;.&lt;br/&gt;вы получили данное письмо, так как согласились модерировать  &lt;b&gt;{1}
+&lt;/b&gt;.&lt;br/&gt;=====================================
+&lt;br/&gt;&lt;b&gt;Автор: &lt;/b&gt;{2}&lt;br/&gt;&lt;b&gt;Дата: &lt;/b&gt;{3}&lt;br/&gt;&lt;b&gt;Сообщение: &lt;/b&gt;{4}
+&lt;br/&gt;=====================================
+&lt;br/&gt;Вы получили это письмо, т.к зарегистрировались на сайте {5} и подписались на получение уведомлений по 
+e-mail. Внимание! Это письмо сгенерировано автоматически, на него отвечать не надо!</value>
+  </data>
+  <data name="unsubscribe_comments" xml:space="preserve">
+    <value>Удалить подписку</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="add_new_page" xml:space="preserve">
+    <value>Добавить страницу</value>
+  </data>
+  <data name="by_date" xml:space="preserve">
+    <value>По Дате</value>
+  </data>
+  <data name="unapproved_comments" xml:space="preserve">
+    <value>Неодобренные комментарии</value>
+  </data>
+  <data name="waiting_for_moderation" xml:space="preserve">
+    <value>Ожидает проверки</value>
+  </data>
+  <data name="journalists_manager" xml:space="preserve">
+    <value>Управление Журналистами</value>
+  </data>
+  <data name="select_user" xml:space="preserve">
+    <value>Выберите пользователя</value>
+  </data>
+  <data name="include_subcategories" xml:space="preserve">
+    <value>Включая подрубрики</value>
+  </data>
+  <data name="reassign_journalist" xml:space="preserve">
+    <value>Переназначить журналиста</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="activity" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="subcategories" xml:space="preserve">
+    <value>Подрубрики</value>
+  </data>
+  <data name="menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="quote" xml:space="preserve">
+    <value>Цитировать</value>
+  </data>
+  <data name="closed" xml:space="preserve">
+    <value>закрыта</value>
+  </data>
+  <data name="my_subscriptions" xml:space="preserve">
+    <value>Мои подписки</value>
+  </data>
+  <data name="last_comment" xml:space="preserve">
+    <value>Последний комментарий</value>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="awaiting_moderation" xml:space="preserve">
+    <value>Ожидают проверки</value>
+  </data>
+  <data name="enable_comment_votes" xml:space="preserve">
+    <value>Включить оценку комментариев</value>
+  </data>
+  <data name="article_seo" xml:space="preserve">
+    <value>Настройка SEO статей</value>
+  </data>
+</root>

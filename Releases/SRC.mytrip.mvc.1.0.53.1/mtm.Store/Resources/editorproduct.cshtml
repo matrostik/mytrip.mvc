@@ -1,0 +1,185 @@
+@model mtm.Store.Models.EditorProductModel
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(Model.PageTitle);
+    ViewBag.Keywords = mtm.Store.ModuleSetting.nameStoreKeyWords();
+    ViewBag.Description = mtm.Store.ModuleSetting.nameStoreDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,jquery.form.js,Page/Store.EditorProduct.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.Bread)
+<h1 class="title">@Model.PageTitle</h1>
+<table class="separate">
+<tr>
+<td>
+
+@using (Html.BeginForm())
+{ 
+     <div class="right" id="seo">SEO</div>
+    <div id="seoModal" class="window"> 
+<div class="modalTC">SEO</div>
+<div class="modalC">
+<div class="editor-label">
+            @Html.LabelFor(model => model.seotitle, "Title")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.seotitle)
+            @Html.ValidationMessageFor(model => model.seotitle)
+        </div>
+<div class="editor-label">
+            @Html.LabelFor(model => model.path, "Path")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.path)
+            @Html.ValidationMessageFor(model => model.path)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seokeywords, "Keywords")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seokeywords, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seokeywords)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.seodescription, "Description")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.seodescription, new { @class = "message", style = "height: 50px; width:400px;" })
+            @Html.ValidationMessageFor(model => model.seodescription)
+        </div>
+</div> </div>
+<div class="editor-label">
+@Html.LabelFor(m => m.Title, StoreLanguage.titleProduct)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.Title)
+@Html.ValidationMessageFor(m => m.Title) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.DepartmentId, StoreLanguage.departmentId)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.DepartmentId, Model.SelectDepartment)
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.ProducerId, StoreLanguage.producerId)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.ProducerId, Model.SelectProducer)
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.NumberCatalog, StoreLanguage.namberCatalog)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.NumberCatalog)
+@Html.ValidationMessageFor(m => m.NumberCatalog) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.Abstracts, StoreLanguage._abstract)
+</div>
+<div class="editor-field"><div class="dark">
+@Html.TextAreaFor(m => m.Abstracts, new { id = "abstract", style = "height: 200px; width:100%;" })
+@Html.ValidationMessageFor(m => m.Abstracts) 
+</div></div>
+
+<div class="editor-label">
+@Html.LabelFor(m => m.Body, StoreLanguage.bodyProduct)
+</div>
+<div class="editor-field"><div class="dark">
+@Html.TextAreaFor(m => m.Body, new { id = "article", style = "height: 200px; width:100%;" })
+@Html.ValidationMessageFor(m => m.Body) 
+</div></div>
+<div class="editor-label">
+@Html.LabelFor(m => m.Price, StoreLanguage.titlePrice) 
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.Price)
+@Html.ValidationMessageFor(m => m.Price)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.CultureMoney, Model.SelectCultureMoney) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.Packing, StoreLanguage.packing)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.Packing)
+@Html.ValidationMessageFor(m => m.Packing) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.TotalCount, StoreLanguage.totalCount)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.TotalCount)
+@Html.ValidationMessageFor(m => m.TotalCount) 
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.UrlFile, StoreLanguage.UrlFile)
+</div><div class="editor-field">
+@Html.TextBoxFor(m => m.UrlFile)
+@Html.ValidationMessageFor(m => m.UrlFile) 
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.ViewCount)
+@Html.LabelFor(m => m.ViewCount, StoreLanguage.viewcount)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.ViewPrice)
+@Html.LabelFor(m => m.ViewPrice, StoreLanguage.viewprice)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.ViewVotes)
+@Html.LabelFor(m => m.ViewVotes, StoreLanguage.viewvotes)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(m => m.AllCulture)
+@Html.LabelFor(m => m.AllCulture, StoreLanguage.allculture)
+</div>
+<div class="editor-label">
+@Html.LabelFor(m => m.Sale, StoreLanguage.Sale)
+</div><div class="editor-field">
+@Html.DropDownListFor(m => m.Sale, Model.SelectSale)
+</div> 
+<div class="button">
+@Html.MytripButton(Model.Submit, true, "left")
+@*@Html.MytripButton("", StoreLanguage.back, false, "left")*@
+</div>
+}
+</td><td style="width:300px;">
+<form id="myForm" action="/Store/UploadFile" method="post" enctype="multipart/form-data" >
+<div class="editor-label">
+@Html.LabelFor("image", StoreLanguage.imageProduct)
+@Html.HiddenFor(x => x.Param)
+</div><div class="last"></div><div style="clear: both;"></div>
+<div class="textboxR">@Html.MytripInputFile("file", "id")</div>
+<div id="divfiletext" class="textboxR">@Html.TextBox("filetext", "", new { id = "id" })</div>
+<div style="clear: both;"></div><div class="last"></div>
+ @Html.MytripButton(CoreLanguage.upload, true, "right")
+</form>
+<table class="noborders"><tr><td>
+<div id="_myForm">
+@Model.Image
+</div></td></tr>
+</table>
+<form id="myForm1" action="/Store/UploadFileProductOption" method="post" enctype="multipart/form-data">
+<div class="editor-label">
+@Html.LabelFor("image", StoreLanguage.imageProduct1)
+@Html.HiddenFor(x => x.Param)
+</div><div class="last"></div><div style="clear: both;"></div>
+<div class="textboxR">@Html.MytripInputFile("file", "id2")</div>
+<div id="divfiletext1" class="textboxR">@Html.TextBox("filetext1", "", new { id = "id2" })</div>
+<div style="clear: both;"></div><div class="last"></div>
+ @Html.MytripButton(CoreLanguage.upload, true, "right")
+</form>
+<table class="noborders"><tr><td>
+<div id="_myForm1">
+@Model.ImageOption
+</div></td></tr>
+</table>
+</td>
+</tr>
+</table>
+
+@Html.Partial("Partial/_deleteModal")  
+}
+

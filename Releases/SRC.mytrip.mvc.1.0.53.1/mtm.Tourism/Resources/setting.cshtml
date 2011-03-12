@@ -1,0 +1,278 @@
+﻿@model mtm.Tourism.Models.TourSetting
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(ToursLanguage.setting);
+    ViewBag.Keywords = mtm.Tourism.ModuleSetting.ToursKeyWords();
+    ViewBag.Description = mtm.Tourism.ModuleSetting.ToursDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js")
+}
+@section content{
+@Html.BreadCumps(">",Model.bread)
+<h1 class="title">@ToursLanguage.setting</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.unlockTours)
+@Html.LabelFor(model => model.unlockTours, ToursLanguage.unlockTours)
+</div>
+<div class="editor-field">
+@Html.CheckBoxFor(model => model.viewDescription)
+@Html.LabelFor(model => model.viewDescription, ToursLanguage.viewDescription)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.columnTours, ToursLanguage.columnTours)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.columnTours)
+@Html.ValidationMessageFor(model => model.columnTours)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.styleTours, ToursLanguage.styleTours)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.styleTours)
+@Html.ValidationMessageFor(model => model.styleTours)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.widthImgTours, ToursLanguage.widthImgTours)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.widthImgTours)
+@Html.ValidationMessageFor(model => model.widthImgTours)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.MoneyProcent, ToursLanguage.MoneyProcent)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.MoneyProcent)
+@Html.ValidationMessageFor(model => model.MoneyProcent)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.closeTour, ToursLanguage.closeTour)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.closeTour)
+@Html.ValidationMessageFor(model => model.closeTour)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.roleChiefTourManager, ToursLanguage.roleChiefTourManager)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.roleChiefTourManager)
+@Html.ValidationMessageFor(model => model.roleChiefTourManager)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.roleTourManager, ToursLanguage.roleTourManager)
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.roleTourManager)
+@Html.ValidationMessageFor(model => model.roleTourManager)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialAccordion, "Partial Accordion")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialAccordion)
+@Html.ValidationMessageFor(model => model.partialAccordion)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialNoAccordion, "Partial No Accordion")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialNoAccordion)
+@Html.ValidationMessageFor(model => model.partialNoAccordion)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialMenuLogon, "Partial Menu Logon")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialMenuLogon)
+@Html.ValidationMessageFor(model => model.partialMenuLogon)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.partialMenuLogonWrap, "Partial Menu Logon Wrap")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.partialMenuLogonWrap)
+@Html.ValidationMessageFor(model => model.partialMenuLogonWrap)
+</div>
+
+
+
+
+<table class="noborders"><tr><td style="Display:@Model.view_en_us">  
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_en_us, ToursLanguage.nameTours + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTours_en_us)
+@Html.ValidationMessageFor(model => model.nameTours_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_title_en_us, mtm.Tourism.ModuleSetting.nameTours("en-us")+" Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTours_title_en_us)
+@Html.ValidationMessageFor(model => model.nameTours_title_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_keywords_en_us, mtm.Tourism.ModuleSetting.nameTours("en-us") + " Keywords (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameTours_keywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameTours_keywords_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_description_en_us, mtm.Tourism.ModuleSetting.nameTours("en-us") + " Description (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameTours_description_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameTours_description_en_us)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_en_us, ToursLanguage.nameCountry + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameCountry_en_us)
+@Html.ValidationMessageFor(model => model.nameCountry_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_title_en_us, mtm.Tourism.ModuleSetting.nameCountry("en-us") + " Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameCountry_title_en_us)
+@Html.ValidationMessageFor(model => model.nameCountry_title_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_keywords_en_us, mtm.Tourism.ModuleSetting.nameCountry("en-us") + " Keywords (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameCountry_keywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameCountry_keywords_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_description_en_us, mtm.Tourism.ModuleSetting.nameCountry("en-us") + " Description (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameCountry_description_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameCountry_description_en_us)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_en_us, ToursLanguage.nameOrderTours + " (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameOrderTours_en_us)
+@Html.ValidationMessageFor(model => model.nameOrderTours_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_title_en_us, mtm.Tourism.ModuleSetting.nameOrderTours("en-us") + " Title (en-us)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameOrderTours_title_en_us)
+@Html.ValidationMessageFor(model => model.nameOrderTours_title_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_keywords_en_us, mtm.Tourism.ModuleSetting.nameOrderTours("en-us") + " Keywords (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameOrderTours_keywords_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameOrderTours_keywords_en_us)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_description_en_us, mtm.Tourism.ModuleSetting.nameOrderTours("en-us") + " Description (en-us)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameOrderTours_description_en_us, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameOrderTours_description_en_us)
+</div>
+</td>
+
+
+
+<td style="Display:@Model.view_ru_ru">
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_ru_ru, ToursLanguage.nameTours + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTours_ru_ru)
+@Html.ValidationMessageFor(model => model.nameTours_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_title_ru_ru, mtm.Tourism.ModuleSetting.nameTours("ru-ru") + " Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameTours_title_ru_ru)
+@Html.ValidationMessageFor(model => model.nameTours_title_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_keywords_ru_ru, mtm.Tourism.ModuleSetting.nameTours("ru-ru") + " Keywords (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameTours_keywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameTours_keywords_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameTours_description_ru_ru, mtm.Tourism.ModuleSetting.nameTours("ru-ru") + " Description (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameTours_description_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameTours_description_ru_ru)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_ru_ru, ToursLanguage.nameCountry + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameCountry_ru_ru)
+@Html.ValidationMessageFor(model => model.nameCountry_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_title_ru_ru, mtm.Tourism.ModuleSetting.nameCountry("ru-ru") + " Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameCountry_title_ru_ru)
+@Html.ValidationMessageFor(model => model.nameCountry_title_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_keywords_ru_ru, mtm.Tourism.ModuleSetting.nameCountry("ru-ru") + " Keywords (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameCountry_keywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameCountry_keywords_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameCountry_description_ru_ru, mtm.Tourism.ModuleSetting.nameCountry("ru-ru") + " Description (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameCountry_description_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameCountry_description_ru_ru)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_ru_ru, ToursLanguage.nameOrderTours + " (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameOrderTours_ru_ru)
+@Html.ValidationMessageFor(model => model.nameOrderTours_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_title_ru_ru, mtm.Tourism.ModuleSetting.nameOrderTours("ru-ru") + " Title (ru-ru)")
+</div><div class="editor-field">
+@Html.TextBoxFor(model => model.nameOrderTours_title_ru_ru)
+@Html.ValidationMessageFor(model => model.nameOrderTours_title_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_keywords_ru_ru, mtm.Tourism.ModuleSetting.nameOrderTours("ru-ru") + " Keywords (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameOrderTours_keywords_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameOrderTours_keywords_ru_ru)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.nameOrderTours_description_ru_ru, mtm.Tourism.ModuleSetting.nameOrderTours("ru-ru") + " Description (ru-ru)")
+</div>
+<div class="editor-field">
+@Html.TextAreaFor(model => model.nameOrderTours_description_ru_ru, new { @class = "message", style = "height: 50px; width:400px;" })
+@Html.ValidationMessageFor(model => model.nameOrderTours_description_ru_ru)
+</div>
+</td></tr></table>
+
+<div class="button">
+@Html.MytripButton(CoreLanguage.save,true,"left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false,"left") 
+</div>
+</fieldset>            
+}
+}
+
+

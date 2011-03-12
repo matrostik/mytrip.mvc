@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="account_error_captcha" xml:space="preserve">
+    <value>Captcha is entered with errors.</value>
+  </data>
+  <data name="account_error_password" xml:space="preserve">
+    <value>Password must be at least {0} characters.</value>
+  </data>
+  <data name="account_error_username" xml:space="preserve">
+    <value>Username is entered with errors.</value>
+  </data>
+  <data name="account_information" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="account_max_length_email" xml:space="preserve">
+    <value>E-mail is required to be no more than 50 characters.</value>
+  </data>
+  <data name="account_max_length_password" xml:space="preserve">
+    <value>Password must be no more than 50 characters.</value>
+  </data>
+  <data name="account_max_length_username" xml:space="preserve">
+    <value>Username must be no more than 50 characters.</value>
+  </data>
+  <data name="account_null_captcha" xml:space="preserve">
+    <value>Captcha is required.</value>
+  </data>
+  <data name="account_null_email" xml:space="preserve">
+    <value>Email is required.</value>
+  </data>
+  <data name="account_null_password" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="account_null_username" xml:space="preserve">
+    <value>Username is required.</value>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>Add role</value>
+  </data>
+  <data name="add_user_to_role" xml:space="preserve">
+    <value>Add User to Role</value>
+  </data>
+  <data name="all_roles" xml:space="preserve">
+    <value>All roles</value>
+  </data>
+  <data name="all_users" xml:space="preserve">
+    <value>All users</value>
+  </data>
+  <data name="are_you_sure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="back_to_list" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="bytes" xml:space="preserve">
+    <value>Bytes</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha</value>
+  </data>
+  <data name="change_date" xml:space="preserve">
+    <value>Change date</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="change_password_success" xml:space="preserve">
+    <value>Your password has been changed successfully.</value>
+  </data>
+  <data name="change_password_text_first" xml:space="preserve">
+    <value>Use the form below to change your password.</value>
+  </data>
+  <data name="change_password_text_last" xml:space="preserve">
+    <value>New passwords must be at least {0} characters.</value>
+  </data>
+  <data name="choose_new_name" xml:space="preserve">
+    <value>Choose new name</value>
+  </data>
+  <data name="choose_role" xml:space="preserve">
+    <value>Choose a role</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="create_account" xml:space="preserve">
+    <value>Create a New Account</value>
+  </data>
+  <data name="create_new_folder" xml:space="preserve">
+    <value>Create new folder:</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="default_provider_error" xml:space="preserve">
+    <value>An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="donate" xml:space="preserve">
+    <value>Donate to project</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error1" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error_text" xml:space="preserve">
+    <value>Sorry, an error occurred while processing your request.</value>
+  </data>
+  <data name="file_dublicate_file" xml:space="preserve">
+    <value>File already exists. Please enter a different file.</value>
+  </data>
+  <data name="file_dublicate_name" xml:space="preserve">
+    <value>Name folder already exists. Please enter a different name folder.</value>
+  </data>
+  <data name="file_manager" xml:space="preserve">
+    <value>Files Manager</value>
+  </data>
+  <data name="file_max_name" xml:space="preserve">
+    <value>Folder name must be no more than 30 characters.</value>
+  </data>
+  <data name="file_null_file" xml:space="preserve">
+    <value>File cannot be null or empty.</value>
+  </data>
+  <data name="file_null_name" xml:space="preserve">
+    <value>Name folder cannot be null or empty.</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="IsApproved" xml:space="preserve">
+    <value>Is Approved</value>
+  </data>
+  <data name="LastActivityDate" xml:space="preserve">
+    <value>Last Activity Date</value>
+  </data>
+  <data name="LastLoginDate" xml:space="preserve">
+    <value>Last Login Date</value>
+  </data>
+  <data name="LastPasswordChangedDate" xml:space="preserve">
+    <value>Last Password Changed Date</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="logon" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="logon_error_password" xml:space="preserve">
+    <value>Password is entered with errors.</value>
+  </data>
+  <data name="logon_text" xml:space="preserve">
+    <value>Please enter your username and password. </value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="register_duplicate_email" xml:space="preserve">
+    <value>A username for that e-mail address already exists. Please enter a different e-mail address.</value>
+  </data>
+  <data name="register_duplicate_username" xml:space="preserve">
+    <value>User name already exists. Please enter a different user name.</value>
+  </data>
+  <data name="register_error_email" xml:space="preserve">
+    <value>The email address entered was not a valid email address.</value>
+  </data>
+  <data name="register_password_confurmpassword" xml:space="preserve">
+    <value>The password fields did not match.</value>
+  </data>
+  <data name="register_text_first" xml:space="preserve">
+    <value>Use the form below to create a new account.</value>
+  </data>
+  <data name="register_text_last" xml:space="preserve">
+    <value>Password is required to be at least  {0} characters.</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me?</value>
+  </data>
+  <data name="rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="rename_file_or_folder" xml:space="preserve">
+    <value>Rename file or folder</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
+  </data>
+  <data name="rolename_duplicate" xml:space="preserve">
+    <value>Role name already exists. Please enter a different role name.</value>
+  </data>
+  <data name="rolename_max_length" xml:space="preserve">
+    <value>Role name must be no more than 50 characters.</value>
+  </data>
+  <data name="rolename_null" xml:space="preserve">
+    <value>Role name cannot be empty.</value>
+  </data>
+  <data name="role_information" xml:space="preserve">
+    <value>Role Information</value>
+  </data>
+  <data name="role_in_user" xml:space="preserve">
+    <value>User already belong to this role. Please choose another one.</value>
+  </data>
+  <data name="role_null" xml:space="preserve">
+    <value>Role cannot be empty.</value>
+  </data>
+  <data name="search_max_length" xml:space="preserve">
+    <value>Search must be no more than 50 characters.</value>
+  </data>
+  <data name="search_null" xml:space="preserve">
+    <value>Search cannot be null or empty.</value>
+  </data>
+  <data name="search_role" xml:space="preserve">
+    <value>Search role</value>
+  </data>
+  <data name="search_user" xml:space="preserve">
+    <value>Search user</value>
+  </data>
+  <data name="select_file_upload" xml:space="preserve">
+    <value>Select file for upload.</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="upload_file" xml:space="preserve">
+    <value>Upload file:</value>
+  </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>User Count</value>
+  </data>
+  <data name="UserIP" xml:space="preserve">
+    <value>User IP</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="user_in_role" xml:space="preserve">
+    <value>The user in role</value>
+  </data>
+  <data name="user_is_approved" xml:space="preserve">
+    <value>The user is approved</value>
+  </data>
+  <data name="user_is_not_approved" xml:space="preserve">
+    <value>The user is not approved</value>
+  </data>
+  <data name="user_manager" xml:space="preserve">
+    <value>Users manager</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome {0}!</value>
+  </data>
+  <data name="logon_text1" xml:space="preserve">
+    <value>{0}  if you don't have an account.</value>
+  </data>
+  <data name="my_profile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="control_panel" xml:space="preserve">
+    <value>Control Panel</value>
+  </data>
+  <data name="core_database_null" xml:space="preserve">
+    <value>Database cannot be null or empty.</value>
+  </data>
+  <data name="core_server_null" xml:space="preserve">
+    <value>Server cannot be null or empty.</value>
+  </data>
+  <data name="CreateBase" xml:space="preserve">
+    <value>Create DataBase</value>
+  </data>
+  <data name="i_agree" xml:space="preserve">
+    <value>I Agree</value>
+  </data>
+  <data name="license_agreement" xml:space="preserve">
+    <value>License Agreement</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="provider_error" xml:space="preserve">
+    <value>Database connection error.</value>
+  </data>
+  <data name="DataBase" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="IntegratedSecurity" xml:space="preserve">
+    <value>Integrated Security (for local server MsSql)</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Connecting_String_Setting" xml:space="preserve">
+    <value>Connecting string setting</value>
+  </data>
+  <data name="core_null" xml:space="preserve">
+    <value>Value cannot be null or empty.</value>
+  </data>
+  <data name="Core_Settings" xml:space="preserve">
+    <value>Appearance and localization settings</value>
+  </data>
+  <data name="defaultCulture" xml:space="preserve">
+    <value>Default language</value>
+  </data>
+  <data name="defaultTheme" xml:space="preserve">
+    <value>Default theme</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit_page" xml:space="preserve">
+    <value>Edit page</value>
+  </data>
+  <data name="Localization_Settings" xml:space="preserve">
+    <value>Localization setting</value>
+  </data>
+  <data name="maxInvalidPasswordAttempts" xml:space="preserve">
+    <value>Maximum invalid password attempts</value>
+  </data>
+  <data name="Membership_Settings" xml:space="preserve">
+    <value>Membership setting</value>
+  </data>
+  <data name="minRequiredPasswordLength" xml:space="preserve">
+    <value>Minimum required password length</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Profile_Settings" xml:space="preserve">
+    <value>Profile setting</value>
+  </data>
+  <data name="requiresUniqueEmail" xml:space="preserve">
+    <value>Unlock requires unique Email</value>
+  </data>
+  <data name="roleAdmin" xml:space="preserve">
+    <value>Role Admin</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Theme_Settings" xml:space="preserve">
+    <value>Theme setting</value>
+  </data>
+  <data name="unlockAllCulture" xml:space="preserve">
+    <value>Unlock multilanguage support</value>
+  </data>
+  <data name="unlockCaptcha" xml:space="preserve">
+    <value>Unlock Captcha</value>
+  </data>
+  <data name="unlockGravatar" xml:space="preserve">
+    <value>Unlock Gravatar</value>
+  </data>
+  <data name="unlockRegistration" xml:space="preserve">
+    <value>Unlock new user registration</value>
+  </data>
+  <data name="unlockTheme" xml:space="preserve">
+    <value>Unlock themes</value>
+  </data>
+  <data name="unlockVisibleLogon" xml:space="preserve">
+    <value>Unlock view LogOn button</value>
+  </data>
+  <data name="bodyEmail" xml:space="preserve">
+    <value>Hello!&lt;br/&gt; You or someone else has used your email account to register an account at {0}. &lt;br/&gt;To finish the registration process you should visit the following link to activate your user account: {1} .&lt;br/&gt;Site Administration {0}.</value>
+  </data>
+  <data name="subjectEmail" xml:space="preserve">
+    <value>Registration new Account {0}! </value>
+  </data>
+  <data name="unlockApprovedEmail" xml:space="preserve">
+    <value>Unlock e-mail confirmation for registration</value>
+  </data>
+  <data name="edit_about" xml:space="preserve">
+    <value>Edit "About" page</value>
+  </data>
+  <data name="Email_account_body" xml:space="preserve">
+    <value>Message with account  activation instructions was sent to your e-mail address.Thank you for registering at our site.</value>
+  </data>
+  <data name="Email_send_error" xml:space="preserve">
+    <value>Error send test messenge</value>
+  </data>
+  <data name="Email_setting" xml:space="preserve">
+    <value>Email setting</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="message_null" xml:space="preserve">
+    <value>Message cannot be null or empty.</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Aboutpage" xml:space="preserve">
+    <value>Name About Page</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Name Home Page</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="all_languages" xml:space="preserve">
+    <value>All Languages</value>
+  </data>
+  <data name="available_moduls" xml:space="preserve">
+    <value>Available modules</value>
+  </data>
+  <data name="back_to_main" xml:space="preserve">
+    <value>Back to Main</value>
+  </data>
+  <data name="columns" xml:space="preserve">
+    <value>Columns</value>
+  </data>
+  <data name="display_on_main" xml:space="preserve">
+    <value>Display on the Homepage</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="homepage_setting" xml:space="preserve">
+    <value>HomePage setting</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="rows" xml:space="preserve">
+    <value>Rows</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="nameTitle" xml:space="preserve">
+    <value>Title to display for all pages</value>
+  </data>
+  <data name="roleChiefEditor" xml:space="preserve">
+    <value>Role Chief Editor</value>
+  </data>
+  <data name="content_lenght" xml:space="preserve">
+    <value>Content Lenght</value>
+  </data>
+  <data name="image_width" xml:space="preserve">
+    <value>Image Width</value>
+  </data>
+  <data name="show_title" xml:space="preserve">
+    <value>Show Title</value>
+  </data>
+  <data name="InstallModules" xml:space="preserve">
+    <value>Install modules</value>
+  </data>
+  <data name="lastactivity" xml:space="preserve">
+    <value>Recent activity</value>
+  </data>
+  <data name="last_visit" xml:space="preserve">
+    <value>Last Visit</value>
+  </data>
+  <data name="member_since" xml:space="preserve">
+    <value>Member Since</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile user {0}</value>
+  </data>
+  <data name="homepage_desc" xml:space="preserve">
+    <value>* Setting for all languages of the site. When displayed in the main, the data that do not match the current language will be ignored.</value>
+  </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>Save сhanges</value>
+  </data>
+  <data name="save_error" xml:space="preserve">
+    <value>An error occurred. Settings not saved</value>
+  </data>
+  <data name="save_success" xml:space="preserve">
+    <value>Settings saved successfully.</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="sidebar_setting" xml:space="preserve">
+    <value>Sidebar Setting</value>
+  </data>
+  <data name="available_menuitems" xml:space="preserve">
+    <value>Available menu items</value>
+  </data>
+  <data name="display_in_menu" xml:space="preserve">
+    <value>Display in menu</value>
+  </data>
+  <data name="menu_setting_desc" xml:space="preserve">
+    <value>Use the right and left arrows to add or remove an object up and down arrows to achieve the desired consistency.</value>
+  </data>
+  <data name="topmenu_setting" xml:space="preserve">
+    <value>Top menu setting</value>
+  </data>
+  <data name="uninstallmodules" xml:space="preserve">
+    <value>Uninstall modules</value>
+  </data>
+  <data name="score_votes" xml:space="preserve">
+    <value>Score: {0} ( {1} Votes )</value>
+  </data>
+  <data name="ControlPanelSideBar" xml:space="preserve">
+    <value>Unlock Control Panel in Saide Bar</value>
+  </data>
+  <data name="DonateSideBar" xml:space="preserve">
+    <value>Unlock Donate Project in Saide Bar</value>
+  </data>
+  <data name="UserNameforsite" xml:space="preserve">
+    <value>User Name for Site</value>
+  </data>
+  <data name="Backtocontrolpanel" xml:space="preserve">
+    <value>Back to Control Panel</value>
+  </data>
+  <data name="unlockOpenId" xml:space="preserve">
+    <value>Unlock LogOn through OpenId</value>
+  </data>
+  <data name="unlockSiteId" xml:space="preserve">
+    <value>Unlock regular LogOn</value>
+  </data>
+  <data name="account_block_username" xml:space="preserve">
+    <value>User is blocked.</value>
+  </data>
+  <data name="openiderror" xml:space="preserve">
+    <value>Provider certificate error.</value>
+  </data>
+  <data name="no_profile" xml:space="preserve">
+    <value>This user hasn't created a profile yet, or have already deleted it.</value>
+  </data>
+  <data name="hours_ago" xml:space="preserve">
+    <value>hours ago</value>
+  </data>
+  <data name="minutes_ago" xml:space="preserve">
+    <value>minutes ago</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="change_email" xml:space="preserve">
+    <value>Change e-mail</value>
+  </data>
+  <data name="ProfileSideBar" xml:space="preserve">
+    <value>Unlock Profile in Saide Bar</value>
+  </data>
+  <data name="addHomePage" xml:space="preserve">
+    <value>Add to Home Page</value>
+  </data>
+  <data name="addMenu" xml:space="preserve">
+    <value>Add to Menu</value>
+  </data>
+  <data name="body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
+  <data name="EditPage" xml:space="preserve">
+    <value>Edit Page {0}</value>
+  </data>
+  <data name="emailForm" xml:space="preserve">
+    <value>Unlock Email Form</value>
+  </data>
+  <data name="sideBar" xml:space="preserve">
+    <value>Unlock Side Bar</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="viewOnlyHomePage" xml:space="preserve">
+    <value>View only Home Page</value>
+  </data>
+  <data name="CreateSubPage" xml:space="preserve">
+    <value>Create Subpage</value>
+  </data>
+  <data name="bodyForgot" xml:space="preserve">
+    <value>Hello  {2}! You or someone else has used your email for recovery  password an account at {0}.  To finish the recovery  password process you should visit the following link {1}  (link is valid for one day ).  Site Administration {0}</value>
+  </data>
+  <data name="email_success" xml:space="preserve">
+    <value>Your email has been changed successfully.</value>
+  </data>
+  <data name="Email_forgot_body" xml:space="preserve">
+    <value>On Your Email has been sent with a link to reset your password (the link is valid for one day).</value>
+  </data>
+  <data name="ForgotDateError" xml:space="preserve">
+    <value>Do links have expired. You need to repeat the operation.</value>
+  </data>
+  <data name="forgotEmail" xml:space="preserve">
+    <value>Enter the email used during registration</value>
+  </data>
+  <data name="forgotOpenid" xml:space="preserve">
+    <value>You are logged via OpenId. To recover your password, contact your OpenId.</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="recovryPassword" xml:space="preserve">
+    <value>Password recovery {0}.</value>
+  </data>
+  <data name="RecoveryPassword" xml:space="preserve">
+    <value>Recovery Password</value>
+  </data>
+  <data name="RecoveryPasswordMess" xml:space="preserve">
+    <value>Password restored!</value>
+  </data>
+  <data name="edit_footer" xml:space="preserve">
+    <value>Edit footer</value>
+  </data>
+  <data name="thanks_for_vote" xml:space="preserve">
+    <value>Thanks for your vote!</value>
+  </data>
+  <data name="you_have_a_voted" xml:space="preserve">
+    <value>You have already voted</value>
+  </data>
+  <data name="edit_add_link" xml:space="preserve">
+    <value>Add / Edit Link</value>
+  </data>
+  <data name="linkrewrite1" xml:space="preserve">
+    <value>Type references in the browser bar</value>
+  </data>
+  <data name="linkrewrite2" xml:space="preserve">
+    <value>Display page</value>
+  </data>
+  <data name="rewritetitle" xml:space="preserve">
+    <value>Links Manager</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Site search</value>
+  </data>
+  <data name="search_for_found_results" xml:space="preserve">
+    <value>Search for '{0}' found  {1} results</value>
+  </data>
+  <data name="database_connection" xml:space="preserve">
+    <value>Database connection setting</value>
+  </data>
+  <data name="donate_sidebar" xml:space="preserve">
+    <value>Unlock Donate Project in SideBar</value>
+  </data>
+  <data name="homepage_name" xml:space="preserve">
+    <value>Name for Homepage</value>
+  </data>
+  <data name="profile_sidebar" xml:space="preserve">
+    <value>Unlock profile in Sidebar</value>
+  </data>
+  <data name="unlock_cp_sidebar" xml:space="preserve">
+    <value>Unlock Control panel in Sidebar</value>
+  </data>
+  <data name="RecentVisitors" xml:space="preserve">
+    <value>Recent Visitors</value>
+  </data>
+  <data name="CorePageForSidebar" xml:space="preserve">
+    <value>Navigation Core Page</value>
+  </data>
+  <data name="CountLatestUsers" xml:space="preserve">
+    <value>Count Latest Users for Sidebar</value>
+  </data>
+  <data name="announce" xml:space="preserve">
+    <value>Announce Setting</value>
+  </data>
+  <data name="by" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="googleAnalytics" xml:space="preserve">
+    <value>Edit Google Analytics</value>
+  </data>
+  <data name="left" xml:space="preserve">
+    <value>left</value>
+  </data>
+  <data name="MenuPosition" xml:space="preserve">
+    <value>Position Menu</value>
+  </data>
+  <data name="pagerCount" xml:space="preserve">
+    <value>count:</value>
+  </data>
+  <data name="pagerPage" xml:space="preserve">
+    <value>page:</value>
+  </data>
+  <data name="PositionSideBar" xml:space="preserve">
+    <value>Position SideBar</value>
+  </data>
+  <data name="right" xml:space="preserve">
+    <value>right</value>
+  </data>
+  <data name="statisticTitle" xml:space="preserve">
+    <value>Statistic {0}</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>view</value>
+  </data>
+  <data name="views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="visitors" xml:space="preserve">
+    <value>Visitors</value>
+  </data>
+  <data name="browsers" xml:space="preserve">
+    <value>Browsers</value>
+  </data>
+  <data name="infoPages" xml:space="preserve">
+    <value>Statistics pages</value>
+  </data>
+  <data name="infoUsers" xml:space="preserve">
+    <value>Statistics of visitors</value>
+  </data>
+  <data name="os" xml:space="preserve">
+    <value>Operating systems</value>
+  </data>
+  <data name="referrerPages" xml:space="preserve">
+    <value>Referring</value>
+  </data>
+  <data name="statisticMap" xml:space="preserve">
+    <value>Map overlay</value>
+  </data>
+  <data name="statistictime" xml:space="preserve">
+    <value>The average time on site</value>
+  </data>
+  <data name="viewPages" xml:space="preserve">
+    <value>Pages viewed</value>
+  </data>
+  <data name="unlockwrap" xml:space="preserve">
+    <value>Enable HTML wrapper elements?</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="editProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="profilclose" xml:space="preserve">
+    <value>Close profile view?</value>
+  </data>
+  <data name="site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="geoSetting" xml:space="preserve">
+    <value>Geo setting</value>
+  </data>
+  <data name="geoUrl" xml:space="preserve">
+    <value>Url for download database MaxMind</value>
+  </data>
+  <data name="keyBingMap" xml:space="preserve">
+    <value>Key Bing Map</value>
+  </data>
+  <data name="statisticAnonym" xml:space="preserve">
+    <value>Unlock view Statistic for anonym</value>
+  </data>
+  <data name="statisticSetting" xml:space="preserve">
+    <value>Statistic setting</value>
+  </data>
+  <data name="statisticUser" xml:space="preserve">
+    <value>Unlock view Statistic for register user</value>
+  </data>
+  <data name="unlockGeo" xml:space="preserve">
+    <value>Unlock Geo</value>
+  </data>
+  <data name="unlockStatictic" xml:space="preserve">
+    <value>Unlock Statistic</value>
+  </data>
+  <data name="nameLogo" xml:space="preserve">
+    <value>Name Logo</value>
+  </data>
+  <data name="sitemap" xml:space="preserve">
+    <value>Site Map</value>
+  </data>
+  <data name="seo_setting" xml:space="preserve">
+    <value>SEO setting</value>
+  </data>
+  <data name="send_email" xml:space="preserve">
+    <value>Thank you! Your message has been sent.</value>
+  </data>
+  <data name="AutoGenerateUserName" xml:space="preserve">
+    <value>Unlock autogrneration User Name</value>
+  </data>
+  <data name="EmailasUsername" xml:space="preserve">
+    <value>Use E-mail login</value>
+  </data>
+  <data name="twitter_account" xml:space="preserve">
+    <value>Account twitter</value>
+  </data>
+  <data name="twitter_count" xml:space="preserve">
+    <value>Count messages twitter</value>
+  </data>
+  <data name="twitter_width" xml:space="preserve">
+    <value>Width twitter</value>
+  </data>
+</root>

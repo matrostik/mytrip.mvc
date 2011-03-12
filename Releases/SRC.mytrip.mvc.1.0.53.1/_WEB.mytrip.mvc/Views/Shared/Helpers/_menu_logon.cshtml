@@ -1,0 +1,15 @@
+﻿@model string[]
+<li class="@Model[0]">
+    @Html.Raw(Model[1])
+    @if (Model.Count() > 2 && Model[2] != null)
+    {
+      <ul>
+          <li>
+              @foreach (var a in Model[2].Split('|'))
+              {                
+                  @Html.Raw(a)     
+              }
+          </li>
+      </ul>
+    }
+</li>

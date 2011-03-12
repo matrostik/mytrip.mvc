@@ -1,0 +1,99 @@
+﻿@model mtm.Core.Models.CoreModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.Core_Settings);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.CheckedShow.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.Core_Settings</h1>
+<div id="errorsumm"></div>
+<div class="last"></div>
+@using (Html.BeginForm()){
+<fieldset>
+<table class="noborders"><tr><td>
+<div class="editor-label">
+@Html.LabelFor(model => model.CountLatestUsers, CoreLanguage.CountLatestUsers)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.CountLatestUsers)
+@Html.ValidationMessageFor(model => model.CountLatestUsers)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.MenuPosition, CoreLanguage.MenuPosition)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.MenuPosition, Model.MenuPositionSelect)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.SideBarPosition, CoreLanguage.PositionSideBar)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.SideBarPosition, Model.SideBarPositionSelect)
+</div>
+<div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockGravatar)
+@Html.LabelFor(model => model.unlockGravatar, CoreLanguage.unlockGravatar)
+</div>
+
+<div class="editor-label">
+@Html.LabelFor(model => model.twitterLogin, CoreLanguage.twitter_account)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.twitterLogin)
+@Html.ValidationMessageFor(model => model.twitterLogin)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.twitterCount, CoreLanguage.twitter_count)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.twitterCount)
+@Html.ValidationMessageFor(model => model.twitterCount)
+</div>
+<div class="editor-label">
+@Html.LabelFor(model => model.twitterWidth, CoreLanguage.twitter_width)
+</div>
+<div class="editor-field">
+@Html.TextBoxFor(model => model.twitterWidth)
+@Html.ValidationMessageFor(model => model.twitterWidth)
+</div>
+</td><td>
+<h3 class="hometitle">@CoreLanguage.Localization_Settings</h3>
+<div class="editor-label">
+@Html.LabelFor(model => model.defaultCulture, CoreLanguage.defaultCulture)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.defaultCulture, Model.AllCulture)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockAllCulture)
+@Html.LabelFor(model => model.unlockAllCulture, CoreLanguage.unlockAllCulture)
+</div>
+<h3 class="hometitle">@CoreLanguage.Theme_Settings</h3>
+<div class="editor-label">
+@Html.LabelFor(model => model.defaultTheme, CoreLanguage.defaultTheme)
+</div>
+<div class="editor-field">
+@Html.DropDownListFor(model => model.defaultTheme, Model.AllTheme)
+</div><div class="editor-label">
+@Html.CheckBoxFor(model => model.unlockTheme)
+@Html.LabelFor(model => model.unlockTheme, CoreLanguage.unlockTheme)
+</div>
+
+</td></tr></table>
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true, "left")
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.cancel, false, "left") 
+</div>
+</fieldset>
+}
+}

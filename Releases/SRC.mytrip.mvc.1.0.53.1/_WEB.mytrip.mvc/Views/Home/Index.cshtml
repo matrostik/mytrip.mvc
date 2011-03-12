@@ -1,0 +1,39 @@
+@model mtm.Core.Models.HomeModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(mtm.Core.Settings.CoreSetting.HomePageTitle());
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("MicrosoftAjax.js,MicrosoftMvcAjax.js,mtm.Delete.js")
+}
+@section contentBig{
+@if (!Model.developer)
+{ <div class="right">@Html.AddPageAndSubPage()</div> 
+@Html.BreadCumps(">") 
+
+   
+ 
+@Html.Partial("Partial/_homePage")
+@Html.Partial("Partial/_deleteModal") 
+}
+}
+@section contentSmall{
+@if (!Model.developer)
+{
+@Html.Partial("Partial/_sideBar")
+} 
+}
+@section content{
+@if (Model.developer)
+{
+@Html.Partial("Partial/_license")
+} 
+}

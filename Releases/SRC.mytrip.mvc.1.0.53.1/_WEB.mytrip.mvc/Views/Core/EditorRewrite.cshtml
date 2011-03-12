@@ -1,0 +1,60 @@
+﻿@model mtm.Core.Models.RewriteModel
+@{ 
+    /* Copyright © 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about mytrip.mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(CoreLanguage.rewritetitle);
+    ViewBag.Keywords = mtm.Core.Settings.CoreSetting.HomePageKeyWords();
+    ViewBag.Description = mtm.Core.Settings.CoreSetting.HomePageDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("jquery.validate.min.js,jquery.validate.unobtrusive.min.js,Page/Core.EditorRewrite.js")
+}
+@section content{
+@Html.BreadCumps(">", Model.bread)
+<h1 class="title">@CoreLanguage.rewritetitle</h1>
+<div class="content">
+@Model.AllRewrite
+</div>
+<div class="button">
+@Html.MytripButton("/Core/ControlPanel", CoreLanguage.Backtocontrolpanel, true, "left") 
+</div>
+<div id="delete" class="window"> 
+<div class="modalTC">@CoreLanguage.delete</div>
+<div class="modalC">
+<table class="leftmidle"><tr><td>
+@Html.MytripImage("/images/warning.png", "warning", "i")
+</td><td>
+<h3 class="hometitle">@CoreLanguage.are_you_sure</h3>
+</td></tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.cancel, false, "cancel", "right")
+@Html.MytripButton(CoreLanguage.remove, true, "ok", "right")
+</div></div></div>
+<div id="edit" class="window"> 
+<div class="modalTC">@CoreLanguage.edit_add_link</div>
+<div class="modalC">
+@using (Html.BeginForm()) {
+<table class="noborders"><tr>
+<td>
+@CoreLanguage.linkrewrite1
+</td><td>
+@CoreLanguage.linkrewrite2
+</td>
+</tr><tr>
+<td>
+@Html.TextBox("url")
+</td><td>
+@Html.TextBox("rewrite")
+</td>
+</tr></table>  
+<div class="button">
+@Html.MytripButton(CoreLanguage.save, true,"right")
+</div>    
+    }
+    </div></div>
+}

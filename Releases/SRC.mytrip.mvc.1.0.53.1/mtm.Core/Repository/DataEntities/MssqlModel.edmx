@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mytripmvcModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="mytripmvcModelStoreContainer">
+          <EntitySet Name="mytrip_corepages" EntityType="mytripmvcModel.Store.mytrip_corepages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_corestatistic" EntityType="mytripmvcModel.Store.mytrip_corestatistic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_geocity" EntityType="mytripmvcModel.Store.mytrip_geocity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_geocountry" EntityType="mytripmvcModel.Store.mytrip_geocountry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_georegion" EntityType="mytripmvcModel.Store.mytrip_georegion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_users" EntityType="mytripmvcModel.Store.mytrip_users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_usersinroles" EntityType="mytripmvcModel.Store.mytrip_usersinroles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_usersmembership" EntityType="mytripmvcModel.Store.mytrip_usersmembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_usersprofile" EntityType="mytripmvcModel.Store.mytrip_usersprofile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mytrip_usersroles" EntityType="mytripmvcModel.Store.mytrip_usersroles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_mytrip_corepages_mytrip_corepages" Association="mytripmvcModel.Store.FK_mytrip_corepages_mytrip_corepages">
+            <End Role="mytrip_corepages" EntitySet="mytrip_corepages" />
+            <End Role="mytrip_corepages1" EntitySet="mytrip_corepages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_corestatistic_mytrip_geocity" Association="mytripmvcModel.Store.FK_mytrip_corestatistic_mytrip_geocity">
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+            <End Role="mytrip_corestatistic" EntitySet="mytrip_corestatistic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_geocity_mytrip_georegion" Association="mytripmvcModel.Store.FK_mytrip_geocity_mytrip_georegion">
+            <End Role="mytrip_georegion" EntitySet="mytrip_georegion" />
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_georegion_mytrip_geocountry" Association="mytripmvcModel.Store.FK_mytrip_georegion_mytrip_geocountry">
+            <End Role="mytrip_geocountry" EntitySet="mytrip_geocountry" />
+            <End Role="mytrip_georegion" EntitySet="mytrip_georegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_Membership_mytrip_Users" Association="mytripmvcModel.Store.FK_mytrip_Membership_mytrip_Users">
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+            <End Role="mytrip_usersmembership" EntitySet="mytrip_usersmembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_UsersInRoles_mytrip_Roles" Association="mytripmvcModel.Store.FK_mytrip_UsersInRoles_mytrip_Roles">
+            <End Role="mytrip_usersroles" EntitySet="mytrip_usersroles" />
+            <End Role="mytrip_usersinroles" EntitySet="mytrip_usersinroles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_UsersInRoles_mytrip_Users" Association="mytripmvcModel.Store.FK_mytrip_UsersInRoles_mytrip_Users">
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+            <End Role="mytrip_usersinroles" EntitySet="mytrip_usersinroles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_usersprofile_mytrip_geocity" Association="mytripmvcModel.Store.FK_mytrip_usersprofile_mytrip_geocity">
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+            <End Role="mytrip_usersprofile" EntitySet="mytrip_usersprofile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_usersprofile_mytrip_users" Association="mytripmvcModel.Store.FK_mytrip_usersprofile_mytrip_users">
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+            <End Role="mytrip_usersprofile" EntitySet="mytrip_usersprofile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_corepages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" />
+          <Property Name="Path" Type="nvarchar" MaxLength="256" />
+          <Property Name="Body" Type="nvarchar(max)" />
+            <Property Name="SeoTitle" Type="nvarchar" MaxLength="256" />
+            <Property Name="SeoKeyword" Type="nvarchar(max)" />
+            <Property Name="SeoDescription" Type="nvarchar(max)" />
+          <Property Name="ViewOnlyHomePage" Type="bit" Nullable="false" />
+          <Property Name="SideBar" Type="bit" Nullable="false" />
+          <Property Name="EmailForm" Type="bit" Nullable="false" />
+          <Property Name="AddMenu" Type="bit" Nullable="false" />
+          <Property Name="AddHomePage" Type="bit" Nullable="false" />
+          <Property Name="SubPagesId" Type="int" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AllCulture" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_corestatistic">
+          <Key>
+            <PropertyRef Name="StatisticId" />
+          </Key>
+          <Property Name="StatisticId" Type="int" Nullable="false" />
+          <Property Name="UserIP" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Page" Type="nvarchar(max)" />
+          <Property Name="Referrer" Type="nvarchar(max)" />
+          <Property Name="Browser" Type="nvarchar(max)" />
+          <Property Name="OS" Type="nvarchar(max)" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="UserCount" Type="int" Nullable="false" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="Day" Type="bit" Nullable="false" />
+          <Property Name="Month" Type="bit" Nullable="false" />
+          <Property Name="Year" Type="bit" Nullable="false" />
+          <Property Name="Time" Type="int" />
+        </EntityType>
+        <EntityType Name="mytrip_geocity">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Longitude" Type="decimal" Scale="8" />
+          <Property Name="Latitude" Type="decimal" Scale="8" />
+          <Property Name="EditAdmin" Type="bit" Nullable="false" />
+          <Property Name="EditUser" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_geocountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Longitude" Type="decimal" Scale="8" />
+          <Property Name="Latitude" Type="decimal" Scale="8" />
+          <Property Name="EditAdmin" Type="bit" Nullable="false" />
+          <Property Name="EditUser" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_georegion">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="int" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Longitude" Type="decimal" Scale="8" />
+          <Property Name="Latitude" Type="decimal" Scale="8" />
+          <Property Name="EditAdmin" Type="bit" Nullable="false" />
+          <Property Name="EditUser" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_usersinroles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_usersmembership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="UserIP" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mytrip_usersprofile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="256" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="256" />
+          <Property Name="Longitude" Type="decimal" Scale="8" />
+          <Property Name="Latitude" Type="decimal" Scale="8" />
+          <Property Name="Site" Type="nvarchar" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="icq" Type="nvarchar" MaxLength="100" />
+          <Property Name="skype" Type="nvarchar" MaxLength="100" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="ProfileClose" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mytrip_usersroles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_mytrip_corepages_mytrip_corepages">
+          <End Role="mytrip_corepages" Type="mytripmvcModel.Store.mytrip_corepages" Multiplicity="1" />
+          <End Role="mytrip_corepages1" Type="mytripmvcModel.Store.mytrip_corepages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_corepages">
+              <PropertyRef Name="PageId" />
+            </Principal>
+            <Dependent Role="mytrip_corepages1">
+              <PropertyRef Name="SubPagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_corestatistic_mytrip_geocity">
+          <End Role="mytrip_geocity" Type="mytripmvcModel.Store.mytrip_geocity" Multiplicity="1" />
+          <End Role="mytrip_corestatistic" Type="mytripmvcModel.Store.mytrip_corestatistic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocity">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="mytrip_corestatistic">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_geocity_mytrip_georegion">
+          <End Role="mytrip_georegion" Type="mytripmvcModel.Store.mytrip_georegion" Multiplicity="1" />
+          <End Role="mytrip_geocity" Type="mytripmvcModel.Store.mytrip_geocity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_georegion">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="mytrip_geocity">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_georegion_mytrip_geocountry">
+          <End Role="mytrip_geocountry" Type="mytripmvcModel.Store.mytrip_geocountry" Multiplicity="1" />
+          <End Role="mytrip_georegion" Type="mytripmvcModel.Store.mytrip_georegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="mytrip_georegion">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_Membership_mytrip_Users">
+          <End Role="mytrip_users" Type="mytripmvcModel.Store.mytrip_users" Multiplicity="1" />
+          <End Role="mytrip_usersmembership" Type="mytripmvcModel.Store.mytrip_usersmembership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="mytrip_usersmembership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_UsersInRoles_mytrip_Roles">
+          <End Role="mytrip_usersroles" Type="mytripmvcModel.Store.mytrip_usersroles" Multiplicity="1" />
+          <End Role="mytrip_usersinroles" Type="mytripmvcModel.Store.mytrip_usersinroles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_usersroles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="mytrip_usersinroles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_UsersInRoles_mytrip_Users">
+          <End Role="mytrip_users" Type="mytripmvcModel.Store.mytrip_users" Multiplicity="1" />
+          <End Role="mytrip_usersinroles" Type="mytripmvcModel.Store.mytrip_usersinroles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="mytrip_usersinroles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_usersprofile_mytrip_geocity">
+          <End Role="mytrip_geocity" Type="mytripmvcModel.Store.mytrip_geocity" Multiplicity="1" />
+          <End Role="mytrip_usersprofile" Type="mytripmvcModel.Store.mytrip_usersprofile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocity">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="mytrip_usersprofile">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_usersprofile_mytrip_users">
+          <End Role="mytrip_users" Type="mytripmvcModel.Store.mytrip_users" Multiplicity="1" />
+          <End Role="mytrip_usersprofile" Type="mytripmvcModel.Store.mytrip_usersprofile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="mytrip_usersprofile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mytripmvcModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="mytrip_users" EntityType="mytripmvcModel.mytrip_users" />
+          <EntitySet Name="mytrip_usersmembership" EntityType="mytripmvcModel.mytrip_usersmembership" />
+          <EntitySet Name="mytrip_usersroles" EntityType="mytripmvcModel.mytrip_usersroles" />
+          <AssociationSet Name="FK_mytrip_Membership_mytrip_Users" Association="mytripmvcModel.FK_mytrip_Membership_mytrip_Users">
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+            <End Role="mytrip_usersmembership" EntitySet="mytrip_usersmembership" />
+          </AssociationSet>
+          <AssociationSet Name="mytrip_usersinroles" Association="mytripmvcModel.mytrip_usersinroles">
+            <End Role="mytrip_usersroles" EntitySet="mytrip_usersroles" />
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_corepages" EntityType="mytripmvcModel.mytrip_corepages" />
+          <AssociationSet Name="FK_mytrip_corepages_mytrip_corepages" Association="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages">
+            <End Role="mytrip_corepages" EntitySet="mytrip_corepages" />
+            <End Role="mytrip_corepages1" EntitySet="mytrip_corepages" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_geocity" EntityType="mytripmvcModel.mytrip_geocity" />
+          <EntitySet Name="mytrip_geocountry" EntityType="mytripmvcModel.mytrip_geocountry" />
+          <EntitySet Name="mytrip_georegion" EntityType="mytripmvcModel.mytrip_georegion" />
+          <AssociationSet Name="FK_mytrip_geocity_mytrip_georegion" Association="mytripmvcModel.FK_mytrip_geocity_mytrip_georegion">
+            <End Role="mytrip_georegion" EntitySet="mytrip_georegion" />
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_georegion_mytrip_geocountry" Association="mytripmvcModel.FK_mytrip_georegion_mytrip_geocountry">
+            <End Role="mytrip_geocountry" EntitySet="mytrip_geocountry" />
+            <End Role="mytrip_georegion" EntitySet="mytrip_georegion" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_corestatistic" EntityType="mytripmvcModel.mytrip_corestatistic" />
+          <AssociationSet Name="FK_mytrip_corestatistic_mytrip_geocity" Association="mytripmvcModel.FK_mytrip_corestatistic_mytrip_geocity">
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+            <End Role="mytrip_corestatistic" EntitySet="mytrip_corestatistic" />
+          </AssociationSet>
+          <EntitySet Name="mytrip_usersprofile" EntityType="mytripmvcModel.mytrip_usersprofile" />
+          <AssociationSet Name="FK_mytrip_usersprofile_mytrip_geocity" Association="mytripmvcModel.FK_mytrip_usersprofile_mytrip_geocity">
+            <End Role="mytrip_geocity" EntitySet="mytrip_geocity" />
+            <End Role="mytrip_usersprofile" EntitySet="mytrip_usersprofile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mytrip_usersprofile_mytrip_users" Association="mytripmvcModel.FK_mytrip_usersprofile_mytrip_users">
+            <End Role="mytrip_users" EntitySet="mytrip_users" />
+            <End Role="mytrip_usersprofile" EntitySet="mytrip_usersprofile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="mytrip_users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="mytrip_usersmembership" Relationship="mytripmvcModel.FK_mytrip_Membership_mytrip_Users" FromRole="mytrip_users" ToRole="mytrip_usersmembership" />
+          <NavigationProperty Name="mytrip_usersroles" Relationship="mytripmvcModel.mytrip_usersinroles" FromRole="mytrip_users" ToRole="mytrip_usersroles" />
+          <NavigationProperty Name="mytrip_usersprofile" Relationship="mytripmvcModel.FK_mytrip_usersprofile_mytrip_users" FromRole="mytrip_users" ToRole="mytrip_usersprofile" />
+        </EntityType>
+        <EntityType Name="mytrip_usersmembership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserIP" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mytrip_users" Relationship="mytripmvcModel.FK_mytrip_Membership_mytrip_Users" FromRole="mytrip_usersmembership" ToRole="mytrip_users" />
+        </EntityType>
+        <EntityType Name="mytrip_usersroles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mytrip_users" Relationship="mytripmvcModel.mytrip_usersinroles" FromRole="mytrip_usersroles" ToRole="mytrip_users" />
+        </EntityType>
+        <Association Name="FK_mytrip_Membership_mytrip_Users">
+          <End Role="mytrip_users" Type="mytripmvcModel.mytrip_users" Multiplicity="1" />
+          <End Role="mytrip_usersmembership" Type="mytripmvcModel.mytrip_usersmembership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="mytrip_usersmembership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="mytrip_usersinroles">
+          <End Role="mytrip_usersroles" Type="mytripmvcModel.mytrip_usersroles" Multiplicity="*" />
+          <End Role="mytrip_users" Type="mytripmvcModel.mytrip_users" Multiplicity="*" />
+        </Association>
+        <EntityType Name="mytrip_corepages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Path" MaxLength="256" FixedLength="false" Unicode="true" />
+            <Property Type="String" Name="SeoTitle" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SeoKeyword" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SeoDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ViewOnlyHomePage" Nullable="false" />
+          <Property Type="Boolean" Name="SideBar" Nullable="false" />
+          <Property Type="Boolean" Name="EmailForm" Nullable="false" />
+          <Property Type="Boolean" Name="AddMenu" Nullable="false" />
+          <Property Type="Boolean" Name="AddHomePage" Nullable="false" />
+          <Property Type="String" Name="Culture" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AllCulture" Nullable="false" />
+          <Property Type="Int32" Name="SubPagesId" Nullable="false" />
+          <NavigationProperty Name="mytrip_corepages1" Relationship="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" FromRole="mytrip_corepages" ToRole="mytrip_corepages1" />
+          <NavigationProperty Name="mytrip_corepages2" Relationship="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" FromRole="mytrip_corepages1" ToRole="mytrip_corepages" />
+        </EntityType>
+        <Association Name="FK_mytrip_corepages_mytrip_corepages">
+          <End Type="mytripmvcModel.mytrip_corepages" Role="mytrip_corepages" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_corepages" Role="mytrip_corepages1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_corepages">
+              <PropertyRef Name="PageId" />
+            </Principal>
+            <Dependent Role="mytrip_corepages1">
+              <PropertyRef Name="SubPagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="mytrip_geocity">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Type="Int32" Name="CityId" Nullable="false" />
+          <Property Type="Int32" Name="RegionId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Longitude" Precision="18" Scale="8" />
+          <Property Type="Decimal" Name="Latitude" Precision="18" Scale="8" />
+          <Property Type="Boolean" Name="EditAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="EditUser" Nullable="false" />
+          <NavigationProperty Name="mytrip_georegion" Relationship="mytripmvcModel.FK_mytrip_geocity_mytrip_georegion" FromRole="mytrip_geocity" ToRole="mytrip_georegion" />
+          <NavigationProperty Name="mytrip_corestatistic" Relationship="mytripmvcModel.FK_mytrip_corestatistic_mytrip_geocity" FromRole="mytrip_geocity" ToRole="mytrip_corestatistic" />
+          <NavigationProperty Name="mytrip_usersprofile" Relationship="mytripmvcModel.FK_mytrip_usersprofile_mytrip_geocity" FromRole="mytrip_geocity" ToRole="mytrip_usersprofile" />
+        </EntityType>
+        <EntityType Name="mytrip_geocountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Longitude" Precision="18" Scale="8" />
+          <Property Type="Decimal" Name="Latitude" Precision="18" Scale="8" />
+          <Property Type="Boolean" Name="EditAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="EditUser" Nullable="false" />
+          <NavigationProperty Name="mytrip_georegion" Relationship="mytripmvcModel.FK_mytrip_georegion_mytrip_geocountry" FromRole="mytrip_geocountry" ToRole="mytrip_georegion" />
+        </EntityType>
+        <EntityType Name="mytrip_georegion">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Type="Int32" Name="RegionId" Nullable="false" />
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Longitude" Precision="18" Scale="8" />
+          <Property Type="Decimal" Name="Latitude" Precision="18" Scale="8" />
+          <Property Type="Boolean" Name="EditAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="EditUser" Nullable="false" />
+          <NavigationProperty Name="mytrip_geocity" Relationship="mytripmvcModel.FK_mytrip_geocity_mytrip_georegion" FromRole="mytrip_georegion" ToRole="mytrip_geocity" />
+          <NavigationProperty Name="mytrip_geocountry" Relationship="mytripmvcModel.FK_mytrip_georegion_mytrip_geocountry" FromRole="mytrip_georegion" ToRole="mytrip_geocountry" />
+        </EntityType>
+        <Association Name="FK_mytrip_geocity_mytrip_georegion">
+          <End Type="mytripmvcModel.mytrip_georegion" Role="mytrip_georegion" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_geocity" Role="mytrip_geocity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_georegion">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="mytrip_geocity">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_georegion_mytrip_geocountry">
+          <End Type="mytripmvcModel.mytrip_geocountry" Role="mytrip_geocountry" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_georegion" Role="mytrip_georegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="mytrip_georegion">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="mytrip_corestatistic">
+          <Key>
+            <PropertyRef Name="StatisticId" />
+          </Key>
+          <Property Type="Int32" Name="StatisticId" Nullable="false" />
+          <Property Type="String" Name="UserIP" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Page" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Referrer" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Browser" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OS" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CityId" Nullable="false" />
+          <Property Type="Int32" Name="UserCount" Nullable="false" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <Property Type="Boolean" Name="Day" Nullable="false" />
+          <Property Type="Boolean" Name="Month" Nullable="false" />
+          <Property Type="Boolean" Name="Year" Nullable="false" />
+          <Property Type="Int32" Name="Time" />
+          <NavigationProperty Name="mytrip_geocity" Relationship="mytripmvcModel.FK_mytrip_corestatistic_mytrip_geocity" FromRole="mytrip_corestatistic" ToRole="mytrip_geocity" />
+        </EntityType>
+        <Association Name="FK_mytrip_corestatistic_mytrip_geocity">
+          <End Type="mytripmvcModel.mytrip_geocity" Role="mytrip_geocity" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_corestatistic" Role="mytrip_corestatistic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocity">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="mytrip_corestatistic">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="mytrip_usersprofile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Longitude" Precision="18" Scale="8" />
+          <Property Type="Decimal" Name="Latitude" Precision="18" Scale="8" />
+          <Property Type="String" Name="Site" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="icq" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="skype" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CityId" Nullable="false" />
+          <Property Type="Boolean" Name="ProfileClose" Nullable="false" />
+          <NavigationProperty Name="mytrip_geocity" Relationship="mytripmvcModel.FK_mytrip_usersprofile_mytrip_geocity" FromRole="mytrip_usersprofile" ToRole="mytrip_geocity" />
+          <NavigationProperty Name="mytrip_users" Relationship="mytripmvcModel.FK_mytrip_usersprofile_mytrip_users" FromRole="mytrip_usersprofile" ToRole="mytrip_users" />
+        </EntityType>
+        <Association Name="FK_mytrip_usersprofile_mytrip_geocity">
+          <End Type="mytripmvcModel.mytrip_geocity" Role="mytrip_geocity" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_usersprofile" Role="mytrip_usersprofile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_geocity">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="mytrip_usersprofile">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mytrip_usersprofile_mytrip_users">
+          <End Type="mytripmvcModel.mytrip_users" Role="mytrip_users" Multiplicity="1" />
+          <End Type="mytripmvcModel.mytrip_usersprofile" Role="mytrip_usersprofile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mytrip_users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="mytrip_usersprofile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mytripmvcModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="mytrip_users"><EntityTypeMapping TypeName="mytripmvcModel.mytrip_users"><MappingFragment StoreEntitySet="mytrip_users">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_usersmembership"><EntityTypeMapping TypeName="mytripmvcModel.mytrip_usersmembership"><MappingFragment StoreEntitySet="mytrip_usersmembership">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+            <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+            <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+            <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="mytrip_usersroles"><EntityTypeMapping TypeName="mytripmvcModel.mytrip_usersroles"><MappingFragment StoreEntitySet="mytrip_usersroles">
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="mytrip_usersinroles" TypeName="mytripmvcModel.mytrip_usersinroles" StoreEntitySet="mytrip_usersinroles">
+            <EndProperty Name="mytrip_usersroles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="mytrip_users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="mytrip_corepages">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_corepages">
+              <MappingFragment StoreEntitySet="mytrip_corepages">
+                <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+                <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+                <ScalarProperty Name="SeoKeyword" ColumnName="SeoKeyword" />
+                <ScalarProperty Name="SubPagesId" ColumnName="SubPagesId" />
+                <ScalarProperty Name="AllCulture" ColumnName="AllCulture" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="AddHomePage" ColumnName="AddHomePage" />
+                <ScalarProperty Name="AddMenu" ColumnName="AddMenu" />
+                <ScalarProperty Name="EmailForm" ColumnName="EmailForm" />
+                <ScalarProperty Name="SideBar" ColumnName="SideBar" />
+                <ScalarProperty Name="ViewOnlyHomePage" ColumnName="ViewOnlyHomePage" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_geocity">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_geocity">
+              <MappingFragment StoreEntitySet="mytrip_geocity">
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+                <ScalarProperty Name="EditAdmin" ColumnName="EditAdmin" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_geocountry">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_geocountry">
+              <MappingFragment StoreEntitySet="mytrip_geocountry">
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+                <ScalarProperty Name="EditAdmin" ColumnName="EditAdmin" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_georegion">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_georegion">
+              <MappingFragment StoreEntitySet="mytrip_georegion">
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+                <ScalarProperty Name="EditAdmin" ColumnName="EditAdmin" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_corestatistic">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_corestatistic">
+              <MappingFragment StoreEntitySet="mytrip_corestatistic">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="UserCount" ColumnName="UserCount" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="Referrer" ColumnName="Referrer" />
+                <ScalarProperty Name="Page" ColumnName="Page" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+                <ScalarProperty Name="StatisticId" ColumnName="StatisticId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mytrip_usersprofile">
+            <EntityTypeMapping TypeName="mytripmvcModel.mytrip_usersprofile">
+              <MappingFragment StoreEntitySet="mytrip_usersprofile">
+                <ScalarProperty Name="ProfileClose" ColumnName="ProfileClose" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="skype" ColumnName="skype" />
+                <ScalarProperty Name="icq" ColumnName="icq" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MssqlModel" ZoomLevel="82">
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_users" Width="1.5" PointX="2.625" PointY="0.5" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_usersmembership" Width="1.5" PointX="5.25" PointY="0.5" Height="3.1340950520833313" IsExpanded="true" />
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_usersroles" Width="1.5" PointX="0.5" PointY="0.5" Height="1.5956835937499996" IsExpanded="true" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_Membership_mytrip_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.125" PointY="1.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="1.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="mytripmvcModel.mytrip_usersinroles" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="1.2978417968749998" />
+          <ConnectorPoint PointX="2.625" PointY="1.2978417968749998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_corepages" Width="1.5" PointX="0.5" PointY="3.25" Height="4.0956022135416656" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_corepages_mytrip_corepages" >
+          <ConnectorPoint PointX="1.0319230769230769" PointY="7.3456022135416656" />
+          <ConnectorPoint PointX="1.0319230769230769" PointY="7.5956022135416656" />
+          <ConnectorPoint PointX="1.4784615384615383" PointY="7.5956022135416656" />
+          <ConnectorPoint PointX="1.4784615384615383" PointY="7.3456022135416656" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_geocity" Width="1.5" PointX="5.25" PointY="4.25" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_geocountry" Width="1.5" PointX="2.75" PointY="8" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_georegion" Width="1.5" PointX="5.25" PointY="8" Height="2.9417936197916674" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_geocity_mytrip_georegion" >
+          <ConnectorPoint PointX="6" PointY="8" />
+          <ConnectorPoint PointX="6" PointY="7.1917936197916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_georegion_mytrip_geocountry" >
+          <ConnectorPoint PointX="4.25" PointY="9.2785953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="9.2785953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_corestatistic" Width="1.5" PointX="7.5" PointY="3.75" Height="3.9033007812500031" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_corestatistic_mytrip_geocity" >
+          <ConnectorPoint PointX="6.75" PointY="5.7208968098958328" />
+          <ConnectorPoint PointX="7.5" PointY="5.7208968098958328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mytripmvcModel.mytrip_usersprofile" Width="1.5" PointX="2.625" PointY="3.5" Height="3.7109993489583353" />
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_usersprofile_mytrip_geocity" >
+          <ConnectorPoint PointX="5.25" PointY="5.7208968098958328" />
+          <ConnectorPoint PointX="4.125" PointY="5.7208968098958328" />
+        </AssociationConnector>
+        <AssociationConnector Association="mytripmvcModel.FK_mytrip_usersprofile_mytrip_users" >
+          <ConnectorPoint PointX="3.375" PointY="2.672587890625" />
+          <ConnectorPoint PointX="3.375" PointY="3.5" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

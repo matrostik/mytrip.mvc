@@ -1,0 +1,22 @@
+@{ 
+    /* Copyright ? 2009 - 2010 Oleg Stuhin & Rostislav Haitovich 
+       To learn more about Mytrip.Mvc visit  
+       http://mytripmvc.net  http://mytripmvc.codeplex.com 
+       mytripmvc@gmail.com
+       license: Microsoft Public License (Ms-PL) */ 
+}
+@{
+    ViewBag.Title = Html.MytripPageTitle(StoreLanguage.managerorders);
+    ViewBag.Keywords = mtm.Store.ModuleSetting.nameStoreKeyWords();
+    ViewBag.Description = mtm.Store.ModuleSetting.nameStoreDesc();
+}
+@section scriptlink{
+@Html.ScriptLink("mtm.Delete.js,Page/Store.ManagerOrders.js")
+}
+@section content{
+@Html.BreadCumps(">", (string[])ViewBag.Bread)
+<h1 class="title"><a href="/Store/Manager">@StoreLanguage.manager</a> / @StoreLanguage.managerorders</h1>
+@Html.GetOrdersManager()
+@Html.Partial("Partial/_deleteModal") 
+}
+
