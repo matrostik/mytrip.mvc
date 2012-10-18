@@ -706,7 +706,7 @@ namespace mtm.Store.Helpers
             int __count = 1;
             StringBuilder result = new StringBuilder();
             result.Append("<table class='noborders'>");
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + x.ProductId);
+            string absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Product", x.ProductId.ToString()); 
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] _result = _absolutDirectory2.GetFiles();
             foreach (var _x in _result)

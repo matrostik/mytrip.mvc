@@ -14,7 +14,7 @@ namespace mtm.Core.Install
     {
         private static string password()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Web.config");
+            string absolutDirectory = GeneralMethods.GetPath("Web.config");
             XDocument doc = XDocument.Load(absolutDirectory);
             var core = doc.Root.Elements("appSettings").Elements("add");
             return core.FirstOrDefault(x => x.Attribute("key").Value == "applicationId")
@@ -149,7 +149,7 @@ namespace mtm.Core.Install
 
             _doc.Save(_absolutDirectory);
 
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Web.config");
+            string absolutDirectory = GeneralMethods.GetPath("Web.config");
             XDocument doc = XDocument.Load(absolutDirectory);
             var core = doc.Root.Elements("appSettings").Elements("add");
             core.FirstOrDefault(x => x.Attribute("key").Value == "applicationId")

@@ -29,7 +29,7 @@ namespace mtm.Store.Helpers
         public static string GetImage(int id,string title, string directory, int width)
         {
             string name = "_" + id + ".";
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             string img = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory2.Exists)
@@ -54,7 +54,7 @@ namespace mtm.Store.Helpers
         public static string GetImageProduct(int id, int width)
         {
             string name = "product.";
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+            string absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Product", id.ToString());
             string _directory = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory2.Exists)
@@ -78,7 +78,7 @@ namespace mtm.Store.Helpers
         public static string GetImageProduct(int id)
         {
             string name = "product.";
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+            string absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Product", id.ToString());
             string _directory = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory2.Exists)

@@ -65,17 +65,17 @@ namespace mtm.RssParser
         }
         public static void CreateAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/bin/ru-ru/mtm.RssParser.resources.dll", Localisation.ru_ru_mtm_RssParser_resources);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             EditePageRepository.CreatePage("/Scripts/Page/Rssparser.js", JScripts.Rssparser);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Rssparser");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Rssparser");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -87,13 +87,13 @@ namespace mtm.RssParser
         }
         public static void DeleteAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru/mtm.RssParser.resources.dll");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru", "mtm.RssParser.resources.dll"); 
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Rssparser.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Rssparser.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Rssparser");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Rssparser");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
         }

@@ -69,7 +69,7 @@ namespace mtm.Core.Settings
         /// <returns>возвращает string</returns>
          internal static string allCulture()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin");
+            string absolutDirectory = GeneralMethods.GetPath("bin");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();

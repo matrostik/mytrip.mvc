@@ -98,12 +98,12 @@ namespace mtm.Store
         }
         public static void CreateAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/bin/ru-ru/mtm.Store.resources.dll", Localisation.ru_ru_mtm_Store_resources);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -116,7 +116,7 @@ namespace mtm.Store
             EditePageRepository.CreatePage("/Scripts/Page/Store.ManagerOrders.js", JScripts.Store_ManagerOrders);
             EditePageRepository.CreatePage("/Scripts/Page/Store.OrdersDetails.js", JScripts.Store_OrdersDetails);
             EditePageRepository.CreatePage("/Scripts/Page/Store.View.js", JScripts.Store_View);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Store");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Store");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -132,28 +132,28 @@ namespace mtm.Store
             EditePageRepository.CreatePage("/Views/Store/Setting.cshtml", WebPages.Setting);
             EditePageRepository.CreatePage("/Views/Store/View.cshtml", WebPages.View);
             EditePageRepository.CreatePage("/Views/Store/Web.config", WebPages.Web);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Catalog");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Catalog");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Product");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Product");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Department");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Department");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Producer");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Producer");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/Content/Store/Catalog/Empty.zip", Content.Empty);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Catalog/Empty");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Catalog", "Empty");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -162,40 +162,40 @@ namespace mtm.Store
         }
         public static void DeleteAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru/mtm.Store.resources.dll");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru", "mtm.Store.resources.dll");
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.Cart.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.Cart.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.CreateProductXml.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.CreateProductXml.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.CreateSale.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.CreateSale.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.EditorCategory.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.EditorCategory.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.EditorProduct.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.EditorProduct.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.Index.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.Index.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.ManagerOrders.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.ManagerOrders.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.OrdersDetails.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.OrdersDetails.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Store.View.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Store.View.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Store");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Store");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store");
+            absolutDirectory = GeneralMethods.GetPath("Content", "Store");
             folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
         }

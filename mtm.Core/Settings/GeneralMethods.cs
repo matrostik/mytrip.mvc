@@ -25,13 +25,35 @@ namespace mtm.Core.Settings
     {
         public static void RestartApplication()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Web.config");
+            string absolutDirectory = GetPath("Web.config");
             XDocument doc = XDocument.Load(absolutDirectory);
             var core = doc.Root.Elements("appSettings").Elements("add");
             core.FirstOrDefault(x => x.Attribute("key").Value == "restart")
                 .SetAttributeValue("value", Guid.NewGuid());
             doc.Save(absolutDirectory);
         }
+
+        #region Application Path
+
+        public static string GetHostingPath()
+        {
+            return HttpContext.Current.Server.MapPath("~");
+        }
+
+        public static string GetPath(params string[] paths)
+        {
+
+            string appPath = GetHostingPath();
+
+            foreach (var path in paths) {
+                appPath = Path.Combine(appPath, path);
+            }
+
+            return appPath;
+
+        }
+
+        #endregion
 
         #region Сброс кеша
         // **********************************************
@@ -93,7 +115,7 @@ namespace mtm.Core.Settings
         /// <returns>возвращает string</returns>
         public static string MytripConfigurationDirectory()
         {
-            return HttpContext.Current.Server.MapPath("/App_Data/mtm.Config.xml");
+            return GetPath("App_Data", "mtm.Config.xml");
         }
 
         /// <summary>Абсолютная дирректория для файлов .xml в папке Configuration
@@ -102,7 +124,7 @@ namespace mtm.Core.Settings
         /// <returns>возвращает string</returns>
         public static string MytripConfigurationDirectory(string filename)
         {
-            return HttpContext.Current.Server.MapPath("/App_Data/" + filename + ".xml");
+            return GetPath("App_Data", string.Format("{0}.xml", filename));
         }
 
         /// <summary>Метод для кеширования данных из mtm.Config.xml

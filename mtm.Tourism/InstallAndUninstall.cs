@@ -86,19 +86,19 @@ namespace mtm.Tourism
         }
         public static void CreateAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/bin/ru-ru/mtm.Tourism.resources.dll", Localisation.ru_ru_mtm_Tourism_resources);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             EditePageRepository.CreatePage("/Scripts/Page/Tour.EditorCategory.js", JScripts.Tour_EditorCategory);
             EditePageRepository.CreatePage("/Scripts/Page/Tour.EditorTour.js", JScripts.Tour_EditorTour);
             EditePageRepository.CreatePage("/Scripts/Page/Tour.OrderTour.js", JScripts.Tour_OrderTour);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Tours");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Tours");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -111,19 +111,19 @@ namespace mtm.Tourism
         }
         public static void DeleteAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru/mtm.Tourism.resources.dll");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru", "mtm.Tourism.resources.dll");
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Tour.EditorCategory.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Tour.EditorCategory.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Tour.EditorTour.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Tour.EditorTour.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Tour.OrderTour.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Tour.OrderTour.js");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Tours");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Tours");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
         }
