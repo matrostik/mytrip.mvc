@@ -28,7 +28,7 @@ namespace mtm.Store.Repository
             else if (param.Contains("CreateProduct"))
             {
                 directory += "/Product/" + name;
-                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                absolutDirectory = GeneralMethods.GetPath(directory);
                 DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
                 if (!folder.Exists)
                     folder.Create();
@@ -40,7 +40,7 @@ namespace mtm.Store.Repository
                 directory += "/Product/" + _param[0];
                 name = "product";
             }
-            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
             foreach (var x in result)
@@ -72,7 +72,7 @@ namespace mtm.Store.Repository
             if (path=="CreateProduct")
             {
                 directory += "Product/" + name;
-                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                absolutDirectory = GeneralMethods.GetPath(directory);
                 DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
                 if (!folder.Exists)
                     folder.Create();
@@ -97,7 +97,7 @@ namespace mtm.Store.Repository
             }
             else
                 return new HtmlString("");
-            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
             string _file = "";
@@ -120,11 +120,11 @@ namespace mtm.Store.Repository
             string extension = name.Remove(0, name.LastIndexOf("."));
             name = "temp" + HttpContext.Current.User.Identity.Name;
             string directory = "/Content/Store/Product";
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             if (param.Contains("CreateProduct"))
             {
                 directory += "/" + name;
-                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                absolutDirectory = GeneralMethods.GetPath(directory);
                 DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
                 if (!folder.Exists)
                     folder.Create();
@@ -136,7 +136,7 @@ namespace mtm.Store.Repository
             }
             int _filename=0;
             string _file = "";
-            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
             foreach (var x in result)
@@ -164,11 +164,11 @@ namespace mtm.Store.Repository
         {
             string name = "temp" + HttpContext.Current.User.Identity.Name;
             string directory = "/Content/Store/Product";
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             if (param.Contains("CreateProduct"))
             {
                 directory += "/" + name;
-                absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                absolutDirectory = GeneralMethods.GetPath(directory);
                 DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
                 if (!folder.Exists) 
                     folder.Create();
@@ -179,7 +179,7 @@ namespace mtm.Store.Repository
                 directory += "/" + _param[0];
             }
             string _file = "";
-            absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
             foreach (var x in result)
@@ -196,7 +196,7 @@ namespace mtm.Store.Repository
         internal void RenameFile(int id, string directory)
         {
             string name = "temp" + HttpContext.Current.User.Identity.Name + ".";
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             string _name = "";
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
@@ -233,14 +233,14 @@ namespace mtm.Store.Repository
 
         internal void RenameFolder(int id)
         {
-            string oldName = HttpContext.Current.Server.MapPath("/Content/Store/Product/temp" + HttpContext.Current.User.Identity.Name);
-            string newName = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+            string oldName = GeneralMethods.GetPath("Content", "Store", "Product", string.Format("temp{0}", HttpContext.Current.User.Identity.Name));
+            string newName = GeneralMethods.GetPath("Content", "Store", "Product", id.ToString());
             Directory.Move(oldName, newName);
         }
 
         internal void DeleteFolder(int id)
         {
-            string _directory = HttpContext.Current.Server.MapPath("/Content/Store/Product/" + id);
+            string _directory = GeneralMethods.GetPath("Content", "Store", "Product", id.ToString());
            DirectoryInfo folder = new DirectoryInfo(_directory);
            folder.Delete(true);
         }    
@@ -248,7 +248,7 @@ namespace mtm.Store.Repository
         internal void DeleteFile(int id, string directory)
         {
             string name = "_" + id + ".";
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
 
             DirectoryInfo _absolutDirectory2 = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory2.GetFiles();
@@ -264,7 +264,7 @@ namespace mtm.Store.Repository
 
         internal void DeleteFile(string directory)
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
         }

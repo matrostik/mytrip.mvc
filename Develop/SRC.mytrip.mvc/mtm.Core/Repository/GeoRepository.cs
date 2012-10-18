@@ -11,6 +11,7 @@ using System.Threading;
 using System.Text;
 using mtm.Core.Repository.Geo;
 using mtm.Core.Repository.DataEntities;
+using mtm.Core.Settings;
 
 namespace mtm.Core.Repository
 {
@@ -371,7 +372,7 @@ namespace mtm.Core.Repository
             try{
             if (_base != "null")
             {
-                string dir = HttpContext.Current.Server.MapPath("/App_Data/" + _base);
+                string dir = GeneralMethods.GetPath("App_Data", _base);
                 LookupService ls = new LookupService(dir, LookupService.GEOIP_STANDARD);
                 Location l = ls.getLocation(ip);
                 if (l != null)
@@ -501,7 +502,7 @@ namespace mtm.Core.Repository
 
             if (GeoSetting.unlockGeo())
             {
-                string _absolutDirectory = HttpContext.Current.Server.MapPath("/App_Data");
+                string _absolutDirectory = GeneralMethods.GetPath("App_Data");
                 DirectoryInfo __absolutDirectory = new DirectoryInfo(_absolutDirectory);
                 if (!__absolutDirectory.Exists)
                     __absolutDirectory.Create();
@@ -528,7 +529,7 @@ namespace mtm.Core.Repository
                 }
                 if (!GeoSetting.DownloadGeo() && download)
                 {
-                    string dir = HttpContext.Current.Server.MapPath("/");
+                    string dir = GeneralMethods.GetHostingPath();
                     DowloadBaseThread ethread = new DowloadBaseThread(dir);
                     Thread t = new Thread(new ThreadStart(ethread._DownloadBase));
                     t.IsBackground = true;

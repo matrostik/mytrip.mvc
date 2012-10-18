@@ -6,6 +6,7 @@
 using System.IO;
 using System.Web;
 using System.Text;
+using mtm.Core.Settings;
 
 namespace mtm.Core.Repository
 {
@@ -21,7 +22,7 @@ namespace mtm.Core.Repository
        /// <returns></returns>
         public static string[] WritePage(string directory)
        {
-           string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+           string absolutDirectory = GeneralMethods.GetPath(directory);
            string[] file_in = File.ReadAllLines(absolutDirectory, Encoding.ASCII);
            return file_in;
        }
@@ -32,7 +33,7 @@ namespace mtm.Core.Repository
        /// <param name="files"></param>
        public static void CreatePage(string directory, string[] files)
        {
-           string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+           string absolutDirectory = GeneralMethods.GetPath(directory);
            File.WriteAllLines(absolutDirectory, files, Encoding.ASCII);
        }
        /// <summary>
@@ -42,7 +43,7 @@ namespace mtm.Core.Repository
        /// <param name="files"></param>
         public static void CreatePage(string directory, string files)
        {
-           string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+           string absolutDirectory = GeneralMethods.GetPath(directory);
            File.WriteAllText(absolutDirectory, files, Encoding.ASCII);
        }
     }
@@ -50,7 +51,7 @@ namespace mtm.Core.Repository
     {
         public static void CreateFile(string directory, byte[] files)
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             File.WriteAllBytes(absolutDirectory, files);
         }
     }

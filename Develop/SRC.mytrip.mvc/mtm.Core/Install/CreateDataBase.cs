@@ -124,7 +124,7 @@ namespace mtm.Core.Install
             {
                 if (!res && model.Server.Contains("SQLEXPRESS"))
                 {
-                    string directory = HttpContext.Current.Server.MapPath("/App_Data");
+                    string directory = GeneralMethods.GetPath("App_Data");
                     string filename = directory + "\\" + model.DataBase + ".mdf";
                     string databaseName = System.IO.Path.GetFileNameWithoutExtension(filename);
                     using (var connection = new SqlConnection(
@@ -273,7 +273,7 @@ namespace mtm.Core.Install
 
         private static string[] CreateDataBaseSQLEXPRESS(string name)
         {
-            string directory = HttpContext.Current.Server.MapPath("/App_Data");
+            string directory = GeneralMethods.GetPath("App_Data");
             string[] result = {
 
             "USE [tempdb]",

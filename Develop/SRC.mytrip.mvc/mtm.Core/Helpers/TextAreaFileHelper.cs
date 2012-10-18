@@ -24,7 +24,7 @@ namespace mtm.Core.Helpers
         /// <returns>возвращает HtmlString</returns>
         public static HtmlString MytripSmiles(this HtmlHelper html, string path)
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath(path);
+            string absolutDirectory = GeneralMethods.GetPath(path);
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             FileInfo[] result = _absolutDirectory.GetFiles();
             string _result = string.Empty;

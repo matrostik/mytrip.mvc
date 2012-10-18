@@ -739,11 +739,11 @@ namespace mtm.Store.Repository
 
             string name = Path.GetFileName(file.FileName);
             string extension = name.Remove(0, name.LastIndexOf("."));
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Catalog");
+            string absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Catalog");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             if (!folder.Exists)
-                folder.Create();            
-            string _absolutDirectory = HttpContext.Current.Server.MapPath("/Content/Store/Catalog/" + name);
+                folder.Create();
+            string _absolutDirectory = GeneralMethods.GetPath("Content", "Store", "Catalog", name);
             file.SaveAs(_absolutDirectory);
             return name;
            

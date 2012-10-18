@@ -261,7 +261,7 @@ namespace mtm.Core.Repository
         {
             IDictionary<string, List<string>> _result = new Dictionary<string, List<string>>();
             string _absolutDirectory1 = GeneralMethods.MytripConfigurationDirectory();
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin");
+            string absolutDirectory = GeneralMethods.GetPath("bin");
             XDocument _doc = XDocument.Load(_absolutDirectory1);
             try
             {
@@ -289,7 +289,7 @@ namespace mtm.Core.Repository
         internal IDictionary<string, List<string>> alldllMassiveForModules()
         {
             string _absolutDirectory1 = GeneralMethods.MytripConfigurationDirectory();
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin");
+            string absolutDirectory = GeneralMethods.GetPath("bin");
             string modules = string.Empty;
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
@@ -544,7 +544,7 @@ namespace mtm.Core.Repository
         private IDictionary<string, string> alldllMassiveForLink()
         {
 
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin");
+            string absolutDirectory = GeneralMethods.GetPath("bin");
             IDictionary<string, string> _result = new Dictionary<string, string>();
             string _absolutDirectory1 = GeneralMethods.MytripConfigurationDirectory();
             string domain = "http://" + HttpContext.Current.Request.ServerVariables["HTTP_HOST"];

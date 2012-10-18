@@ -47,7 +47,7 @@ namespace mtm.Store.Repository
             if (filename.Contains(".xls"))
             {
                 string directory = "/Content/Store/Catalog/" + filename;
-                string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                string absolutDirectory = GeneralMethods.GetPath(directory);
                 ExcelProvider provider = ExcelProvider.Create(absolutDirectory);
                 var producer = provider.GetSheet<ExcelSale>().Where(x => x.SaleId !=null);
                 foreach (var z in entities.mytrip_storesale
@@ -116,7 +116,7 @@ namespace mtm.Store.Repository
             if (filename.Contains(".xls"))
             {
                 string directory = "/Content/Store/Catalog/" + filename;
-                string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                string absolutDirectory = GeneralMethods.GetPath(directory);
                 ExcelProvider provider = ExcelProvider.Create(absolutDirectory);
                 var producer = provider.GetSheet<ExcelProducer>().Where(x => x.ProducerId != null);
                 foreach (var z in entities.mytrip_storeproducer.Include("mytrip_storeproduct").OrderBy(z => z.ProducerId))
@@ -190,7 +190,7 @@ namespace mtm.Store.Repository
             if (filename.Contains(".xls"))
             {
                 string directory = "/Content/Store/Catalog/" + filename;
-                string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                string absolutDirectory = GeneralMethods.GetPath(directory);
                 ExcelProvider provider = ExcelProvider.Create(absolutDirectory);
                 var producer = provider.GetSheet<ExcelDepartment>()
                     .Where(x => x.DepartmentId != null);
@@ -318,7 +318,7 @@ namespace mtm.Store.Repository
             if (filename.Contains(".xls"))
             {
                 string directory = "/Content/Store/Catalog/" + filename;
-                string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+                string absolutDirectory = GeneralMethods.GetPath(directory);
                 ExcelProvider provider = ExcelProvider.Create(absolutDirectory);
                 var producer = provider.GetSheet<ExcelProduct>().Where(x => x.ProductId != null);
                 foreach (var z in entities.mytrip_storeproduct
@@ -411,9 +411,9 @@ namespace mtm.Store.Repository
         {
 
             string _directory = "/Content/Store/Catalog/Empty/mytrip_products."+file;
-            string _absolutDirectory = HttpContext.Current.Server.MapPath(_directory);
+            string _absolutDirectory = GeneralMethods.GetPath(_directory);
             string directory = "/Content/Store/Catalog/mytrip_products." + file;
-                string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
                 File.Copy(_absolutDirectory, absolutDirectory,true);
                 ExcelProvider provider = ExcelProvider.Create(absolutDirectory);
                 foreach (var z in entities.mytrip_storesale.OrderBy(z => z.SaleId))

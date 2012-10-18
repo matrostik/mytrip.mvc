@@ -39,7 +39,7 @@ namespace mtm.Core.Settings
         }//<add name="unlockWrap" value="False"/>
         internal static bool unlockWrap()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Theme/" + theme()+"/wrap");
+            string absolutDirectory = GeneralMethods.GetPath("Theme", theme(), "wrap");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 return false;
@@ -88,7 +88,7 @@ namespace mtm.Core.Settings
         /// <returns>возвращает string[]</returns>
         internal static string[] allThemeMassive()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Theme");
+            string absolutDirectory = GeneralMethods.GetPath("Theme");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
