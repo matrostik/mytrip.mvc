@@ -64,13 +64,13 @@ namespace mtm.Weather
         }
         public static void CreateAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/bin/ru-ru/mtm.Weather.resources.dll", Localisation.ru_ru_mtm_Weather_resources);
 
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Weather");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Weather");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -81,10 +81,10 @@ namespace mtm.Weather
         }
         public static void DeleteAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru/mtm.Weather.resources.dll");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru", "mtm.Weather.resources.dll");
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Weather");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Weather");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
         } 

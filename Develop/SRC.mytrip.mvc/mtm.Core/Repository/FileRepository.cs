@@ -21,7 +21,7 @@ namespace mtm.Core.Repository
         internal DirectoryInfo[] GetAllFoldersFromDirectory(string directory)
         {
             directory = String.IsNullOrEmpty(directory) ? "/" : directory.Replace("()", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists) 
                 _absolutDirectory.Create();
@@ -35,7 +35,7 @@ namespace mtm.Core.Repository
         internal FileInfo[] GetAllFilesFromDirectory(string directory)
         {
             directory = String.IsNullOrEmpty(directory) ? "/" : directory.Replace("()", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -49,7 +49,7 @@ namespace mtm.Core.Repository
         internal void UploadFile(string directory, HttpPostedFileBase file)
         {
             directory = String.IsNullOrEmpty(directory) ? "/" : directory.Replace("()", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath(directory);
+            string absolutDirectory = GeneralMethods.GetPath(directory);
             string name = Path.GetFileName(file.FileName);
             string extension = name.Remove(0,name.LastIndexOf("."));
             string extension2 = extension.Replace(".", "_");
@@ -64,7 +64,7 @@ namespace mtm.Core.Repository
         {
             string _directory = directory;
             _directory = _directory.Replace("()", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath(_directory);
+            string absolutDirectory = GeneralMethods.GetPath(_directory);
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
 
@@ -76,7 +76,7 @@ namespace mtm.Core.Repository
         {
             string _directory = GeneralMethods.DecodingString(directory);
             _directory = _directory.Replace("()", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath(_directory);
+            string absolutDirectory = GeneralMethods.GetPath(_directory);
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Create();
 
@@ -87,7 +87,7 @@ namespace mtm.Core.Repository
         internal void DeleteFolder(string directory)
         {
             directory = directory.Replace("()", "/");
-            string _directory = HttpContext.Current.Server.MapPath(directory);
+            string _directory = GeneralMethods.GetPath(directory);
             DirectoryInfo folder = new DirectoryInfo(_directory);
             folder.Delete(true);
 
@@ -100,8 +100,8 @@ namespace mtm.Core.Repository
         {
             string oldDirectory = directory.Replace("()", "/");
             string newDirectory = string.Concat(directory.Remove(directory.LastIndexOf("()")).Replace("()", "/"),"/",GeneralMethods.DecodingString(name));
-            string oldName = HttpContext.Current.Server.MapPath(oldDirectory);
-            string newName = HttpContext.Current.Server.MapPath(newDirectory);
+            string oldName = GeneralMethods.GetPath(oldDirectory);
+            string newName = GeneralMethods.GetPath(newDirectory);
             if (oldName != newName)
                 Directory.Move(oldName, newName);
         }
@@ -113,8 +113,8 @@ namespace mtm.Core.Repository
         {
             string oldDirectory = directory.Replace("()", "/");
             string newDirectory = string.Concat(directory.Remove(directory.LastIndexOf("()")).Replace("()", "/"),"/",GeneralMethods.DecodingString(name));
-            string oldName = HttpContext.Current.Server.MapPath(oldDirectory);
-            string newName = HttpContext.Current.Server.MapPath(newDirectory);
+            string oldName = GeneralMethods.GetPath(oldDirectory);
+            string newName = GeneralMethods.GetPath(newDirectory);
             if (oldName != newName)
                 File.Move(oldName, newName);
         }

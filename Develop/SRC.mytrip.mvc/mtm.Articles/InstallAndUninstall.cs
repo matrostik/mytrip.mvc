@@ -86,17 +86,17 @@ namespace mtm.Articles
         }
         public static void CreateAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists) 
                 _absolutDirectory.Create();
             CreateFileRepository.CreateFile("/bin/ru-ru/mtm.Articles.resources.dll", Localisation.ru_ru_mtm_Articles_resources);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
             EditePageRepository.CreatePage("/Scripts/Page/Articles.js", JScripts.Articles);
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Article");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Article");
             _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 _absolutDirectory.Create();
@@ -113,13 +113,13 @@ namespace mtm.Articles
         }
         public static void DeleteAllFiles()
         {
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/bin/ru-ru/mtm.Articles.resources.dll");
+            string absolutDirectory = GeneralMethods.GetPath("bin", "ru-ru", "mtm.Articles.resources.dll");
             FileInfo file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Scripts/Page/Articles.js");
+            absolutDirectory = GeneralMethods.GetPath("Scripts", "Page", "Article");
             file = new FileInfo(absolutDirectory);
             file.Delete();
-            absolutDirectory = HttpContext.Current.Server.MapPath("/Views/Article");
+            absolutDirectory = GeneralMethods.GetPath("Views", "Article");
             DirectoryInfo folder = new DirectoryInfo(absolutDirectory);
             folder.Delete(true);
         }

@@ -133,7 +133,7 @@ namespace mtm.Core.Helpers
         {
             TagBuilder a = new TagBuilder("a");
             a.MergeAttribute("href", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Theme/" + ThemeSetting.theme() + "/logo");
+            string absolutDirectory = GeneralMethods.GetPath("Theme", ThemeSetting.theme(), "logo");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 a.InnerHtml = CoreSetting.nameLogo();
@@ -151,7 +151,7 @@ namespace mtm.Core.Helpers
         {
             TagBuilder a = new TagBuilder("a");
             a.MergeAttribute("href", "/");
-            string absolutDirectory = HttpContext.Current.Server.MapPath("/Theme/" + ThemeSetting.theme() + "/logo");
+            string absolutDirectory = GeneralMethods.GetPath("Theme", ThemeSetting.theme(), "logo");
             DirectoryInfo _absolutDirectory = new DirectoryInfo(absolutDirectory);
             if (!_absolutDirectory.Exists)
                 return new HtmlString("");
